@@ -50,19 +50,24 @@ namespace NetDaemonApps.apps
             if (!isAsleepCondition.ContainsKey(trueConditionEntity)) isAsleepCondition.Add(trueConditionEntity, newState);
             isAsleepCondition[trueConditionEntity] = newState;
 
-            // Check if all condition match the given newstate
+
+  
+            bool areAllTrue = true;
             foreach (bool cond in isAsleepCondition.Values)
             {
-                if (newState != cond) return;
+                if (!cond) {
+                    areAllTrue = false;
+                    break;
+                };
             }
 
             // If all conditions are true or false, we might need to change isSleep-state
 
             bool stateOfIsasleep = _myEntities.InputBoolean.Isasleep.IsOn();
 
-            if(stateOfIsasleep != newState)
+            if(stateOfIsasleep != areAllTrue)
             {
-                if (newState) _myEntities.InputBoolean.Isasleep.TurnOn();
+                if (areAllTrue) _myEntities.InputBoolean.Isasleep.TurnOn();
                 else _myEntities.InputBoolean.Isasleep.TurnOff();
             }
                
