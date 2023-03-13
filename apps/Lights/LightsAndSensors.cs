@@ -10,7 +10,7 @@ using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NetDaemonApps.apps
+namespace NetDaemonApps.apps.Lights
 {
     [NetDaemonApp]
     public class LightsAndSensors
@@ -30,7 +30,7 @@ namespace NetDaemonApps.apps
             SubcribeLightOff(_myEntities.BinarySensor.KitchenSensorOccupancy, _myEntities.Light.KitchenLight2, defaulMotionTimeout, () => { return _myEntities.Sensor.KitchenDistance.State > kitchenDistanceSensorDistance; });
 
             SubcribeLightOn(_myEntities.BinarySensor.StorageSensorAqaraOccupancy, _myEntities.Light.StorageLight2);
-            SubcribeLightOff(_myEntities.BinarySensor.StorageSensorAqaraOccupancy, _myEntities.Light.StorageLight2, new TimeSpan(0,0,0), null);
+            SubcribeLightOff(_myEntities.BinarySensor.StorageSensorAqaraOccupancy, _myEntities.Light.StorageLight2, new TimeSpan(0, 0, 0), null);
 
 
         }

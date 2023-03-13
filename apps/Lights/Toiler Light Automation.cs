@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NetDaemonApps.apps
+namespace NetDaemonApps.apps.Lights
 {
     [NetDaemonApp]
     public class Toiler_Light_Automation
@@ -19,8 +19,9 @@ namespace NetDaemonApps.apps
         private readonly TimeSpan lightOnTimeOutSpan = new TimeSpan(1, 0, 0);
         private readonly TimeSpan motionSensorTimeOutSpan = new TimeSpan(0, 0, 10);
 
-        public Toiler_Light_Automation(IHaContext ha) {
-        
+        public Toiler_Light_Automation(IHaContext ha)
+        {
+
             _myEntities = new Entities(ha);
 
             targetLights.Add(_myEntities.Light.BedLight);
@@ -52,7 +53,8 @@ namespace NetDaemonApps.apps
 
 
 
-        private void OnToiledLidOpen() {
+        private void OnToiledLidOpen()
+        {
 
             lightsThatWereOn.Clear();
             _myEntities.Light.HallwayLight.TurnOff();
@@ -66,8 +68,8 @@ namespace NetDaemonApps.apps
             }
 
             //Turn off PC Monitors while in toilet
-            if(_myEntities.Switch.PcPlug.IsOn())
-            _myEntities.Button.PcTurnoffmonitors.Press();
+            if (_myEntities.Switch.PcPlug.IsOn())
+                _myEntities.Button.PcTurnoffmonitors.Press();
 
         }
 
@@ -77,7 +79,7 @@ namespace NetDaemonApps.apps
 
             foreach (LightEntity light in lightsThatWereOn)
             {
-                    light.TurnOn();            
+                light.TurnOn();
             }
 
             lightsThatWereOn.Clear();

@@ -103,24 +103,39 @@ namespace NetDaemonApps.apps.Hue_Switches
             return null;
         }
 
+        /// <summary> Power-button Press Down</summary>
         protected virtual void OnOnPress() { }
+        /// <summary> Power-button Press Release</summary>
         protected virtual void OnOnPressRelease() { }
+        /// <summary> Power-button Hold</summary>
         protected virtual void OnOnHold() { }
+        /// <summary> Power-button Hold release</summary>
         protected virtual void OnOnHoldRelease() { }
 
+        /// <summary> Brighness Up-button Press Down</summary>
         protected virtual void OnUpPress() { }
+        /// <summary> Brighness Up-button Press Release</summary>
         protected virtual void OnUpPressRelease() { }
+        /// <summary> Brighness Up-button Hold</summary>
         protected virtual void OnUpHold() { }
+        /// <summary> Brighness Up-button Hold release</summary>
         protected virtual void OnUpHoldRelease() { }
 
+        /// <summary> Brighness Down-button Press Down</summary>
         protected virtual void OnDownPress() { }
+        /// <summary> Brighness Down-button Press Release</summary>
         protected virtual void OnDownPressRelease() { }
+        /// <summary> Brighness Down-button</summary>
         protected virtual void OnDownHold() { }
         protected virtual void OnDownHoldRelease() { }
 
+        /// <summary> Hue-button Press Down</summary>
         protected virtual void OnOffPress(){}
+        /// <summary> Hue-button Press Release</summary>
         protected virtual void OnOffPressRelease(){}
+        /// <summary> Hue-button Hold</summary>
         protected virtual void OnOffHold(){}
+        /// <summary> Hue-button Hold release</summary>
         protected virtual void OnOffHoldRelease(){}
 
 

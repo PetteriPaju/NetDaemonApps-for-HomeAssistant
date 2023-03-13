@@ -68,8 +68,7 @@ public class SchedulingApp
         if (nextElectricityRange == currentRangeIndex) return;
 
 
-        string TTSMessage = "";
-
+        string TTSMessage;
 
         if (nextElectricityRange == -1) {
             TTSMessage = "Electricity Warning. The current range is unkown";
