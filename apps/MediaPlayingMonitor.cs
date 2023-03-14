@@ -29,6 +29,7 @@ namespace NetDaemonApps.apps
             void SetEntityForMediaPlayer(Entity ent)
             {
                 AddEntity(ent, () => { return ent.State?.ToLower() == "playing"; }, CheckAllStates);
+            
             }
 
             foreach(Entity e in mediaPlayerEntities)
@@ -40,7 +41,9 @@ namespace NetDaemonApps.apps
         private void AddEntity(Entity ent, Func<bool> isTrueMethod, Action onValueChanged)
         {
             IsTrueConditioner conditioner = new IsTrueConditioner(isTrueMethod, onValueChanged);
+            ent.StateChanges().Subscribe(_ => conditioner.UpdateState());
             _monitoreres.Add(conditioner);
+
         }
 
         private void CheckAllStates()
@@ -48,6 +51,7 @@ namespace NetDaemonApps.apps
             bool somethinggPlaying = false;
             foreach(IsTrueConditioner monitor in _monitoreres)
             {
+
                 if(monitor.currentState == true)
                 {
                     somethinggPlaying = true;
@@ -81,8 +85,7 @@ namespace NetDaemonApps.apps
             {
                 this.isTrueMethod = isTrueMethod;
                 this.OnValueChanged = onValueChanged;
-
-                UpdateState();
+                currentState = isTrueMethod != null ? isTrueMethod.Invoke() : true;
             }
 
 
@@ -90,7 +93,6 @@ namespace NetDaemonApps.apps
             public void UpdateState()
             {
                 bool tempstate = isTrueMethod != null ? isTrueMethod.Invoke() : true;
-
                 if (tempstate != currentState)
                 {
                     currentState = tempstate;

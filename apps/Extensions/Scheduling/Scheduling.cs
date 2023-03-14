@@ -86,7 +86,7 @@ public class SchedulingApp
         SendTTS(TTSMessage);
     }
 
-    private int GetCurrentElectricityRangeIndex(NumericSensorEntity nordPoolEntity)
+    private int GetCurrentElectricityRangeIndex(NumericSensorEntity? nordPoolEntity)
     {
         if (nordPoolEntity == null) return -1;
 
