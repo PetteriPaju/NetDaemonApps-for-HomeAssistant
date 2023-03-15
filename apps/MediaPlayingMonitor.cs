@@ -24,7 +24,7 @@ namespace NetDaemonApps.apps
             Entity phoneEntity = _myEntities.Sensor.MotoG8PowerLiteMediaSession;
             Entity tabletEntity = _myEntities.Sensor.SmT530MediaSession;
 
-            Entity[] mediaPlayerEntities= new Entity[] { mPlayers.AndroidTv192168020, mPlayers.Envy, mPlayers.LivingRoomDisplay, mPlayers.LivingRoomTv, mPlayers.OlohuoneNest, mPlayers.Pc, mPlayers.VlcTelnet, phoneEntity, tabletEntity };
+            Entity[] mediaPlayerEntities= new Entity[] { mPlayers.AndroidTv192168020, mPlayers.Envy, mPlayers.LivingRoomDisplay, mPlayers.LivingRoomTv, mPlayers.Pc, mPlayers.VlcTelnet, phoneEntity, tabletEntity };
 
             void SetEntityForMediaPlayer(Entity ent)
             {

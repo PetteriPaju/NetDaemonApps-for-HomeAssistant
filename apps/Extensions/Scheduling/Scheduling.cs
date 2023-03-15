@@ -2,6 +2,7 @@ using HomeAssistantGenerated;
 using Microsoft.AspNetCore.Mvc.Formatters;
 using NetDaemon.Extensions.Scheduler;
 using NetDaemon.Extensions.Tts;
+using NetDaemonApps.apps;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reactive.Concurrency;
@@ -19,28 +20,19 @@ public class SchedulingApp
     private Entities _myEntities;
     private readonly Dictionary<double, string> electiricityRanges = new Dictionary<double, string>() { { 0.15, "Blue" }, { 0.3, "Yellow" }, { 0.5, "Red" } };
     private int currentRangeIndex = 0;
-    private ITextToSpeechService tts;
-    public SchedulingApp(IHaContext ha, IScheduler scheduler, ITextToSpeechService ttsService)
+    public SchedulingApp(IHaContext ha, IScheduler scheduler)
     {
         _myEntities = new Entities(ha);
-        tts = ttsService;
-       
-        var count = 0;
-        /*
-        scheduler.RunEvery(TimeSpan.FromHours(1), () =>
-        {
-            // Make sure we do not flood the notifications :)
-            if (count++ < 3)
-                ha.CallService("notify", "persistent_notification",
-                    data: new {message = "This is a scheduled action!", title = "Schedule!"});
-        });
-        */
 
         scheduler.ScheduleCron("59 * * * *", () => UpdatePriceHourly(ha));
         scheduler.ScheduleCron("59 23 * * *", () => UpdatePriceDaily(ha));
 
         scheduler.ScheduleCron("50 * * * *", () => EnergiPriceChengeAlert(ha));
-       
+
+
+        _myEntities.Sensor.NordpoolKwhFiEur31001.StateAllChanges().Where(x => x?.New?.Attributes?.TomorrowValid == true && x.Old?.Attributes?.TomorrowValid == false).Subscribe(_ => { TTS._instance.Speak("Energy Prices Update"); }); 
+
+
         ha.Entity("input_boolean.isasleep")
            .StateChanges().Where(e => e.New?.State == "off")
            .Subscribe(_ => {
@@ -55,7 +47,7 @@ public class SchedulingApp
     public void SendTTS(string messsage)
     {
         // This uses the google service you may use some other like google cloud version, google_cloud_say
-        tts.Speak("media_player.vlc_telnet", messsage, "picotts_say");
+       TTS._instance?.Speak(messsage);
     }
 
     private void EnergiPriceChengeAlert(IHaContext ha)
@@ -94,7 +86,10 @@ public class SchedulingApp
         for (int i = electiricityRanges.Count-1; i>=0; i--)
         {
             currentRangeIndex = i;
-            if (nordPoolEntity?.State >= electiricityRanges.Keys.ElementAt(i))
+
+            double? nextHourPrice = DateTime.Now.Hour < 23 ? nordPoolEntity?.EntityState?.Attributes?.Today?[DateTime.Now.Hour] : (nordPoolEntity?.EntityState?.Attributes?.TomorrowValid == true) ? (double?)nordPoolEntity?.EntityState?.Attributes?.Tomorrow?[0] : -1; 
+
+            if (nextHourPrice >= electiricityRanges.Keys.ElementAt(i))
             {
                 break;
             }

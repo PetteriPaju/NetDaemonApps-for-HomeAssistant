@@ -17,7 +17,7 @@ namespace NetDaemonApps.apps.Lights
     {
         private Entities _myEntities;
         private readonly TimeSpan defaulMotionTimeout = new TimeSpan(0, 0, 10);
-        private readonly double kitchenDistanceSensorDistance = 100;
+        private readonly double kitchenDistanceSensorDistance = 150;
 
         public LightsAndSensors(IHaContext ha)
         {
@@ -32,11 +32,13 @@ namespace NetDaemonApps.apps.Lights
             SubcribeLightOn(_myEntities.BinarySensor.StorageSensorAqaraOccupancy, _myEntities.Light.StorageLight2);
             SubcribeLightOff(_myEntities.BinarySensor.StorageSensorAqaraOccupancy, _myEntities.Light.StorageLight2, new TimeSpan(0, 0, 0));
 
+          
+
 
         }
 
         private void SubcribeLightOn(BinarySensorEntity sensor, LightEntity light, Func<bool>? extraConditions = null)
-        {
+        {          
             sensor.StateChanges().Where(e => e.New?.State == "on" && (extraConditions == null || extraConditions.Invoke())).Subscribe(_ => { light.TurnOn(); });
         }
 
