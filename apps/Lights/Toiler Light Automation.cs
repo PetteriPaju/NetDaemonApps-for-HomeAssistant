@@ -39,14 +39,14 @@ namespace NetDaemonApps.apps.Lights
            .StateChanges().Where(e => e.New?.State == "off" && _myEntities.InputBoolean.SensorsActive.IsOn())
            .Subscribe(_ => OnToiledLidClose());
 
-            _myEntities.Light.ToiletLight1.StateChanges().WhenStateIsFor(e => e.IsOn(), lightOnTimeOutSpan).Subscribe(_ => { });
+            _myEntities.Light.ToiletLight1.StateChanges().WhenStateIsFor(e => e.IsOn() && _myEntities.InputBoolean.SensorsActive.IsOn(), lightOnTimeOutSpan).Subscribe(_ => { });
 
             _myEntities.BinarySensor.ToiletSensorOccupancy.StateChanges()
-            .Where(e => e.New?.State == "on")
+            .Where(e => e.New?.State == "on" && _myEntities.InputBoolean.SensorsActive.IsOn())
             .Subscribe(_ => { _myEntities.Light.ToiletLight1.TurnOn(); });
 
             _myEntities.BinarySensor.ToiletSensorOccupancy.StateChanges()
-            .WhenStateIsFor(e => e.IsOff() && _myEntities.BinarySensor.ToiletSeatSensorContact.IsOff(), motionSensorTimeOutSpan)
+            .WhenStateIsFor(e => e.IsOff() && _myEntities.BinarySensor.ToiletSeatSensorContact.IsOff() && _myEntities.InputBoolean.SensorsActive.IsOn(), motionSensorTimeOutSpan)
             .Subscribe(_ => { _myEntities.Light.ToiletLight1.TurnOff(); });
 
         }

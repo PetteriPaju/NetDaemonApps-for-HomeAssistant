@@ -12,6 +12,17 @@ namespace NetDaemonApps.apps
     [NetDaemonApp]
     public class TTS
     {
+
+
+        public enum TTSPriority
+        {
+            Default,
+            IgnoreSleep,
+            IgnoreDisabled,
+            IgnoreAll
+
+        }
+
         public static TTS _instance;
         private readonly ITextToSpeechService tts;
         private readonly Entities _myEntities;
@@ -28,10 +39,10 @@ namespace NetDaemonApps.apps
         }
 
 
-        public void Speak(string text, bool overrideAsleep = false)
+        public void Speak(string text, TTSPriority overrider = TTSPriority.Default)
         {
 
-            if(isAsleepEntity.IsOff() || overrideAsleep)
+            if(((isAsleepEntity.IsOff() || overrider == TTSPriority.IgnoreSleep)  && (_myEntities.InputBoolean.HydrationCheckActive.IsOn() || overrider == TTSPriority.IgnoreDisabled)) || overrider == TTSPriority.IgnoreAll)
             tts.Speak("media_player.olohuone_nest", text, "google_translate_say");
 
         }

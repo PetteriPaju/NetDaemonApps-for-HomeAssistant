@@ -59,7 +59,7 @@ namespace NetDaemonApps.apps
                     TimeSpan? timeDiff = DateTime.Now - _myEntities?.InputBoolean?.Isasleep?.EntityState?.LastChanged;
                     string ttsTime = "Its: " + DateTime.Now.ToString("H:mm", CultureInfo.InvariantCulture) + ", you have been sleeping for " + timeDiff?.Hours + " hours and " + timeDiff?.Minutes + "minutes";
       
-                    TTS._instance?.Speak(ttsTime, true);
+                    TTS._instance?.Speak(ttsTime, TTS.TTSPriority.IgnoreAll);
 
                 });
 
@@ -72,10 +72,15 @@ namespace NetDaemonApps.apps
                 {
                     alarmTimer.Dispose();
                     Console.WriteLine("DisposeTimer");
+
+                    Extensions.Scheduling.SchedulingApp.ReadOutGoodMorning();
                 }
 
 
                 //Run default actions that run everytime isSleep is turned on
+
+                _myEntities.InputDatetime.Awoketime.SetDatetime(time:DateTime.Now);
+
 
             });
 

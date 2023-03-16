@@ -20,28 +20,30 @@ public class SchedulingApp
     private Entities _myEntities;
     private readonly Dictionary<double, string> electiricityRanges = new Dictionary<double, string>() { { 0.15, "Blue" }, { 0.3, "Yellow" }, { 0.5, "Red" } };
     private int currentRangeIndex = 0;
+
+    private static SchedulingApp _instance;
+
+
     public SchedulingApp(IHaContext ha, IScheduler scheduler)
     {
         _myEntities = new Entities(ha);
+        _instance = this;
+        scheduler.ScheduleCron("59 * * * *", () => UpdatePriceHourly());
+        scheduler.ScheduleCron("59 23 * * *", () => UpdatePriceDaily());
+        scheduler.ScheduleCron("45 * * * *", () => EnergiPriceChengeAlert(ha));
+        _myEntities.Sensor.NordpoolKwhFiEur31001.StateAllChanges().Where(x => x?.New?.Attributes?.TomorrowValid == true && x.Old?.Attributes?.TomorrowValid == false).Subscribe(_ => { TTS._instance.Speak("Energy Prices Update"); });
+      
+    }
 
-        scheduler.ScheduleCron("59 * * * *", () => UpdatePriceHourly(ha));
-        scheduler.ScheduleCron("59 23 * * *", () => UpdatePriceDaily(ha));
+    public static void ReadOutGoodMorning()
+    {
+        _instance?.MorningTTS();
+    }
 
-        scheduler.ScheduleCron("50 * * * *", () => EnergiPriceChengeAlert(ha));
-
-
-        _myEntities.Sensor.NordpoolKwhFiEur31001.StateAllChanges().Where(x => x?.New?.Attributes?.TomorrowValid == true && x.Old?.Attributes?.TomorrowValid == false).Subscribe(_ => { TTS._instance.Speak("Energy Prices Update"); }); 
-
-
-        ha.Entity("input_boolean.isasleep")
-           .StateChanges().Where(e => e.New?.State == "off")
-           .Subscribe(_ => {
-
-               currentRangeIndex = GetCurrentElectricityRangeIndex(_myEntities?.Sensor?.NordpoolKwhFiEur31001);
-               SendTTS("Good Morning. Current Electricity Cost is " + (currentRangeIndex == -1 ? "Unknown" : "at" + electiricityRanges.Values.ElementAt(currentRangeIndex)));
-
-           });
-
+    public void MorningTTS()
+    {
+        currentRangeIndex = GetCurrentElectricityRangeIndex(_myEntities?.Sensor?.NordpoolKwhFiEur31001);
+        SendTTS("Good Morning. Current Electricity Cost is " + (currentRangeIndex == -1 ? "Unknown" : "at" + electiricityRanges.Values.ElementAt(currentRangeIndex)));
     }
 
     public void SendTTS(string messsage)
@@ -65,7 +67,7 @@ public class SchedulingApp
         if (nextElectricityRange == -1) {
             TTSMessage = "Electricity Warning. The current range is unkown";
         }
-        else if(currentRangeIndex > nextElectricityRange)
+        else if(nextElectricityRange > currentRangeIndex)
         {
             TTSMessage = "Electricity Warning.The Price is About to increase to" + electiricityRanges.Values.ElementAt(nextElectricityRange);
         }
@@ -82,46 +84,63 @@ public class SchedulingApp
     {
         if (nordPoolEntity == null) return -1;
 
+        int tmpRangeIndex = electiricityRanges.Count - 1;
+
+        double? nextHourPrice = DateTime.Now.Hour < 23 ? nordPoolEntity?.EntityState?.Attributes?.Today?.ElementAt(DateTime.Now.Hour+1) : ((nordPoolEntity?.EntityState?.Attributes?.TomorrowValid == true) ? (nordPoolEntity?.EntityState?.Attributes?.Tomorrow as IReadOnlyList<double>)?.ElementAt(0) : -1);
+       
 
         for (int i = electiricityRanges.Count-1; i>=0; i--)
         {
-            currentRangeIndex = i;
-
-            double? nextHourPrice = DateTime.Now.Hour < 23 ? nordPoolEntity?.EntityState?.Attributes?.Today?[DateTime.Now.Hour] : (nordPoolEntity?.EntityState?.Attributes?.TomorrowValid == true) ? (double?)nordPoolEntity?.EntityState?.Attributes?.Tomorrow?[0] : -1; 
-
             if (nextHourPrice >= electiricityRanges.Keys.ElementAt(i))
             {
                 break;
             }
+            tmpRangeIndex = i;
         }
 
-        return currentRangeIndex;
+        return tmpRangeIndex;
 
     }
 
 
-    private double calculateTotalEvergy(IHaContext ha)
+    private double calculateTotalEvergy()
     {
         return 0;
     }
 
 
-    private void UpdatePriceHourly(IHaContext ha)
+    private void UpdatePriceHourly()
     {
         if (_myEntities == null) return;
 
-        double val = _myEntities.InputNumber.EnergyCostHourly.State ?? 0 + (_myEntities.Sensor?.HourlyEnergy?.EntityState?.State ?? 0) * (_myEntities.Sensor?.NordpoolKwhFiEur31001?.State ?? 0);
 
-        //_myEntities.InputNumber.EnergyCostHourly.SetValue(val);
+        var thisHourFortum = (_myEntities.Sensor.TotalHourlyEnergyConsumptions.EntityState?.State * _myEntities.Sensor?.NordpoolKwhFiEur31001?.State) + (_myEntities.Sensor.TotalHourlyEnergyConsumptions.EntityState?.State * _myEntities.InputNumber.EnergyFortumHardCost.State);
+        thisHourFortum += thisHourFortum * _myEntities.InputNumber.EnergyFortumAlv.State;
 
-       /* ha.CallService("notify", "persistent_notification",
-                   data: new { message = val.ToString() , title = "Schedule!" });
-       */
+        var thisHourTranster = _myEntities.Sensor.TotalHourlyEnergyConsumptions.EntityState?.State * (_myEntities.InputNumber.EnergyTransferCost.State / 100);
+        thisHourTranster += thisHourTranster * (_myEntities.InputNumber.EnergyTransferAlv.State/100);
+
+
+        var thisHourTotal = thisHourFortum + thisHourTranster;
+
+
+
+        _myEntities.InputNumber.EnergyCostDaily.SetValue(_myEntities.InputNumber.EnergyCostDaily.State + thisHourTotal ?? 0);
+        _myEntities.InputNumber.EnergyCostHourly.SetValue(thisHourTotal ?? 0);
+
+
+        Console.WriteLine(thisHourTotal);
+        Console.WriteLine(_myEntities.InputNumber.EnergyCostDaily.State);
+        Console.WriteLine("");
 
     }
 
-    private void UpdatePriceDaily(IHaContext ha)
-    {
+    private void UpdatePriceDaily()
+    { 
+        if (_myEntities == null) return;
+
+        _myEntities.InputNumber.EnergyCostHourly.SetValue(0);
+        _myEntities.InputNumber.EnergyCostDaily.SetValue(0);
 
     }
 
