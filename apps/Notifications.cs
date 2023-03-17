@@ -25,7 +25,9 @@ namespace NetDaemonApps.apps
             _myEntities.Sensor.PcMemoryusage.StateChanges().Where(x => x?.New?.State > 80).Subscribe(_ => { TTS._instance?.Speak("Memory Alert, Memory Alert"); });
             _myEntities.Sensor.MotoG8PowerLiteBatteryLevel.StateChanges().Where(x => x?.New?.State < 15 && _myEntities.InputBoolean.Ishome.State == "on" && _myEntities.BinarySensor.MotoG8PowerLiteIsCharging.State == "off").Subscribe(_ => { TTS._instance?.Speak("Phone Battery Low"); });
 
-
+         
         }
+
+
     }
 }
