@@ -23,7 +23,7 @@ namespace Extensions.Scheduling;
 public class SchedulingApp
 {
     private Entities _myEntities;
-    private readonly Dictionary<double, string> electiricityRanges = new Dictionary<double, string>() { { 0, "Blue" }, { 0.060, "Green" }, { 0.15, "Yellow" }, {0.25, "Red"} };
+    private readonly Dictionary<double, string> electiricityRanges = new Dictionary<double, string>() { { 0, "Blue" }, { 0.075, "Green" }, { 0.15, "Yellow" }, {0.25, "Red"} };
 
     private readonly List<double>? electricityRangeKeys;
 
