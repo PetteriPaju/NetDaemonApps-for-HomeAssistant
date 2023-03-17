@@ -50,7 +50,7 @@ public class SchedulingApp
         scheduler.ScheduleCron("45 * * * *", () => EnergiPriceChengeAlert(ha));
      
        _myEntities.Sensor.NordpoolKwhFiEur31001.StateAllChanges().Where(x => x?.New?.Attributes?.TomorrowValid == true && x.Old?.Attributes?.TomorrowValid == false).Subscribe(_ => { TTS._instance.Speak("Energy Prices Update"); });
-        MorningTTS();
+ 
     }
 
     public static void ReadOutGoodMorning()
