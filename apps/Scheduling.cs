@@ -2,7 +2,6 @@ using HomeAssistantGenerated;
 using Microsoft.AspNetCore.Mvc.Formatters;
 using NetDaemon.Extensions.Scheduler;
 using NetDaemon.Extensions.Tts;
-using NetDaemonApps.apps;
 using System.Collections.Generic;
 using System.Linq;
 using System.Diagnostics;
@@ -14,30 +13,30 @@ using System;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 // Use unique namespaces for your apps if you going to share with others to avoid
 // conflicting names
-namespace Extensions.Scheduling;
+namespace NetDaemonApps.apps;
 
 /// <summary>
 ///     Showcase the scheduling capabilities of NetDaemon
 /// </summary>
 /// 
 [NetDaemonApp]
-public class SchedulingApp
+public class EnergyMonitor
 {
     private Entities _myEntities;
-    private readonly Dictionary<double, string> electiricityRanges = new Dictionary<double, string>() { { 0, "Blue" }, { 0.075, "Green" }, { 0.15, "Yellow" }, {0.25, "Red"} };
+    private readonly Dictionary<double, string> electiricityRanges = new Dictionary<double, string>() { { 0, "Blue" }, { 0.075, "Green" }, { 0.15, "Yellow" }, { 0.25, "Red" } };
 
     private readonly List<double>? electricityRangeKeys;
 
-    private static SchedulingApp _instance;
+    private static EnergyMonitor _instance;
     ElectricityPriceInfo infoForCurrentHour = null;
 
 
-    
 
-    public SchedulingApp(IHaContext ha, IScheduler scheduler)
+
+    public EnergyMonitor(IHaContext ha, IScheduler scheduler)
     {
         _myEntities = new Entities(ha);
-     
+
         _instance = this;
         electricityRangeKeys = electiricityRanges.Keys.ToList();
 
@@ -46,12 +45,12 @@ public class SchedulingApp
 
         scheduler.ScheduleCron("59 * * * *", () => UpdatePriceHourly());
         scheduler.ScheduleCron("0 * * * *", () => { infoForCurrentHour = new ElectricityPriceInfo(DateTime.Now, _myEntities.Sensor?.NordpoolKwhFiEur31001, electricityRangeKeys); });
-       
+
         scheduler.ScheduleCron("59 23 * * *", () => UpdatePriceDaily());
         scheduler.ScheduleCron("45 * * * *", () => EnergiPriceChengeAlert(ha));
-     
-       _myEntities.Sensor.NordpoolKwhFiEur31001.StateAllChanges().Where(x => x?.New?.Attributes?.TomorrowValid == true && x.Old?.Attributes?.TomorrowValid == false).Subscribe(_ => { ReadOutEnergyUpdate(); });
-        ReadOutEnergyUpdate();
+
+        _myEntities.Sensor.NordpoolKwhFiEur31001.StateAllChanges().Where(x => x?.New?.Attributes?.TomorrowValid == true && x.Old?.Attributes?.TomorrowValid == false).Subscribe(_ => { ReadOutEnergyUpdate(); });
+
     }
 
     public static void ReadOutGoodMorning()
@@ -75,52 +74,55 @@ public class SchedulingApp
         if (!_myEntities.Sensor?.NordpoolKwhFiEur31001?.EntityState?.Attributes?.TomorrowValid == false)
         {
 
-            EnergyForecastInfo energyForecastInfo = GetEnergyForecast(_myEntities.Sensor?.NordpoolKwhFiEur31001?.EntityState?.Attributes?.Tomorrow as IReadOnlyList<double>);
+            EnergyForecastInfo energyForecastInfo = GetEnergyForecast(_myEntities.Sensor?.NordpoolKwhFiEur31001?.EntityState?.Attributes?.Tomorrow);
 
             message += " Prices will be mostly in " + GetNameOfRange(energyForecastInfo.majorityRange);
-            message += " with avarage of " + Math.Round((energyForecastInfo.avarage * 100), 1) + " cents. Ranging from: " + Math.Round((energyForecastInfo.min * 100), 1) + " to " + Math.Round((energyForecastInfo.max * 100), 1) + " cents.";
+            message += " with avarage of " + Math.Round(energyForecastInfo.avarage * 100, 1) + " cents. Ranging from: " + Math.Round(energyForecastInfo.min * 100, 1) + " to " + Math.Round(energyForecastInfo.max * 100, 1) + " cents. ";
 
 
-            message += "That's " + (_myEntities.Sensor?.NordpoolKwhFiEur31001?.EntityState?.Attributes?.Average > energyForecastInfo.avarage ? "an increase" : "a decrease") + " from today.";
+            message += "That's " + (_myEntities.Sensor?.NordpoolKwhFiEur31001?.EntityState?.Attributes?.Average < energyForecastInfo.avarage ? "more" : "less") + " than today.";
         }
 
-        TTS._instance?.Speak(message);
 
-     
+        TTS.Speak(message);
+
+
 
     }
-    private EnergyForecastInfo GetEnergyForecast(IReadOnlyList<double>? list, int startFrom = 0)
+    private EnergyForecastInfo GetEnergyForecast<T>(IEnumerable<T>? list, int startFrom = 0)
     {
         EnergyForecastInfo energyForecastInfo = new EnergyForecastInfo();
+        if (list == null) return energyForecastInfo;
+
+        //Because Tomorrow values come as strings, we must make sure we convert values to doubles first
+        var tmp = list?.Select(x => double.Parse(x.ToString())).ToList();
 
         int FindRangeForPrice(double? price)
         {
-            var range = electricityRangeKeys?.FindIndex(x => x > price);
+            int range = electricityRangeKeys?.FindIndex(x => x > price) ?? -1;
             range = range == -1 ? 1 : range;
 
-            return (int)range - 1;
+            return range - 1;
         }
 
-        if (list == null) return energyForecastInfo;
 
-        
         Dictionary<int, int> foundPerRange = new Dictionary<int, int>();
 
-        double avg = list.Average();
-        double max = list.Max();
-        double min = list.Min();
+        double avg = tmp.Average();
+        double max = tmp.Max();
+        double min = tmp.Min();
 
-   
-        for (int i = startFrom; i < list.Count - 1; i++)
+
+        for (int i = startFrom; i < tmp.Count - 1; i++)
         {
 
-            var rangeForPrice = FindRangeForPrice(list.ElementAt(i));
-            
+            var rangeForPrice = FindRangeForPrice(tmp.ElementAt(i));
+
             if (!foundPerRange.ContainsKey(rangeForPrice)) foundPerRange.Add(rangeForPrice, 1);
             else foundPerRange[rangeForPrice]++;
         }
 
-  
+
         energyForecastInfo.avarage = avg;
         energyForecastInfo.max = max;
         energyForecastInfo.min = min;
@@ -136,7 +138,7 @@ public class SchedulingApp
     public void MorningTTS()
     {
 
-        string TTSMessage =  "Good Morning. Current Electricity Cost is " + (infoForCurrentHour.range == -1 ? "Unknown" : "at " + electiricityRanges.Values.ElementAt(infoForCurrentHour.range));
+        string TTSMessage = "Good Morning. Current Electricity Cost is " + (infoForCurrentHour.range == -1 ? "Unknown" : "at " + electiricityRanges.Values.ElementAt(infoForCurrentHour.range));
 
 
 
@@ -175,7 +177,7 @@ public class SchedulingApp
     {
         Console.WriteLine(messsage);
         // This uses the google service you may use some other like google cloud version, google_cloud_say
-       TTS._instance?.Speak(messsage);
+        TTS.Speak(messsage);
     }
 
     private void EnergiPriceChengeAlert(IHaContext ha)
@@ -196,7 +198,7 @@ public class SchedulingApp
 
         string TTSMessage;
 
-        if(priceChange == PriceChangeType.Increase)
+        if (priceChange == PriceChangeType.Increase)
         {
             TTSMessage = "Electricity Warning.The Price is About to increase to " + electiricityRanges.Values.ElementAt(inFoForNextHour.range);
         }
@@ -208,8 +210,8 @@ public class SchedulingApp
 
         var hoursTillChange = FindWhenElectricityRangeChanges(inFoForNextHour);
 
-        var timeDiff = (hoursTillChange.dateTime - inFoForNextHour.dateTime);
-        
+        var timeDiff = hoursTillChange.dateTime - inFoForNextHour.dateTime;
+
         PriceChangeType priceChangeType = inFoForNextHour.Compare(hoursTillChange);
 
         if (priceChangeType == PriceChangeType.NoChange)
@@ -219,24 +221,24 @@ public class SchedulingApp
         else
         {
 
-            TTSMessage += ". And will " + (priceChangeType == PriceChangeType.Increase ? "increase to " : "decrease to ") + GetNameOfRange(hoursTillChange.range) +  " after " + GetHoursAndMinutesFromTimeSpan(timeDiff);
+            TTSMessage += ". And will " + (priceChangeType == PriceChangeType.Increase ? "increase to " : "decrease to ") + GetNameOfRange(hoursTillChange.range) + " after " + GetHoursAndMinutesFromTimeSpan(timeDiff);
         }
-  
+
 
         SendTTS(TTSMessage);
     }
 
     private string GetNameOfRange(int rangeIndex)
     {
-       return electiricityRanges.Values.ElementAtOrDefault(rangeIndex) ?? "unknown";
+        return electiricityRanges.Values.ElementAtOrDefault(rangeIndex) ?? "unknown";
     }
 
     private string GetHoursAndMinutesFromTimeSpan(TimeSpan input)
     {
 
         var hour = input.Hours > 0 ? input.Hours.ToString() + " hour" + (input.Hours > 1 ? "s" : "") : "";
-        var and = (input.Hours > 0 && input.Minutes > 0 ? " and " : "");
-        var minute = input.Minutes > 0 ? (input.Minutes.ToString() + " minute" + (input.Minutes > 1 ? "s" : "")) : "";
+        var and = input.Hours > 0 && input.Minutes > 0 ? " and " : "";
+        var minute = input.Minutes > 0 ? input.Minutes.ToString() + " minute" + (input.Minutes > 1 ? "s" : "") : "";
 
 
         return hour + and + minute;
@@ -251,7 +253,7 @@ public class SchedulingApp
     }
     private class ElectricityPriceInfo
     {
-     
+
         public double? price;
         public DateTime dateTime;
         public int range;
@@ -269,7 +271,7 @@ public class SchedulingApp
 
         public PriceChangeType Compare(ElectricityPriceInfo endPoint)
         {
-            if(range == endPoint.range) return PriceChangeType.NoChange;
+            if (range == endPoint.range) return PriceChangeType.NoChange;
             if (range > endPoint.range) return PriceChangeType.Descrease;
             else return PriceChangeType.Increase;
         }
@@ -290,7 +292,7 @@ public class SchedulingApp
         ElectricityPriceInfo nextInfo = null;// = new ElectricityPriceInfo(currentHour, _myEntities.Sensor.NordpoolKwhFiEur31001, electricityRangeKeys);
 
         int maxSearchHours = 12;
-  
+
         for (int searchCounter = 1; searchCounter < maxSearchHours; searchCounter++)
         {
             nextInfo = new ElectricityPriceInfo(startInfo.dateTime.AddHours(searchCounter), _myEntities.Sensor.NordpoolKwhFiEur31001, electricityRangeKeys);
@@ -298,11 +300,11 @@ public class SchedulingApp
             if (startInfo.Compare(nextInfo) != PriceChangeType.NoChange)
             {
                 break;
-            }  
+            }
 
-          }
+        }
 
-       
+
         return nextInfo;
     }
 
@@ -312,7 +314,7 @@ public class SchedulingApp
         var range = electricityRangeKeys?.FindIndex(x => x > price);
         range = range == -1 ? 1 : range;
 
-        return (int)range-1;
+        return (int)range - 1;
     }
 
 
@@ -320,12 +322,12 @@ public class SchedulingApp
     {
         if (_myEntities == null) return;
 
-       
-        var thisHourFortum = (_myEntities.Sensor.TotalHourlyEnergyConsumptions.EntityState?.State * _myEntities.Sensor?.NordpoolKwhFiEur31001?.State) + (_myEntities.Sensor.TotalHourlyEnergyConsumptions.EntityState?.State * _myEntities.InputNumber.EnergyFortumHardCost.State);
-        thisHourFortum += thisHourFortum * (_myEntities.InputNumber.EnergyFortumAlv.State /100);
 
-        var thisHourTranster = _myEntities.Sensor.TotalHourlyEnergyConsumptions.EntityState?.State * (_myEntities.InputNumber.EnergyTransferCost.State);
-        thisHourTranster += thisHourTranster * (_myEntities.InputNumber.EnergyTransferAlv.State);
+        var thisHourFortum = _myEntities.Sensor.TotalHourlyEnergyConsumptions.EntityState?.State * _myEntities.Sensor?.NordpoolKwhFiEur31001?.State + _myEntities.Sensor.TotalHourlyEnergyConsumptions.EntityState?.State * _myEntities.InputNumber.EnergyFortumHardCost.State;
+        thisHourFortum += thisHourFortum * (_myEntities.InputNumber.EnergyFortumAlv.State / 100);
+
+        var thisHourTranster = _myEntities.Sensor.TotalHourlyEnergyConsumptions.EntityState?.State * _myEntities.InputNumber.EnergyTransferCost.State;
+        thisHourTranster += thisHourTranster * _myEntities.InputNumber.EnergyTransferAlv.State;
 
 
         var thisHourTotal = thisHourFortum + thisHourTranster;
@@ -338,7 +340,7 @@ public class SchedulingApp
     }
 
     private void UpdatePriceDaily()
-    { 
+    {
         if (_myEntities == null) return;
 
         _myEntities.InputNumber.EnergyCostHourly.SetValue(0);

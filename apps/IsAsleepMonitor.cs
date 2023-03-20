@@ -12,9 +12,9 @@ using System.Globalization;
 
 namespace NetDaemonApps.apps
 {
-/// <summary>
-/// Uses multiple conditions to determine whetever occupant is asleep and runs action accordingle.
-/// </summary>
+    /// <summary>
+    /// Uses multiple conditions to determine whetever occupant is asleep and runs action accordingle.
+    /// </summary>
     [NetDaemonApp]
     public class IsAsleepMonitor
     {
@@ -59,7 +59,7 @@ namespace NetDaemonApps.apps
                     TimeSpan? timeDiff = DateTime.Now - _myEntities?.InputBoolean?.Isasleep?.EntityState?.LastChanged;
                     string ttsTime = "Its: " + DateTime.Now.ToString("H:mm", CultureInfo.InvariantCulture) + ", you have been sleeping for " + timeDiff?.Hours + " hours and " + timeDiff?.Minutes + "minutes";
       
-                    TTS._instance?.Speak(ttsTime, TTS.TTSPriority.IgnoreAll);
+                    TTS.Speak(ttsTime, TTS.TTSPriority.IgnoreAll);
 
                 });
 
@@ -73,7 +73,7 @@ namespace NetDaemonApps.apps
                     alarmTimer.Dispose();
                     Console.WriteLine("DisposeTimer");
 
-                    Extensions.Scheduling.SchedulingApp.ReadOutGoodMorning();
+                    EnergyMonitor.ReadOutGoodMorning();
                 }
 
 
