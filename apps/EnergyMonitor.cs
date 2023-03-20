@@ -32,20 +32,10 @@ public class EnergyMonitor
 
     private double marginOfErrorFix = 1.07;
 
-
-
-<<<<<<<< HEAD:apps/EnergyMonitor.cs
-
-    public EnergyMonitor(IHaContext ha, IScheduler scheduler)
-    {
-        _myEntities = new Entities(ha);
-    
-========
     public EnergyMonitor(IHaContext ha, IScheduler scheduler)
     {
         _myEntities = new Entities(ha);
 
->>>>>>>> ba2434ac6342b2d1d7b25327626d4d554312af76:apps/Scheduling.cs
         _instance = this;
         electricityRangeKeys = electiricityRanges.Keys.ToList();
 
@@ -332,17 +322,11 @@ public class EnergyMonitor
         if (_myEntities == null) return;
 
 
-<<<<<<<< HEAD:apps/EnergyMonitor.cs
+
         var thisHourFortum = _myEntities.Sensor.TotalHourlyEnergyConsumptions.EntityState?.State * marginOfErrorFix * _myEntities.Sensor?.NordpoolKwhFiEur31001?.State + _myEntities.Sensor.TotalHourlyEnergyConsumptions.EntityState?.State * marginOfErrorFix * _myEntities.InputNumber.EnergyFortumHardCost.State;
         thisHourFortum += thisHourFortum * (_myEntities.InputNumber.EnergyFortumAlv.State / 100);
 
         var thisHourTranster = _myEntities.Sensor.TotalHourlyEnergyConsumptions.EntityState?.State * marginOfErrorFix * _myEntities.InputNumber.EnergyTransferCost.State;
-========
-        var thisHourFortum = _myEntities.Sensor.TotalHourlyEnergyConsumptions.EntityState?.State * _myEntities.Sensor?.NordpoolKwhFiEur31001?.State + _myEntities.Sensor.TotalHourlyEnergyConsumptions.EntityState?.State * _myEntities.InputNumber.EnergyFortumHardCost.State;
-        thisHourFortum += thisHourFortum * (_myEntities.InputNumber.EnergyFortumAlv.State / 100);
-
-        var thisHourTranster = _myEntities.Sensor.TotalHourlyEnergyConsumptions.EntityState?.State * _myEntities.InputNumber.EnergyTransferCost.State;
->>>>>>>> ba2434ac6342b2d1d7b25327626d4d554312af76:apps/Scheduling.cs
         thisHourTranster += thisHourTranster * _myEntities.InputNumber.EnergyTransferAlv.State;
 
 

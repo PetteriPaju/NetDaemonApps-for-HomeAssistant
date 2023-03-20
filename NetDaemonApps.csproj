@@ -7,6 +7,12 @@
         <Nullable>enable</Nullable>
         <RootNamespace>NetDaemonApps</RootNamespace>
     </PropertyGroup>
+
+    <ItemGroup>
+      <Compile Remove="apps\Extensions\**" />
+      <EmbeddedResource Remove="apps\Extensions\**" />
+      <None Remove="apps\Extensions\**" />
+    </ItemGroup>
     
     <ItemGroup>
         <None Update="$(MSBuildProjectDir)appsettings.Development.json">
@@ -36,9 +42,5 @@
         <PackageReference Include="Microsoft.Extensions.Hosting" Version="7.0.1" />
         <PackageReference Include="Serilog.AspNetCore" Version="6.1.0" />
         <PackageReference Include="System.Reactive" Version="5.0.0" />
-    </ItemGroup>
-        
-    <ItemGroup>
-      <Folder Include="apps\Extensions\Scheduling\" />
     </ItemGroup>
 </Project>
