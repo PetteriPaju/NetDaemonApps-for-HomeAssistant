@@ -147,11 +147,12 @@ public class SchedulingApp
 
         if (priceChangeType == PriceChangeType.NoChange)
         {
-
+            TTSMessage += ". And will noot fall for a while";
         }
         else
         {
-            TTSMessage += " and will " + (priceChangeType == PriceChangeType.Increase ? "increase" : "decrease") + " again after " + GetHoursAndMinutesFromTimeSpan(timeDiff);
+
+            TTSMessage += ". And will " + (priceChangeType == PriceChangeType.Increase ? "increase to " : "decrease to ") + GetNameOfRange(hoursTillChange.range) +  " after " + GetHoursAndMinutesFromTimeSpan(timeDiff);
         }
    
 
@@ -159,9 +160,14 @@ public class SchedulingApp
         SendTTS(TTSMessage);
     }
 
+    private string GetNameOfRange(int rangeIndex)
+    {
+       return electiricityRanges.Values.ElementAtOrDefault(rangeIndex) ?? "unknown";
+    }
+
     private string GetHoursAndMinutesFromTimeSpan(TimeSpan input)
     {
-        Console.WriteLine(input);
+
         var hour = input.Hours > 0 ? input.Hours.ToString() + " hour" + (input.Hours > 1 ? "s" : "") : "";
         var and = (input.Hours > 0 && input.Minutes > 0 ? " and " : "");
         var minute = input.Minutes > 0 ? (input.Minutes.ToString() + " minute" + (input.Minutes > 1 ? "s" : "")) : "";
@@ -236,23 +242,6 @@ public class SchedulingApp
         return nextInfo;
     }
 
-    private int GetElectricityRangeForHour(NumericSensorEntity? nordPoolEntity, int hour, bool isTomorrow = false)
-    {
-        if (nordPoolEntity == null) return -1;
-
-        if (isTomorrow && nordPoolEntity?.EntityState?.Attributes?.TomorrowValid == false) return -1;
-
-        int tmpRangeIndex = electiricityRanges.Count - 1;
-
-
-        IReadOnlyList<double>? day = isTomorrow ? (nordPoolEntity?.EntityState?.Attributes?.Tomorrow as IReadOnlyList<double>) : nordPoolEntity?.EntityState?.Attributes?.Today;
-
-        double? hourPrice = day?.ElementAt(hour);
-
-        return FindRangeForPrice(hourPrice);
-
-    }
-
 
     private int FindRangeForPrice(double? price)
     {
@@ -260,12 +249,6 @@ public class SchedulingApp
         range = range == -1 ? 1 : range;
 
         return (int)range-1;
-    }
-
-
-    private double calculateTotalEvergy()
-    {
-        return 0;
     }
 
 
@@ -287,11 +270,6 @@ public class SchedulingApp
 
         _myEntities.InputNumber.EnergyCostDaily.SetValue(_myEntities.InputNumber.EnergyCostDaily.State + thisHourTotal ?? 0);
         _myEntities.InputNumber.EnergyCostHourly.SetValue(thisHourTotal ?? 0);
-      
-
-        Console.WriteLine(thisHourTotal);
-        Console.WriteLine(_myEntities.InputNumber.EnergyCostDaily.State);
-        Console.WriteLine("");
 
     }
 

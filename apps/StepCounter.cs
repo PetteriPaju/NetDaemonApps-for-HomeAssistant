@@ -1,6 +1,7 @@
 ﻿using HomeAssistantGenerated;
 using Microsoft.AspNetCore.Mvc.Formatters;
 using NetDaemon.Extensions.Scheduler;
+using NetDaemon.HassModel.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,34 +23,31 @@ namespace NetDaemonApps.apps
         public StepCounter(IHaContext ha, IScheduler scheduler)
         {
             _myEntities = new Entities(ha);
-            _myEntities.Sensor.MotoG8PowerLiteLastNotification.StateAllChanges().Where(x => (bool)x?.Entity?.EntityState?.Attributes?.Package?.Contains("com.huawei.health") && (bool)x?.Entity?.EntityState?.Attributes?.Android_title?.Contains("steps")).Subscribe(x => ParseSteps(x.Entity.EntityState?.Attributes?.Android_title ?? null));
+            _myEntities.Sensor.MotoG8PowerLiteLastNotification?.StateAllChanges().Where(x => IsValidStep(x))?.Subscribe(x => ParseSteps(x?.Entity?.EntityState?.Attributes?.Android_title));
 
             scheduler.ScheduleCron("0 0 * * *", () => lastKnownThreshold = 0);
         }
 
-        private void ParseSteps(string message)
+        private void ParseSteps(string? message)
         {
             if (message == null) return;
-            int steps;
 
-            Console.WriteLine("Step Message");
+            int steps;
 
             string numericPhone = new String(message.Where(Char.IsDigit).ToArray());
 
             bool wasParsed = int.TryParse(numericPhone, out steps);
 
-            if (wasParsed)
+            if (wasParsed && steps>0)
             {
                 Console.WriteLine("Parsed Step:" + steps);
+                Console.WriteLine("Next threshold:" + Math.Floor((double)((lastKnownThreshold + notificationThreashold) / 1000)));
                 _myEntities.InputNumber.Dailysteps.SetValue(steps);
 
-
-                int modulus;
-
-                if (Math.Floor((double)(steps / 1000)) > Math.Floor( (double)(lastKnownThreshold + notificationThreashold)/1000))
+                if (Math.Floor((double)(steps / 1000)) >= Math.Floor( (double)((lastKnownThreshold + notificationThreashold)/1000)))
                 {
 
-                    lastKnownThreshold = (int)Math.Floor((double)(steps / 1000)) * 1000;
+                    lastKnownThreshold = ((int)Math.Floor((double)(steps / 1000))) * 1000;
                     Console.WriteLine("Threshold Reached");
                     TTS._instance.Speak("You have reached " + lastKnownThreshold.ToString() + "steps");
               
@@ -58,8 +56,23 @@ namespace NetDaemonApps.apps
 
                
             }
+        }
 
+        private bool IsValidStep(StateChange<SensorEntity,EntityState<SensorAttributes>> ent)
+        {
+            if (ent == null) return false;
+            if (ent?.New?.Attributes == null) return false;
 
+            var package = ent.New.Attributes.Package;
+
+            if (package == null) return false;
+            if (!package.Contains("com.huawei.health")) return false;
+
+            var steps = ent.New.Attributes.Android_title;
+
+            if (steps == null) return false;
+
+            return true;
 
 
         }

@@ -14,6 +14,8 @@ namespace NetDaemonApps.apps
     {
 
 
+
+
         public enum TTSPriority
         {
             Default,
@@ -43,7 +45,7 @@ namespace NetDaemonApps.apps
         {
 
             if(((isAsleepEntity.IsOff() || overrider == TTSPriority.IgnoreSleep)  && (_myEntities.InputBoolean.HydrationCheckActive.IsOn() || overrider == TTSPriority.IgnoreDisabled)) || overrider == TTSPriority.IgnoreAll)
-            tts.Speak("media_player.olohuone_nest", text, "google_translate_say");
+            tts.Speak("media_player.living_room_display", text, "google_translate_say");
 
         }
 

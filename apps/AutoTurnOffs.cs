@@ -23,7 +23,7 @@ namespace NetDaemonApps.apps
             _myEntities.Sensor.PcDisplayDisplay1Resolution.StateChanges().Subscribe(_ => { _myEntities.Button.PcResetbrigtness.Press(); });
 
             _myEntities.Light.MultiPlugBrightLight.StateChanges().WhenStateIsFor(x => x?.State == "on", TimeSpan.FromHours(1))
-                .Subscribe(x => { _myEntities.Light.MultiPlugBrightLight.TurnOff(); _myEntities.Light.LivingRoomLight.TurnOff();});
+                .Subscribe(x =>  {_myEntities.Light.LivingRoomLight.TurnOn();});
 
             _myEntities.Light.ToiletLight1.StateChanges().WhenStateIsFor(x => x?.State == "on", TimeSpan.FromHours(1))
                .Subscribe(x => { _myEntities.Light.ToiletLight1.TurnOff();});
