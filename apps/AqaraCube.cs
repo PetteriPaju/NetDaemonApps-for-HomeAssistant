@@ -2,64 +2,45 @@
 using NetDaemon.HassModel.Entities;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace NetDaemonApps.apps
 {
-    [NetDaemonApp]
-    public class AqaraCube
+ 
+    public abstract class AqaraCube
     {
         protected readonly SensorEntity? cubeEntity;
+        protected readonly SensorEntity? cubeSideEntity;
         protected readonly Entities _myEntities;
-        protected readonly List<LightEntity> lightEntities;
-        protected LightEntity? currentlyActiveLight =  null;
-        private const double lightBrigthnessStep = 50;
-        private const double miniumBrightness = 25;
+        protected string? lastKnownSide;
+
+
 
         public AqaraCube(IHaContext ha)
         {
             _myEntities = new Entities(ha);
+            cubeEntity = SetCubeActionEntity();
+            cubeSideEntity = SetCubeSideEntity();
+            
+            cubeEntity?.StateChanges().Subscribe(x => DetermineAction(x?.Entity?.State ?? "Unknown"));
+            cubeSideEntity?.StateChanges().Subscribe(x => Console.WriteLine(x?.New?.State));
 
-            cubeEntity = _myEntities.Sensor.CubeAction;
-            cubeEntity.StateChanges().Subscribe(x => DetermineAction(x?.Entity?.State ?? "Unknown"));
-            lightEntities = new List<LightEntity> { _myEntities.Light.LivingRoomLight, _myEntities.Light.MultiPlugBrightLight, _myEntities.Light.DesktopLight };
+            lastKnownSide = cubeSideEntity?.State;
+            cubeEntity?.StateChanges().Subscribe(x => DetermineAction(x?.Entity?.State ?? "Unknown"));
 
-            void SetActiveLightListener(LightEntity lightE)
-            {
-                lightE.StateChanges().Where(x => x.New?.State == "on").Subscribe(x => { currentlyActiveLight = lightE; });
-                lightE.StateChanges().Where(x => x.New?.State == "off").Subscribe(x => {  if(currentlyActiveLight == lightE) currentlyActiveLight = null; });
-            }
-
-
-            foreach (var entity in lightEntities)
-            {
-                SetActiveLightListener(entity);
-            }
-
-            currentlyActiveLight = lightEntities.FirstOrDefault(x => x.IsOn(), null);
+          
 
         }
 
-        private int GetNextActiveLightIndex()
-        {
-            if (currentlyActiveLight == null) return 0;
-
-
-            var indexOfCurrent = lightEntities.IndexOf(currentlyActiveLight);
+        protected virtual SensorEntity? SetCubeActionEntity() { return null; }
+        protected virtual SensorEntity? SetCubeSideEntity() { return null; }
 
 
 
-            if (indexOfCurrent == -1 || indexOfCurrent == lightEntities.Count - 1) 
-            return 0;
-
-            else return indexOfCurrent + 1;
-
-
-        }
-
-        private void DetermineAction(string stateName)
+        protected void DetermineAction(string stateName)
         {
 
             switch (stateName)
@@ -94,56 +75,25 @@ namespace NetDaemonApps.apps
 
         }
         /// <summary> Power-button Press Down</summary>
-        protected virtual void OnRotateLeft() {
-
-            //Check if any light is on and that it supports brightness
-            if(currentlyActiveLight != null && currentlyActiveLight.Attributes.SupportedFeatures != 0 && currentlyActiveLight.Attributes.Brightness > miniumBrightness)
-            {
-              long minBrightnessFix =  (long)MathF.Max((int)(currentlyActiveLight.Attributes.Brightness - lightBrigthnessStep), (int)miniumBrightness);
-            
-                currentlyActiveLight.TurnOn(brightness: minBrightnessFix);
-            }
-   
-        
-        }
+        protected virtual void OnRotateLeft() {}
         /// <summary> Power-button Press Release</summary>
-        protected virtual void OnRotateRight() {
-
-            if (currentlyActiveLight != null && currentlyActiveLight.Attributes.SupportedFeatures != 0 && currentlyActiveLight.Attributes.Brightness < 255)
-            {
-                currentlyActiveLight.TurnOn(brightness: (long)(currentlyActiveLight.Attributes.Brightness + lightBrigthnessStep));
-            }
-
-
-        }
+        protected virtual void OnRotateRight() {}
         /// <summary> Power-button Hold</summary>
         protected virtual void OnTap() { }
         /// <summary> Power-button Hold release</summary>
-        protected virtual void OnFlip90() {
-
-
-            if (currentlyActiveLight == null || currentlyActiveLight != _myEntities.Light.LivingRoomLight)
-            {
-                _myEntities.Light.LivingRoomLight.TurnOn();
-            }
-            else _myEntities.Light.LivingRoomLight.TurnOff();
-
-
-
-        }
+        protected virtual void OnFlip90() {}
 
         /// <summary> Brighness Up-button Press Down</summary>
-        protected virtual void OnShake() { _myEntities.Switch.PcPlug.TurnOn(); }
+        protected virtual void OnShake() {  }
         /// <summary> Brighness Up-button Press Release</summary>
-        protected virtual void OnFlip180() {
+        protected virtual void OnFlip180() {}
 
-
-            currentlyActiveLight = lightEntities[GetNextActiveLightIndex()];
-            if (currentlyActiveLight != null) currentlyActiveLight.TurnOn();
-
+        protected virtual void OnSideChaged(string? fromSide, string? toSide) { 
+        
+           
 
         }
-        /// <summary> Brighness Up-button Hold</summary>
+
 
     }
 }

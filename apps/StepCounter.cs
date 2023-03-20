@@ -49,7 +49,7 @@ namespace NetDaemonApps.apps
 
                     lastKnownThreshold = ((int)Math.Floor((double)(steps / 1000))) * 1000;
                     Console.WriteLine("Threshold Reached");
-                    TTS._instance.Speak("You have reached " + lastKnownThreshold.ToString() + "steps");
+                    TTS.Speak("You have reached " + lastKnownThreshold.ToString() + "steps");
               
 
                 }
