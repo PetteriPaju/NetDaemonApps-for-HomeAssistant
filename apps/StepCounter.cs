@@ -23,7 +23,7 @@ namespace NetDaemonApps.apps
         public StepCounter(IHaContext ha, IScheduler scheduler)
         {
             _myEntities = new Entities(ha);
-            _myEntities.Sensor.MotoG8PowerLiteLastNotification?.StateAllChanges().Where(x => IsValidStep(x))?.Subscribe(x => ParseSteps(x?.Entity?.EntityState?.Attributes?.Android_title));
+            _myEntities.Sensor.MotoG8PowerLiteLastNotification?.StateAllChanges().Where(x => IsValidStep(x))?.Subscribe(x => ParseSteps(x?.Entity?.EntityState?.Attributes?.Android_text));
 
             scheduler.ScheduleCron("0 0 * * *", () => lastKnownThreshold = 0);
         }
@@ -37,7 +37,7 @@ namespace NetDaemonApps.apps
             string numericPhone = new String(message.Where(Char.IsDigit).ToArray());
 
             bool wasParsed = int.TryParse(numericPhone, out steps);
-
+            steps = 10000 - steps;
             if (wasParsed && steps>0)
             {
                 Console.WriteLine("Parsed Step:" + steps);
@@ -68,7 +68,7 @@ namespace NetDaemonApps.apps
             if (package == null) return false;
             if (!package.Contains("com.huawei.health")) return false;
 
-            var steps = ent.New.Attributes.Android_title;
+            var steps = ent.New.Attributes.Android_text;
 
             if (steps == null) return false;
 

@@ -66,7 +66,6 @@ namespace NetDaemonApps.apps
             });
 
             _myEntities.InputBoolean.Isasleep.StateChanges().Where(x => x?.New?.State == "off").Subscribe(x => {
-                Console.WriteLine("Woke up");
                 // If alarm timer is on it means that this is after a long sleep
                 if (alarmTimer != null)
                 {
@@ -96,14 +95,20 @@ namespace NetDaemonApps.apps
 
             CheckAllIsSleepConditions();
 
+        }
 
-
+        private bool trainingLora()
+        {
+            return _myEntities.Automation.TurnOffPcWhenLoraTrainingDone.IsOn() && _myEntities.InputSelect.Atloraended.State == "Shutdown";
         }
 
         private void CheckAllIsSleepConditions()
         {
 
             bool areAllTrue = true;
+
+            if (trainingLora()) isAsleepCondition[_myEntities.Switch.PcPlug] = true;
+
             foreach (bool cond in isAsleepCondition.Values)
             {
                 if (!cond)
