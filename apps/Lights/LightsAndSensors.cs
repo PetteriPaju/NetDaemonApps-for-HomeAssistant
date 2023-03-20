@@ -33,19 +33,29 @@ namespace NetDaemonApps.apps.Lights
             SubcribeLightOn(_myEntities.BinarySensor.StorageSensorAqaraOccupancy, _myEntities.Light.StorageLight2);
             SubcribeLightOff(_myEntities.BinarySensor.StorageSensorAqaraOccupancy, _myEntities.Light.StorageLight2, new TimeSpan(0, 0, 0));
 
-
-            ha.Entity("binary_sensor.kitchen_distance_helper").StateChanges().Where(x => x.Entity?.EntityState?.LastUpdated > DateTime.Now - TimeSpan.FromSeconds(3)).Subscribe(
+            //Distance must be bellow threshold fot at least 3 seconds until it is considereds to be turn off
+            ha.Entity("binary_sensor.kitchen_distance_helper").StateChanges().Where(x => x?.New?.State == "off" && x.Entity?.EntityState?.LastUpdated > DateTime.Now - TimeSpan.FromSeconds(5)).Subscribe(
 
                 _ => {
 
-                    kitchenDistanceHelper = ha.Entity("binary_sensor.kitchen_distance_helper").State == "on";
+                    kitchenDistanceHelper = false;
                 }
                 
                 
                 );
 
+            //Turn onn is instant
+            ha.Entity("binary_sensor.kitchen_distance_helper").StateChanges().Where(x => x?.New?.State == "on").Subscribe(
 
-          
+           _ => {
+
+               kitchenDistanceHelper = true;
+           }
+
+
+           );
+
+
 
 
         }

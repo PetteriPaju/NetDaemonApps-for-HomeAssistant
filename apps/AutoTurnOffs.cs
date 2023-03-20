@@ -25,6 +25,9 @@ namespace NetDaemonApps.apps
             _myEntities.Light.MultiPlugBrightLight.StateChanges().WhenStateIsFor(x => x?.State == "on", TimeSpan.FromHours(1))
                 .Subscribe(x =>  {_myEntities.Light.LivingRoomLight.TurnOn();});
 
+            _myEntities.Light.KitchenLight2.StateChanges().WhenStateIsFor(x => x?.State == "on", TimeSpan.FromHours(1))
+                .Subscribe(x => { _myEntities.Light.LivingRoomLight.TurnOn(); });
+
             _myEntities.Light.ToiletLight1.StateChanges().WhenStateIsFor(x => x?.State == "on", TimeSpan.FromHours(1))
                .Subscribe(x => { _myEntities.Light.ToiletLight1.TurnOff();});
 

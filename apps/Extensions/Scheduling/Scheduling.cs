@@ -11,6 +11,7 @@ using System.Reactive.Concurrency;
 using YamlDotNet.Serialization.NodeTypeResolvers;
 using System.IO.Pipelines;
 using System;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 // Use unique namespaces for your apps if you going to share with others to avoid
 // conflicting names
 namespace Extensions.Scheduling;
@@ -49,8 +50,8 @@ public class SchedulingApp
         scheduler.ScheduleCron("59 23 * * *", () => UpdatePriceDaily());
         scheduler.ScheduleCron("45 * * * *", () => EnergiPriceChengeAlert(ha));
      
-       _myEntities.Sensor.NordpoolKwhFiEur31001.StateAllChanges().Where(x => x?.New?.Attributes?.TomorrowValid == true && x.Old?.Attributes?.TomorrowValid == false).Subscribe(_ => { TTS._instance.Speak("Energy Prices Update"); });
- 
+       _myEntities.Sensor.NordpoolKwhFiEur31001.StateAllChanges().Where(x => x?.New?.Attributes?.TomorrowValid == true && x.Old?.Attributes?.TomorrowValid == false).Subscribe(_ => { ReadOutEnergyUpdate(); });
+        ReadOutEnergyUpdate();
     }
 
     public static void ReadOutGoodMorning()
@@ -58,6 +59,77 @@ public class SchedulingApp
         _instance?.MorningTTS();
     }
 
+    private struct EnergyForecastInfo
+    {
+        public double avarage;
+        public double max;
+        public double min;
+        public int majorityRange;
+    }
+
+
+    public void ReadOutEnergyUpdate()
+    {
+        string message = "Energy prices for tomorrow are here!";
+
+        if (!_myEntities.Sensor?.NordpoolKwhFiEur31001?.EntityState?.Attributes?.TomorrowValid == false)
+        {
+
+            EnergyForecastInfo energyForecastInfo = GetEnergyForecast(_myEntities.Sensor?.NordpoolKwhFiEur31001?.EntityState?.Attributes?.Tomorrow as IReadOnlyList<double>);
+
+            message += " Prices will be mostly in " + GetNameOfRange(energyForecastInfo.majorityRange);
+            message += " with avarage of " + Math.Round((energyForecastInfo.avarage * 100), 1) + " cents. Ranging from: " + Math.Round((energyForecastInfo.min * 100), 1) + " to " + Math.Round((energyForecastInfo.max * 100), 1) + " cents.";
+
+
+            message += "That's " + (_myEntities.Sensor?.NordpoolKwhFiEur31001?.EntityState?.Attributes?.Average > energyForecastInfo.avarage ? "an increase" : "a decrease") + " from today.";
+        }
+
+        TTS._instance?.Speak(message);
+
+     
+
+    }
+    private EnergyForecastInfo GetEnergyForecast(IReadOnlyList<double>? list, int startFrom = 0)
+    {
+        EnergyForecastInfo energyForecastInfo = new EnergyForecastInfo();
+
+        int FindRangeForPrice(double? price)
+        {
+            var range = electricityRangeKeys?.FindIndex(x => x > price);
+            range = range == -1 ? 1 : range;
+
+            return (int)range - 1;
+        }
+
+        if (list == null) return energyForecastInfo;
+
+        
+        Dictionary<int, int> foundPerRange = new Dictionary<int, int>();
+
+        double avg = list.Average();
+        double max = list.Max();
+        double min = list.Min();
+
+   
+        for (int i = startFrom; i < list.Count - 1; i++)
+        {
+
+            var rangeForPrice = FindRangeForPrice(list.ElementAt(i));
+            
+            if (!foundPerRange.ContainsKey(rangeForPrice)) foundPerRange.Add(rangeForPrice, 1);
+            else foundPerRange[rangeForPrice]++;
+        }
+
+  
+        energyForecastInfo.avarage = avg;
+        energyForecastInfo.max = max;
+        energyForecastInfo.min = min;
+        energyForecastInfo.majorityRange = foundPerRange.MaxBy(x => x.Value).Key; ;
+
+
+        return energyForecastInfo;
+
+    }
 
 
 
@@ -134,28 +206,22 @@ public class SchedulingApp
         }
 
 
-
-        bool increaseForecast;
         var hoursTillChange = FindWhenElectricityRangeChanges(inFoForNextHour);
 
         var timeDiff = (hoursTillChange.dateTime - inFoForNextHour.dateTime);
         
         PriceChangeType priceChangeType = inFoForNextHour.Compare(hoursTillChange);
 
-     
-        Console.WriteLine(inFoForNextHour.dateTime);
-
         if (priceChangeType == PriceChangeType.NoChange)
         {
-            TTSMessage += ". And will noot fall for a while";
+            TTSMessage += ". And stays like that for while.";
         }
         else
         {
 
             TTSMessage += ". And will " + (priceChangeType == PriceChangeType.Increase ? "increase to " : "decrease to ") + GetNameOfRange(hoursTillChange.range) +  " after " + GetHoursAndMinutesFromTimeSpan(timeDiff);
         }
-   
-
+  
 
         SendTTS(TTSMessage);
     }
@@ -199,8 +265,6 @@ public class SchedulingApp
             price = day?.ElementAt(time.Hour);
             range = FindRangeForPrice(price, electricityRangeKeys);
             dateTime = time;
-
-
         }
 
         public PriceChangeType Compare(ElectricityPriceInfo endPoint)
