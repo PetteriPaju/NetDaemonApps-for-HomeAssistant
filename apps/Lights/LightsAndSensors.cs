@@ -40,6 +40,20 @@ namespace NetDaemonApps.apps.Lights
             _myEntities.BinarySensor.KitchenDistanceHelper.StateChanges().Where(x => x?.New?.State == "on").Subscribe(_ => {kitchenDistanceHelper = true;});
 
 
+            _myEntities.BinarySensor._0x001788010bcfb16fOccupancy.StateChanges().Where(x => x?.New?.State == "on" && _myEntities.Light.AllLights?.EntityState?.LastChanged< DateTime.Now + TimeSpan.FromSeconds(30)).SubscribeAsync(async s => {
+
+                _myEntities.Light.HallwayLight.TurnOn();
+
+                await Task.Delay(30000);
+
+                if (_myEntities.BinarySensor.HallwaySensorOccupancy.IsOff())
+                {
+                    _myEntities.Light.HallwayLight.TurnOff();
+                }
+
+            });
+
+
 
 
         }

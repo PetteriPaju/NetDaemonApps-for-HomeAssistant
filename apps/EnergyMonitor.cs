@@ -1,16 +1,8 @@
 using HomeAssistantGenerated;
-using Microsoft.AspNetCore.Mvc.Formatters;
 using NetDaemon.Extensions.Scheduler;
-using NetDaemon.Extensions.Tts;
 using System.Collections.Generic;
 using System.Linq;
-using System.Diagnostics;
-using System.Linq;
 using System.Reactive.Concurrency;
-using YamlDotNet.Serialization.NodeTypeResolvers;
-using System.IO.Pipelines;
-using System;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
 // Use unique namespaces for your apps if you going to share with others to avoid
 // conflicting names
 namespace NetDaemonApps.apps;
@@ -68,7 +60,7 @@ public class EnergyMonitor
 
     public void ReadOutEnergyUpdate()
     {
-        string message = "Energy prices for tomorrow are here!";
+        string message = "Energy update for tomorrow!";
 
         if (!_myEntities.Sensor?.NordpoolKwhFiEur31001?.EntityState?.Attributes?.TomorrowValid == false)
         {
@@ -76,7 +68,7 @@ public class EnergyMonitor
             EnergyForecastInfo energyForecastInfo = GetEnergyForecast(_myEntities.Sensor?.NordpoolKwhFiEur31001?.EntityState?.Attributes?.Tomorrow);
 
             message += " Prices will be mostly in " + GetNameOfRange(energyForecastInfo.majorityRange);
-            message += " with avarage of " + Math.Round(energyForecastInfo.avarage * 100, 1) + " cents. Ranging from: " + Math.Round(energyForecastInfo.min * 100, 1) + " to " + Math.Round(energyForecastInfo.max * 100, 1) + " cents. ";
+            message += " with avarage of " + Math.Round(energyForecastInfo.avarage * 100, 1) + " cents.";// Ranging from: " + Math.Round(energyForecastInfo.min * 100, 1) + " to " + Math.Round(energyForecastInfo.max * 100, 1) + " cents. ";
 
 
             message += "That's " + (_myEntities.Sensor?.NordpoolKwhFiEur31001?.EntityState?.Attributes?.Average < energyForecastInfo.avarage ? "more" : "less") + " than today.";

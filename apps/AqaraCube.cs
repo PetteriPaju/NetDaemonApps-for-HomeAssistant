@@ -1,11 +1,4 @@
 ﻿using HomeAssistantGenerated;
-using NetDaemon.HassModel.Entities;
-using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace NetDaemonApps.apps
 {
@@ -26,10 +19,9 @@ namespace NetDaemonApps.apps
             cubeSideEntity = SetCubeSideEntity();
             
             cubeEntity?.StateChanges().Subscribe(x => DetermineAction(x?.Entity?.State ?? "Unknown"));
-            cubeSideEntity?.StateChanges().Subscribe(x => Console.WriteLine(x?.New?.State));
+            cubeSideEntity?.StateChanges().Subscribe(x => OnSideChaged(x?.Old?.State, x?.New?.State));
 
             lastKnownSide = cubeSideEntity?.State;
-            cubeEntity?.StateChanges().Subscribe(x => DetermineAction(x?.Entity?.State ?? "Unknown"));
 
           
 
@@ -42,7 +34,6 @@ namespace NetDaemonApps.apps
 
         protected void DetermineAction(string stateName)
         {
-
             switch (stateName)
             {
                
@@ -88,9 +79,9 @@ namespace NetDaemonApps.apps
         /// <summary> Brighness Up-button Press Release</summary>
         protected virtual void OnFlip180() {}
 
-        protected virtual void OnSideChaged(string? fromSide, string? toSide) { 
-        
-           
+        protected virtual void OnSideChaged(string? fromSide, string? toSide) {
+
+            if (fromSide == null) fromSide = toSide;
 
         }
 

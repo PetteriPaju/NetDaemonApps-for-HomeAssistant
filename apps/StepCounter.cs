@@ -1,15 +1,8 @@
 ﻿using HomeAssistantGenerated;
-using Microsoft.AspNetCore.Mvc.Formatters;
 using NetDaemon.Extensions.Scheduler;
 using NetDaemon.HassModel.Entities;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Numerics;
 using System.Reactive.Concurrency;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace NetDaemonApps.apps
 {
@@ -23,7 +16,7 @@ namespace NetDaemonApps.apps
         public StepCounter(IHaContext ha, IScheduler scheduler)
         {
             _myEntities = new Entities(ha);
-            _myEntities.Sensor.MotoG8PowerLiteLastNotification?.StateAllChanges().Where(x => IsValidStep(x))?.Subscribe(x => ParseSteps(x?.Entity?.EntityState?.Attributes?.Android_text));
+            _myEntities.Sensor.MotoG8PowerLiteLastNotification?.StateAllChanges().Where(x => IsValidStep(x))?.Subscribe(x => ParseSteps(x?.Entity?.EntityState?.Attributes?.Android_title));
 
             scheduler.ScheduleCron("0 0 * * *", () => lastKnownThreshold = 0);
         }
@@ -33,11 +26,11 @@ namespace NetDaemonApps.apps
             if (message == null) return;
 
             int steps;
-
+            message = message.Substring(0, message.IndexOf("steps"));
             string numericPhone = new String(message.Where(Char.IsDigit).ToArray());
 
             bool wasParsed = int.TryParse(numericPhone, out steps);
-            steps = 10000 - steps;
+      
             if (wasParsed && steps>0)
             {
                 Console.WriteLine("Parsed Step:" + steps);
@@ -58,6 +51,8 @@ namespace NetDaemonApps.apps
             }
         }
 
+        
+
         private bool IsValidStep(StateChange<SensorEntity,EntityState<SensorAttributes>> ent)
         {
             if (ent == null) return false;
@@ -68,7 +63,7 @@ namespace NetDaemonApps.apps
             if (package == null) return false;
             if (!package.Contains("com.huawei.health")) return false;
 
-            var steps = ent.New.Attributes.Android_text;
+            var steps = ent.New.Attributes.Android_title;
 
             if (steps == null) return false;
 

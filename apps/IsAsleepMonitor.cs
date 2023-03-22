@@ -1,12 +1,9 @@
 ﻿using HomeAssistantGenerated;
-using NetDaemon.HassModel;
 using NetDaemon.HassModel.Entities;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using NetDaemon.Extensions.Scheduler;
 using System.Reactive.Concurrency;
-using System.Reactive.Linq;
 using System.Globalization;
 
 
@@ -23,7 +20,6 @@ namespace NetDaemonApps.apps
 
         private TimeSpan sleepTimer =  TimeSpan.FromHours(7)+TimeSpan.FromMinutes(30);
 
-        private bool isLongSleeping = false;
 
         private IDisposable? alarmTimer;
 
@@ -70,15 +66,19 @@ namespace NetDaemonApps.apps
                 if (alarmTimer != null)
                 {
                     alarmTimer.Dispose();
-                    Console.WriteLine("DisposeTimer");
 
                     EnergyMonitor.ReadOutGoodMorning();
                 }
 
 
                 //Run default actions that run everytime isSleep is turned on
+                // Get the offset from current time in UTC time
+                DateTimeOffset dto = new DateTimeOffset(DateTime.Now);
+                // Get the unix timestamp in seconds
+                long unixTime = dto.ToUnixTimeSeconds();
 
-                _myEntities.InputDatetime.Awoketime.SetDatetime(time:DateTime.Now);
+
+                _myEntities.InputDatetime.Awoketime.SetDatetime(timestamp: unixTime);
 
 
             });

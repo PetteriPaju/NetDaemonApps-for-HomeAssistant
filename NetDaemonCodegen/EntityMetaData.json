@@ -69,6 +69,11 @@
           "cSharpName": "Isasleepupdate"
         },
         {
+          "id": "automation.ishomecancel",
+          "friendlyName": "IsHomeCancel",
+          "cSharpName": "Ishomecancel"
+        },
+        {
           "id": "automation.pesukone",
           "friendlyName": "Pesukone",
           "cSharpName": "Pesukone"
@@ -542,6 +547,76 @@
           "cSharpName": "AutoTurnOffServer"
         },
         {
+          "id": "input_boolean.dev_netdaemon_net_daemon_apps_apps_agara_cube_living_room",
+          "friendlyName": "dev_netdaemon_net_daemon_apps_apps_agara_cube_living_room",
+          "cSharpName": "DevNetdaemonNetDaemonAppsAppsAgaraCubeLivingRoom"
+        },
+        {
+          "id": "input_boolean.dev_netdaemon_net_daemon_apps_apps_auto_turn_offs",
+          "friendlyName": "dev_netdaemon_net_daemon_apps_apps_auto_turn_offs",
+          "cSharpName": "DevNetdaemonNetDaemonAppsAppsAutoTurnOffs"
+        },
+        {
+          "id": "input_boolean.dev_netdaemon_net_daemon_apps_apps_energy_monitor",
+          "friendlyName": "dev_netdaemon_net_daemon_apps_apps_energy_monitor",
+          "cSharpName": "DevNetdaemonNetDaemonAppsAppsEnergyMonitor"
+        },
+        {
+          "id": "input_boolean.dev_netdaemon_net_daemon_apps_apps_hue_switches_bed_hue_switch",
+          "friendlyName": "dev_netdaemon_net_daemon_apps_apps_hue_switches_bed_hue_switch",
+          "cSharpName": "DevNetdaemonNetDaemonAppsAppsHueSwitchesBedHueSwitch"
+        },
+        {
+          "id": "input_boolean.dev_netdaemon_net_daemon_apps_apps_hue_switches_livingroom_switch",
+          "friendlyName": "dev_netdaemon_net_daemon_apps_apps_hue_switches_livingroom_switch",
+          "cSharpName": "DevNetdaemonNetDaemonAppsAppsHueSwitchesLivingroomSwitch"
+        },
+        {
+          "id": "input_boolean.dev_netdaemon_net_daemon_apps_apps_is_asleep_monitor",
+          "friendlyName": "dev_netdaemon_net_daemon_apps_apps_is_asleep_monitor",
+          "cSharpName": "DevNetdaemonNetDaemonAppsAppsIsAsleepMonitor"
+        },
+        {
+          "id": "input_boolean.dev_netdaemon_net_daemon_apps_apps_is_home_manager",
+          "friendlyName": "dev_netdaemon_net_daemon_apps_apps_is_home_manager",
+          "cSharpName": "DevNetdaemonNetDaemonAppsAppsIsHomeManager"
+        },
+        {
+          "id": "input_boolean.dev_netdaemon_net_daemon_apps_apps_lights_lights_and_sensors",
+          "friendlyName": "dev_netdaemon_net_daemon_apps_apps_lights_lights_and_sensors",
+          "cSharpName": "DevNetdaemonNetDaemonAppsAppsLightsLightsAndSensors"
+        },
+        {
+          "id": "input_boolean.dev_netdaemon_net_daemon_apps_apps_lights_livingroom_lights",
+          "friendlyName": "dev_netdaemon_net_daemon_apps_apps_lights_livingroom_lights",
+          "cSharpName": "DevNetdaemonNetDaemonAppsAppsLightsLivingroomLights"
+        },
+        {
+          "id": "input_boolean.dev_netdaemon_net_daemon_apps_apps_lights_toiler_light_automation",
+          "friendlyName": "dev_netdaemon_net_daemon_apps_apps_lights_toiler_light_automation",
+          "cSharpName": "DevNetdaemonNetDaemonAppsAppsLightsToilerLightAutomation"
+        },
+        {
+          "id": "input_boolean.dev_netdaemon_net_daemon_apps_apps_media_playing_monitor",
+          "friendlyName": "dev_netdaemon_net_daemon_apps_apps_media_playing_monitor",
+          "cSharpName": "DevNetdaemonNetDaemonAppsAppsMediaPlayingMonitor"
+        },
+        {
+          "id": "input_boolean.dev_netdaemon_net_daemon_apps_apps_notifications",
+          "friendlyName": "dev_netdaemon_net_daemon_apps_apps_notifications",
+          "cSharpName": "DevNetdaemonNetDaemonAppsAppsNotifications"
+        },
+        {
+          "id": "input_boolean.dev_netdaemon_net_daemon_apps_apps_step_counter",
+          "friendlyName": "dev_netdaemon_net_daemon_apps_apps_step_counter",
+          "cSharpName": "DevNetdaemonNetDaemonAppsAppsStepCounter"
+        },
+        {
+          "id": "input_boolean.dev_netdaemon_net_daemon_apps_apps_tts",
+          "friendlyName": "dev_netdaemon_net_daemon_apps_apps_tts",
+          "cSharpName": "DevNetdaemonNetDaemonAppsAppsTts"
+        },
+        {
           "id": "input_boolean.guest_mode",
           "friendlyName": "Guest Mode",
           "cSharpName": "GuestMode"
@@ -567,19 +642,19 @@
           "cSharpName": "MediaPlaying"
         },
         {
-          "id": "input_boolean.netdaemon_extensions_scheduling_scheduling_app",
-          "friendlyName": "netdaemon_extensions_scheduling_scheduling_app",
-          "cSharpName": "NetdaemonExtensionsSchedulingSchedulingApp"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_aqara_cube",
-          "friendlyName": "netdaemon_net_daemon_apps_apps_aqara_cube",
-          "cSharpName": "NetdaemonNetDaemonAppsAppsAqaraCube"
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_agara_cube_living_room",
+          "friendlyName": "netdaemon_net_daemon_apps_apps_agara_cube_living_room",
+          "cSharpName": "NetdaemonNetDaemonAppsAppsAgaraCubeLivingRoom"
         },
         {
           "id": "input_boolean.netdaemon_net_daemon_apps_apps_auto_turn_offs",
           "friendlyName": "netdaemon_net_daemon_apps_apps_auto_turn_offs",
           "cSharpName": "NetdaemonNetDaemonAppsAppsAutoTurnOffs"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_energy_monitor",
+          "friendlyName": "netdaemon_net_daemon_apps_apps_energy_monitor",
+          "cSharpName": "NetdaemonNetDaemonAppsAppsEnergyMonitor"
         },
         {
           "id": "input_boolean.netdaemon_net_daemon_apps_apps_hue_switches_bed_hue_switch",
@@ -1168,7 +1243,7 @@
         },
         {
           "id": "media_player.olohuone_nest",
-          "friendlyName": "Olohuone Nest",
+          "friendlyName": null,
           "cSharpName": "OlohuoneNest"
         },
         {
@@ -1549,6 +1624,11 @@
           "id": "script.send_audio_notification_file",
           "friendlyName": "Send Audio Notification File",
           "cSharpName": "SendAudioNotificationFile"
+        },
+        {
+          "id": "script.sendishomephonenotification",
+          "friendlyName": "SendIsHomePhoneNotification",
+          "cSharpName": "Sendishomephonenotification"
         },
         {
           "id": "script.turn_off_server",
@@ -2728,6 +2808,11 @@
           "cSharpName": "SmT530BatteryLevel"
         },
         {
+          "id": "sensor.steps_todays",
+          "friendlyName": "Steps Todays",
+          "cSharpName": "StepsTodays"
+        },
+        {
           "id": "sensor.storage_sensor_aqara_battery",
           "friendlyName": "Storage Sensor battery",
           "cSharpName": "StorageSensorAqaraBattery"
@@ -3235,6 +3320,11 @@
           "id": "update.home_assistant_google_drive_backup_update",
           "friendlyName": "Home Assistant Google Drive Backup Update",
           "cSharpName": "HomeAssistantGoogleDriveBackupUpdate"
+        },
+        {
+          "id": "update.home_assistant_operating_system_update",
+          "friendlyName": "Home Assistant Operating System Update",
+          "cSharpName": "HomeAssistantOperatingSystemUpdate"
         },
         {
           "id": "update.home_assistant_supervisor_update",

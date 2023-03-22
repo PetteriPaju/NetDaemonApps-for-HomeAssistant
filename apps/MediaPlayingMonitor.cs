@@ -1,12 +1,11 @@
 ﻿using HomeAssistantGenerated;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 using NetDaemon.HassModel.Entities;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net.NetworkInformation;
-using System.Reactive.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Text.Json;
+using System.Text.Json.Serialization;
+
 
 namespace NetDaemonApps.apps
 {    
@@ -36,21 +35,30 @@ namespace NetDaemonApps.apps
             {
                 SetEntityForMediaPlayer(e);
             }
+
+          
+
+           
         }
+
 
         private void AddEntity(Entity ent, Func<bool> isTrueMethod, Action onValueChanged)
         {
-            IsTrueConditioner conditioner = new IsTrueConditioner(isTrueMethod, onValueChanged);
+            IsTrueConditioner conditioner = new IsTrueConditioner(ent,isTrueMethod, onValueChanged);
             ent.StateChanges().Subscribe(_ => conditioner.UpdateState());
             _monitoreres.Add(conditioner);
 
         }
-
         private void CheckAllStates()
+        {
+            CheckAllStates(null);
+        }
+        private void CheckAllStates(IEnumerable<Entity>? ignoreTheseEntities = null)
         {
             bool somethinggPlaying = false;
             foreach(IsTrueConditioner monitor in _monitoreres)
             {
+                if (ignoreTheseEntities != null && ignoreTheseEntities.Contains(monitor.entity)) continue;
 
                 if(monitor.currentState == true)
                 {
@@ -64,8 +72,6 @@ namespace NetDaemonApps.apps
             if (somethinggPlaying) _myEntities.InputBoolean.MediaPlaying.TurnOn();
             else _myEntities.InputBoolean.MediaPlaying.TurnOff();
 
-
-
         }
 
 
@@ -73,19 +79,22 @@ namespace NetDaemonApps.apps
         {
             private Func<bool> isTrueMethod;
             private Action OnValueChanged;
+            public readonly Entity entity;
             public bool currentState { get; private set; }
 
-            public IsTrueConditioner(Func<bool> isTrueMethod, bool currentState, Action onValueChanged)
+            public IsTrueConditioner(Entity entity, Func<bool> isTrueMethod, bool currentState, Action onValueChanged)
             {
                 this.isTrueMethod = isTrueMethod;
                 this.currentState = currentState;
                 this.OnValueChanged = onValueChanged;
+                this.entity = entity;
             }
-            public IsTrueConditioner(Func<bool> isTrueMethod, Action onValueChanged)
+            public IsTrueConditioner(Entity entity, Func<bool> isTrueMethod, Action onValueChanged)
             {
                 this.isTrueMethod = isTrueMethod;
                 this.OnValueChanged = onValueChanged;
                 currentState = isTrueMethod != null ? isTrueMethod.Invoke() : true;
+                this.entity = entity;
             }
 
 
