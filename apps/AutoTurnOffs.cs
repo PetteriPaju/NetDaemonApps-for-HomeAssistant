@@ -30,7 +30,7 @@ namespace NetDaemonApps.apps
                .Subscribe(x => { _myEntities.Switch.BedMultiPlugL2.TurnOff(); });
 
             //PC Plug off on when the unit is shut down
-            _myEntities.Sensor.PcPlugPower.StateChanges().WhenStateIsFor(x=>int.Parse(x?.State ?? "6") < 5, TimeSpan.FromMinutes(5)).Where(_=>_myEntities.Sensor.PcLastactive.State == "unavailable")
+            _myEntities.Sensor.PcPlugPower.StateChanges().WhenStateIsFor(x=>int.Parse(x?.State ?? "6") < 5 && _myEntities.Sensor.PcLastactive.State == "unavailable", TimeSpan.FromMinutes(5)).
                .Subscribe(x => { _myEntities.Switch.PcPlug.TurnOff(); });
 
 
@@ -59,10 +59,10 @@ namespace NetDaemonApps.apps
 
             });
 
-            _myEntities.Sensor.EnvyNetworkEthernet3.StateChanges().Where(x => x.New?.State == "Up" || x.New.State == "Down")
+            _myEntities.Sensor.EnvyNetworkEthernet3.StateChanges().Where(x => (x.Old?.State != "Up" && x?.Old?.State != "Down") && (x.New?.State == "Up" || x.New.State == "Down"))
                 .Subscribe(_ => {
 
-                    _myEntities.Switch.PcConnectorSocket1.TurnOn();
+                 //   _myEntities.Switch.PcConnectorSocket1.TurnOn();
                     _myEntities.Switch.PcConnectorSocket2.TurnOn();
                     _myEntities.Switch.PcConnectorSocket3.TurnOn();
 
@@ -71,7 +71,7 @@ namespace NetDaemonApps.apps
 
             });
 
-            _myEntities.Sensor.EnvyNetworkEthernet3.StateChanges().Where(x => x.New?.State != "Up" && x.New.State != "Down")
+            _myEntities.Sensor.EnvyNetworkEthernet3.StateChanges().Where(x => x.New?.State != "Up" && x.New?.State != "Down")
                 .Subscribe(_ => {
 
                 if (_myEntities.Switch.PcPlug.IsOff())

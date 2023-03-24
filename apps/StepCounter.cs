@@ -26,21 +26,28 @@ namespace NetDaemonApps.apps
             if (message == null) return;
 
             int steps;
-            message = message.Substring(0, message.IndexOf("steps"));
+            message = message.Substring(0, message.IndexOf("s"));
             string numericPhone = new String(message.Where(Char.IsDigit).ToArray());
 
             bool wasParsed = int.TryParse(numericPhone, out steps);
       
             if (wasParsed && steps>0)
             {
+
+                var stepsFloored = FloorDownToThousand(steps);
                 Console.WriteLine("Parsed Step:" + steps);
-                Console.WriteLine("Next threshold:" + Math.Floor((double)((lastKnownThreshold + notificationThreashold) / 1000)));
+                Console.WriteLine("Next threshold:" + FloorDownToThousand(lastKnownThreshold + notificationThreashold));
                 _myEntities.InputNumber.Dailysteps.SetValue(steps);
 
-                if (Math.Floor((double)(steps / 1000)) >= Math.Floor( (double)((lastKnownThreshold + notificationThreashold)/1000)))
+                if (stepsFloored < lastKnownThreshold)
+                {
+                    lastKnownThreshold = (int)stepsFloored;
+                }
+
+                if (stepsFloored >= FloorDownToThousand(lastKnownThreshold + notificationThreashold))
                 {
 
-                    lastKnownThreshold = ((int)Math.Floor((double)(steps / 1000))) * 1000;
+                    lastKnownThreshold = (int)stepsFloored;
                     Console.WriteLine("Threshold Reached");
                     TTS.Speak("You have reached " + lastKnownThreshold.ToString() + "steps");
               
@@ -49,6 +56,11 @@ namespace NetDaemonApps.apps
 
                
             }
+        }
+
+        private double FloorDownToThousand(double input)
+        {
+            return Math.Floor((double)((input) / 1000))*1000;
         }
 
         
