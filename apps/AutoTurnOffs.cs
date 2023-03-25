@@ -30,7 +30,7 @@ namespace NetDaemonApps.apps
                .Subscribe(x => { _myEntities.Switch.BedMultiPlugL2.TurnOff(); });
 
             //PC Plug off on when the unit is shut down
-            _myEntities.Sensor.PcPlugPower.StateChanges().WhenStateIsFor(x=>int.Parse(x?.State ?? "6") < 5 && _myEntities.Sensor.PcLastactive.State == "unavailable", TimeSpan.FromMinutes(5))
+            _myEntities.Sensor.PcPlugPower.StateChanges().WhenStateIsFor(x=>int.Parse(x?.State ?? "6") < 5 && _myEntities.Sensor.PcLastactive.State == "unavailable", TimeSpan.FromMinutes(3))
                .Subscribe(x => { _myEntities.Switch.PcPlug.TurnOff(); });
 
 
