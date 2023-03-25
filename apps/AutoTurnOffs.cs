@@ -30,10 +30,11 @@ namespace NetDaemonApps.apps
                .Subscribe(x => { _myEntities.Switch.BedMultiPlugL2.TurnOff(); });
 
             //PC Plug off on when the unit is shut down
-            _myEntities.Sensor.PcPlugPower.StateChanges().WhenStateIsFor(x=>int.Parse(x?.State ?? "6") < 5 && _myEntities.Sensor.PcLastactive.State == "unavailable", TimeSpan.FromMinutes(5)).
+            _myEntities.Sensor.PcPlugPower.StateChanges().WhenStateIsFor(x=>int.Parse(x?.State ?? "6") < 5 && _myEntities.Sensor.PcLastactive.State == "unavailable", TimeSpan.FromMinutes(5))
                .Subscribe(x => { _myEntities.Switch.PcPlug.TurnOff(); });
 
 
+      
             _myEntities.Switch.PcPlug.StateChanges().Where(x => x.New?.State == "on")
                 .Subscribe(_ => {
 
@@ -49,7 +50,7 @@ namespace NetDaemonApps.apps
                 .Subscribe(_ => {
 
 
-                if (_myEntities.Sensor.EnvyNetworkEthernet3.State != "Up" && _myEntities.Sensor.EnvyNetworkEthernet3.State != "Down")
+                if (_myEntities.Sensor.EnvyNetworkNetworkCardCount.AsNumeric().State != 1)
                 {
                     _myEntities.Switch.PcConnectorSocket1.TurnOff();
                     _myEntities.Switch.PcConnectorSocket2.TurnOff();
@@ -59,7 +60,7 @@ namespace NetDaemonApps.apps
 
             });
 
-            _myEntities.Sensor.EnvyNetworkEthernet3.StateChanges().Where(x => (x.Old?.State != "Up" && x?.Old?.State != "Down") && (x.New?.State == "Up" || x.New.State == "Down"))
+            _myEntities.Sensor.EnvyNetworkEthernet3.StateChanges().Where(x => x.Old?.State != "0" && x.New.State == "1")
                 .Subscribe(_ => {
 
                  //   _myEntities.Switch.PcConnectorSocket1.TurnOn();
@@ -71,7 +72,7 @@ namespace NetDaemonApps.apps
 
             });
 
-            _myEntities.Sensor.EnvyNetworkEthernet3.StateChanges().Where(x => x.New?.State != "Up" && x.New?.State != "Down")
+            _myEntities.Sensor.EnvyNetworkEthernet3.StateChanges().Where(x => x.New?.State != "1")
                 .Subscribe(_ => {
 
                 if (_myEntities.Switch.PcPlug.IsOff())
