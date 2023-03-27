@@ -35,8 +35,7 @@ namespace NetDaemonApps.apps
             {
 
                 var stepsFloored = FloorDownToThousand(steps);
-                Console.WriteLine("Parsed Step:" + steps);
-                Console.WriteLine("Next threshold:" + FloorDownToThousand(lastKnownThreshold + notificationThreashold));
+
                 _myEntities.InputNumber.Dailysteps.SetValue(steps);
 
                 if (stepsFloored < lastKnownThreshold)
@@ -48,7 +47,7 @@ namespace NetDaemonApps.apps
                 {
 
                     lastKnownThreshold = (int)stepsFloored;
-                    Console.WriteLine("Threshold Reached");
+              
                     TTS.Speak("You have reached " + lastKnownThreshold.ToString() + "steps");
               
 

@@ -72,7 +72,7 @@ namespace NetDaemonApps.apps
                     await Task.Delay(1000);
 
 
-                    TTS._instance?.SpeakTTS("I noticed you might not be at home, can you confirm?");
+                    TTS.Instance?.SpeakTTS("I noticed you might not be at home, can you confirm?");
 
 
 
@@ -81,7 +81,7 @@ namespace NetDaemonApps.apps
                     .Subscribe(x => { 
                         isHomeCancelFollower?.Dispose();
                         outOfHomeUntilTimeoutFollower?.Dispose(); 
-                        TTS._instance?.SpeakTTS("OK never mind");
+                        TTS.Instance?.SpeakTTS("OK never mind");
                         isCancelled = true; });
 
                     await Task.Delay((int)notificationTimeOut.TotalMilliseconds);
@@ -89,7 +89,7 @@ namespace NetDaemonApps.apps
                     if (!isCancelled)
                     {
                         _myEntities.InputBoolean.Ishome.TurnOff();
-                        TTS._instance?.SpeakTTS("I guess he left");
+                        TTS.Instance?.SpeakTTS("I guess he left");
 
                     }
 

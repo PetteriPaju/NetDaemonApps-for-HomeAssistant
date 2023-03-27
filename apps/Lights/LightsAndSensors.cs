@@ -29,14 +29,14 @@ namespace NetDaemonApps.apps.Lights
             SubcribeLightOff(_myEntities.BinarySensor.HallwaySensorOccupancy, _myEntities.Light.HallwayLight, defaulMotionTimeout);
 
             SubcribeLightOn(_myEntities.BinarySensor.KitchenSensorOccupancy, _myEntities.Light.KitchenLight2);
-            SubcribeLightOff(_myEntities.BinarySensor.KitchenSensorOccupancy, _myEntities.Light.KitchenLight2, defaulMotionTimeout, () => { return kitchenDistanceHelper == false; });
+            SubcribeLightOff(_myEntities.BinarySensor.KitchenSensorOccupancy, _myEntities.Light.KitchenLight2, defaulMotionTimeout, () => { return !kitchenSensorCheck(); });
 
             SubcribeLightOn(_myEntities.BinarySensor.StorageSensorAqaraOccupancy, _myEntities.Light.StorageLight2);
             SubcribeLightOff(_myEntities.BinarySensor.StorageSensorAqaraOccupancy, _myEntities.Light.StorageLight2, new TimeSpan(0, 0, 0));
 
             //Distance must be bellow threshold fot at least 3 seconds until it is considereds to be turn off
            _myEntities.BinarySensor.KitchenDistanceHelper.StateChanges().Where(x => x?.New?.State == "off" && x.Entity?.EntityState?.LastUpdated > DateTime.Now - TimeSpan.FromSeconds(5)).Subscribe(_ => {kitchenDistanceHelper = false;} );
-            _myEntities.BinarySensor.KitchenDistanceHelper.StateChanges().WhenStateIsFor(x => x.IsOff() && _myEntities.BinarySensor.KitchenSensorOccupancy.IsOff(), TimeSpan.FromMinutes(1)).Subscribe(_ => { _myEntities.Light.KitchenLight2.TurnOff(); });
+            _myEntities.BinarySensor.KitchenDistanceHelper.StateChanges().WhenStateIsFor(x => x.IsOff() && _myEntities.BinarySensor.KitchenSensorOccupancy.IsOff(), TimeSpan.FromSeconds(30)).Subscribe(_ => { _myEntities.Light.KitchenLight2.TurnOff(); });
             //Turn onn is instant
             _myEntities.BinarySensor.KitchenDistanceHelper.StateChanges().Where(x => x?.New?.State == "on").Subscribe(_ => {kitchenDistanceHelper = true;});
 
@@ -70,7 +70,10 @@ namespace NetDaemonApps.apps.Lights
         }
 
 
-
+        private bool kitchenSensorCheck()
+        {
+            return kitchenDistanceHelper;
+        }
 
     }
 }

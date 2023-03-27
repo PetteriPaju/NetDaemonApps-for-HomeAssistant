@@ -36,7 +36,7 @@ namespace NetDaemonApps.apps
 
 
             scheduler.ScheduleCron("30 * * * *", () => TTS.Speak("Hydration Check"));
-            scheduler.ScheduleCron("0 2 * * *", () => TTS.Speak("Gaming Time"));
+            scheduler.ScheduleCron("0 3 * * *", () => TTS.Speak("Gaming Time"));
 
             _myEntities.BinarySensor.OpenCurtainLimit.StateChanges().WhenStateIsFor(x => x?.State == "on", TimeSpan.FromMinutes(10)).Subscribe(_ => { TTS.Speak("Open Curtains"); });
 

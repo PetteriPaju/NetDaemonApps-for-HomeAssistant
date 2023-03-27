@@ -17,24 +17,27 @@ namespace NetDaemonApps.apps
 
         }
 
-        public static TTS? _instance;
+        private static TTS? instance;
         protected readonly ITextToSpeechService tts;
         protected readonly Entities _myEntities;
         protected readonly InputBooleanEntity isAsleepEntity;
+
+        public static TTS? Instance { get => instance; set => instance = value; }
+
         public TTS(IHaContext ha, ITextToSpeechService ttsService) {
 
             _myEntities = new Entities(ha);
             isAsleepEntity = _myEntities.InputBoolean.Isasleep;
             this.tts = ttsService;
-            _instance = this;
+            Instance = this;
         }
 
 
         public static void Speak(string text, TTSPriority overrider = TTSPriority.Default)
         {
-            if (_instance != null)
+            if (Instance != null)
             {
-                _instance.SpeakTTS(text, overrider);
+                Instance.SpeakTTS(text, overrider);
             }
             else
             {

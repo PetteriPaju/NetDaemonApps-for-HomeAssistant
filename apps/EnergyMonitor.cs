@@ -19,8 +19,8 @@ public class EnergyMonitor
 
     private readonly List<double>? electricityRangeKeys;
 
-    private static EnergyMonitor _instance;
-    ElectricityPriceInfo infoForCurrentHour = null;
+    private static EnergyMonitor? _instance;
+    ElectricityPriceInfo? infoForCurrentHour = null;
 
     private double marginOfErrorFix = 1.07;
 
@@ -40,7 +40,7 @@ public class EnergyMonitor
         scheduler.ScheduleCron("59 23 * * *", () => UpdatePriceDaily());
         scheduler.ScheduleCron("45 * * * *", () => EnergiPriceChengeAlert(ha));
 
-        _myEntities.Sensor.NordpoolKwhFiEur31001.StateAllChanges().Where(x => x?.New?.Attributes?.TomorrowValid == true && x.Old?.Attributes?.TomorrowValid == false).Subscribe(_ => { ReadOutEnergyUpdate(); });
+        _myEntities?.Sensor.NordpoolKwhFiEur31001.StateAllChanges().Where(x => x?.New?.Attributes?.TomorrowValid == true && x.Old?.Attributes?.TomorrowValid == false).Subscribe(_ => { ReadOutEnergyUpdate(); });
 
     }
 
@@ -159,6 +159,7 @@ public class EnergyMonitor
             TTSMessage += " in " + (60 - DateTime.Now.Minute) + " minutes";
         }
 
+       
 
         SendTTS(TTSMessage);
 
