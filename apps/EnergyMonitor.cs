@@ -155,7 +155,7 @@ public class EnergyMonitor
             }
 
 
-            TTSMessage += electiricityRanges.Values.ElementAt(infoForCurrentHour.range);
+            TTSMessage += electiricityRanges.Values.ElementAt(inFoForNextHour.range);
             TTSMessage += " in " + (60 - DateTime.Now.Minute) + " minutes";
         }
 
