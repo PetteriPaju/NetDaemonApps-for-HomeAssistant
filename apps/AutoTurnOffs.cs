@@ -60,29 +60,8 @@ namespace NetDaemonApps.apps
 
             });
 
-            _myEntities.Sensor.EnvyNetworkEthernet3.StateChanges().Where(x => x.Old?.State != "0" && x.New.State == "1")
-                .Subscribe(_ => {
-
-                 //   _myEntities.Switch.PcConnectorSocket1.TurnOn();
-                    _myEntities.Switch.PcConnectorSocket2.TurnOn();
-                    _myEntities.Switch.PcConnectorSocket3.TurnOn();
-
-                    _myEntities.Scene.SwitchUsbLaptop.TurnOn();
             
 
-            });
-
-            _myEntities.Sensor.EnvyNetworkEthernet3.StateChanges().Where(x => x.New?.State != "1")
-                .Subscribe(_ => {
-
-                if (_myEntities.Switch.PcPlug.IsOff())
-                {
-                    _myEntities.Switch.PcConnectorSocket1.TurnOff();
-                    _myEntities.Switch.PcConnectorSocket2.TurnOff();
-                    _myEntities.Switch.PcConnectorSocket3.TurnOff();
-                }
-                else _myEntities.Scene.SwitchUsbPc.TurnOn();
-            });
 
             _myEntities.Sensor.EnvyBatteryChargeRemainingPercentage.StateChanges().Where(x => x?.New?.State < 20)
                 .Subscribe(_ => {

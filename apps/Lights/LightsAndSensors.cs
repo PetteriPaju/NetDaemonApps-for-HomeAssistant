@@ -1,4 +1,5 @@
 ﻿using HomeAssistantGenerated;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 using NetDaemon.HassModel;
 using NetDaemon.HassModel.Entities;
 using System;
@@ -57,9 +58,9 @@ namespace NetDaemonApps.apps.Lights
 
         }
 
-        private void SubcribeLightOn(BinarySensorEntity sensor, LightEntity light, Func<bool>? extraConditions = null)
+        private void SubcribeLightOn(BinarySensorEntity sensor, LightEntity light, Func<bool>? extraConditions = null, NumericSensorEntity? fluzSensor = null, double maxFlux = double.MaxValue)
         {          
-            sensor.StateChanges().Where(e => e.New?.State == "on" && _myEntities.InputBoolean.SensorsActive.IsOn() && (extraConditions == null || extraConditions.Invoke())).Subscribe(_ => { light.TurnOn(); });
+            sensor.StateChanges().Where(e => e.New?.State == "on" && _myEntities.InputBoolean.SensorsActive.IsOn() && (extraConditions == null || extraConditions.Invoke())).Subscribe(_ => { light.TurnOnWithSensor(fluzSensor, maxFlux); });
         }
 
         private void SubcribeLightOff(BinarySensorEntity sensor, LightEntity light, TimeSpan offTime, Func<bool>? extraConditions = null)
@@ -67,6 +68,8 @@ namespace NetDaemonApps.apps.Lights
             sensor.StateChanges().Where(e => extraConditions != null ? extraConditions.Invoke() : true).WhenStateIsFor(e => e.IsOff() && _myEntities.InputBoolean.SensorsActive.IsOn(), offTime).Subscribe(e => { light.TurnOff(); });
             //extraConditions != null ? extraConditions.Invoke() : true
         }
+
+
 
 
     }
