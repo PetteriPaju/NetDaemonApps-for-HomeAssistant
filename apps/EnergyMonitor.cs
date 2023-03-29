@@ -35,7 +35,7 @@ public class EnergyMonitor
 
 
         scheduler.ScheduleCron("59 * * * *", () => UpdatePriceHourly());
-        scheduler.ScheduleCron("0 * * * *", () => { infoForCurrentHour = new ElectricityPriceInfo(DateTime.Now, _myEntities.Sensor?.NordpoolKwhFiEur31001, electricityRangeKeys); });
+        scheduler.ScheduleCron("0 * * * *", () => { infoForCurrentHour = new ElectricityPriceInfo(DateTime.Now + TimeSpan.FromMinutes(5), _myEntities.Sensor?.NordpoolKwhFiEur31001, electricityRangeKeys); });
 
         scheduler.ScheduleCron("59 23 * * *", () => UpdatePriceDaily());
         scheduler.ScheduleCron("45 * * * *", () => EnergiPriceChengeAlert(ha));
