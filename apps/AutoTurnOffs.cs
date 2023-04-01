@@ -1,4 +1,5 @@
 ﻿using HomeAssistantGenerated;
+using NetDaemon.HassModel;
 using NetDaemon.HassModel.Entities;
 using System.Linq;
 
@@ -29,12 +30,6 @@ namespace NetDaemonApps.apps
             _myEntities.Switch.BedMultiPlugL2.StateChanges().WhenStateIsFor(x => x?.State == "on", TimeSpan.FromHours(1))
                .Subscribe(x => { _myEntities.Switch.BedMultiPlugL2.TurnOff(); });
 
-            //PC Plug off on when the unit is shut down
-            _myEntities.Sensor.PcPlugPower.StateChanges().WhenStateIsFor(x=>int.Parse(x?.State ?? "6") < 5, TimeSpan.FromMinutes(3))
-               .Subscribe(x => { _myEntities.Switch.PcPlug.TurnOff(); });
-
-
-      
             _myEntities.Switch.PcPlug.StateChanges().Where(x => x.New?.State == "on")
                 .Subscribe(_ => {
 
