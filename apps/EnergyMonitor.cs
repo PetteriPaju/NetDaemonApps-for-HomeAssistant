@@ -254,7 +254,7 @@ public class EnergyMonitor
 
         public ElectricityPriceInfo(DateTime time, NumericSensorEntity? nordPoolEntity, List<double>? electricityRangeKeys)
         {
-            bool isToday = time.Date == DateTime.Now.Date;
+            bool isToday = time.Date.DayOfWeek == DateTime.Now.Date.DayOfWeek;
             IReadOnlyList<double>? day = isToday ? nordPoolEntity?.EntityState?.Attributes?.Today : nordPoolEntity?.EntityState?.Attributes?.Tomorrow as IReadOnlyList<double>;
             price = day?.ElementAt(time.Hour);
             range = FindRangeForPrice(price, electricityRangeKeys);
