@@ -1,7 +1,8 @@
 ﻿using HomeAssistantGenerated;
 using NetDaemon.Extensions.Tts;
 using NetDaemon.HassModel.Entities;
-
+using System;
+using System.Threading.Tasks;
 
 namespace NetDaemonApps.apps
 {
@@ -21,11 +22,15 @@ namespace NetDaemonApps.apps
         protected readonly ITextToSpeechService tts;
         protected readonly Entities _myEntities;
         protected readonly InputBooleanEntity isAsleepEntity;
+        protected DateTime lastAnnounsmentTime = DateTime.MinValue;
+        protected TimeSpan timeBetweenAnnounsments = TimeSpan.FromSeconds(15);
+ 
 
         public static TTS? Instance { get => instance; set => instance = value; }
 
         public TTS(IHaContext ha, ITextToSpeechService ttsService) {
 
+            lastAnnounsmentTime = DateTime.MinValue;
             _myEntities = new Entities(ha);
             isAsleepEntity = _myEntities.InputBoolean.Isasleep;
             this.tts = ttsService;
@@ -50,7 +55,21 @@ namespace NetDaemonApps.apps
         public void SpeakTTS(string text, TTSPriority overrider = TTSPriority.Default)
         {
             if (((isAsleepEntity.IsOff() || overrider == TTSPriority.IgnoreSleep) && (_myEntities.InputBoolean.HydrationCheckActive.IsOn() || overrider == TTSPriority.IgnoreDisabled)) || overrider == TTSPriority.IgnoreAll)
-                tts.Speak("media_player.living_room_display", text, "google_translate_say");
+            {
+               /*
+                if (lastAnnounsmentTime + timeBetweenAnnounsments > DateTime.Now)
+                {
+                    _myEntities.MediaPlayer.VlcTelnet.PlayMedia("media-source://media_source/local/tos_shipannouncement.mp3", "audio/mpeg");
+                    await Task.Delay(1000);
+
+                }
+               */
+                lastAnnounsmentTime = DateTime.Now;
+                tts.Speak("media_player.vlc_telnet", text, "google_translate_say");
+
+               
+            }
+               
         }
 
     }
