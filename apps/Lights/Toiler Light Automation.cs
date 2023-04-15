@@ -43,11 +43,11 @@ namespace NetDaemonApps.apps.Lights
 
             _myEntities.BinarySensor.ToiletSensorOccupancy.StateChanges()
             .Where(e => e.New?.State == "on" && _myEntities.InputBoolean.SensorsActive.IsOn())
-            .Subscribe(_ => { _myEntities.Light.ToiletLight1.TurnOn(); });
+            .Subscribe(_ => { _myEntities.Light.ToiletLight1.TurnOnLight(); });
 
             _myEntities.BinarySensor.ToiletSensorOccupancy.StateChanges()
             .WhenStateIsFor(e => e.IsOff() && _myEntities.BinarySensor.ToiletSeatSensorContact.IsOff() && _myEntities.InputBoolean.SensorsActive.IsOn(), motionSensorTimeOutSpan)
-            .Subscribe(_ => { _myEntities.Light.ToiletLight1.TurnOff(); });
+            .Subscribe(_ => { _myEntities.Light.ToiletLight1.TurnOffLight(); });
 
         }
 
@@ -57,13 +57,13 @@ namespace NetDaemonApps.apps.Lights
         {
 
             lightsThatWereOn.Clear();
-            _myEntities.Light.HallwayLight.TurnOff();
+            _myEntities.Light.HallwayLight.TurnOffLight();
             foreach (LightEntity light in targetLights)
             {
                 if (light != null && light.IsOn())
                 {
                     lightsThatWereOn.Add(light);
-                    light.TurnOff();
+                    light.TurnOffLight();
                 }
             }
 
@@ -79,7 +79,7 @@ namespace NetDaemonApps.apps.Lights
 
             foreach (LightEntity light in lightsThatWereOn)
             {
-                light.TurnOn();
+                light.TurnOnLight();
             }
 
             lightsThatWereOn.Clear();

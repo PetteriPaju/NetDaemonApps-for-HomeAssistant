@@ -18,8 +18,6 @@ namespace NetDaemonApps.apps.Lights
     {
         private Entities _myEntities;
         private readonly TimeSpan defaulMotionTimeout = new TimeSpan(0, 0, 10);
-   
-        private bool kitchenDistanceHelper = false;
 
         public LightsAndSensors(IHaContext ha)
         {
@@ -28,30 +26,33 @@ namespace NetDaemonApps.apps.Lights
             SubcribeLightOn(_myEntities.BinarySensor.HallwaySensorOccupancy, _myEntities.Light.HallwayLight);
             SubcribeLightOff(_myEntities.BinarySensor.HallwaySensorOccupancy, _myEntities.Light.HallwayLight, defaulMotionTimeout);
 
-            SubcribeLightOn(_myEntities.BinarySensor.KitchenSensorOccupancy, _myEntities.Light.KitchenLight2);
-            SubcribeLightOff(_myEntities.BinarySensor.KitchenSensorOccupancy, _myEntities.Light.KitchenLight2, defaulMotionTimeout, () => { return !kitchenSensorCheck(); });
-
+ 
             SubcribeLightOn(_myEntities.BinarySensor.StorageSensorAqaraOccupancy, _myEntities.Light.StorageLight2);
             SubcribeLightOff(_myEntities.BinarySensor.StorageSensorAqaraOccupancy, _myEntities.Light.StorageLight2, new TimeSpan(0, 0, 0));
 
+            SubcribeLightOn(_myEntities.BinarySensor.StorageSensorAqaraOccupancy, _myEntities.Light.StorageLight2);
+            SubcribeLightOff(_myEntities.BinarySensor.StorageSensorAqaraOccupancy, _myEntities.Light.StorageLight2, new TimeSpan(0, 0, 0));
             //Distance must be bellow threshold fot at least 3 seconds until it is considereds to be turn off
-           _myEntities.BinarySensor.KitchenDistanceHelper.StateChanges().Where(x => x?.New?.State == "off" && x.Entity?.EntityState?.LastUpdated > DateTime.Now - TimeSpan.FromSeconds(5)).Subscribe(_ => {kitchenDistanceHelper = false;} );
-            _myEntities.BinarySensor.KitchenDistanceHelper.StateChanges().WhenStateIsFor(x => x.IsOff() && _myEntities.BinarySensor.KitchenSensorOccupancy.IsOff(), TimeSpan.FromSeconds(30)).Subscribe(_ => { _myEntities.Light.KitchenLight2.TurnOff(); });
-            //Turn onn is instant
-            _myEntities.BinarySensor.KitchenDistanceHelper.StateChanges().Where(x => x?.New?.State == "on").Subscribe(_ => {kitchenDistanceHelper = true;});
 
+            _myEntities.Sensor.KitchenSensors.StateChanges().WhenStateIsFor(x => x?.State == "True", TimeSpan.FromSeconds(1)).Subscribe(_ => {
+                _myEntities.Light.KitchenLight2.TurnOnLight();
+            });
+
+            _myEntities.Sensor.KitchenSensors.StateChanges().WhenStateIsFor(x => x?.State == "False", TimeSpan.FromSeconds(10)).Subscribe(_ => {
+                _myEntities.Light.KitchenLight2.TurnOffLight();
+            });
 
 
 
             _myEntities.BinarySensor._0x001788010bcfb16fOccupancy.StateChanges().Where(x => x?.New?.State == "on" && _myEntities.Light.AllLights.IsOff() && _myEntities.Light.AllLights?.EntityState?.LastChanged< DateTime.Now + TimeSpan.FromSeconds(30)).SubscribeAsync(async s => {
 
-                _myEntities.Light.HallwayLight.TurnOn();
+                _myEntities.Light.HallwayLight.TurnOnLight();
 
                 await Task.Delay(30000);
 
                 if (_myEntities.BinarySensor.HallwaySensorOccupancy.IsOff())
                 {
-                    _myEntities.Light.HallwayLight.TurnOff();
+                    _myEntities.Light.HallwayLight.TurnOffLight();
                 }
 
             });
@@ -65,15 +66,10 @@ namespace NetDaemonApps.apps.Lights
 
         private void SubcribeLightOff(BinarySensorEntity sensor, LightEntity light, TimeSpan offTime, Func<bool>? extraConditions = null)
         {
-            sensor.StateChanges().Where(e => extraConditions != null ? extraConditions.Invoke() : true).WhenStateIsFor(e => e.IsOff() && _myEntities.InputBoolean.SensorsActive.IsOn(), offTime).Subscribe(e => { light.TurnOff(); });
+            sensor.StateChanges().Where(e => extraConditions != null ? extraConditions.Invoke() : true).WhenStateIsFor(e => e.IsOff() && _myEntities.InputBoolean.SensorsActive.IsOn(), offTime).Subscribe(e => { light.TurnOffLight(); });
             //extraConditions != null ? extraConditions.Invoke() : true
         }
 
-
-        private bool kitchenSensorCheck()
-        {
-            return kitchenDistanceHelper;
-        }
 
     }
 }

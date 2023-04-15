@@ -21,12 +21,15 @@ namespace NetDaemonApps.apps
     public class Notifications
     {
         protected readonly Entities _myEntities;
+        public static InputBooleanEntity? _sensorsOnBooleanEntity = null;
+  
+
         public Notifications(IHaContext ha, IScheduler scheduler) {
 
 
 
             _myEntities = new Entities(ha);
-
+            _sensorsOnBooleanEntity = _myEntities.InputBoolean.SensorsActive;
 
             var SERVICES = new Services(ha);
 

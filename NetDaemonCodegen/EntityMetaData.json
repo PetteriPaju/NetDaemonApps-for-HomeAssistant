@@ -39,19 +39,9 @@
           "cSharpName": "FreezerTempCalibration"
         },
         {
-          "id": "automation.front_door_sensori_automation",
-          "friendlyName": "Front Door Sensori automation",
-          "cSharpName": "FrontDoorSensoriAutomation"
-        },
-        {
           "id": "automation.guest_mode_notification",
           "friendlyName": "(Guest) Guest Mode Notification",
           "cSharpName": "GuestModeNotification"
-        },
-        {
-          "id": "automation.is_home_failsafe",
-          "friendlyName": "Is Home failsafe",
-          "cSharpName": "IsHomeFailsafe"
         },
         {
           "id": "automation.isasleep_actions",
@@ -69,9 +59,9 @@
           "cSharpName": "Isasleepupdate"
         },
         {
-          "id": "automation.ishomecancel",
-          "friendlyName": "IsHomeCancel",
-          "cSharpName": "Ishomecancel"
+          "id": "automation.pc_auto_off",
+          "friendlyName": "Pc auto off",
+          "cSharpName": "PcAutoOff"
         },
         {
           "id": "automation.pesukone",
@@ -92,11 +82,6 @@
           "id": "automation.sensors_active_notification",
           "friendlyName": "Sensors Active Notification",
           "cSharpName": "SensorsActiveNotification"
-        },
-        {
-          "id": "automation.steps_parse",
-          "friendlyName": "Steps Parse",
-          "cSharpName": "StepsParse"
         },
         {
           "id": "automation.test",
@@ -166,6 +151,11 @@
           "cSharpName": "BackCornerPlugUpdateAvailable"
         },
         {
+          "id": "binary_sensor.backups_stale",
+          "friendlyName": "Backups Stale",
+          "cSharpName": "BackupsStale"
+        },
+        {
           "id": "binary_sensor.bed_light_update_available",
           "friendlyName": "Bed Light update available",
           "cSharpName": "BedLightUpdateAvailable"
@@ -174,6 +164,11 @@
           "id": "binary_sensor.bright_light_plug_update_available",
           "friendlyName": "Bed Light Plug update available",
           "cSharpName": "BrightLightPlugUpdateAvailable"
+        },
+        {
+          "id": "binary_sensor.cisco_epc3825_wan_status",
+          "friendlyName": "Cisco EPC3825 wan status",
+          "cSharpName": "CiscoEpc3825WanStatus"
         },
         {
           "id": "binary_sensor.desktop_light_update_available",
@@ -249,11 +244,6 @@
           "id": "binary_sensor.livingroom_window_sensor_contact",
           "friendlyName": "Livingroom Window-sensor contact",
           "cSharpName": "LivingroomWindowSensorContact"
-        },
-        {
-          "id": "binary_sensor.moto_g_8_power_lite_headphones",
-          "friendlyName": "moto g(8) power lite Headphones",
-          "cSharpName": "MotoG8PowerLiteHeadphones"
         },
         {
           "id": "binary_sensor.moto_g_8_power_lite_is_charging",
@@ -470,14 +460,29 @@
       "domain": "device_tracker",
       "entities": [
         {
+          "id": "device_tracker.backpack",
+          "friendlyName": "Backpack",
+          "cSharpName": "Backpack"
+        },
+        {
           "id": "device_tracker.moto_g_8_power_lite",
           "friendlyName": "moto g(8) power lite",
           "cSharpName": "MotoG8PowerLite"
         },
         {
+          "id": "device_tracker.moto_g_8_power_lite_2",
+          "friendlyName": "moto g(8) power lite",
+          "cSharpName": "MotoG8PowerLite2"
+        },
+        {
           "id": "device_tracker.sm_t530",
           "friendlyName": "SM-T530",
           "cSharpName": "SmT530"
+        },
+        {
+          "id": "device_tracker.wallet",
+          "friendlyName": "Wallet",
+          "cSharpName": "Wallet"
         }
       ],
       "attributes": [
@@ -525,6 +530,36 @@
           "jsonName": "friendly_name",
           "cSharpName": "FriendlyName",
           "clrType": "System.String"
+        },
+        {
+          "jsonName": "is_lost",
+          "cSharpName": "IsLost",
+          "clrType": "System.Boolean"
+        },
+        {
+          "jsonName": "last_lost_timestamp",
+          "cSharpName": "LastLostTimestamp",
+          "clrType": "System.String"
+        },
+        {
+          "jsonName": "last_timestamp",
+          "cSharpName": "LastTimestamp",
+          "clrType": "System.String"
+        },
+        {
+          "jsonName": "ring_state",
+          "cSharpName": "RingState",
+          "clrType": "System.String"
+        },
+        {
+          "jsonName": "voip_state",
+          "cSharpName": "VoipState",
+          "clrType": "System.String"
+        },
+        {
+          "jsonName": "icon",
+          "cSharpName": "Icon",
+          "clrType": "System.String"
         }
       ]
     },
@@ -545,76 +580,6 @@
           "id": "input_boolean.auto_turn_off_server",
           "friendlyName": "Auto Turn Off Server",
           "cSharpName": "AutoTurnOffServer"
-        },
-        {
-          "id": "input_boolean.dev_netdaemon_net_daemon_apps_apps_agara_cube_living_room",
-          "friendlyName": "dev_netdaemon_net_daemon_apps_apps_agara_cube_living_room",
-          "cSharpName": "DevNetdaemonNetDaemonAppsAppsAgaraCubeLivingRoom"
-        },
-        {
-          "id": "input_boolean.dev_netdaemon_net_daemon_apps_apps_auto_turn_offs",
-          "friendlyName": "dev_netdaemon_net_daemon_apps_apps_auto_turn_offs",
-          "cSharpName": "DevNetdaemonNetDaemonAppsAppsAutoTurnOffs"
-        },
-        {
-          "id": "input_boolean.dev_netdaemon_net_daemon_apps_apps_energy_monitor",
-          "friendlyName": "dev_netdaemon_net_daemon_apps_apps_energy_monitor",
-          "cSharpName": "DevNetdaemonNetDaemonAppsAppsEnergyMonitor"
-        },
-        {
-          "id": "input_boolean.dev_netdaemon_net_daemon_apps_apps_hue_switches_bed_hue_switch",
-          "friendlyName": "dev_netdaemon_net_daemon_apps_apps_hue_switches_bed_hue_switch",
-          "cSharpName": "DevNetdaemonNetDaemonAppsAppsHueSwitchesBedHueSwitch"
-        },
-        {
-          "id": "input_boolean.dev_netdaemon_net_daemon_apps_apps_hue_switches_livingroom_switch",
-          "friendlyName": "dev_netdaemon_net_daemon_apps_apps_hue_switches_livingroom_switch",
-          "cSharpName": "DevNetdaemonNetDaemonAppsAppsHueSwitchesLivingroomSwitch"
-        },
-        {
-          "id": "input_boolean.dev_netdaemon_net_daemon_apps_apps_is_asleep_monitor",
-          "friendlyName": "dev_netdaemon_net_daemon_apps_apps_is_asleep_monitor",
-          "cSharpName": "DevNetdaemonNetDaemonAppsAppsIsAsleepMonitor"
-        },
-        {
-          "id": "input_boolean.dev_netdaemon_net_daemon_apps_apps_is_home_manager",
-          "friendlyName": "dev_netdaemon_net_daemon_apps_apps_is_home_manager",
-          "cSharpName": "DevNetdaemonNetDaemonAppsAppsIsHomeManager"
-        },
-        {
-          "id": "input_boolean.dev_netdaemon_net_daemon_apps_apps_lights_lights_and_sensors",
-          "friendlyName": "dev_netdaemon_net_daemon_apps_apps_lights_lights_and_sensors",
-          "cSharpName": "DevNetdaemonNetDaemonAppsAppsLightsLightsAndSensors"
-        },
-        {
-          "id": "input_boolean.dev_netdaemon_net_daemon_apps_apps_lights_livingroom_lights",
-          "friendlyName": "dev_netdaemon_net_daemon_apps_apps_lights_livingroom_lights",
-          "cSharpName": "DevNetdaemonNetDaemonAppsAppsLightsLivingroomLights"
-        },
-        {
-          "id": "input_boolean.dev_netdaemon_net_daemon_apps_apps_lights_toiler_light_automation",
-          "friendlyName": "dev_netdaemon_net_daemon_apps_apps_lights_toiler_light_automation",
-          "cSharpName": "DevNetdaemonNetDaemonAppsAppsLightsToilerLightAutomation"
-        },
-        {
-          "id": "input_boolean.dev_netdaemon_net_daemon_apps_apps_media_playing_monitor",
-          "friendlyName": "dev_netdaemon_net_daemon_apps_apps_media_playing_monitor",
-          "cSharpName": "DevNetdaemonNetDaemonAppsAppsMediaPlayingMonitor"
-        },
-        {
-          "id": "input_boolean.dev_netdaemon_net_daemon_apps_apps_notifications",
-          "friendlyName": "dev_netdaemon_net_daemon_apps_apps_notifications",
-          "cSharpName": "DevNetdaemonNetDaemonAppsAppsNotifications"
-        },
-        {
-          "id": "input_boolean.dev_netdaemon_net_daemon_apps_apps_step_counter",
-          "friendlyName": "dev_netdaemon_net_daemon_apps_apps_step_counter",
-          "cSharpName": "DevNetdaemonNetDaemonAppsAppsStepCounter"
-        },
-        {
-          "id": "input_boolean.dev_netdaemon_net_daemon_apps_apps_tts",
-          "friendlyName": "dev_netdaemon_net_daemon_apps_apps_tts",
-          "cSharpName": "DevNetdaemonNetDaemonAppsAppsTts"
         },
         {
           "id": "input_boolean.guest_mode",
@@ -670,6 +635,16 @@
           "id": "input_boolean.netdaemon_net_daemon_apps_apps_is_asleep_monitor",
           "friendlyName": "netdaemon_net_daemon_apps_apps_is_asleep_monitor",
           "cSharpName": "NetdaemonNetDaemonAppsAppsIsAsleepMonitor"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_is_home_manager",
+          "friendlyName": "netdaemon_net_daemon_apps_apps_is_home_manager",
+          "cSharpName": "NetdaemonNetDaemonAppsAppsIsHomeManager"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_keep_server_powered_down_when_asleep",
+          "friendlyName": "netdaemon_net_daemon_apps_apps_keep_server_powered_down_when_asleep",
+          "cSharpName": "NetdaemonNetDaemonAppsAppsKeepServerPoweredDownWhenAsleep"
         },
         {
           "id": "input_boolean.netdaemon_net_daemon_apps_apps_lights_lights_and_sensors",
@@ -1089,7 +1064,7 @@
         },
         {
           "id": "light.multi_plug_bright_light",
-          "friendlyName": "Multi Plug: Bright Light",
+          "friendlyName": "PC Connector Multi Plug: Bright Light",
           "cSharpName": "MultiPlugBrightLight"
         },
         {
@@ -1175,6 +1150,16 @@
           "cSharpName": "BackCornerPlugChildLock"
         },
         {
+          "id": "lock.bigfridge_powermeter_child_lock",
+          "friendlyName": "BigFridge-PowerMeter child lock",
+          "cSharpName": "BigfridgePowermeterChildLock"
+        },
+        {
+          "id": "lock.misc_powermeter_child_lock",
+          "friendlyName": "Misc-PowerMeter child lock",
+          "cSharpName": "MiscPowermeterChildLock"
+        },
+        {
           "id": "lock.pc_plug_child_lock",
           "friendlyName": "PC-Plug child lock",
           "cSharpName": "PcPlugChildLock"
@@ -1233,7 +1218,7 @@
         },
         {
           "id": "media_player.living_room_display",
-          "friendlyName": "Living room display",
+          "friendlyName": null,
           "cSharpName": "LivingRoomDisplay"
         },
         {
@@ -1713,6 +1698,16 @@
           "cSharpName": "BedMultiPlugPowerOnBehavior"
         },
         {
+          "id": "select.bigfridge_powermeter_indicator_mode",
+          "friendlyName": "BigFridge-PowerMeter indicator mode",
+          "cSharpName": "BigfridgePowermeterIndicatorMode"
+        },
+        {
+          "id": "select.bigfridge_powermeter_power_outage_memory",
+          "friendlyName": "BigFridge-PowerMeter power outage memory",
+          "cSharpName": "BigfridgePowermeterPowerOutageMemory"
+        },
+        {
           "id": "select.desktop_light_power_on_behavior",
           "friendlyName": "Desktop Light power on behavior",
           "cSharpName": "DesktopLightPowerOnBehavior"
@@ -1741,6 +1736,16 @@
           "id": "select.living_room_light_power_on_behavior",
           "friendlyName": "Living Room Light power on behavior",
           "cSharpName": "LivingRoomLightPowerOnBehavior"
+        },
+        {
+          "id": "select.misc_powermeter_indicator_mode",
+          "friendlyName": "Misc-PowerMeter indicator mode",
+          "cSharpName": "MiscPowermeterIndicatorMode"
+        },
+        {
+          "id": "select.misc_powermeter_power_outage_memory",
+          "friendlyName": "Misc-PowerMeter power outage memory",
+          "cSharpName": "MiscPowermeterPowerOutageMemory"
         },
         {
           "id": "select.pc_connector_indicator_light_mode",
@@ -1840,6 +1845,21 @@
       "domain": "sensor",
       "entities": [
         {
+          "id": "sensor.backup_state",
+          "friendlyName": "Backup State",
+          "cSharpName": "BackupState"
+        },
+        {
+          "id": "sensor.cisco_epc3825_external_ip",
+          "friendlyName": "Cisco EPC3825 External IP",
+          "cSharpName": "CiscoEpc3825ExternalIp"
+        },
+        {
+          "id": "sensor.cisco_epc3825_wan_status",
+          "friendlyName": "Cisco EPC3825 wan status",
+          "cSharpName": "CiscoEpc3825WanStatus"
+        },
+        {
           "id": "sensor.cube_action",
           "friendlyName": "Cube action",
           "cSharpName": "CubeAction"
@@ -1888,6 +1908,16 @@
           "id": "sensor.envy_battery_powerline_status",
           "friendlyName": "ENVY_battery Powerline Status",
           "cSharpName": "EnvyBatteryPowerlineStatus"
+        },
+        {
+          "id": "sensor.envy_display_display_count",
+          "friendlyName": "ENVY_display Display Count",
+          "cSharpName": "EnvyDisplayDisplayCount"
+        },
+        {
+          "id": "sensor.envy_display_display1",
+          "friendlyName": "ENVY_display DISPLAY1",
+          "cSharpName": "EnvyDisplayDisplay1"
         },
         {
           "id": "sensor.envy_display_display1_bits_per_pixel",
@@ -2020,6 +2050,11 @@
           "cSharpName": "EnvyDisplayDisplay9Resolution"
         },
         {
+          "id": "sensor.envy_display_primary_display",
+          "friendlyName": "ENVY_display Primary Display",
+          "cSharpName": "EnvyDisplayPrimaryDisplay"
+        },
+        {
           "id": "sensor.envy_display_windisc_bits_per_pixel",
           "friendlyName": "ENVY_display WinDisc Bits Per Pixel",
           "cSharpName": "EnvyDisplayWindiscBitsPerPixel"
@@ -2065,6 +2100,16 @@
           "cSharpName": "HueSwitchLivingRoomAction"
         },
         {
+          "id": "sensor.kitchen_motion",
+          "friendlyName": "Kitchen motion",
+          "cSharpName": "KitchenMotion"
+        },
+        {
+          "id": "sensor.kitchen_sensors",
+          "friendlyName": "Kitchen Sensors",
+          "cSharpName": "KitchenSensors"
+        },
+        {
           "id": "sensor.livingroom_window_sensor_power_outage_count",
           "friendlyName": "Livingroom Window-sensor power outage count",
           "cSharpName": "LivingroomWindowSensorPowerOutageCount"
@@ -2078,56 +2123,6 @@
           "id": "sensor.moto_g_8_power_lite_media_session",
           "friendlyName": "moto g(8) power lite Media Session",
           "cSharpName": "MotoG8PowerLiteMediaSession"
-        },
-        {
-          "id": "sensor.pc_audio_audio_sessions",
-          "friendlyName": "PC_audio Audio Sessions",
-          "cSharpName": "PcAudioAudioSessions"
-        },
-        {
-          "id": "sensor.pc_audio_default_device",
-          "friendlyName": "PC_audio Default Device",
-          "cSharpName": "PcAudioDefaultDevice"
-        },
-        {
-          "id": "sensor.pc_audio_default_device_muted",
-          "friendlyName": "PC_audio Default Device Muted",
-          "cSharpName": "PcAudioDefaultDeviceMuted"
-        },
-        {
-          "id": "sensor.pc_audio_default_device_state",
-          "friendlyName": "PC_audio Default Device State",
-          "cSharpName": "PcAudioDefaultDeviceState"
-        },
-        {
-          "id": "sensor.pc_audio_default_device_volume",
-          "friendlyName": "PC_audio Default Device Volume",
-          "cSharpName": "PcAudioDefaultDeviceVolume"
-        },
-        {
-          "id": "sensor.pc_audio_default_input_device",
-          "friendlyName": "PC_audio Default Input Device",
-          "cSharpName": "PcAudioDefaultInputDevice"
-        },
-        {
-          "id": "sensor.pc_audio_default_input_device_muted",
-          "friendlyName": "PC_audio Default Input Device Muted",
-          "cSharpName": "PcAudioDefaultInputDeviceMuted"
-        },
-        {
-          "id": "sensor.pc_audio_default_input_device_state",
-          "friendlyName": "PC_audio Default Input Device State",
-          "cSharpName": "PcAudioDefaultInputDeviceState"
-        },
-        {
-          "id": "sensor.pc_audio_default_input_device_volume",
-          "friendlyName": "PC_audio Default Input Device Volume",
-          "cSharpName": "PcAudioDefaultInputDeviceVolume"
-        },
-        {
-          "id": "sensor.pc_audio_peak_volume",
-          "friendlyName": "PC_audio Peak Volume",
-          "cSharpName": "PcAudioPeakVolume"
         },
         {
           "id": "sensor.pc_display_display_count",
@@ -2298,6 +2293,36 @@
           "id": "sensor.storage_sensor_aqara_power_outage_count",
           "friendlyName": "Storage Sensor power outage count",
           "cSharpName": "StorageSensorAqaraPowerOutageCount"
+        },
+        {
+          "id": "sensor.sun_next_dawn",
+          "friendlyName": "Sun Next dawn",
+          "cSharpName": "SunNextDawn"
+        },
+        {
+          "id": "sensor.sun_next_dusk",
+          "friendlyName": "Sun Next dusk",
+          "cSharpName": "SunNextDusk"
+        },
+        {
+          "id": "sensor.sun_next_midnight",
+          "friendlyName": "Sun Next midnight",
+          "cSharpName": "SunNextMidnight"
+        },
+        {
+          "id": "sensor.sun_next_noon",
+          "friendlyName": "Sun Next noon",
+          "cSharpName": "SunNextNoon"
+        },
+        {
+          "id": "sensor.sun_next_rising",
+          "friendlyName": "Sun Next rising",
+          "cSharpName": "SunNextRising"
+        },
+        {
+          "id": "sensor.sun_next_setting",
+          "friendlyName": "Sun Next setting",
+          "cSharpName": "SunNextSetting"
         },
         {
           "id": "sensor.surface_laptop_battery_charge_remaining",
@@ -2540,6 +2565,121 @@
           "jsonName": "AudioSessions",
           "cSharpName": "AudioSessions",
           "clrType": "System.Collections.Generic.IReadOnlyList\u00601[System.Object]"
+        },
+        {
+          "jsonName": "last_backup",
+          "cSharpName": "LastBackup",
+          "clrType": "System.String"
+        },
+        {
+          "jsonName": "next_backup",
+          "cSharpName": "NextBackup",
+          "clrType": "System.String"
+        },
+        {
+          "jsonName": "last_uploaded",
+          "cSharpName": "LastUploaded",
+          "clrType": "System.String"
+        },
+        {
+          "jsonName": "backups_in_google_drive",
+          "cSharpName": "BackupsInGoogleDrive",
+          "clrType": "System.Double"
+        },
+        {
+          "jsonName": "backups_in_home_assistant",
+          "cSharpName": "BackupsInHomeAssistant",
+          "clrType": "System.Double"
+        },
+        {
+          "jsonName": "size_in_google_drive",
+          "cSharpName": "SizeInGoogleDrive",
+          "clrType": "System.String"
+        },
+        {
+          "jsonName": "size_in_home_assistant",
+          "cSharpName": "SizeInHomeAssistant",
+          "clrType": "System.String"
+        },
+        {
+          "jsonName": "backups",
+          "cSharpName": "Backups",
+          "clrType": "System.Collections.Generic.IReadOnlyList\u00601[System.Object]"
+        },
+        {
+          "jsonName": "free_space_in_google_drive",
+          "cSharpName": "FreeSpaceInGoogleDrive",
+          "clrType": "System.String"
+        },
+        {
+          "jsonName": "album_com.google.android.googlequicksearchbox",
+          "cSharpName": "AlbumCom_google_android_googlequicksearchbox",
+          "clrType": "System.String"
+        },
+        {
+          "jsonName": "album_com.plexapp.android",
+          "cSharpName": "AlbumCom_plexapp_android",
+          "clrType": "System.String"
+        },
+        {
+          "jsonName": "artist_com.google.android.googlequicksearchbox",
+          "cSharpName": "ArtistCom_google_android_googlequicksearchbox",
+          "clrType": "System.String"
+        },
+        {
+          "jsonName": "artist_com.plexapp.android",
+          "cSharpName": "ArtistCom_plexapp_android",
+          "clrType": "System.String"
+        },
+        {
+          "jsonName": "duration_com.google.android.googlequicksearchbox",
+          "cSharpName": "DurationCom_google_android_googlequicksearchbox",
+          "clrType": "System.Double"
+        },
+        {
+          "jsonName": "duration_com.plexapp.android",
+          "cSharpName": "DurationCom_plexapp_android",
+          "clrType": "System.String"
+        },
+        {
+          "jsonName": "media_id_com.google.android.googlequicksearchbox",
+          "cSharpName": "MediaIdCom_google_android_googlequicksearchbox",
+          "clrType": "System.String"
+        },
+        {
+          "jsonName": "media_id_com.plexapp.android",
+          "cSharpName": "MediaIdCom_plexapp_android",
+          "clrType": "System.String"
+        },
+        {
+          "jsonName": "playback_position_com.google.android.googlequicksearchbox",
+          "cSharpName": "PlaybackPositionCom_google_android_googlequicksearchbox",
+          "clrType": "System.Double"
+        },
+        {
+          "jsonName": "playback_position_com.plexapp.android",
+          "cSharpName": "PlaybackPositionCom_plexapp_android",
+          "clrType": "System.String"
+        },
+        {
+          "jsonName": "playback_state_com.google.android.googlequicksearchbox",
+          "cSharpName": "PlaybackStateCom_google_android_googlequicksearchbox",
+          "clrType": "System.String"
+        },
+        {
+          "jsonName": "playback_state_com.plexapp.android",
+          "cSharpName": "PlaybackStateCom_plexapp_android",
+          "clrType": "System.String"
+        },
+        {
+          "jsonName": "title_com.google.android.googlequicksearchbox",
+          "cSharpName": "TitleCom_google_android_googlequicksearchbox",
+          "clrType": "System.String"
+        },
+        {
+          "jsonName": "title_com.plexapp.android",
+          "cSharpName": "TitleCom_plexapp_android",
+          "clrType": "System.String"
         }
       ]
     },
@@ -2563,6 +2703,41 @@
           "cSharpName": "_0x001788010bcfb16fTemperature"
         },
         {
+          "id": "sensor.adguard_home_average_processing_speed",
+          "friendlyName": "AdGuard Home Average processing speed",
+          "cSharpName": "AdguardHomeAverageProcessingSpeed"
+        },
+        {
+          "id": "sensor.adguard_home_dns_queries",
+          "friendlyName": "AdGuard Home DNS queries",
+          "cSharpName": "AdguardHomeDnsQueries"
+        },
+        {
+          "id": "sensor.adguard_home_dns_queries_blocked",
+          "friendlyName": "AdGuard Home DNS queries blocked",
+          "cSharpName": "AdguardHomeDnsQueriesBlocked"
+        },
+        {
+          "id": "sensor.adguard_home_dns_queries_blocked_ratio",
+          "friendlyName": "AdGuard Home DNS queries blocked ratio",
+          "cSharpName": "AdguardHomeDnsQueriesBlockedRatio"
+        },
+        {
+          "id": "sensor.adguard_home_parental_control_blocked",
+          "friendlyName": "AdGuard Home Parental control blocked",
+          "cSharpName": "AdguardHomeParentalControlBlocked"
+        },
+        {
+          "id": "sensor.adguard_home_safe_browsing_blocked",
+          "friendlyName": "AdGuard Home Safe browsing blocked",
+          "cSharpName": "AdguardHomeSafeBrowsingBlocked"
+        },
+        {
+          "id": "sensor.adguard_home_safe_searches_enforced",
+          "friendlyName": "AdGuard Home Safe searches enforced",
+          "cSharpName": "AdguardHomeSafeSearchesEnforced"
+        },
+        {
           "id": "sensor.all_light_daily_consumption",
           "friendlyName": "All Lights Daily Conpumption",
           "cSharpName": "AllLightDailyConsumption"
@@ -2581,6 +2756,56 @@
           "id": "sensor.back_corner_plug_power",
           "friendlyName": "Back Corner Power",
           "cSharpName": "BackCornerPlugPower"
+        },
+        {
+          "id": "sensor.bigfridge_powermeter_energy",
+          "friendlyName": "BigFridge-PowerMeter energy",
+          "cSharpName": "BigfridgePowermeterEnergy"
+        },
+        {
+          "id": "sensor.bigfridge_powermeter_power",
+          "friendlyName": "BigFridge-PowerMeter power",
+          "cSharpName": "BigfridgePowermeterPower"
+        },
+        {
+          "id": "sensor.cisco_epc3825_b_received",
+          "friendlyName": "Cisco EPC3825 B received",
+          "cSharpName": "CiscoEpc3825BReceived"
+        },
+        {
+          "id": "sensor.cisco_epc3825_b_sent",
+          "friendlyName": "Cisco EPC3825 B sent",
+          "cSharpName": "CiscoEpc3825BSent"
+        },
+        {
+          "id": "sensor.cisco_epc3825_kib_s_received",
+          "friendlyName": "Cisco EPC3825 KiB/s received",
+          "cSharpName": "CiscoEpc3825KibSReceived"
+        },
+        {
+          "id": "sensor.cisco_epc3825_kib_s_sent",
+          "friendlyName": "Cisco EPC3825 KiB/s sent",
+          "cSharpName": "CiscoEpc3825KibSSent"
+        },
+        {
+          "id": "sensor.cisco_epc3825_packets_received",
+          "friendlyName": "Cisco EPC3825 packets received",
+          "cSharpName": "CiscoEpc3825PacketsReceived"
+        },
+        {
+          "id": "sensor.cisco_epc3825_packets_s_received",
+          "friendlyName": "Cisco EPC3825 packets/s received",
+          "cSharpName": "CiscoEpc3825PacketsSReceived"
+        },
+        {
+          "id": "sensor.cisco_epc3825_packets_s_sent",
+          "friendlyName": "Cisco EPC3825 packets/s sent",
+          "cSharpName": "CiscoEpc3825PacketsSSent"
+        },
+        {
+          "id": "sensor.cisco_epc3825_packets_sent",
+          "friendlyName": "Cisco EPC3825 packets sent",
+          "cSharpName": "CiscoEpc3825PacketsSent"
         },
         {
           "id": "sensor.cube_action_angle",
@@ -2683,9 +2908,29 @@
           "cSharpName": "LivingroomWindowSensorDeviceTemperature"
         },
         {
+          "id": "sensor.main_fridge_daily_consumption",
+          "friendlyName": "Main Fridge Daily Consumption",
+          "cSharpName": "MainFridgeDailyConsumption"
+        },
+        {
+          "id": "sensor.misc_daily_consumption",
+          "friendlyName": "Misc-Daily-Consumption",
+          "cSharpName": "MiscDailyConsumption"
+        },
+        {
           "id": "sensor.misc_power_meter_consumption",
           "friendlyName": "Fridge, Modem, PI Daily Consumption",
           "cSharpName": "MiscPowerMeterConsumption"
+        },
+        {
+          "id": "sensor.misc_powermeter_energy",
+          "friendlyName": "Misc-PowerMeter energy",
+          "cSharpName": "MiscPowermeterEnergy"
+        },
+        {
+          "id": "sensor.misc_powermeter_power",
+          "friendlyName": "Misc-PowerMeter power",
+          "cSharpName": "MiscPowermeterPower"
         },
         {
           "id": "sensor.moto_g_8_power_lite_battery_level",
@@ -3063,6 +3308,16 @@
           "jsonName": "repositories",
           "cSharpName": "Repositories",
           "clrType": "System.Collections.Generic.IReadOnlyList\u00601[System.Object]"
+        },
+        {
+          "jsonName": "price_in_cents",
+          "cSharpName": "PriceInCents",
+          "clrType": "System.Boolean"
+        },
+        {
+          "jsonName": "last_valid_state",
+          "cSharpName": "LastValidState",
+          "clrType": "System.String"
         }
       ]
     },
@@ -3073,6 +3328,36 @@
           "id": "switch.0x001788010bcfb16f_led_indication",
           "friendlyName": "PC Sensor led_indication",
           "cSharpName": "_0x001788010bcfb16fLedIndication"
+        },
+        {
+          "id": "switch.adguard_home_filtering",
+          "friendlyName": "AdGuard Home Filtering",
+          "cSharpName": "AdguardHomeFiltering"
+        },
+        {
+          "id": "switch.adguard_home_parental_control",
+          "friendlyName": "AdGuard Home Parental control",
+          "cSharpName": "AdguardHomeParentalControl"
+        },
+        {
+          "id": "switch.adguard_home_protection",
+          "friendlyName": "AdGuard Home Protection",
+          "cSharpName": "AdguardHomeProtection"
+        },
+        {
+          "id": "switch.adguard_home_query_log",
+          "friendlyName": "AdGuard Home Query log",
+          "cSharpName": "AdguardHomeQueryLog"
+        },
+        {
+          "id": "switch.adguard_home_safe_browsing",
+          "friendlyName": "AdGuard Home Safe browsing",
+          "cSharpName": "AdguardHomeSafeBrowsing"
+        },
+        {
+          "id": "switch.adguard_home_safe_search",
+          "friendlyName": "AdGuard Home Safe search",
+          "cSharpName": "AdguardHomeSafeSearch"
         },
         {
           "id": "switch.back_corner_plug",
@@ -3093,6 +3378,11 @@
           "id": "switch.bed_multi_plug_l3",
           "friendlyName": "Chargers",
           "cSharpName": "BedMultiPlugL3"
+        },
+        {
+          "id": "switch.bigfridge_powermeter",
+          "friendlyName": "BigFridge-PowerMeter",
+          "cSharpName": "BigfridgePowermeter"
         },
         {
           "id": "switch.bright_light_plug",
@@ -3120,13 +3410,18 @@
           "cSharpName": "KitchenSensorLedIndication"
         },
         {
+          "id": "switch.misc_powermeter",
+          "friendlyName": "Misc-PowerMeter",
+          "cSharpName": "MiscPowermeter"
+        },
+        {
           "id": "switch.outside_temperature_meter_switch",
           "friendlyName": "Outside temperature meter Switch",
           "cSharpName": "OutsideTemperatureMeterSwitch"
         },
         {
           "id": "switch.pc_connector_child_lock",
-          "friendlyName": "PC Connector Child Lock",
+          "friendlyName": "PC Connector Child lock",
           "cSharpName": "PcConnectorChildLock"
         },
         {
@@ -3267,6 +3562,11 @@
       "domain": "update",
       "entities": [
         {
+          "id": "update.adguard_home_update",
+          "friendlyName": "AdGuard Home Update",
+          "cSharpName": "AdguardHomeUpdate"
+        },
+        {
           "id": "update.back_corner_plug",
           "friendlyName": "Back Corner Plug",
           "cSharpName": "BackCornerPlug"
@@ -3280,6 +3580,11 @@
           "id": "update.bed_light_plug",
           "friendlyName": "Bed Light Plug",
           "cSharpName": "BedLightPlug"
+        },
+        {
+          "id": "update.bigfridge_powermeter",
+          "friendlyName": "BigFridge-PowerMeter",
+          "cSharpName": "BigfridgePowermeter"
         },
         {
           "id": "update.desktop_light",
@@ -3367,6 +3672,11 @@
           "cSharpName": "MariadbUpdate"
         },
         {
+          "id": "update.misc_powermeter",
+          "friendlyName": "Misc-PowerMeter",
+          "cSharpName": "MiscPowermeter"
+        },
+        {
           "id": "update.mosquitto_broker_update",
           "friendlyName": "Mosquitto broker Update",
           "cSharpName": "MosquittoBrokerUpdate"
@@ -3415,6 +3725,11 @@
           "id": "update.storage_light",
           "friendlyName": "Storage Light",
           "cSharpName": "StorageLight"
+        },
+        {
+          "id": "update.studio_code_server_update",
+          "friendlyName": "Studio Code Server Update",
+          "cSharpName": "StudioCodeServerUpdate"
         },
         {
           "id": "update.terminal_ssh_update",
@@ -3514,8 +3829,13 @@
       "domain": "weather",
       "entities": [
         {
-          "id": "weather.home",
+          "id": "weather.forecast_home",
           "friendlyName": "Forecast Home",
+          "cSharpName": "ForecastHome"
+        },
+        {
+          "id": "weather.home",
+          "friendlyName": "Home",
           "cSharpName": "Home"
         }
       ],
@@ -3584,6 +3904,16 @@
           "jsonName": "friendly_name",
           "cSharpName": "FriendlyName",
           "clrType": "System.String"
+        },
+        {
+          "jsonName": "restored",
+          "cSharpName": "Restored",
+          "clrType": "System.Boolean"
+        },
+        {
+          "jsonName": "supported_features",
+          "cSharpName": "SupportedFeatures",
+          "clrType": "System.Double"
         }
       ]
     },
@@ -3631,6 +3961,68 @@
           "jsonName": "icon",
           "cSharpName": "Icon",
           "clrType": "System.String"
+        },
+        {
+          "jsonName": "friendly_name",
+          "cSharpName": "FriendlyName",
+          "clrType": "System.String"
+        }
+      ]
+    },
+    {
+      "domain": "sun",
+      "entities": [
+        {
+          "id": "sun.sun",
+          "friendlyName": "Sun",
+          "cSharpName": "Sun"
+        }
+      ],
+      "attributes": [
+        {
+          "jsonName": "next_dawn",
+          "cSharpName": "NextDawn",
+          "clrType": "System.String"
+        },
+        {
+          "jsonName": "next_dusk",
+          "cSharpName": "NextDusk",
+          "clrType": "System.String"
+        },
+        {
+          "jsonName": "next_midnight",
+          "cSharpName": "NextMidnight",
+          "clrType": "System.String"
+        },
+        {
+          "jsonName": "next_noon",
+          "cSharpName": "NextNoon",
+          "clrType": "System.String"
+        },
+        {
+          "jsonName": "next_rising",
+          "cSharpName": "NextRising",
+          "clrType": "System.String"
+        },
+        {
+          "jsonName": "next_setting",
+          "cSharpName": "NextSetting",
+          "clrType": "System.String"
+        },
+        {
+          "jsonName": "elevation",
+          "cSharpName": "Elevation",
+          "clrType": "System.Double"
+        },
+        {
+          "jsonName": "azimuth",
+          "cSharpName": "Azimuth",
+          "clrType": "System.Double"
+        },
+        {
+          "jsonName": "rising",
+          "cSharpName": "Rising",
+          "clrType": "System.Boolean"
         },
         {
           "jsonName": "friendly_name",
