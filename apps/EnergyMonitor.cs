@@ -35,8 +35,8 @@ public class EnergyMonitor
         infoForCurrentHour = new ElectricityPriceInfo(DateTime.Now, _myEntities?.Sensor?.NordpoolKwhFiEur31001, electricityRangeKeys);
 
 
-        _myEntities?.Sensor.TotalHourlyEnergyConsumptions.StateAllChanges().Where(x => x?.New?.State > x?.Old?.State).Subscribe(x=> {UpdatePriceHourly(x?.Old?.State ?? 0);});
-        _myEntities?.Sensor.Powermeters.StateAllChanges().Where(x => x?.New?.State > x?.Old?.State).Subscribe(x => UpdatePriceDaily() );
+        _myEntities?.Sensor.TotalHourlyEnergyConsumptions.StateAllChanges().Where(x => x?.New?.State < x?.Old?.State).Subscribe(x=> {UpdatePriceHourly(x?.Old?.State ?? 0);});
+        _myEntities?.Sensor.Powermeters.StateAllChanges().Where(x => x?.New?.State < x?.Old?.State).Subscribe(x => UpdatePriceDaily() );
 
         scheduler.ScheduleCron("50 * * * *", () => EnergiPriceChengeAlert(ha));
 
