@@ -3,6 +3,7 @@ using NetDaemon.Extensions.Scheduler;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reactive.Concurrency;
+using System.Security.Cryptography.X509Certificates;
 // Use unique namespaces for your apps if you going to share with others to avoid
 // conflicting names
 namespace NetDaemonApps.apps;
@@ -34,11 +35,10 @@ public class EnergyMonitor
         infoForCurrentHour = new ElectricityPriceInfo(DateTime.Now, _myEntities?.Sensor?.NordpoolKwhFiEur31001, electricityRangeKeys);
 
 
-        scheduler.ScheduleCron("59 * * * *", () => UpdatePriceHourly());
-        scheduler.ScheduleCron("0 * * * *", () => { infoForCurrentHour = new ElectricityPriceInfo(DateTime.Now + TimeSpan.FromMinutes(5), _myEntities.Sensor?.NordpoolKwhFiEur31001, electricityRangeKeys); });
+        _myEntities?.Sensor.TotalHourlyEnergyConsumptions.StateAllChanges().Where(x => x?.New?.State > x?.Old?.State).Subscribe(x=> {UpdatePriceHourly(x?.Old?.State ?? 0);});
+        _myEntities?.Sensor.Powermeters.StateAllChanges().Where(x => x?.New?.State > x?.Old?.State).Subscribe(x => UpdatePriceDaily() );
 
-        scheduler.ScheduleCron("59 23 * * *", () => UpdatePriceDaily());
-        scheduler.ScheduleCron("45 * * * *", () => EnergiPriceChengeAlert(ha));
+        scheduler.ScheduleCron("50 * * * *", () => EnergiPriceChengeAlert(ha));
 
         _myEntities?.Sensor.NordpoolKwhFiEur31001.StateAllChanges().Where(x => x?.New?.Attributes?.TomorrowValid == true && x.Old?.Attributes?.TomorrowValid == false).Subscribe(_ => { ReadOutEnergyUpdate(); });
 
@@ -65,7 +65,7 @@ public class EnergyMonitor
         if (!_myEntities.Sensor?.NordpoolKwhFiEur31001?.EntityState?.Attributes?.TomorrowValid == false)
         {
 
-            EnergyForecastInfo energyForecastInfo = GetEnergyForecast(_myEntities.Sensor?.NordpoolKwhFiEur31001?.EntityState?.Attributes?.Tomorrow);
+            EnergyForecastInfo energyForecastInfo = GetEnergyForecast(_myEntities.Sensor?.NordpoolKwhFiEur31001?.EntityState?.Attributes?.Tomorrow as IEnumerable<string>);
 
             message += " Prices will be mostly in " + GetNameOfRange(energyForecastInfo.majorityRange);
             message += " with avarage of " + Math.Round(energyForecastInfo.avarage * 100, 1) + " cents.";// Ranging from: " + Math.Round(energyForecastInfo.min * 100, 1) + " to " + Math.Round(energyForecastInfo.max * 100, 1) + " cents. ";
@@ -310,16 +310,16 @@ public class EnergyMonitor
     }
 
 
-    private void UpdatePriceHourly()
+    private void UpdatePriceHourly(double energy)
     {
         if (_myEntities == null) return;
 
 
-
-        var thisHourFortum = _myEntities.Sensor.TotalHourlyEnergyConsumptions.EntityState?.State * marginOfErrorFix * _myEntities.Sensor?.NordpoolKwhFiEur31001?.State + _myEntities.Sensor.TotalHourlyEnergyConsumptions.EntityState?.State * marginOfErrorFix * _myEntities.InputNumber.EnergyFortumHardCost.State;
+        infoForCurrentHour = new ElectricityPriceInfo(DateTime.Now + TimeSpan.FromMinutes(5), _myEntities.Sensor?.NordpoolKwhFiEur31001, electricityRangeKeys);
+        var thisHourFortum = energy * marginOfErrorFix * _myEntities.Sensor?.NordpoolKwhFiEur31001?.State + energy * marginOfErrorFix * _myEntities.InputNumber.EnergyFortumHardCost.State;
         thisHourFortum += thisHourFortum * (_myEntities.InputNumber.EnergyFortumAlv.State / 100);
 
-        var thisHourTranster = _myEntities.Sensor.TotalHourlyEnergyConsumptions.EntityState?.State * marginOfErrorFix * _myEntities.InputNumber.EnergyTransferCost.State;
+        var thisHourTranster = energy * marginOfErrorFix * _myEntities.InputNumber.EnergyTransferCost.State;
         thisHourTranster += thisHourTranster * _myEntities.InputNumber.EnergyTransferAlv.State;
 
 

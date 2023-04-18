@@ -251,6 +251,11 @@
           "cSharpName": "MotoG8PowerLiteIsCharging"
         },
         {
+          "id": "binary_sensor.moto_g_8_power_lite_music_active",
+          "friendlyName": "moto g(8) power lite Music Active",
+          "cSharpName": "MotoG8PowerLiteMusicActive"
+        },
+        {
           "id": "binary_sensor.open_curtain_limit",
           "friendlyName": "Open Curtain Limit",
           "cSharpName": "OpenCurtainLimit"
@@ -1064,7 +1069,7 @@
         },
         {
           "id": "light.multi_plug_bright_light",
-          "friendlyName": "PC Connector Multi Plug: Bright Light",
+          "friendlyName": "PC Connector Socket 1",
           "cSharpName": "MultiPlugBrightLight"
         },
         {
@@ -1347,6 +1352,21 @@
           "jsonName": "hdmi_input",
           "cSharpName": "HdmiInput",
           "clrType": "System.Object"
+        },
+        {
+          "jsonName": "media_content_id",
+          "cSharpName": "MediaContentId",
+          "clrType": "System.String"
+        },
+        {
+          "jsonName": "source_list",
+          "cSharpName": "SourceList",
+          "clrType": "System.Collections.Generic.IReadOnlyList\u00601[System.String]"
+        },
+        {
+          "jsonName": "source",
+          "cSharpName": "Source",
+          "clrType": "System.String"
         }
       ]
     },
@@ -3103,6 +3123,11 @@
           "cSharpName": "ToiletSensorTemperature2"
         },
         {
+          "id": "sensor.total_daily_energy_consumption",
+          "friendlyName": "Total Daily Energy Consumption",
+          "cSharpName": "TotalDailyEnergyConsumption"
+        },
+        {
           "id": "sensor.total_hourly_energy_consumptions",
           "friendlyName": "Total Hourly Energy Consumptions",
           "cSharpName": "TotalHourlyEnergyConsumptions"
@@ -3277,7 +3302,7 @@
         {
           "jsonName": "tomorrow",
           "cSharpName": "Tomorrow",
-          "clrType": "System.Collections.Generic.IReadOnlyList\u00601[System.Object]"
+          "clrType": "System.Object"
         },
         {
           "jsonName": "tomorrow_valid",
