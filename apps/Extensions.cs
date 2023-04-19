@@ -37,7 +37,7 @@ namespace NetDaemonApps
             if (light == null) return;
 
 
-            if (luminanceSensorEntity?.State > maxFlux || luminanceSensorEntity == null)
+            if (luminanceSensorEntity?.State < maxFlux || luminanceSensorEntity == null)
             {
                 light.TurnOnLight();
             }

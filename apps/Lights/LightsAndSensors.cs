@@ -23,15 +23,13 @@ namespace NetDaemonApps.apps.Lights
         {
             _myEntities = new Entities(ha);
 
-            SubcribeLightOn(_myEntities.BinarySensor.HallwaySensorOccupancy, _myEntities.Light.HallwayLight);
+            SubcribeLightOn(_myEntities.BinarySensor.HallwaySensorOccupancy, _myEntities.Light.HallwayLight, fluzSensor: _myEntities.Sensor.OutsideTemperatureMeterLuminosity, maxFlux:1);
             SubcribeLightOff(_myEntities.BinarySensor.HallwaySensorOccupancy, _myEntities.Light.HallwayLight, defaulMotionTimeout);
 
  
             SubcribeLightOn(_myEntities.BinarySensor.StorageSensorAqaraOccupancy, _myEntities.Light.StorageLight2);
             SubcribeLightOff(_myEntities.BinarySensor.StorageSensorAqaraOccupancy, _myEntities.Light.StorageLight2, new TimeSpan(0, 0, 0));
 
-            SubcribeLightOn(_myEntities.BinarySensor.StorageSensorAqaraOccupancy, _myEntities.Light.StorageLight2);
-            SubcribeLightOff(_myEntities.BinarySensor.StorageSensorAqaraOccupancy, _myEntities.Light.StorageLight2, new TimeSpan(0, 0, 0));
             //Distance must be bellow threshold fot at least 3 seconds until it is considereds to be turn off
 
             _myEntities.Sensor.KitchenSensors.StateChanges().WhenStateIsFor(x => x?.State == "True", TimeSpan.FromSeconds(1)).Subscribe(_ => {
@@ -46,7 +44,7 @@ namespace NetDaemonApps.apps.Lights
 
             _myEntities.BinarySensor._0x001788010bcfb16fOccupancy.StateChanges().Where(x => x?.New?.State == "on" && _myEntities.Light.AllLights.IsOff() && _myEntities.Light.AllLights?.EntityState?.LastChanged< DateTime.Now + TimeSpan.FromSeconds(30)).SubscribeAsync(async s => {
 
-                _myEntities.Light.HallwayLight.TurnOnLight();
+                _myEntities.Light.HallwayLight.TurnOnWithSensor(_myEntities.Sensor.OutsideTemperatureMeterLuminosity, 1);
 
                 await Task.Delay(30000);
 

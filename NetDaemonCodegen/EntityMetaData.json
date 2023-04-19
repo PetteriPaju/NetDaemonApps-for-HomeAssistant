@@ -2700,6 +2700,96 @@
           "jsonName": "title_com.plexapp.android",
           "cSharpName": "TitleCom_plexapp_android",
           "clrType": "System.String"
+        },
+        {
+          "jsonName": "NetworkInterfaceType",
+          "cSharpName": "NetworkInterfaceType",
+          "clrType": "System.String"
+        },
+        {
+          "jsonName": "SpeedBitsPerSecond",
+          "cSharpName": "SpeedBitsPerSecond",
+          "clrType": "System.Double"
+        },
+        {
+          "jsonName": "OperationalStatus",
+          "cSharpName": "OperationalStatus",
+          "clrType": "System.String"
+        },
+        {
+          "jsonName": "DataReceivedMB",
+          "cSharpName": "DataReceivedMB",
+          "clrType": "System.Double"
+        },
+        {
+          "jsonName": "DataSentMB",
+          "cSharpName": "DataSentMB",
+          "clrType": "System.Double"
+        },
+        {
+          "jsonName": "IncomingPacketsDiscarded",
+          "cSharpName": "IncomingPacketsDiscarded",
+          "clrType": "System.Double"
+        },
+        {
+          "jsonName": "IncomingPacketsWithErrors",
+          "cSharpName": "IncomingPacketsWithErrors",
+          "clrType": "System.Double"
+        },
+        {
+          "jsonName": "IncomingPacketsWithUnknownProtocol",
+          "cSharpName": "IncomingPacketsWithUnknownProtocol",
+          "clrType": "System.Double"
+        },
+        {
+          "jsonName": "OutgoingPacketsDiscarded",
+          "cSharpName": "OutgoingPacketsDiscarded",
+          "clrType": "System.Double"
+        },
+        {
+          "jsonName": "OutgoingPacketsWithErrors",
+          "cSharpName": "OutgoingPacketsWithErrors",
+          "clrType": "System.Double"
+        },
+        {
+          "jsonName": "IpAddresses",
+          "cSharpName": "IpAddresses",
+          "clrType": "System.Collections.Generic.IReadOnlyList\u00601[System.String]"
+        },
+        {
+          "jsonName": "MacAddresses",
+          "cSharpName": "MacAddresses",
+          "clrType": "System.Collections.Generic.IReadOnlyList\u00601[System.String]"
+        },
+        {
+          "jsonName": "Gateways",
+          "cSharpName": "Gateways",
+          "clrType": "System.Collections.Generic.IReadOnlyList\u00601[System.String]"
+        },
+        {
+          "jsonName": "DhcpEnabled",
+          "cSharpName": "DhcpEnabled",
+          "clrType": "System.Boolean"
+        },
+        {
+          "jsonName": "DhcpAddresses",
+          "cSharpName": "DhcpAddresses",
+          "clrType": "System.Collections.Generic.IReadOnlyList\u00601[System.String]"
+        },
+        {
+          "jsonName": "DnsEnabled",
+          "cSharpName": "DnsEnabled",
+          "clrType": "System.Boolean"
+        },
+        {
+          "jsonName": "DnsSuffix",
+          "cSharpName": "DnsSuffix",
+          "clrType": "System.String"
+        },
+        {
+          "jsonName": "DnsAddresses",
+          "cSharpName": "DnsAddresses",
+          "clrType": "System.Collections.Generic.IReadOnlyList\u00601[System.String]"
         }
       ]
     },
@@ -3093,6 +3183,16 @@
           "cSharpName": "StorageSensorAqaraIlluminanceLux"
         },
         {
+          "id": "sensor.sun_solar_azimuth",
+          "friendlyName": "Sun Solar azimuth",
+          "cSharpName": "SunSolarAzimuth"
+        },
+        {
+          "id": "sensor.sun_solar_elevation",
+          "friendlyName": "Sun Solar elevation",
+          "cSharpName": "SunSolarElevation"
+        },
+        {
           "id": "sensor.surface_laptop_battery_charge_remaining_percentage",
           "friendlyName": "Surface_Laptop_battery Charge Remaining Percentage",
           "cSharpName": "SurfaceLaptopBatteryChargeRemainingPercentage"
@@ -3121,11 +3221,6 @@
           "id": "sensor.toilet_sensor_temperature_2",
           "friendlyName": "Toilet Sensor temperature",
           "cSharpName": "ToiletSensorTemperature2"
-        },
-        {
-          "id": "sensor.total_daily_energy_consumption",
-          "friendlyName": "Total Daily Energy Consumption",
-          "cSharpName": "TotalDailyEnergyConsumption"
         },
         {
           "id": "sensor.total_hourly_energy_consumptions",
