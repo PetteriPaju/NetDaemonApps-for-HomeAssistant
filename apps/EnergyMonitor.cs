@@ -41,7 +41,7 @@ public class EnergyMonitor
         scheduler.ScheduleCron("50 * * * *", () => EnergiPriceChengeAlert(ha));
 
         _myEntities?.Sensor.NordpoolKwhFiEur31001.StateAllChanges().Where(x => x?.New?.Attributes?.TomorrowValid == true && x.Old?.Attributes?.TomorrowValid == false).Subscribe(_ => { ReadOutEnergyUpdate(); });
-
+      
     }
 
     public static void ReadOutGoodMorning()
@@ -255,7 +255,7 @@ public class EnergyMonitor
         public ElectricityPriceInfo(DateTime time, NumericSensorEntity? nordPoolEntity, List<double>? electricityRangeKeys)
         {
             bool isToday = time.Date.DayOfWeek == DateTime.Now.Date.DayOfWeek;
-            IReadOnlyList<double>? day = isToday ? nordPoolEntity?.EntityState?.Attributes?.Today : nordPoolEntity?.EntityState?.Attributes?.Tomorrow as IReadOnlyList<double>;
+            IReadOnlyList<double>? day = isToday ? nordPoolEntity?.EntityState?.Attributes?.Today : (nordPoolEntity?.EntityState?.Attributes?.Tomorrow as IEnumerable<double>)?.ToList().AsReadOnly();
             price = day?.ElementAt(time.Hour);
             range = FindRangeForPrice(price, electricityRangeKeys);
             dateTime = time;
