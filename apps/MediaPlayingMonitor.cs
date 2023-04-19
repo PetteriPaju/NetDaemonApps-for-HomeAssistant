@@ -27,7 +27,7 @@ namespace NetDaemonApps.apps
 
             void SetEntityForMediaPlayer(Entity ent)
             {
-                AddEntity(ent, () => { return ent.State?.ToLower() == "playing"; }, CheckAllStates);
+                AddEntity(ent, () => { return ent.State?.ToLower() == "playing" || ent.State?.ToLower() == "unavailable" || ent.State?.ToLower() == "unknown"; }, CheckAllStates);
             
             }
 
@@ -35,9 +35,6 @@ namespace NetDaemonApps.apps
             {
                 SetEntityForMediaPlayer(e);
             }
-
-          
-
            
         }
 
@@ -66,8 +63,6 @@ namespace NetDaemonApps.apps
                     break;
                 }
             }
-
-            Console.WriteLine("MediaPlaying: " + somethinggPlaying);
 
             if (somethinggPlaying) _myEntities.InputBoolean.MediaPlaying.TurnOn();
             else _myEntities.InputBoolean.MediaPlaying.TurnOff();
@@ -105,7 +100,6 @@ namespace NetDaemonApps.apps
                 if (tempstate != currentState)
                 {
                     currentState = tempstate;
-                    Console.WriteLine("Someting changed to: " + currentState);
                     OnValueChanged?.Invoke();
                 }
             }
@@ -115,7 +109,6 @@ namespace NetDaemonApps.apps
                 if (state != currentState)
                 {
                     currentState = state;
-                    Console.WriteLine("Someting changed to: " + state);
                     OnValueChanged?.Invoke();
                 }
                 else

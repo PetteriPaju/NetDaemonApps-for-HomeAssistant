@@ -13,6 +13,12 @@ namespace NetDaemonApps.apps
 
             var _myEntities = new Entities(ha);
 
+            _myEntities.Switch.PcConnectorSocket2.StateChanges().Subscribe(_ => {
+                if (_myEntities.Switch.PcConnectorSocket2.IsOn())
+                    _myEntities.Switch.OutsideTemperatureMeterSwitch.TurnOn();
+                else
+                    _myEntities.Switch.OutsideTemperatureMeterSwitch.TurnOff();
+            });
 
             _myEntities.Sensor.PcDisplayDisplayCount.StateChanges().Subscribe(_ => { _myEntities.Button.PcResetbrigtness.Press(); });
             _myEntities.Sensor.PcDisplayDisplay1Resolution.StateChanges().Subscribe(_ => { _myEntities.Button.PcResetbrigtness.Press(); });

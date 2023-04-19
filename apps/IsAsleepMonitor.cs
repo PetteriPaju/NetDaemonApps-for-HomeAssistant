@@ -27,6 +27,7 @@ namespace NetDaemonApps.apps
             _myEntities = new Entities(ha);
 
 
+            DateTime d2 = DateTime.Parse(_myEntities.Sensor.EnvyLastactive.State ?? "", null, System.Globalization.DateTimeStyles.RoundtripKind);
 
             _myEntities.Switch.PcPlug.StateChanges().Where(x => x?.New?.State == "on").Subscribe(_ => CheckCondition(_myEntities.Switch.PcPlug, false));
             _myEntities.Switch.PcPlug.StateChanges().Where(x => x?.New?.State == "off").Subscribe(_ => CheckCondition(_myEntities.Switch.PcPlug, true));
@@ -37,6 +38,7 @@ namespace NetDaemonApps.apps
             isAsleepCondition.Add(_myEntities.InputBoolean.MediaPlaying, _myEntities.InputBoolean.MediaPlaying.IsOff());
 
            _myEntities.Sensor.EnvyLastactive.StateChanges().WhenStateIsFor(x => x?.State == "unavailable", TimeSpan.FromMinutes(5)).Subscribe(_ => CheckCondition(_myEntities.Sensor.EnvyLastactive, true));
+
             _myEntities.Sensor.EnvyLastactive.StateChanges().WhenStateIsFor(x => x?.State != "unavailable", TimeSpan.FromMinutes(1)).Subscribe(_ => CheckCondition(_myEntities.Sensor.EnvyLastactive, false));
             isAsleepCondition.Add(_myEntities.Sensor.EnvyLastactive, _myEntities.Sensor.EnvyLastactive.State == "unavailable");
 

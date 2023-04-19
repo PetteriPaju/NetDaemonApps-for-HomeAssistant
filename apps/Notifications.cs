@@ -38,7 +38,7 @@ namespace NetDaemonApps.apps
             scheduler.ScheduleCron("30 * * * *", () => TTS.Speak("Hydration Check"));
             scheduler.ScheduleCron("0 3 * * *", () => TTS.Speak("Gaming Time"));
 
-            _myEntities.BinarySensor.OpenCurtainLimit.StateChanges().WhenStateIsFor(x => x?.State == "on", TimeSpan.FromMinutes(10)).Subscribe(_ => { TTS.Speak("Open Curtains"); });
+            //_myEntities.BinarySensor.OpenCurtainLimit.StateChanges().WhenStateIsFor(x => x?.State == "on", TimeSpan.FromMinutes(10)).Subscribe(_ => { TTS.Speak("Open Curtains"); });
 
             _myEntities.Sensor.PcMemoryusage.StateChanges().Where(x => x?.New?.State > 80).Subscribe(_ => { TTS.Speak("Memory Alert, Memory Alert"); });
             _myEntities.Sensor.MotoG8PowerLiteBatteryLevel.StateChanges().Where(x => x?.New?.State < 15 && _myEntities.InputBoolean.Ishome.State == "on" && _myEntities.BinarySensor.MotoG8PowerLiteIsCharging.State == "off").Subscribe(_ => { TTS.Speak("Phone Battery Low"); });
