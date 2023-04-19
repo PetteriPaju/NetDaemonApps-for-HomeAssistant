@@ -2,6 +2,7 @@
 using NetDaemon.HassModel.Entities;
 
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Drawing;
 using System.Linq;
 
@@ -17,7 +18,7 @@ namespace NetDaemonApps.apps
     
 
         //I have taped my cube with Fluorescent tape, so this is for my own needs
-        private Dictionary<string, Color> ColorsToSides = new Dictionary<string, Color> { { "0", Color.Green}, { "1", Color.Yellow}, { "2", Color.Orange }, { "3" ,Color.Red}, { "4" , Color.Purple }, { "5", Color.Blue } };
+        private Dictionary<string, KnownColor> ColorsToSides = new Dictionary<string, KnownColor> { { "0", KnownColor.Pink}, { "1", KnownColor.Blue}, { "2", KnownColor.Yellow }, { "3" , KnownColor.Purple}, { "4" , KnownColor.Green }, { "5", KnownColor.Orange } };
 
         public AgaraCube_LivingRoom(IHaContext ha) : base(ha) { 
 
@@ -68,7 +69,7 @@ namespace NetDaemonApps.apps
                 currentlyActiveLight.TurnOn(brightness: minBrightnessFix);
             }
         }
-
+        
         protected override void OnRotateRight()
         {
             base.OnRotateRight();
@@ -77,7 +78,7 @@ namespace NetDaemonApps.apps
                 currentlyActiveLight.TurnOn(brightness: (long)(currentlyActiveLight.Attributes.Brightness + lightBrigthnessStep));
             }
         }
-
+      
         protected override void OnFlip90()
         {
             base.OnFlip90();
@@ -95,6 +96,7 @@ namespace NetDaemonApps.apps
             currentlyActiveLight = lightEntities[GetNextActiveLightIndex()];
             if (currentlyActiveLight != null) currentlyActiveLight.TurnOn();
         }
+     
 
         protected override void OnShake()
         {
@@ -102,6 +104,60 @@ namespace NetDaemonApps.apps
             _myEntities.Switch.PcPlug.TurnOn();
         }
 
+        /*
+        protected override void OnSideChaged(string? fromSide, string? toSide)
+        {
+            if (toSide == null) return;
+            if (fromSide == toSide) return;
+
+            KnownColor c = ColorsToSides.First(x => x.Key == toSide).Value;
+
+      
+            void TurnOnLight(LightEntity? e)
+            {
+                if (e == currentlyActiveLight) return;
+                currentlyActiveLight?.TurnOff();
+                e.TurnOn();
+            }
+
+            switch (c)
+            {
+                case KnownColor.Pink:
+
+                break;
+
+                case KnownColor.Blue:
+                    currentlyActiveLight?.TurnOff();
+                break;
+
+                case KnownColor.Yellow:
+
+                    TurnOnLight(_myEntities.Light.MultiPlugBrightLight);
+
+                break;
+
+                case KnownColor.Purple:
+                    TurnOnLight(_myEntities.Light.LivingRoomLight);
+                    break;
+
+                case KnownColor.Green:
+
+                break;
+
+                case KnownColor.Orange:
+                    TurnOnLight(_myEntities.Light.DesktopLight);
+                break;
+            }
+
+        }
+        */
+
+        protected override void OnTap()
+        {
+            base.OnTap();
+            currentlyActiveLight?.TurnOff();
+        }
+      
 
 
 

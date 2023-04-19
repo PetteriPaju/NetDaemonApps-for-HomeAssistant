@@ -21,12 +21,15 @@ namespace NetDaemonApps.apps
     public class Notifications
     {
         protected readonly Entities _myEntities;
+        public static InputBooleanEntity? _sensorsOnBooleanEntity = null;
+  
+
         public Notifications(IHaContext ha, IScheduler scheduler) {
 
 
 
             _myEntities = new Entities(ha);
-
+            _sensorsOnBooleanEntity = _myEntities.InputBoolean.SensorsActive;
 
             var SERVICES = new Services(ha);
 
@@ -36,14 +39,23 @@ namespace NetDaemonApps.apps
 
 
             scheduler.ScheduleCron("30 * * * *", () => TTS.Speak("Hydration Check"));
-            scheduler.ScheduleCron("0 3 * * *", () => TTS.Speak("Gaming Time"));
+
+
+            string gamingtime = "0" + (DateTime.Now.IsDaylightSavingTime() ? " 3 " : " 2 ") + "* * *";
+            scheduler.ScheduleCron(gamingtime, () => TTS.Speak("Gaming Time"));
 
             //_myEntities.BinarySensor.OpenCurtainLimit.StateChanges().WhenStateIsFor(x => x?.State == "on", TimeSpan.FromMinutes(10)).Subscribe(_ => { TTS.Speak("Open Curtains"); });
 
-            _myEntities.Sensor.PcMemoryusage.StateChanges().Where(x => x?.New?.State > 80).Subscribe(_ => { TTS.Speak("Memory Alert, Memory Alert"); });
+            _myEntities.Sensor.PcMemoryusage.StateChanges().Where(x => x?.New?.State > 80 && x?.Old?.State < 80).Subscribe(_ => { TTS.Speak("Memory Alert, Memory Alert"); });
             _myEntities.Sensor.MotoG8PowerLiteBatteryLevel.StateChanges().Where(x => x?.New?.State < 15 && _myEntities.InputBoolean.Ishome.State == "on" && _myEntities.BinarySensor.MotoG8PowerLiteIsCharging.State == "off").Subscribe(_ => { TTS.Speak("Phone Battery Low"); });
+            _myEntities.Sensor.OutsideTemperatureMeterTemperature.StateChanges().WhenStateIsFor(x => x?.State == "Unavailable", TimeSpan.FromMinutes(5)).Subscribe(_=> {
+           //   TTS.Speak("Warning Wifi Might Be Down", TTS.TTSPriority.IgnoreDisabled);
 
-        
+            });
+
+
+
+
 
         }
 
