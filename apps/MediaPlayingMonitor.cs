@@ -1,8 +1,10 @@
 ﻿using HomeAssistantGenerated;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
+using NetDaemon.Extensions.Scheduler;
 using NetDaemon.HassModel.Entities;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reactive.Concurrency;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
@@ -16,18 +18,18 @@ namespace NetDaemonApps.apps
         private readonly Entities _myEntities;
          private List<IsTrueConditioner> _monitoreres = new List<IsTrueConditioner>();
 
-        public MediaPlayingMonitor(IHaContext ha) {
+        public MediaPlayingMonitor(IHaContext ha, IScheduler scheduler) {
             _myEntities = new Entities(ha);
 
             MediaPlayerEntities mPlayers = _myEntities.MediaPlayer;
             Entity phoneEntity = _myEntities.Sensor.MotoG8PowerLiteMediaSession;
             Entity tabletEntity = _myEntities.Sensor.SmT530MediaSession;
 
-            Entity[] mediaPlayerEntities= new Entity[] { mPlayers.AndroidTv192168020, mPlayers.Envy, mPlayers.LivingRoomDisplay, mPlayers.LivingRoomTv, mPlayers.Pc, mPlayers.VlcTelnet, phoneEntity, tabletEntity };
+            Entity[] mediaPlayerEntities= new Entity[] { mPlayers.AndroidTv192168020, mPlayers.Envy, mPlayers.LivingRoomDisplay, mPlayers.LivingRoomTv, mPlayers.Pc, phoneEntity, tabletEntity };
 
             void SetEntityForMediaPlayer(Entity ent)
             {
-                AddEntity(ent, () => { return ent.State?.ToLower() == "playing" || ent.State?.ToLower() == "unavailable" || ent.State?.ToLower() == "unknown"; }, CheckAllStates);
+                AddEntity(ent, () => { return ent.State?.ToLower() == "playing"; }, CheckAllStates);
             
             }
 
@@ -35,7 +37,10 @@ namespace NetDaemonApps.apps
             {
                 SetEntityForMediaPlayer(e);
             }
-           
+
+            scheduler.ScheduleCron("*/10 * * * *", () => CheckAllStates());
+
+
         }
 
 
