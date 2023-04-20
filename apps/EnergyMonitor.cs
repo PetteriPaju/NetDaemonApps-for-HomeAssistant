@@ -4,6 +4,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reactive.Concurrency;
 using System.Security.Cryptography.X509Certificates;
+using System.Text.Json;
+using System.Text.Json.Nodes;
+using System.Text.Json.Serialization;
 // Use unique namespaces for your apps if you going to share with others to avoid
 // conflicting names
 namespace NetDaemonApps.apps;
@@ -65,7 +68,11 @@ public class EnergyMonitor
         if (!_myEntities.Sensor?.NordpoolKwhFiEur31001?.EntityState?.Attributes?.TomorrowValid == false)
         {
 
-            EnergyForecastInfo energyForecastInfo = GetEnergyForecast(_myEntities.Sensor?.NordpoolKwhFiEur31001?.EntityState?.Attributes?.Tomorrow as IEnumerable<string>);
+     
+
+            var list = JsonSerializer.Deserialize<List<double>>(_myEntities.Sensor?.NordpoolKwhFiEur31001?.EntityState?.Attributes?.Tomorrow.ToString());
+
+            EnergyForecastInfo energyForecastInfo = GetEnergyForecast(list);
 
             message += " Prices will be mostly in " + GetNameOfRange(energyForecastInfo.majorityRange);
             message += " with avarage of " + Math.Round(energyForecastInfo.avarage * 100, 1) + " cents.";// Ranging from: " + Math.Round(energyForecastInfo.min * 100, 1) + " to " + Math.Round(energyForecastInfo.max * 100, 1) + " cents. ";
@@ -80,13 +87,13 @@ public class EnergyMonitor
 
 
     }
-    private EnergyForecastInfo GetEnergyForecast<T>(IEnumerable<T>? list, int startFrom = 0)
+    private EnergyForecastInfo GetEnergyForecast(IList<double> list, int startFrom = 0)
     {
         EnergyForecastInfo energyForecastInfo = new EnergyForecastInfo();
         if (list == null) return energyForecastInfo;
 
         //Because Tomorrow values come as strings, we must make sure we convert values to doubles first
-        var tmp = list?.Select(x => double.Parse(x.ToString())).ToList();
+        var tmp = list.ToList();
 
         int FindRangeForPrice(double? price)
         {
@@ -255,7 +262,8 @@ public class EnergyMonitor
         public ElectricityPriceInfo(DateTime time, NumericSensorEntity? nordPoolEntity, List<double>? electricityRangeKeys)
         {
             bool isToday = time.Date.DayOfWeek == DateTime.Now.Date.DayOfWeek;
-            IReadOnlyList<double>? day = isToday ? nordPoolEntity?.EntityState?.Attributes?.Today : (nordPoolEntity?.EntityState?.Attributes?.Tomorrow as IEnumerable<double>)?.ToList().AsReadOnly();
+
+            IReadOnlyList<double>? day = isToday ? nordPoolEntity?.EntityState?.Attributes?.Today : nordPoolEntity?.EntityState?.Attributes?.TomorrowValid == true ? JsonSerializer.Deserialize<List<double>>(nordPoolEntity?.EntityState?.Attributes?.Tomorrow.ToString()).AsReadOnly() : nordPoolEntity?.EntityState?.Attributes?.Today;
             price = day?.ElementAt(time.Hour);
             range = FindRangeForPrice(price, electricityRangeKeys);
             dateTime = time;
