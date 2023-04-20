@@ -13,6 +13,7 @@ namespace NetDaemonApps.apps
     {
         protected readonly List<LightEntity> lightEntities;
         protected LightEntity? currentlyActiveLight = null;
+        protected LightEntity? lastActiveLight = null;
         private const double lightBrigthnessStep = 50;
         private const double miniumBrightness = 25;
     
@@ -25,7 +26,7 @@ namespace NetDaemonApps.apps
             lightEntities = new List<LightEntity> { _myEntities.Light.LivingRoomLight, _myEntities.Light.MultiPlugBrightLight, _myEntities.Light.DesktopLight };
             void SetActiveLightListener(LightEntity lightE)
             {
-                lightE.StateChanges().Where(x => x.New?.State == "on").Subscribe(x => { currentlyActiveLight = lightE; });
+                lightE.StateChanges().Where(x => x.New?.State == "on").Subscribe(x => { currentlyActiveLight = lightE; lastActiveLight = lightE; });
                 lightE.StateChanges().Where(x => x.New?.State == "off").Subscribe(x => { if (currentlyActiveLight == lightE) currentlyActiveLight = null; });
             }
 
@@ -155,7 +156,7 @@ namespace NetDaemonApps.apps
         protected override void OnTap()
         {
             base.OnTap();
-            currentlyActiveLight?.TurnOff();
+            lastActiveLight?.Toggle();
         }
       
 
