@@ -32,8 +32,8 @@ namespace NetDaemonApps.apps.Lights
 
             //Distance must be bellow threshold fot at least 3 seconds until it is considereds to be turn off
 
-            _myEntities.Sensor.KitchenSensors.StateChanges().WhenStateIsFor(x => x?.State == "True", TimeSpan.FromSeconds(1)).Subscribe(_ => {
-                _myEntities.Light.KitchenLight2.TurnOnLight();
+            _myEntities.BinarySensor.KitchenSensorOccupancy.StateChanges().WhenStateIsFor(x => x?.State == "True", TimeSpan.FromSeconds(1)).Subscribe(_ => {
+                _myEntities.Light.KitchenLight2.TurnOnWithSensor(_myEntities.Sensor.OutsideTemperatureMeterLuminosity, 1);
             });
 
             _myEntities.Sensor.KitchenSensors.StateChanges().WhenStateIsFor(x => x?.State == "False", TimeSpan.FromSeconds(10)).Subscribe(_ => {
