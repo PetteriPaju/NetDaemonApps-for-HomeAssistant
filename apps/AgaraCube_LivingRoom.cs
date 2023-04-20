@@ -81,9 +81,9 @@ namespace NetDaemonApps.apps
             }
         }
       
-        protected override void OnFlip90()
+        protected override void OnFlip180()
         {
-            base.OnFlip90();
+            base.OnFlip180();
 
             if (currentlyActiveLight == null || currentlyActiveLight != _myEntities.Light.LivingRoomLight)
             {
@@ -92,9 +92,9 @@ namespace NetDaemonApps.apps
             else _myEntities.Light.LivingRoomLight.TurnOff();
         }
 
-        protected override void OnFlip180()
+        protected override void OnFlip90()
         {
-            base.OnFlip180();
+            base.OnFlip90();
             currentlyActiveLight = lightEntities[GetNextActiveLightIndex()];
             if (currentlyActiveLight != null) currentlyActiveLight.TurnOn();
         }
@@ -157,7 +157,9 @@ namespace NetDaemonApps.apps
         protected override void OnTap()
         {
             base.OnTap();
+            if(lastActiveLight != null)
             lastActiveLight?.Toggle();
+            else _myEntities.Light.LivingRoomLight.TurnOn();
         }
       
 
