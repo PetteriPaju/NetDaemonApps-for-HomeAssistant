@@ -37,6 +37,7 @@ namespace NetDaemonApps.apps
             }
 
             currentlyActiveLight = lightEntities.FirstOrDefault(x => x.IsOn(), null);
+            lastActiveLight = currentlyActiveLight;
 
         }
 
