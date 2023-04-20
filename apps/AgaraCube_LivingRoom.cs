@@ -85,11 +85,13 @@ namespace NetDaemonApps.apps
         {
             base.OnFlip180();
 
-            if (currentlyActiveLight == null || currentlyActiveLight != _myEntities.Light.LivingRoomLight)
+
+            foreach (var entity in lightEntities)
             {
-                _myEntities.Light.LivingRoomLight.TurnOn();
+                entity.TurnOff();
             }
-            else _myEntities.Light.LivingRoomLight.TurnOff();
+
+
         }
 
         protected override void OnFlip90()
