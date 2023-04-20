@@ -235,7 +235,7 @@ public class EnergyMonitor
     private string GetHoursAndMinutesFromTimeSpan(TimeSpan input)
     {
 
-        var hour = input.Hours > 0 ? input.Hours.ToString() + " hour" + (input.Hours > 1 ? "s" : "") : "";
+        var hour = input.Hours > 0 ? input.Hours.ToString()+1 + " hour" + (input.Hours > 1 ? "s" : "") : "";
         var and = input.Hours > 0 && input.Minutes > 0 ? " and " : "";
         var minute = input.Minutes > 0 ? input.Minutes.ToString() + " minute" + (input.Minutes > 1 ? "s" : "") : "";
 
