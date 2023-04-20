@@ -30,9 +30,8 @@ namespace NetDaemonApps.apps.Lights
             SubcribeLightOn(_myEntities.BinarySensor.StorageSensorAqaraOccupancy, _myEntities.Light.StorageLight2);
             SubcribeLightOff(_myEntities.BinarySensor.StorageSensorAqaraOccupancy, _myEntities.Light.StorageLight2, new TimeSpan(0, 0, 0));
 
-            //Distance must be bellow threshold fot at least 3 seconds until it is considereds to be turn off
 
-            _myEntities.BinarySensor.KitchenSensorOccupancy.StateChanges().WhenStateIsFor(x => x?.State == "True", TimeSpan.FromSeconds(1)).Subscribe(_ => {
+            _myEntities.BinarySensor.KitchenSensorOccupancy.StateChanges().Where(x => x.New.IsOn()).Subscribe(_ => {
                 _myEntities.Light.KitchenLight2.TurnOnWithSensor(_myEntities.Sensor.OutsideTemperatureMeterLuminosity, 1);
             });
 
