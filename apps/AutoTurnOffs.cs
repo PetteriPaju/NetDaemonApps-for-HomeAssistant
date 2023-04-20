@@ -39,7 +39,7 @@ namespace NetDaemonApps.apps
             _myEntities.Switch.PcPlug.StateChanges().Where(x => x.New?.State == "on")
                 .Subscribe(_ => {
 
-                _myEntities.Switch.PcConnectorSocket1.TurnOn();
+                 _myEntities.Light.MultiPlugBrightLight.TurnOn();
                 _myEntities.Switch.PcConnectorSocket2.TurnOn();
                 _myEntities.Switch.PcConnectorSocket3.TurnOn();
                 _myEntities.Scene.SwitchUsbPc.TurnOn();
@@ -53,8 +53,8 @@ namespace NetDaemonApps.apps
 
                 if (_myEntities.Sensor.EnvyNetworkNetworkCardCount.AsNumeric().State != 1)
                 {
-                    _myEntities.Switch.PcConnectorSocket1.TurnOff();
-                    _myEntities.Switch.PcConnectorSocket2.TurnOff();
+                        _myEntities.Light.MultiPlugBrightLight.TurnOff();
+                        _myEntities.Switch.PcConnectorSocket2.TurnOff();
                     _myEntities.Switch.PcConnectorSocket3.TurnOff();
                 }
                 _myEntities.Scene.SwitchUsbLaptop.TurnOn();
