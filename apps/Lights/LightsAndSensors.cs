@@ -35,7 +35,7 @@ namespace NetDaemonApps.apps.Lights
                 _myEntities.Light.KitchenLight2.TurnOnWithSensor(_myEntities.Sensor.OutsideTemperatureMeterLuminosity, 3);
             });
 
-            _myEntities.Sensor.KitchenSensors.StateChanges().WhenStateIsFor(x => x?.State == "False", TimeSpan.FromSeconds(10)).Subscribe(_ => {
+            _myEntities.Sensor.KitchenSensors.StateChanges().WhenStateIsFor(x => x?.State == "False", TimeSpan.FromSeconds(1)).Subscribe(_ => {
                 _myEntities.Light.KitchenLight2.TurnOffLight();
             });
 
