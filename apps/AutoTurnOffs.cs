@@ -13,8 +13,8 @@ namespace NetDaemonApps.apps
 
             var _myEntities = new Entities(ha);
 
-            _myEntities.Light.AllLights.StateChanges().Subscribe(_ => {
-                if (_myEntities.Light.AllLights.IsOn())
+            _myEntities.Switch.PcConnectorSocket2.StateChanges().Subscribe(_ => {
+                if (_myEntities.Switch.PcConnectorSocket2.IsOn())
                     _myEntities.Switch.OutsideTemperatureMeterSwitch.TurnOn();
                 else
                     _myEntities.Switch.OutsideTemperatureMeterSwitch.TurnOff();
