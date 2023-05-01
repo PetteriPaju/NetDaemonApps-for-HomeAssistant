@@ -9,7 +9,7 @@ namespace NetDaemonApps.apps.Lights
 
         protected override LightEntity[] SetLights()
         {
-            return new LightEntity[] { _myEntities.Light.LivingRoomLight,  _myEntities.Light.MultiPlugBrightLight, _myEntities.Light.DesktopLight, _myEntities.Light.BedLight };
+            return new LightEntity[] { _myEntities.Light.LivingRoomLight,  _myEntities.Light.PcConnector1, _myEntities.Light.DesktopLight, _myEntities.Light.BedLight };
         }
 
     }

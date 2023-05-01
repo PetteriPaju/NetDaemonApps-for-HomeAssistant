@@ -13,8 +13,8 @@ namespace NetDaemonApps.apps
 
             var _myEntities = new Entities(ha);
 
-            _myEntities.Switch.PcConnectorSocket2.StateChanges().Subscribe(_ => {
-                if (_myEntities.Switch.PcConnectorSocket2.IsOn())
+            _myEntities.Switch.PcConnectorMonitors.StateChanges().Subscribe(_ => {
+                if (_myEntities.Switch.PcConnectorMonitors.IsOn())
                     _myEntities.Switch.OutsideTemperatureMeterSwitch.TurnOn();
                 else
                     _myEntities.Switch.OutsideTemperatureMeterSwitch.TurnOff();
@@ -23,7 +23,7 @@ namespace NetDaemonApps.apps
             _myEntities.Sensor.PcDisplayDisplayCount.StateChanges().Subscribe(_ => { _myEntities.Button.PcResetbrigtness.Press(); });
             _myEntities.Sensor.PcDisplayDisplay1Resolution.StateChanges().Subscribe(_ => { _myEntities.Button.PcResetbrigtness.Press(); });
 
-            _myEntities.Light.MultiPlugBrightLight.StateChanges().WhenStateIsFor(x => x?.State == "on", TimeSpan.FromHours(1))
+            _myEntities.Light.PcConnector1.StateChanges().WhenStateIsFor(x => x?.State == "on", TimeSpan.FromHours(1))
                 .Subscribe(x =>  {_myEntities.Light.LivingRoomLight.TurnOn();});
 
             _myEntities.Light.KitchenLight2.StateChanges().WhenStateIsFor(x => x?.State == "on", TimeSpan.FromHours(1))
@@ -39,9 +39,9 @@ namespace NetDaemonApps.apps
             _myEntities.Switch.PcPlug.StateChanges().Where(x => x.New?.State == "on")
                 .Subscribe(_ => {
 
-                 _myEntities.Light.MultiPlugBrightLight.TurnOn();
-                _myEntities.Switch.PcConnectorSocket2.TurnOn();
-                _myEntities.Switch.PcConnectorSocket3.TurnOn();
+                 _myEntities.Light.PcConnector1.TurnOn();
+                _myEntities.Switch.PcConnectorMonitors.TurnOn();
+                _myEntities.Switch.PcConnectorOthers.TurnOn();
                 _myEntities.Scene.SwitchUsbPc.TurnOn();
 
             });
@@ -53,9 +53,9 @@ namespace NetDaemonApps.apps
 
                 if (_myEntities.Sensor.EnvyNetworkNetworkCardCount.AsNumeric().State != 1)
                 {
-                        _myEntities.Light.MultiPlugBrightLight.TurnOff();
-                        _myEntities.Switch.PcConnectorSocket2.TurnOff();
-                    _myEntities.Switch.PcConnectorSocket3.TurnOff();
+                        _myEntities.Light.PcConnector1.TurnOff();
+                        _myEntities.Switch.PcConnectorMonitors.TurnOff();
+                    _myEntities.Switch.PcConnectorOthers.TurnOff();
                 }
                 _myEntities.Scene.SwitchUsbLaptop.TurnOn();
 
@@ -64,13 +64,13 @@ namespace NetDaemonApps.apps
             
 
 
-            _myEntities.Sensor.EnvyBatteryChargeRemainingPercentage.StateChanges().Where(x => x?.New?.State < 20)
+            _myEntities.Sensor.EnvyBatteryChargeRemainingPercentage.StateChanges().Where(x => x?.New?.State < _myEntities.InputNumber.SettingsLaptopchargerturnonpercent.State)
                 .Subscribe(_ => {
 
                 _myEntities.Switch.RunnerPlug.TurnOn();          
             });
 
-            _myEntities.Sensor.EnvyBatteryChargeRemainingPercentage.StateChanges().Where(x => x?.New?.State == 100)
+            _myEntities.Sensor.EnvyBatteryChargeRemainingPercentage.StateChanges().Where(x => x?.New?.State == 99)
                 .Subscribe(_ => {
                 _myEntities.Switch.RunnerPlug.TurnOff();
             });

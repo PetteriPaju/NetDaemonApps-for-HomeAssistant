@@ -7,7 +7,7 @@ namespace NetDaemonApps.apps
     
     public class SummerVentilation
     {
-
+        /*
         private enum windowActions {DoNothing, Open, Close};
         private readonly Entities _myEntities;
         private const double mininumOutdoorsTemp = 20;
@@ -70,7 +70,7 @@ namespace NetDaemonApps.apps
 
 
 
-
+        */
 
     }
 }

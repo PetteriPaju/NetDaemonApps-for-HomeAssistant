@@ -15,16 +15,16 @@ namespace NetDaemonApps.apps.Hue_Switches
 
         protected override void OnOnPress()
         {
-            if (_myEntities.Switch.PcConnectorSocket2.IsOff())
+            if (_myEntities.Switch.PcConnectorMonitors.IsOff())
             {
-                _myEntities.Switch.PcConnectorSocket2.TurnOn();
-                _myEntities.Switch.PcConnectorSocket3.TurnOn();
+                _myEntities.Switch.PcConnectorMonitors.TurnOn();
+                _myEntities.Switch.PcConnectorOthers.TurnOn();
 
             }
             else
             {
-                _myEntities.Switch.PcConnectorSocket2.TurnOff();
-                _myEntities.Switch.PcConnectorSocket3.TurnOff();
+                _myEntities.Switch.PcConnectorMonitors.TurnOff();
+                _myEntities.Switch.PcConnectorOthers.TurnOff();
             }
         }
 

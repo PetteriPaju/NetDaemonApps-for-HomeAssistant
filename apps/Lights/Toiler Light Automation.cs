@@ -25,11 +25,11 @@ namespace NetDaemonApps.apps.Lights
             _myEntities = new Entities(ha);
 
             targetLights.Add(_myEntities.Light.BedLight);
-            targetLights.Add(_myEntities.Light.MultiPlugBrightLight);
+            targetLights.Add(_myEntities.Light.PcConnector1);
             targetLights.Add(_myEntities.Light.KitchenLight2);
             targetLights.Add(_myEntities.Light.LivingRoomLight);
             targetLights.Add(_myEntities.Light.DesktopLight);
-            targetLights.Add(_myEntities.Light.MultiPlugBrightLight);
+
 
             _myEntities.BinarySensor.ToiletSeatSensorContact
            .StateChanges().Where(e => e.New?.State == "on" && _myEntities.InputBoolean.SensorsActive.IsOn())

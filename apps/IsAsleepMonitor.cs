@@ -5,6 +5,7 @@ using System.Linq;
 using NetDaemon.Extensions.Scheduler;
 using System.Reactive.Concurrency;
 using System.Globalization;
+using System;
 
 
 namespace NetDaemonApps.apps
@@ -18,14 +19,15 @@ namespace NetDaemonApps.apps
         private Entities _myEntities;
         private Dictionary<Entity, bool> isAsleepCondition = new Dictionary<Entity, bool>();
 
-        private TimeSpan sleepTimer =  TimeSpan.FromHours(7)+TimeSpan.FromMinutes(30);
-
+        private TimeSpan sleepTimer;
 
         private IDisposable? alarmTimer;
 
         public IsAsleepMonitor(IHaContext ha, IScheduler scheduler) {
             _myEntities = new Entities(ha);
 
+            ParseAlertTime();
+            _myEntities.InputDatetime.SettingsSleepduration.StateAllChanges().Subscribe(_=>ParseAlertTime());
 
             //DateTime d2 = DateTime.Parse(_myEntities.Sensor.EnvyLastactive.State ?? "", null, System.Globalization.DateTimeStyles.RoundtripKind);
 
@@ -89,7 +91,18 @@ namespace NetDaemonApps.apps
 
         }
 
+        private void ParseAlertTime()
+        {
+            if (TimeSpan.TryParse(_myEntities.InputDatetime.SettingsSleepduration.State, out sleepTimer))
+            {
+                // Conversion succeeded
+            }
+            else
+            {
+                sleepTimer = TimeSpan.FromHours(7) + TimeSpan.FromMinutes(30);
 
+            }
+        }
         private void CheckCondition(Entity trueConditionEntity, bool newState)
         {
             if (!isAsleepCondition.ContainsKey(trueConditionEntity)) isAsleepCondition.Add(trueConditionEntity, newState);

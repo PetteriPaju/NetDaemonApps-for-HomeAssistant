@@ -39,6 +39,11 @@
           "cSharpName": "FreezerTempCalibration"
         },
         {
+          "id": "automation.fridge_automation",
+          "friendlyName": "Fridge Automation",
+          "cSharpName": "FridgeAutomation"
+        },
+        {
           "id": "automation.guest_mode_notification",
           "friendlyName": "(Guest) Guest Mode Notification",
           "cSharpName": "GuestModeNotification"
@@ -179,6 +184,11 @@
           "id": "binary_sensor.fan_plug_update_available",
           "friendlyName": "Fan Plug update available",
           "cSharpName": "FanPlugUpdateAvailable"
+        },
+        {
+          "id": "binary_sensor.fridgetemp",
+          "friendlyName": "FridgeTemp",
+          "cSharpName": "Fridgetemp"
         },
         {
           "id": "binary_sensor.front_door_sensor_contact",
@@ -577,11 +587,6 @@
           "cSharpName": "Alarmenabled"
         },
         {
-          "id": "input_boolean.allow_kitchen_light_turn_off",
-          "friendlyName": "Allow Kitchen Light Turn Off",
-          "cSharpName": "AllowKitchenLightTurnOff"
-        },
-        {
           "id": "input_boolean.auto_turn_off_server",
           "friendlyName": "Auto Turn Off Server",
           "cSharpName": "AutoTurnOffServer"
@@ -724,24 +729,9 @@
           "cSharpName": "Alarmtime"
         },
         {
-          "id": "input_datetime.av_timeoflastvolume",
-          "friendlyName": "(AV) TimeOfLastVolume",
-          "cSharpName": "AvTimeoflastvolume"
-        },
-        {
           "id": "input_datetime.awoketime",
           "friendlyName": "AwokeTime",
           "cSharpName": "Awoketime"
-        },
-        {
-          "id": "input_datetime.charger_off_time",
-          "friendlyName": "Charger off time",
-          "cSharpName": "ChargerOffTime"
-        },
-        {
-          "id": "input_datetime.chargers_on_time",
-          "friendlyName": "Chargers On Time",
-          "cSharpName": "ChargersOnTime"
         },
         {
           "id": "input_datetime.isasleephelper1",
@@ -752,6 +742,11 @@
           "id": "input_datetime.lastisasleeptime",
           "friendlyName": "LastIsAsleepTime",
           "cSharpName": "Lastisasleeptime"
+        },
+        {
+          "id": "input_datetime.settings_sleepduration",
+          "friendlyName": "Settings_Sleepduration",
+          "cSharpName": "SettingsSleepduration"
         },
         {
           "id": "input_datetime.sleepstarttime",
@@ -827,16 +822,6 @@
       "isNumeric": true,
       "entities": [
         {
-          "id": "input_number.av_currentvolume",
-          "friendlyName": "AV-CurrentVolume",
-          "cSharpName": "AvCurrentvolume"
-        },
-        {
-          "id": "input_number.av_lastvolumehelper",
-          "friendlyName": "(AV)LastVolumeHelper",
-          "cSharpName": "AvLastvolumehelper"
-        },
-        {
           "id": "input_number.combined_pc_energy",
           "friendlyName": "Combined PC Energy \u002B Fridge",
           "cSharpName": "CombinedPcEnergy"
@@ -885,6 +870,16 @@
           "id": "input_number.sensor_luminance_threshold",
           "friendlyName": "Sensor Luminance Threshold",
           "cSharpName": "SensorLuminanceThreshold"
+        },
+        {
+          "id": "input_number.settings_laptopchargerturnonpercent",
+          "friendlyName": "Settings_LaptopChargerTurnOnPercent",
+          "cSharpName": "SettingsLaptopchargerturnonpercent"
+        },
+        {
+          "id": "input_number.settings_lightonluminancy",
+          "friendlyName": "Settings_LightOnLuminancy",
+          "cSharpName": "SettingsLightonluminancy"
         },
         {
           "id": "input_number.temparature_outside_calibrated",
@@ -1069,8 +1064,13 @@
         },
         {
           "id": "light.multi_plug_bright_light",
-          "friendlyName": "PC Connector Socket 1",
+          "friendlyName": "Socket 1",
           "cSharpName": "MultiPlugBrightLight"
+        },
+        {
+          "id": "light.pc_connector1",
+          "friendlyName": "Pc-Connector1",
+          "cSharpName": "PcConnector1"
         },
         {
           "id": "light.storage_light_2",
@@ -1143,6 +1143,11 @@
           "jsonName": "icon",
           "cSharpName": "Icon",
           "clrType": "System.String"
+        },
+        {
+          "jsonName": "restored",
+          "cSharpName": "Restored",
+          "clrType": "System.Boolean"
         }
       ]
     },
@@ -1156,7 +1161,7 @@
         },
         {
           "id": "lock.bigfridge_powermeter_child_lock",
-          "friendlyName": "BigFridge-PowerMeter child lock",
+          "friendlyName": "BigFridge-Powermeter child lock",
           "cSharpName": "BigfridgePowermeterChildLock"
         },
         {
@@ -1487,6 +1492,11 @@
           "jsonName": "friendly_name",
           "cSharpName": "FriendlyName",
           "clrType": "System.String"
+        },
+        {
+          "jsonName": "device_trackers",
+          "cSharpName": "DeviceTrackers",
+          "clrType": "System.Collections.Generic.IReadOnlyList\u00601[System.String]"
         }
       ]
     },
@@ -1719,12 +1729,12 @@
         },
         {
           "id": "select.bigfridge_powermeter_indicator_mode",
-          "friendlyName": "BigFridge-PowerMeter indicator mode",
+          "friendlyName": "BigFridge-Powermeter indicator mode",
           "cSharpName": "BigfridgePowermeterIndicatorMode"
         },
         {
           "id": "select.bigfridge_powermeter_power_outage_memory",
-          "friendlyName": "BigFridge-PowerMeter power outage memory",
+          "friendlyName": "BigFridge-Powermeter power outage memory",
           "cSharpName": "BigfridgePowermeterPowerOutageMemory"
         },
         {
@@ -2105,6 +2115,11 @@
           "cSharpName": "EnvyNetworkNetworkCardCount"
         },
         {
+          "id": "sensor.fridge_sensor_battery_state",
+          "friendlyName": "Fridge Sensor Battery state",
+          "cSharpName": "FridgeSensorBatteryState"
+        },
+        {
           "id": "sensor.front_door_sensor_power_outage_count",
           "friendlyName": "Front-Door Sensor power outage count",
           "cSharpName": "FrontDoorSensorPowerOutageCount"
@@ -2373,11 +2388,6 @@
           "id": "sensor.toilet_seat_sensor_power_outage_count",
           "friendlyName": "Toilet Seat Sensor power outage count",
           "cSharpName": "ToiletSeatSensorPowerOutageCount"
-        },
-        {
-          "id": "sensor.wifi_temperature_humidity_sensor_battery_state",
-          "friendlyName": "Fridge Sensor Battery state",
-          "cSharpName": "WifiTemperatureHumiditySensorBatteryState"
         }
       ],
       "attributes": [
@@ -2869,12 +2879,12 @@
         },
         {
           "id": "sensor.bigfridge_powermeter_energy",
-          "friendlyName": "BigFridge-PowerMeter energy",
+          "friendlyName": "BigFridge-Powermeter energy",
           "cSharpName": "BigfridgePowermeterEnergy"
         },
         {
           "id": "sensor.bigfridge_powermeter_power",
-          "friendlyName": "BigFridge-PowerMeter power",
+          "friendlyName": "BigFridge-Powermeter power",
           "cSharpName": "BigfridgePowermeterPower"
         },
         {
@@ -2946,6 +2956,36 @@
           "id": "sensor.fridge_power_consumption",
           "friendlyName": "Kitchen Power Consumption",
           "cSharpName": "FridgePowerConsumption"
+        },
+        {
+          "id": "sensor.fridge_sensor_humidity",
+          "friendlyName": "Fridge Sensor Humidity",
+          "cSharpName": "FridgeSensorHumidity"
+        },
+        {
+          "id": "sensor.fridge_sensor_temperature",
+          "friendlyName": "Fridge Sensor Temperature",
+          "cSharpName": "FridgeSensorTemperature"
+        },
+        {
+          "id": "sensor.fridge_temp_humidity",
+          "friendlyName": "Fridge Temp-Humidity",
+          "cSharpName": "FridgeTempHumidity"
+        },
+        {
+          "id": "sensor.fridge_temp_indoors_brightness",
+          "friendlyName": "Fridge-Temp-Indoors-Brightness",
+          "cSharpName": "FridgeTempIndoorsBrightness"
+        },
+        {
+          "id": "sensor.fridge_temperature_battery",
+          "friendlyName": "Fridge Temperature-Battery",
+          "cSharpName": "FridgeTemperatureBattery"
+        },
+        {
+          "id": "sensor.fridgetemperature",
+          "friendlyName": "FridgeTemperature",
+          "cSharpName": "Fridgetemperature"
         },
         {
           "id": "sensor.front_door_sensor_battery",
@@ -3251,16 +3291,6 @@
           "id": "sensor.tv_power_meter_power",
           "friendlyName": "Tv Power Meter power",
           "cSharpName": "TvPowerMeterPower"
-        },
-        {
-          "id": "sensor.wifi_temperature_humidity_sensor_humidity",
-          "friendlyName": "Fridge Sensor Humidity",
-          "cSharpName": "WifiTemperatureHumiditySensorHumidity"
-        },
-        {
-          "id": "sensor.wifi_temperature_humidity_sensor_temperature",
-          "friendlyName": "Fridge Sensor Temperature",
-          "cSharpName": "WifiTemperatureHumiditySensorTemperature"
         }
       ],
       "attributes": [
@@ -3438,6 +3468,11 @@
           "jsonName": "last_valid_state",
           "cSharpName": "LastValidState",
           "clrType": "System.String"
+        },
+        {
+          "jsonName": "raw_state",
+          "cSharpName": "RawState",
+          "clrType": "System.Double"
         }
       ]
     },
@@ -3501,7 +3536,7 @@
         },
         {
           "id": "switch.bigfridge_powermeter",
-          "friendlyName": "BigFridge-PowerMeter",
+          "friendlyName": "BigFridge-Powermeter",
           "cSharpName": "BigfridgePowermeter"
         },
         {
@@ -3518,6 +3553,11 @@
           "id": "switch.fridge_sensor_switch",
           "friendlyName": "Fridge Sensor Switch",
           "cSharpName": "FridgeSensorSwitch"
+        },
+        {
+          "id": "switch.fridge_temparature_screen",
+          "friendlyName": "Fridge Temparature-Screen",
+          "cSharpName": "FridgeTemparatureScreen"
         },
         {
           "id": "switch.hallway_sensor_led_indication",
@@ -3545,6 +3585,16 @@
           "cSharpName": "PcConnectorChildLock"
         },
         {
+          "id": "switch.pc_connector_monitors",
+          "friendlyName": "PC-Connector-Monitors",
+          "cSharpName": "PcConnectorMonitors"
+        },
+        {
+          "id": "switch.pc_connector_others",
+          "friendlyName": "PC-Connector_Others",
+          "cSharpName": "PcConnectorOthers"
+        },
+        {
           "id": "switch.pc_connector_socket_1",
           "friendlyName": "Multi Plug: Bright Light",
           "cSharpName": "PcConnectorSocket1"
@@ -3563,6 +3613,16 @@
           "id": "switch.pc_connector_socket_4",
           "friendlyName": "Multi Plug USB",
           "cSharpName": "PcConnectorSocket4"
+        },
+        {
+          "id": "switch.pc_connector_usb",
+          "friendlyName": "PC-Connector-USB",
+          "cSharpName": "PcConnectorUsb"
+        },
+        {
+          "id": "switch.pc_connector1",
+          "friendlyName": "Pc-Connector1",
+          "cSharpName": "PcConnector1"
         },
         {
           "id": "switch.pc_plug",
@@ -3675,6 +3735,11 @@
           "jsonName": "supported_features",
           "cSharpName": "SupportedFeatures",
           "clrType": "System.Double"
+        },
+        {
+          "jsonName": "raw_state",
+          "cSharpName": "RawState",
+          "clrType": "System.Boolean"
         }
       ]
     },
@@ -3703,7 +3768,7 @@
         },
         {
           "id": "update.bigfridge_powermeter",
-          "friendlyName": "BigFridge-PowerMeter",
+          "friendlyName": "BigFridge-Powermeter",
           "cSharpName": "BigfridgePowermeter"
         },
         {
@@ -3827,6 +3892,11 @@
           "cSharpName": "PcSensor"
         },
         {
+          "id": "update.piper_update",
+          "friendlyName": "Piper Update",
+          "cSharpName": "PiperUpdate"
+        },
+        {
           "id": "update.power_meter_general",
           "friendlyName": "Power Meter (General)",
           "cSharpName": "PowerMeterGeneral"
@@ -3875,6 +3945,11 @@
           "id": "update.vlc_update",
           "friendlyName": "VLC Update",
           "cSharpName": "VlcUpdate"
+        },
+        {
+          "id": "update.whisper_update",
+          "friendlyName": "Whisper Update",
+          "cSharpName": "WhisperUpdate"
         },
         {
           "id": "update.zigbee2mqtt_update",
@@ -4144,6 +4219,72 @@
           "cSharpName": "Rising",
           "clrType": "System.Boolean"
         },
+        {
+          "jsonName": "friendly_name",
+          "cSharpName": "FriendlyName",
+          "clrType": "System.String"
+        }
+      ]
+    },
+    {
+      "domain": "remote",
+      "entities": [
+        {
+          "id": "remote.living_room_tv",
+          "friendlyName": "Living Room TV",
+          "cSharpName": "LivingRoomTv"
+        }
+      ],
+      "attributes": [
+        {
+          "jsonName": "activity_list",
+          "cSharpName": "ActivityList",
+          "clrType": "System.Object"
+        },
+        {
+          "jsonName": "current_activity",
+          "cSharpName": "CurrentActivity",
+          "clrType": "System.String"
+        },
+        {
+          "jsonName": "friendly_name",
+          "cSharpName": "FriendlyName",
+          "clrType": "System.String"
+        },
+        {
+          "jsonName": "supported_features",
+          "cSharpName": "SupportedFeatures",
+          "clrType": "System.Double"
+        }
+      ]
+    },
+    {
+      "domain": "stt",
+      "entities": [
+        {
+          "id": "stt.faster_whisper",
+          "friendlyName": "faster-whisper",
+          "cSharpName": "FasterWhisper"
+        }
+      ],
+      "attributes": [
+        {
+          "jsonName": "friendly_name",
+          "cSharpName": "FriendlyName",
+          "clrType": "System.String"
+        }
+      ]
+    },
+    {
+      "domain": "tts",
+      "entities": [
+        {
+          "id": "tts.piper",
+          "friendlyName": "piper",
+          "cSharpName": "Piper"
+        }
+      ],
+      "attributes": [
         {
           "jsonName": "friendly_name",
           "cSharpName": "FriendlyName",
