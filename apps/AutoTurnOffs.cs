@@ -70,7 +70,7 @@ namespace NetDaemonApps.apps
                 _myEntities.Switch.RunnerPlug.TurnOn();          
             });
 
-            _myEntities.Sensor.EnvyBatteryChargeRemainingPercentage.StateChanges().Where(x => x?.New?.State == 99)
+            _myEntities.Sensor.EnvyBatteryChargeRemainingPercentage.StateChanges().Where(x => x?.New?.State >= 99)
                 .Subscribe(_ => {
                 _myEntities.Switch.RunnerPlug.TurnOff();
             });

@@ -64,6 +64,11 @@
           "cSharpName": "Isasleepupdate"
         },
         {
+          "id": "automation.kirchen_kight",
+          "friendlyName": "kirchen kight",
+          "cSharpName": "KirchenKight"
+        },
+        {
           "id": "automation.pc_auto_off",
           "friendlyName": "Pc auto off",
           "cSharpName": "PcAutoOff"
@@ -862,11 +867,6 @@
           "cSharpName": "EnergyTransferCost"
         },
         {
-          "id": "input_number.fridge_real_temp",
-          "friendlyName": "Fridge Real Temp",
-          "cSharpName": "FridgeRealTemp"
-        },
-        {
           "id": "input_number.sensor_luminance_threshold",
           "friendlyName": "Sensor Luminance Threshold",
           "cSharpName": "SensorLuminanceThreshold"
@@ -1061,11 +1061,6 @@
           "id": "light.living_room_lights",
           "friendlyName": "Living Room Lights",
           "cSharpName": "LivingRoomLights"
-        },
-        {
-          "id": "light.multi_plug_bright_light",
-          "friendlyName": "Socket 1",
-          "cSharpName": "MultiPlugBrightLight"
         },
         {
           "id": "light.pc_connector1",
@@ -2388,6 +2383,11 @@
           "id": "sensor.toilet_seat_sensor_power_outage_count",
           "friendlyName": "Toilet Seat Sensor power outage count",
           "cSharpName": "ToiletSeatSensorPowerOutageCount"
+        },
+        {
+          "id": "sensor.true_fridge_temperature",
+          "friendlyName": "True Fridge Temperature",
+          "cSharpName": "TrueFridgeTemperature"
         }
       ],
       "attributes": [
@@ -2800,6 +2800,11 @@
           "jsonName": "DnsAddresses",
           "cSharpName": "DnsAddresses",
           "clrType": "System.Collections.Generic.IReadOnlyList\u00601[System.String]"
+        },
+        {
+          "jsonName": "state_class",
+          "cSharpName": "StateClass",
+          "clrType": "System.String"
         }
       ]
     },
