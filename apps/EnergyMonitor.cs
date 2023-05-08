@@ -58,6 +58,7 @@ public class EnergyMonitor
         public double max;
         public double min;
         public int majorityRange;
+        public bool isAllSameRange;
     }
 
 
@@ -74,7 +75,7 @@ public class EnergyMonitor
 
             EnergyForecastInfo energyForecastInfo = GetEnergyForecast(list);
 
-            message += " Prices will be mostly in " + GetNameOfRange(energyForecastInfo.majorityRange);
+            message += " Prices will be" + (energyForecastInfo.isAllSameRange ? " all " : " mostly ") + "in " + GetNameOfRange(energyForecastInfo.majorityRange);
             message += " with avarage of " + Math.Round(energyForecastInfo.avarage * 100, 1) + " cents.";// Ranging from: " + Math.Round(energyForecastInfo.min * 100, 1) + " to " + Math.Round(energyForecastInfo.max * 100, 1) + " cents. ";
 
 
@@ -124,8 +125,8 @@ public class EnergyMonitor
         energyForecastInfo.avarage = avg;
         energyForecastInfo.max = max;
         energyForecastInfo.min = min;
-        energyForecastInfo.majorityRange = foundPerRange.MaxBy(x => x.Value).Key; ;
-
+        energyForecastInfo.majorityRange = foundPerRange.MaxBy(x => x.Value).Key;
+        energyForecastInfo.isAllSameRange = foundPerRange.Count != 0;
 
         return energyForecastInfo;
 
@@ -191,40 +192,71 @@ public class EnergyMonitor
         ElectricityPriceInfo inFoForNextHour = new ElectricityPriceInfo(DateTime.Now.AddHours(1), _myEntities?.Sensor?.NordpoolKwhFiEur31001, electricityRangeKeys);
 
         PriceChangeType priceChange = infoForCurrentHour.Compare(inFoForNextHour);
+        string TTSMessage = null;
 
-        if (priceChange == PriceChangeType.NoChange) return;
-
-
-        string TTSMessage;
-
-        if (priceChange == PriceChangeType.Increase)
-        {
-            TTSMessage = "Electricity Warning.The Price is About to increase to " + electiricityRanges.Values.ElementAt(inFoForNextHour.range);
-        }
-        else
-        {
-            TTSMessage = "Electricity Notice. The Price is About to fall to " + electiricityRanges.Values.ElementAt(inFoForNextHour.range);
-        }
-
-
-        var hoursTillChange = FindWhenElectricityRangeChanges(inFoForNextHour);
-
-        var timeDiff = hoursTillChange.dateTime - inFoForNextHour.dateTime;
-
-        PriceChangeType priceChangeType = inFoForNextHour.Compare(hoursTillChange);
-
-        if (priceChangeType == PriceChangeType.NoChange)
-        {
-            TTSMessage += ". And stays like that for while.";
-        }
-        else
+        if (priceChange != PriceChangeType.NoChange)
         {
 
-            TTSMessage += ". And will " + (priceChangeType == PriceChangeType.Increase ? "increase to " : "decrease to ") + GetNameOfRange(hoursTillChange.range) + " after " + GetHoursAndMinutesFromTimeSpan(timeDiff);
+
+            bool isWarning = priceChange == PriceChangeType.Increase || inFoForNextHour.price == _myEntities?.Sensor?.NordpoolKwhFiEur31001.Attributes.Peak;
+
+
+
+            if (isWarning)
+            {
+                TTSMessage = "Electricity Warning. The Price is About to ";
+            }
+            else
+            {
+                TTSMessage = "Electricity Notice. The Price is About to "; 
+            }
+
+            
+            if(priceChange == PriceChangeType.Increase)
+            {
+                TTSMessage += "increase to " + electiricityRanges.Values.ElementAt(inFoForNextHour.range);
+            }
+            else if(priceChange == PriceChangeType.Descrease)
+            {
+                TTSMessage += "to fall to " + electiricityRanges.Values.ElementAt(inFoForNextHour.range);
+            }
+
+       
+
+
+                var hoursTillChange = FindWhenElectricityRangeChanges(inFoForNextHour);
+
+            var timeDiff = hoursTillChange.dateTime - inFoForNextHour.dateTime;
+
+            PriceChangeType priceChangeType = inFoForNextHour.Compare(hoursTillChange);
+
+            if (priceChangeType == PriceChangeType.NoChange)
+            {
+                TTSMessage += ". And stays like that for while.";
+            }
+            else
+            {
+
+                TTSMessage += ". And will " + (priceChangeType == PriceChangeType.Increase ? "increase to " : "decrease to ") + GetNameOfRange(hoursTillChange.range) + " after " + GetHoursAndMinutesFromTimeSpan(timeDiff);
+            }
+
+            if (priceChange != PriceChangeType.NoChange)
+            {
+                TTSMessage += " This will also ";
+            }
+
+            if (inFoForNextHour.price == _myEntities?.Sensor?.NordpoolKwhFiEur31001.Attributes.Peak)
+            {
+                TTSMessage += "be at peak price of the day."; 
+            }
+            else if (inFoForNextHour.price == _myEntities?.Sensor?.NordpoolKwhFiEur31001.Attributes.Min)
+            {
+                TTSMessage += "be at lowest price of the day";
+            }
+
         }
 
-
-        SendTTS(TTSMessage);
+        if(TTSMessage!= null)SendTTS(TTSMessage);
     }
 
     private string GetNameOfRange(int rangeIndex)
@@ -247,7 +279,7 @@ public class EnergyMonitor
     {
         NoChange,
         Increase,
-        Descrease
+        Descrease,
 
     }
     private class ElectricityPriceInfo
@@ -278,7 +310,7 @@ public class EnergyMonitor
 
         private int FindRangeForPrice(double? price, List<double>? electricityRangeKeys)
         {
-            var range = electricityRangeKeys?.FindIndex(x => x > price);
+            var range = electricityRangeKeys?.FindIndex(x => x >= price);
             range = range == -1 ? 1 : range;
 
             return (int)range - 1;
