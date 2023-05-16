@@ -62,6 +62,9 @@ public class EnergyMonitor
     }
 
 
+ 
+
+
     public void ReadOutEnergyUpdate()
     {
         string message = "Energy update for tomorrow!";
@@ -126,7 +129,7 @@ public class EnergyMonitor
         energyForecastInfo.max = max;
         energyForecastInfo.min = min;
         energyForecastInfo.majorityRange = foundPerRange.MaxBy(x => x.Value).Key;
-        energyForecastInfo.isAllSameRange = foundPerRange.Count != 0;
+        energyForecastInfo.isAllSameRange = foundPerRange.Count == 1;
 
         return energyForecastInfo;
 
@@ -194,11 +197,11 @@ public class EnergyMonitor
         PriceChangeType priceChange = infoForCurrentHour.Compare(inFoForNextHour);
         string TTSMessage = null;
 
-        if (priceChange != PriceChangeType.NoChange)
-        {
+        if (priceChange == PriceChangeType.NoChange && inFoForNextHour.peak == 0) return;
+        
 
 
-            bool isWarning = priceChange == PriceChangeType.Increase || inFoForNextHour.price == _myEntities?.Sensor?.NordpoolKwhFiEur31001.Attributes.Peak;
+            bool isWarning = priceChange == PriceChangeType.Increase || inFoForNextHour.peak == 1;
 
 
 
@@ -211,14 +214,18 @@ public class EnergyMonitor
                 TTSMessage = "Electricity Notice. The Price is About to "; 
             }
 
-            
-            if(priceChange == PriceChangeType.Increase)
+        if (priceChange != PriceChangeType.NoChange)
+        {
+
+     
+
+            if (priceChange == PriceChangeType.Increase)
             {
-                TTSMessage += "increase to " + electiricityRanges.Values.ElementAt(inFoForNextHour.range);
+                TTSMessage += "increase to " + electiricityRanges.Values.ElementAt(inFoForNextHour.range) +".";
             }
             else if(priceChange == PriceChangeType.Descrease)
             {
-                TTSMessage += "to fall to " + electiricityRanges.Values.ElementAt(inFoForNextHour.range);
+                TTSMessage += "to fall to " + electiricityRanges.Values.ElementAt(inFoForNextHour.range) + ".";
             }
 
        
@@ -232,29 +239,32 @@ public class EnergyMonitor
 
             if (priceChangeType == PriceChangeType.NoChange)
             {
-                TTSMessage += ". And stays like that for while.";
+                TTSMessage += "And stays like that for while.";
             }
-            else
+            else if (priceChange == PriceChangeType.Increase || priceChange == PriceChangeType.Descrease)
             {
 
-                TTSMessage += ". And will " + (priceChangeType == PriceChangeType.Increase ? "increase to " : "decrease to ") + GetNameOfRange(hoursTillChange.range) + " after " + GetHoursAndMinutesFromTimeSpan(timeDiff);
+                TTSMessage += "And will " + (priceChangeType == PriceChangeType.Increase ? "increase to " : "decrease to ") + GetNameOfRange(hoursTillChange.range) + " after " + GetHoursAndMinutesFromTimeSpan(timeDiff);
             }
 
-            if (priceChange != PriceChangeType.NoChange)
+            if (inFoForNextHour.peak != 0)
             {
                 TTSMessage += " This will also ";
             }
-
-            if (inFoForNextHour.price == _myEntities?.Sensor?.NordpoolKwhFiEur31001.Attributes.Peak)
-            {
-                TTSMessage += "be at peak price of the day."; 
-            }
-            else if (inFoForNextHour.price == _myEntities?.Sensor?.NordpoolKwhFiEur31001.Attributes.Min)
-            {
-                TTSMessage += "be at lowest price of the day";
-            }
-
         }
+
+         
+
+            if (inFoForNextHour.peak == 1)
+            {
+                TTSMessage += "be the peak price of the day."; 
+            }
+            else if (inFoForNextHour.peak == -1)
+            {
+                TTSMessage += "be the lowest price of the day";
+            }
+
+        
 
         if(TTSMessage!= null)SendTTS(TTSMessage);
     }
@@ -280,7 +290,6 @@ public class EnergyMonitor
         NoChange,
         Increase,
         Descrease,
-
     }
     private class ElectricityPriceInfo
     {
@@ -288,6 +297,7 @@ public class EnergyMonitor
         public double? price;
         public DateTime dateTime;
         public int range;
+        public int peak = 0; 
 
 
 
@@ -297,8 +307,13 @@ public class EnergyMonitor
 
             IReadOnlyList<double>? day = isToday ? nordPoolEntity?.EntityState?.Attributes?.Today : nordPoolEntity?.EntityState?.Attributes?.TomorrowValid == true ? JsonSerializer.Deserialize<List<double>>(nordPoolEntity?.EntityState?.Attributes?.Tomorrow.ToString()).AsReadOnly() : nordPoolEntity?.EntityState?.Attributes?.Today;
             price = day?.ElementAt(time.Hour);
-            range = FindRangeForPrice(price, electricityRangeKeys);
+            range = price > 0  ? FindRangeForPrice(price, electricityRangeKeys) : 0;
+            
             dateTime = time;
+
+            peak = price == nordPoolEntity.Attributes.Peak ? 1 : 0;
+            peak = price == nordPoolEntity.Attributes.Min ? -1 : peak;
+
         }
 
         public PriceChangeType Compare(ElectricityPriceInfo endPoint)
@@ -378,6 +393,73 @@ public class EnergyMonitor
 
         _myEntities.InputNumber.EnergyCostHourly.SetValue(0);
         _myEntities.InputNumber.EnergyCostDaily.SetValue(0);
+
+    }
+
+    private class FridgeController
+    {
+        private NumericSensorEntity temperatureSensor;
+        private SwitchEntity fridgePlug;
+
+        private ControllerState[] dailyPlan = new ControllerState[24];
+
+        private DateTime maxPeak;
+        private DateTime maxpeakMinus1;
+        private DateTime minPeak;
+
+        private enum ControllerState
+        {
+            Normal,
+            MaxPreparation,
+            Max,
+            Min
+        }
+
+        private ControllerState State { get; set; }
+
+
+        public FridgeController()
+        {
+
+
+
+
+        }
+
+
+        public void UpdatePeaks(DateTime minpeak, DateTime maxPeak)
+        {
+
+            PlanSchedule();
+        }
+
+        private void PlanSchedule()
+        {
+
+        }
+        private void TemparatureUpdate() { 
+        
+        }
+        public void OnHourChanged()
+        {
+
+            if (DateTime.Now.Hour == maxpeakMinus1.Hour && DateTime.Now.Date == maxpeakMinus1.Date)
+            {
+                State = ControllerState.MaxPreparation;
+            }
+            else if (DateTime.Now.Hour == maxPeak.Hour && DateTime.Now.Date == maxPeak.Date)
+            {
+                State = ControllerState.Max;
+            }
+            else if (DateTime.Now.Hour == minPeak.Hour && DateTime.Now.Date == minPeak.Date)
+            {
+                State = ControllerState.Min;
+            }
+            else
+            {
+                State = ControllerState.Normal;
+            }
+        }
 
     }
 

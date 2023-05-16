@@ -11,6 +11,7 @@ namespace NetDaemonApps.apps.Hue_Switches
     [NetDaemonApp]
     public class BedHueSwitch : HueSwitch
     {
+
         public BedHueSwitch(IHaContext ha) : base(ha){}
 
         protected override SensorEntity ObtainSwitch(Entities entities)
