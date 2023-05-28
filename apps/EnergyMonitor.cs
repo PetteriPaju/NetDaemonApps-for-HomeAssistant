@@ -20,6 +20,8 @@ public class EnergyMonitor
 {
     private Entities _myEntities;
     private readonly Dictionary<double, string> electiricityRanges = new Dictionary<double, string>() { { 0, "Blue" }, { 0.075, "Green" }, { 0.15, "Yellow" }, { 0.25, "Red" } };
+    private bool hiPeakAlertGiven = false;
+    private bool loPeakAlertGiven = false;
 
     private readonly List<double>? electricityRangeKeys;
 
@@ -197,7 +199,7 @@ public class EnergyMonitor
         PriceChangeType priceChange = infoForCurrentHour.Compare(inFoForNextHour);
         string TTSMessage = null;
 
-        if (priceChange == PriceChangeType.NoChange && inFoForNextHour.peak == 0) return;
+        if (priceChange == PriceChangeType.NoChange && inFoForNextHour.peak == 0 || (priceChange == PriceChangeType.NoChange && infoForCurrentHour.peak == -1 && loPeakAlertGiven) || (priceChange == PriceChangeType.NoChange && infoForCurrentHour.peak == 1 && hiPeakAlertGiven)) return;
         
 
 
@@ -255,13 +257,15 @@ public class EnergyMonitor
 
          
 
-            if (inFoForNextHour.peak == 1)
+            if (inFoForNextHour.peak == 1 && !hiPeakAlertGiven)
             {
-                TTSMessage += "be the peak price of the day."; 
+                TTSMessage += "be the peak price of the day.";
+            hiPeakAlertGiven = true;
             }
-            else if (inFoForNextHour.peak == -1)
+            else if (inFoForNextHour.peak == -1 && !loPeakAlertGiven)
             {
                 TTSMessage += "be the lowest price of the day";
+            loPeakAlertGiven = true;
             }
 
         
@@ -311,7 +315,7 @@ public class EnergyMonitor
             
             dateTime = time;
 
-            peak = price == nordPoolEntity.Attributes.Peak ? 1 : 0;
+            peak = price == nordPoolEntity.Attributes.Max ? 1 : 0;
             peak = price == nordPoolEntity.Attributes.Min ? -1 : peak;
 
         }
@@ -391,6 +395,9 @@ public class EnergyMonitor
     {
         if (_myEntities == null) return;
 
+
+        hiPeakAlertGiven = false;
+        loPeakAlertGiven = false;
         _myEntities.InputNumber.EnergyCostHourly.SetValue(0);
         _myEntities.InputNumber.EnergyCostDaily.SetValue(0);
 

@@ -20,6 +20,7 @@ namespace NetDaemonApps.apps
 
         //I have taped my cube with Fluorescent tape, so this is for my own needs
         private Dictionary<string, KnownColor> ColorsToSides = new Dictionary<string, KnownColor> { { "0", KnownColor.Pink}, { "1", KnownColor.Blue}, { "2", KnownColor.Yellow }, { "3" , KnownColor.Purple}, { "4" , KnownColor.Green }, { "5", KnownColor.Orange } };
+        public static bool BrightLightTurnedOnByPC = false;
 
         public AgaraCube_LivingRoom(IHaContext ha) : base(ha) { 
 
@@ -97,8 +98,24 @@ namespace NetDaemonApps.apps
         protected override void OnFlip90()
         {
             base.OnFlip90();
-            currentlyActiveLight = lightEntities[GetNextActiveLightIndex()];
-            if (currentlyActiveLight != null) currentlyActiveLight.TurnOn();
+
+
+
+           
+
+            if(currentlyActiveLight == _myEntities.Light.PcConnector1 && BrightLightTurnedOnByPC)
+            {
+                currentlyActiveLight = _myEntities.Light.LivingRoomLight;
+                currentlyActiveLight.TurnOn();
+
+            }
+            else
+            {
+                currentlyActiveLight = lightEntities[GetNextActiveLightIndex()];
+                if (currentlyActiveLight != null) currentlyActiveLight.TurnOn();
+            }
+
+            BrightLightTurnedOnByPC = false;
         }
      
 

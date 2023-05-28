@@ -40,6 +40,7 @@ namespace NetDaemonApps.apps
                 .Subscribe(_ => {
 
                  _myEntities.Light.PcConnector1.TurnOn();
+                    AgaraCube_LivingRoom.BrightLightTurnedOnByPC = true;
                 _myEntities.Switch.PcConnectorMonitors.TurnOn();
                 _myEntities.Switch.PcConnectorOthers.TurnOn();
                 _myEntities.Scene.SwitchUsbPc.TurnOn();

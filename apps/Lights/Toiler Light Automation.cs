@@ -26,7 +26,7 @@ namespace NetDaemonApps.apps.Lights
 
             targetLights.Add(_myEntities.Light.BedLight);
             targetLights.Add(_myEntities.Light.PcConnector1);
-            targetLights.Add(_myEntities.Light.KitchenLight2);
+  
             targetLights.Add(_myEntities.Light.LivingRoomLight);
             targetLights.Add(_myEntities.Light.DesktopLight);
 
