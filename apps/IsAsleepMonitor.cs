@@ -53,7 +53,7 @@ namespace NetDaemonApps.apps
 
             _myEntities.InputBoolean.Isasleep.StateChanges().WhenStateIsFor(x => x?.State == "on", sleepTimer).Subscribe(x => {
                 Console.WriteLine("Asleep timer reached, begin repeat");
-
+                _myEntities.Script.Actiontodoatalarm.TurnOn();
                 alarmTimer = scheduler.RunEvery(TimeSpan.FromMinutes(20), DateTimeOffset.Now, () => {
 
                     TimeSpan? timeDiff = DateTime.Now - _myEntities?.InputBoolean?.Isasleep?.EntityState?.LastChanged;

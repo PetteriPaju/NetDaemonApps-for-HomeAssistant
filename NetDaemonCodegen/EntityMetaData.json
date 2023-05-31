@@ -64,6 +64,11 @@
           "cSharpName": "Isasleepupdate"
         },
         {
+          "id": "automation.keep_fridge_on",
+          "friendlyName": "Keep Fridge On",
+          "cSharpName": "KeepFridgeOn"
+        },
+        {
           "id": "automation.kirchen_kight",
           "friendlyName": "kirchen kight",
           "cSharpName": "KirchenKight"
@@ -176,11 +181,6 @@
           "cSharpName": "BrightLightPlugUpdateAvailable"
         },
         {
-          "id": "binary_sensor.cisco_epc3825_wan_status",
-          "friendlyName": "Cisco EPC3825 wan status",
-          "cSharpName": "CiscoEpc3825WanStatus"
-        },
-        {
           "id": "binary_sensor.desktop_light_update_available",
           "friendlyName": "Desktop Light update available",
           "cSharpName": "DesktopLightUpdateAvailable"
@@ -194,6 +194,16 @@
           "id": "binary_sensor.fridgetemp",
           "friendlyName": "FridgeTemp",
           "cSharpName": "Fridgetemp"
+        },
+        {
+          "id": "binary_sensor.fritz_box_6660_cable_connection",
+          "friendlyName": "FRITZ!Box 6660 Cable Connection",
+          "cSharpName": "FritzBox6660CableConnection"
+        },
+        {
+          "id": "binary_sensor.fritz_box_6660_cable_link",
+          "friendlyName": "FRITZ!Box 6660 Cable Link",
+          "cSharpName": "FritzBox6660CableLink"
         },
         {
           "id": "binary_sensor.front_door_sensor_contact",
@@ -359,6 +369,11 @@
           "id": "binary_sensor.tv_power_meter_update_available",
           "friendlyName": "Tv Power Meter update available",
           "cSharpName": "TvPowerMeterUpdateAvailable"
+        },
+        {
+          "id": "binary_sensor.zatnas_ping",
+          "friendlyName": "Zatnas Ping",
+          "cSharpName": "ZatnasPing"
         }
       ],
       "attributes": [
@@ -438,6 +453,26 @@
           "cSharpName": "EnvyWakekey"
         },
         {
+          "id": "button.fritz_box_6660_cable_cleanup",
+          "friendlyName": "FRITZ!Box 6660 Cable Cleanup",
+          "cSharpName": "FritzBox6660CableCleanup"
+        },
+        {
+          "id": "button.fritz_box_6660_cable_firmware_update",
+          "friendlyName": "FRITZ!Box 6660 Cable Firmware update",
+          "cSharpName": "FritzBox6660CableFirmwareUpdate"
+        },
+        {
+          "id": "button.fritz_box_6660_cable_reconnect",
+          "friendlyName": "FRITZ!Box 6660 Cable Reconnect",
+          "cSharpName": "FritzBox6660CableReconnect"
+        },
+        {
+          "id": "button.fritz_box_6660_cable_restart",
+          "friendlyName": "FRITZ!Box 6660 Cable Restart",
+          "cSharpName": "FritzBox6660CableRestart"
+        },
+        {
           "id": "button.pc_resetbrigtness",
           "friendlyName": "PC-ResetBrigtness",
           "cSharpName": "PcResetbrigtness"
@@ -473,6 +508,16 @@
           "jsonName": "friendly_name",
           "cSharpName": "FriendlyName",
           "clrType": "System.String"
+        },
+        {
+          "jsonName": "device_class",
+          "cSharpName": "DeviceClass",
+          "clrType": "System.String"
+        },
+        {
+          "jsonName": "icon",
+          "cSharpName": "Icon",
+          "clrType": "System.String"
         }
       ]
     },
@@ -485,6 +530,61 @@
           "cSharpName": "Backpack"
         },
         {
+          "id": "device_tracker.chromecastwithgoogletv",
+          "friendlyName": "chromecastwithgoogletv",
+          "cSharpName": "Chromecastwithgoogletv"
+        },
+        {
+          "id": "device_tracker.envy",
+          "friendlyName": "Envy",
+          "cSharpName": "Envy"
+        },
+        {
+          "id": "device_tracker.envy_2",
+          "friendlyName": "Envy",
+          "cSharpName": "Envy2"
+        },
+        {
+          "id": "device_tracker.esp32_ee4b54",
+          "friendlyName": "Kitchen-disctance",
+          "cSharpName": "Esp32Ee4b54"
+        },
+        {
+          "id": "device_tracker.google_nest_hub",
+          "friendlyName": "Google-Nest-Hub",
+          "cSharpName": "GoogleNestHub"
+        },
+        {
+          "id": "device_tracker.homeassistant",
+          "friendlyName": "homeAssistant",
+          "cSharpName": "Homeassistant"
+        },
+        {
+          "id": "device_tracker.homeassistantcontainer",
+          "friendlyName": "homeassistantcontainer",
+          "cSharpName": "Homeassistantcontainer"
+        },
+        {
+          "id": "device_tracker.ir_remote",
+          "friendlyName": "IR-Remote",
+          "cSharpName": "IrRemote"
+        },
+        {
+          "id": "device_tracker.jaeaekaapinlaempoemittari",
+          "friendlyName": "jaeaekaapinlaempoemittari",
+          "cSharpName": "Jaeaekaapinlaempoemittari"
+        },
+        {
+          "id": "device_tracker.mainpc",
+          "friendlyName": "mainpc",
+          "cSharpName": "Mainpc"
+        },
+        {
+          "id": "device_tracker.maxciopistoke",
+          "friendlyName": "maxciopistoke",
+          "cSharpName": "Maxciopistoke"
+        },
+        {
           "id": "device_tracker.moto_g_8_power_lite",
           "friendlyName": "moto g(8) power lite",
           "cSharpName": "MotoG8PowerLite"
@@ -495,6 +595,31 @@
           "cSharpName": "MotoG8PowerLite2"
         },
         {
+          "id": "device_tracker.nintendoswitch",
+          "friendlyName": "nintendoswitch",
+          "cSharpName": "Nintendoswitch"
+        },
+        {
+          "id": "device_tracker.pc_192_168_0_24",
+          "friendlyName": "PC-192-168-0-24",
+          "cSharpName": "Pc192168024"
+        },
+        {
+          "id": "device_tracker.pc_a0_92_08_90_22_91",
+          "friendlyName": "minitemp-humiditysensor",
+          "cSharpName": "PcA09208902291"
+        },
+        {
+          "id": "device_tracker.puhelin",
+          "friendlyName": "Puhelin",
+          "cSharpName": "Puhelin"
+        },
+        {
+          "id": "device_tracker.puhelin_2",
+          "friendlyName": "Puhelin",
+          "cSharpName": "Puhelin2"
+        },
+        {
           "id": "device_tracker.sm_t530",
           "friendlyName": "SM-T530",
           "cSharpName": "SmT530"
@@ -503,6 +628,11 @@
           "id": "device_tracker.wallet",
           "friendlyName": "Wallet",
           "cSharpName": "Wallet"
+        },
+        {
+          "id": "device_tracker.zatnas",
+          "friendlyName": "Zatnas",
+          "cSharpName": "Zatnas"
         }
       ],
       "attributes": [
@@ -580,6 +710,51 @@
           "jsonName": "icon",
           "cSharpName": "Icon",
           "clrType": "System.String"
+        },
+        {
+          "jsonName": "ip",
+          "cSharpName": "Ip",
+          "clrType": "System.String"
+        },
+        {
+          "jsonName": "mac",
+          "cSharpName": "Mac",
+          "clrType": "System.String"
+        },
+        {
+          "jsonName": "host_name",
+          "cSharpName": "HostName",
+          "clrType": "System.String"
+        },
+        {
+          "jsonName": "last_time_reachable",
+          "cSharpName": "LastTimeReachable",
+          "clrType": "System.String"
+        },
+        {
+          "jsonName": "connected_to",
+          "cSharpName": "ConnectedTo",
+          "clrType": "System.String"
+        },
+        {
+          "jsonName": "connection_type",
+          "cSharpName": "ConnectionType",
+          "clrType": "System.String"
+        },
+        {
+          "jsonName": "ssid",
+          "cSharpName": "Ssid",
+          "clrType": "System.String"
+        },
+        {
+          "jsonName": "restored",
+          "cSharpName": "Restored",
+          "clrType": "System.Boolean"
+        },
+        {
+          "jsonName": "supported_features",
+          "cSharpName": "SupportedFeatures",
+          "clrType": "System.Double"
         }
       ]
     },
@@ -1223,7 +1398,7 @@
         },
         {
           "id": "media_player.living_room_display",
-          "friendlyName": null,
+          "friendlyName": "Living room display",
           "cSharpName": "LivingRoomDisplay"
         },
         {
@@ -1591,6 +1766,11 @@
           "cSharpName": "_1659477669028"
         },
         {
+          "id": "script.actiontodoatalarm",
+          "friendlyName": "ActionToDoAtAlarm",
+          "cSharpName": "Actiontodoatalarm"
+        },
+        {
           "id": "script.av_volume_down",
           "friendlyName": "AV - Volume - Down",
           "cSharpName": "AvVolumeDown"
@@ -1599,6 +1779,11 @@
           "id": "script.av_volume_up",
           "friendlyName": "AV - Volume - Up",
           "cSharpName": "AvVolumeUp"
+        },
+        {
+          "id": "script.launch_youtube",
+          "friendlyName": "Launch Youtube",
+          "cSharpName": "LaunchYoutube"
         },
         {
           "id": "script.notify_pushover",
@@ -1875,16 +2060,6 @@
           "cSharpName": "BackupState"
         },
         {
-          "id": "sensor.cisco_epc3825_external_ip",
-          "friendlyName": "Cisco EPC3825 External IP",
-          "cSharpName": "CiscoEpc3825ExternalIp"
-        },
-        {
-          "id": "sensor.cisco_epc3825_wan_status",
-          "friendlyName": "Cisco EPC3825 wan status",
-          "cSharpName": "CiscoEpc3825WanStatus"
-        },
-        {
           "id": "sensor.cube_action",
           "friendlyName": "Cube action",
           "cSharpName": "CubeAction"
@@ -2110,9 +2285,24 @@
           "cSharpName": "EnvyNetworkNetworkCardCount"
         },
         {
-          "id": "sensor.fridge_sensor_battery_state",
-          "friendlyName": "Fridge Sensor Battery state",
-          "cSharpName": "FridgeSensorBatteryState"
+          "id": "sensor.fritz_box_6660_cable_connection_uptime",
+          "friendlyName": "FRITZ!Box 6660 Cable Connection uptime",
+          "cSharpName": "FritzBox6660CableConnectionUptime"
+        },
+        {
+          "id": "sensor.fritz_box_6660_cable_external_ip",
+          "friendlyName": "FRITZ!Box 6660 Cable External IP",
+          "cSharpName": "FritzBox6660CableExternalIp"
+        },
+        {
+          "id": "sensor.fritz_box_6660_cable_external_ipv6",
+          "friendlyName": "FRITZ!Box 6660 Cable External IPv6",
+          "cSharpName": "FritzBox6660CableExternalIpv6"
+        },
+        {
+          "id": "sensor.fritz_box_6660_cable_last_restart",
+          "friendlyName": "FRITZ!Box 6660 Cable Last restart",
+          "cSharpName": "FritzBox6660CableLastRestart"
         },
         {
           "id": "sensor.front_door_sensor_power_outage_count",
@@ -2128,6 +2318,11 @@
           "id": "sensor.hue_switch_living_room_action",
           "friendlyName": "Hue Switch Living Room action",
           "cSharpName": "HueSwitchLivingRoomAction"
+        },
+        {
+          "id": "sensor.indoor_temperature_and_humidity_sensor_battery_state",
+          "friendlyName": "Indoor temperature and humidity sensor Battery state",
+          "cSharpName": "IndoorTemperatureAndHumiditySensorBatteryState"
         },
         {
           "id": "sensor.kitchen_motion",
@@ -2893,46 +3088,6 @@
           "cSharpName": "BigfridgePowermeterPower"
         },
         {
-          "id": "sensor.cisco_epc3825_b_received",
-          "friendlyName": "Cisco EPC3825 B received",
-          "cSharpName": "CiscoEpc3825BReceived"
-        },
-        {
-          "id": "sensor.cisco_epc3825_b_sent",
-          "friendlyName": "Cisco EPC3825 B sent",
-          "cSharpName": "CiscoEpc3825BSent"
-        },
-        {
-          "id": "sensor.cisco_epc3825_kib_s_received",
-          "friendlyName": "Cisco EPC3825 KiB/s received",
-          "cSharpName": "CiscoEpc3825KibSReceived"
-        },
-        {
-          "id": "sensor.cisco_epc3825_kib_s_sent",
-          "friendlyName": "Cisco EPC3825 KiB/s sent",
-          "cSharpName": "CiscoEpc3825KibSSent"
-        },
-        {
-          "id": "sensor.cisco_epc3825_packets_received",
-          "friendlyName": "Cisco EPC3825 packets received",
-          "cSharpName": "CiscoEpc3825PacketsReceived"
-        },
-        {
-          "id": "sensor.cisco_epc3825_packets_s_received",
-          "friendlyName": "Cisco EPC3825 packets/s received",
-          "cSharpName": "CiscoEpc3825PacketsSReceived"
-        },
-        {
-          "id": "sensor.cisco_epc3825_packets_s_sent",
-          "friendlyName": "Cisco EPC3825 packets/s sent",
-          "cSharpName": "CiscoEpc3825PacketsSSent"
-        },
-        {
-          "id": "sensor.cisco_epc3825_packets_sent",
-          "friendlyName": "Cisco EPC3825 packets sent",
-          "cSharpName": "CiscoEpc3825PacketsSent"
-        },
-        {
           "id": "sensor.cube_action_angle",
           "friendlyName": "Cube action angle",
           "cSharpName": "CubeActionAngle"
@@ -2963,16 +3118,6 @@
           "cSharpName": "FridgePowerConsumption"
         },
         {
-          "id": "sensor.fridge_sensor_humidity",
-          "friendlyName": "Fridge Sensor Humidity",
-          "cSharpName": "FridgeSensorHumidity"
-        },
-        {
-          "id": "sensor.fridge_sensor_temperature",
-          "friendlyName": "Fridge Sensor Temperature",
-          "cSharpName": "FridgeSensorTemperature"
-        },
-        {
           "id": "sensor.fridge_temp_humidity",
           "friendlyName": "Fridge Temp-Humidity",
           "cSharpName": "FridgeTempHumidity"
@@ -2991,6 +3136,46 @@
           "id": "sensor.fridgetemperature",
           "friendlyName": "FridgeTemperature",
           "cSharpName": "Fridgetemperature"
+        },
+        {
+          "id": "sensor.fritz_box_6660_cable_download_throughput",
+          "friendlyName": "FRITZ!Box 6660 Cable Download throughput",
+          "cSharpName": "FritzBox6660CableDownloadThroughput"
+        },
+        {
+          "id": "sensor.fritz_box_6660_cable_gb_received",
+          "friendlyName": "FRITZ!Box 6660 Cable GB received",
+          "cSharpName": "FritzBox6660CableGbReceived"
+        },
+        {
+          "id": "sensor.fritz_box_6660_cable_gb_sent",
+          "friendlyName": "FRITZ!Box 6660 Cable GB sent",
+          "cSharpName": "FritzBox6660CableGbSent"
+        },
+        {
+          "id": "sensor.fritz_box_6660_cable_link_download_throughput",
+          "friendlyName": "FRITZ!Box 6660 Cable Link download throughput",
+          "cSharpName": "FritzBox6660CableLinkDownloadThroughput"
+        },
+        {
+          "id": "sensor.fritz_box_6660_cable_link_upload_throughput",
+          "friendlyName": "FRITZ!Box 6660 Cable Link upload throughput",
+          "cSharpName": "FritzBox6660CableLinkUploadThroughput"
+        },
+        {
+          "id": "sensor.fritz_box_6660_cable_max_connection_download_throughput",
+          "friendlyName": "FRITZ!Box 6660 Cable Max connection download throughput",
+          "cSharpName": "FritzBox6660CableMaxConnectionDownloadThroughput"
+        },
+        {
+          "id": "sensor.fritz_box_6660_cable_max_connection_upload_throughput",
+          "friendlyName": "FRITZ!Box 6660 Cable Max connection upload throughput",
+          "cSharpName": "FritzBox6660CableMaxConnectionUploadThroughput"
+        },
+        {
+          "id": "sensor.fritz_box_6660_cable_upload_throughput",
+          "friendlyName": "FRITZ!Box 6660 Cable Upload throughput",
+          "cSharpName": "FritzBox6660CableUploadThroughput"
         },
         {
           "id": "sensor.front_door_sensor_battery",
@@ -3031,6 +3216,26 @@
           "id": "sensor.hue_switch_living_room_battery",
           "friendlyName": "Hue Switch Living Room battery",
           "cSharpName": "HueSwitchLivingRoomBattery"
+        },
+        {
+          "id": "sensor.indoor_temperature_and_humidity_sensor_humidity",
+          "friendlyName": "Indoor temperature and humidity sensor Humidity",
+          "cSharpName": "IndoorTemperatureAndHumiditySensorHumidity"
+        },
+        {
+          "id": "sensor.indoor_temperature_and_humidity_sensor_temperature",
+          "friendlyName": "Indoor temperature and humidity sensor Temperature",
+          "cSharpName": "IndoorTemperatureAndHumiditySensorTemperature"
+        },
+        {
+          "id": "sensor.internetgatewaydevicev2_fritz_box_6660_cable_kib_s_received",
+          "friendlyName": "InternetGatewayDeviceV2 - FRITZ!Box 6660 Cable KiB/s received",
+          "cSharpName": "Internetgatewaydevicev2FritzBox6660CableKibSReceived"
+        },
+        {
+          "id": "sensor.internetgatewaydevicev2_fritz_box_6660_cable_kib_s_sent",
+          "friendlyName": "InternetGatewayDeviceV2 - FRITZ!Box 6660 Cable KiB/s sent",
+          "cSharpName": "Internetgatewaydevicev2FritzBox6660CableKibSSent"
         },
         {
           "id": "sensor.kitchen_distance",
@@ -3550,14 +3755,29 @@
           "cSharpName": "BrightLightPlug"
         },
         {
+          "id": "switch.chromecastwithgoogletv_internet_access",
+          "friendlyName": "chromecastwithgoogletv Internet Access",
+          "cSharpName": "ChromecastwithgoogletvInternetAccess"
+        },
+        {
+          "id": "switch.envy_internet_access",
+          "friendlyName": "Envy Internet Access",
+          "cSharpName": "EnvyInternetAccess"
+        },
+        {
+          "id": "switch.envy_internet_access_2",
+          "friendlyName": "Envy Internet Access",
+          "cSharpName": "EnvyInternetAccess2"
+        },
+        {
+          "id": "switch.esp32_ee4b54_internet_access",
+          "friendlyName": "Kitchen-disctance Internet Access",
+          "cSharpName": "Esp32Ee4b54InternetAccess"
+        },
+        {
           "id": "switch.fan_plug",
           "friendlyName": "Speaker Plug",
           "cSharpName": "FanPlug"
-        },
-        {
-          "id": "switch.fridge_sensor_switch",
-          "friendlyName": "Fridge Sensor Switch",
-          "cSharpName": "FridgeSensorSwitch"
         },
         {
           "id": "switch.fridge_temparature_screen",
@@ -3565,9 +3785,84 @@
           "cSharpName": "FridgeTemparatureScreen"
         },
         {
+          "id": "switch.fritz_box_6660_cable_port_forward_36",
+          "friendlyName": "FRITZ!Box 6660 Cable Port forward 36",
+          "cSharpName": "FritzBox6660CablePortForward36"
+        },
+        {
+          "id": "switch.fritz_box_6660_cable_port_forward_http_server",
+          "friendlyName": "FRITZ!Box 6660 Cable Port forward HTTP-Server",
+          "cSharpName": "FritzBox6660CablePortForwardHttpServer"
+        },
+        {
+          "id": "switch.fritz_box_6660_cable_port_forward_http_server_8123",
+          "friendlyName": "FRITZ!Box 6660 Cable Port forward HTTP-Server 8123",
+          "cSharpName": "FritzBox6660CablePortForwardHttpServer8123"
+        },
+        {
+          "id": "switch.fritz_box_6660_cable_port_forward_maxcio_pistoke",
+          "friendlyName": "FRITZ!Box 6660 Cable Port forward Maxcio Pistoke",
+          "cSharpName": "FritzBox6660CablePortForwardMaxcioPistoke"
+        },
+        {
+          "id": "switch.fritz_box_6660_cable_port_forward_remote1",
+          "friendlyName": "FRITZ!Box 6660 Cable Port forward remote1",
+          "cSharpName": "FritzBox6660CablePortForwardRemote1"
+        },
+        {
+          "id": "switch.fritz_box_6660_cable_port_forward_remote2",
+          "friendlyName": "FRITZ!Box 6660 Cable Port forward Remote2",
+          "cSharpName": "FritzBox6660CablePortForwardRemote2"
+        },
+        {
+          "id": "switch.fritz_box_6660_cable_wi_fi_fritz_box_guest_access",
+          "friendlyName": "FRITZ!Box 6660 Cable Wi-Fi FRITZ!Box guest access",
+          "cSharpName": "FritzBox6660CableWiFiFritzBoxGuestAccess"
+        },
+        {
+          "id": "switch.fritz_box_6660_cable_wi_fi_kotiverkko_2_4ghz",
+          "friendlyName": "FRITZ!Box 6660 Cable Wi-Fi Kotiverkko (2.4Ghz)",
+          "cSharpName": "FritzBox6660CableWiFiKotiverkko24ghz"
+        },
+        {
+          "id": "switch.fritz_box_6660_cable_wi_fi_kotiverkko_5ghz",
+          "friendlyName": "FRITZ!Box 6660 Cable Wi-Fi Kotiverkko (5Ghz)",
+          "cSharpName": "FritzBox6660CableWiFiKotiverkko5ghz"
+        },
+        {
+          "id": "switch.google_nest_hub_internet_access",
+          "friendlyName": "Google-Nest-Hub Internet Access",
+          "cSharpName": "GoogleNestHubInternetAccess"
+        },
+        {
           "id": "switch.hallway_sensor_led_indication",
           "friendlyName": "Hallway Sensor led_indication",
           "cSharpName": "HallwaySensorLedIndication"
+        },
+        {
+          "id": "switch.homeassistant_internet_access",
+          "friendlyName": "homeAssistant Internet Access",
+          "cSharpName": "HomeassistantInternetAccess"
+        },
+        {
+          "id": "switch.homeassistantcontainer_internet_access",
+          "friendlyName": "homeassistantcontainer Internet Access",
+          "cSharpName": "HomeassistantcontainerInternetAccess"
+        },
+        {
+          "id": "switch.indoor_temperature_and_humidity_sensor_switch",
+          "friendlyName": "Indoor temperature and humidity sensor Switch",
+          "cSharpName": "IndoorTemperatureAndHumiditySensorSwitch"
+        },
+        {
+          "id": "switch.ir_remote_internet_access",
+          "friendlyName": "IR-Remote Internet Access",
+          "cSharpName": "IrRemoteInternetAccess"
+        },
+        {
+          "id": "switch.jaeaekaapinlaempoemittari_internet_access",
+          "friendlyName": "jaeaekaapinlaempoemittari Internet Access",
+          "cSharpName": "JaeaekaapinlaempoemittariInternetAccess"
         },
         {
           "id": "switch.kitchen_sensor_led_indication",
@@ -3575,14 +3870,39 @@
           "cSharpName": "KitchenSensorLedIndication"
         },
         {
+          "id": "switch.mainpc_internet_access",
+          "friendlyName": "mainpc Internet Access",
+          "cSharpName": "MainpcInternetAccess"
+        },
+        {
+          "id": "switch.maxciopistoke_internet_access",
+          "friendlyName": "maxciopistoke Internet Access",
+          "cSharpName": "MaxciopistokeInternetAccess"
+        },
+        {
           "id": "switch.misc_powermeter",
           "friendlyName": "Misc-PowerMeter",
           "cSharpName": "MiscPowermeter"
         },
         {
+          "id": "switch.nintendoswitch_internet_access",
+          "friendlyName": "nintendoswitch Internet Access",
+          "cSharpName": "NintendoswitchInternetAccess"
+        },
+        {
           "id": "switch.outside_temperature_meter_switch",
           "friendlyName": "Outside temperature meter Switch",
           "cSharpName": "OutsideTemperatureMeterSwitch"
+        },
+        {
+          "id": "switch.pc_192_168_0_24_internet_access",
+          "friendlyName": "PC-192-168-0-24 Internet Access",
+          "cSharpName": "Pc192168024InternetAccess"
+        },
+        {
+          "id": "switch.pc_a0_92_08_90_22_91_internet_access",
+          "friendlyName": "minitemp-humiditysensor Internet Access",
+          "cSharpName": "PcA09208902291InternetAccess"
         },
         {
           "id": "switch.pc_connector_child_lock",
@@ -3645,6 +3965,16 @@
           "cSharpName": "PowerMeterPlug"
         },
         {
+          "id": "switch.puhelin_internet_access",
+          "friendlyName": "Puhelin Internet Access",
+          "cSharpName": "PuhelinInternetAccess"
+        },
+        {
+          "id": "switch.puhelin_internet_access_2",
+          "friendlyName": "Puhelin Internet Access",
+          "cSharpName": "PuhelinInternetAccess2"
+        },
+        {
           "id": "switch.qnap",
           "friendlyName": "Qnap",
           "cSharpName": "Qnap"
@@ -3673,6 +4003,11 @@
           "id": "switch.tv_power_meter",
           "friendlyName": "Tv Power Meter",
           "cSharpName": "TvPowerMeter"
+        },
+        {
+          "id": "switch.zatnas_internet_access",
+          "friendlyName": "Zatnas Internet Access",
+          "cSharpName": "ZatnasInternetAccess"
         }
       ],
       "attributes": [
@@ -3745,6 +4080,46 @@
           "jsonName": "raw_state",
           "cSharpName": "RawState",
           "clrType": "System.Boolean"
+        },
+        {
+          "jsonName": "internal_ip",
+          "cSharpName": "InternalIp",
+          "clrType": "System.String"
+        },
+        {
+          "jsonName": "internal_port",
+          "cSharpName": "InternalPort",
+          "clrType": "System.Double"
+        },
+        {
+          "jsonName": "external_port",
+          "cSharpName": "ExternalPort",
+          "clrType": "System.Double"
+        },
+        {
+          "jsonName": "protocol",
+          "cSharpName": "Protocol",
+          "clrType": "System.String"
+        },
+        {
+          "jsonName": "description",
+          "cSharpName": "Description",
+          "clrType": "System.String"
+        },
+        {
+          "jsonName": "standard",
+          "cSharpName": "Standard",
+          "clrType": "System.String"
+        },
+        {
+          "jsonName": "bssid",
+          "cSharpName": "Bssid",
+          "clrType": "System.String"
+        },
+        {
+          "jsonName": "mac_address_control",
+          "cSharpName": "MacAddressControl",
+          "clrType": "System.Boolean"
         }
       ]
     },
@@ -3795,6 +4170,11 @@
           "id": "update.file_editor_update",
           "friendlyName": "File editor Update",
           "cSharpName": "FileEditorUpdate"
+        },
+        {
+          "id": "update.fritz_box_6660_cable_fritz_os",
+          "friendlyName": "FRITZ!Box 6660 Cable FRITZ!OS",
+          "cSharpName": "FritzBox6660CableFritzOs"
         },
         {
           "id": "update.hallway_light",

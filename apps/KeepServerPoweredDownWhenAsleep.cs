@@ -23,7 +23,7 @@ namespace NetDaemonApps.apps
 
             void monitor()
             {
-                if (_myEntities.Sensor.BackCornerPlugPower.State > 5)
+                if (_myEntities.BinarySensor.ZatnasPing.State == "Connected")
                 {
                     _myServices.Script.TurnOffServer();
                 }
