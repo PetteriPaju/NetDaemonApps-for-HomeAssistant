@@ -7,6 +7,7 @@ using System.Linq;
 using System.Reactive.Concurrency;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace NetDaemonApps.apps
 {
@@ -20,10 +21,11 @@ namespace NetDaemonApps.apps
         {
             _myEntities = new Entities(ha);
             _myServices = new Services(ha);
-
+          
             void monitor()
             {
-                if (_myEntities.BinarySensor.ZatnasPing.State == "Connected")
+                
+                if (_myEntities.BinarySensor.ZatnasPing.State == "on")
                 {
                     _myServices.Script.TurnOffServer();
                 }

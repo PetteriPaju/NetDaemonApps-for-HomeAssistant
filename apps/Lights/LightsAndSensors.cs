@@ -23,7 +23,7 @@ namespace NetDaemonApps.apps.Lights
         {
             _myEntities = new Entities(ha);
 
-            SubcribeLightOn(_myEntities.BinarySensor.HallwaySensorOccupancy, _myEntities.Light.HallwayLight, fluzSensor: _myEntities.Sensor.OutsideTemperatureMeterLuminosity, maxFlux:3);
+            SubcribeLightOn(_myEntities.BinarySensor.HallwaySensorOccupancy, _myEntities.Light.HallwayLight);
             SubcribeLightOff(_myEntities.BinarySensor.HallwaySensorOccupancy, _myEntities.Light.HallwayLight, defaulMotionTimeout);
 
  
@@ -46,7 +46,7 @@ namespace NetDaemonApps.apps.Lights
 
             _myEntities.BinarySensor._0x001788010bcfb16fOccupancy.StateChanges().Where(x => x?.New?.State == "on" && _myEntities.Light.AllLights.IsOff() && _myEntities.Light.AllLights?.EntityState?.LastChanged< DateTime.Now + TimeSpan.FromSeconds(30)).SubscribeAsync(async s => {
 
-                _myEntities.Light.HallwayLight.TurnOnWithSensor(_myEntities.Sensor.OutsideTemperatureMeterLuminosity, 3);
+                _myEntities.Light.HallwayLight.TurnOn();
 
                 await Task.Delay(30000);
 
