@@ -64,11 +64,6 @@
           "cSharpName": "Isasleepupdate"
         },
         {
-          "id": "automation.keep_fridge_on",
-          "friendlyName": "Keep Fridge On",
-          "cSharpName": "KeepFridgeOn"
-        },
-        {
           "id": "automation.kirchen_kight",
           "friendlyName": "kirchen kight",
           "cSharpName": "KirchenKight"
@@ -159,11 +154,6 @@
           "id": "binary_sensor.0x001788010bcfb16f_update_available",
           "friendlyName": "PC Sensor update available",
           "cSharpName": "_0x001788010bcfb16fUpdateAvailable"
-        },
-        {
-          "id": "binary_sensor.back_corner_plug_update_available",
-          "friendlyName": "Back Corner Plug update available",
-          "cSharpName": "BackCornerPlugUpdateAvailable"
         },
         {
           "id": "binary_sensor.backups_stale",
@@ -296,21 +286,6 @@
           "cSharpName": "PortableHeadphoneSensors"
         },
         {
-          "id": "binary_sensor.power_meter_general_update_available",
-          "friendlyName": "Power Meter (General) update available",
-          "cSharpName": "PowerMeterGeneralUpdateAvailable"
-        },
-        {
-          "id": "binary_sensor.power_meter_plug_update_available",
-          "friendlyName": "PC-Acc\u0026Fridge Power Meter update available",
-          "cSharpName": "PowerMeterPlugUpdateAvailable"
-        },
-        {
-          "id": "binary_sensor.refrigerator_plug_update_available",
-          "friendlyName": "Kitchen Power Meter-Plug update available",
-          "cSharpName": "RefrigeratorPlugUpdateAvailable"
-        },
-        {
           "id": "binary_sensor.remote_ui",
           "friendlyName": "Remote UI",
           "cSharpName": "RemoteUi"
@@ -400,7 +375,7 @@
         {
           "jsonName": "sensor_value",
           "cSharpName": "SensorValue",
-          "clrType": "System.Double"
+          "clrType": "System.Object"
         },
         {
           "jsonName": "type",
@@ -435,6 +410,26 @@
         {
           "jsonName": "supported_features",
           "cSharpName": "SupportedFeatures",
+          "clrType": "System.Double"
+        },
+        {
+          "jsonName": "round_trip_time_avg",
+          "cSharpName": "RoundTripTimeAvg",
+          "clrType": "System.Double"
+        },
+        {
+          "jsonName": "round_trip_time_max",
+          "cSharpName": "RoundTripTimeMax",
+          "clrType": "System.Double"
+        },
+        {
+          "jsonName": "round_trip_time_mdev",
+          "cSharpName": "RoundTripTimeMdev",
+          "clrType": "System.String"
+        },
+        {
+          "jsonName": "round_trip_time_min",
+          "cSharpName": "RoundTripTimeMin",
           "clrType": "System.Double"
         }
       ]
@@ -551,7 +546,7 @@
         },
         {
           "id": "device_tracker.google_nest_hub",
-          "friendlyName": "Google-Nest-Hub",
+          "friendlyName": "fuchsia-1c53-f9e1-9a4e",
           "cSharpName": "GoogleNestHub"
         },
         {
@@ -601,7 +596,7 @@
         },
         {
           "id": "device_tracker.pc_192_168_0_24",
-          "friendlyName": "PC-192-168-0-24",
+          "friendlyName": "switchlan",
           "cSharpName": "Pc192168024"
         },
         {
@@ -1325,14 +1320,14 @@
       "domain": "lock",
       "entities": [
         {
-          "id": "lock.back_corner_plug_child_lock",
-          "friendlyName": "Back Corner Plug child lock",
-          "cSharpName": "BackCornerPlugChildLock"
-        },
-        {
           "id": "lock.bigfridge_powermeter_child_lock",
           "friendlyName": "BigFridge-Powermeter child lock",
           "cSharpName": "BigfridgePowermeterChildLock"
+        },
+        {
+          "id": "lock.kitchen_powermeter_plug_child_lock",
+          "friendlyName": "Kitchen PowerMeter-Plug child lock",
+          "cSharpName": "KitchenPowermeterPlugChildLock"
         },
         {
           "id": "lock.misc_powermeter_child_lock",
@@ -1340,24 +1335,24 @@
           "cSharpName": "MiscPowermeterChildLock"
         },
         {
+          "id": "lock.pc_accessories_powermeter_child_lock",
+          "friendlyName": "Pc-Accessories-PowerMeter child lock",
+          "cSharpName": "PcAccessoriesPowermeterChildLock"
+        },
+        {
           "id": "lock.pc_plug_child_lock",
           "friendlyName": "PC-Plug child lock",
           "cSharpName": "PcPlugChildLock"
         },
         {
-          "id": "lock.power_meter_general_child_lock",
-          "friendlyName": "Power Meter (General) child lock",
-          "cSharpName": "PowerMeterGeneralChildLock"
+          "id": "lock.tbd_powermeter_child_lock",
+          "friendlyName": "TBD-PowerMeter child lock",
+          "cSharpName": "TbdPowermeterChildLock"
         },
         {
-          "id": "lock.power_meter_plug_child_lock",
-          "friendlyName": "PC-Acc\u0026Fridge Power Meter child lock",
-          "cSharpName": "PowerMeterPlugChildLock"
-        },
-        {
-          "id": "lock.refrigerator_plug_child_lock",
-          "friendlyName": "Kitchen Power Meter-Plug child lock",
-          "cSharpName": "RefrigeratorPlugChildLock"
+          "id": "lock.toilet_power_plug_child_lock",
+          "friendlyName": "Toilet Power Plug child lock",
+          "cSharpName": "ToiletPowerPlugChildLock"
         },
         {
           "id": "lock.tv_power_meter_child_lock",
@@ -1888,16 +1883,6 @@
           "cSharpName": "_0x001788010bcfb16fMotionSensitivity"
         },
         {
-          "id": "select.back_corner_plug_indicator_mode",
-          "friendlyName": "Back Corner Plug indicator mode",
-          "cSharpName": "BackCornerPlugIndicatorMode"
-        },
-        {
-          "id": "select.back_corner_plug_power_outage_memory",
-          "friendlyName": "Back Corner Plug power outage memory",
-          "cSharpName": "BackCornerPlugPowerOutageMemory"
-        },
-        {
           "id": "select.bed_light_power_on_behavior",
           "friendlyName": "Bed Light power on behavior",
           "cSharpName": "BedLightPowerOnBehavior"
@@ -1938,6 +1923,16 @@
           "cSharpName": "KitchenLightPowerOnBehavior"
         },
         {
+          "id": "select.kitchen_powermeter_plug_indicator_mode",
+          "friendlyName": "Kitchen PowerMeter-Plug indicator mode",
+          "cSharpName": "KitchenPowermeterPlugIndicatorMode"
+        },
+        {
+          "id": "select.kitchen_powermeter_plug_power_outage_memory",
+          "friendlyName": "Kitchen PowerMeter-Plug power outage memory",
+          "cSharpName": "KitchenPowermeterPlugPowerOutageMemory"
+        },
+        {
           "id": "select.kitchen_sensor_motion_sensitivity",
           "friendlyName": "Kitchen Sensor motion sensitivity",
           "cSharpName": "KitchenSensorMotionSensitivity"
@@ -1956,6 +1951,16 @@
           "id": "select.misc_powermeter_power_outage_memory",
           "friendlyName": "Misc-PowerMeter power outage memory",
           "cSharpName": "MiscPowermeterPowerOutageMemory"
+        },
+        {
+          "id": "select.pc_accessories_powermeter_indicator_mode",
+          "friendlyName": "Pc-Accessories-PowerMeter indicator mode",
+          "cSharpName": "PcAccessoriesPowermeterIndicatorMode"
+        },
+        {
+          "id": "select.pc_accessories_powermeter_power_outage_memory",
+          "friendlyName": "Pc-Accessories-PowerMeter power outage memory",
+          "cSharpName": "PcAccessoriesPowermeterPowerOutageMemory"
         },
         {
           "id": "select.pc_connector_indicator_light_mode",
@@ -1978,44 +1983,34 @@
           "cSharpName": "PcPlugPowerOutageMemory"
         },
         {
-          "id": "select.power_meter_general_indicator_mode",
-          "friendlyName": "Power Meter (General) indicator mode",
-          "cSharpName": "PowerMeterGeneralIndicatorMode"
-        },
-        {
-          "id": "select.power_meter_general_power_outage_memory",
-          "friendlyName": "Power Meter (General) power outage memory",
-          "cSharpName": "PowerMeterGeneralPowerOutageMemory"
-        },
-        {
-          "id": "select.power_meter_plug_indicator_mode",
-          "friendlyName": "PC-Acc\u0026Fridge Power Meter indicator mode",
-          "cSharpName": "PowerMeterPlugIndicatorMode"
-        },
-        {
-          "id": "select.power_meter_plug_power_outage_memory",
-          "friendlyName": "PC-Acc\u0026Fridge Power Meter power outage memory",
-          "cSharpName": "PowerMeterPlugPowerOutageMemory"
-        },
-        {
-          "id": "select.refrigerator_plug_indicator_mode",
-          "friendlyName": "Kitchen Power Meter-Plug indicator mode",
-          "cSharpName": "RefrigeratorPlugIndicatorMode"
-        },
-        {
-          "id": "select.refrigerator_plug_power_outage_memory",
-          "friendlyName": "Kitchen Power Meter-Plug power outage memory",
-          "cSharpName": "RefrigeratorPlugPowerOutageMemory"
-        },
-        {
           "id": "select.storage_light_power_on_behavior",
           "friendlyName": "Storage Light power on behavior",
           "cSharpName": "StorageLightPowerOnBehavior"
         },
         {
+          "id": "select.tbd_powermeter_indicator_mode",
+          "friendlyName": "TBD-PowerMeter indicator mode",
+          "cSharpName": "TbdPowermeterIndicatorMode"
+        },
+        {
+          "id": "select.tbd_powermeter_power_outage_memory",
+          "friendlyName": "TBD-PowerMeter power outage memory",
+          "cSharpName": "TbdPowermeterPowerOutageMemory"
+        },
+        {
           "id": "select.toilet_light_1_power_on_behavior",
           "friendlyName": "Toilet Light_1_power_on_behavior",
           "cSharpName": "ToiletLight1PowerOnBehavior"
+        },
+        {
+          "id": "select.toilet_power_plug_indicator_mode",
+          "friendlyName": "Toilet Power Plug indicator mode",
+          "cSharpName": "ToiletPowerPlugIndicatorMode"
+        },
+        {
+          "id": "select.toilet_power_plug_power_outage_memory",
+          "friendlyName": "Toilet Power Plug power outage memory",
+          "cSharpName": "ToiletPowerPlugPowerOutageMemory"
         },
         {
           "id": "select.toilet_sensor_motion_sensitivity",
@@ -3000,6 +2995,11 @@
           "jsonName": "state_class",
           "cSharpName": "StateClass",
           "clrType": "System.String"
+        },
+        {
+          "jsonName": "entity_id",
+          "cSharpName": "EntityId",
+          "clrType": "System.Collections.Generic.IReadOnlyList\u00601[System.String]"
         }
       ]
     },
@@ -3063,21 +3063,6 @@
           "cSharpName": "AllLightDailyConsumption"
         },
         {
-          "id": "sensor.back_corner_energy_daily_consumption",
-          "friendlyName": "Back Corner Energy Daily Consumption",
-          "cSharpName": "BackCornerEnergyDailyConsumption"
-        },
-        {
-          "id": "sensor.back_corner_plug_energy",
-          "friendlyName": "Back Corner Plug energy",
-          "cSharpName": "BackCornerPlugEnergy"
-        },
-        {
-          "id": "sensor.back_corner_plug_power",
-          "friendlyName": "Back Corner Power",
-          "cSharpName": "BackCornerPlugPower"
-        },
-        {
           "id": "sensor.bigfridge_powermeter_energy",
           "friendlyName": "BigFridge-Powermeter energy",
           "cSharpName": "BigfridgePowermeterEnergy"
@@ -3111,11 +3096,6 @@
           "id": "sensor.envy_battery_charge_remaining_percentage",
           "friendlyName": "ENVY_battery Charge Remaining Percentage",
           "cSharpName": "EnvyBatteryChargeRemainingPercentage"
-        },
-        {
-          "id": "sensor.fridge_power_consumption",
-          "friendlyName": "Kitchen Power Consumption",
-          "cSharpName": "FridgePowerConsumption"
         },
         {
           "id": "sensor.fridge_temp_humidity",
@@ -3243,6 +3223,21 @@
           "cSharpName": "KitchenDistance"
         },
         {
+          "id": "sensor.kitchen_power_consumption",
+          "friendlyName": "Kitchen Power Consumption",
+          "cSharpName": "KitchenPowerConsumption"
+        },
+        {
+          "id": "sensor.kitchen_powermeter_plug_energy",
+          "friendlyName": "Kitchen PowerMeter-Plug energy",
+          "cSharpName": "KitchenPowermeterPlugEnergy"
+        },
+        {
+          "id": "sensor.kitchen_powermeter_plug_power",
+          "friendlyName": "Kitchen PowerMeter-Plug power",
+          "cSharpName": "KitchenPowermeterPlugPower"
+        },
+        {
           "id": "sensor.kitchen_sensor_battery_2",
           "friendlyName": "Kitchen Sensor battery",
           "cSharpName": "KitchenSensorBattery2"
@@ -3276,11 +3271,6 @@
           "id": "sensor.misc_daily_consumption",
           "friendlyName": "Misc-Daily-Consumption",
           "cSharpName": "MiscDailyConsumption"
-        },
-        {
-          "id": "sensor.misc_power_meter_consumption",
-          "friendlyName": "Fridge, Modem, PI Daily Consumption",
-          "cSharpName": "MiscPowerMeterConsumption"
         },
         {
           "id": "sensor.misc_powermeter_energy",
@@ -3328,6 +3318,16 @@
           "cSharpName": "PcAccesoriesEnergymeterDaily"
         },
         {
+          "id": "sensor.pc_accessories_powermeter_energy",
+          "friendlyName": "Pc-Accessories-PowerMeter energy",
+          "cSharpName": "PcAccessoriesPowermeterEnergy"
+        },
+        {
+          "id": "sensor.pc_accessories_powermeter_power",
+          "friendlyName": "Pc-Accessories-PowerMeter power",
+          "cSharpName": "PcAccessoriesPowermeterPower"
+        },
+        {
           "id": "sensor.pc_energy_consumption_daily",
           "friendlyName": "PC Energy Consumption (Daily)",
           "cSharpName": "PcEnergyConsumptionDaily"
@@ -3363,29 +3363,9 @@
           "cSharpName": "PcPlugPower"
         },
         {
-          "id": "sensor.power_meter_general_energy",
-          "friendlyName": "Power Meter (General) energy",
-          "cSharpName": "PowerMeterGeneralEnergy"
-        },
-        {
-          "id": "sensor.power_meter_general_power",
-          "friendlyName": "Fridge, Modem, PI Power",
-          "cSharpName": "PowerMeterGeneralPower"
-        },
-        {
           "id": "sensor.power_meter_hourly",
           "friendlyName": "Power meter (hourly)",
           "cSharpName": "PowerMeterHourly"
-        },
-        {
-          "id": "sensor.power_meter_plug_energy",
-          "friendlyName": "PC-Acc\u0026Fridge Power Meter energy",
-          "cSharpName": "PowerMeterPlugEnergy"
-        },
-        {
-          "id": "sensor.power_meter_plug_power",
-          "friendlyName": "Pc Accessories Power",
-          "cSharpName": "PowerMeterPlugPower"
         },
         {
           "id": "sensor.power_meters_energy_hourly",
@@ -3396,16 +3376,6 @@
           "id": "sensor.powermeters",
           "friendlyName": "All Energy Meters",
           "cSharpName": "Powermeters"
-        },
-        {
-          "id": "sensor.refrigerator_plug_energy",
-          "friendlyName": "Kitchen Power Meter-Plug energy",
-          "cSharpName": "RefrigeratorPlugEnergy"
-        },
-        {
-          "id": "sensor.refrigerator_plug_power",
-          "friendlyName": "Kitchen Power Meter-Plug power",
-          "cSharpName": "RefrigeratorPlugPower"
         },
         {
           "id": "sensor.sm_t530_battery_level",
@@ -3446,6 +3416,36 @@
           "id": "sensor.surface_laptop_battery_charge_remaining_percentage",
           "friendlyName": "Surface_Laptop_battery Charge Remaining Percentage",
           "cSharpName": "SurfaceLaptopBatteryChargeRemainingPercentage"
+        },
+        {
+          "id": "sensor.tbd_consumption",
+          "friendlyName": "TDB Consumption",
+          "cSharpName": "TbdConsumption"
+        },
+        {
+          "id": "sensor.tbd_powermeter_energy",
+          "friendlyName": "TBD-PowerMeter energy",
+          "cSharpName": "TbdPowermeterEnergy"
+        },
+        {
+          "id": "sensor.tbd_powermeter_power",
+          "friendlyName": "TBD-PowerMeter power",
+          "cSharpName": "TbdPowermeterPower"
+        },
+        {
+          "id": "sensor.toilet_energy_daily_consumption",
+          "friendlyName": "Toilet Energy Daily Consuption",
+          "cSharpName": "ToiletEnergyDailyConsumption"
+        },
+        {
+          "id": "sensor.toilet_power_plug_energy",
+          "friendlyName": "Toilet Power Plug energy",
+          "cSharpName": "ToiletPowerPlugEnergy"
+        },
+        {
+          "id": "sensor.toilet_power_plug_power",
+          "friendlyName": "Toilet Power Plug power",
+          "cSharpName": "ToiletPowerPlugPower"
         },
         {
           "id": "sensor.toilet_seat_sensor_battery",
@@ -3725,11 +3725,6 @@
           "cSharpName": "AdguardHomeSafeSearch"
         },
         {
-          "id": "switch.back_corner_plug",
-          "friendlyName": "Back Corner Plug",
-          "cSharpName": "BackCornerPlug"
-        },
-        {
           "id": "switch.bed_multi_plug_l1",
           "friendlyName": "TV",
           "cSharpName": "BedMultiPlugL1"
@@ -3751,7 +3746,7 @@
         },
         {
           "id": "switch.bright_light_plug",
-          "friendlyName": "Smart Speaker Plug",
+          "friendlyName": "Walking Pad",
           "cSharpName": "BrightLightPlug"
         },
         {
@@ -3831,7 +3826,7 @@
         },
         {
           "id": "switch.google_nest_hub_internet_access",
-          "friendlyName": "Google-Nest-Hub Internet Access",
+          "friendlyName": "fuchsia-1c53-f9e1-9a4e Internet Access",
           "cSharpName": "GoogleNestHubInternetAccess"
         },
         {
@@ -3865,6 +3860,11 @@
           "cSharpName": "JaeaekaapinlaempoemittariInternetAccess"
         },
         {
+          "id": "switch.kitchen_powermeter_plug",
+          "friendlyName": "Kitchen PowerMeter-Plug",
+          "cSharpName": "KitchenPowermeterPlug"
+        },
+        {
           "id": "switch.kitchen_sensor_led_indication",
           "friendlyName": "Kitchen Sensor led_indication",
           "cSharpName": "KitchenSensorLedIndication"
@@ -3896,13 +3896,18 @@
         },
         {
           "id": "switch.pc_192_168_0_24_internet_access",
-          "friendlyName": "PC-192-168-0-24 Internet Access",
+          "friendlyName": "switchlan Internet Access",
           "cSharpName": "Pc192168024InternetAccess"
         },
         {
           "id": "switch.pc_a0_92_08_90_22_91_internet_access",
           "friendlyName": "minitemp-humiditysensor Internet Access",
           "cSharpName": "PcA09208902291InternetAccess"
+        },
+        {
+          "id": "switch.pc_accessories_powermeter",
+          "friendlyName": "PC Accessories",
+          "cSharpName": "PcAccessoriesPowermeter"
         },
         {
           "id": "switch.pc_connector_child_lock",
@@ -3955,16 +3960,6 @@
           "cSharpName": "PcPlug"
         },
         {
-          "id": "switch.power_meter_general",
-          "friendlyName": "Power Meter (General)",
-          "cSharpName": "PowerMeterGeneral"
-        },
-        {
-          "id": "switch.power_meter_plug",
-          "friendlyName": "PC-Acc\u0026Fridge Power Meter",
-          "cSharpName": "PowerMeterPlug"
-        },
-        {
           "id": "switch.puhelin_internet_access",
           "friendlyName": "Puhelin Internet Access",
           "cSharpName": "PuhelinInternetAccess"
@@ -3980,11 +3975,6 @@
           "cSharpName": "Qnap"
         },
         {
-          "id": "switch.refrigerator_plug",
-          "friendlyName": "Kitchen Power Meter-Plug",
-          "cSharpName": "RefrigeratorPlug"
-        },
-        {
           "id": "switch.runner_plug",
           "friendlyName": "Laptop Plug Desktop",
           "cSharpName": "RunnerPlug"
@@ -3993,6 +3983,16 @@
           "id": "switch.schedule_9ee8ea",
           "friendlyName": "Schedule #9ee8ea",
           "cSharpName": "Schedule9ee8ea"
+        },
+        {
+          "id": "switch.tbd_powermeter",
+          "friendlyName": "TBD-PowerMeter",
+          "cSharpName": "TbdPowermeter"
+        },
+        {
+          "id": "switch.toilet_power_plug",
+          "friendlyName": "Toilet Power Plug",
+          "cSharpName": "ToiletPowerPlug"
         },
         {
           "id": "switch.toilet_sensor_led_indication",
@@ -4132,11 +4132,6 @@
           "cSharpName": "AdguardHomeUpdate"
         },
         {
-          "id": "update.back_corner_plug",
-          "friendlyName": "Back Corner Plug",
-          "cSharpName": "BackCornerPlug"
-        },
-        {
           "id": "update.bed_light",
           "friendlyName": "Bed Light",
           "cSharpName": "BedLight"
@@ -4222,9 +4217,9 @@
           "cSharpName": "KitchenLight"
         },
         {
-          "id": "update.kitchen_power_meter_plug",
-          "friendlyName": "Kitchen Power Meter-Plug",
-          "cSharpName": "KitchenPowerMeterPlug"
+          "id": "update.kitchen_powermeter_plug",
+          "friendlyName": "Kitchen PowerMeter-Plug",
+          "cSharpName": "KitchenPowermeterPlug"
         },
         {
           "id": "update.kitchen_sensor",
@@ -4262,9 +4257,9 @@
           "cSharpName": "NginxProxyManagerUpdate"
         },
         {
-          "id": "update.pc_acc_fridge_power_meter",
-          "friendlyName": "PC-Acc\u0026Fridge Power Meter",
-          "cSharpName": "PcAccFridgePowerMeter"
+          "id": "update.pc_accessories_powermeter",
+          "friendlyName": "Pc-Accessories-PowerMeter",
+          "cSharpName": "PcAccessoriesPowermeter"
         },
         {
           "id": "update.pc_plug",
@@ -4280,11 +4275,6 @@
           "id": "update.piper_update",
           "friendlyName": "Piper Update",
           "cSharpName": "PiperUpdate"
-        },
-        {
-          "id": "update.power_meter_general",
-          "friendlyName": "Power Meter (General)",
-          "cSharpName": "PowerMeterGeneral"
         },
         {
           "id": "update.runner_plug",
@@ -4307,6 +4297,11 @@
           "cSharpName": "StudioCodeServerUpdate"
         },
         {
+          "id": "update.tbd_powermeter",
+          "friendlyName": "TBD-PowerMeter",
+          "cSharpName": "TbdPowermeter"
+        },
+        {
           "id": "update.terminal_ssh_update",
           "friendlyName": "Terminal \u0026 SSH Update",
           "cSharpName": "TerminalSshUpdate"
@@ -4315,6 +4310,11 @@
           "id": "update.toilet_light_1",
           "friendlyName": "Toilet Light_1",
           "cSharpName": "ToiletLight1"
+        },
+        {
+          "id": "update.toilet_power_plug",
+          "friendlyName": "Toilet Power Plug",
+          "cSharpName": "ToiletPowerPlug"
         },
         {
           "id": "update.toilet_sensor",
