@@ -386,8 +386,6 @@ public class EnergyMonitor
 
         var thisHourTotal = thisHourFortum + thisHourTranster;
 
-
-
         _myEntities.InputNumber.EnergyCostDaily.SetValue(_myEntities.InputNumber.EnergyCostDaily.State + thisHourTotal ?? 0);
         _myEntities.InputNumber.EnergyCostHourly.SetValue(thisHourTotal ?? 0);
 
