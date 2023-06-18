@@ -68,7 +68,7 @@ namespace NetDaemonApps.apps.Hue_Switches
                     break;
 
                 case "down_hold":
-                    OnOffHold();
+                    OnDownHold();
                     break;
 
                 case "down_hold_release":

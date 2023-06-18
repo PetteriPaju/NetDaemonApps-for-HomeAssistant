@@ -1,12 +1,19 @@
 ﻿using HomeAssistantGenerated;
 using NetDaemon.HassModel.Entities;
+using NetDaemonApps.apps.Lights;
+using System.Diagnostics;
 
 namespace NetDaemonApps.apps.Hue_Switches
 {
     [NetDaemonApp]
     public class Livingroom_Switch : HueSwitch
     {
-        public Livingroom_Switch(IHaContext ha) : base(ha){}
+        public Livingroom_Switch(IHaContext ha) : base(ha){ lightCycler = new LightCycler(_myEntities.Light.DesktopLight, _myEntities.Light.LivingRoomLight); }
+        private LightCycler lightCycler;
+
+        private const double lightBrigthnessStep = 15;
+        private const double miniumBrightness = 10;
+
 
         protected override SensorEntity ObtainSwitch(Entities entities)
         {
@@ -15,23 +22,55 @@ namespace NetDaemonApps.apps.Hue_Switches
 
         protected override void OnOnPress()
         {
-            if (_myEntities.Switch.PcConnectorMonitors.IsOff())
-            {
-                _myEntities.Switch.PcConnectorMonitors.TurnOn();
-                _myEntities.Switch.PcConnectorOthers.TurnOn();
+            lightCycler.NextLight();
+        }
 
-            }
-            else
+        protected override void OnOnPressRelease()
+        {
+            base.OnOnPressRelease();
+            lightCycler.TurnOff();
+        }
+
+        protected override void OnUpPress()
+        {
+            base.OnUpPress();
+     
+                if (lightCycler.GetCurrentLight() == null) return;
+
+            if (lightCycler.GetCurrentLight() != null && lightCycler.GetCurrentLight()?.Attributes?.SupportedFeatures != 0 && lightCycler.GetCurrentLight()?.Attributes?.Brightness < 100)
             {
-                _myEntities.Switch.PcConnectorMonitors.TurnOff();
-                _myEntities.Switch.PcConnectorOthers.TurnOff();
+                long minBrightnessFix = (long)MathF.Min((int)(lightCycler.GetCurrentLight().Attributes.Brightness + lightBrigthnessStep), (int)100);
+
+                lightCycler.GetCurrentLight().TurnOn(brightness: minBrightnessFix);
             }
         }
 
-
-        protected override void OnOffPress()
+        protected override void OnUpHold()
         {
-            _myEntities.Switch.FanPlug.Toggle();
+            base.OnUpHold();
+            this.OnUpPress();
+        }
+
+
+        protected override void OnDownPress()
+        {
+            base.OnDownPress();
+
+             if (lightCycler.GetCurrentLight() == null) return;
+
+            if (lightCycler.GetCurrentLight() != null && lightCycler.GetCurrentLight()?.Attributes?.SupportedFeatures != 0 && lightCycler.GetCurrentLight()?.Attributes?.Brightness > miniumBrightness)
+            {
+                long minBrightnessFix = (long)MathF.Max((int)(lightCycler.GetCurrentLight().Attributes.Brightness - lightBrigthnessStep), (int)miniumBrightness);
+
+                lightCycler.GetCurrentLight().TurnOn(brightness: minBrightnessFix);
+            }
+        }
+
+        protected override void OnDownHold()
+        {
+           
+            base.OnDownHold();        
+            this.OnDownPress();
         }
 
     }
