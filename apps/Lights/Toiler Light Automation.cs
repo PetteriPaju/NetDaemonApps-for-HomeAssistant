@@ -25,7 +25,7 @@ namespace NetDaemonApps.apps.Lights
             _myEntities = new Entities(ha);
 
             targetLights.Add(_myEntities.Light.BedLight);
-            targetLights.Add(_myEntities.Light.PcConnector1);
+            targetLights.Add(_myEntities.Light.PcMultipowermeterL2);
   
             targetLights.Add(_myEntities.Light.LivingRoomLight);
             targetLights.Add(_myEntities.Light.DesktopLight);

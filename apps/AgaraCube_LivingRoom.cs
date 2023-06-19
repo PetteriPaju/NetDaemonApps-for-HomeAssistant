@@ -24,7 +24,7 @@ namespace NetDaemonApps.apps
 
         public AgaraCube_LivingRoom(IHaContext ha) : base(ha) { 
 
-            lightEntities = new List<LightEntity> { _myEntities.Light.LivingRoomLight, _myEntities.Light.PcConnector1, _myEntities.Light.DesktopLight };
+            lightEntities = new List<LightEntity> { _myEntities.Light.LivingRoomLight, _myEntities.Light.PcMultipowermeterL2, _myEntities.Light.DesktopLight };
             void SetActiveLightListener(LightEntity lightE)
             {
                 lightE.StateChanges().Where(x => x.New?.State == "on").Subscribe(x => { currentlyActiveLight = lightE; lastActiveLight = lightE; });
@@ -103,7 +103,7 @@ namespace NetDaemonApps.apps
 
            
 
-            if(currentlyActiveLight == _myEntities.Light.PcConnector1 && BrightLightTurnedOnByPC)
+            if(currentlyActiveLight == _myEntities.Light.PcMultipowermeterL2 && BrightLightTurnedOnByPC)
             {
                 currentlyActiveLight = _myEntities.Light.LivingRoomLight;
                 currentlyActiveLight.TurnOn();
