@@ -49,6 +49,14 @@ namespace NetDaemonApps.apps.Lights
             .WhenStateIsFor(e => e.IsOff() && _myEntities.BinarySensor.ToiletSeatSensorContact.IsOff() && _myEntities.InputBoolean.SensorsActive.IsOn(), motionSensorTimeOutSpan)
             .Subscribe(_ => { _myEntities.Light.ToiletLight1.TurnOffLight(); });
 
+            _00_LivingRoomFP1.LivingRoomFP1.Regions[2].callbacks.onEnter += (AqaraFP1Extender.FP1EventInfo info) =>
+            {
+                if (_myEntities.BinarySensor.ToiletSeatSensorContact.IsOff() && _myEntities.Light.ToiletLight1.EntityState.LastChanged < (DateTime.Now - TimeSpan.FromSeconds(1)))
+                {
+                    _myEntities.Light.ToiletLight1.TurnOffLight();
+                }
+            };
+
         }
 
 

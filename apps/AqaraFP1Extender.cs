@@ -1,5 +1,6 @@
 ﻿using HomeAssistantGenerated;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
+using NetDaemon.HassModel.Entities;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -37,9 +38,15 @@ namespace NetDaemonApps.apps
 
                 callbacks.onEnter += SetEnterStatus;
                 callbacks.onExit += SetEnterStatus;
-
+              
 
                 this.haIsEnteredBoolean = haIsEnteredBoolean;
+                haIsEnteredBoolean.TurnOff();
+            }
+
+            public TimeSpan? TimeSinceLastExited()
+            {
+                return haIsEnteredBoolean.IsOn() ? TimeSpan.Zero : DateTime.Now - haIsEnteredBoolean?.EntityState?.LastUpdated;
             }
 
             public bool occupied { get; private set; }
@@ -72,11 +79,11 @@ namespace NetDaemonApps.apps
 
         public virtual void initializeRegionDictionary(List<InputBooleanEntity> inputbooleans)
         {
-            Regions.Add(new Region(1, "Region 1", inputbooleans[0]));
-            Regions.Add(new Region(2, "Region 2", inputbooleans[1]));
-            Regions.Add(new Region(3, "Region 3", inputbooleans[2]));
-            Regions.Add(new Region(4, "Region 4", inputbooleans[3]));
-            Regions.Add(new Region(5, "Region 5", inputbooleans[4]));
+            Regions.Add(new Region(1, "1 PC-Area", inputbooleans[0]));
+            Regions.Add(new Region(2, "2 Kitchen Enter Area", inputbooleans[1]));
+            Regions.Add(new Region(3, "3 Hallway Area", inputbooleans[2]));
+            Regions.Add(new Region(4, "4 Off Bed area", inputbooleans[3]));
+            Regions.Add(new Region(5, "5 Bed Area", inputbooleans[4]));
             Regions.Add(new Region(6, "Region 6", inputbooleans[5]));
             Regions.Add(new Region(7, "Region 7", inputbooleans[6]));
             Regions.Add(new Region(8, "Region 8", inputbooleans[7]));
