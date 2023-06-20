@@ -24,14 +24,22 @@ namespace NetDaemonApps.apps
         {
             public int id;
             public string name;
+            public InputBooleanEntity haIsEnteredBoolean;
             public delegate void RegionDelegate(FP1EventInfo eventInfo);
-            public Region(int id, string name)
+            public Region(int id, string name, InputBooleanEntity haIsEnteredBoolean)
             {
                 this.id = id;
                 this.name = name;
 
+
                 callbacks.onOccupy += SetOccupyStatus;
                 callbacks.onUnOccupy += SetOccupyStatus;
+
+                callbacks.onEnter += SetEnterStatus;
+                callbacks.onExit += SetEnterStatus;
+
+
+                this.haIsEnteredBoolean = haIsEnteredBoolean;
             }
 
             public bool occupied { get; private set; }
@@ -43,7 +51,11 @@ namespace NetDaemonApps.apps
                 if (eventInfo.eventType == Fp1EventType.Occupied) occupied = true;
                 else if (eventInfo.eventType == Fp1EventType.Unoccupied) occupied = false;
             }
-
+            public void SetEnterStatus(FP1EventInfo eventInfo)
+            {
+                if (eventInfo.eventType == Fp1EventType.Enter) haIsEnteredBoolean.TurnOn();
+                else if (eventInfo.eventType == Fp1EventType.Leave) haIsEnteredBoolean.TurnOff();
+            }
             public class Callbacks
             {
                 public RegionDelegate? onEnter;
@@ -58,18 +70,18 @@ namespace NetDaemonApps.apps
             return enteredRegions.FirstOrDefault(defaultValue: null);
         }
 
-        public virtual void initializeRegionDictionary()
+        public virtual void initializeRegionDictionary(List<InputBooleanEntity> inputbooleans)
         {
-            Regions.Add(new Region(1, "Region 1"));
-            Regions.Add(new Region(2, "Region 2"));
-            Regions.Add(new Region(3, "Region 3"));
-            Regions.Add(new Region(4, "Region 4"));
-            Regions.Add(new Region(5, "Region 5"));
-            Regions.Add(new Region(6, "Region 6"));
-            Regions.Add(new Region(7, "Region 7"));
-            Regions.Add(new Region(8, "Region 8"));
-            Regions.Add(new Region(9, "Region 9"));
-            Regions.Add(new Region(10, "Region 10"));
+            Regions.Add(new Region(1, "Region 1", inputbooleans[0]));
+            Regions.Add(new Region(2, "Region 2", inputbooleans[1]));
+            Regions.Add(new Region(3, "Region 3", inputbooleans[2]));
+            Regions.Add(new Region(4, "Region 4", inputbooleans[3]));
+            Regions.Add(new Region(5, "Region 5", inputbooleans[4]));
+            Regions.Add(new Region(6, "Region 6", inputbooleans[5]));
+            Regions.Add(new Region(7, "Region 7", inputbooleans[6]));
+            Regions.Add(new Region(8, "Region 8", inputbooleans[7]));
+            Regions.Add(new Region(9, "Region 9", inputbooleans[8]));
+            Regions.Add(new Region(10, "Region 10", inputbooleans[9]));
         }
 
         public enum Fp1EventType {
@@ -90,8 +102,8 @@ namespace NetDaemonApps.apps
             Away
         };
 
-        public AqaraFP1Extender(BinarySensorEntity presence, SensorEntity presenceEventSensor, SensorEntity actionSensor) {
-            initializeRegionDictionary();
+        public AqaraFP1Extender(BinarySensorEntity presence, SensorEntity presenceEventSensor, SensorEntity actionSensor, List<InputBooleanEntity> haEntities) {
+            initializeRegionDictionary(haEntities);
             this.sensorPresence = presence;
             this.presenseEventSensor = presenceEventSensor;
             this.actionSensor = actionSensor;

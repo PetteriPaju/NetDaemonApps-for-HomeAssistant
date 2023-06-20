@@ -19,7 +19,21 @@ namespace NetDaemonApps.apps
 
            Entities e = new Entities(ha);
             inputText = e.InputText.Fp1debugger;
-            LivingRoomFP1 = new AqaraFP1Extender(e.BinarySensor.Livingroomfp1Presence, e.Sensor.Livingroomfp1PresenceEvent, e.Sensor.Livingroomfp1Action);
+
+
+            List<InputBooleanEntity> booleans = new List<InputBooleanEntity>();
+            booleans.Add(e.InputBoolean.Pf1LrR1);
+            booleans.Add(e.InputBoolean.Pf1LrR2);
+            booleans.Add(e.InputBoolean.Pf1LrR3);
+            booleans.Add(e.InputBoolean.Pf1LrR4);
+            booleans.Add(e.InputBoolean.Pf1LrR5);
+            booleans.Add(e.InputBoolean.Pf1LrR6);
+            booleans.Add(e.InputBoolean.Pf1LrR7);
+            booleans.Add(e.InputBoolean.Pf1LrR8);
+            booleans.Add(e.InputBoolean.Pf1LrR9);
+            booleans.Add(e.InputBoolean.Pf1LrR110);
+
+            LivingRoomFP1 = new AqaraFP1Extender(e.BinarySensor.Livingroomfp1Presence, e.Sensor.Livingroomfp1PresenceEvent, e.Sensor.Livingroomfp1Action, booleans);
             
             foreach(var region in LivingRoomFP1.Regions)
             {

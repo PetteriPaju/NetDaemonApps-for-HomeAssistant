@@ -49,6 +49,11 @@
           "cSharpName": "FridgeAutomation"
         },
         {
+          "id": "automation.front_door_is_home",
+          "friendlyName": "Front Door_Is Home",
+          "cSharpName": "FrontDoorIsHome"
+        },
+        {
           "id": "automation.guest_mode_notification",
           "friendlyName": "(Guest) Guest Mode Notification",
           "cSharpName": "GuestModeNotification"
@@ -797,91 +802,6 @@
           "cSharpName": "AutoTurnOffServer"
         },
         {
-          "id": "input_boolean.dev_netdaemon_net_daemon_apps_apps_00_living_room_fp1",
-          "friendlyName": "dev_netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "DevNetdaemonNetDaemonAppsApps00LivingRoomFp1"
-        },
-        {
-          "id": "input_boolean.dev_netdaemon_net_daemon_apps_apps_00_living_room_fp1_2",
-          "friendlyName": "dev_netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "DevNetdaemonNetDaemonAppsApps00LivingRoomFp12"
-        },
-        {
-          "id": "input_boolean.dev_netdaemon_net_daemon_apps_apps_agara_cube_living_room",
-          "friendlyName": "dev_netdaemon_net_daemon_apps_apps_agara_cube_living_room",
-          "cSharpName": "DevNetdaemonNetDaemonAppsAppsAgaraCubeLivingRoom"
-        },
-        {
-          "id": "input_boolean.dev_netdaemon_net_daemon_apps_apps_auto_turn_offs",
-          "friendlyName": "dev_netdaemon_net_daemon_apps_apps_auto_turn_offs",
-          "cSharpName": "DevNetdaemonNetDaemonAppsAppsAutoTurnOffs"
-        },
-        {
-          "id": "input_boolean.dev_netdaemon_net_daemon_apps_apps_energy_monitor",
-          "friendlyName": "dev_netdaemon_net_daemon_apps_apps_energy_monitor",
-          "cSharpName": "DevNetdaemonNetDaemonAppsAppsEnergyMonitor"
-        },
-        {
-          "id": "input_boolean.dev_netdaemon_net_daemon_apps_apps_hue_switches_bed_hue_switch",
-          "friendlyName": "dev_netdaemon_net_daemon_apps_apps_hue_switches_bed_hue_switch",
-          "cSharpName": "DevNetdaemonNetDaemonAppsAppsHueSwitchesBedHueSwitch"
-        },
-        {
-          "id": "input_boolean.dev_netdaemon_net_daemon_apps_apps_hue_switches_livingroom_switch",
-          "friendlyName": "dev_netdaemon_net_daemon_apps_apps_hue_switches_livingroom_switch",
-          "cSharpName": "DevNetdaemonNetDaemonAppsAppsHueSwitchesLivingroomSwitch"
-        },
-        {
-          "id": "input_boolean.dev_netdaemon_net_daemon_apps_apps_is_asleep_monitor",
-          "friendlyName": "dev_netdaemon_net_daemon_apps_apps_is_asleep_monitor",
-          "cSharpName": "DevNetdaemonNetDaemonAppsAppsIsAsleepMonitor"
-        },
-        {
-          "id": "input_boolean.dev_netdaemon_net_daemon_apps_apps_is_home_manager",
-          "friendlyName": "dev_netdaemon_net_daemon_apps_apps_is_home_manager",
-          "cSharpName": "DevNetdaemonNetDaemonAppsAppsIsHomeManager"
-        },
-        {
-          "id": "input_boolean.dev_netdaemon_net_daemon_apps_apps_keep_server_powered_down_when_asleep",
-          "friendlyName": "dev_netdaemon_net_daemon_apps_apps_keep_server_powered_down_when_asleep",
-          "cSharpName": "DevNetdaemonNetDaemonAppsAppsKeepServerPoweredDownWhenAsleep"
-        },
-        {
-          "id": "input_boolean.dev_netdaemon_net_daemon_apps_apps_lights_lights_and_sensors",
-          "friendlyName": "dev_netdaemon_net_daemon_apps_apps_lights_lights_and_sensors",
-          "cSharpName": "DevNetdaemonNetDaemonAppsAppsLightsLightsAndSensors"
-        },
-        {
-          "id": "input_boolean.dev_netdaemon_net_daemon_apps_apps_lights_livingroom_lights",
-          "friendlyName": "dev_netdaemon_net_daemon_apps_apps_lights_livingroom_lights",
-          "cSharpName": "DevNetdaemonNetDaemonAppsAppsLightsLivingroomLights"
-        },
-        {
-          "id": "input_boolean.dev_netdaemon_net_daemon_apps_apps_lights_toiler_light_automation",
-          "friendlyName": "dev_netdaemon_net_daemon_apps_apps_lights_toiler_light_automation",
-          "cSharpName": "DevNetdaemonNetDaemonAppsAppsLightsToilerLightAutomation"
-        },
-        {
-          "id": "input_boolean.dev_netdaemon_net_daemon_apps_apps_media_playing_monitor",
-          "friendlyName": "dev_netdaemon_net_daemon_apps_apps_media_playing_monitor",
-          "cSharpName": "DevNetdaemonNetDaemonAppsAppsMediaPlayingMonitor"
-        },
-        {
-          "id": "input_boolean.dev_netdaemon_net_daemon_apps_apps_notifications",
-          "friendlyName": "dev_netdaemon_net_daemon_apps_apps_notifications",
-          "cSharpName": "DevNetdaemonNetDaemonAppsAppsNotifications"
-        },
-        {
-          "id": "input_boolean.dev_netdaemon_net_daemon_apps_apps_step_counter",
-          "friendlyName": "dev_netdaemon_net_daemon_apps_apps_step_counter",
-          "cSharpName": "DevNetdaemonNetDaemonAppsAppsStepCounter"
-        },
-        {
-          "id": "input_boolean.dev_netdaemon_net_daemon_apps_apps_tts",
-          "friendlyName": "dev_netdaemon_net_daemon_apps_apps_tts",
-          "cSharpName": "DevNetdaemonNetDaemonAppsAppsTts"
-        },
-        {
           "id": "input_boolean.guest_mode",
           "friendlyName": "Guest Mode",
           "cSharpName": "GuestMode"
@@ -905,6 +825,16 @@
           "id": "input_boolean.media_playing",
           "friendlyName": "Media Playing",
           "cSharpName": "MediaPlaying"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
+          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_2",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
+          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp12"
         },
         {
           "id": "input_boolean.netdaemon_net_daemon_apps_apps_agara_cube_living_room",
@@ -935,11 +865,6 @@
           "id": "input_boolean.netdaemon_net_daemon_apps_apps_is_asleep_monitor",
           "friendlyName": "netdaemon_net_daemon_apps_apps_is_asleep_monitor",
           "cSharpName": "NetdaemonNetDaemonAppsAppsIsAsleepMonitor"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_is_home_manager",
-          "friendlyName": "netdaemon_net_daemon_apps_apps_is_home_manager",
-          "cSharpName": "NetdaemonNetDaemonAppsAppsIsHomeManager"
         },
         {
           "id": "input_boolean.netdaemon_net_daemon_apps_apps_keep_server_powered_down_when_asleep",
@@ -980,6 +905,56 @@
           "id": "input_boolean.netdaemon_net_daemon_apps_apps_tts",
           "friendlyName": "netdaemon_net_daemon_apps_apps_tts",
           "cSharpName": "NetdaemonNetDaemonAppsAppsTts"
+        },
+        {
+          "id": "input_boolean.pf1_lr_r1",
+          "friendlyName": "Pf1 Living room - Region 1 Entered",
+          "cSharpName": "Pf1LrR1"
+        },
+        {
+          "id": "input_boolean.pf1_lr_r110",
+          "friendlyName": "Pf1 Living room - Region 10 Entered",
+          "cSharpName": "Pf1LrR110"
+        },
+        {
+          "id": "input_boolean.pf1_lr_r2",
+          "friendlyName": "Pf1 Living room - Region 2 Entered",
+          "cSharpName": "Pf1LrR2"
+        },
+        {
+          "id": "input_boolean.pf1_lr_r3",
+          "friendlyName": "Pf1 Living room - Region 3 Entered",
+          "cSharpName": "Pf1LrR3"
+        },
+        {
+          "id": "input_boolean.pf1_lr_r4",
+          "friendlyName": "Pf1 Living room - Region 4 Entered",
+          "cSharpName": "Pf1LrR4"
+        },
+        {
+          "id": "input_boolean.pf1_lr_r5",
+          "friendlyName": "Pf1 Living room - Region 5 Entered",
+          "cSharpName": "Pf1LrR5"
+        },
+        {
+          "id": "input_boolean.pf1_lr_r6",
+          "friendlyName": "Pf1 Living room - Region 6 Entered",
+          "cSharpName": "Pf1LrR6"
+        },
+        {
+          "id": "input_boolean.pf1_lr_r7",
+          "friendlyName": "Pf1 Living room - Region 7 Entered",
+          "cSharpName": "Pf1LrR7"
+        },
+        {
+          "id": "input_boolean.pf1_lr_r8",
+          "friendlyName": "Pf1 Living room - Region 8 Entered",
+          "cSharpName": "Pf1LrR8"
+        },
+        {
+          "id": "input_boolean.pf1_lr_r9",
+          "friendlyName": "Pf1 Living room - Region 9 Entered",
+          "cSharpName": "Pf1LrR9"
         },
         {
           "id": "input_boolean.sensors_active",
@@ -3333,26 +3308,6 @@
           "cSharpName": "EnvyBatteryChargeRemainingPercentage"
         },
         {
-          "id": "sensor.fridge_temp_humidity",
-          "friendlyName": "Fridge Temp-Humidity",
-          "cSharpName": "FridgeTempHumidity"
-        },
-        {
-          "id": "sensor.fridge_temp_indoors_brightness",
-          "friendlyName": "Fridge-Temp-Indoors-Brightness",
-          "cSharpName": "FridgeTempIndoorsBrightness"
-        },
-        {
-          "id": "sensor.fridge_temperature_battery",
-          "friendlyName": "Fridge Temperature-Battery",
-          "cSharpName": "FridgeTemperatureBattery"
-        },
-        {
-          "id": "sensor.fridgetemperature",
-          "friendlyName": "FridgeTemperature",
-          "cSharpName": "Fridgetemperature"
-        },
-        {
           "id": "sensor.fritz_box_6660_cable_download_throughput",
           "friendlyName": "FRITZ!Box 6660 Cable Download throughput",
           "cSharpName": "FritzBox6660CableDownloadThroughput"
@@ -3491,6 +3446,21 @@
           "id": "sensor.kitchen_sensor_temperature_2",
           "friendlyName": "Kitchen Sensor temperature",
           "cSharpName": "KitchenSensorTemperature2"
+        },
+        {
+          "id": "sensor.livingroom_climatemeter_battery",
+          "friendlyName": "Livingroom Climatemeter battery",
+          "cSharpName": "LivingroomClimatemeterBattery"
+        },
+        {
+          "id": "sensor.livingroom_climatemeter_humidity",
+          "friendlyName": "Livingroom Climatemeter humidity",
+          "cSharpName": "LivingroomClimatemeterHumidity"
+        },
+        {
+          "id": "sensor.livingroom_climatemeter_temperature",
+          "friendlyName": "Livingroom Climatemeter temperature",
+          "cSharpName": "LivingroomClimatemeterTemperature"
         },
         {
           "id": "sensor.livingroom_window_sensor_battery",
@@ -4033,11 +4003,6 @@
           "id": "switch.fan_plug",
           "friendlyName": "Speaker Plug",
           "cSharpName": "FanPlug"
-        },
-        {
-          "id": "switch.fridge_temparature_screen",
-          "friendlyName": "Fridge Temparature-Screen",
-          "cSharpName": "FridgeTemparatureScreen"
         },
         {
           "id": "switch.fritz_box_6660_cable_port_forward_36",
