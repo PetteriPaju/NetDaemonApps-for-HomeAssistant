@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Diagnostics.Metrics;
 using System.Linq;
+using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -107,22 +108,22 @@ namespace NetDaemonApps.apps
             if (string.IsNullOrEmpty(action)) return;
             if (action == "None") return;
             FP1EventInfo eventInfo = new FP1EventInfo();
+            eventInfo.sensorData = this;
 
-            Debug.WriteLine("Here 1");
-            if (!int.TryParse(action,out eventInfo.regionId)) return;
+       
+            Debug.WriteLine(action);
 
-            Debug.WriteLine("Here 2");
-            eventInfo.region = Regions[eventInfo.regionId];
 
-            int underscoreIndex = action.LastIndexOf("_");
+            string numericPhone = new String(action.Where(Char.IsDigit).ToArray());
+
+            if (!int.TryParse(numericPhone, out eventInfo.regionId)) return;
+
+       
+            eventInfo.region = Regions[eventInfo.regionId-1];
+
+            int underscoreIndex = action.LastIndexOf("_")+1;
             string eventType = action.Substring(underscoreIndex, action.Length - underscoreIndex);
             eventInfo.eventType = ParseEventType(eventType);
-           
-
-
-
-
-
             switch (eventInfo.eventType)
             {
                 case Fp1EventType.Enter:

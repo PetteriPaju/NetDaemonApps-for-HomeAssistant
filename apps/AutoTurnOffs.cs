@@ -68,12 +68,12 @@ namespace NetDaemonApps.apps
             _myEntities.Sensor.EnvyBatteryChargeRemainingPercentage.StateChanges().Where(x => x?.New?.State < _myEntities.InputNumber.SettingsLaptopchargerturnonpercent.State)
                 .Subscribe(_ => {
 
-                _myEntities.Switch.RunnerPlug.TurnOn();          
+                _myEntities.Switch.PcMultipowermeterLplug.TurnOn();          
             });
 
             _myEntities.Sensor.EnvyBatteryChargeRemainingPercentage.StateChanges().Where(x => x?.New?.State >= 99)
                 .Subscribe(_ => {
-                _myEntities.Switch.RunnerPlug.TurnOff();
+                _myEntities.Switch.PcMultipowermeterLplug.TurnOff();
             });
 
             _myEntities.BinarySensor.LivingroomWindowSensorContact.StateChanges().Where(x => x?.New?.State == "on" && x?.Old?.State == "off").Subscribe(_ => {

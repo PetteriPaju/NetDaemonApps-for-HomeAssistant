@@ -81,7 +81,7 @@ public class EnergyMonitor
             EnergyForecastInfo energyForecastInfo = GetEnergyForecast(list);
 
             message += " Prices will be" + (energyForecastInfo.isAllSameRange ? " all " : " mostly ") + "in " + GetNameOfRange(energyForecastInfo.majorityRange);
-            message += " with avarage of " + Math.Round(energyForecastInfo.avarage * 100, 1) + " cents.";// Ranging from: " + Math.Round(energyForecastInfo.min * 100, 1) + " to " + Math.Round(energyForecastInfo.max * 100, 1) + " cents. ";
+            message += " with avarage of " + Math.Round(energyForecastInfo.avarage * 100) + " cents.";// Ranging from: " + Math.Round(energyForecastInfo.min * 100, 1) + " to " + Math.Round(energyForecastInfo.max * 100, 1) + " cents. ";
 
 
             message += "That's " + (_myEntities.Sensor?.NordpoolKwhFiEur31001?.EntityState?.Attributes?.Average < energyForecastInfo.avarage ? "more" : "less") + " than today.";

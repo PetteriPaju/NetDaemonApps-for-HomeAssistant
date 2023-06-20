@@ -37,6 +37,8 @@ namespace NetDaemonApps.apps
             {
                 text += r.name + "\r\n";
             }
+            inputText.SetValue(text);
+
         }
     }
 }

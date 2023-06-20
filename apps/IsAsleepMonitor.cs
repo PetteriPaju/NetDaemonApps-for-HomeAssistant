@@ -52,12 +52,13 @@ namespace NetDaemonApps.apps
 
 
             _myEntities.InputBoolean.Isasleep.StateChanges().WhenStateIsFor(x => x?.State == "on", sleepTimer).Subscribe(x => {
-                Console.WriteLine("Asleep timer reached, begin repeat");
+               
                 _myEntities.Script.Actiontodoatalarm.TurnOn();
-                alarmTimer = scheduler.RunEvery(TimeSpan.FromMinutes(20), DateTimeOffset.Now, () => {
+                TTS.Speak("Good Morning!", TTS.TTSPriority.IgnoreAll);
+                alarmTimer = scheduler.RunEvery(TimeSpan.FromMinutes(20), DateTimeOffset.Now + TimeSpan.FromSeconds(3), () => {
 
                     TimeSpan? timeDiff = DateTime.Now - _myEntities?.InputBoolean?.Isasleep?.EntityState?.LastChanged;
-                    string ttsTime = "Its: " + DateTime.Now.ToString("H:mm", CultureInfo.InvariantCulture) + ", you have been sleeping for " + timeDiff?.Hours + " hours and " + timeDiff?.Minutes + "minutes";
+                    string ttsTime = "Its: " + DateTime.Now.ToString("H:mm", CultureInfo.InvariantCulture) + ", you have been sleeping for " + timeDiff?.Hours + " hours" + (timeDiff?.Minutes > 0 ?  " and " + timeDiff?.Minutes + "minutes" : "");
       
                     TTS.Speak(ttsTime, TTS.TTSPriority.IgnoreAll);
 
@@ -99,7 +100,7 @@ namespace NetDaemonApps.apps
             }
             else
             {
-                sleepTimer = TimeSpan.FromHours(7) + TimeSpan.FromMinutes(30);
+                sleepTimer = TimeSpan.FromHours(7) + TimeSpan.FromMinutes(0);
 
             }
         }

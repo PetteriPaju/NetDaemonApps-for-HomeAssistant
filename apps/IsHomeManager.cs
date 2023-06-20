@@ -20,7 +20,7 @@ using System.Reactive.Linq;
 
 namespace NetDaemonApps.apps
 {
-    [NetDaemonApp]
+  //  [NetDaemonApp]
     public class IsHomeManager
     {
         protected readonly Entities _myEntities;
@@ -71,7 +71,7 @@ namespace NetDaemonApps.apps
                     isCancelled = false;
                     _myServices.Script.Sendishomephonenotification();
                     await Task.Delay(1000);
-
+                  
 
                     TTS.Instance?.SpeakTTS("I noticed you might not be at home, can you confirm?");
 
