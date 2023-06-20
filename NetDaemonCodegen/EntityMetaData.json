@@ -797,6 +797,91 @@
           "cSharpName": "AutoTurnOffServer"
         },
         {
+          "id": "input_boolean.dev_netdaemon_net_daemon_apps_apps_00_living_room_fp1",
+          "friendlyName": "dev_netdaemon_net_daemon_apps_apps__00_living_room_fp1",
+          "cSharpName": "DevNetdaemonNetDaemonAppsApps00LivingRoomFp1"
+        },
+        {
+          "id": "input_boolean.dev_netdaemon_net_daemon_apps_apps_00_living_room_fp1_2",
+          "friendlyName": "dev_netdaemon_net_daemon_apps_apps__00_living_room_fp1",
+          "cSharpName": "DevNetdaemonNetDaemonAppsApps00LivingRoomFp12"
+        },
+        {
+          "id": "input_boolean.dev_netdaemon_net_daemon_apps_apps_agara_cube_living_room",
+          "friendlyName": "dev_netdaemon_net_daemon_apps_apps_agara_cube_living_room",
+          "cSharpName": "DevNetdaemonNetDaemonAppsAppsAgaraCubeLivingRoom"
+        },
+        {
+          "id": "input_boolean.dev_netdaemon_net_daemon_apps_apps_auto_turn_offs",
+          "friendlyName": "dev_netdaemon_net_daemon_apps_apps_auto_turn_offs",
+          "cSharpName": "DevNetdaemonNetDaemonAppsAppsAutoTurnOffs"
+        },
+        {
+          "id": "input_boolean.dev_netdaemon_net_daemon_apps_apps_energy_monitor",
+          "friendlyName": "dev_netdaemon_net_daemon_apps_apps_energy_monitor",
+          "cSharpName": "DevNetdaemonNetDaemonAppsAppsEnergyMonitor"
+        },
+        {
+          "id": "input_boolean.dev_netdaemon_net_daemon_apps_apps_hue_switches_bed_hue_switch",
+          "friendlyName": "dev_netdaemon_net_daemon_apps_apps_hue_switches_bed_hue_switch",
+          "cSharpName": "DevNetdaemonNetDaemonAppsAppsHueSwitchesBedHueSwitch"
+        },
+        {
+          "id": "input_boolean.dev_netdaemon_net_daemon_apps_apps_hue_switches_livingroom_switch",
+          "friendlyName": "dev_netdaemon_net_daemon_apps_apps_hue_switches_livingroom_switch",
+          "cSharpName": "DevNetdaemonNetDaemonAppsAppsHueSwitchesLivingroomSwitch"
+        },
+        {
+          "id": "input_boolean.dev_netdaemon_net_daemon_apps_apps_is_asleep_monitor",
+          "friendlyName": "dev_netdaemon_net_daemon_apps_apps_is_asleep_monitor",
+          "cSharpName": "DevNetdaemonNetDaemonAppsAppsIsAsleepMonitor"
+        },
+        {
+          "id": "input_boolean.dev_netdaemon_net_daemon_apps_apps_is_home_manager",
+          "friendlyName": "dev_netdaemon_net_daemon_apps_apps_is_home_manager",
+          "cSharpName": "DevNetdaemonNetDaemonAppsAppsIsHomeManager"
+        },
+        {
+          "id": "input_boolean.dev_netdaemon_net_daemon_apps_apps_keep_server_powered_down_when_asleep",
+          "friendlyName": "dev_netdaemon_net_daemon_apps_apps_keep_server_powered_down_when_asleep",
+          "cSharpName": "DevNetdaemonNetDaemonAppsAppsKeepServerPoweredDownWhenAsleep"
+        },
+        {
+          "id": "input_boolean.dev_netdaemon_net_daemon_apps_apps_lights_lights_and_sensors",
+          "friendlyName": "dev_netdaemon_net_daemon_apps_apps_lights_lights_and_sensors",
+          "cSharpName": "DevNetdaemonNetDaemonAppsAppsLightsLightsAndSensors"
+        },
+        {
+          "id": "input_boolean.dev_netdaemon_net_daemon_apps_apps_lights_livingroom_lights",
+          "friendlyName": "dev_netdaemon_net_daemon_apps_apps_lights_livingroom_lights",
+          "cSharpName": "DevNetdaemonNetDaemonAppsAppsLightsLivingroomLights"
+        },
+        {
+          "id": "input_boolean.dev_netdaemon_net_daemon_apps_apps_lights_toiler_light_automation",
+          "friendlyName": "dev_netdaemon_net_daemon_apps_apps_lights_toiler_light_automation",
+          "cSharpName": "DevNetdaemonNetDaemonAppsAppsLightsToilerLightAutomation"
+        },
+        {
+          "id": "input_boolean.dev_netdaemon_net_daemon_apps_apps_media_playing_monitor",
+          "friendlyName": "dev_netdaemon_net_daemon_apps_apps_media_playing_monitor",
+          "cSharpName": "DevNetdaemonNetDaemonAppsAppsMediaPlayingMonitor"
+        },
+        {
+          "id": "input_boolean.dev_netdaemon_net_daemon_apps_apps_notifications",
+          "friendlyName": "dev_netdaemon_net_daemon_apps_apps_notifications",
+          "cSharpName": "DevNetdaemonNetDaemonAppsAppsNotifications"
+        },
+        {
+          "id": "input_boolean.dev_netdaemon_net_daemon_apps_apps_step_counter",
+          "friendlyName": "dev_netdaemon_net_daemon_apps_apps_step_counter",
+          "cSharpName": "DevNetdaemonNetDaemonAppsAppsStepCounter"
+        },
+        {
+          "id": "input_boolean.dev_netdaemon_net_daemon_apps_apps_tts",
+          "friendlyName": "dev_netdaemon_net_daemon_apps_apps_tts",
+          "cSharpName": "DevNetdaemonNetDaemonAppsAppsTts"
+        },
+        {
           "id": "input_boolean.guest_mode",
           "friendlyName": "Guest Mode",
           "cSharpName": "GuestMode"
@@ -1181,9 +1266,9 @@
       "domain": "input_text",
       "entities": [
         {
-          "id": "input_text.asleeptime0remover",
-          "friendlyName": "AsleepTime0Remover",
-          "cSharpName": "Asleeptime0remover"
+          "id": "input_text.fp1debugger",
+          "friendlyName": "FP1Debugger",
+          "cSharpName": "Fp1debugger"
         }
       ],
       "attributes": [
@@ -1390,9 +1475,9 @@
           "cSharpName": "MiscPowermeterChildLock"
         },
         {
-          "id": "lock.pc_accessories_powermeter_child_lock",
-          "friendlyName": "Pc-Accessories-PowerMeter child lock",
-          "cSharpName": "PcAccessoriesPowermeterChildLock"
+          "id": "lock.modem_and_proxmox_powermeter_child_lock",
+          "friendlyName": "Modem and Proxmox PowerMeter child lock",
+          "cSharpName": "ModemAndProxmoxPowermeterChildLock"
         },
         {
           "id": "lock.pc_plug_child_lock",
@@ -2038,14 +2123,14 @@
           "cSharpName": "MiscPowermeterPowerOutageMemory"
         },
         {
-          "id": "select.pc_accessories_powermeter_indicator_mode",
-          "friendlyName": "Pc-Accessories-PowerMeter indicator mode",
-          "cSharpName": "PcAccessoriesPowermeterIndicatorMode"
+          "id": "select.modem_and_proxmox_powermeter_indicator_mode",
+          "friendlyName": "Modem and Proxmox PowerMeter indicator mode",
+          "cSharpName": "ModemAndProxmoxPowermeterIndicatorMode"
         },
         {
-          "id": "select.pc_accessories_powermeter_power_outage_memory",
-          "friendlyName": "Pc-Accessories-PowerMeter power outage memory",
-          "cSharpName": "PcAccessoriesPowermeterPowerOutageMemory"
+          "id": "select.modem_and_proxmox_powermeter_power_outage_memory",
+          "friendlyName": "Modem and Proxmox PowerMeter power outage memory",
+          "cSharpName": "ModemAndProxmoxPowermeterPowerOutageMemory"
         },
         {
           "id": "select.pc_connector_indicator_light_mode",
@@ -3443,6 +3528,21 @@
           "cSharpName": "MiscPowermeterPower"
         },
         {
+          "id": "sensor.modem_and_proxmox_powermeter_energy",
+          "friendlyName": "Modem and Proxmox PowerMeter energy",
+          "cSharpName": "ModemAndProxmoxPowermeterEnergy"
+        },
+        {
+          "id": "sensor.modem_and_proxmox_powermeter_power",
+          "friendlyName": "Modem and Proxmox PowerMeter power",
+          "cSharpName": "ModemAndProxmoxPowermeterPower"
+        },
+        {
+          "id": "sensor.modem_daily_energy",
+          "friendlyName": "Modem and Proxmox Daily Energy",
+          "cSharpName": "ModemDailyEnergy"
+        },
+        {
           "id": "sensor.moto_g_8_power_lite_battery_level",
           "friendlyName": "moto g(8) power lite Battery Level",
           "cSharpName": "MotoG8PowerLiteBatteryLevel"
@@ -3473,19 +3573,9 @@
           "cSharpName": "OutsideTemperatureMeterTemperature"
         },
         {
-          "id": "sensor.pc_accesories_energymeter_daily",
-          "friendlyName": "Pc accesories Daily Energy",
-          "cSharpName": "PcAccesoriesEnergymeterDaily"
-        },
-        {
-          "id": "sensor.pc_accessories_powermeter_energy",
-          "friendlyName": "Pc-Accessories-PowerMeter energy",
-          "cSharpName": "PcAccessoriesPowermeterEnergy"
-        },
-        {
-          "id": "sensor.pc_accessories_powermeter_power",
-          "friendlyName": "Pc-Accessories-PowerMeter power",
-          "cSharpName": "PcAccessoriesPowermeterPower"
+          "id": "sensor.pc_accesories_daily_energy",
+          "friendlyName": "Pc_Accesories_Daily_Energy",
+          "cSharpName": "PcAccesoriesDailyEnergy"
         },
         {
           "id": "sensor.pc_energy_consumption_daily",
@@ -4060,6 +4150,11 @@
           "cSharpName": "MiscPowermeter"
         },
         {
+          "id": "switch.modem_and_proxmox_powermeter",
+          "friendlyName": "Modem and Proxmox PowerMeter",
+          "cSharpName": "ModemAndProxmoxPowermeter"
+        },
+        {
           "id": "switch.nintendoswitch_internet_access",
           "friendlyName": "nintendoswitch Internet Access",
           "cSharpName": "NintendoswitchInternetAccess"
@@ -4078,11 +4173,6 @@
           "id": "switch.pc_a0_92_08_90_22_91_internet_access",
           "friendlyName": "minitemp-humiditysensor Internet Access",
           "cSharpName": "PcA09208902291InternetAccess"
-        },
-        {
-          "id": "switch.pc_accessories_powermeter",
-          "friendlyName": "PC Accessories",
-          "cSharpName": "PcAccessoriesPowermeter"
         },
         {
           "id": "switch.pc_b4_ae_2b_e4_a3_f8_internet_access",
@@ -4427,6 +4517,11 @@
           "cSharpName": "MiscPowermeter"
         },
         {
+          "id": "update.modem_and_proxmox_powermeter",
+          "friendlyName": "Modem and Proxmox PowerMeter",
+          "cSharpName": "ModemAndProxmoxPowermeter"
+        },
+        {
           "id": "update.mosquitto_broker_update",
           "friendlyName": "Mosquitto broker Update",
           "cSharpName": "MosquittoBrokerUpdate"
@@ -4440,11 +4535,6 @@
           "id": "update.nginx_proxy_manager_update",
           "friendlyName": "Nginx Proxy Manager Update",
           "cSharpName": "NginxProxyManagerUpdate"
-        },
-        {
-          "id": "update.pc_accessories_powermeter",
-          "friendlyName": "Pc-Accessories-PowerMeter",
-          "cSharpName": "PcAccessoriesPowermeter"
         },
         {
           "id": "update.pc_plug",
