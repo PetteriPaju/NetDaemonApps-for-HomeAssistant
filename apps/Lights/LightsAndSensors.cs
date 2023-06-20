@@ -36,25 +36,32 @@ namespace NetDaemonApps.apps.Lights
         
             
 
-
+            bool canTurnKitchenOff = false;
             _myEntities.BinarySensor.KitchenSensorOccupancy.StateChanges().Where(x => x.New.IsOn() && _00_LivingRoomFP1.LivingRoomFP1.Regions[1].TimeSinceLastExited() < TimeSpan.FromSeconds(2)).Subscribe(_ => {
-
-                _myEntities.Light.KitchenLight2.TurnOnLight();   
+                _myEntities.Light.KitchenLight2.TurnOnLight();
+                canTurnKitchenOff = false;
             });
 
+            _myEntities.BinarySensor.KitchenSensorOccupancy.StateChanges().Where(x => x.New.IsOff() && canTurnKitchenOff).Subscribe(_ => {
+
+                _myEntities.Light.KitchenLight2.TurnOffLight();
+            });
+           
             _00_LivingRoomFP1.LivingRoomFP1.Regions[0].callbacks.onEnter += (AqaraFP1Extender.FP1EventInfo info) =>
             {
-                _myEntities.Light.KitchenLight2.TurnOffLight();
+                if(canTurnKitchenOff == false)
+                canTurnKitchenOff = true;
             };
-            /*
-            _myEntities.BinarySensor.KitchenSensorOccupancy.StateChanges().Where(x => x.New.IsOn()).Subscribe(_ => {
-                _myEntities.Light.KitchenLight2.TurnOnWithSensor(_myEntities.Sensor.OutsideTemperatureMeterLuminosity, 3);
-            });
 
-            _myEntities.Sensor.KitchenSensors.StateChanges().WhenStateIsFor(x => x?.State == "False", TimeSpan.FromSeconds(1)).Subscribe(_ => {
-                _myEntities.Light.KitchenLight2.TurnOffLight();
-            });
-            */
+            /*
+           _myEntities.BinarySensor.KitchenSensorOccupancy.StateChanges().Where(x => x.New.IsOn()).Subscribe(_ => {
+               _myEntities.Light.KitchenLight2.TurnOnWithSensor(_myEntities.Sensor.OutsideTemperatureMeterLuminosity, 3);
+           });
+
+           _myEntities.Sensor.KitchenSensors.StateChanges().WhenStateIsFor(x => x?.State == "False", TimeSpan.FromSeconds(1)).Subscribe(_ => {
+               _myEntities.Light.KitchenLight2.TurnOffLight();
+           });
+           */
 
             _00_LivingRoomFP1.LivingRoomFP1.Regions[3].callbacks.onEnter += async (AqaraFP1Extender.FP1EventInfo info) => {
 

@@ -30,7 +30,7 @@ namespace NetDaemonApps.apps.Lights
             targetLights.Add(_myEntities.Light.LivingRoomLight);
             targetLights.Add(_myEntities.Light.DesktopLight);
 
-
+            /*
             _myEntities.BinarySensor.ToiletSeatSensorContact
            .StateChanges().Where(e => e.New?.State == "on" && _myEntities.InputBoolean.SensorsActive.IsOn())
            .Subscribe(_ => OnToiledLidOpen());
@@ -38,24 +38,40 @@ namespace NetDaemonApps.apps.Lights
             _myEntities.BinarySensor.ToiletSeatSensorContact
            .StateChanges().Where(e => e.New?.State == "off" && _myEntities.InputBoolean.SensorsActive.IsOn())
            .Subscribe(_ => OnToiledLidClose());
-
-            _myEntities.Light.ToiletLight1.StateChanges().WhenStateIsFor(e => e.IsOn() && _myEntities.InputBoolean.SensorsActive.IsOn(), lightOnTimeOutSpan).Subscribe(_ => { });
-
-            _myEntities.BinarySensor.ToiletSensorOccupancy.StateChanges()
-            .Where(e => e.New?.State == "on" && _myEntities.InputBoolean.SensorsActive.IsOn())
-            .Subscribe(_ => { _myEntities.Light.ToiletLight1.TurnOnLight(); });
+            */
+            bool canTurnoffToilet = false;
 
             _myEntities.BinarySensor.ToiletSensorOccupancy.StateChanges()
-            .WhenStateIsFor(e => e.IsOff() && _myEntities.BinarySensor.ToiletSeatSensorContact.IsOff() && _myEntities.InputBoolean.SensorsActive.IsOn(), motionSensorTimeOutSpan)
-            .Subscribe(_ => { _myEntities.Light.ToiletLight1.TurnOffLight(); });
+            .Where(e => e.New?.State == "on")
+            .Subscribe(_ => {
+                canTurnoffToilet = false;
+                _myEntities.Light.ToiletLight1.TurnOnLight();
+                OnToiledLidOpen();
+            });
 
-            _00_LivingRoomFP1.LivingRoomFP1.Regions[2].callbacks.onEnter += (AqaraFP1Extender.FP1EventInfo info) =>
+       
+
+            _myEntities.BinarySensor.ToiletSensorOccupancy.StateChanges()
+            .Where(e => e.New.IsOff() && canTurnoffToilet)
+            .Subscribe(_ => {
+                _myEntities.Light.ToiletLight1.TurnOffLight();
+
+            });
+            
+            _00_LivingRoomFP1.LivingRoomFP1.Regions[0].callbacks.onEnter += (AqaraFP1Extender.FP1EventInfo info) =>
             {
-                if (_myEntities.BinarySensor.ToiletSeatSensorContact.IsOff() && _myEntities.Light.ToiletLight1.EntityState.LastChanged < (DateTime.Now - TimeSpan.FromSeconds(1)))
+                canTurnoffToilet = true;
+                if (_myEntities.Light.ToiletLight1.IsOn()) OnToiledLidClose();
+
+                if (_myEntities.Light.ToiletLight1.IsOn() && _myEntities.BinarySensor.ToiletSensorOccupancy.IsOff())
                 {
                     _myEntities.Light.ToiletLight1.TurnOffLight();
                 }
+
+             
             };
+
+
 
         }
 
