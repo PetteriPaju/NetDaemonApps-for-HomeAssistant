@@ -46,7 +46,7 @@ namespace NetDaemonApps.apps.Lights
             .Subscribe(_ => {
                 canTurnoffToilet = false;
                 _myEntities.Light.ToiletLight1.TurnOnLight();
-                OnToiledLidOpen();
+     
             });
 
        
@@ -61,7 +61,7 @@ namespace NetDaemonApps.apps.Lights
             _00_LivingRoomFP1.LivingRoomFP1.Regions[0].callbacks.onEnter += (AqaraFP1Extender.FP1EventInfo info) =>
             {
                 canTurnoffToilet = true;
-                if (_myEntities.Light.ToiletLight1.IsOn()) OnToiledLidClose();
+   
 
                 if (_myEntities.Light.ToiletLight1.IsOn() && _myEntities.BinarySensor.ToiletSensorOccupancy.IsOff())
                 {
