@@ -57,7 +57,7 @@ namespace NetDaemonApps.apps
                 alarmTimer = scheduler.RunEvery(TimeSpan.FromMinutes(20), DateTimeOffset.Now, () => {
 
                     TimeSpan? timeDiff = DateTime.Now - _myEntities?.InputBoolean?.Isasleep?.EntityState?.LastChanged;
-                    string ttsTime = "Its: " + DateTime.Now.ToString("H:mm", CultureInfo.InvariantCulture) + ", you have been sleeping for " + timeDiff?.Hours + " hours and " + timeDiff?.Minutes + "minutes";
+                    string ttsTime = "Its: " + DateTime.Now.ToString("H:mm", CultureInfo.InvariantCulture) + ", you have been sleeping for " + timeDiff?.Hours + " hours" +( timeDiff?.Minutes > 0 ?  "and " + timeDiff?.Minutes + "minutes" : string.Empty);
       
                     TTS.Speak(ttsTime, TTS.TTSPriority.IgnoreAll);
 
