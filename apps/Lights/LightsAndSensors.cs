@@ -42,6 +42,16 @@ namespace NetDaemonApps.apps.Lights
                 canTurnKitchenOff = false;
             });
 
+            _00_LivingRoomFP1.LivingRoomFP1.Regions[1].callbacks.onEnter += (AqaraFP1Extender.FP1EventInfo info) => {
+
+                if (_myEntities.BinarySensor.KitchenSensorOccupancy.IsOn())
+                {
+                    _myEntities.Light.KitchenLight2.TurnOnLight();
+                    canTurnKitchenOff = false;
+                }
+
+            };
+
             _myEntities.BinarySensor.KitchenSensorOccupancy.StateChanges().Where(x => x.New.IsOff() && canTurnKitchenOff).Subscribe(_ => {
 
                 _myEntities.Light.KitchenLight2.TurnOffLight();
