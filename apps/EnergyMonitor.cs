@@ -251,7 +251,7 @@ public class EnergyMonitor
 
             if (inFoForNextHour.peak != 0)
             {
-                TTSMessage += " This will also ";
+                TTSMessage += ". This will also ";
             }
         }
 

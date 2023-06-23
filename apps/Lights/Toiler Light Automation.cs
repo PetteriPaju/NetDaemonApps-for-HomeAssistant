@@ -58,7 +58,7 @@ namespace NetDaemonApps.apps.Lights
 
             });
             
-            _00_LivingRoomFP1.LivingRoomFP1.Regions[0].callbacks.onEnter += (AqaraFP1Extender.FP1EventInfo info) =>
+            _00_LivingRoomFP1.LivingRoomFP1.Regions[3].callbacks.onEnter += (AqaraFP1Extender.FP1EventInfo info) =>
             {
                 canTurnoffToilet = true;
    
