@@ -41,7 +41,7 @@ namespace NetDaemonApps.apps.Lights
                 _myEntities.Light.KitchenLight2.TurnOffLight();
             });
 
-            _myEntities.Sensor.Livingroomfp1PresenceEvent.StateChanges().Where(x => x.New?.State == "leave" || x.New?.State == "away").Subscribe(_ => {
+            _myEntities.Sensor.Livingroomfp1PresenceEvent.StateChanges().WhenStateIsFor(x=>x.State == "leave" || x.State == "away", TimeSpan.FromSeconds(30)).Subscribe(_ => {
                 _myEntities.Light.KitchenLight2.TurnOffLight();
             });
 
