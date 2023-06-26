@@ -40,8 +40,8 @@ public class EnergyMonitor
         infoForCurrentHour = new ElectricityPriceInfo(DateTime.Now, _myEntities?.Sensor?.NordpoolKwhFiEur31001, electricityRangeKeys);
 
 
-        _myEntities?.Sensor.TotalHourlyEnergyConsumptions.StateAllChanges().Where(x => x?.New?.State < x?.Old?.State).Subscribe(x=> {UpdatePriceHourly(x?.Old?.State ?? 0);});
-        _myEntities?.Sensor.Powermeters.StateAllChanges().Where(x => x?.New?.State < x?.Old?.State).Subscribe(x => UpdatePriceDaily() );
+        _myEntities?.Sensor.TotalHourlyEnergyConsumptions.StateAllChanges().Where(x => x?.New?.State < x?.Old?.State && x?.Old?.State != 0).Subscribe(x=> {UpdatePriceHourly(x?.Old?.State ?? 0);});
+        _myEntities?.Sensor.Powermeters.StateChanges().Where(x => x?.New?.State < x?.Old?.State && x?.Old?.State != 0).Subscribe(x => UpdatePriceDaily() );
 
         scheduler.ScheduleCron("50 * * * *", () => EnergiPriceChengeAlert(ha));
 
@@ -386,7 +386,7 @@ public class EnergyMonitor
 
         var thisHourTotal = thisHourFortum + thisHourTranster;
 
-        _myEntities.InputNumber.EnergyCostDaily.SetValue(_myEntities.InputNumber.EnergyCostDaily.State + thisHourTotal ?? 0);
+        _myEntities.InputNumber.EnergyCostDaily.SetValue(_myEntities.InputNumber.EnergyCostDaily.State + thisHourTotal ?? _myEntities.InputNumber.EnergyCostDaily.State ?? 0);
         _myEntities.InputNumber.EnergyCostHourly.SetValue(thisHourTotal ?? 0);
 
     }
@@ -397,11 +397,13 @@ public class EnergyMonitor
         if (_myEntities.InputNumber.EnergyCostDaily.State == null) return;
         if (_myEntities.InputNumber.EnergyCostHourly.State == null) return;
         if (_myEntities.Sensor.Powermeters.State == null) return;
-
-        hiPeakAlertGiven = false;
-        loPeakAlertGiven = false;
-        _myEntities.InputNumber.EnergyCostHourly.SetValue(0);
-        _myEntities.InputNumber.EnergyCostDaily.SetValue(0);
+        if (DateTime.Now.Hour == 23 || DateTime.Now.Hour == 0)
+        {
+            hiPeakAlertGiven = false;
+            loPeakAlertGiven = false;
+            _myEntities.InputNumber.EnergyCostHourly.SetValue(0);
+            _myEntities.InputNumber.EnergyCostDaily.SetValue(0);
+        }
 
     }
 
