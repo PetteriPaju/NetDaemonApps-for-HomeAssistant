@@ -227,7 +227,7 @@ public class EnergyMonitor
             }
             else if(priceChange == PriceChangeType.Descrease)
             {
-                TTSMessage += "to fall to " + electiricityRanges.Values.ElementAt(inFoForNextHour.range) + ".";
+                TTSMessage += "fall to " + electiricityRanges.Values.ElementAt(inFoForNextHour.range) + ".";
             }
 
        
