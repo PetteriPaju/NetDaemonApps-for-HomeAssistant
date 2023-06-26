@@ -30,7 +30,7 @@ namespace NetDaemonApps.apps.Lights
             targetLights.Add(_myEntities.Light.LivingRoomLight);
             targetLights.Add(_myEntities.Light.DesktopLight);
 
-            /*
+           
             _myEntities.BinarySensor.ToiletSeatSensorContact
            .StateChanges().Where(e => e.New?.State == "on" && _myEntities.InputBoolean.SensorsActive.IsOn())
            .Subscribe(_ => OnToiledLidOpen());
@@ -38,13 +38,13 @@ namespace NetDaemonApps.apps.Lights
             _myEntities.BinarySensor.ToiletSeatSensorContact
            .StateChanges().Where(e => e.New?.State == "off" && _myEntities.InputBoolean.SensorsActive.IsOn())
            .Subscribe(_ => OnToiledLidClose());
-            */
-            bool canTurnoffToilet = false;
+        
+   
 
             _myEntities.BinarySensor.ToiletSensorOccupancy.StateChanges()
             .Where(e => e.New?.State == "on")
             .Subscribe(_ => {
-                canTurnoffToilet = false;
+               
                 _myEntities.Light.ToiletLight1.TurnOnLight();
      
             });
@@ -52,24 +52,18 @@ namespace NetDaemonApps.apps.Lights
        
 
             _myEntities.BinarySensor.ToiletSensorOccupancy.StateChanges()
-            .Where(e => e.New.IsOff() && canTurnoffToilet)
+            .Where(e => e.New.IsOff() && _myEntities.BinarySensor.ToiletSeatSensorContact.IsOff())
             .Subscribe(_ => {
                 _myEntities.Light.ToiletLight1.TurnOffLight();
 
             });
-            
-            _00_LivingRoomFP1.LivingRoomFP1.Regions[3].callbacks.onEnter += (AqaraFP1Extender.FP1EventInfo info) =>
-            {
-                canTurnoffToilet = true;
-   
 
-                if (_myEntities.Light.ToiletLight1.IsOn() && _myEntities.BinarySensor.ToiletSensorOccupancy.IsOff())
-                {
-                    _myEntities.Light.ToiletLight1.TurnOffLight();
-                }
 
-             
-            };
+            _myEntities.BinarySensor.HallwaySensorOccupancy.StateChanges()
+            .Where(e => e.New.IsOn() && _myEntities.BinarySensor.ToiletSeatSensorContact.IsOn())
+            .Subscribe(_ => {
+                _myEntities.Light.ToiletLight1.TurnOffLight();
+            });
 
 
 
