@@ -30,38 +30,19 @@ namespace NetDaemonApps.apps.Lights
             SubcribeLightOn(_myEntities.BinarySensor.StorageSensorAqaraOccupancy, _myEntities.Light.StorageLight2);
             SubcribeLightOff(_myEntities.BinarySensor.StorageSensorAqaraOccupancy, _myEntities.Light.StorageLight2, new TimeSpan(0, 0, 0));
 
-
-
-
-        
-            
-
-            bool canTurnKitchenOff = false;
-            _myEntities.BinarySensor.KitchenSensorOccupancy.StateChanges().Where(x => x.New.IsOn() && _00_LivingRoomFP1.LivingRoomFP1.Regions[1].TimeSinceLastExited() < TimeSpan.FromSeconds(2)).Subscribe(_ => {
+ 
+            _myEntities.Sensor.Livingroomfp1PresenceEvent.StateChanges().Where(x => x.New?.State == "enter").Subscribe(_ => {
                 _myEntities.Light.KitchenLight2.TurnOnLight();
-                canTurnKitchenOff = false;
             });
 
-            _00_LivingRoomFP1.LivingRoomFP1.Regions[1].callbacks.onEnter += (AqaraFP1Extender.FP1EventInfo info) => {
+            _myEntities.BinarySensor.Livingroomfp1Presence.StateChanges().Where(x => x.New.IsOn()).Subscribe(_ => {
+                _myEntities.Light.KitchenLight2.TurnOnLight();
+            });
 
-                if (_myEntities.BinarySensor.KitchenSensorOccupancy.IsOn())
-                {
-                    _myEntities.Light.KitchenLight2.TurnOnLight();
-                    canTurnKitchenOff = false;
-                }
-
-            };
-
-            _myEntities.BinarySensor.KitchenSensorOccupancy.StateChanges().Where(x => x.New.IsOff() && canTurnKitchenOff).Subscribe(_ => {
+            _myEntities.BinarySensor.Livingroomfp1Presence.StateChanges().Where(x => x.New.IsOff()).Subscribe(_ => {
 
                 _myEntities.Light.KitchenLight2.TurnOffLight();
             });
-           
-            _00_LivingRoomFP1.LivingRoomFP1.Regions[0].callbacks.onEnter += (AqaraFP1Extender.FP1EventInfo info) =>
-            {
-                if(canTurnKitchenOff == false)
-                canTurnKitchenOff = true;
-            };
 
             /*
            _myEntities.BinarySensor.KitchenSensorOccupancy.StateChanges().Where(x => x.New.IsOn()).Subscribe(_ => {
@@ -73,25 +54,8 @@ namespace NetDaemonApps.apps.Lights
            });
            */
 
-            _00_LivingRoomFP1.LivingRoomFP1.Regions[3].callbacks.onEnter += async (AqaraFP1Extender.FP1EventInfo info) => {
-
-                if (_00_LivingRoomFP1.LivingRoomFP1.Regions[4].TimeSinceLastExited() < TimeSpan.FromSeconds(2))
-                {
-                    if(_myEntities.Light.AllLights?.EntityState?.LastChanged < DateTime.Now + TimeSpan.FromSeconds(30))
-                    {
-                        _myEntities.Light.HallwayLight.TurnOnLight();
-                        await Task.Delay(30000);
-
-                        if (_myEntities.BinarySensor.HallwaySensorOccupancy.IsOff())
-                        {
-                            _myEntities.Light.HallwayLight.TurnOffLight();
-                        }
-                    }
-                }
-            
-            };
-            /*
-            _myEntities.BinarySensor._0x001788010bcfb16fOccupancy.StateChanges().Where(x => x?.New?.State == "on" && _myEntities.Light.AllLights.IsOff() && _myEntities.Light.AllLights?.EntityState?.LastChanged< DateTime.Now + TimeSpan.FromSeconds(30)).SubscribeAsync(async s => {
+ 
+            _myEntities.BinarySensor.KitchenSensorOccupancy.StateChanges().Where(x => x?.New?.State == "on" && _myEntities.Light.AllLights.IsOff() && _myEntities.Light.AllLights?.EntityState?.LastChanged< DateTime.Now + TimeSpan.FromSeconds(30)).SubscribeAsync(async s => {
 
                 _myEntities.Light.HallwayLight.TurnOn();
 
@@ -103,7 +67,7 @@ namespace NetDaemonApps.apps.Lights
                 }
 
             });
-            */
+      
         }
 
         private void SubcribeLightOn(BinarySensorEntity sensor, LightEntity light, Func<bool>? extraConditions = null, NumericSensorEntity? fluzSensor = null, double maxFlux = double.MaxValue)
