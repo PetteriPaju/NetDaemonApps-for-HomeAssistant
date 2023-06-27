@@ -25,9 +25,9 @@ namespace NetDaemonApps.apps.Hue_Switches
             lightCycler.NextLight();
         }
 
-        protected override void OnOnPressRelease()
+        protected override void OnOnHoldRelease()
         {
-            base.OnOnPressRelease();
+            base.OnOnHoldRelease();
             lightCycler.TurnOff();
         }
 
