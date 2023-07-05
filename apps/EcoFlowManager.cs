@@ -30,7 +30,7 @@ namespace NetDaemonApps.apps
         {
             _myEntities = new Entities(ha);
 
-            _myEntities.Sensor.EcoflowBatteryLevel.StateChanges().Where(x => x.New?.State < 5).Subscribe(x => {
+            _myEntities.Sensor.EcoflowBatteryLevel.StateChanges().Where(x => x.New?.State < 2).Subscribe(x => {
 
                 _myEntities.Switch.EcoflowPlug.TurnOn();
          
@@ -51,13 +51,20 @@ namespace NetDaemonApps.apps
 
                 if (plannedOnHoursToday.Contains(DateTime.Now.Hour))
                 {
+                    if (_myEntities.InputSelect.SettingsEcoflowMode.State == "Manual") return;
+                    
+                    if(plannedOnHoursToday.IndexOf(DateTime.Now.Hour) != 0 && _myEntities.InputSelect.SettingsEcoflowMode.State == "Auto")
+                    {
+                        //if(DateTime.Now + TimeSpan.FromMinutes(_myEntities.Sensor.EcoflowDischargeRemainingTime.State ?? 0) > )
+                        _myEntities.Switch.EcoflowPlug.TurnOn();
+                    } 
+                    else if(plannedOnHoursToday.IndexOf(DateTime.Now.Hour) == 0)
                     _myEntities.Switch.EcoflowPlug.TurnOn();
                 }
 
             });
 
             scheduler.ScheduleCron("0 0 * * *", () => {
-
                 planToday(_myEntities?.Sensor.NordpoolKwhFiEur31001.Attributes?.Today);
             });
 
@@ -82,7 +89,7 @@ namespace NetDaemonApps.apps
             KeyValuePair<int, double> highest = orderedHours.Last();
 
             KeyValuePair<int, double> middayChargingHour = orderedHours.FirstOrDefault(x => x.Value > 12 && x.Key < 20, highest);
-            bool shoudMiddayBeUsed = middayChargingHour.Value * 1.2 < highest.Value;
+            bool shoudMiddayBeUsed = middayChargingHour.Value * 2 < highest.Value;
 
             plannedOnHoursToday.Add(lowest.Key);
             if(shoudMiddayBeUsed) plannedOnHoursToday.Add(middayChargingHour.Key);

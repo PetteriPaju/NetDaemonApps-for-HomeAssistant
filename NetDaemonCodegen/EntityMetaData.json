@@ -1152,6 +1152,16 @@
           "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp166"
         },
         {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_67",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
+          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp167"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_68",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
+          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp168"
+        },
+        {
           "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_7",
           "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
           "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp17"
@@ -1170,6 +1180,11 @@
           "id": "input_boolean.netdaemon_net_daemon_apps_apps_agara_cube_living_room",
           "friendlyName": "netdaemon_net_daemon_apps_apps_agara_cube_living_room",
           "cSharpName": "NetdaemonNetDaemonAppsAppsAgaraCubeLivingRoom"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_aqara_fp1extender",
+          "friendlyName": "netdaemon_net_daemon_apps_apps_aqara_fp1extender",
+          "cSharpName": "NetdaemonNetDaemonAppsAppsAqaraFp1extender"
         },
         {
           "id": "input_boolean.netdaemon_net_daemon_apps_apps_auto_turn_offs",
@@ -1542,6 +1557,11 @@
           "id": "input_select.current_av_audio",
           "friendlyName": "Current AV Audio",
           "cSharpName": "CurrentAvAudio"
+        },
+        {
+          "id": "input_select.settings_ecoflow_mode",
+          "friendlyName": "Settings Ecoflow-mode",
+          "cSharpName": "SettingsEcoflowMode"
         }
       ],
       "attributes": [
@@ -2625,6 +2645,11 @@
           "cSharpName": "CubeSide"
         },
         {
+          "id": "sensor.ecoflow_ac_input_sum",
+          "friendlyName": "Ecoflow AC Input Sum",
+          "cSharpName": "EcoflowAcInputSum"
+        },
+        {
           "id": "sensor.ecoflow_cycles",
           "friendlyName": "Ecoflow Cycles",
           "cSharpName": "EcoflowCycles"
@@ -3599,6 +3624,11 @@
         {
           "jsonName": "title_com.itunestoppodcastplayer.app",
           "cSharpName": "TitleCom_itunestoppodcastplayer_app",
+          "clrType": "System.String"
+        },
+        {
+          "jsonName": "source",
+          "cSharpName": "Source",
           "clrType": "System.String"
         }
       ]
@@ -4748,6 +4778,11 @@
           "id": "switch.schedule_9ee8ea",
           "friendlyName": "Schedule #9ee8ea",
           "cSharpName": "Schedule9ee8ea"
+        },
+        {
+          "id": "switch.schedule_e85023",
+          "friendlyName": "Schedule #e85023",
+          "cSharpName": "ScheduleE85023"
         },
         {
           "id": "switch.tbd_powermeter",
