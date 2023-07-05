@@ -12,7 +12,6 @@ using System.Threading.Tasks;
 
 namespace NetDaemonApps.apps
 {
-    [NetDaemonApp]
     public class AqaraFP1Extender
     {
         public List<Region> Regions = new List<Region>();

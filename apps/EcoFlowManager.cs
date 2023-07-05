@@ -6,9 +6,12 @@ using System.Reactive.Concurrency;
 using System.Text;
 using System.Threading.Tasks;
 using NetDaemon.Extensions.Scheduler;
+using System.Text.Json;
+using System.Diagnostics;
 
 namespace NetDaemonApps.apps
 {
+    [NetDaemonApp]
     public class EcoFlowManager
     {
         private readonly Entities _myEntities;
@@ -28,6 +31,7 @@ namespace NetDaemonApps.apps
 
         public EcoFlowManager(IHaContext ha, IScheduler scheduler)
         {
+
             _myEntities = new Entities(ha);
 
             _myEntities.Sensor.EcoflowBatteryLevel.StateChanges().Where(x => x.New?.State < 2).Subscribe(x => {
@@ -39,6 +43,7 @@ namespace NetDaemonApps.apps
             _myEntities.Sensor.EcoflowBatteryLevel.StateChanges().Where(x => x.New?.State == 100).Subscribe(x => {
 
                 _myEntities.Switch.EcoflowPlug.TurnOff();
+                DetermineNextChargeTime();
             });
 
             _myEntities.Sensor.EcoflowBatteryLevel.StateChanges().Where(x => x.New?.State < 10).Subscribe(x => {
@@ -55,35 +60,49 @@ namespace NetDaemonApps.apps
                     
                     if(plannedOnHoursToday.IndexOf(DateTime.Now.Hour) != 0 && _myEntities.InputSelect.SettingsEcoflowMode.State == "Auto")
                     {
-                        //if(DateTime.Now + TimeSpan.FromMinutes(_myEntities.Sensor.EcoflowDischargeRemainingTime.State ?? 0) > )
+                        if((DateTime.Now + TimeSpan.FromMinutes(_myEntities.Sensor.EcoflowDischargeRemainingTime.State ?? 0)).Ticks < _myEntities.InputDatetime.NextPlannedEcocharge.Attributes?.Timestamp )
                         _myEntities.Switch.EcoflowPlug.TurnOn();
                     } 
                     else if(plannedOnHoursToday.IndexOf(DateTime.Now.Hour) == 0)
                     _myEntities.Switch.EcoflowPlug.TurnOn();
                 }
-
+                DetermineNextChargeTime();
             });
 
             scheduler.ScheduleCron("0 0 * * *", () => {
-                planToday(_myEntities?.Sensor.NordpoolKwhFiEur31001.Attributes?.Today);
+                plan(_myEntities?.Sensor.NordpoolKwhFiEur31001.Attributes?.Today, todayHoursRaw, plannedOnHoursToday);
             });
 
 
             _myEntities?.Sensor.NordpoolKwhFiEur31001.StateChanges().Where(x => x?.New?.State == _myEntities?.Sensor.NordpoolKwhFiEur31001.Attributes?.Min).Subscribe(_ => { _myEntities.Switch.EcoflowPlug.TurnOn(); });
-            planToday(_myEntities?.Sensor.NordpoolKwhFiEur31001.Attributes?.Today);
-        }
-        private void planToday(IReadOnlyList<double>? hours)
-        {
-            todayHoursRaw.Clear();
+            _myEntities?.Sensor.NordpoolKwhFiEur31001.StateAllChanges().Where(x => x?.New?.Attributes?.TomorrowValid == true && x.Old?.Attributes?.TomorrowValid == false).Subscribe(_ => { DetermineNextChargeTime(); });
 
-            for (int i = 0; i <hours?.Count; i++)
+
+
+
+            plan(_myEntities?.Sensor.NordpoolKwhFiEur31001.Attributes?.Today, todayHoursRaw, plannedOnHoursToday);
+            if (_myEntities?.Sensor.NordpoolKwhFiEur31001?.Attributes?.TomorrowValid ?? false )
             {
-                todayHoursRaw.Add(new KeyValuePair<int, double>(i, hours[i]));
+                var list = JsonSerializer.Deserialize<List<double>?>(_myEntities.Sensor?.NordpoolKwhFiEur31001?.EntityState?.Attributes?.Tomorrow.ToString());
+                plan(list, tomorrowHoursRaw, plannedChargeHoursTomorrow);
+            }
+
+            DetermineNextChargeTime();
+        }
+        private void plan(IEnumerable<double>? hours, List<KeyValuePair<int, double>> rawList, List<int> planList)
+        {
+            rawList.Clear();
+
+            List<double>? tmp = hours?.ToList();
+
+            for (int i = 0; i < tmp?.Count; i++)
+            {
+                rawList.Add(new KeyValuePair<int, double>(i, tmp[i]));
             }
 
 
-            plannedOnHoursToday.Clear();
-            List<KeyValuePair<int, double>> orderedHours = todayHoursRaw.OrderByDescending(x => x.Key).ToList();
+            planList.Clear();
+            List<KeyValuePair<int, double>> orderedHours = rawList.OrderByDescending(x => x.Key).ToList();
 
             KeyValuePair<int, double> lowest = orderedHours.First();       
             KeyValuePair<int, double> highest = orderedHours.Last();
@@ -91,18 +110,32 @@ namespace NetDaemonApps.apps
             KeyValuePair<int, double> middayChargingHour = orderedHours.FirstOrDefault(x => x.Value > 12 && x.Key < 20, highest);
             bool shoudMiddayBeUsed = middayChargingHour.Value * 2 < highest.Value;
 
-            plannedOnHoursToday.Add(lowest.Key);
-            if(shoudMiddayBeUsed) plannedOnHoursToday.Add(middayChargingHour.Key);
+            planList.Add(lowest.Key);
+            if(shoudMiddayBeUsed) planList.Add(middayChargingHour.Key);
 
 
         }
 
-        private void planTomorrow()
+        private void DetermineNextChargeTime()
         {
+            int hour = -1;
+            hour = plannedOnHoursToday.LastOrDefault(x => x > DateTime.Now.Hour,-1);
+            _myEntities.InputDatetime.NextPlannedEcocharge.SetDatetime(datetime:DateTime.Now.ToString(@"yyyy-MM-dd HH\:mm\:ss"));
+            Debug.WriteLine(hour);
+            if (hour != -1)
+            {
+                _myEntities.InputDatetime.NextPlannedEcocharge.SetDatetime(datetime: new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, hour, 0, 0).ToString(@"yyyy-MM-dd HH\:mm\:ss"));
+            }
+            else if(_myEntities?.Sensor.NordpoolKwhFiEur31001?.Attributes?.TomorrowValid ?? false)
+            {
+                hour = plannedChargeHoursTomorrow.FirstOrDefault(x => x > DateTime.Now.Hour, -1);
             
-            List<double> inputList = new List<double>();
-            double peak = 0.5f;
-            findPeaks(plannedOnHoursTomorrow, inputList, peakTimeThreshold, peak);
+                DateTime tmrw = DateTime.Now.AddDays(1);
+
+                _myEntities.InputDatetime.NextPlannedEcocharge.SetDatetime(datetime: new DateTime(tmrw.Year, tmrw.Month, tmrw.Day, hour, 0, 0).ToString(@"yyyy-MM-dd HH\:mm\:ss"));
+
+            }
+
 
         }
 

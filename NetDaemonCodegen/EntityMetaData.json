@@ -1162,9 +1162,19 @@
           "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp168"
         },
         {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_69",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
+          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp169"
+        },
+        {
           "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_7",
           "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
           "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp17"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_70",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
+          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp170"
         },
         {
           "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_8",
@@ -1352,6 +1362,11 @@
           "id": "input_datetime.lastisasleeptime",
           "friendlyName": "LastIsAsleepTime",
           "cSharpName": "Lastisasleeptime"
+        },
+        {
+          "id": "input_datetime.next_planned_ecocharge",
+          "friendlyName": "Next Planned EcoCharge",
+          "cSharpName": "NextPlannedEcocharge"
         },
         {
           "id": "input_datetime.settings_sleepduration",
