@@ -60,7 +60,7 @@ namespace NetDaemonApps.apps
                     
                     if(plannedOnHoursToday.IndexOf(DateTime.Now.Hour) != 0 && _myEntities.InputSelect.SettingsEcoflowMode.State == "Auto")
                     {
-                        if((DateTime.Now + TimeSpan.FromMinutes(_myEntities.Sensor.EcoflowDischargeRemainingTime.State ?? 0)).Ticks < _myEntities.InputDatetime.NextPlannedEcocharge.Attributes?.Timestamp )
+                        if((DateTime.Now + TimeSpan.FromMinutes(_myEntities.Sensor.EcoflowDischargeRemainingTime.State ?? 0)).TimeOfDay.TotalSeconds < _myEntities.InputDatetime.NextPlannedEcocharge.Attributes?.Timestamp )
                         _myEntities.Switch.EcoflowPlug.TurnOn();
                     } 
                     else if(plannedOnHoursToday.IndexOf(DateTime.Now.Hour) == 0)
@@ -102,9 +102,10 @@ namespace NetDaemonApps.apps
 
 
             planList.Clear();
-            List<KeyValuePair<int, double>> orderedHours = rawList.OrderByDescending(x => x.Key).ToList();
+            List<KeyValuePair<int, double>> orderedHours = rawList.OrderByDescending(x => x.Value).Reverse().ToList();
 
-            KeyValuePair<int, double> lowest = orderedHours.First();       
+            KeyValuePair<int, double> lowest = orderedHours.First();
+            Debug.WriteLine(lowest);
             KeyValuePair<int, double> highest = orderedHours.Last();
 
             KeyValuePair<int, double> middayChargingHour = orderedHours.FirstOrDefault(x => x.Value > 12 && x.Key < 20, highest);
@@ -121,17 +122,17 @@ namespace NetDaemonApps.apps
             int hour = -1;
             hour = plannedOnHoursToday.LastOrDefault(x => x > DateTime.Now.Hour,-1);
             _myEntities.InputDatetime.NextPlannedEcocharge.SetDatetime(datetime:DateTime.Now.ToString(@"yyyy-MM-dd HH\:mm\:ss"));
-            Debug.WriteLine(hour);
+            
             if (hour != -1)
             {
                 _myEntities.InputDatetime.NextPlannedEcocharge.SetDatetime(datetime: new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, hour, 0, 0).ToString(@"yyyy-MM-dd HH\:mm\:ss"));
             }
             else if(_myEntities?.Sensor.NordpoolKwhFiEur31001?.Attributes?.TomorrowValid ?? false)
             {
-                hour = plannedChargeHoursTomorrow.FirstOrDefault(x => x > DateTime.Now.Hour, -1);
+                hour = plannedChargeHoursTomorrow.FirstOrDefault(-1);
             
                 DateTime tmrw = DateTime.Now.AddDays(1);
-
+                if(hour != -1)
                 _myEntities.InputDatetime.NextPlannedEcocharge.SetDatetime(datetime: new DateTime(tmrw.Year, tmrw.Month, tmrw.Day, hour, 0, 0).ToString(@"yyyy-MM-dd HH\:mm\:ss"));
 
             }
