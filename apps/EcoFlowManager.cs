@@ -43,7 +43,7 @@ namespace NetDaemonApps.apps
             _myEntities.Sensor.EcoflowBatteryLevel.StateChanges().Where(x => x.New?.State == 100).Subscribe(x => {
 
                 _myEntities.Switch.EcoflowPlug.TurnOff();
-                DetermineNextChargeTime();
+               // DetermineNextChargeTime();
             });
 
             _myEntities.Sensor.EcoflowBatteryLevel.StateChanges().Where(x => x.New?.State < 10).Subscribe(x => {
@@ -51,7 +51,7 @@ namespace NetDaemonApps.apps
                 TTS.Speak("Warning Only 10% of Power remaining");
             });
 
-
+            /*
             scheduler.ScheduleCron("0 * * * *", () => {
 
                 if (plannedOnHoursToday.Contains(DateTime.Now.Hour))
@@ -88,6 +88,7 @@ namespace NetDaemonApps.apps
             }
 
             DetermineNextChargeTime();
+            */
         }
         private void plan(IEnumerable<double>? hours, List<KeyValuePair<int, double>> rawList, List<int> planList)
         {
@@ -105,7 +106,7 @@ namespace NetDaemonApps.apps
             List<KeyValuePair<int, double>> orderedHours = rawList.OrderByDescending(x => x.Value).Reverse().ToList();
 
             KeyValuePair<int, double> lowest = orderedHours.First();
-            Debug.WriteLine(lowest);
+       
             KeyValuePair<int, double> highest = orderedHours.Last();
 
             KeyValuePair<int, double> middayChargingHour = orderedHours.FirstOrDefault(x => x.Value > 12 && x.Key < 20, highest);
@@ -139,33 +140,6 @@ namespace NetDaemonApps.apps
 
 
         }
-
-        private void findPeaks(List<int> hourList, List<double> inputList, double threshold,double minmaxValue)
-        {
-            hourList.Clear();
-
-           
-            for(int i= 0; i<inputList.Count; i++)
-            {
-
-                //check the math
-                if (inputList[i]*threshold > minmaxValue)
-
-                {
-                    hourList.Add(i);
-                }
-             
-            }
-
-        }
-
-        private int findPossibleHour(int fromhour, out bool isTomorrow)
-        {
-            int possibleHour = -1;
-            isTomorrow = false;
-            return possibleHour;
-        }
-
 
 
 
