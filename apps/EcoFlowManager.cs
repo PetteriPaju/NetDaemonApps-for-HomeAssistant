@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using NetDaemon.Extensions.Scheduler;
 using System.Text.Json;
 using System.Diagnostics;
+using NetDaemon.HassModel.Entities;
 
 namespace NetDaemonApps.apps
 {
@@ -26,8 +27,10 @@ namespace NetDaemonApps.apps
         private List<int> plannedChargeHoursTomorrow = new List<int>();
         private List<int> plannedOnHoursTomorrow = new List<int>();
 
-       private List<KeyValuePair<int,double>> todayHoursRaw = new List<KeyValuePair<int,double>>();
+        private List<KeyValuePair<int,double>> todayHoursRaw = new List<KeyValuePair<int,double>>();
         private List<KeyValuePair<int, double>> tomorrowHoursRaw = new List<KeyValuePair<int, double>>();
+
+
 
         public EcoFlowManager(IHaContext ha, IScheduler scheduler)
         {
@@ -40,7 +43,7 @@ namespace NetDaemonApps.apps
          
             });
 
-            _myEntities.Sensor.EcoflowBatteryLevel.StateChanges().Where(x => x.New?.State == 100).Subscribe(x => {
+            _myEntities.Sensor.EcoflowBatteryLevel.StateChanges().Where(x => x.New?.State == 100 && _myEntities.Switch.ScheduleE85023.IsOff()).Subscribe(x => {
 
                 _myEntities.Switch.EcoflowPlug.TurnOff();
                // DetermineNextChargeTime();
@@ -53,6 +56,10 @@ namespace NetDaemonApps.apps
 
             /*
             scheduler.ScheduleCron("0 * * * *", () => {
+
+
+
+
 
                 if (plannedOnHoursToday.Contains(DateTime.Now.Hour))
                 {
