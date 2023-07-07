@@ -37,7 +37,7 @@ namespace NetDaemonApps.apps
 
             _myEntities = new Entities(ha);
 
-            _myEntities.Sensor.EcoflowBatteryLevel.StateChanges().Where(x => x.New?.State < 2).Subscribe(x => {
+            _myEntities.Sensor.EcoflowBatteryLevel.StateChanges().Where(x => x.New?.State < 2 && _myEntities.Sensor.EcoflowAcOutPower.State > 0).Subscribe(x => {
 
                 _myEntities.Switch.EcoflowPlug.TurnOn();
          
@@ -49,7 +49,7 @@ namespace NetDaemonApps.apps
                // DetermineNextChargeTime();
             });
 
-            _myEntities.Sensor.EcoflowBatteryLevel.StateChanges().Where(x => x.New?.State < 10).Subscribe(x => {
+            _myEntities.Sensor.EcoflowBatteryLevel.StateChanges().Where(x => x.New?.State < 5 && x.Old?.State >= 5).Subscribe(x => {
 
                 TTS.Speak("Warning Only 10% of Power remaining");
             });

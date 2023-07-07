@@ -31,12 +31,6 @@ namespace NetDaemonApps.apps
             _myEntities = new Entities(ha);
             _sensorsOnBooleanEntity = _myEntities.InputBoolean.SensorsActive;
 
-            var SERVICES = new Services(ha);
-
-            
-
-
-
 
             scheduler.ScheduleCron("30 * * * *", () => TTS.Speak("Hydration Check"));
 
@@ -55,12 +49,7 @@ namespace NetDaemonApps.apps
 
             });
             _myEntities.Sensor.MotoG8PowerLiteBatteryLevel.StateChanges().Where(x => x?.New?.State < 15 && _myEntities.InputBoolean.Ishome.State == "on" && _myEntities.BinarySensor.MotoG8PowerLiteIsCharging.State == "off").Subscribe(_ => { TTS.Speak("Phone Battery Low"); });
-            _myEntities.Sensor.OutsideTemperatureMeterTemperature.StateChanges().WhenStateIsFor(x => x?.State == "Unavailable", TimeSpan.FromMinutes(5)).Subscribe(_=> {
-           //   TTS.Speak("Warning Wifi Might Be Down", TTS.TTSPriority.IgnoreDisabled);
-
-            });
-
-
+   
 
 
 

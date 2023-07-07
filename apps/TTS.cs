@@ -46,7 +46,7 @@ namespace NetDaemonApps.apps
             }
             else
             {
-                Console.WriteLine("(TTS) " +text);
+                Console.WriteLine("(TTS unavailable) " +text);
             }
             
 
@@ -68,6 +68,10 @@ namespace NetDaemonApps.apps
                 tts.Speak("media_player.vlc_telnet", text, "google_translate_say");
 
                
+            }
+            else
+            {
+                Console.WriteLine("(TTS ignored) " + text);
             }
                
         }
