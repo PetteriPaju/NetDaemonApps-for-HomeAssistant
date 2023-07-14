@@ -51,7 +51,7 @@ namespace NetDaemonApps.apps
 
             _myEntities.Sensor.EcoflowBatteryLevel.StateChanges().Where(x => x.New?.State < 5 && x.Old?.State >= 5).Subscribe(x => {
 
-                TTS.Speak("Warning Only 10% of Power remaining");
+                TTS.Speak("Warning Only 5% of Power remaining");
             });
 
             /*

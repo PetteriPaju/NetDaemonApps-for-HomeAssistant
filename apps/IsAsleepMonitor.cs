@@ -6,7 +6,7 @@ using NetDaemon.Extensions.Scheduler;
 using System.Reactive.Concurrency;
 using System.Globalization;
 using System;
-
+using System.Diagnostics;
 
 namespace NetDaemonApps.apps
 {
@@ -97,10 +97,11 @@ namespace NetDaemonApps.apps
             if (TimeSpan.TryParse(_myEntities.InputDatetime.SettingsSleepduration.State, out sleepTimer))
             {
                 // Conversion succeeded
+               
             }
             else
             {
-                sleepTimer = TimeSpan.FromHours(7) + TimeSpan.FromMinutes(0);
+                sleepTimer = TimeSpan.FromHours(8) + TimeSpan.FromMinutes(15);
 
             }
         }

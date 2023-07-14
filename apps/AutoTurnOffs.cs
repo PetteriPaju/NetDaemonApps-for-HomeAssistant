@@ -69,11 +69,11 @@ namespace NetDaemonApps.apps
             });
 
             _myEntities.BinarySensor.LivingroomWindowSensorContact.StateChanges().Where(x => x?.New?.State == "on" && x?.Old?.State == "off").Subscribe(_ => {
-                _myEntities.Switch.BrightLightPlug.TurnOff();
+                _myEntities.Switch.TbdPowermeter.TurnOff();
             });
 
             _myEntities.BinarySensor.LivingroomWindowSensorContact.StateChanges().Where(x => x?.New?.State == "off" && x?.Old?.State == "on").Subscribe(_ => {
-                _myEntities.Switch.BrightLightPlug.TurnOn();
+                _myEntities.Switch.TbdPowermeter.TurnOn();
             });
         }
     }
