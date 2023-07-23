@@ -61,6 +61,7 @@ public class EnergyMonitor
         public double min;
         public int majorityRange;
         public bool isAllSameRange;
+        public int subZeroCount;
     }
 
 
@@ -81,10 +82,9 @@ public class EnergyMonitor
             EnergyForecastInfo energyForecastInfo = GetEnergyForecast(list);
 
             message += "Tomorrows Prices will be" + (energyForecastInfo.isAllSameRange ? " all " : " mostly ") + "in " + GetNameOfRange(energyForecastInfo.majorityRange);
-            message += " with avarage of " + Math.Round(energyForecastInfo.avarage * 100) + " cents.";// Ranging from: " + Math.Round(energyForecastInfo.min * 100, 1) + " to " + Math.Round(energyForecastInfo.max * 100, 1) + " cents. ";
+            message += "and  " + PercentageDifference(_myEntities.Sensor?.NordpoolKwhFiEur31001?.EntityState?.Attributes?.Average ?? 0, energyForecastInfo.avarage) + "% " + (_myEntities.Sensor?.NordpoolKwhFiEur31001?.EntityState?.Attributes?.Average < energyForecastInfo.avarage ? "lower" : "higher") + " than today.";
 
-
-            message += "That's " + PercentageDifference(_myEntities.Sensor?.NordpoolKwhFiEur31001?.EntityState?.Attributes?.Average ?? 0, energyForecastInfo.avarage) + "% " + (_myEntities.Sensor?.NordpoolKwhFiEur31001?.EntityState?.Attributes?.Average < energyForecastInfo.avarage ? "more" : "less") + " than today.";
+            if (energyForecastInfo.subZeroCount > 0) message += " There will also be " + energyForecastInfo.subZeroCount + " sub zero hour" + (energyForecastInfo.subZeroCount > 1 ? "s." : ".");
         }
 
 
@@ -120,6 +120,9 @@ public class EnergyMonitor
         double avg = tmp.Average();
         double max = tmp.Max();
         double min = tmp.Min();
+        int subZeroCount = 0;
+
+     
 
 
         for (int i = startFrom; i < tmp.Count - 1; i++)
@@ -129,6 +132,9 @@ public class EnergyMonitor
 
             if (!foundPerRange.ContainsKey(rangeForPrice)) foundPerRange.Add(rangeForPrice, 1);
             else foundPerRange[rangeForPrice]++;
+
+            if(rangeForPrice <= 0)subZeroCount ++;
+
         }
 
 
@@ -137,6 +143,7 @@ public class EnergyMonitor
         energyForecastInfo.min = min;
         energyForecastInfo.majorityRange = foundPerRange.MaxBy(x => x.Value).Key;
         energyForecastInfo.isAllSameRange = foundPerRange.Count == 1;
+        energyForecastInfo.subZeroCount = subZeroCount;
 
         return energyForecastInfo;
 
