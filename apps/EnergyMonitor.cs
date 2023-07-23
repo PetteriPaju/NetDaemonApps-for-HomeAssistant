@@ -69,7 +69,7 @@ public class EnergyMonitor
 
     public void ReadOutEnergyUpdate()
     {
-        string message = "Energy update for tomorrow!";
+        string message = "Energy update!";
 
         if (!_myEntities.Sensor?.NordpoolKwhFiEur31001?.EntityState?.Attributes?.TomorrowValid == false)
         {
@@ -80,11 +80,11 @@ public class EnergyMonitor
 
             EnergyForecastInfo energyForecastInfo = GetEnergyForecast(list);
 
-            message += " Prices will be" + (energyForecastInfo.isAllSameRange ? " all " : " mostly ") + "in " + GetNameOfRange(energyForecastInfo.majorityRange);
+            message += "Tomorrows Prices will be" + (energyForecastInfo.isAllSameRange ? " all " : " mostly ") + "in " + GetNameOfRange(energyForecastInfo.majorityRange);
             message += " with avarage of " + Math.Round(energyForecastInfo.avarage * 100) + " cents.";// Ranging from: " + Math.Round(energyForecastInfo.min * 100, 1) + " to " + Math.Round(energyForecastInfo.max * 100, 1) + " cents. ";
 
 
-            message += "That's " + (_myEntities.Sensor?.NordpoolKwhFiEur31001?.EntityState?.Attributes?.Average < energyForecastInfo.avarage ? "more" : "less") + " than today.";
+            message += "That's " + PercentageDifference(_myEntities.Sensor?.NordpoolKwhFiEur31001?.EntityState?.Attributes?.Average ?? 0, energyForecastInfo.avarage) + "% " + (_myEntities.Sensor?.NordpoolKwhFiEur31001?.EntityState?.Attributes?.Average < energyForecastInfo.avarage ? "more" : "less") + " than today.";
         }
 
 
@@ -92,6 +92,11 @@ public class EnergyMonitor
 
 
 
+    }
+
+    double PercentageDifference(double a, double b)
+    {
+        return Math.Round((b - a) / ((a + b) / 2) * 100);
     }
     private EnergyForecastInfo GetEnergyForecast(IList<double> list, int startFrom = 0)
     {
