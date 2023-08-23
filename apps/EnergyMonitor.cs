@@ -205,7 +205,7 @@ public class EnergyMonitor
         bool checkTomorrow = DateTime.Now.Hour == 23;
 
         // No need for alert on low price days
-        if (_myEntities?.Sensor?.NordpoolKwhFiEur31001.Attributes.Peak < electiricityRanges.Keys.ToArray()[1] && !checkTomorrow) return;
+        if (_myEntities?.Sensor?.NordpoolKwhFiEur31001.Attributes.Max < electiricityRanges.Keys.ToArray()[1] && !checkTomorrow) return;
 
         ElectricityPriceInfo inFoForNextHour = new ElectricityPriceInfo(DateTime.Now.AddHours(1), _myEntities?.Sensor?.NordpoolKwhFiEur31001, electricityRangeKeys);
 
