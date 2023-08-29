@@ -1,4 +1,5 @@
 using HomeAssistantGenerated;
+using Microsoft.AspNetCore.Http;
 using NetDaemon.Extensions.Scheduler;
 using System.Collections.Generic;
 using System.Linq;
@@ -46,7 +47,16 @@ public class EnergyMonitor
         scheduler.ScheduleCron("50 * * * *", () => EnergiPriceChengeAlert(ha));
 
         _myEntities?.Sensor.NordpoolKwhFiEur31001.StateAllChanges().Where(x => x?.New?.Attributes?.TomorrowValid == true && x.Old?.Attributes?.TomorrowValid == false).Subscribe(_ => { ReadOutEnergyUpdate(); });
-      
+        if (checkDateChanged())
+        {
+            hiPeakAlertGiven = false;
+            loPeakAlertGiven = false;
+            _myEntities.InputNumber.EnergyCostHourly.SetValue(0);
+            _myEntities.InputNumber.EnergyCostDaily.SetValue(0);
+            _myEntities.InputDatetime.Lastknowndate.SetDatetime(date:DateTime.Now.Date.ToString("yyyy-MM-dd"));
+
+        }
+
     }
 
     public static void ReadOutGoodMorning()
@@ -189,6 +199,15 @@ public class EnergyMonitor
         SendTTS(TTSMessage);
 
     }
+
+
+    bool checkDateChanged()
+    {
+        DateTime dateTimeVariable = DateTime.ParseExact(_myEntities.InputDatetime.Lastknowndate.State ?? "", "yyyy-MM-dd", System.Globalization.CultureInfo.InvariantCulture);
+        
+        return dateTimeVariable != DateTime.Now.Date;
+    }
+  
 
     public void SendTTS(string messsage)
     {
@@ -416,6 +435,8 @@ public class EnergyMonitor
             loPeakAlertGiven = false;
             _myEntities.InputNumber.EnergyCostHourly.SetValue(0);
             _myEntities.InputNumber.EnergyCostDaily.SetValue(0);
+            _myEntities.InputDatetime.Lastknowndate.SetDatetime(date: DateTime.Now.Date.ToString("yyyy-MM-dd"));
+
         }
 
     }
