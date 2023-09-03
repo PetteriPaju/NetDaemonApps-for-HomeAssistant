@@ -89,6 +89,11 @@
           "cSharpName": "KirchenKight"
         },
         {
+          "id": "automation.new_automation",
+          "friendlyName": "New Automation",
+          "cSharpName": "NewAutomation"
+        },
+        {
           "id": "automation.pc_auto_off",
           "friendlyName": "Pc auto off",
           "cSharpName": "PcAutoOff"
@@ -326,11 +331,6 @@
           "cSharpName": "SmT530MusicActive"
         },
         {
-          "id": "binary_sensor.storage_light_update_available",
-          "friendlyName": "Storage Light update available",
-          "cSharpName": "StorageLightUpdateAvailable"
-        },
-        {
           "id": "binary_sensor.storage_sensor_aqara_occupancy",
           "friendlyName": "Storage Sensor occupancy",
           "cSharpName": "StorageSensorAqaraOccupancy"
@@ -339,6 +339,11 @@
           "id": "binary_sensor.toilet_light_1_update_available",
           "friendlyName": "Toilet Light_1 _update_available",
           "cSharpName": "ToiletLight1UpdateAvailable"
+        },
+        {
+          "id": "binary_sensor.toilet_seat_sensor_contact",
+          "friendlyName": "Toilet Seat Sensor contact",
+          "cSharpName": "ToiletSeatSensorContact"
         },
         {
           "id": "binary_sensor.toilet_sensor_occupancy",
@@ -671,7 +676,7 @@
         },
         {
           "id": "device_tracker.zatnas",
-          "friendlyName": "PC-24-5E-BE-5F-72-F4",
+          "friendlyName": "Zatnas",
           "cSharpName": "Zatnas"
         }
       ],
@@ -1267,14 +1272,129 @@
           "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1176"
         },
         {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_177",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
+          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1177"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_178",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
+          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1178"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_179",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
+          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1179"
+        },
+        {
           "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_18",
           "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
           "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp118"
         },
         {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_180",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
+          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1180"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_181",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
+          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1181"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_182",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
+          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1182"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_183",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
+          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1183"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_184",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
+          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1184"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_185",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
+          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1185"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_186",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
+          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1186"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_187",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
+          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1187"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_188",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
+          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1188"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_189",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
+          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1189"
+        },
+        {
           "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_19",
           "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
           "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp119"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_190",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
+          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1190"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_191",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
+          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1191"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_192",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
+          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1192"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_193",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
+          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1193"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_194",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
+          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1194"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_195",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
+          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1195"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_196",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
+          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1196"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_197",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
+          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1197"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_198",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
+          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1198"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_199",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
+          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1199"
         },
         {
           "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_2",
@@ -1285,6 +1405,51 @@
           "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_20",
           "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
           "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp120"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_200",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
+          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1200"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_201",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
+          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1201"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_202",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
+          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1202"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_203",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
+          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1203"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_204",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
+          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1204"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_205",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
+          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1205"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_206",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
+          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1206"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_207",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
+          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1207"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_208",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
+          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1208"
         },
         {
           "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_21",
@@ -1990,6 +2155,11 @@
           "id": "input_number.dailysteps",
           "friendlyName": "DailySteps",
           "cSharpName": "Dailysteps"
+        },
+        {
+          "id": "input_number.ecoflow_solar_recors",
+          "friendlyName": "Ecoflow Solar Recors",
+          "cSharpName": "EcoflowSolarRecors"
         },
         {
           "id": "input_number.energy_cost_daily",
@@ -3720,6 +3890,11 @@
           "cSharpName": "SurfaceLaptopLastactive"
         },
         {
+          "id": "sensor.toilet_seat_sensor_power_outage_count",
+          "friendlyName": "Toilet Seat Sensor power outage count",
+          "cSharpName": "ToiletSeatSensorPowerOutageCount"
+        },
+        {
           "id": "sensor.true_fridge_temperature",
           "friendlyName": "True Fridge Temperature",
           "cSharpName": "TrueFridgeTemperature"
@@ -4290,6 +4465,41 @@
           "jsonName": "source_domain",
           "cSharpName": "SourceDomain",
           "clrType": "System.String"
+        },
+        {
+          "jsonName": "album_com.android.chrome",
+          "cSharpName": "AlbumCom_android_chrome",
+          "clrType": "System.String"
+        },
+        {
+          "jsonName": "artist_com.android.chrome",
+          "cSharpName": "ArtistCom_android_chrome",
+          "clrType": "System.String"
+        },
+        {
+          "jsonName": "duration_com.android.chrome",
+          "cSharpName": "DurationCom_android_chrome",
+          "clrType": "System.Double"
+        },
+        {
+          "jsonName": "media_id_com.android.chrome",
+          "cSharpName": "MediaIdCom_android_chrome",
+          "clrType": "System.String"
+        },
+        {
+          "jsonName": "playback_position_com.android.chrome",
+          "cSharpName": "PlaybackPositionCom_android_chrome",
+          "clrType": "System.Double"
+        },
+        {
+          "jsonName": "playback_state_com.android.chrome",
+          "cSharpName": "PlaybackStateCom_android_chrome",
+          "clrType": "System.String"
+        },
+        {
+          "jsonName": "title_com.android.chrome",
+          "cSharpName": "TitleCom_android_chrome",
+          "clrType": "System.String"
         }
       ]
     },
@@ -4456,6 +4666,16 @@
           "id": "sensor.ecoflow_solar_in_power",
           "friendlyName": "EcoFlow Solar In Power",
           "cSharpName": "EcoflowSolarInPower"
+        },
+        {
+          "id": "sensor.ecoflow_solar_sum",
+          "friendlyName": "Ecoflow Solar Sum",
+          "cSharpName": "EcoflowSolarSum"
+        },
+        {
+          "id": "sensor.ecoflow_solar_sum_daily",
+          "friendlyName": "Ecoflow Solar Sum Daily",
+          "cSharpName": "EcoflowSolarSumDaily"
         },
         {
           "id": "sensor.ecoflow_total_in_power",
@@ -4871,6 +5091,16 @@
           "id": "sensor.toilet_power_plug_power",
           "friendlyName": "Toilet Power Plug power",
           "cSharpName": "ToiletPowerPlugPower"
+        },
+        {
+          "id": "sensor.toilet_seat_sensor_battery",
+          "friendlyName": "Toilet Seat Sensor battery",
+          "cSharpName": "ToiletSeatSensorBattery"
+        },
+        {
+          "id": "sensor.toilet_seat_sensor_device_temperature",
+          "friendlyName": "Toilet Seat Sensor device temperature",
+          "cSharpName": "ToiletSeatSensorDeviceTemperature"
         },
         {
           "id": "sensor.toilet_sensor_battery_2",
@@ -5561,7 +5791,7 @@
         },
         {
           "id": "switch.zatnas_internet_access",
-          "friendlyName": "PC-24-5E-BE-5F-72-F4 Internet Access",
+          "friendlyName": "Zatnas Internet Access",
           "cSharpName": "ZatnasInternetAccess"
         }
       ],
