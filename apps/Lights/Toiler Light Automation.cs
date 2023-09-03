@@ -26,62 +26,60 @@ namespace NetDaemonApps.apps.Lights
 
             targetLights.Add(_myEntities.Light.BedLight);
             targetLights.Add(_myEntities.Light.PcMultipowermeterL2);
-  
+
             targetLights.Add(_myEntities.Light.LivingRoomLight);
             targetLights.Add(_myEntities.Light.DesktopLight);
 
-            _myEntities.BinarySensor.ToiletSensorOccupancy.StateChanges()
-      .Subscribe(_ =>
+            _myEntities.BinarySensor.ToiletSensorOccupancy.StateChanges().Subscribe(_ =>
       {
-          if(_myEntities.BinarySensor.ToiletSensorOccupancy.IsOn())
-          _myEntities.Light.ToiletLight1.TurnOnLight();
+          if (_myEntities.BinarySensor.ToiletSensorOccupancy.IsOn() && _myEntities.InputBoolean.SensorsActive.IsOn())
+              _myEntities.Light.ToiletLight1.TurnOnLight();
           else _myEntities.Light.ToiletLight1.TurnOffLight();
       });
 
 
-          /*
-           _myEntities.BinarySensor.ToiletSeatSensorContact
-          .StateChanges().Where(e => e.New?.State == "on" && _myEntities.InputBoolean.SensorsActive.IsOn())
-          .Subscribe(_ => OnToiledLidOpen());
 
-           _myEntities.BinarySensor.ToiletSeatSensorContact
-          .StateChanges().Where(e => e.New?.State == "off" && _myEntities.InputBoolean.SensorsActive.IsOn())
-          .Subscribe(_ => OnToiledLidClose());
+            _myEntities.BinarySensor.ToiletSeatSensorContact
+           .StateChanges().Where(e => e.New?.State == "off" && _myEntities.InputBoolean.SensorsActive.IsOn())
+           .Subscribe(_ => OnToiledLidOpen());
 
-
-
-           _myEntities.BinarySensor.ToiletSensorOccupancy.StateChanges()
-           .Where(e => e.New?.State == "on")
-           .Subscribe(_ => {
-
-               _myEntities.Light.ToiletLight1.TurnOnLight();
-
-           });
-
-
-           });
-
-           _myEntities.BinarySensor.ToiletSensorOccupancy.StateChanges()
-           .Where(e => e.New.IsOff() && _myEntities.BinarySensor.ToiletSeatSensorContact.IsOff())
-           .Subscribe(_ => {
-               _myEntities.Light.ToiletLight1.TurnOffLight();
-
-           });
-
-
-           _myEntities.BinarySensor.HallwaySensorOccupancy.StateChanges()
-           .Where(e => e.New.IsOn() && _myEntities.BinarySensor.ToiletSeatSensorContact.IsOn())
-           .Subscribe(_ => {
-               _myEntities.Light.ToiletLight1.TurnOffLight();
-           });
-          */
-
-
-      }
+            _myEntities.BinarySensor.ToiletSeatSensorContact
+           .StateChanges().Where(e => e.New?.State == "on" && _myEntities.InputBoolean.SensorsActive.IsOn())
+           .Subscribe(_ => OnToiledLidClose());
 
 
 
-        private void OnToiledLidOpen()
+            _myEntities.BinarySensor.ToiletSensorOccupancy.StateChanges()
+            .Where(e => e.New?.State == "off" && _myEntities.InputBoolean.SensorsActive.IsOn())
+            .Subscribe(_ =>
+            {
+                _myEntities.Light.ToiletLight1.TurnOnLight();
+
+            });
+
+            _myEntities.BinarySensor.ToiletSensorOccupancy.StateChanges()
+            .Where(e => e.New.IsOff() && _myEntities.BinarySensor.ToiletSeatSensorContact.IsOn() && _myEntities.InputBoolean.SensorsActive.IsOn())
+            .Subscribe(_ =>
+            {
+                _myEntities.Light.ToiletLight1.TurnOffLight();
+
+            });
+
+
+            _myEntities.BinarySensor.HallwaySensorOccupancy.StateChanges()
+            .Where(e => e.New.IsOn() && _myEntities.BinarySensor.ToiletSeatSensorContact.IsOn() && _myEntities.InputBoolean.SensorsActive.IsOn())
+            .Subscribe(_ =>
+            {
+                _myEntities.Light.ToiletLight1.TurnOffLight();
+            });
+
+
+        }
+      
+
+
+
+    private void OnToiledLidOpen()
         {
 
             lightsThatWereOn.Clear();
@@ -116,6 +114,7 @@ namespace NetDaemonApps.apps.Lights
             if (_myEntities.Switch.PcPlug.IsOn())
                 _myEntities.Button.PcWakekey.Press();
         }
+
 
     }
 }

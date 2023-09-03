@@ -26,8 +26,8 @@ namespace NetDaemonApps.apps
                .Subscribe(x => { _myEntities.Light.ToiletLight1.TurnOff();});
 
             //Fan
-            _myEntities.Switch.BrightLightPlug.StateChanges().WhenStateIsFor(x => x?.State == "on", TimeSpan.FromHours(1))
-               .Subscribe(x => { _myEntities.Switch.BrightLightPlug.TurnOff(); });
+            _myEntities.Switch.BedMultiPlugL1.StateChanges().WhenStateIsFor(x => x?.State == "on", TimeSpan.FromHours(1))
+               .Subscribe(x => { _myEntities.Switch.BedMultiPlugL1.TurnOff(); });
 
             _myEntities.Switch.PcPlug.StateChanges().Where(x => x.New?.State == "on" && x.Old?.State == "off")
                 .Subscribe(_ => {

@@ -23,6 +23,7 @@ public class EnergyMonitor
     private readonly Dictionary<double, string> electiricityRanges = new Dictionary<double, string>() { { 0, "Blue" }, { 0.075, "Green" }, { 0.15, "Yellow" }, { 0.25, "Red" } };
     private bool hiPeakAlertGiven = false;
     private bool loPeakAlertGiven = false;
+    private bool solarChargingNotificationGiven = false;
 
     private readonly List<double>? electricityRangeKeys;
 
@@ -46,6 +47,10 @@ public class EnergyMonitor
 
         scheduler.ScheduleCron("50 * * * *", () => EnergiPriceChengeAlert(ha));
 
+        solarChargingNotificationGiven = _myEntities?.Sensor?.EcoflowSolarInPower.State >= 0;
+        _myEntities?.Sensor.EcoflowSolarInPower.StateAllChanges().Where(x => x?.New?.State > 0 && !solarChargingNotificationGiven).Subscribe(x => { TTS.Instance.SpeakTTS("Solar Charging On"); });
+
+
         _myEntities?.Sensor.NordpoolKwhFiEur31001.StateAllChanges().Where(x => x?.New?.Attributes?.TomorrowValid == true && x.Old?.Attributes?.TomorrowValid == false).Subscribe(_ => { ReadOutEnergyUpdate(); });
         if (checkDateChanged())
         {
@@ -54,6 +59,7 @@ public class EnergyMonitor
             _myEntities.InputNumber.EnergyCostHourly.SetValue(0);
             _myEntities.InputNumber.EnergyCostDaily.SetValue(0);
             _myEntities.InputDatetime.Lastknowndate.SetDatetime(date:DateTime.Now.Date.ToString("yyyy-MM-dd"));
+            solarChargingNotificationGiven = false;
 
         }
 
@@ -436,7 +442,7 @@ public class EnergyMonitor
             _myEntities.InputNumber.EnergyCostHourly.SetValue(0);
             _myEntities.InputNumber.EnergyCostDaily.SetValue(0);
             _myEntities.InputDatetime.Lastknowndate.SetDatetime(date: DateTime.Now.Date.ToString("yyyy-MM-dd"));
-
+            solarChargingNotificationGiven = false;
         }
 
     }
