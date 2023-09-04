@@ -48,7 +48,7 @@ public class EnergyMonitor
         scheduler.ScheduleCron("50 * * * *", () => EnergiPriceChengeAlert(ha));
 
         solarChargingNotificationGiven = _myEntities?.Sensor?.EcoflowSolarInPower.State >= 0;
-        _myEntities?.Sensor.EcoflowSolarInPower.StateAllChanges().Where(x => x?.New?.State > 0 && !solarChargingNotificationGiven).Subscribe(x => { TTS.Instance.SpeakTTS("Solar Charging On"); });
+        _myEntities?.Sensor.EcoflowSolarInPower.StateAllChanges().Where(x => x?.New?.State > 0 && !solarChargingNotificationGiven).Subscribe(x => { TTS.Instance.SpeakTTS("Solar Charging On"); solarChargingNotificationGiven = true; });
 
 
         _myEntities?.Sensor.NordpoolKwhFiEur31001.StateAllChanges().Where(x => x?.New?.Attributes?.TomorrowValid == true && x.Old?.Attributes?.TomorrowValid == false).Subscribe(_ => { ReadOutEnergyUpdate(); });
