@@ -40,11 +40,11 @@ namespace NetDaemonApps.apps.Lights
 
 
             _myEntities.BinarySensor.ToiletSeatSensorContact
-           .StateChanges().Where(e => e.New?.State == "off" && _myEntities.InputBoolean.SensorsActive.IsOn())
+           .StateChanges().Where(e => e.New?.State == "on" && _myEntities.InputBoolean.SensorsActive.IsOn())
            .Subscribe(_ => OnToiledLidOpen());
 
             _myEntities.BinarySensor.ToiletSeatSensorContact
-           .StateChanges().Where(e => e.New?.State == "on" && _myEntities.InputBoolean.SensorsActive.IsOn())
+           .StateChanges().Where(e => e.New?.State == "off" && _myEntities.InputBoolean.SensorsActive.IsOn())
            .Subscribe(_ => OnToiledLidClose());
 
 
