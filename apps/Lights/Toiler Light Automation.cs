@@ -29,14 +29,14 @@ namespace NetDaemonApps.apps.Lights
 
             targetLights.Add(_myEntities.Light.LivingRoomLight);
             targetLights.Add(_myEntities.Light.DesktopLight);
-
+            /*
             _myEntities.BinarySensor.ToiletSensorOccupancy.StateChanges().Subscribe(_ =>
       {
           if (_myEntities.BinarySensor.ToiletSensorOccupancy.IsOn() && _myEntities.InputBoolean.SensorsActive.IsOn())
               _myEntities.Light.ToiletLight1.TurnOnLight();
-          else _myEntities.Light.ToiletLight1.TurnOffLight();
+          else if (_myEntities.BinarySensor.ToiletSeatSensorContact.IsOn()) _myEntities.Light.ToiletLight1.TurnOffLight();
       });
-
+            */
 
 
             _myEntities.BinarySensor.ToiletSeatSensorContact
@@ -50,7 +50,7 @@ namespace NetDaemonApps.apps.Lights
 
 
             _myEntities.BinarySensor.ToiletSensorOccupancy.StateChanges()
-            .Where(e => e.New?.State == "off" && _myEntities.InputBoolean.SensorsActive.IsOn())
+            .Where(e => e.New?.State == "on" && _myEntities.InputBoolean.SensorsActive.IsOn())
             .Subscribe(_ =>
             {
                 _myEntities.Light.ToiletLight1.TurnOnLight();
@@ -58,7 +58,7 @@ namespace NetDaemonApps.apps.Lights
             });
 
             _myEntities.BinarySensor.ToiletSensorOccupancy.StateChanges()
-            .Where(e => e.New.IsOff() && _myEntities.BinarySensor.ToiletSeatSensorContact.IsOn() && _myEntities.InputBoolean.SensorsActive.IsOn())
+            .Where(e => e.New.IsOff() && _myEntities.BinarySensor.ToiletSeatSensorContact.IsOff() && _myEntities.InputBoolean.SensorsActive.IsOn())
             .Subscribe(_ =>
             {
                 _myEntities.Light.ToiletLight1.TurnOffLight();
@@ -67,7 +67,7 @@ namespace NetDaemonApps.apps.Lights
 
 
             _myEntities.BinarySensor.HallwaySensorOccupancy.StateChanges()
-            .Where(e => e.New.IsOn() && _myEntities.BinarySensor.ToiletSeatSensorContact.IsOn() && _myEntities.InputBoolean.SensorsActive.IsOn())
+            .Where(e => e.New.IsOn() && _myEntities.BinarySensor.ToiletSeatSensorContact.IsOff() && _myEntities.InputBoolean.SensorsActive.IsOn())
             .Subscribe(_ =>
             {
                 _myEntities.Light.ToiletLight1.TurnOffLight();
@@ -96,6 +96,8 @@ namespace NetDaemonApps.apps.Lights
             //Turn off PC Monitors while in toilet
             if (_myEntities.Switch.PcPlug.IsOn())
                 _myEntities.Button.PcTurnoffmonitors.Press();
+
+
 
         }
 
