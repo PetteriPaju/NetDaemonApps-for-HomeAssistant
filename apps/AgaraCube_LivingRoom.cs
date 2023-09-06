@@ -100,7 +100,13 @@ namespace NetDaemonApps.apps
             base.OnFlip90();
 
 
+            if (_myEntities.InputBoolean.GuestMode.IsOn())
+            {
+                currentlyActiveLight = _myEntities.Light.LivingRoomLight;
+                _myEntities.Light.LivingRoomLight.Toggle();
 
+                return;
+            }
            
 
             if(currentlyActiveLight == _myEntities.Light.PcMultipowermeterL2 && BrightLightTurnedOnByPC)

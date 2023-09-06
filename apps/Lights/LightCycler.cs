@@ -14,8 +14,9 @@ namespace NetDaemonApps.apps.Lights
     {
         private List <LightEntity> lightEntities;
         private LightEntity _currentLight = null;
+        private InputBooleanEntity guestModeBoolean;
         
-        public LightCycler(params LightEntity[] lights)
+        public LightCycler(InputBooleanEntity guestmode, params LightEntity[] lights)
         {
             lightEntities = lights.ToList();
             FindActiveLight();
@@ -62,6 +63,12 @@ namespace NetDaemonApps.apps.Lights
 
         public void NextLight()
         {
+            if (guestModeBoolean.IsOn())
+            {
+                lightEntities[0]?.Toggle();
+                return;
+            }
+
             var nLight = GetNext();
             if (nLight != null) nLight.TurnOn();
             else _currentLight?.TurnOff();
@@ -69,12 +76,24 @@ namespace NetDaemonApps.apps.Lights
         }
         public void PreviousLight()
         {
+            if (guestModeBoolean.IsOn())
+            {
+                lightEntities[0]?.Toggle();
+                return;
+            }
             GetPrevious()?.TurnOn();
         }
 
         public void TurnOff()
         {
             _currentLight?.TurnOff();
+
+            if (guestModeBoolean.IsOn())
+            {
+                lightEntities[0]?.TurnOff();
+                return;
+            }
+         
         }
 
         private LightEntity GetNext()

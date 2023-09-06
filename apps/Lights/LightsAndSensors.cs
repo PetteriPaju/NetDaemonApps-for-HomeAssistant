@@ -28,7 +28,7 @@ namespace NetDaemonApps.apps.Lights
 
  
             SubcribeLightOn(_myEntities.BinarySensor.StorageSensorAqaraOccupancy, _myEntities.Light.StorageLight2);
-            SubcribeLightOff(_myEntities.BinarySensor.StorageSensorAqaraOccupancy, _myEntities.Light.StorageLight2, new TimeSpan(0, 0, 0));
+            SubcribeLightOff(_myEntities.BinarySensor.StorageSensorAqaraOccupancy, _myEntities.Light.StorageLight2, new TimeSpan(0, 0, 20));
 
  
             _myEntities.Sensor.Livingroomfp1PresenceEvent.StateChanges().Where(x => x.New?.State == "approach").Subscribe(_ => {
@@ -57,7 +57,7 @@ namespace NetDaemonApps.apps.Lights
            */
 
 
-            _myEntities.BinarySensor.KitchenSensorOccupancy.StateChanges().Where(x => x?.New?.State == "on" && _myEntities.Light.AllLights.IsOff() && _myEntities.Light.AllLights?.EntityState?.LastChanged< DateTime.Now + TimeSpan.FromSeconds(30)).SubscribeAsync(async s => {
+            _myEntities.BinarySensor.KitchenSensorOccupancy.StateChanges().Where(x => x?.New?.State == "on" && _myEntities.Light.AllLights.IsOff() && _myEntities.Light.AllLights?.EntityState?.LastChanged< DateTime.Now + TimeSpan.FromSeconds(30) && _myEntities.InputBoolean.GuestMode.IsOff()).SubscribeAsync(async s => {
 
                 _myEntities.Light.HallwayLight.TurnOn();
 

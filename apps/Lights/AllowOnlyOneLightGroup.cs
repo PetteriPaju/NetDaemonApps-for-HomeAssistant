@@ -1,5 +1,6 @@
 ﻿using HomeAssistantGenerated;
 using NetDaemon.HassModel;
+using NetDaemon.HassModel.Entities;
 using System.Linq;
 
 
@@ -28,6 +29,8 @@ namespace NetDaemonApps.apps.Lights
 
         private void OnLightTurnOn(LightEntity poweredLight)
         {
+            if(_myEntities.InputBoolean.GuestMode.IsOn())return;
+
             foreach (LightEntity light in lights)
             {
                 if (light != poweredLight) light.TurnOff();

@@ -1,7 +1,9 @@
 ﻿using HomeAssistantGenerated;
+using Microsoft.AspNetCore.Builder;
 using NetDaemon.Extensions.Tts;
 using NetDaemon.HassModel.Entities;
 using System;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace NetDaemonApps.apps
@@ -13,6 +15,8 @@ namespace NetDaemonApps.apps
         {
             Default,
             IgnoreSleep,
+            PlayInGuestMode,
+            DoNotPlayInGuestMode,
             IgnoreDisabled,
             IgnoreAll
 
@@ -52,9 +56,32 @@ namespace NetDaemonApps.apps
 
         }
 
-        public void SpeakTTS(string text, TTSPriority overrider = TTSPriority.Default)
+        public void SpeakTTS(string text, params TTSPriority[] overriders)
         {
-            if (((isAsleepEntity.IsOff() || overrider == TTSPriority.IgnoreSleep) && (_myEntities.InputBoolean.HydrationCheckActive.IsOn() || overrider == TTSPriority.IgnoreDisabled)) || overrider == TTSPriority.IgnoreAll)
+            bool allowTTS = false;
+           
+            bool paramsContain(TTSPriority target)
+            {
+                return overriders.Contains(target);
+            }
+
+            if (!paramsContain(TTSPriority.IgnoreAll))
+            {
+                if (_myEntities.InputBoolean.HydrationCheckActive.IsOff() && paramsContain(TTSPriority.IgnoreDisabled)) allowTTS = true;
+                else allowTTS = false;
+
+                if (_myEntities.InputBoolean.Isasleep.IsOn() && paramsContain(TTSPriority.IgnoreSleep)) allowTTS = true;
+                else allowTTS = false;
+
+
+                if (_myEntities.InputBoolean.GuestMode.IsOn() && paramsContain(TTSPriority.PlayInGuestMode) && (_myEntities.InputBoolean.Isasleep.IsOn() || paramsContain(TTSPriority.IgnoreSleep))) allowTTS = true;
+        
+                if (_myEntities.InputBoolean.GuestMode.IsOn() && paramsContain(TTSPriority.DoNotPlayInGuestMode)) allowTTS = false;
+
+            }
+            else allowTTS = true;
+
+            if (allowTTS)
             {
                /*
                 if (lastAnnounsmentTime + timeBetweenAnnounsments > DateTime.Now)

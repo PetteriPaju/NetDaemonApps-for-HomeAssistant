@@ -19,8 +19,8 @@ namespace NetDaemonApps.apps
             _myEntities.Light.PcMultipowermeterL2.StateChanges().WhenStateIsFor(x => x?.State == "on", TimeSpan.FromHours(1))
                 .Subscribe(x =>  {_myEntities.Light.LivingRoomLight.TurnOn();});
 
-            _myEntities.Light.KitchenLight2.StateChanges().WhenStateIsFor(x => x?.State == "on", TimeSpan.FromHours(1))
-                .Subscribe(x => { _myEntities.Light.LivingRoomLight.TurnOn(); });
+            _myEntities.Light.KitchenLight2.StateChanges().WhenStateIsFor(x => x?.State == "on" && _myEntities.InputBoolean.GuestMode.IsOff(), TimeSpan.FromHours(1))
+                .Subscribe(x => { _myEntities.Light.KitchenLight2.TurnOff(); });
 
             _myEntities.Light.ToiletLight1.StateChanges().WhenStateIsFor(x => x?.State == "on", TimeSpan.FromHours(1))
                .Subscribe(x => { _myEntities.Light.ToiletLight1.TurnOff();});
@@ -69,11 +69,11 @@ namespace NetDaemonApps.apps
             });
 
             _myEntities.BinarySensor.LivingroomWindowSensorContact.StateChanges().Where(x => x?.New?.State == "on" && x?.Old?.State == "off").Subscribe(_ => {
-                _myEntities.Switch.TbdPowermeter.TurnOff();
+              //  _myEntities.Switch.TbdPowermeter.TurnOff();
             });
 
             _myEntities.BinarySensor.LivingroomWindowSensorContact.StateChanges().Where(x => x?.New?.State == "off" && x?.Old?.State == "on").Subscribe(_ => {
-                _myEntities.Switch.TbdPowermeter.TurnOn();
+               // _myEntities.Switch.TbdPowermeter.TurnOn();
             });
         }
     }

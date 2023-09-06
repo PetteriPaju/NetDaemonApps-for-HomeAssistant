@@ -40,11 +40,11 @@ namespace NetDaemonApps.apps.Lights
 
 
             _myEntities.InputBoolean.Toiletseathelper
-           .StateChanges().Where(e => e.New?.IsOff() ?? true && _myEntities.InputBoolean.SensorsActive.IsOn())
+           .StateChanges().Where(e => e.New?.IsOff() ?? true && _myEntities.InputBoolean.SensorsActive.IsOn() && _myEntities.InputBoolean.GuestMode.IsOff())
            .Subscribe(_ => OnToiledLidOpen());
 
             _myEntities.InputBoolean.Toiletseathelper
-           .StateChanges().Where(e => e.New?.IsOn()?? true && _myEntities.InputBoolean.SensorsActive.IsOn())
+           .StateChanges().Where(e => e.New?.IsOn()?? true && _myEntities.InputBoolean.SensorsActive.IsOn() && _myEntities.InputBoolean.GuestMode.IsOff())
            .Subscribe(_ => OnToiledLidClose());
 
 

@@ -48,7 +48,7 @@ public class EnergyMonitor
         scheduler.ScheduleCron("50 * * * *", () => EnergiPriceChengeAlert(ha));
 
         solarChargingNotificationGiven = _myEntities?.Sensor?.EcoflowSolarInPower.State >= 0;
-        _myEntities?.Sensor.EcoflowSolarInPower.StateAllChanges().Where(x => x?.New?.State > 0 && !solarChargingNotificationGiven).Subscribe(x => { TTS.Instance.SpeakTTS("Solar Charging On"); solarChargingNotificationGiven = true; });
+        _myEntities?.Sensor.EcoflowSolarInPower.StateAllChanges().Where(x => x?.New?.State > 0 && !solarChargingNotificationGiven).Subscribe(x => { TTS.Instance.SpeakTTS("Solar Charging On",TTS.TTSPriority.PlayInGuestMode); solarChargingNotificationGiven = true; });
 
 
         _myEntities?.Sensor.NordpoolKwhFiEur31001.StateAllChanges().Where(x => x?.New?.Attributes?.TomorrowValid == true && x.Old?.Attributes?.TomorrowValid == false).Subscribe(_ => { ReadOutEnergyUpdate(); });
@@ -90,9 +90,6 @@ public class EnergyMonitor
 
         if (!_myEntities.Sensor?.NordpoolKwhFiEur31001?.EntityState?.Attributes?.TomorrowValid == false)
         {
-
-     
-
             var list = JsonSerializer.Deserialize<List<double>>(_myEntities.Sensor?.NordpoolKwhFiEur31001?.EntityState?.Attributes?.Tomorrow.ToString());
 
             EnergyForecastInfo energyForecastInfo = GetEnergyForecast(list);
@@ -104,7 +101,7 @@ public class EnergyMonitor
         }
 
 
-        TTS.Speak(message);
+        TTS.Speak(message,TTS.TTSPriority.PlayInGuestMode);
 
 
 
@@ -202,7 +199,7 @@ public class EnergyMonitor
 
        
 
-        SendTTS(TTSMessage);
+        TTS.Speak(TTSMessage,TTS.TTSPriority.DoNotPlayInGuestMode);
 
     }
 
@@ -214,14 +211,6 @@ public class EnergyMonitor
         return dateTimeVariable != DateTime.Now.Date;
     }
   
-
-    public void SendTTS(string messsage)
-    {
-        Console.WriteLine(messsage);
-        // This uses the google service you may use some other like google cloud version, google_cloud_say
-        TTS.Speak(messsage);
-    }
-
     private void EnergiPriceChengeAlert(IHaContext ha)
     {
 
@@ -308,7 +297,7 @@ public class EnergyMonitor
 
         
 
-        if(TTSMessage!= null)SendTTS(TTSMessage);
+        if(TTSMessage!= null)TTS.Speak(TTSMessage, TTS.TTSPriority.PlayInGuestMode);
     }
 
     private string GetNameOfRange(int rangeIndex)

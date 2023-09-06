@@ -47,18 +47,13 @@ namespace NetDaemonApps.apps
             _myEntities.Sensor.PcLastactive.StateChanges().WhenStateIsFor(x => x?.State != "unavailable", TimeSpan.FromMinutes(1)).Subscribe(_ => CheckCondition(_myEntities.Sensor.PcLastactive, false));
             isAsleepCondition.Add(_myEntities.Sensor.PcLastactive, _myEntities.Sensor.PcLastactive.State == "unavailable");
 
-
-
-
-
             _myEntities.InputBoolean.Ishome.StateChanges().Where(x => x?.New?.State == "off").Subscribe(_ => CheckCondition(_myEntities.InputBoolean.Ishome, false));
             _myEntities.InputBoolean.Ishome.StateChanges().Where(x => x?.New?.State == "on").Subscribe(_ => CheckCondition(_myEntities.InputBoolean.Ishome, true));
             isAsleepCondition.Add(_myEntities.InputBoolean.Ishome, _myEntities.InputBoolean.Ishome.IsOn());
 
 
-
             _myEntities.InputBoolean.Isasleep.StateChanges().WhenStateIsFor(x => x?.State == "on", sleepTimer).Subscribe(x => {
-
+                if (_myEntities.InputBoolean.GuestMode.IsOn()) return;
                 var alarmnumber = 1;
                 _myEntities.Script.Actiontodoatalarm.TurnOn();
                 TTS.Speak("Good Morning, ", TTS.TTSPriority.IgnoreAll);
@@ -83,7 +78,7 @@ namespace NetDaemonApps.apps
 
                     EnergyMonitor.ReadOutGoodMorning();
                 }
-
+                if (_myEntities.InputBoolean.GuestMode.IsOn()) return;
 
                 //Run default actions that run everytime isSleep is turned on
                 // Get the offset from current time in UTC time

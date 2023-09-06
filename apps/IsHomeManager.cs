@@ -56,8 +56,9 @@ namespace NetDaemonApps.apps
             var isCancelled = false;
 
             _myEntities.InputBoolean.SensorsActive.StateChanges().Where(x => x.New?.State == "off" && x.Old?.State == "on").Subscribe(x => {_myEntities.InputBoolean.Ishome.TurnOn(); });
+            _myEntities.InputBoolean.GuestMode.StateChanges().Where(x => x.New?.State == "off" && x.Old?.State == "on").Subscribe(x => { _myEntities.InputBoolean.Ishome.TurnOn(); });
 
-            _myEntities.BinarySensor.FrontDoorSensorContact.StateChanges().Where(x => x.New?.State == "off" && x.Old?.State == "on" && _myEntities.InputBoolean.Ishome.IsOff() && _myEntities.InputBoolean.SensorsActive.IsOn())
+            _myEntities.BinarySensor.FrontDoorSensorContact.StateChanges().Where(x => x.New?.State == "off" && x.Old?.State == "on" && _myEntities.InputBoolean.Ishome.IsOff() && _myEntities.InputBoolean.SensorsActive.IsOn() && _myEntities.InputBoolean.GuestMode.IsOff())
                 .Subscribe(x => {
                 _myEntities.InputBoolean.Ishome.TurnOn();
                     isHomeCancelFollower?.Dispose();
@@ -65,7 +66,7 @@ namespace NetDaemonApps.apps
                     isCancelled = true;
                 });
 
-            _myEntities.BinarySensor.FrontDoorSensorContact.StateChanges().Where(x => x.New?.State == "off" && x.Old?.State == "on" && _myEntities.InputBoolean.Ishome.IsOn() && _myEntities.InputBoolean.SensorsActive.IsOn())
+            _myEntities.BinarySensor.FrontDoorSensorContact.StateChanges().Where(x => x.New?.State == "off" && x.Old?.State == "on" && _myEntities.InputBoolean.Ishome.IsOn() && _myEntities.InputBoolean.SensorsActive.IsOn() && _myEntities.InputBoolean.GuestMode.IsOff())
                 .SubscribeAsync(async s => {
 
                     isCancelled = false;

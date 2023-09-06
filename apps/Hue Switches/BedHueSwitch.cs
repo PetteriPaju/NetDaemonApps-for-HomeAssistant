@@ -21,13 +21,20 @@ namespace NetDaemonApps.apps.Hue_Switches
 
         protected override void OnOnPress()
         {
-            if (_myEntities.Light.LivingRoomLights.IsOn())
+            if (_myEntities.InputBoolean.GuestMode.IsOn())
             {
-                _myEntities.Light.LivingRoomLights.TurnOff();
+                _myEntities.Light.BedLight.Toggle();
             }
             else
             {
-                _myEntities.Light.BedLight.Toggle();
+                if (_myEntities.Light.LivingRoomLights.IsOn())
+                {
+                    _myEntities.Light.LivingRoomLights.TurnOff();
+                }
+                else
+                {
+                    _myEntities.Light.BedLight.Toggle();
+                }
             }
         }
 
