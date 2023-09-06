@@ -18,6 +18,7 @@ namespace NetDaemonApps.apps.Lights
         
         public LightCycler(InputBooleanEntity guestmode, params LightEntity[] lights)
         {
+            guestModeBoolean = guestmode;
             lightEntities = lights.ToList();
             FindActiveLight();
 

@@ -827,6 +827,11 @@
           "cSharpName": "AutoTurnOffServer"
         },
         {
+          "id": "input_boolean.ecoflow_allow_0_battery",
+          "friendlyName": "Ecoflow Allow 0-Battery",
+          "cSharpName": "EcoflowAllow0Battery"
+        },
+        {
           "id": "input_boolean.guest_mode",
           "friendlyName": "Guest Mode",
           "cSharpName": "GuestMode"
@@ -1687,9 +1692,19 @@
           "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1248"
         },
         {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_249",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
+          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1249"
+        },
+        {
           "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_25",
           "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
           "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp125"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_250",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
+          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1250"
         },
         {
           "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_26",
