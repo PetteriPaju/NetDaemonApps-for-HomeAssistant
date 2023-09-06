@@ -32,8 +32,7 @@ namespace NetDaemonApps.apps
                 }
             }
 
-
-            _myEntities.InputBoolean.NasOn.StateChanges().Where(x => x?.New?.State == "off" && _myEntities.InputBoolean.AutoTurnOffServer.IsOn()).Subscribe(x => {
+            _myEntities.InputBoolean.Isasleep.StateChanges().Where(x => x?.New?.State == "on" && _myEntities.InputBoolean.AutoTurnOffServer.IsOn()).Subscribe(x => {
                 qnapMonitor?.Dispose();
 
                 qnapMonitor = scheduler.RunEvery(TimeSpan.FromMinutes(15), DateTimeOffset.Now, () => {
@@ -42,14 +41,14 @@ namespace NetDaemonApps.apps
 
             });
 
-            _myEntities.InputBoolean.NasOn.StateChanges().Where(x => x.New?.State == "on" && _myEntities.InputBoolean.AutoTurnOffServer.IsOn()).Subscribe(x => {
+            _myEntities.InputBoolean.Isasleep.StateChanges().Where(x => x.New?.State == "off" && _myEntities.InputBoolean.AutoTurnOffServer.IsOn()).Subscribe(x => {
                 qnapMonitor?.Dispose();
                 _myServices.Script.TurnOnServer();
             });
 
             _myEntities.InputBoolean.AutoTurnOffServer.StateAllChanges().Subscribe(x => {
 
-                if (x.New.IsOn() && _myEntities.InputBoolean.NasOn.IsOff())
+                if (x.New.IsOn() && _myEntities.BinarySensor.ZatnasPing.IsOff())
                 {
                     qnapMonitor?.Dispose();
                     qnapMonitor = scheduler.RunEvery(TimeSpan.FromMinutes(15), DateTimeOffset.Now, () => {
