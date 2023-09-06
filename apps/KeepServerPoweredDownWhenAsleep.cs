@@ -14,6 +14,7 @@ namespace NetDaemonApps.apps
     [NetDaemonApp]
     public class KeepServerPoweredDownWhenAsleep
     {
+        /*
         private Entities _myEntities;
         private IDisposable? qnapMonitor;
         private Services _myServices;
@@ -62,5 +63,6 @@ namespace NetDaemonApps.apps
             });
 
         }
+        /'*/
     }
 }

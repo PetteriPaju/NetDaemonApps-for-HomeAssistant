@@ -39,7 +39,7 @@ namespace NetDaemonApps.apps
 
             _myEntities.Sensor.EcoflowBatteryLevel.StateChanges().Where(x => x.New?.State < 2 && _myEntities.Sensor.EcoflowAcOutPower.State > 0).Subscribe(x => {
 
-                _myEntities.Switch.EcoflowPlug.TurnOn();
+                //_myEntities.Switch.EcoflowPlug.TurnOn();
          
             });
 
