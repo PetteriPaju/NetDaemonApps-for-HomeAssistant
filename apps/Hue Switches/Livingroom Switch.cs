@@ -8,7 +8,7 @@ namespace NetDaemonApps.apps.Hue_Switches
     [NetDaemonApp]
     public class Livingroom_Switch : HueSwitch
     {
-        public Livingroom_Switch(IHaContext ha) : base(ha){ lightCycler = new LightCycler(_myEntities.InputBoolean.GuestMode,_myEntities.Light.DesktopLight, _myEntities.Light.LivingRoomLight); }
+        public Livingroom_Switch(IHaContext ha) : base(ha){ lightCycler = new LightCycler(_myEntities.InputBoolean.GuestMode,_myEntities.Light.LivingRoomLight, _myEntities.Light.DesktopLight); }
         private LightCycler lightCycler;
 
         private const double lightBrigthnessStep = 15;

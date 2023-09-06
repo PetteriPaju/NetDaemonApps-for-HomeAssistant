@@ -18,6 +18,7 @@ namespace NetDaemonApps.apps.Lights
         
         public LightCycler(InputBooleanEntity guestmode, params LightEntity[] lights)
         {
+            guestModeBoolean = guestmode;
             lightEntities = lights.ToList();
             FindActiveLight();
 
@@ -42,6 +43,12 @@ namespace NetDaemonApps.apps.Lights
 
         private void SetListener(LightEntity light)
         {
+            if (guestModeBoolean.IsOn())
+            {
+                _currentLight = lightEntities[0];
+                return;
+            }
+   
             light.StateChanges().Where(x => x?.New?.State == "on").Subscribe(x => { 
                 if(_currentLight != null && _currentLight != light)
                 {
