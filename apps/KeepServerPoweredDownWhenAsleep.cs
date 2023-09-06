@@ -14,7 +14,7 @@ namespace NetDaemonApps.apps
     [NetDaemonApp]
     public class KeepServerPoweredDownWhenAsleep
     {
-        /*
+   
         private Entities _myEntities;
         private IDisposable? qnapMonitor;
         private Services _myServices;
@@ -33,7 +33,7 @@ namespace NetDaemonApps.apps
             }
 
 
-            _myEntities.InputBoolean.Isasleep.StateChanges().WhenStateIsFor(x => x?.State == "on" && _myEntities.InputBoolean.AutoTurnOffServer.IsOn(), TimeSpan.FromMinutes(10)).Subscribe(x => {
+            _myEntities.InputBoolean.NasOn.StateChanges().Where(x => x?.New?.State == "off" && _myEntities.InputBoolean.AutoTurnOffServer.IsOn()).Subscribe(x => {
                 qnapMonitor?.Dispose();
 
                 qnapMonitor = scheduler.RunEvery(TimeSpan.FromMinutes(15), DateTimeOffset.Now, () => {
@@ -42,14 +42,14 @@ namespace NetDaemonApps.apps
 
             });
 
-            _myEntities.InputBoolean.Isasleep.StateChanges().Where(x => x.New?.State == "off" && _myEntities.InputBoolean.AutoTurnOffServer.IsOn()).Subscribe(x => {
+            _myEntities.InputBoolean.NasOn.StateChanges().Where(x => x.New?.State == "on" && _myEntities.InputBoolean.AutoTurnOffServer.IsOn()).Subscribe(x => {
                 qnapMonitor?.Dispose();
                 _myServices.Script.TurnOnServer();
             });
 
             _myEntities.InputBoolean.AutoTurnOffServer.StateAllChanges().Subscribe(x => {
 
-                if (x.New.IsOn() && _myEntities.InputBoolean.Isasleep.IsOn())
+                if (x.New.IsOn() && _myEntities.InputBoolean.NasOn.IsOff())
                 {
                     qnapMonitor?.Dispose();
                     qnapMonitor = scheduler.RunEvery(TimeSpan.FromMinutes(15), DateTimeOffset.Now, () => {
@@ -63,6 +63,6 @@ namespace NetDaemonApps.apps
             });
 
         }
-        /'*/
+      
     }
 }
