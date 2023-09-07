@@ -69,7 +69,7 @@ namespace NetDaemonApps.apps
            
             if (_myEntities.InputBoolean.HydrationCheckActive.IsOn())
             {
-               if( aramsContain(TTSPriority.IgnoreDisabled)) return true;
+               if( paramsContain(TTSPriority.IgnoreDisabled)) return true;
 
                 if (_myEntities.InputBoolean.Isasleep.IsOn() && paramsContain(TTSPriority.IgnoreSleep) && 
                    (_myEntities.InputBoolean.GuestMode.IsOff() || paramsContain(TTSPriority.PlayInGuestMode))) return true;
@@ -87,7 +87,7 @@ namespace NetDaemonApps.apps
 
         public void SpeakTTS(string text, params TTSPriority[] overriders)
         {
-            bool allowTTS = false;
+           
            
             bool paramsContain(TTSPriority target)
             {
