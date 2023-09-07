@@ -56,6 +56,35 @@ namespace NetDaemonApps.apps
 
         }
 
+        bool allowTTS(TTSPriority[] overriders)
+        {
+   
+            bool paramsContain(TTSPriority target)
+            {
+                return overriders.Contains(target);
+            }
+
+            if (overriders.Length == 0) return true;
+            if (paramsContain(TTSPriority.IgnoreAll)) return true;
+           
+            if (_myEntities.InputBoolean.HydrationCheckActive.IsOn())
+            {
+               if( aramsContain(TTSPriority.IgnoreDisabled)) return true;
+
+                if (_myEntities.InputBoolean.Isasleep.IsOn() && paramsContain(TTSPriority.IgnoreSleep) && 
+                   (_myEntities.InputBoolean.GuestMode.IsOff() || paramsContain(TTSPriority.PlayInGuestMode))) return true;
+
+                if (_myEntities.InputBoolean.GuestMode.IsOn() && paramsContain(TTSPriority.PlayInGuestMode)) return true;
+                if (_myEntities.InputBoolean.GuestMode.IsOn() && paramsContain(TTSPriority.DoNotPlayInGuestMode)) return false;
+
+
+                return true;
+            }
+
+             return true;
+
+        }
+
         public void SpeakTTS(string text, params TTSPriority[] overriders)
         {
             bool allowTTS = false;
@@ -65,23 +94,8 @@ namespace NetDaemonApps.apps
                 return overriders.Contains(target);
             }
 
-            if (!paramsContain(TTSPriority.IgnoreAll))
-            {
-                if (_myEntities.InputBoolean.HydrationCheckActive.IsOff() && paramsContain(TTSPriority.IgnoreDisabled)) allowTTS = true;
-                else allowTTS = false;
 
-                if (_myEntities.InputBoolean.Isasleep.IsOn() && paramsContain(TTSPriority.IgnoreSleep)) allowTTS = true;
-                else allowTTS = false;
-
-
-                if (_myEntities.InputBoolean.GuestMode.IsOn() && paramsContain(TTSPriority.PlayInGuestMode) && (_myEntities.InputBoolean.Isasleep.IsOn() || paramsContain(TTSPriority.IgnoreSleep))) allowTTS = true;
-        
-                if (_myEntities.InputBoolean.GuestMode.IsOn() && paramsContain(TTSPriority.DoNotPlayInGuestMode)) allowTTS = false;
-
-            }
-            else allowTTS = true;
-
-            if (allowTTS)
+            if (allowTTS(overriders))
             {
                /*
                 if (lastAnnounsmentTime + timeBetweenAnnounsments > DateTime.Now)
