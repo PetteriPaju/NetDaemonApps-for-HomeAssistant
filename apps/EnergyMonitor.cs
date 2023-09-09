@@ -61,6 +61,7 @@ public class EnergyMonitor
             _myEntities.InputNumber.EnergyCostDaily.SetValue(0);
             _myEntities.InputDatetime.Lastknowndate.SetDatetime(date:DateTime.Now.Date.ToString("yyyy-MM-dd"));
             solarChargingNotificationGiven = false;
+            _myEntities.InputNumber.DailyEnergySaveHelper.SetValue(0);
 
         }
 
@@ -203,21 +204,21 @@ public class EnergyMonitor
         TTS.Speak(TTSMessage,TTS.TTSPriority.DoNotPlayInGuestMode);
 
     }
-    /*
-    private double ecoflowCacl()
+    
+    private double ecoflowCacl(double hourlyUsedEnergy, double hourlycost)
     {
-        double hourleEnergyUsed = 0;
-        double hourlyEcoflowOut =0;
-        double hourlyEcoflowAcIn=0;
-        double hourlySolarIn = 0;
+        double hourlyEnergyUsed = 0;
+        double hourlyEcoflowOut =double.Parse(_myEntities.Sensor.EcoflowAcOutputHourly.State ?? "0");
+        double hourlyEcoflowAcIn= double.Parse(_myEntities.Sensor.EcoflowAcInputHourly.State ?? "0");
+        double hourlySolarIn = double.Parse(_myEntities.Sensor.EcoflowSolarInputHourly.State ?? "0");
 
         double deltaEnergy;
 
-        deltaEnergy = hourleEnergyUsed + hourlyEcoflowAcIn - hourlyEcoflowOut - hourlySolarIn;
+        deltaEnergy = hourlyUsedEnergy + hourlyEcoflowAcIn - hourlyEcoflowOut - hourlySolarIn;
 
-        return deltaEnergy
+        return deltaEnergy;
 
-    }*/
+    }
 
     bool checkDateChanged()
     {
@@ -418,20 +419,33 @@ public class EnergyMonitor
         if (_myEntities.InputNumber.EnergyCostHourly.State == null) return;
         if (_myEntities?.Sensor.Powermeters.State == null) return;
 
+        double calculatePrice(double inpt)
+        {
+            var thisHourFortum = inpt * marginOfErrorFix * _myEntities.Sensor?.NordpoolKwhFiEur31001?.State + inpt * marginOfErrorFix * _myEntities.InputNumber.EnergyFortumHardCost.State;
+            thisHourFortum += thisHourFortum * (_myEntities.InputNumber.EnergyFortumAlv.State / 100);
+
+            var thisHourTranster = inpt * marginOfErrorFix * _myEntities.InputNumber.EnergyTransferCost.State;
+            thisHourTranster += thisHourTranster * _myEntities.InputNumber.EnergyTransferAlv.State;
+            var thisHourTotal = thisHourFortum + thisHourTranster;
+
+            return (double)thisHourTotal;
+        }
         infoForCurrentHour = new ElectricityPriceInfo(DateTime.Now + TimeSpan.FromMinutes(5), _myEntities.Sensor?.NordpoolKwhFiEur31001, electricityRangeKeys);
-        var thisHourFortum = energy * marginOfErrorFix * _myEntities.Sensor?.NordpoolKwhFiEur31001?.State + energy * marginOfErrorFix * _myEntities.InputNumber.EnergyFortumHardCost.State;
-        thisHourFortum += thisHourFortum * (_myEntities.InputNumber.EnergyFortumAlv.State / 100);
 
-        var thisHourTranster = energy * marginOfErrorFix * _myEntities.InputNumber.EnergyTransferCost.State;
-        thisHourTranster += thisHourTranster * _myEntities.InputNumber.EnergyTransferAlv.State;
+          double priceForLastHout = calculatePrice(energy);
+          double ecoflowAdjustedPrice = calculatePrice(ecoflowCacl(energy, _myEntities.Sensor?.NordpoolKwhFiEur31001?.State ?? 0));
 
 
-        var thisHourTotal = thisHourFortum + thisHourTranster;
+        var ecoflowAdjustedHourlycost = priceForLastHout - ecoflowAdjustedPrice;
 
-        _myEntities.InputNumber.EnergyCostDaily.SetValue(_myEntities.InputNumber.EnergyCostDaily.State + thisHourTotal ?? _myEntities.InputNumber.EnergyCostDaily.State ?? 0);
-        _myEntities.InputNumber.EnergyCostHourly.SetValue(thisHourTotal ?? 0);
+
+        _myEntities.InputNumber.DailyEnergySaveHelper.SetValue((_myEntities.InputNumber.DailyEnergySaveHelper.State ?? 0) + ecoflowAdjustedHourlycost);
+        _myEntities.InputNumber.EnergyCostDaily.SetValue(_myEntities.InputNumber.EnergyCostDaily.State + priceForLastHout ?? _myEntities.InputNumber.EnergyCostDaily.State ?? 0);
+        _myEntities.InputNumber.EnergyCostHourly.SetValue(priceForLastHout);
 
     }
+
+   
 
     private void UpdatePriceDaily()
     {
@@ -447,6 +461,8 @@ public class EnergyMonitor
             _myEntities.InputNumber.EnergyCostDaily.SetValue(0);
             _myEntities.InputDatetime.Lastknowndate.SetDatetime(date: DateTime.Now.Date.ToString("yyyy-MM-dd"));
             solarChargingNotificationGiven = false;
+            _myEntities.InputNumber.DailyEnergySaveHelper.SetValue(0);
+
         }
 
     }

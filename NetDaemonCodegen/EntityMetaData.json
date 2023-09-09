@@ -2612,6 +2612,11 @@
           "cSharpName": "CombinedPcEnergy"
         },
         {
+          "id": "input_number.daily_energy_save_helper",
+          "friendlyName": "Daily Energy Save Helper",
+          "cSharpName": "DailyEnergySaveHelper"
+        },
+        {
           "id": "input_number.dailysteps",
           "friendlyName": "DailySteps",
           "cSharpName": "Dailysteps"
@@ -3840,9 +3845,29 @@
           "cSharpName": "CubeSide"
         },
         {
+          "id": "sensor.ecoflow_ac_input_hourly",
+          "friendlyName": "Ecoflow Ac Input Hourly",
+          "cSharpName": "EcoflowAcInputHourly"
+        },
+        {
+          "id": "sensor.ecoflow_ac_output_hourly",
+          "friendlyName": "Ecoflow AC Output Hourly",
+          "cSharpName": "EcoflowAcOutputHourly"
+        },
+        {
+          "id": "sensor.ecoflow_ac_output_sum_hourly",
+          "friendlyName": "Ecoflow Ac Output Sum Hourly",
+          "cSharpName": "EcoflowAcOutputSumHourly"
+        },
+        {
           "id": "sensor.ecoflow_cycles",
           "friendlyName": "EcoFlow Cycles",
           "cSharpName": "EcoflowCycles"
+        },
+        {
+          "id": "sensor.ecoflow_solar_input_hourly",
+          "friendlyName": "Ecoflow Solar Input Hourly",
+          "cSharpName": "EcoflowSolarInputHourly"
         },
         {
           "id": "sensor.ecoflow_status",
@@ -4964,6 +4989,36 @@
         {
           "jsonName": "title_com.android.chrome",
           "cSharpName": "TitleCom_android_chrome",
+          "clrType": "System.String"
+        },
+        {
+          "jsonName": "status",
+          "cSharpName": "Status",
+          "clrType": "System.String"
+        },
+        {
+          "jsonName": "last_period",
+          "cSharpName": "LastPeriod",
+          "clrType": "System.String"
+        },
+        {
+          "jsonName": "last_valid_state",
+          "cSharpName": "LastValidState",
+          "clrType": "System.String"
+        },
+        {
+          "jsonName": "meter_period",
+          "cSharpName": "MeterPeriod",
+          "clrType": "System.String"
+        },
+        {
+          "jsonName": "cron pattern",
+          "cSharpName": "Cronpattern",
+          "clrType": "System.String"
+        },
+        {
+          "jsonName": "last_reset",
+          "cSharpName": "LastReset",
           "clrType": "System.String"
         }
       ]
