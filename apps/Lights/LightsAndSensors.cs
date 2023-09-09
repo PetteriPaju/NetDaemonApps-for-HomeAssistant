@@ -33,7 +33,7 @@ namespace NetDaemonApps.apps.Lights
             SubcribeLightOff(_myEntities.BinarySensor.StorageSensorOccupancy, _myEntities.Light.StorageLight2, new TimeSpan(0, 0, 0));
 
  
-            _myEntities.Sensor.Livingroomfp1PresenceEvent.StateChanges().Where(x => x.New?.State == "approach").Subscribe(_ => {
+            _myEntities.Sensor.Livingroomfp1PresenceEvent.StateChanges().Where(x => x.New?.State == "approach" ).Subscribe(_ => {
                 _myEntities.Light.KitchenLight2.TurnOnWithSensor(luxSensorEntity,defaultFluz);
             });
 
@@ -43,7 +43,7 @@ namespace NetDaemonApps.apps.Lights
                 _myEntities.Light.KitchenLight2.TurnOffLight();
             });
 
-            _myEntities.Sensor.Livingroomfp1PresenceEvent.StateChanges().WhenStateIsFor(x=> x.State != "approach", TimeSpan.FromSeconds(30)).Subscribe(_ => {
+            _myEntities.Sensor.Livingroomfp1PresenceEvent.StateChanges().WhenStateIsFor(x=> (x?.State != "approach"), TimeSpan.FromSeconds(30)).Subscribe(_ => {
                 _myEntities.Light.KitchenLight2.TurnOffLight();
             });
 

@@ -2,6 +2,7 @@ using HomeAssistantGenerated;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.Formatters;
 using NetDaemon.Extensions.Scheduler;
+using NetDaemon.HassModel.Entities;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reactive.Concurrency;
@@ -25,6 +26,7 @@ public class EnergyMonitor
     private bool hiPeakAlertGiven = false;
     private bool loPeakAlertGiven = false;
     private bool solarChargingNotificationGiven = false;
+    private bool solarChargingOffNotificationGiven = false;
 
     private readonly List<double>? electricityRangeKeys;
 
@@ -50,6 +52,7 @@ public class EnergyMonitor
 
         solarChargingNotificationGiven = _myEntities?.Sensor?.EcoflowSolarInPower.State >= 0;
         _myEntities?.Sensor.EcoflowSolarInPower.StateAllChanges().Where(x => x?.New?.State > 0 && !solarChargingNotificationGiven).Subscribe(x => { TTS.Instance.SpeakTTS("Solar Charging On",TTS.TTSPriority.PlayInGuestMode); solarChargingNotificationGiven = true; });
+        _myEntities?.Sensor.EcoflowSolarInPower.StateChanges().WhenStateIsFor(x => ((NumericEntityState)x).State <= 0 && !solarChargingOffNotificationGiven && _myEntities.Sun.Sun.Attributes.Elevation<10,TimeSpan.FromMinutes(30)).Subscribe(x => { TTS.Instance.SpeakTTS("Solar Charging Ended", TTS.TTSPriority.PlayInGuestMode); solarChargingNotificationGiven = true; });
 
 
         _myEntities?.Sensor.NordpoolKwhFiEur31001.StateAllChanges().Where(x => x?.New?.Attributes?.TomorrowValid == true && x.Old?.Attributes?.TomorrowValid == false).Subscribe(_ => { ReadOutEnergyUpdate(); });
@@ -61,6 +64,7 @@ public class EnergyMonitor
             _myEntities.InputNumber.EnergyCostDaily.SetValue(0);
             _myEntities.InputDatetime.Lastknowndate.SetDatetime(date:DateTime.Now.Date.ToString("yyyy-MM-dd"));
             solarChargingNotificationGiven = false;
+            solarChargingOffNotificationGiven = false;
             _myEntities.InputNumber.DailyEnergySaveHelper.SetValue(0);
 
         }
@@ -461,6 +465,7 @@ public class EnergyMonitor
             _myEntities.InputNumber.EnergyCostDaily.SetValue(0);
             _myEntities.InputDatetime.Lastknowndate.SetDatetime(date: DateTime.Now.Date.ToString("yyyy-MM-dd"));
             solarChargingNotificationGiven = false;
+            solarChargingOffNotificationGiven = false;
             _myEntities.InputNumber.DailyEnergySaveHelper.SetValue(0);
 
         }
