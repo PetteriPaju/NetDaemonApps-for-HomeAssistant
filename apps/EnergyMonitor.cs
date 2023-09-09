@@ -1,5 +1,6 @@
 using HomeAssistantGenerated;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc.Formatters;
 using NetDaemon.Extensions.Scheduler;
 using System.Collections.Generic;
 using System.Linq;
@@ -202,7 +203,21 @@ public class EnergyMonitor
         TTS.Speak(TTSMessage,TTS.TTSPriority.DoNotPlayInGuestMode);
 
     }
+    /*
+    private double ecoflowCacl()
+    {
+        double hourleEnergyUsed = 0;
+        double hourlyEcoflowOut =0;
+        double hourlyEcoflowAcIn=0;
+        double hourlySolarIn = 0;
 
+        double deltaEnergy;
+
+        deltaEnergy = hourleEnergyUsed + hourlyEcoflowAcIn - hourlyEcoflowOut - hourlySolarIn;
+
+        return deltaEnergy
+
+    }*/
 
     bool checkDateChanged()
     {

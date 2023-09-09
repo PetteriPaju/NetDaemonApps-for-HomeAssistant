@@ -1,6 +1,7 @@
 ﻿using HomeAssistantGenerated;
 using NetDaemon.HassModel;
 using NetDaemon.HassModel.Entities;
+using NetDaemonApps.apps.Lights;
 using System.Linq;
 
 namespace NetDaemonApps.apps
@@ -17,7 +18,7 @@ namespace NetDaemonApps.apps
             _myEntities.Sensor.PcDisplayDisplay1Resolution.StateChanges().Subscribe(_ => { _myEntities.Button.PcResetbrigtness.Press(); });
 
             _myEntities.Light.PcMultipowermeterL2.StateChanges().WhenStateIsFor(x => x?.State == "on", TimeSpan.FromHours(1))
-                .Subscribe(x =>  {_myEntities.Light.LivingRoomLight.TurnOn();});
+                .Subscribe(x =>  {_myEntities.Light.LivingRoomLight.TurnOnWithSensor(LightsAndSensors.luxSensorEntity,10);});
 
             _myEntities.Light.KitchenLight2.StateChanges().WhenStateIsFor(x => x?.State == "on" && _myEntities.InputBoolean.GuestMode.IsOff(), TimeSpan.FromHours(1))
                 .Subscribe(x => { _myEntities.Light.KitchenLight2.TurnOff(); });

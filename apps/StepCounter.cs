@@ -17,8 +17,11 @@ namespace NetDaemonApps.apps
         {
             _myEntities = new Entities(ha);
             _myEntities.Sensor.MotoG8PowerLiteLastNotification?.StateAllChanges().Where(x => IsValidStep(x))?.Subscribe(x => ParseSteps(x?.Entity?.EntityState?.Attributes?.Android_title));
-
-            scheduler.ScheduleCron("0 0 * * *", () => lastKnownThreshold = 0);
+            lastKnownThreshold = (int)_myEntities.InputNumber.LastKnowStepThreshold.State;
+            scheduler.ScheduleCron("0 0 * * *", () => { 
+                lastKnownThreshold = 0; 
+                _myEntities.InputNumber.LastKnowStepThreshold.SetValue(0);
+            });
         }
 
         private void ParseSteps(string? message)
@@ -47,9 +50,9 @@ namespace NetDaemonApps.apps
                 {
 
                     lastKnownThreshold = (int)stepsFloored;
-              
+                    _myEntities.InputNumber.LastKnowStepThreshold.SetValue(lastKnownThreshold);
+
                     TTS.Speak("You have reached " + lastKnownThreshold.ToString() + "steps", TTS.TTSPriority.PlayInGuestMode);
-              
 
                 }
 
