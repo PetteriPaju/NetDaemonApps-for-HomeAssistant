@@ -134,6 +134,11 @@
           "cSharpName": "TurnOffPcWhenLoraTrainingDone"
         },
         {
+          "id": "automation.turn_off_proxmox_and_modem",
+          "friendlyName": "Turn Off Proxmox and modem",
+          "cSharpName": "TurnOffProxmoxAndModem"
+        },
+        {
           "id": "automation.tv_chromecast_powersynch",
           "friendlyName": "TV-Chromecast-PowerSynch",
           "cSharpName": "TvChromecastPowersynch"
@@ -291,6 +296,11 @@
           "cSharpName": "Livingroomfp1Presence"
         },
         {
+          "id": "binary_sensor.lxc_jellyfin_101_status",
+          "friendlyName": "LXC Jellyfin (101) Status",
+          "cSharpName": "LxcJellyfin101Status"
+        },
+        {
           "id": "binary_sensor.moto_g_8_power_lite_is_charging",
           "friendlyName": "moto g(8) power lite Is charging",
           "cSharpName": "MotoG8PowerLiteIsCharging"
@@ -299,6 +309,11 @@
           "id": "binary_sensor.moto_g_8_power_lite_music_active",
           "friendlyName": "moto g(8) power lite Music active",
           "cSharpName": "MotoG8PowerLiteMusicActive"
+        },
+        {
+          "id": "binary_sensor.node_pve_status",
+          "friendlyName": "Node pve Status",
+          "cSharpName": "NodePveStatus"
         },
         {
           "id": "binary_sensor.open_curtain_limit",
@@ -314,6 +329,16 @@
           "id": "binary_sensor.portable_headphone_sensors",
           "friendlyName": "Portable headphone sensors",
           "cSharpName": "PortableHeadphoneSensors"
+        },
+        {
+          "id": "binary_sensor.qemu_haos9_5_100_health",
+          "friendlyName": "QEMU haos9.5 (100) Health",
+          "cSharpName": "QemuHaos95100Health"
+        },
+        {
+          "id": "binary_sensor.qemu_haos9_5_100_status",
+          "friendlyName": "QEMU haos9.5 (100) Status",
+          "cSharpName": "QemuHaos95100Status"
         },
         {
           "id": "binary_sensor.remote_ui",
@@ -503,6 +528,11 @@
           "cSharpName": "FritzBox6660CableRestart"
         },
         {
+          "id": "button.node_pve_shutdown",
+          "friendlyName": "Node pve Shutdown",
+          "cSharpName": "NodePveShutdown"
+        },
+        {
           "id": "button.pc_resetbrigtness",
           "friendlyName": "PC -ResetBrigtness",
           "cSharpName": "PcResetbrigtness"
@@ -636,7 +666,7 @@
         },
         {
           "id": "device_tracker.laptop_rnusi7lb",
-          "friendlyName": "LAPTOP-RNUSI7LB",
+          "friendlyName": "wlan0",
           "cSharpName": "LaptopRnusi7lb"
         },
         {
@@ -673,6 +703,11 @@
           "id": "device_tracker.pc_192_168_0_24",
           "friendlyName": "switchlan",
           "cSharpName": "Pc192168024"
+        },
+        {
+          "id": "device_tracker.pc_56_80_c3_46_02_f8",
+          "friendlyName": "Jellyfin",
+          "cSharpName": "Pc5680C34602F8"
         },
         {
           "id": "device_tracker.pc_a0_92_08_90_22_91",
@@ -1952,6 +1987,51 @@
           "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1290"
         },
         {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_291",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
+          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1291"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_292",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
+          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1292"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_293",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
+          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1293"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_294",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
+          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1294"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_295",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
+          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1295"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_296",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
+          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1296"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_297",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
+          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1297"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_298",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
+          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1298"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_299",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
+          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1299"
+        },
+        {
           "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_3",
           "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
           "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp13"
@@ -1962,14 +2042,149 @@
           "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp130"
         },
         {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_300",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
+          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1300"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_301",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
+          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1301"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_302",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
+          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1302"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_303",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
+          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1303"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_304",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
+          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1304"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_305",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
+          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1305"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_306",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
+          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1306"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_307",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
+          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1307"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_308",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
+          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1308"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_309",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
+          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1309"
+        },
+        {
           "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_31",
           "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
           "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp131"
         },
         {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_310",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
+          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1310"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_311",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
+          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1311"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_312",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
+          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1312"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_313",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
+          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1313"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_314",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
+          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1314"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_315",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
+          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1315"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_316",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
+          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1316"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_317",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
+          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1317"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_318",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
+          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1318"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_319",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
+          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1319"
+        },
+        {
           "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_32",
           "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
           "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp132"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_320",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
+          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1320"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_321",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
+          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1321"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_322",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
+          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1322"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_323",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
+          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1323"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_324",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
+          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1324"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_325",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
+          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1325"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_326",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
+          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1326"
         },
         {
           "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_33",
@@ -3063,7 +3278,7 @@
         },
         {
           "id": "media_player.olohuone_nest",
-          "friendlyName": "Olohuone Nest",
+          "friendlyName": null,
           "cSharpName": "OlohuoneNest"
         },
         {
@@ -3506,6 +3721,11 @@
           "cSharpName": "ReadoutLasttimeAwoken"
         },
         {
+          "id": "script.reset_all_powermeters",
+          "friendlyName": "Reset All Powermeters",
+          "cSharpName": "ResetAllPowermeters"
+        },
+        {
           "id": "script.send_audio_notification",
           "friendlyName": "Send Audio Notification TTS",
           "cSharpName": "SendAudioNotification"
@@ -3519,6 +3739,11 @@
           "id": "script.sendishomephonenotification",
           "friendlyName": "SendIsHomePhoneNotification",
           "cSharpName": "Sendishomephonenotification"
+        },
+        {
+          "id": "script.turn_off_proxmox_and_server",
+          "friendlyName": "Turn Off Proxmox and Server",
+          "cSharpName": "TurnOffProxmoxAndServer"
         },
         {
           "id": "script.turn_off_server",
@@ -3855,14 +4080,14 @@
           "cSharpName": "EcoflowAcOutputHourly"
         },
         {
-          "id": "sensor.ecoflow_ac_output_sum_hourly",
-          "friendlyName": "Ecoflow Ac Output Sum Hourly",
-          "cSharpName": "EcoflowAcOutputSumHourly"
-        },
-        {
           "id": "sensor.ecoflow_cycles",
           "friendlyName": "EcoFlow Cycles",
           "cSharpName": "EcoflowCycles"
+        },
+        {
+          "id": "sensor.ecoflow_out_sum",
+          "friendlyName": "Ecoflow Out Sum",
+          "cSharpName": "EcoflowOutSum"
         },
         {
           "id": "sensor.ecoflow_solar_input_hourly",
@@ -4145,6 +4370,16 @@
           "cSharpName": "Livingroomfp1PresenceEvent"
         },
         {
+          "id": "sensor.lxc_jellyfin_101_node",
+          "friendlyName": "LXC Jellyfin (101) Node",
+          "cSharpName": "LxcJellyfin101Node"
+        },
+        {
+          "id": "sensor.lxc_jellyfin_101_uptime",
+          "friendlyName": "LXC Jellyfin (101) Uptime",
+          "cSharpName": "LxcJellyfin101Uptime"
+        },
+        {
           "id": "sensor.moto_g_8_power_lite_last_notification",
           "friendlyName": "moto g(8) power lite Last notification",
           "cSharpName": "MotoG8PowerLiteLastNotification"
@@ -4153,6 +4388,11 @@
           "id": "sensor.moto_g_8_power_lite_media_session",
           "friendlyName": "moto g(8) power lite Media session",
           "cSharpName": "MotoG8PowerLiteMediaSession"
+        },
+        {
+          "id": "sensor.node_pve_uptime",
+          "friendlyName": "Node pve Uptime",
+          "cSharpName": "NodePveUptime"
         },
         {
           "id": "sensor.pc_display_display_count",
@@ -4313,6 +4553,16 @@
           "id": "sensor.pc_lastactive",
           "friendlyName": "PC _lastactive",
           "cSharpName": "PcLastactive"
+        },
+        {
+          "id": "sensor.qemu_haos9_5_100_node",
+          "friendlyName": "QEMU haos9.5 (100) Node",
+          "cSharpName": "QemuHaos95100Node"
+        },
+        {
+          "id": "sensor.qemu_haos9_5_100_uptime",
+          "friendlyName": "QEMU haos9.5 (100) Uptime",
+          "cSharpName": "QemuHaos95100Uptime"
         },
         {
           "id": "sensor.sm_t530_media_session",
@@ -5118,6 +5368,11 @@
           "cSharpName": "DailyEnergyCost"
         },
         {
+          "id": "sensor.daily_energy_savings",
+          "friendlyName": "Daily Energy Savings",
+          "cSharpName": "DailyEnergySavings"
+        },
+        {
           "id": "sensor.ecoflow_ac_in_power",
           "friendlyName": "EcoFlow AC In Power",
           "cSharpName": "EcoflowAcInPower"
@@ -5141,11 +5396,6 @@
           "id": "sensor.ecoflow_ac_out_volts",
           "friendlyName": "EcoFlow AC Out Volts",
           "cSharpName": "EcoflowAcOutVolts"
-        },
-        {
-          "id": "sensor.ecoflow_ac_sum",
-          "friendlyName": "Ecoflow AC Sum",
-          "cSharpName": "EcoflowAcSum"
         },
         {
           "id": "sensor.ecoflow_battery_level",
@@ -5413,6 +5663,31 @@
           "cSharpName": "Livingroomfp1DeviceTemperature"
         },
         {
+          "id": "sensor.lxc_jellyfin_101_cpu_used",
+          "friendlyName": "LXC Jellyfin (101) CPU used",
+          "cSharpName": "LxcJellyfin101CpuUsed"
+        },
+        {
+          "id": "sensor.lxc_jellyfin_101_disk_used_percentage",
+          "friendlyName": "LXC Jellyfin (101) Disk used percentage",
+          "cSharpName": "LxcJellyfin101DiskUsedPercentage"
+        },
+        {
+          "id": "sensor.lxc_jellyfin_101_memory_free",
+          "friendlyName": "LXC Jellyfin (101) Memory free",
+          "cSharpName": "LxcJellyfin101MemoryFree"
+        },
+        {
+          "id": "sensor.lxc_jellyfin_101_memory_used",
+          "friendlyName": "LXC Jellyfin (101) Memory used",
+          "cSharpName": "LxcJellyfin101MemoryUsed"
+        },
+        {
+          "id": "sensor.lxc_jellyfin_101_memory_used_percentage",
+          "friendlyName": "LXC Jellyfin (101) Memory used percentage",
+          "cSharpName": "LxcJellyfin101MemoryUsedPercentage"
+        },
+        {
           "id": "sensor.main_fridge_daily_consumption",
           "friendlyName": "Main Fridge Daily Consumption",
           "cSharpName": "MainFridgeDailyConsumption"
@@ -5451,6 +5726,31 @@
           "id": "sensor.moto_g_8_power_lite_battery_level",
           "friendlyName": "moto g(8) power lite Battery level",
           "cSharpName": "MotoG8PowerLiteBatteryLevel"
+        },
+        {
+          "id": "sensor.node_pve_cpu_used",
+          "friendlyName": "Node pve CPU used",
+          "cSharpName": "NodePveCpuUsed"
+        },
+        {
+          "id": "sensor.node_pve_disk_used_percentage",
+          "friendlyName": "Node pve Disk used percentage",
+          "cSharpName": "NodePveDiskUsedPercentage"
+        },
+        {
+          "id": "sensor.node_pve_memory_free",
+          "friendlyName": "Node pve Memory free",
+          "cSharpName": "NodePveMemoryFree"
+        },
+        {
+          "id": "sensor.node_pve_memory_used",
+          "friendlyName": "Node pve Memory used",
+          "cSharpName": "NodePveMemoryUsed"
+        },
+        {
+          "id": "sensor.node_pve_memory_used_percentage",
+          "friendlyName": "Node pve Memory used percentage",
+          "cSharpName": "NodePveMemoryUsedPercentage"
         },
         {
           "id": "sensor.nordpool_kwh_fi_eur_3_10_01",
@@ -5541,6 +5841,31 @@
           "id": "sensor.powermeters",
           "friendlyName": "All Energy Meters",
           "cSharpName": "Powermeters"
+        },
+        {
+          "id": "sensor.qemu_haos9_5_100_cpu_used",
+          "friendlyName": "QEMU haos9.5 (100) CPU used",
+          "cSharpName": "QemuHaos95100CpuUsed"
+        },
+        {
+          "id": "sensor.qemu_haos9_5_100_disk_used_percentage",
+          "friendlyName": "QEMU haos9.5 (100) Disk used percentage",
+          "cSharpName": "QemuHaos95100DiskUsedPercentage"
+        },
+        {
+          "id": "sensor.qemu_haos9_5_100_memory_free",
+          "friendlyName": "QEMU haos9.5 (100) Memory free",
+          "cSharpName": "QemuHaos95100MemoryFree"
+        },
+        {
+          "id": "sensor.qemu_haos9_5_100_memory_used",
+          "friendlyName": "QEMU haos9.5 (100) Memory used",
+          "cSharpName": "QemuHaos95100MemoryUsed"
+        },
+        {
+          "id": "sensor.qemu_haos9_5_100_memory_used_percentage",
+          "friendlyName": "QEMU haos9.5 (100) Memory used percentage",
+          "cSharpName": "QemuHaos95100MemoryUsedPercentage"
         },
         {
           "id": "sensor.sm_t530_battery_level",
@@ -6186,7 +6511,7 @@
         },
         {
           "id": "switch.laptop_rnusi7lb_internet_access",
-          "friendlyName": "LAPTOP-RNUSI7LB Internet Access",
+          "friendlyName": "wlan0 Internet Access",
           "cSharpName": "LaptopRnusi7lbInternetAccess"
         },
         {
@@ -6228,6 +6553,11 @@
           "id": "switch.pc_192_168_0_24_internet_access",
           "friendlyName": "switchlan Internet Access",
           "cSharpName": "Pc192168024InternetAccess"
+        },
+        {
+          "id": "switch.pc_56_80_c3_46_02_f8_internet_access",
+          "friendlyName": "Jellyfin Internet Access",
+          "cSharpName": "Pc5680C34602F8InternetAccess"
         },
         {
           "id": "switch.pc_a0_92_08_90_22_91_internet_access",

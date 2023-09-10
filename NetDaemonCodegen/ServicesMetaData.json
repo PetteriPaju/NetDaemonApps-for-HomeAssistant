@@ -842,16 +842,6 @@
       }
     }
   },
-  "shell_command": {
-    "turn_off_qnap": {
-      "name": "",
-      "description": "",
-      "fields": {},
-      "response": {
-        "optional": true
-      }
-    }
-  },
   "conversation": {
     "process": {
       "name": "Process",
@@ -918,39 +908,13 @@
       }
     }
   },
-  "wake_on_lan": {
-    "send_magic_packet": {
-      "name": "Send magic packet",
-      "description": "Sends a \u0027magic packet\u0027 to wake up a device with \u0027Wake-On-LAN\u0027 capabilities.",
-      "fields": {
-        "mac": {
-          "required": true,
-          "example": "aa:bb:cc:dd:ee:ff",
-          "selector": {
-            "text": null
-          },
-          "name": "MAC address",
-          "description": "MAC address of the device to wake up."
-        },
-        "broadcast_address": {
-          "example": "192.168.255.255",
-          "selector": {
-            "text": null
-          },
-          "name": "Broadcast address",
-          "description": "Broadcast IP where to send the magic packet."
-        },
-        "broadcast_port": {
-          "default": 9,
-          "selector": {
-            "number": {
-              "min": 1,
-              "max": 65535
-            }
-          },
-          "name": "Broadcast port",
-          "description": "Port where to send the magic packet."
-        }
+  "shell_command": {
+    "turn_off_qnap": {
+      "name": "",
+      "description": "",
+      "fields": {},
+      "response": {
+        "optional": true
       }
     }
   },
@@ -1976,82 +1940,6 @@
       }
     }
   },
-  "counter": {
-    "increment": {
-      "name": "Increment",
-      "description": "Increments a counter.",
-      "fields": {},
-      "target": {
-        "entity": [
-          {
-            "domain": [
-              "counter"
-            ]
-          }
-        ]
-      }
-    },
-    "decrement": {
-      "name": "Decrement",
-      "description": "Decrements a counter.",
-      "fields": {},
-      "target": {
-        "entity": [
-          {
-            "domain": [
-              "counter"
-            ]
-          }
-        ]
-      }
-    },
-    "reset": {
-      "name": "Reset",
-      "description": "Resets a counter.",
-      "fields": {},
-      "target": {
-        "entity": [
-          {
-            "domain": [
-              "counter"
-            ]
-          }
-        ]
-      }
-    },
-    "set_value": {
-      "name": "Set",
-      "description": "Sets the counter value.",
-      "fields": {
-        "value": {
-          "required": true,
-          "selector": {
-            "number": {
-              "min": 0,
-              "max": 9223372036854775807,
-              "mode": "box"
-            }
-          },
-          "name": "Value",
-          "description": "The new counter value the entity should be set to."
-        }
-      },
-      "target": {
-        "entity": [
-          {
-            "domain": [
-              "counter"
-            ]
-          }
-        ]
-      }
-    },
-    "configure": {
-      "name": "",
-      "description": "",
-      "fields": {}
-    }
-  },
   "zone": {
     "reload": {
       "name": "Reload",
@@ -2240,6 +2128,89 @@
       }
     }
   },
+  "schedule": {
+    "reload": {
+      "name": "Reload",
+      "description": "Reloads schedules from the YAML-configuration.",
+      "fields": {}
+    }
+  },
+  "counter": {
+    "increment": {
+      "name": "Increment",
+      "description": "Increments a counter.",
+      "fields": {},
+      "target": {
+        "entity": [
+          {
+            "domain": [
+              "counter"
+            ]
+          }
+        ]
+      }
+    },
+    "decrement": {
+      "name": "Decrement",
+      "description": "Decrements a counter.",
+      "fields": {},
+      "target": {
+        "entity": [
+          {
+            "domain": [
+              "counter"
+            ]
+          }
+        ]
+      }
+    },
+    "reset": {
+      "name": "Reset",
+      "description": "Resets a counter.",
+      "fields": {},
+      "target": {
+        "entity": [
+          {
+            "domain": [
+              "counter"
+            ]
+          }
+        ]
+      }
+    },
+    "set_value": {
+      "name": "Set",
+      "description": "Sets the counter value.",
+      "fields": {
+        "value": {
+          "required": true,
+          "selector": {
+            "number": {
+              "min": 0,
+              "max": 9223372036854775807,
+              "mode": "box"
+            }
+          },
+          "name": "Value",
+          "description": "The new counter value the entity should be set to."
+        }
+      },
+      "target": {
+        "entity": [
+          {
+            "domain": [
+              "counter"
+            ]
+          }
+        ]
+      }
+    },
+    "configure": {
+      "name": "",
+      "description": "",
+      "fields": {}
+    }
+  },
   "input_button": {
     "reload": {
       "name": "",
@@ -2259,13 +2230,6 @@
           }
         ]
       }
-    }
-  },
-  "schedule": {
-    "reload": {
-      "name": "Reload",
-      "description": "Reloads schedules from the YAML-configuration.",
-      "fields": {}
     }
   },
   "media_player": {
@@ -3042,31 +3006,101 @@
       }
     }
   },
-  "input_text": {
+  "input_datetime": {
     "reload": {
       "name": "Reload",
       "description": "Reloads helpers from the YAML-configuration.",
       "fields": {}
     },
-    "set_value": {
+    "set_datetime": {
       "name": "Set",
-      "description": "Sets the value.",
+      "description": "Sets the date and/or time.",
       "fields": {
-        "value": {
-          "required": true,
-          "example": "This is an example text",
+        "date": {
+          "example": "\u00222019-04-20\u0022",
           "selector": {
             "text": null
           },
-          "name": "Value",
-          "description": "The target value."
+          "name": "Date",
+          "description": "The target date."
+        },
+        "time": {
+          "example": "\u002205:04:20\u0022",
+          "selector": {
+            "time": null
+          },
+          "name": "Time",
+          "description": "The target time."
+        },
+        "datetime": {
+          "example": "\u00222019-04-20 05:04:20\u0022",
+          "selector": {
+            "text": null
+          },
+          "name": "Date \u0026 time",
+          "description": "The target date \u0026 time."
+        },
+        "timestamp": {
+          "selector": {
+            "number": {
+              "min": 0,
+              "max": 9223372036854775807,
+              "mode": "box"
+            }
+          },
+          "name": "Timestamp",
+          "description": "The target date \u0026 time, expressed by a UNIX timestamp."
         }
       },
       "target": {
         "entity": [
           {
             "domain": [
-              "input_text"
+              "input_datetime"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "switch": {
+    "turn_off": {
+      "name": "Turn off",
+      "description": "Turns a switch off.",
+      "fields": {},
+      "target": {
+        "entity": [
+          {
+            "domain": [
+              "switch"
+            ]
+          }
+        ]
+      }
+    },
+    "turn_on": {
+      "name": "Turn on",
+      "description": "Turns a switch on.",
+      "fields": {},
+      "target": {
+        "entity": [
+          {
+            "domain": [
+              "switch"
+            ]
+          }
+        ]
+      }
+    },
+    "toggle": {
+      "name": "Toggle",
+      "description": "Toggles a switch on/off.",
+      "fields": {},
+      "target": {
+        "entity": [
+          {
+            "domain": [
+              "switch"
             ]
           }
         ]
@@ -3130,107 +3164,6 @@
           {
             "domain": [
               "input_number"
-            ]
-          }
-        ]
-      }
-    }
-  },
-  "switch": {
-    "turn_off": {
-      "name": "Turn off",
-      "description": "Turns a switch off.",
-      "fields": {},
-      "target": {
-        "entity": [
-          {
-            "domain": [
-              "switch"
-            ]
-          }
-        ]
-      }
-    },
-    "turn_on": {
-      "name": "Turn on",
-      "description": "Turns a switch on.",
-      "fields": {},
-      "target": {
-        "entity": [
-          {
-            "domain": [
-              "switch"
-            ]
-          }
-        ]
-      }
-    },
-    "toggle": {
-      "name": "Toggle",
-      "description": "Toggles a switch on/off.",
-      "fields": {},
-      "target": {
-        "entity": [
-          {
-            "domain": [
-              "switch"
-            ]
-          }
-        ]
-      }
-    }
-  },
-  "input_datetime": {
-    "reload": {
-      "name": "Reload",
-      "description": "Reloads helpers from the YAML-configuration.",
-      "fields": {}
-    },
-    "set_datetime": {
-      "name": "Set",
-      "description": "Sets the date and/or time.",
-      "fields": {
-        "date": {
-          "example": "\u00222019-04-20\u0022",
-          "selector": {
-            "text": null
-          },
-          "name": "Date",
-          "description": "The target date."
-        },
-        "time": {
-          "example": "\u002205:04:20\u0022",
-          "selector": {
-            "time": null
-          },
-          "name": "Time",
-          "description": "The target time."
-        },
-        "datetime": {
-          "example": "\u00222019-04-20 05:04:20\u0022",
-          "selector": {
-            "text": null
-          },
-          "name": "Date \u0026 time",
-          "description": "The target date \u0026 time."
-        },
-        "timestamp": {
-          "selector": {
-            "number": {
-              "min": 0,
-              "max": 9223372036854775807,
-              "mode": "box"
-            }
-          },
-          "name": "Timestamp",
-          "description": "The target date \u0026 time, expressed by a UNIX timestamp."
-        }
-      },
-      "target": {
-        "entity": [
-          {
-            "domain": [
-              "input_datetime"
             ]
           }
         ]
@@ -3366,6 +3299,123 @@
       }
     }
   },
+  "input_text": {
+    "reload": {
+      "name": "Reload",
+      "description": "Reloads helpers from the YAML-configuration.",
+      "fields": {}
+    },
+    "set_value": {
+      "name": "Set",
+      "description": "Sets the value.",
+      "fields": {
+        "value": {
+          "required": true,
+          "example": "This is an example text",
+          "selector": {
+            "text": null
+          },
+          "name": "Value",
+          "description": "The target value."
+        }
+      },
+      "target": {
+        "entity": [
+          {
+            "domain": [
+              "input_text"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "wake_on_lan": {
+    "send_magic_packet": {
+      "name": "Send magic packet",
+      "description": "Sends a \u0027magic packet\u0027 to wake up a device with \u0027Wake-On-LAN\u0027 capabilities.",
+      "fields": {
+        "mac": {
+          "required": true,
+          "example": "aa:bb:cc:dd:ee:ff",
+          "selector": {
+            "text": null
+          },
+          "name": "MAC address",
+          "description": "MAC address of the device to wake up."
+        },
+        "broadcast_address": {
+          "example": "192.168.255.255",
+          "selector": {
+            "text": null
+          },
+          "name": "Broadcast address",
+          "description": "Broadcast IP where to send the magic packet."
+        },
+        "broadcast_port": {
+          "default": 9,
+          "selector": {
+            "number": {
+              "min": 1,
+              "max": 65535
+            }
+          },
+          "name": "Broadcast port",
+          "description": "Port where to send the magic packet."
+        }
+      }
+    }
+  },
+  "ffmpeg": {
+    "start": {
+      "name": "Start",
+      "description": "Sends a start command to a ffmpeg based sensor.",
+      "fields": {
+        "entity_id": {
+          "selector": {
+            "entity": {
+              "integration": "ffmpeg",
+              "domain": "binary_sensor"
+            }
+          },
+          "name": "Entity",
+          "description": "Name of entity that will start. Platform dependent."
+        }
+      }
+    },
+    "stop": {
+      "name": "Stop",
+      "description": "Sends a stop command to a ffmpeg based sensor.",
+      "fields": {
+        "entity_id": {
+          "selector": {
+            "entity": {
+              "integration": "ffmpeg",
+              "domain": "binary_sensor"
+            }
+          },
+          "name": "Entity",
+          "description": "Name of entity that will stop. Platform dependent."
+        }
+      }
+    },
+    "restart": {
+      "name": "Restart",
+      "description": "Sends a restart command to a ffmpeg based sensor.",
+      "fields": {
+        "entity_id": {
+          "selector": {
+            "entity": {
+              "integration": "ffmpeg",
+              "domain": "binary_sensor"
+            }
+          },
+          "name": "Entity",
+          "description": "Name of entity that will restart. Platform dependent."
+        }
+      }
+    }
+  },
   "input_boolean": {
     "reload": {
       "name": "Reload",
@@ -3409,6 +3459,228 @@
           {
             "domain": [
               "input_boolean"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "remote": {
+    "turn_off": {
+      "name": "Turn off",
+      "description": "Turns the device off.",
+      "fields": {},
+      "target": {
+        "entity": [
+          {
+            "domain": [
+              "remote"
+            ]
+          }
+        ]
+      }
+    },
+    "turn_on": {
+      "name": "Turn on",
+      "description": "Sends the power on command.",
+      "fields": {
+        "activity": {
+          "example": "BedroomTV",
+          "filter": {
+            "supported_features": [
+              4
+            ]
+          },
+          "selector": {
+            "text": null
+          },
+          "name": "Activity",
+          "description": "Activity ID or activity name to be started."
+        }
+      },
+      "target": {
+        "entity": [
+          {
+            "domain": [
+              "remote"
+            ]
+          }
+        ]
+      }
+    },
+    "toggle": {
+      "name": "Toggle",
+      "description": "Toggles a device on/off.",
+      "fields": {},
+      "target": {
+        "entity": [
+          {
+            "domain": [
+              "remote"
+            ]
+          }
+        ]
+      }
+    },
+    "send_command": {
+      "name": "Send command",
+      "description": "Sends a command or a list of commands to a device.",
+      "fields": {
+        "device": {
+          "example": "32756745",
+          "selector": {
+            "text": null
+          },
+          "name": "Device",
+          "description": "Device ID to send command to."
+        },
+        "command": {
+          "required": true,
+          "example": "Play",
+          "selector": {
+            "object": null
+          },
+          "name": "Command",
+          "description": "A single command or a list of commands to send."
+        },
+        "num_repeats": {
+          "default": 1,
+          "selector": {
+            "number": {
+              "min": 0,
+              "max": 255
+            }
+          },
+          "name": "Repeats",
+          "description": "The number of times you want to repeat the commands."
+        },
+        "delay_secs": {
+          "default": 0.4,
+          "selector": {
+            "number": {
+              "min": 0,
+              "max": 60,
+              "step": 0.1,
+              "unit_of_measurement": "seconds"
+            }
+          },
+          "name": "Delay seconds",
+          "description": "The time you want to wait in between repeated commands."
+        },
+        "hold_secs": {
+          "default": 0,
+          "selector": {
+            "number": {
+              "min": 0,
+              "max": 60,
+              "step": 0.1,
+              "unit_of_measurement": "seconds"
+            }
+          },
+          "name": "Hold seconds",
+          "description": "The time you want to have it held before the release is send."
+        }
+      },
+      "target": {
+        "entity": [
+          {
+            "domain": [
+              "remote"
+            ]
+          }
+        ]
+      }
+    },
+    "learn_command": {
+      "name": "Learn command",
+      "description": "Learns a command or a list of commands from a device.",
+      "fields": {
+        "device": {
+          "example": "television",
+          "selector": {
+            "text": null
+          },
+          "name": "Device",
+          "description": "Device ID to learn command from."
+        },
+        "command": {
+          "example": "Turn on",
+          "selector": {
+            "object": null
+          },
+          "name": "Command",
+          "description": "A single command or a list of commands to learn."
+        },
+        "command_type": {
+          "default": "ir",
+          "selector": {
+            "select": {
+              "options": [
+                "ir",
+                "rf"
+              ]
+            }
+          },
+          "name": "Command type",
+          "description": "The type of command to be learned."
+        },
+        "alternative": {
+          "selector": {
+            "boolean": null
+          },
+          "name": "Alternative",
+          "description": "If code must be stored as an alternative. This is useful for discrete codes. Discrete codes are used for toggles that only perform one function. For example, a code to only turn a device on. If it is on already, sending the code won\u0027t change the state."
+        },
+        "timeout": {
+          "selector": {
+            "number": {
+              "min": 0,
+              "max": 60,
+              "step": 5,
+              "unit_of_measurement": "seconds"
+            }
+          },
+          "name": "Timeout",
+          "description": "Timeout for the command to be learned."
+        }
+      },
+      "target": {
+        "entity": [
+          {
+            "domain": [
+              "remote"
+            ]
+          }
+        ]
+      }
+    },
+    "delete_command": {
+      "name": "Delete command",
+      "description": "Deletes a command or a list of commands from the database.",
+      "fields": {
+        "device": {
+          "example": "television",
+          "selector": {
+            "text": null
+          },
+          "name": "Device",
+          "description": "Device from which commands will be deleted."
+        },
+        "command": {
+          "required": true,
+          "example": "Mute",
+          "selector": {
+            "object": null
+          },
+          "name": "Command",
+          "description": "The single command or the list of commands to be deleted."
+        }
+      },
+      "target": {
+        "entity": [
+          {
+            "domain": [
+              "remote"
             ]
           }
         ]
@@ -3502,361 +3774,6 @@
             ]
           }
         ]
-      }
-    }
-  },
-  "script": {
-    "av_volume_down": {
-      "name": "AV - Volume - Down",
-      "description": "",
-      "fields": {},
-      "response": {
-        "optional": true
-      }
-    },
-    "1659477669028": {
-      "name": "(Script)AV Audio Off ",
-      "description": "",
-      "fields": {},
-      "response": {
-        "optional": true
-      }
-    },
-    "pcturn_off_pc": {
-      "name": "(PC)Turn Off PC",
-      "description": "",
-      "fields": {},
-      "response": {
-        "optional": true
-      }
-    },
-    "pccancel_shut_down": {
-      "name": "(PC)Cancel_Shut_Down",
-      "description": "",
-      "fields": {},
-      "response": {
-        "optional": true
-      }
-    },
-    "av_volume_up": {
-      "name": "AV - Volume - Up",
-      "description": "",
-      "fields": {},
-      "response": {
-        "optional": true
-      }
-    },
-    "send_audio_notification": {
-      "name": "Send Audio Notification TTS",
-      "description": "Send a audio notification",
-      "fields": {
-        "title": {
-          "description": "The title of the notification",
-          "example": "State change",
-          "advanced": false,
-          "required": false
-        },
-        "message": {
-          "description": "The message content",
-          "example": "The light is on!",
-          "advanced": false,
-          "required": false
-        }
-      },
-      "response": {
-        "optional": true
-      }
-    },
-    "read_out_electricity_price": {
-      "name": "Read Out Electricity Price",
-      "description": "",
-      "fields": {},
-      "response": {
-        "optional": true
-      }
-    },
-    "readout_lasttime_awoken": {
-      "name": "Readout LastTime Awoken",
-      "description": "",
-      "fields": {},
-      "response": {
-        "optional": true
-      }
-    },
-    "send_audio_notification_file": {
-      "name": "Send Audio Notification File",
-      "description": "Send a audio notification",
-      "fields": {
-        "title": {
-          "description": "The title of the notification",
-          "example": "State change",
-          "advanced": false,
-          "required": false
-        },
-        "message": {
-          "description": "The message content",
-          "example": "The light is on!",
-          "advanced": false,
-          "required": false
-        }
-      },
-      "response": {
-        "optional": true
-      }
-    },
-    "turn_on_server": {
-      "name": "Turn On Server",
-      "description": "",
-      "fields": {},
-      "response": {
-        "optional": true
-      }
-    },
-    "turn_off_server": {
-      "name": "Turn Off Server",
-      "description": "",
-      "fields": {},
-      "response": {
-        "optional": true
-      }
-    },
-    "sendishomephonenotification": {
-      "name": "SendIsHomePhoneNotification",
-      "description": "",
-      "fields": {},
-      "response": {
-        "optional": true
-      }
-    },
-    "launch_youtube": {
-      "name": "Launch Youtube",
-      "description": "",
-      "fields": {},
-      "response": {
-        "optional": true
-      }
-    },
-    "actiontodoatalarm": {
-      "name": "ActionToDoAtAlarm",
-      "description": "",
-      "fields": {},
-      "response": {
-        "optional": true
-      }
-    },
-    "reload": {
-      "name": "Reload",
-      "description": "Reloads all the available scripts.",
-      "fields": {}
-    },
-    "turn_on": {
-      "name": "Turn on",
-      "description": "Runs the sequence of actions defined in a script.",
-      "fields": {},
-      "target": {
-        "entity": [
-          {
-            "domain": [
-              "script"
-            ]
-          }
-        ]
-      }
-    },
-    "turn_off": {
-      "name": "Turn off",
-      "description": "Stops a running script.",
-      "fields": {},
-      "target": {
-        "entity": [
-          {
-            "domain": [
-              "script"
-            ]
-          }
-        ]
-      }
-    },
-    "toggle": {
-      "name": "Toggle",
-      "description": "Toggle a script. Starts it, if isn\u0027t running, stops it otherwise.",
-      "fields": {},
-      "target": {
-        "entity": [
-          {
-            "domain": [
-              "script"
-            ]
-          }
-        ]
-      }
-    }
-  },
-  "template": {
-    "reload": {
-      "name": "Reload",
-      "description": "Reloads template entities from the YAML-configuration.",
-      "fields": {}
-    }
-  },
-  "device_tracker": {
-    "see": {
-      "name": "See",
-      "description": "Records a seen tracked device.",
-      "fields": {
-        "mac": {
-          "example": "FF:FF:FF:FF:FF:FF",
-          "selector": {
-            "text": null
-          },
-          "name": "MAC address",
-          "description": "MAC address of the device."
-        },
-        "dev_id": {
-          "example": "phonedave",
-          "selector": {
-            "text": null
-          },
-          "name": "Device ID",
-          "description": "ID of the device (find the ID in \u0060known_devices.yaml\u0060)."
-        },
-        "host_name": {
-          "example": "Dave",
-          "selector": {
-            "text": null
-          },
-          "name": "Hostname",
-          "description": "Hostname of the device."
-        },
-        "location_name": {
-          "example": "home",
-          "selector": {
-            "text": null
-          },
-          "name": "Location",
-          "description": "Name of the location where the device is located. The options are: \u0060home\u0060, \u0060not_home\u0060, or the name of the zone."
-        },
-        "gps": {
-          "example": "[51.509802, -0.086692]",
-          "selector": {
-            "object": null
-          },
-          "name": "GPS coordinates",
-          "description": "GPS coordinates where the device is located, specified by latitude and longitude (for example: [51.513845, -0.100539])."
-        },
-        "gps_accuracy": {
-          "selector": {
-            "number": {
-              "min": 1,
-              "max": 100,
-              "unit_of_measurement": "%"
-            }
-          },
-          "name": "GPS accuracy",
-          "description": "Accuracy of the GPS coordinates."
-        },
-        "battery": {
-          "selector": {
-            "number": {
-              "min": 0,
-              "max": 100,
-              "unit_of_measurement": "%"
-            }
-          },
-          "name": "Battery level",
-          "description": "Battery level of the device."
-        }
-      }
-    }
-  },
-  "utility_meter": {
-    "reset": {
-      "name": "Reset",
-      "description": "Resets all counters of a utility meter.",
-      "fields": {},
-      "target": {
-        "entity": [
-          {
-            "domain": [
-              "select"
-            ]
-          }
-        ]
-      }
-    },
-    "calibrate": {
-      "name": "Calibrate",
-      "description": "Calibrates a utility meter sensor.",
-      "fields": {
-        "value": {
-          "example": "100",
-          "required": true,
-          "selector": {
-            "text": null
-          },
-          "name": "Value",
-          "description": "Value to which set the meter."
-        }
-      },
-      "target": {
-        "entity": [
-          {
-            "domain": [
-              "sensor"
-            ],
-            "integration": "utility_meter"
-          }
-        ]
-      }
-    }
-  },
-  "ffmpeg": {
-    "start": {
-      "name": "Start",
-      "description": "Sends a start command to a ffmpeg based sensor.",
-      "fields": {
-        "entity_id": {
-          "selector": {
-            "entity": {
-              "integration": "ffmpeg",
-              "domain": "binary_sensor"
-            }
-          },
-          "name": "Entity",
-          "description": "Name of entity that will start. Platform dependent."
-        }
-      }
-    },
-    "stop": {
-      "name": "Stop",
-      "description": "Sends a stop command to a ffmpeg based sensor.",
-      "fields": {
-        "entity_id": {
-          "selector": {
-            "entity": {
-              "integration": "ffmpeg",
-              "domain": "binary_sensor"
-            }
-          },
-          "name": "Entity",
-          "description": "Name of entity that will stop. Platform dependent."
-        }
-      }
-    },
-    "restart": {
-      "name": "Restart",
-      "description": "Sends a restart command to a ffmpeg based sensor.",
-      "fields": {
-        "entity_id": {
-          "selector": {
-            "entity": {
-              "integration": "ffmpeg",
-              "domain": "binary_sensor"
-            }
-          },
-          "name": "Entity",
-          "description": "Name of entity that will restart. Platform dependent."
-        }
       }
     }
   },
@@ -4315,59 +4232,6 @@
             ],
             "supported_features": [
               8
-            ]
-          }
-        ]
-      }
-    }
-  },
-  "lawn_mower": {
-    "start_mowing": {
-      "name": "Start mowing",
-      "description": "Starts the mowing task.",
-      "fields": {},
-      "target": {
-        "entity": [
-          {
-            "domain": [
-              "lawn_mower"
-            ],
-            "supported_features": [
-              1
-            ]
-          }
-        ]
-      }
-    },
-    "pause": {
-      "name": "Pause",
-      "description": "Pauses the mowing task.",
-      "fields": {},
-      "target": {
-        "entity": [
-          {
-            "domain": [
-              "lawn_mower"
-            ],
-            "supported_features": [
-              2
-            ]
-          }
-        ]
-      }
-    },
-    "dock": {
-      "name": "Return to dock",
-      "description": "Stops the mowing task and returns to the dock.",
-      "fields": {},
-      "target": {
-        "entity": [
-          {
-            "domain": [
-              "lawn_mower"
-            ],
-            "supported_features": [
-              4
             ]
           }
         ]
@@ -4915,104 +4779,6 @@
       }
     }
   },
-  "humidifier": {
-    "turn_on": {
-      "name": "Turn on",
-      "description": "Turns the humidifier on.",
-      "fields": {},
-      "target": {
-        "entity": [
-          {
-            "domain": [
-              "humidifier"
-            ]
-          }
-        ]
-      }
-    },
-    "turn_off": {
-      "name": "Turn off",
-      "description": "Turns the humidifier off.",
-      "fields": {},
-      "target": {
-        "entity": [
-          {
-            "domain": [
-              "humidifier"
-            ]
-          }
-        ]
-      }
-    },
-    "toggle": {
-      "name": "Toggle",
-      "description": "Toggles the humidifier on/off.",
-      "fields": {},
-      "target": {
-        "entity": [
-          {
-            "domain": [
-              "humidifier"
-            ]
-          }
-        ]
-      }
-    },
-    "set_mode": {
-      "name": "Set mode",
-      "description": "Sets the humidifier operation mode.",
-      "fields": {
-        "mode": {
-          "required": true,
-          "example": "away",
-          "selector": {
-            "text": null
-          },
-          "name": "Mode",
-          "description": "Operation mode. For example, _normal_, _eco_, or _away_. For a list of possible values, refer to the integration documentation."
-        }
-      },
-      "target": {
-        "entity": [
-          {
-            "domain": [
-              "humidifier"
-            ],
-            "supported_features": [
-              1
-            ]
-          }
-        ]
-      }
-    },
-    "set_humidity": {
-      "name": "Set humidity",
-      "description": "Sets the target humidity.",
-      "fields": {
-        "humidity": {
-          "required": true,
-          "selector": {
-            "number": {
-              "min": 0,
-              "max": 100,
-              "unit_of_measurement": "%"
-            }
-          },
-          "name": "Humidity",
-          "description": "Target humidity."
-        }
-      },
-      "target": {
-        "entity": [
-          {
-            "domain": [
-              "humidifier"
-            ]
-          }
-        ]
-      }
-    }
-  },
   "cover": {
     "open_cover": {
       "name": "Open",
@@ -5211,63 +4977,138 @@
       }
     }
   },
-  "siren": {
-    "turn_on": {
-      "name": "Turn on",
-      "description": "Turns the siren on.",
+  "device_tracker": {
+    "see": {
+      "name": "See",
+      "description": "Records a seen tracked device.",
       "fields": {
-        "tone": {
-          "example": "fire",
-          "filter": {
-            "supported_features": [
-              4
-            ]
-          },
-          "required": false,
+        "mac": {
+          "example": "FF:FF:FF:FF:FF:FF",
           "selector": {
             "text": null
           },
-          "name": "Tone",
-          "description": "The tone to emit. When \u0060available_tones\u0060 property is a map, either the key or the value can be used. Must be supported by the integration."
+          "name": "MAC address",
+          "description": "MAC address of the device."
         },
-        "volume_level": {
-          "example": 0.5,
-          "filter": {
-            "supported_features": [
-              8
-            ]
+        "dev_id": {
+          "example": "phonedave",
+          "selector": {
+            "text": null
           },
-          "required": false,
+          "name": "Device ID",
+          "description": "ID of the device (find the ID in \u0060known_devices.yaml\u0060)."
+        },
+        "host_name": {
+          "example": "Dave",
+          "selector": {
+            "text": null
+          },
+          "name": "Hostname",
+          "description": "Hostname of the device."
+        },
+        "location_name": {
+          "example": "home",
+          "selector": {
+            "text": null
+          },
+          "name": "Location",
+          "description": "Name of the location where the device is located. The options are: \u0060home\u0060, \u0060not_home\u0060, or the name of the zone."
+        },
+        "gps": {
+          "example": "[51.509802, -0.086692]",
+          "selector": {
+            "object": null
+          },
+          "name": "GPS coordinates",
+          "description": "GPS coordinates where the device is located, specified by latitude and longitude (for example: [51.513845, -0.100539])."
+        },
+        "gps_accuracy": {
+          "selector": {
+            "number": {
+              "min": 1,
+              "max": 100,
+              "unit_of_measurement": "%"
+            }
+          },
+          "name": "GPS accuracy",
+          "description": "Accuracy of the GPS coordinates."
+        },
+        "battery": {
           "selector": {
             "number": {
               "min": 0,
-              "max": 1,
-              "step": 0.05
+              "max": 100,
+              "unit_of_measurement": "%"
             }
           },
-          "name": "Volume",
-          "description": "The volume. 0 is inaudible, 1 is the maximum volume. Must be supported by the integration."
-        },
-        "duration": {
-          "example": 15,
-          "filter": {
-            "supported_features": [
-              16
+          "name": "Battery level",
+          "description": "Battery level of the device."
+        }
+      }
+    }
+  },
+  "humidifier": {
+    "turn_on": {
+      "name": "Turn on",
+      "description": "Turns the humidifier on.",
+      "fields": {},
+      "target": {
+        "entity": [
+          {
+            "domain": [
+              "humidifier"
             ]
-          },
-          "required": false,
+          }
+        ]
+      }
+    },
+    "turn_off": {
+      "name": "Turn off",
+      "description": "Turns the humidifier off.",
+      "fields": {},
+      "target": {
+        "entity": [
+          {
+            "domain": [
+              "humidifier"
+            ]
+          }
+        ]
+      }
+    },
+    "toggle": {
+      "name": "Toggle",
+      "description": "Toggles the humidifier on/off.",
+      "fields": {},
+      "target": {
+        "entity": [
+          {
+            "domain": [
+              "humidifier"
+            ]
+          }
+        ]
+      }
+    },
+    "set_mode": {
+      "name": "Set mode",
+      "description": "Sets the humidifier operation mode.",
+      "fields": {
+        "mode": {
+          "required": true,
+          "example": "away",
           "selector": {
             "text": null
           },
-          "name": "Duration",
-          "description": "Number of seconds the sound is played. Must be supported by the integration."
+          "name": "Mode",
+          "description": "Operation mode. For example, _normal_, _eco_, or _away_. For a list of possible values, refer to the integration documentation."
         }
       },
       "target": {
         "entity": [
           {
             "domain": [
-              "siren"
+              "humidifier"
             ],
             "supported_features": [
               1
@@ -5276,15 +5117,61 @@
         ]
       }
     },
-    "turn_off": {
-      "name": "Turn off",
-      "description": "Turns the siren off.",
+    "set_humidity": {
+      "name": "Set humidity",
+      "description": "Sets the target humidity.",
+      "fields": {
+        "humidity": {
+          "required": true,
+          "selector": {
+            "number": {
+              "min": 0,
+              "max": 100,
+              "unit_of_measurement": "%"
+            }
+          },
+          "name": "Humidity",
+          "description": "Target humidity."
+        }
+      },
+      "target": {
+        "entity": [
+          {
+            "domain": [
+              "humidifier"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "lawn_mower": {
+    "start_mowing": {
+      "name": "Start mowing",
+      "description": "Starts the mowing task.",
       "fields": {},
       "target": {
         "entity": [
           {
             "domain": [
-              "siren"
+              "lawn_mower"
+            ],
+            "supported_features": [
+              1
+            ]
+          }
+        ]
+      }
+    },
+    "pause": {
+      "name": "Pause",
+      "description": "Pauses the mowing task.",
+      "fields": {},
+      "target": {
+        "entity": [
+          {
+            "domain": [
+              "lawn_mower"
             ],
             "supported_features": [
               2
@@ -5293,131 +5180,18 @@
         ]
       }
     },
-    "toggle": {
-      "name": "Toggle",
-      "description": "Toggles the siren on/off.",
+    "dock": {
+      "name": "Return to dock",
+      "description": "Stops the mowing task and returns to the dock.",
       "fields": {},
       "target": {
         "entity": [
           {
             "domain": [
-              "siren"
+              "lawn_mower"
             ],
             "supported_features": [
-              3
-            ]
-          }
-        ]
-      }
-    }
-  },
-  "water_heater": {
-    "turn_on": {
-      "name": "Turn on",
-      "description": "Turns water heater on.",
-      "fields": {},
-      "target": {
-        "entity": [
-          {
-            "domain": [
-              "water_heater"
-            ]
-          }
-        ]
-      }
-    },
-    "turn_off": {
-      "name": "Turn off",
-      "description": "Turns water heater off.",
-      "fields": {},
-      "target": {
-        "entity": [
-          {
-            "domain": [
-              "water_heater"
-            ]
-          }
-        ]
-      }
-    },
-    "set_away_mode": {
-      "name": "Set away mode",
-      "description": "Turns away mode on/off.",
-      "fields": {
-        "away_mode": {
-          "required": true,
-          "selector": {
-            "boolean": null
-          },
-          "name": "Away mode",
-          "description": "New value of away mode."
-        }
-      },
-      "target": {
-        "entity": [
-          {
-            "domain": [
-              "water_heater"
-            ]
-          }
-        ]
-      }
-    },
-    "set_temperature": {
-      "name": "Set temperature",
-      "description": "Sets the target temperature.",
-      "fields": {
-        "temperature": {
-          "required": true,
-          "selector": {
-            "number": {
-              "min": 0,
-              "max": 100,
-              "step": 0.5,
-              "unit_of_measurement": "\u00B0"
-            }
-          },
-          "name": "Temperature",
-          "description": "New target temperature for the water heater."
-        },
-        "operation_mode": {
-          "example": "eco",
-          "selector": {
-            "text": null
-          },
-          "name": "Operation mode",
-          "description": "New value of the operation mode. For a list of possible modes, refer to the integration documentation."
-        }
-      },
-      "target": {
-        "entity": [
-          {
-            "domain": [
-              "water_heater"
-            ]
-          }
-        ]
-      }
-    },
-    "set_operation_mode": {
-      "name": "Set operation mode",
-      "description": "Sets the operation mode.",
-      "fields": {
-        "operation_mode": {
-          "required": true,
-          "example": "eco",
-          "selector": {
-            "text": null
-          },
-          "name": "Operation mode",
-          "description": "New value of the operation mode. For a list of possible modes, refer to the integration documentation."
-        }
-      },
-      "target": {
-        "entity": [
-          {
-            "domain": [
-              "water_heater"
+              4
             ]
           }
         ]
@@ -5637,6 +5411,145 @@
       }
     }
   },
+  "water_heater": {
+    "turn_on": {
+      "name": "Turn on",
+      "description": "Turns water heater on.",
+      "fields": {},
+      "target": {
+        "entity": [
+          {
+            "domain": [
+              "water_heater"
+            ]
+          }
+        ]
+      }
+    },
+    "turn_off": {
+      "name": "Turn off",
+      "description": "Turns water heater off.",
+      "fields": {},
+      "target": {
+        "entity": [
+          {
+            "domain": [
+              "water_heater"
+            ]
+          }
+        ]
+      }
+    },
+    "set_away_mode": {
+      "name": "Set away mode",
+      "description": "Turns away mode on/off.",
+      "fields": {
+        "away_mode": {
+          "required": true,
+          "selector": {
+            "boolean": null
+          },
+          "name": "Away mode",
+          "description": "New value of away mode."
+        }
+      },
+      "target": {
+        "entity": [
+          {
+            "domain": [
+              "water_heater"
+            ]
+          }
+        ]
+      }
+    },
+    "set_temperature": {
+      "name": "Set temperature",
+      "description": "Sets the target temperature.",
+      "fields": {
+        "temperature": {
+          "required": true,
+          "selector": {
+            "number": {
+              "min": 0,
+              "max": 100,
+              "step": 0.5,
+              "unit_of_measurement": "\u00B0"
+            }
+          },
+          "name": "Temperature",
+          "description": "New target temperature for the water heater."
+        },
+        "operation_mode": {
+          "example": "eco",
+          "selector": {
+            "text": null
+          },
+          "name": "Operation mode",
+          "description": "New value of the operation mode. For a list of possible modes, refer to the integration documentation."
+        }
+      },
+      "target": {
+        "entity": [
+          {
+            "domain": [
+              "water_heater"
+            ]
+          }
+        ]
+      }
+    },
+    "set_operation_mode": {
+      "name": "Set operation mode",
+      "description": "Sets the operation mode.",
+      "fields": {
+        "operation_mode": {
+          "required": true,
+          "example": "eco",
+          "selector": {
+            "text": null
+          },
+          "name": "Operation mode",
+          "description": "New value of the operation mode. For a list of possible modes, refer to the integration documentation."
+        }
+      },
+      "target": {
+        "entity": [
+          {
+            "domain": [
+              "water_heater"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "text": {
+    "set_value": {
+      "name": "Set value",
+      "description": "Sets the value.",
+      "fields": {
+        "value": {
+          "required": true,
+          "example": "Hello world!",
+          "selector": {
+            "text": null
+          },
+          "name": "Value",
+          "description": "Enter your text."
+        }
+      },
+      "target": {
+        "entity": [
+          {
+            "domain": [
+              "text"
+            ]
+          }
+        ]
+      }
+    }
+  },
   "lock": {
     "unlock": {
       "name": "Unlock",
@@ -5711,70 +5624,83 @@
       }
     }
   },
-  "text": {
-    "set_value": {
-      "name": "Set value",
-      "description": "Sets the value.",
-      "fields": {
-        "value": {
-          "required": true,
-          "example": "Hello world!",
-          "selector": {
-            "text": null
-          },
-          "name": "Value",
-          "description": "Enter your text."
-        }
-      },
-      "target": {
-        "entity": [
-          {
-            "domain": [
-              "text"
-            ]
-          }
-        ]
-      }
-    }
-  },
-  "remote": {
-    "turn_off": {
-      "name": "Turn off",
-      "description": "Turns the device off.",
-      "fields": {},
-      "target": {
-        "entity": [
-          {
-            "domain": [
-              "remote"
-            ]
-          }
-        ]
-      }
-    },
+  "siren": {
     "turn_on": {
       "name": "Turn on",
-      "description": "Sends the power on command.",
+      "description": "Turns the siren on.",
       "fields": {
-        "activity": {
-          "example": "BedroomTV",
+        "tone": {
+          "example": "fire",
           "filter": {
             "supported_features": [
               4
             ]
           },
+          "required": false,
           "selector": {
             "text": null
           },
-          "name": "Activity",
-          "description": "Activity ID or activity name to be started."
+          "name": "Tone",
+          "description": "The tone to emit. When \u0060available_tones\u0060 property is a map, either the key or the value can be used. Must be supported by the integration."
+        },
+        "volume_level": {
+          "example": 0.5,
+          "filter": {
+            "supported_features": [
+              8
+            ]
+          },
+          "required": false,
+          "selector": {
+            "number": {
+              "min": 0,
+              "max": 1,
+              "step": 0.05
+            }
+          },
+          "name": "Volume",
+          "description": "The volume. 0 is inaudible, 1 is the maximum volume. Must be supported by the integration."
+        },
+        "duration": {
+          "example": 15,
+          "filter": {
+            "supported_features": [
+              16
+            ]
+          },
+          "required": false,
+          "selector": {
+            "text": null
+          },
+          "name": "Duration",
+          "description": "Number of seconds the sound is played. Must be supported by the integration."
         }
       },
       "target": {
         "entity": [
           {
             "domain": [
-              "remote"
+              "siren"
+            ],
+            "supported_features": [
+              1
+            ]
+          }
+        ]
+      }
+    },
+    "turn_off": {
+      "name": "Turn off",
+      "description": "Turns the siren off.",
+      "fields": {},
+      "target": {
+        "entity": [
+          {
+            "domain": [
+              "siren"
+            ],
+            "supported_features": [
+              2
             ]
           }
         ]
@@ -5782,220 +5708,60 @@
     },
     "toggle": {
       "name": "Toggle",
-      "description": "Toggles a device on/off.",
+      "description": "Toggles the siren on/off.",
       "fields": {},
       "target": {
         "entity": [
           {
             "domain": [
-              "remote"
-            ]
-          }
-        ]
-      }
-    },
-    "send_command": {
-      "name": "Send command",
-      "description": "Sends a command or a list of commands to a device.",
-      "fields": {
-        "device": {
-          "example": "32756745",
-          "selector": {
-            "text": null
-          },
-          "name": "Device",
-          "description": "Device ID to send command to."
-        },
-        "command": {
-          "required": true,
-          "example": "Play",
-          "selector": {
-            "object": null
-          },
-          "name": "Command",
-          "description": "A single command or a list of commands to send."
-        },
-        "num_repeats": {
-          "default": 1,
-          "selector": {
-            "number": {
-              "min": 0,
-              "max": 255
-            }
-          },
-          "name": "Repeats",
-          "description": "The number of times you want to repeat the commands."
-        },
-        "delay_secs": {
-          "default": 0.4,
-          "selector": {
-            "number": {
-              "min": 0,
-              "max": 60,
-              "step": 0.1,
-              "unit_of_measurement": "seconds"
-            }
-          },
-          "name": "Delay seconds",
-          "description": "The time you want to wait in between repeated commands."
-        },
-        "hold_secs": {
-          "default": 0,
-          "selector": {
-            "number": {
-              "min": 0,
-              "max": 60,
-              "step": 0.1,
-              "unit_of_measurement": "seconds"
-            }
-          },
-          "name": "Hold seconds",
-          "description": "The time you want to have it held before the release is send."
-        }
-      },
-      "target": {
-        "entity": [
-          {
-            "domain": [
-              "remote"
-            ]
-          }
-        ]
-      }
-    },
-    "learn_command": {
-      "name": "Learn command",
-      "description": "Learns a command or a list of commands from a device.",
-      "fields": {
-        "device": {
-          "example": "television",
-          "selector": {
-            "text": null
-          },
-          "name": "Device",
-          "description": "Device ID to learn command from."
-        },
-        "command": {
-          "example": "Turn on",
-          "selector": {
-            "object": null
-          },
-          "name": "Command",
-          "description": "A single command or a list of commands to learn."
-        },
-        "command_type": {
-          "default": "ir",
-          "selector": {
-            "select": {
-              "options": [
-                "ir",
-                "rf"
-              ]
-            }
-          },
-          "name": "Command type",
-          "description": "The type of command to be learned."
-        },
-        "alternative": {
-          "selector": {
-            "boolean": null
-          },
-          "name": "Alternative",
-          "description": "If code must be stored as an alternative. This is useful for discrete codes. Discrete codes are used for toggles that only perform one function. For example, a code to only turn a device on. If it is on already, sending the code won\u0027t change the state."
-        },
-        "timeout": {
-          "selector": {
-            "number": {
-              "min": 0,
-              "max": 60,
-              "step": 5,
-              "unit_of_measurement": "seconds"
-            }
-          },
-          "name": "Timeout",
-          "description": "Timeout for the command to be learned."
-        }
-      },
-      "target": {
-        "entity": [
-          {
-            "domain": [
-              "remote"
-            ]
-          }
-        ]
-      }
-    },
-    "delete_command": {
-      "name": "Delete command",
-      "description": "Deletes a command or a list of commands from the database.",
-      "fields": {
-        "device": {
-          "example": "television",
-          "selector": {
-            "text": null
-          },
-          "name": "Device",
-          "description": "Device from which commands will be deleted."
-        },
-        "command": {
-          "required": true,
-          "example": "Mute",
-          "selector": {
-            "object": null
-          },
-          "name": "Command",
-          "description": "The single command or the list of commands to be deleted."
-        }
-      },
-      "target": {
-        "entity": [
-          {
-            "domain": [
-              "remote"
+              "siren"
+            ],
+            "supported_features": [
+              3
             ]
           }
         ]
       }
     }
   },
-  "weather": {
-    "get_forecast": {
-      "name": "Get forecast",
-      "description": "Get weather forecast.",
+  "utility_meter": {
+    "reset": {
+      "name": "Reset",
+      "description": "Resets all counters of a utility meter.",
+      "fields": {},
+      "target": {
+        "entity": [
+          {
+            "domain": [
+              "select"
+            ]
+          }
+        ]
+      }
+    },
+    "calibrate": {
+      "name": "Calibrate",
+      "description": "Calibrates a utility meter sensor.",
       "fields": {
-        "type": {
+        "value": {
+          "example": "100",
           "required": true,
           "selector": {
-            "select": {
-              "options": [
-                "daily",
-                "hourly",
-                "twice_daily"
-              ],
-              "translation_key": "forecast_type"
-            }
+            "text": null
           },
-          "name": "Forecast type",
-          "description": "Forecast type: daily, hourly or twice daily."
+          "name": "Value",
+          "description": "Value to which set the meter."
         }
       },
       "target": {
         "entity": [
           {
             "domain": [
-              "weather"
+              "sensor"
             ],
-            "supported_features": [
-              1,
-              2,
-              4
-            ]
+            "integration": "utility_meter"
           }
         ]
-      },
-      "response": {
-        "optional": false
       }
     }
   },
@@ -6414,6 +6180,249 @@
       }
     }
   },
+  "weather": {
+    "get_forecast": {
+      "name": "Get forecast",
+      "description": "Get weather forecast.",
+      "fields": {
+        "type": {
+          "required": true,
+          "selector": {
+            "select": {
+              "options": [
+                "daily",
+                "hourly",
+                "twice_daily"
+              ],
+              "translation_key": "forecast_type"
+            }
+          },
+          "name": "Forecast type",
+          "description": "Forecast type: daily, hourly or twice daily."
+        }
+      },
+      "target": {
+        "entity": [
+          {
+            "domain": [
+              "weather"
+            ],
+            "supported_features": [
+              1,
+              2,
+              4
+            ]
+          }
+        ]
+      },
+      "response": {
+        "optional": false
+      }
+    }
+  },
+  "script": {
+    "av_volume_down": {
+      "name": "AV - Volume - Down",
+      "description": "",
+      "fields": {},
+      "response": {
+        "optional": true
+      }
+    },
+    "1659477669028": {
+      "name": "(Script)AV Audio Off ",
+      "description": "",
+      "fields": {},
+      "response": {
+        "optional": true
+      }
+    },
+    "pcturn_off_pc": {
+      "name": "(PC)Turn Off PC",
+      "description": "",
+      "fields": {},
+      "response": {
+        "optional": true
+      }
+    },
+    "pccancel_shut_down": {
+      "name": "(PC)Cancel_Shut_Down",
+      "description": "",
+      "fields": {},
+      "response": {
+        "optional": true
+      }
+    },
+    "av_volume_up": {
+      "name": "AV - Volume - Up",
+      "description": "",
+      "fields": {},
+      "response": {
+        "optional": true
+      }
+    },
+    "send_audio_notification": {
+      "name": "Send Audio Notification TTS",
+      "description": "Send a audio notification",
+      "fields": {
+        "title": {
+          "description": "The title of the notification",
+          "example": "State change",
+          "required": false,
+          "advanced": false
+        },
+        "message": {
+          "description": "The message content",
+          "example": "The light is on!",
+          "required": false,
+          "advanced": false
+        }
+      },
+      "response": {
+        "optional": true
+      }
+    },
+    "read_out_electricity_price": {
+      "name": "Read Out Electricity Price",
+      "description": "",
+      "fields": {},
+      "response": {
+        "optional": true
+      }
+    },
+    "readout_lasttime_awoken": {
+      "name": "Readout LastTime Awoken",
+      "description": "",
+      "fields": {},
+      "response": {
+        "optional": true
+      }
+    },
+    "send_audio_notification_file": {
+      "name": "Send Audio Notification File",
+      "description": "Send a audio notification",
+      "fields": {
+        "title": {
+          "description": "The title of the notification",
+          "example": "State change",
+          "required": false,
+          "advanced": false
+        },
+        "message": {
+          "description": "The message content",
+          "example": "The light is on!",
+          "required": false,
+          "advanced": false
+        }
+      },
+      "response": {
+        "optional": true
+      }
+    },
+    "turn_on_server": {
+      "name": "Turn On Server",
+      "description": "",
+      "fields": {},
+      "response": {
+        "optional": true
+      }
+    },
+    "turn_off_server": {
+      "name": "Turn Off Server",
+      "description": "",
+      "fields": {},
+      "response": {
+        "optional": true
+      }
+    },
+    "sendishomephonenotification": {
+      "name": "SendIsHomePhoneNotification",
+      "description": "",
+      "fields": {},
+      "response": {
+        "optional": true
+      }
+    },
+    "launch_youtube": {
+      "name": "Launch Youtube",
+      "description": "",
+      "fields": {},
+      "response": {
+        "optional": true
+      }
+    },
+    "actiontodoatalarm": {
+      "name": "ActionToDoAtAlarm",
+      "description": "",
+      "fields": {},
+      "response": {
+        "optional": true
+      }
+    },
+    "turn_off_proxmox_and_server": {
+      "name": "Turn Off Proxmox and Server",
+      "description": "",
+      "fields": {},
+      "response": {
+        "optional": true
+      }
+    },
+    "reload": {
+      "name": "Reload",
+      "description": "Reloads all the available scripts.",
+      "fields": {}
+    },
+    "turn_on": {
+      "name": "Turn on",
+      "description": "Runs the sequence of actions defined in a script.",
+      "fields": {},
+      "target": {
+        "entity": [
+          {
+            "domain": [
+              "script"
+            ]
+          }
+        ]
+      }
+    },
+    "turn_off": {
+      "name": "Turn off",
+      "description": "Stops a running script.",
+      "fields": {},
+      "target": {
+        "entity": [
+          {
+            "domain": [
+              "script"
+            ]
+          }
+        ]
+      }
+    },
+    "toggle": {
+      "name": "Toggle",
+      "description": "Toggle a script. Starts it, if isn\u0027t running, stops it otherwise.",
+      "fields": {},
+      "target": {
+        "entity": [
+          {
+            "domain": [
+              "script"
+            ]
+          }
+        ]
+      }
+    },
+    "reset_all_powermeters": {
+      "name": "Reset All Powermeters",
+      "description": "",
+      "fields": {},
+      "response": {
+        "optional": true
+      }
+    }
+  },
   "cast": {
     "show_lovelace_view": {
       "name": "Show dashboard view",
@@ -6450,101 +6459,11 @@
       }
     }
   },
-  "fritz": {
-    "cleanup": {
-      "name": "Remove stale device tracker entities",
-      "description": "Remove FRITZ!Box stale device_tracker entities.",
-      "fields": {
-        "device_id": {
-          "required": true,
-          "selector": {
-            "device": {
-              "integration": "fritz",
-              "entity": {
-                "device_class": "connectivity"
-              }
-            }
-          },
-          "name": "Fritz!Box Device",
-          "description": "Select the Fritz!Box to check."
-        }
-      }
-    },
-    "reboot": {
-      "name": "Reboot",
-      "description": "Reboots your FRITZ!Box.",
-      "fields": {
-        "device_id": {
-          "required": true,
-          "selector": {
-            "device": {
-              "integration": "fritz",
-              "entity": {
-                "device_class": "connectivity"
-              }
-            }
-          },
-          "name": "Fritz!Box Device",
-          "description": "Select the Fritz!Box to reboot."
-        }
-      }
-    },
-    "reconnect": {
-      "name": "Reconnect",
-      "description": "Reconnects your FRITZ!Box internet connection.",
-      "fields": {
-        "device_id": {
-          "required": true,
-          "selector": {
-            "device": {
-              "integration": "fritz",
-              "entity": {
-                "device_class": "connectivity"
-              }
-            }
-          },
-          "name": "Fritz!Box Device",
-          "description": "Select the Fritz!Box to reconnect."
-        }
-      }
-    },
-    "set_guest_wifi_password": {
-      "name": "Set guest Wi-Fi password",
-      "description": "Sets a new password for the guest Wi-Fi. The password must be between 8 and 63 characters long. If no additional parameter is set, the password will be auto-generated with a length of 12 characters.",
-      "fields": {
-        "device_id": {
-          "required": true,
-          "selector": {
-            "device": {
-              "integration": "fritz",
-              "entity": {
-                "device_class": "connectivity"
-              }
-            }
-          },
-          "name": "Fritz!Box Device",
-          "description": "Select the Fritz!Box to configure."
-        },
-        "password": {
-          "required": false,
-          "selector": {
-            "text": null
-          },
-          "name": "Password",
-          "description": "New password for the guest Wi-Fi."
-        },
-        "length": {
-          "required": false,
-          "selector": {
-            "number": {
-              "min": 8,
-              "max": 63
-            }
-          },
-          "name": "Password length",
-          "description": "Length of the new password. The password will be auto-generated, if no password is set."
-        }
-      }
+  "template": {
+    "reload": {
+      "name": "Reload",
+      "description": "Reloads template entities from the YAML-configuration.",
+      "fields": {}
     }
   },
   "adguard": {
@@ -6739,6 +6658,103 @@
             ]
           }
         ]
+      }
+    }
+  },
+  "fritz": {
+    "cleanup": {
+      "name": "Remove stale device tracker entities",
+      "description": "Remove FRITZ!Box stale device_tracker entities.",
+      "fields": {
+        "device_id": {
+          "required": true,
+          "selector": {
+            "device": {
+              "integration": "fritz",
+              "entity": {
+                "device_class": "connectivity"
+              }
+            }
+          },
+          "name": "Fritz!Box Device",
+          "description": "Select the Fritz!Box to check."
+        }
+      }
+    },
+    "reboot": {
+      "name": "Reboot",
+      "description": "Reboots your FRITZ!Box.",
+      "fields": {
+        "device_id": {
+          "required": true,
+          "selector": {
+            "device": {
+              "integration": "fritz",
+              "entity": {
+                "device_class": "connectivity"
+              }
+            }
+          },
+          "name": "Fritz!Box Device",
+          "description": "Select the Fritz!Box to reboot."
+        }
+      }
+    },
+    "reconnect": {
+      "name": "Reconnect",
+      "description": "Reconnects your FRITZ!Box internet connection.",
+      "fields": {
+        "device_id": {
+          "required": true,
+          "selector": {
+            "device": {
+              "integration": "fritz",
+              "entity": {
+                "device_class": "connectivity"
+              }
+            }
+          },
+          "name": "Fritz!Box Device",
+          "description": "Select the Fritz!Box to reconnect."
+        }
+      }
+    },
+    "set_guest_wifi_password": {
+      "name": "Set guest Wi-Fi password",
+      "description": "Sets a new password for the guest Wi-Fi. The password must be between 8 and 63 characters long. If no additional parameter is set, the password will be auto-generated with a length of 12 characters.",
+      "fields": {
+        "device_id": {
+          "required": true,
+          "selector": {
+            "device": {
+              "integration": "fritz",
+              "entity": {
+                "device_class": "connectivity"
+              }
+            }
+          },
+          "name": "Fritz!Box Device",
+          "description": "Select the Fritz!Box to configure."
+        },
+        "password": {
+          "required": false,
+          "selector": {
+            "text": null
+          },
+          "name": "Password",
+          "description": "New password for the guest Wi-Fi."
+        },
+        "length": {
+          "required": false,
+          "selector": {
+            "number": {
+              "min": 8,
+              "max": 63
+            }
+          },
+          "name": "Password length",
+          "description": "Length of the new password. The password will be auto-generated, if no password is set."
+        }
       }
     }
   },
