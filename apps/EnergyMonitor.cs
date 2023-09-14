@@ -44,7 +44,6 @@ public class EnergyMonitor
         electricityRangeKeys = electiricityRanges.Keys.ToList();
 
         infoForCurrentHour = new ElectricityPriceInfo(DateTime.Now, _myEntities?.Sensor?.NordpoolKwhFiEur31001, electricityRangeKeys);
-        Console.WriteLine("Ud");
         scheduler.ScheduleCron("59 * * * *", () => UpdatePriceHourly(_myEntities?.Sensor.TotalHourlyEnergyConsumptions.State ?? 0));
         _myEntities?.Sensor.Powermeters.StateChanges().Where(x => x?.New?.State < x?.Old?.State && x?.Old?.State != 0).Subscribe(x => UpdatePriceDaily() );
 
@@ -431,13 +430,13 @@ public class EnergyMonitor
 
             return (double)thisHourTotal;
         }
-        infoForCurrentHour = new ElectricityPriceInfo(DateTime.Now + TimeSpan.FromMinutes(5), _myEntities.Sensor?.NordpoolKwhFiEur31001, electricityRangeKeys);
 
           double priceForLastHout = calculatePrice(energy);
           double ecoflowAdjustedPrice = calculatePrice(ecoflowCacl(energy));
 
         
         var ecoflowAdjustedHourlycost = priceForLastHout - ecoflowAdjustedPrice;
+        infoForCurrentHour = new ElectricityPriceInfo(DateTime.Now + TimeSpan.FromMinutes(5), _myEntities.Sensor?.NordpoolKwhFiEur31001, electricityRangeKeys);
 
 
         _myEntities.InputNumber.DailyEnergySaveHelper.SetValue((_myEntities.InputNumber.DailyEnergySaveHelper.State ?? 0) + ecoflowAdjustedHourlycost);
