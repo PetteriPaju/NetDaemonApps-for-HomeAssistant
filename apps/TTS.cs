@@ -74,6 +74,8 @@ namespace NetDaemonApps.apps
                 if (_myEntities.InputBoolean.Isasleep.IsOn() && paramsContain(TTSPriority.IgnoreSleep) && 
                    (_myEntities.InputBoolean.GuestMode.IsOff() || paramsContain(TTSPriority.PlayInGuestMode))) return true;
 
+                if (_myEntities.InputBoolean.GuestMode.IsOn() && (DateTime.Now.Hour < 7 || DateTime.Now.Hour == 23)) return false;
+
                 if (_myEntities.InputBoolean.GuestMode.IsOn() && paramsContain(TTSPriority.PlayInGuestMode)) return true;
                 if (_myEntities.InputBoolean.GuestMode.IsOn() && paramsContain(TTSPriority.DoNotPlayInGuestMode)) return false;
 
