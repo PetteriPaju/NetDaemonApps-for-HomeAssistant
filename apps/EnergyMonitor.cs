@@ -44,9 +44,8 @@ public class EnergyMonitor
         electricityRangeKeys = electiricityRanges.Keys.ToList();
 
         infoForCurrentHour = new ElectricityPriceInfo(DateTime.Now, _myEntities?.Sensor?.NordpoolKwhFiEur31001, electricityRangeKeys);
-
-
-        _myEntities?.Sensor.TotalHourlyEnergyConsumptions.StateAllChanges().Where(x => x?.New?.State < x?.Old?.State && x?.Old?.State != 0).Subscribe(x=> {UpdatePriceHourly(x?.Old?.State ?? 0);});
+        Console.WriteLine("Ud");
+        scheduler.ScheduleCron("59 * * * *", () => UpdatePriceHourly(_myEntities?.Sensor.TotalHourlyEnergyConsumptions.State ?? 0));
         _myEntities?.Sensor.Powermeters.StateChanges().Where(x => x?.New?.State < x?.Old?.State && x?.Old?.State != 0).Subscribe(x => UpdatePriceDaily() );
 
         scheduler.ScheduleCron("50 * * * *", () => EnergiPriceChengeAlert(ha));
@@ -209,6 +208,10 @@ public class EnergyMonitor
         double hourlyEcoflowOut = _myEntities.Sensor.EcoflowAcOutputHourly.AsNumeric().State ?? 0;
         double hourlyEcoflowAcIn= _myEntities.Sensor.EcoflowAcInputHourly.AsNumeric().State ?? 0;
         double hourlySolarIn = _myEntities.Sensor.EcoflowSolarInputHourly.AsNumeric().State ?? 0;
+
+        Console.WriteLine("Out as Numeric: " +_myEntities.Sensor.EcoflowAcOutputHourly.AsNumeric().State);
+        Console.WriteLine("Out as State: " + _myEntities.Sensor.EcoflowAcOutputHourly.State);
+
 
         double deltaEnergy;
 
@@ -416,10 +419,10 @@ public class EnergyMonitor
         if (_myEntities.InputNumber.EnergyCostDaily.State == null) return;
         if (_myEntities.InputNumber.EnergyCostHourly.State == null) return;
         if (_myEntities?.Sensor.Powermeters.State == null) return;
-
+        Console.WriteLine("Hourly Energy Calculation");
         double calculatePrice(double inpt)
         {
-            var thisHourFortum = inpt * marginOfErrorFix * _myEntities.Sensor?.NordpoolKwhFiEur31001?.State + inpt * marginOfErrorFix * _myEntities.InputNumber.EnergyFortumHardCost.State;
+            var thisHourFortum = inpt * marginOfErrorFix * infoForCurrentHour.price + inpt  * _myEntities.InputNumber.EnergyFortumHardCost.State;
             thisHourFortum += thisHourFortum * (_myEntities.InputNumber.EnergyFortumAlv.State / 100);
 
             var thisHourTranster = inpt * marginOfErrorFix * _myEntities.InputNumber.EnergyTransferCost.State;

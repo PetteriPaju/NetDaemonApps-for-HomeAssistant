@@ -746,7 +746,7 @@
         },
         {
           "id": "device_tracker.zatnas",
-          "friendlyName": "Zatnas",
+          "friendlyName": "PC-24-5E-BE-5F-72-F4",
           "cSharpName": "Zatnas"
         }
       ],
@@ -2187,9 +2187,39 @@
           "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1326"
         },
         {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_327",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
+          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1327"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_328",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
+          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1328"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_329",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
+          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1329"
+        },
+        {
           "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_33",
           "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
           "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp133"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_330",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
+          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1330"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_331",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
+          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1331"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_332",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
+          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1332"
         },
         {
           "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_34",
@@ -4085,11 +4115,6 @@
           "cSharpName": "EcoflowCycles"
         },
         {
-          "id": "sensor.ecoflow_out_sum",
-          "friendlyName": "Ecoflow Out Sum",
-          "cSharpName": "EcoflowOutSum"
-        },
-        {
           "id": "sensor.ecoflow_solar_input_hourly",
           "friendlyName": "Ecoflow Solar Input Hourly",
           "cSharpName": "EcoflowSolarInputHourly"
@@ -5433,6 +5458,11 @@
           "cSharpName": "EcoflowMainBatteryLevel"
         },
         {
+          "id": "sensor.ecoflow_out_sum",
+          "friendlyName": "Ecoflow Out Sum",
+          "cSharpName": "EcoflowOutSum"
+        },
+        {
           "id": "sensor.ecoflow_solar_in_power",
           "friendlyName": "EcoFlow Solar In Power",
           "cSharpName": "EcoflowSolarInPower"
@@ -5584,12 +5614,12 @@
         },
         {
           "id": "sensor.internetgatewaydevicev2_fritz_box_6660_cable_kib_s_received",
-          "friendlyName": "InternetGatewayDeviceV2 - FRITZ!Box 6660 Cable Download speed",
+          "friendlyName": "Download speed",
           "cSharpName": "Internetgatewaydevicev2FritzBox6660CableKibSReceived"
         },
         {
           "id": "sensor.internetgatewaydevicev2_fritz_box_6660_cable_kib_s_sent",
-          "friendlyName": "InternetGatewayDeviceV2 - FRITZ!Box 6660 Cable Upload speed",
+          "friendlyName": "Upload speed",
           "cSharpName": "Internetgatewaydevicev2FritzBox6660CableKibSSent"
         },
         {
@@ -6671,7 +6701,7 @@
         },
         {
           "id": "switch.zatnas_internet_access",
-          "friendlyName": "Zatnas Internet Access",
+          "friendlyName": "PC-24-5E-BE-5F-72-F4 Internet Access",
           "cSharpName": "ZatnasInternetAccess"
         }
       ],
