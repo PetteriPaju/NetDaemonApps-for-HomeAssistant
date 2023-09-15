@@ -373,7 +373,7 @@ public class EnergyMonitor
         private int FindRangeForPrice(double? price, List<double>? electricityRangeKeys)
         {
             var range = electricityRangeKeys?.FindIndex(x => x >= price);
-            range = range == -1 ? 1 : range;
+            range = range == -1 ? electricityRangeKeys.Count : range;
 
             return (int)range - 1;
         }
