@@ -436,7 +436,7 @@ public class EnergyMonitor
 
         
         var ecoflowAdjustedHourlycost = priceForLastHout - ecoflowAdjustedPrice;
-        infoForCurrentHour = new ElectricityPriceInfo(DateTime.Now + TimeSpan.FromMinutes(5), _myEntities.Sensor?.NordpoolKwhFiEur31001, electricityRangeKeys);
+        infoForCurrentHour = new ElectricityPriceInfo(DateTime.Now + TimeSpan.FromMinutes(15), _myEntities.Sensor?.NordpoolKwhFiEur31001, electricityRangeKeys);
 
 
         _myEntities.InputNumber.DailyEnergySaveHelper.SetValue((_myEntities.InputNumber.DailyEnergySaveHelper.State ?? 0) + ecoflowAdjustedHourlycost);
