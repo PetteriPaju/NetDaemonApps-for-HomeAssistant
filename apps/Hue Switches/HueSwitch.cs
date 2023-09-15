@@ -15,7 +15,7 @@ namespace NetDaemonApps.apps.Hue_Switches
 
             if (hueSwitchEntity == null) return;
 
-            hueSwitchEntity.StateChanges().Subscribe(x => DetermineAction(x?.Entity?.State ?? "Unknown"));
+            hueSwitchEntity.StateAllChanges().Subscribe(x => DetermineAction(x?.Entity?.State ?? "Unknown"));
 
         }
 
