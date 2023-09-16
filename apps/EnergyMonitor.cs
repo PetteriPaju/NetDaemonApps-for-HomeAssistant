@@ -205,16 +205,11 @@ public class EnergyMonitor
     {
         double hourlyEnergyUsed = 0;
         double hourlyEcoflowOut = _myEntities.Sensor.EcoflowAcOutputHourly.AsNumeric().State ?? 0;
-        double hourlyEcoflowAcIn= _myEntities.Sensor.EcoflowAcInputHourly.AsNumeric().State ?? 0;
         double hourlySolarIn = _myEntities.Sensor.EcoflowSolarInputHourly.AsNumeric().State ?? 0;
-
-        Console.WriteLine("Out as Numeric: " +_myEntities.Sensor.EcoflowAcOutputHourly.AsNumeric().State);
-        Console.WriteLine("Out as State: " + _myEntities.Sensor.EcoflowAcOutputHourly.State);
-
 
         double deltaEnergy;
 
-        deltaEnergy = hourlyUsedEnergy + hourlyEcoflowAcIn - hourlyEcoflowOut - hourlySolarIn;
+        deltaEnergy = hourlyUsedEnergy - hourlyEcoflowOut - hourlySolarIn;
 
         return deltaEnergy;
 
@@ -419,6 +414,10 @@ public class EnergyMonitor
         if (_myEntities.InputNumber.EnergyCostHourly.State == null) return;
         if (_myEntities?.Sensor.Powermeters.State == null) return;
         Console.WriteLine("Hourly Energy Calculation");
+
+
+      
+
         double calculatePrice(double inpt)
         {
             var thisHourFortum = inpt * marginOfErrorFix * infoForCurrentHour.price + inpt  * _myEntities.InputNumber.EnergyFortumHardCost.State;
@@ -431,10 +430,12 @@ public class EnergyMonitor
             return (double)thisHourTotal;
         }
 
-          double priceForLastHout = calculatePrice(energy);
+         
           double ecoflowAdjustedPrice = calculatePrice(ecoflowCacl(energy));
 
-        
+        energy -= _myEntities.Sensor.EcoflowAcOutputHourly.AsNumeric().State ?? 0;
+        double priceForLastHout = calculatePrice(energy);
+
         var ecoflowAdjustedHourlycost = priceForLastHout - ecoflowAdjustedPrice;
         infoForCurrentHour = new ElectricityPriceInfo(DateTime.Now + TimeSpan.FromMinutes(15), _myEntities.Sensor?.NordpoolKwhFiEur31001, electricityRangeKeys);
 
