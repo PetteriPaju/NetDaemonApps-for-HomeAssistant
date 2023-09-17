@@ -29,11 +29,10 @@ namespace NetDaemonApps.apps
             _myScheduler = scheduler;
             _myServices = new Services(ha);
             _events = ha.Events;
-
-            Task.Run(OnLateStart);
-            _0Gbl._myScheduler.ScheduleCron("59 55 * * *", hourlyResetFunction);
+            _0Gbl._myScheduler.ScheduleCron("59 * * * *", hourlyResetFunction);
             _0Gbl._myScheduler.ScheduleCron("0 0 * * *", dailyResetFunction);
-
+            Task.Run(OnLateStart);
+         
         }
 
 
@@ -41,7 +40,7 @@ namespace NetDaemonApps.apps
         {
           await Task.Delay(1000);
           dateUpdate();
-          Console.WriteLine("Success!");
+
         }
 
         private void dateUpdate()

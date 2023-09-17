@@ -40,7 +40,8 @@ public class EnergyMonitor
         electricityRangeKeys = electiricityRanges.Keys.ToList();
 
         infoForCurrentHour = new ElectricityPriceInfo(DateTime.Now, _0Gbl._myEntities?.Sensor?.NordpoolKwhFiEur31001, electricityRangeKeys);
-        _0Gbl._myScheduler.ScheduleCron("59 * * * *", () => UpdatePriceHourly(_0Gbl._myEntities?.Sensor.TotalHourlyEnergyConsumptions.State ?? 0));
+
+        _0Gbl.HourlyResetFunction += () => UpdatePriceHourly(_0Gbl._myEntities?.Sensor.TotalHourlyEnergyConsumptions.State ?? 0);
 
         _0Gbl._myScheduler.ScheduleCron("50 * * * *", () => EnergiPriceChengeAlert());
 
@@ -239,20 +240,11 @@ public class EnergyMonitor
             bool isWarning = priceChange == PriceChangeType.Increase || inFoForNextHour.peak == 1;
 
 
+        TTSMessage = "Electricity " + (isWarning ? "Warning. " : "Notice. ") + "The Price is About ";
 
-            if (isWarning)
-            {
-                TTSMessage = "Electricity Warning. The Price is About to ";
-            }
-            else
-            {
-                TTSMessage = "Electricity Notice. The Price is About to "; 
-            }
 
         if (priceChange != PriceChangeType.NoChange)
         {
-
-     
 
             if (priceChange == PriceChangeType.Increase)
             {
@@ -263,10 +255,8 @@ public class EnergyMonitor
                 TTSMessage += "fall to " + electiricityRanges.Values.ElementAt(inFoForNextHour.range) + ".";
             }
 
-       
 
-
-                var hoursTillChange = FindWhenElectricityRangeChanges(inFoForNextHour);
+            var hoursTillChange = FindWhenElectricityRangeChanges(inFoForNextHour);
 
             var timeDiff = hoursTillChange.dateTime - inFoForNextHour.dateTime;
 
@@ -408,10 +398,6 @@ public class EnergyMonitor
         if (_0Gbl._myEntities.InputNumber.EnergyCostDaily.State == null) return;
         if (_0Gbl._myEntities.InputNumber.EnergyCostHourly.State == null) return;
         if (_0Gbl._myEntities?.Sensor.Powermeters.State == null) return;
-        Console.WriteLine("Hourly Energy Calculation");
-
-
-      
 
         double calculatePrice(double inpt)
         {
@@ -443,10 +429,6 @@ public class EnergyMonitor
 
     private void OnDayChanged()
     {
-        if (_0Gbl._myEntities == null) return;
-        if (_0Gbl._myEntities.InputNumber.EnergyCostDaily.State == null) return;
-        if (_0Gbl._myEntities.InputNumber.EnergyCostHourly.State == null) return;
-        if (_0Gbl._myEntities.Sensor.Powermeters.State == null) return;
 
         hiPeakAlertGiven = false;
         loPeakAlertGiven = false;
@@ -457,73 +439,6 @@ public class EnergyMonitor
         solarChargingOffNotificationGiven = false;
         _0Gbl._myEntities.InputNumber.DailyEnergySaveHelper.SetValue(0);
         _0Gbl._myServices.Script.ResetAllPowermeters();
-    }
-
-    private class FridgeController
-    {
-        private NumericSensorEntity temperatureSensor;
-        private SwitchEntity fridgePlug;
-
-        private ControllerState[] dailyPlan = new ControllerState[24];
-
-        private DateTime maxPeak;
-        private DateTime maxpeakMinus1;
-        private DateTime minPeak;
-
-        private enum ControllerState
-        {
-            Normal,
-            MaxPreparation,
-            Max,
-            Min
-        }
-
-        private ControllerState State { get; set; }
-
-
-        public FridgeController()
-        {
-
-
-
-
-        }
-
-
-        public void UpdatePeaks(DateTime minpeak, DateTime maxPeak)
-        {
-
-            PlanSchedule();
-        }
-
-        private void PlanSchedule()
-        {
-
-        }
-        private void TemparatureUpdate() { 
-        
-        }
-        public void OnHourChanged()
-        {
-
-            if (DateTime.Now.Hour == maxpeakMinus1.Hour && DateTime.Now.Date == maxpeakMinus1.Date)
-            {
-                State = ControllerState.MaxPreparation;
-            }
-            else if (DateTime.Now.Hour == maxPeak.Hour && DateTime.Now.Date == maxPeak.Date)
-            {
-                State = ControllerState.Max;
-            }
-            else if (DateTime.Now.Hour == minPeak.Hour && DateTime.Now.Date == minPeak.Date)
-            {
-                State = ControllerState.Min;
-            }
-            else
-            {
-                State = ControllerState.Normal;
-            }
-        }
-
     }
 
 }
