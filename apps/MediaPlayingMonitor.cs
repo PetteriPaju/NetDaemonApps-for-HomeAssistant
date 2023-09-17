@@ -38,7 +38,7 @@ namespace NetDaemonApps.apps
             }
 
             _0Gbl._myScheduler.ScheduleCron("*/10 * * * *", () => CheckAllStates());
-            _0Gbl._myScheduler.ScheduleCron("*/1 * * * *", () => { TTS.Speak("This is test"); });
+
 
 
         }
