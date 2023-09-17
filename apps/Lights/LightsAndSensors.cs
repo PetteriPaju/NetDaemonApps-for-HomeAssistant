@@ -79,7 +79,7 @@ namespace NetDaemonApps.apps.Lights
 
         private void SubcribeLightOff(BinarySensorEntity sensor, LightEntity light, TimeSpan offTime, Func<bool>? extraConditions = null)
         {
-            sensor.StateChanges().Where(e => extraConditions != null ? extraConditions.Invoke() : true).WhenStateIsFor(e => e.IsOff() && _0Gbl._myEntities.InputBoolean.SensorsActive.IsOn(), offTime).Subscribe(e => { light.TurnOffLight(); });
+            sensor.StateChanges().Where(e => extraConditions != null ? extraConditions.Invoke() : true).WhenStateIsFor(e => e.IsOff() && _0Gbl._myEntities.InputBoolean.SensorsActive.IsOn(), offTime,_0Gbl._myScheduler).Subscribe(e => { light.TurnOffLight(); });
             //extraConditions != null ? extraConditions.Invoke() : true
         }
 

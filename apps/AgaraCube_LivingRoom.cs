@@ -24,7 +24,7 @@ namespace NetDaemonApps.apps
 
         public AgaraCube_LivingRoom() : base() { 
 
-            lightEntities = new List<LightEntity> { _0Gbl._myEntities.Light.LivingRoomLight, _0Gbl._myEntities.Light.PcMultipowermeterL2, _0Gbl._myEntities.Light.DesktopLight };
+            lightEntities = new List<LightEntity> { _0Gbl._myEntities?.Light.LivingRoomLight, _0Gbl._myEntities?.Light.PcMultipowermeterL2, _0Gbl._myEntities.Light.DesktopLight };
             void SetActiveLightListener(LightEntity lightE)
             {
                 lightE.StateChanges().Where(x => x.New?.State == "on").Subscribe(x => { currentlyActiveLight = lightE; lastActiveLight = lightE; });
@@ -43,7 +43,7 @@ namespace NetDaemonApps.apps
         }
 
         protected override SensorEntity? SetCubeActionEntity(){return _0Gbl._myEntities?.Sensor.CubeAction;}
-        protected override SensorEntity? SetCubeSideEntity(){return _0Gbl._myEntities.Sensor.CubeSide;}
+        protected override SensorEntity? SetCubeSideEntity(){return _0Gbl._myEntities?.Sensor.CubeSide;}
         private int GetNextActiveLightIndex()
         {
             if (currentlyActiveLight == null) return 0;

@@ -13,13 +13,13 @@ namespace NetDaemonApps.apps
     public class _0Gbl
     {
 
-        public static _0Gbl _instance;
-        public static Entities _myEntities { get; private set; }
-        public static Services _myServices { get; private set; }
-        public static IObservable<Event> _events { get; private set; }
-        public static IScheduler _myScheduler { get; private set; }
-        public static Action HourlyResetFunction { get; set; }
-        public static Action DailyResetFunction { get; set; }
+        public static _0Gbl? _instance;
+        public static Entities? _myEntities { get; private set; }
+        public static Services? _myServices { get; private set; }
+        public static IObservable<Event>? _events { get; private set; }
+        public static IScheduler? _myScheduler { get; private set; }
+        public static Action? HourlyResetFunction { get; set; }
+        public static Action? DailyResetFunction { get; set; }
 
 
         public _0Gbl(IHaContext ha, IScheduler scheduler)
@@ -29,11 +29,10 @@ namespace NetDaemonApps.apps
             _myScheduler = scheduler;
             _myServices = new Services(ha);
             _events = ha.Events;
-
-            Task.Run(OnLateStart);
-            _0Gbl._myScheduler.ScheduleCron("59 55 * * *", hourlyResetFunction);
+            _0Gbl._myScheduler.ScheduleCron("59 * * * *", hourlyResetFunction);
             _0Gbl._myScheduler.ScheduleCron("0 0 * * *", dailyResetFunction);
-
+            Task.Run(OnLateStart);
+         
         }
 
 
@@ -41,7 +40,7 @@ namespace NetDaemonApps.apps
         {
           await Task.Delay(1000);
           dateUpdate();
-          Console.WriteLine("Success!");
+
         }
 
         private void dateUpdate()
@@ -63,7 +62,7 @@ namespace NetDaemonApps.apps
 
         bool checkDateChanged()
         {
-            DateTime dateTimeVariable = DateTime.ParseExact(_myEntities.InputDatetime.Lastknowndate.State ?? "", "yyyy-MM-dd", System.Globalization.CultureInfo.InvariantCulture);
+            DateTime dateTimeVariable = DateTime.ParseExact(_myEntities?.InputDatetime.Lastknowndate.State ?? "", "yyyy-MM-dd", System.Globalization.CultureInfo.InvariantCulture);
             return dateTimeVariable != DateTime.Now.Date;
         }
     }
