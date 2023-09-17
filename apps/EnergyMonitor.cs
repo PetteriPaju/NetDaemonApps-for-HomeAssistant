@@ -41,7 +41,6 @@ public class EnergyMonitor
 
         infoForCurrentHour = new ElectricityPriceInfo(DateTime.Now, _0Gbl._myEntities?.Sensor?.NordpoolKwhFiEur31001, electricityRangeKeys);
         _0Gbl._myScheduler.ScheduleCron("59 * * * *", () => UpdatePriceHourly(_0Gbl._myEntities?.Sensor.TotalHourlyEnergyConsumptions.State ?? 0));
-        _0Gbl._myEntities?.Sensor.Powermeters.StateChanges().Where(x => x?.New?.State < x?.Old?.State && x?.Old?.State != 0).Subscribe(x => UpdatePriceDaily() );
 
         _0Gbl._myScheduler.ScheduleCron("50 * * * *", () => EnergiPriceChengeAlert());
 
@@ -49,9 +48,9 @@ public class EnergyMonitor
         _0Gbl._myEntities?.Sensor.EcoflowSolarInPower.AsNumeric().StateAllChanges().Where(x => x?.New?.State > 0 && !solarChargingNotificationGiven).Subscribe(x => { TTS.Instance.SpeakTTS("Solar Charging On",TTS.TTSPriority.PlayInGuestMode); solarChargingNotificationGiven = true; });
        // _00_Globals._myEntities?.Sensor.EcoflowSolarInPower.AsNumeric().StateAllChanges().Where(x => (x?.New?.State <= 0 && !solarChargingOffNotificationGiven && _00_Globals._myEntities.Sun.Sun.Attributes.Elevation<5)).Subscribe(x => { TTS.Instance.SpeakTTS("Solar Charging Ended", TTS.TTSPriority.PlayInGuestMode); solarChargingNotificationGiven = true; });
 
-
         _0Gbl._myEntities?.Sensor.NordpoolKwhFiEur31001.StateAllChanges().Where(x => x?.New?.Attributes?.TomorrowValid == true && x.Old?.Attributes?.TomorrowValid == false).Subscribe(_ => { ReadOutEnergyUpdate(); });
-        UpdatePriceDaily();
+        _0Gbl.DailyResetFunction += OnDayChanged;
+  
 
     }
 
@@ -442,33 +441,22 @@ public class EnergyMonitor
 
     }
 
-   
-
-    private void UpdatePriceDaily()
+    private void OnDayChanged()
     {
         if (_0Gbl._myEntities == null) return;
         if (_0Gbl._myEntities.InputNumber.EnergyCostDaily.State == null) return;
         if (_0Gbl._myEntities.InputNumber.EnergyCostHourly.State == null) return;
         if (_0Gbl._myEntities.Sensor.Powermeters.State == null) return;
-        if (checkDateChanged())
-        {
-            hiPeakAlertGiven = false;
-            loPeakAlertGiven = false;
-            _0Gbl._myEntities.InputNumber.EnergyCostHourly.SetValue(0);
-            _0Gbl._myEntities.InputNumber.EnergyCostDaily.SetValue(0);
-            _0Gbl._myEntities.InputDatetime.Lastknowndate.SetDatetime(date: DateTime.Now.Date.ToString("yyyy-MM-dd"));
-            solarChargingNotificationGiven = false;
-            solarChargingOffNotificationGiven = false;
-            _0Gbl._myEntities.InputNumber.DailyEnergySaveHelper.SetValue(0);
-            _0Gbl._myServices.Script.ResetAllPowermeters();
 
-
-
-
-
-
-        }
-
+        hiPeakAlertGiven = false;
+        loPeakAlertGiven = false;
+        _0Gbl._myEntities.InputNumber.EnergyCostHourly.SetValue(0);
+        _0Gbl._myEntities.InputNumber.EnergyCostDaily.SetValue(0);
+        _0Gbl._myEntities.InputDatetime.Lastknowndate.SetDatetime(date: DateTime.Now.Date.ToString("yyyy-MM-dd"));
+        solarChargingNotificationGiven = false;
+        solarChargingOffNotificationGiven = false;
+        _0Gbl._myEntities.InputNumber.DailyEnergySaveHelper.SetValue(0);
+        _0Gbl._myServices.Script.ResetAllPowermeters();
     }
 
     private class FridgeController

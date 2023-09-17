@@ -1,4 +1,5 @@
 ﻿using HomeAssistantGenerated;
+using NetDaemon.Extensions.Scheduler;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,8 +18,8 @@ namespace NetDaemonApps.apps
         public static Services _myServices { get; private set; }
         public static IObservable<Event> _events { get; private set; }
         public static IScheduler _myScheduler { get; private set; }
-        public static Action HourlyResetFunction { get; private set; }
-        public static Action DailyResetFunction { get; private set; }
+        public static Action HourlyResetFunction { get; set; }
+        public static Action DailyResetFunction { get; set; }
 
 
         public _0Gbl(IHaContext ha, IScheduler scheduler)
@@ -30,6 +31,9 @@ namespace NetDaemonApps.apps
             _events = ha.Events;
 
             Task.Run(OnLateStart);
+            _0Gbl._myScheduler.ScheduleCron("59 55 * * *", hourlyResetFunction);
+            _0Gbl._myScheduler.ScheduleCron("0 0 * * *", dailyResetFunction);
+
         }
 
 
@@ -37,7 +41,7 @@ namespace NetDaemonApps.apps
         {
           await Task.Delay(1000);
           dateUpdate();
-            Console.WriteLine("Success!");
+          Console.WriteLine("Success!");
         }
 
         private void dateUpdate()
@@ -48,10 +52,18 @@ namespace NetDaemonApps.apps
             }
         }
 
+        private void hourlyResetFunction()
+        {
+            HourlyResetFunction?.Invoke();
+        }
+        private void dailyResetFunction()
+        {
+            DailyResetFunction?.Invoke();
+        }
 
         bool checkDateChanged()
         {
-            DateTime dateTimeVariable = DateTime.ParseExact(_0Gbl._myEntities.InputDatetime.Lastknowndate.State ?? "", "yyyy-MM-dd", System.Globalization.CultureInfo.InvariantCulture);
+            DateTime dateTimeVariable = DateTime.ParseExact(_myEntities.InputDatetime.Lastknowndate.State ?? "", "yyyy-MM-dd", System.Globalization.CultureInfo.InvariantCulture);
             return dateTimeVariable != DateTime.Now.Date;
         }
     }

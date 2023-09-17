@@ -17,10 +17,15 @@ namespace NetDaemonApps.apps
 
             _0Gbl._myEntities.Sensor.MotoG8PowerLiteLastNotification?.StateAllChanges().Where(x => IsValidStep(x))?.Subscribe(x => ParseSteps(x?.Entity?.EntityState?.Attributes?.Android_title));
             lastKnownThreshold = (int)_0Gbl._myEntities.InputNumber.LastKnowStepThreshold.State;
-            _0Gbl._myScheduler.ScheduleCron("0 0 * * *", () => { 
-                lastKnownThreshold = 0; 
+
+
+            _0Gbl.DailyResetFunction += () =>
+            {
+                lastKnownThreshold = 0;
                 _0Gbl._myEntities.InputNumber.LastKnowStepThreshold.SetValue(0);
-            });
+            };
+
+
         }
 
         private void ParseSteps(string? message)
