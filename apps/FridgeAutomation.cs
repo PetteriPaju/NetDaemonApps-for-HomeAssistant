@@ -11,7 +11,6 @@ namespace NetDaemonApps.apps
 {
     public class FridgeAutomation
     {
-        private readonly Entities _myEntities;
         private readonly TimeSpan maxTimeOff = TimeSpan.FromHours(2);
         private readonly TimeSpan thresholdTime = TimeSpan.FromMinutes(15);
         private readonly double[] turnOffTemperatures = new double[] { 4, 6 };
@@ -26,11 +25,10 @@ namespace NetDaemonApps.apps
         private NumericSensorEntity Nordpool;
 
 
-        public FridgeAutomation(IHaContext ha, IScheduler scheduler)
+        public FridgeAutomation()
         {
-            _myEntities = new Entities(ha);
 
-            Nordpool = _myEntities.Sensor.NordpoolKwhFiEur31001;
+            Nordpool = _0Gbl._myEntities.Sensor.NordpoolKwhFiEur31001;
 
            //Nordpool.EntityState.Attributes.
 

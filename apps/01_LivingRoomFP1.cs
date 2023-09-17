@@ -11,13 +11,13 @@ using System.Threading.Tasks;
 namespace NetDaemonApps.apps
 {
     [NetDaemonApp]
-    public class _00_LivingRoomFP1
+    public class _01_LivingRoomFP1
     {
         public static AqaraFP1Extender LivingRoomFP1;
         private InputTextEntity inputText;
-        public _00_LivingRoomFP1(IHaContext ha) {
+        public _01_LivingRoomFP1() {
 
-           Entities e = new Entities(ha);
+            Entities e = _0Gbl._myEntities;
             inputText = e.InputText.Fp1debugger;
 
 

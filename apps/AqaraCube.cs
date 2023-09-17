@@ -7,14 +7,12 @@ namespace NetDaemonApps.apps
     {
         protected readonly SensorEntity? cubeEntity;
         protected readonly SensorEntity? cubeSideEntity;
-        protected readonly Entities _myEntities;
         protected string? lastKnownSide;
 
 
 
-        public AqaraCube(IHaContext ha)
+        public AqaraCube()
         {
-            _myEntities = new Entities(ha);
             cubeEntity = SetCubeActionEntity();
             cubeSideEntity = SetCubeSideEntity();
             

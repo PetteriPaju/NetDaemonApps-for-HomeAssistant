@@ -15,64 +15,60 @@ namespace NetDaemonApps.apps.Lights
         private List<LightEntity> targetLights = new List<LightEntity>();
         private List<LightEntity> lightsThatWereOn = new List<LightEntity>();
 
-        private Entities _myEntities;
         private readonly TimeSpan lightOnTimeOutSpan = new TimeSpan(1, 0, 0);
         private readonly TimeSpan motionSensorTimeOutSpan = new TimeSpan(0, 0, 10);
 
-        public Toiler_Light_Automation(IHaContext ha)
+        public Toiler_Light_Automation()
         {
+            targetLights.Add(_0Gbl._myEntities.Light.BedLight);
+            targetLights.Add(_0Gbl._myEntities.Light.PcMultipowermeterL2);
 
-            _myEntities = new Entities(ha);
-
-            targetLights.Add(_myEntities.Light.BedLight);
-            targetLights.Add(_myEntities.Light.PcMultipowermeterL2);
-
-            targetLights.Add(_myEntities.Light.LivingRoomLight);
-            targetLights.Add(_myEntities.Light.DesktopLight);
+            targetLights.Add(_0Gbl._myEntities.Light.LivingRoomLight);
+            targetLights.Add(_0Gbl._myEntities.Light.DesktopLight);
             /*
-            _myEntities.BinarySensor.ToiletSensorOccupancy.StateChanges().Subscribe(_ =>
+            _00_Globals._myEntities.BinarySensor.ToiletSensorOccupancy.StateChanges().Subscribe(_ =>
       {
-          if (_myEntities.BinarySensor.ToiletSensorOccupancy.IsOn() && _myEntities.InputBoolean.SensorsActive.IsOn())
-              _myEntities.Light.ToiletLight1.TurnOnLight();
-          else if (_myEntities.BinarySensor.ToiletSeatSensorContact.IsOn()) _myEntities.Light.ToiletLight1.TurnOffLight();
+          if (_00_Globals._myEntities.BinarySensor.ToiletSensorOccupancy.IsOn() && _00_Globals._myEntities.InputBoolean.SensorsActive.IsOn())
+              _00_Globals._myEntities.Light.ToiletLight1.TurnOnLight();
+          else if (_00_Globals._myEntities.BinarySensor.ToiletSeatSensorContact.IsOn()) _00_Globals._myEntities.Light.ToiletLight1.TurnOffLight();
       });
             */
 
 
-            _myEntities.InputBoolean.Toiletseathelper
-           .StateChanges().Where(e => (e.New?.IsOff() ?? true) && _myEntities.InputBoolean.SensorsActive.IsOn())
+            _0Gbl._myEntities.InputBoolean.Toiletseathelper
+           .StateChanges().Where(e => (e.New?.IsOff() ?? true) && _0Gbl._myEntities.InputBoolean.SensorsActive.IsOn())
            .Subscribe(_ => OnToiledLidOpen());
 
-            _myEntities.InputBoolean.Toiletseathelper
-           .StateChanges().Where(e => (e.New?.IsOn()?? true) && _myEntities.InputBoolean.SensorsActive.IsOn() )
+            _0Gbl._myEntities.InputBoolean.Toiletseathelper
+           .StateChanges().Where(e => (e.New?.IsOn()?? true) && _0Gbl._myEntities.InputBoolean.SensorsActive.IsOn() )
            .Subscribe(_ => OnToiledLidClose());
 
 
 
-            _myEntities.BinarySensor.ToiletSensorOccupancy.StateChanges()
-            .Where(e => e.New?.State == "on" && _myEntities.InputBoolean.SensorsActive.IsOn())
+            _0Gbl._myEntities.BinarySensor.ToiletSensorOccupancy.StateChanges()
+            .Where(e => e.New?.State == "on" && _0Gbl._myEntities.InputBoolean.SensorsActive.IsOn())
             .Subscribe(_ =>
             {
-                _myEntities.Light.ToiletLight1.TurnOnLight();
+                _0Gbl._myEntities.Light.ToiletLight1.TurnOnLight();
 
             });
 
-            _myEntities.BinarySensor.ToiletSensorOccupancy.StateChanges()
-            .Where(e => e.New.IsOff() && _myEntities.InputBoolean.SensorsActive.IsOn())
+            _0Gbl._myEntities.BinarySensor.ToiletSensorOccupancy.StateChanges()
+            .Where(e => e.New.IsOff() && _0Gbl._myEntities.InputBoolean.SensorsActive.IsOn())
             .Subscribe(_ =>
             {
-                if(_myEntities.InputBoolean.Toiletseathelper.IsOn())
-                _myEntities.Light.ToiletLight1.TurnOffLight();
+                if(_0Gbl._myEntities.InputBoolean.Toiletseathelper.IsOn())
+                _0Gbl._myEntities.Light.ToiletLight1.TurnOffLight();
 
             });
 
 
-            _myEntities.BinarySensor.HallwaySensorOccupancy.StateChanges()
-            .Where(e => e.New.IsOn() && _myEntities.InputBoolean.SensorsActive.IsOn() && _myEntities.InputBoolean.GuestMode.IsOff())
+            _0Gbl._myEntities.BinarySensor.HallwaySensorOccupancy.StateChanges()
+            .Where(e => e.New.IsOn() && _0Gbl._myEntities.InputBoolean.SensorsActive.IsOn() && _0Gbl._myEntities.InputBoolean.GuestMode.IsOff())
             .Subscribe(_ =>
             {
-                if (_myEntities.InputBoolean.Toiletseathelper.IsOn())
-                    _myEntities.Light.ToiletLight1.TurnOffLight();
+                if (_0Gbl._myEntities.InputBoolean.Toiletseathelper.IsOn())
+                    _0Gbl._myEntities.Light.ToiletLight1.TurnOffLight();
             });
 
 
@@ -83,10 +79,10 @@ namespace NetDaemonApps.apps.Lights
 
     private void OnToiledLidOpen()
         {
-            _myEntities.Light.ToiletLight1.TurnOnLight();
-            if (_myEntities.InputBoolean.GuestMode.IsOn()) return;
+            _0Gbl._myEntities.Light.ToiletLight1.TurnOnLight();
+            if (_0Gbl._myEntities.InputBoolean.GuestMode.IsOn()) return;
             lightsThatWereOn.Clear();
-            _myEntities.Light.HallwayLight.TurnOffLight();
+            _0Gbl._myEntities.Light.HallwayLight.TurnOffLight();
             foreach (LightEntity light in targetLights)
             {
                 if (light != null && light.IsOn())
@@ -97,8 +93,8 @@ namespace NetDaemonApps.apps.Lights
             }
 
             //Turn off PC Monitors while in toilet
-            if (_myEntities.Switch.PcPlug.IsOn())
-                _myEntities.Button.PcTurnoffmonitors.Press();
+            if (_0Gbl._myEntities.Switch.PcPlug.IsOn())
+                _0Gbl._myEntities.Button.PcTurnoffmonitors.Press();
 
 
 
@@ -107,7 +103,7 @@ namespace NetDaemonApps.apps.Lights
 
         private void OnToiledLidClose()
         {
-            if (_myEntities.InputBoolean.GuestMode.IsOn()) return;
+            if (_0Gbl._myEntities.InputBoolean.GuestMode.IsOn()) return;
 
             foreach (LightEntity light in lightsThatWereOn)
             {
@@ -117,8 +113,8 @@ namespace NetDaemonApps.apps.Lights
             lightsThatWereOn.Clear();
 
             //Turn on PC Monitors
-            if (_myEntities.Switch.PcPlug.IsOn())
-                _myEntities.Button.PcWakekey.Press();
+            if (_0Gbl._myEntities.Switch.PcPlug.IsOn())
+                _0Gbl._myEntities.Button.PcWakekey.Press();
         }
 
 

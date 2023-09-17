@@ -22,9 +22,9 @@ namespace NetDaemonApps.apps
         private Dictionary<string, KnownColor> ColorsToSides = new Dictionary<string, KnownColor> { { "0", KnownColor.Pink}, { "1", KnownColor.Blue}, { "2", KnownColor.Yellow }, { "3" , KnownColor.Purple}, { "4" , KnownColor.Green }, { "5", KnownColor.Orange } };
         public static bool BrightLightTurnedOnByPC = false;
 
-        public AgaraCube_LivingRoom(IHaContext ha) : base(ha) { 
+        public AgaraCube_LivingRoom() : base() { 
 
-            lightEntities = new List<LightEntity> { _myEntities.Light.LivingRoomLight, _myEntities.Light.PcMultipowermeterL2, _myEntities.Light.DesktopLight };
+            lightEntities = new List<LightEntity> { _0Gbl._myEntities.Light.LivingRoomLight, _0Gbl._myEntities.Light.PcMultipowermeterL2, _0Gbl._myEntities.Light.DesktopLight };
             void SetActiveLightListener(LightEntity lightE)
             {
                 lightE.StateChanges().Where(x => x.New?.State == "on").Subscribe(x => { currentlyActiveLight = lightE; lastActiveLight = lightE; });
@@ -42,8 +42,8 @@ namespace NetDaemonApps.apps
 
         }
 
-        protected override SensorEntity? SetCubeActionEntity(){return _myEntities?.Sensor.CubeAction;}
-        protected override SensorEntity? SetCubeSideEntity(){return _myEntities.Sensor.CubeSide;}
+        protected override SensorEntity? SetCubeActionEntity(){return _0Gbl._myEntities?.Sensor.CubeAction;}
+        protected override SensorEntity? SetCubeSideEntity(){return _0Gbl._myEntities.Sensor.CubeSide;}
         private int GetNextActiveLightIndex()
         {
             if (currentlyActiveLight == null) return 0;
@@ -100,18 +100,18 @@ namespace NetDaemonApps.apps
             base.OnFlip90();
 
 
-            if (_myEntities.InputBoolean.GuestMode.IsOn())
+            if (_0Gbl._myEntities.InputBoolean.GuestMode.IsOn())
             {
-                currentlyActiveLight = _myEntities.Light.LivingRoomLight;
-                _myEntities.Light.LivingRoomLight.Toggle();
+                currentlyActiveLight = _0Gbl._myEntities.Light.LivingRoomLight;
+                _0Gbl._myEntities.Light.LivingRoomLight.Toggle();
 
                 return;
             }
            
 
-            if(currentlyActiveLight == _myEntities.Light.PcMultipowermeterL2 && BrightLightTurnedOnByPC)
+            if(currentlyActiveLight == _0Gbl._myEntities.Light.PcMultipowermeterL2 && BrightLightTurnedOnByPC)
             {
-                currentlyActiveLight = _myEntities.Light.LivingRoomLight;
+                currentlyActiveLight = _0Gbl._myEntities.Light.LivingRoomLight;
                 currentlyActiveLight.TurnOn();
 
             }
@@ -128,7 +128,7 @@ namespace NetDaemonApps.apps
         protected override void OnShake()
         {
             base.OnShake();
-            _myEntities.Switch.PcPlug.TurnOn();
+            _0Gbl._myEntities.Switch.PcPlug.TurnOn();
         }
 
         /*
@@ -159,12 +159,12 @@ namespace NetDaemonApps.apps
 
                 case KnownColor.Yellow:
 
-                    TurnOnLight(_myEntities.Light.MultiPlugBrightLight);
+                    TurnOnLight(_00_Globals._myEntities.Light.MultiPlugBrightLight);
 
                 break;
 
                 case KnownColor.Purple:
-                    TurnOnLight(_myEntities.Light.LivingRoomLight);
+                    TurnOnLight(_00_Globals._myEntities.Light.LivingRoomLight);
                     break;
 
                 case KnownColor.Green:
@@ -172,7 +172,7 @@ namespace NetDaemonApps.apps
                 break;
 
                 case KnownColor.Orange:
-                    TurnOnLight(_myEntities.Light.DesktopLight);
+                    TurnOnLight(_00_Globals._myEntities.Light.DesktopLight);
                 break;
             }
 
@@ -184,7 +184,7 @@ namespace NetDaemonApps.apps
             base.OnTap();
             if(lastActiveLight != null)
             lastActiveLight?.Toggle();
-            else _myEntities.Light.LivingRoomLight.TurnOn();
+            else _0Gbl._myEntities.Light.LivingRoomLight.TurnOn();
         }
       
 

@@ -13,11 +13,9 @@ namespace NetDaemonApps.apps.Lights
     public abstract class AllowOnlyOneLightGroup
     {
         protected readonly LightEntity[] lights;
-        protected readonly Entities _myEntities;
 
-        public AllowOnlyOneLightGroup(IHaContext ha)
+        public AllowOnlyOneLightGroup()
         {
-            _myEntities = new Entities(ha);
             lights = SetLights();
 
             foreach (LightEntity light in lights)
@@ -29,7 +27,7 @@ namespace NetDaemonApps.apps.Lights
 
         private void OnLightTurnOn(LightEntity poweredLight)
         {
-            if(_myEntities.InputBoolean.GuestMode.IsOn())return;
+            if(_0Gbl._myEntities.InputBoolean.GuestMode.IsOn())return;
 
             foreach (LightEntity light in lights)
             {

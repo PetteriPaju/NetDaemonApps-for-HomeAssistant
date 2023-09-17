@@ -21,8 +21,6 @@ namespace NetDaemonApps.apps;
 [NetDaemonApp]
 public class EnergyMonitor
 {
-    private Entities _myEntities;
-    private Services _myServices;
     private readonly Dictionary<double, string> electiricityRanges = new Dictionary<double, string>() { { 0, "Blue" }, { 0.075, "Green" }, { 0.15, "Yellow" }, { 0.25, "Red" } };
     private bool hiPeakAlertGiven = false;
     private bool loPeakAlertGiven = false;
@@ -36,25 +34,23 @@ public class EnergyMonitor
 
     private double marginOfErrorFix = 1.07;
 
-    public EnergyMonitor(IHaContext ha, IScheduler scheduler)
+    public EnergyMonitor()
     {
-        _myEntities = new Entities(ha);
-        _myServices = new Services(ha);
         _instance = this;
         electricityRangeKeys = electiricityRanges.Keys.ToList();
 
-        infoForCurrentHour = new ElectricityPriceInfo(DateTime.Now, _myEntities?.Sensor?.NordpoolKwhFiEur31001, electricityRangeKeys);
-        scheduler.ScheduleCron("59 * * * *", () => UpdatePriceHourly(_myEntities?.Sensor.TotalHourlyEnergyConsumptions.State ?? 0));
-        _myEntities?.Sensor.Powermeters.StateChanges().Where(x => x?.New?.State < x?.Old?.State && x?.Old?.State != 0).Subscribe(x => UpdatePriceDaily() );
+        infoForCurrentHour = new ElectricityPriceInfo(DateTime.Now, _0Gbl._myEntities?.Sensor?.NordpoolKwhFiEur31001, electricityRangeKeys);
+        _0Gbl._myScheduler.ScheduleCron("59 * * * *", () => UpdatePriceHourly(_0Gbl._myEntities?.Sensor.TotalHourlyEnergyConsumptions.State ?? 0));
+        _0Gbl._myEntities?.Sensor.Powermeters.StateChanges().Where(x => x?.New?.State < x?.Old?.State && x?.Old?.State != 0).Subscribe(x => UpdatePriceDaily() );
 
-        scheduler.ScheduleCron("50 * * * *", () => EnergiPriceChengeAlert(ha));
+        _0Gbl._myScheduler.ScheduleCron("50 * * * *", () => EnergiPriceChengeAlert());
 
-        solarChargingNotificationGiven = _myEntities?.Sensor?.EcoflowSolarInPower.State >= 0;
-        _myEntities?.Sensor.EcoflowSolarInPower.AsNumeric().StateAllChanges().Where(x => x?.New?.State > 0 && !solarChargingNotificationGiven).Subscribe(x => { TTS.Instance.SpeakTTS("Solar Charging On",TTS.TTSPriority.PlayInGuestMode); solarChargingNotificationGiven = true; });
-       // _myEntities?.Sensor.EcoflowSolarInPower.AsNumeric().StateAllChanges().Where(x => (x?.New?.State <= 0 && !solarChargingOffNotificationGiven && _myEntities.Sun.Sun.Attributes.Elevation<5)).Subscribe(x => { TTS.Instance.SpeakTTS("Solar Charging Ended", TTS.TTSPriority.PlayInGuestMode); solarChargingNotificationGiven = true; });
+        solarChargingNotificationGiven = _0Gbl._myEntities?.Sensor?.EcoflowSolarInPower.State >= 0;
+        _0Gbl._myEntities?.Sensor.EcoflowSolarInPower.AsNumeric().StateAllChanges().Where(x => x?.New?.State > 0 && !solarChargingNotificationGiven).Subscribe(x => { TTS.Instance.SpeakTTS("Solar Charging On",TTS.TTSPriority.PlayInGuestMode); solarChargingNotificationGiven = true; });
+       // _00_Globals._myEntities?.Sensor.EcoflowSolarInPower.AsNumeric().StateAllChanges().Where(x => (x?.New?.State <= 0 && !solarChargingOffNotificationGiven && _00_Globals._myEntities.Sun.Sun.Attributes.Elevation<5)).Subscribe(x => { TTS.Instance.SpeakTTS("Solar Charging Ended", TTS.TTSPriority.PlayInGuestMode); solarChargingNotificationGiven = true; });
 
 
-        _myEntities?.Sensor.NordpoolKwhFiEur31001.StateAllChanges().Where(x => x?.New?.Attributes?.TomorrowValid == true && x.Old?.Attributes?.TomorrowValid == false).Subscribe(_ => { ReadOutEnergyUpdate(); });
+        _0Gbl._myEntities?.Sensor.NordpoolKwhFiEur31001.StateAllChanges().Where(x => x?.New?.Attributes?.TomorrowValid == true && x.Old?.Attributes?.TomorrowValid == false).Subscribe(_ => { ReadOutEnergyUpdate(); });
         UpdatePriceDaily();
 
     }
@@ -86,14 +82,14 @@ public class EnergyMonitor
     {
         string message = "Energy update!";
 
-        if (!_myEntities.Sensor?.NordpoolKwhFiEur31001?.EntityState?.Attributes?.TomorrowValid == false)
+        if (!_0Gbl._myEntities.Sensor?.NordpoolKwhFiEur31001?.EntityState?.Attributes?.TomorrowValid == false)
         {
-            var list = JsonSerializer.Deserialize<List<double>>(_myEntities.Sensor?.NordpoolKwhFiEur31001?.EntityState?.Attributes?.Tomorrow.ToString());
+            var list = JsonSerializer.Deserialize<List<double>>(_0Gbl._myEntities.Sensor?.NordpoolKwhFiEur31001?.EntityState?.Attributes?.Tomorrow.ToString());
 
             EnergyForecastInfo energyForecastInfo = GetEnergyForecast(list);
 
             message += "Tomorrows Prices will be" + (energyForecastInfo.isAllSameRange ? " all " : " mostly ") + "in " + GetNameOfRange(energyForecastInfo.majorityRange);
-            message += " and  " + PercentageDifference(_myEntities.Sensor?.NordpoolKwhFiEur31001?.EntityState?.Attributes?.Average ?? 0, energyForecastInfo.avarage) + "% " + (_myEntities.Sensor?.NordpoolKwhFiEur31001?.EntityState?.Attributes?.Average > energyForecastInfo.avarage ? "lower" : "higher") + " than today.";
+            message += " and  " + PercentageDifference(_0Gbl._myEntities.Sensor?.NordpoolKwhFiEur31001?.EntityState?.Attributes?.Average ?? 0, energyForecastInfo.avarage) + "% " + (_0Gbl._myEntities.Sensor?.NordpoolKwhFiEur31001?.EntityState?.Attributes?.Average > energyForecastInfo.avarage ? "lower" : "higher") + " than today.";
 
             if (energyForecastInfo.subZeroCount > 0) message += " There will also be " + energyForecastInfo.subZeroCount + " sub zero hour" + (energyForecastInfo.subZeroCount > 1 ? "s." : ".");
         }
@@ -169,7 +165,7 @@ public class EnergyMonitor
 
 
 
-        ElectricityPriceInfo inFoForNextHour = new ElectricityPriceInfo(DateTime.Now.AddHours(1), _myEntities?.Sensor?.NordpoolKwhFiEur31001, electricityRangeKeys);
+        ElectricityPriceInfo inFoForNextHour = new ElectricityPriceInfo(DateTime.Now.AddHours(1), _0Gbl._myEntities?.Sensor?.NordpoolKwhFiEur31001, electricityRangeKeys);
 
         PriceChangeType priceChange = infoForCurrentHour.Compare(inFoForNextHour);
 
@@ -204,8 +200,8 @@ public class EnergyMonitor
     private double ecoflowCacl(double hourlyUsedEnergy)
     {
         double hourlyEnergyUsed = 0;
-        double hourlyEcoflowOut = _myEntities.Sensor.EcoflowAcOutputHourly.AsNumeric().State ?? 0;
-        double hourlySolarIn = _myEntities.Sensor.EcoflowSolarInputHourly.AsNumeric().State ?? 0;
+        double hourlyEcoflowOut = _0Gbl._myEntities.Sensor.EcoflowAcOutputHourly.AsNumeric().State ?? 0;
+        double hourlySolarIn = _0Gbl._myEntities.Sensor.EcoflowSolarInputHourly.AsNumeric().State ?? 0;
 
         double deltaEnergy;
 
@@ -217,22 +213,22 @@ public class EnergyMonitor
 
     bool checkDateChanged()
     {
-        DateTime dateTimeVariable = DateTime.ParseExact(_myEntities.InputDatetime.Lastknowndate.State ?? "", "yyyy-MM-dd", System.Globalization.CultureInfo.InvariantCulture);
+        DateTime dateTimeVariable = DateTime.ParseExact(_0Gbl._myEntities.InputDatetime.Lastknowndate.State ?? "", "yyyy-MM-dd", System.Globalization.CultureInfo.InvariantCulture);
         
         return dateTimeVariable != DateTime.Now.Date;
     }
   
-    private void EnergiPriceChengeAlert(IHaContext ha)
+    private void EnergiPriceChengeAlert()
     {
 
-        if (_myEntities.InputBoolean.Isasleep.State == "on") return;
+        if (_0Gbl._myEntities.InputBoolean.Isasleep.State == "on") return;
        
         bool checkTomorrow = DateTime.Now.Hour == 23;
 
         // No need for alert on low price days
-        if (_myEntities?.Sensor?.NordpoolKwhFiEur31001.Attributes.Max < electiricityRanges.Keys.ToArray()[1] && !checkTomorrow) return;
+        if (_0Gbl._myEntities?.Sensor?.NordpoolKwhFiEur31001.Attributes.Max < electiricityRanges.Keys.ToArray()[1] && !checkTomorrow) return;
 
-        ElectricityPriceInfo inFoForNextHour = new ElectricityPriceInfo(DateTime.Now.AddHours(1), _myEntities?.Sensor?.NordpoolKwhFiEur31001, electricityRangeKeys);
+        ElectricityPriceInfo inFoForNextHour = new ElectricityPriceInfo(DateTime.Now.AddHours(1), _0Gbl._myEntities?.Sensor?.NordpoolKwhFiEur31001, electricityRangeKeys);
 
         PriceChangeType priceChange = infoForCurrentHour.Compare(inFoForNextHour);
         string TTSMessage = null;
@@ -378,13 +374,13 @@ public class EnergyMonitor
     private ElectricityPriceInfo FindWhenElectricityRangeChanges(ElectricityPriceInfo startInfo)
     {
 
-        ElectricityPriceInfo nextInfo = null;// = new ElectricityPriceInfo(currentHour, _myEntities.Sensor.NordpoolKwhFiEur31001, electricityRangeKeys);
+        ElectricityPriceInfo nextInfo = null;// = new ElectricityPriceInfo(currentHour, _00_Globals._myEntities.Sensor.NordpoolKwhFiEur31001, electricityRangeKeys);
 
         int maxSearchHours = 12;
 
         for (int searchCounter = 1; searchCounter < maxSearchHours; searchCounter++)
         {
-            nextInfo = new ElectricityPriceInfo(startInfo.dateTime.AddHours(searchCounter), _myEntities.Sensor.NordpoolKwhFiEur31001, electricityRangeKeys);
+            nextInfo = new ElectricityPriceInfo(startInfo.dateTime.AddHours(searchCounter), _0Gbl._myEntities.Sensor.NordpoolKwhFiEur31001, electricityRangeKeys);
 
             if (startInfo.Compare(nextInfo) != PriceChangeType.NoChange)
             {
@@ -409,10 +405,10 @@ public class EnergyMonitor
 
     private void UpdatePriceHourly(double energy)
     {
-        if (_myEntities == null) return;
-        if (_myEntities.InputNumber.EnergyCostDaily.State == null) return;
-        if (_myEntities.InputNumber.EnergyCostHourly.State == null) return;
-        if (_myEntities?.Sensor.Powermeters.State == null) return;
+        if (_0Gbl._myEntities == null) return;
+        if (_0Gbl._myEntities.InputNumber.EnergyCostDaily.State == null) return;
+        if (_0Gbl._myEntities.InputNumber.EnergyCostHourly.State == null) return;
+        if (_0Gbl._myEntities?.Sensor.Powermeters.State == null) return;
         Console.WriteLine("Hourly Energy Calculation");
 
 
@@ -420,11 +416,11 @@ public class EnergyMonitor
 
         double calculatePrice(double inpt)
         {
-            var thisHourFortum = inpt * marginOfErrorFix * infoForCurrentHour.price + inpt  * _myEntities.InputNumber.EnergyFortumHardCost.State;
-            thisHourFortum += thisHourFortum * (_myEntities.InputNumber.EnergyFortumAlv.State / 100);
+            var thisHourFortum = inpt * marginOfErrorFix * infoForCurrentHour.price + inpt  * _0Gbl._myEntities.InputNumber.EnergyFortumHardCost.State;
+            thisHourFortum += thisHourFortum * (_0Gbl._myEntities.InputNumber.EnergyFortumAlv.State / 100);
 
-            var thisHourTranster = inpt * marginOfErrorFix * _myEntities.InputNumber.EnergyTransferCost.State;
-            thisHourTranster += thisHourTranster * _myEntities.InputNumber.EnergyTransferAlv.State;
+            var thisHourTranster = inpt * marginOfErrorFix * _0Gbl._myEntities.InputNumber.EnergyTransferCost.State;
+            thisHourTranster += thisHourTranster * _0Gbl._myEntities.InputNumber.EnergyTransferAlv.State;
             var thisHourTotal = thisHourFortum + thisHourTranster;
 
             return (double)thisHourTotal;
@@ -433,16 +429,16 @@ public class EnergyMonitor
          
           double ecoflowAdjustedPrice = calculatePrice(ecoflowCacl(energy));
 
-        energy -= _myEntities.Sensor.EcoflowAcOutputHourly.AsNumeric().State ?? 0;
+        energy -= _0Gbl._myEntities.Sensor.EcoflowAcOutputHourly.AsNumeric().State ?? 0;
         double priceForLastHout = calculatePrice(energy);
 
         var ecoflowAdjustedHourlycost = priceForLastHout - ecoflowAdjustedPrice;
-        infoForCurrentHour = new ElectricityPriceInfo(DateTime.Now + TimeSpan.FromMinutes(15), _myEntities.Sensor?.NordpoolKwhFiEur31001, electricityRangeKeys);
+        infoForCurrentHour = new ElectricityPriceInfo(DateTime.Now + TimeSpan.FromMinutes(15), _0Gbl._myEntities.Sensor?.NordpoolKwhFiEur31001, electricityRangeKeys);
 
 
-        _myEntities.InputNumber.DailyEnergySaveHelper.SetValue((_myEntities.InputNumber.DailyEnergySaveHelper.State ?? 0) + ecoflowAdjustedHourlycost);
-        _myEntities.InputNumber.EnergyCostDaily.SetValue(_myEntities.InputNumber.EnergyCostDaily.State + priceForLastHout ?? _myEntities.InputNumber.EnergyCostDaily.State ?? 0);
-        _myEntities.InputNumber.EnergyCostHourly.SetValue(priceForLastHout);
+        _0Gbl._myEntities.InputNumber.DailyEnergySaveHelper.SetValue((_0Gbl._myEntities.InputNumber.DailyEnergySaveHelper.State ?? 0) + ecoflowAdjustedHourlycost);
+        _0Gbl._myEntities.InputNumber.EnergyCostDaily.SetValue(_0Gbl._myEntities.InputNumber.EnergyCostDaily.State + priceForLastHout ?? _0Gbl._myEntities.InputNumber.EnergyCostDaily.State ?? 0);
+        _0Gbl._myEntities.InputNumber.EnergyCostHourly.SetValue(priceForLastHout);
 
     }
 
@@ -450,21 +446,21 @@ public class EnergyMonitor
 
     private void UpdatePriceDaily()
     {
-        if (_myEntities == null) return;
-        if (_myEntities.InputNumber.EnergyCostDaily.State == null) return;
-        if (_myEntities.InputNumber.EnergyCostHourly.State == null) return;
-        if (_myEntities.Sensor.Powermeters.State == null) return;
+        if (_0Gbl._myEntities == null) return;
+        if (_0Gbl._myEntities.InputNumber.EnergyCostDaily.State == null) return;
+        if (_0Gbl._myEntities.InputNumber.EnergyCostHourly.State == null) return;
+        if (_0Gbl._myEntities.Sensor.Powermeters.State == null) return;
         if (checkDateChanged())
         {
             hiPeakAlertGiven = false;
             loPeakAlertGiven = false;
-            _myEntities.InputNumber.EnergyCostHourly.SetValue(0);
-            _myEntities.InputNumber.EnergyCostDaily.SetValue(0);
-            _myEntities.InputDatetime.Lastknowndate.SetDatetime(date: DateTime.Now.Date.ToString("yyyy-MM-dd"));
+            _0Gbl._myEntities.InputNumber.EnergyCostHourly.SetValue(0);
+            _0Gbl._myEntities.InputNumber.EnergyCostDaily.SetValue(0);
+            _0Gbl._myEntities.InputDatetime.Lastknowndate.SetDatetime(date: DateTime.Now.Date.ToString("yyyy-MM-dd"));
             solarChargingNotificationGiven = false;
             solarChargingOffNotificationGiven = false;
-            _myEntities.InputNumber.DailyEnergySaveHelper.SetValue(0);
-            _myServices.Script.ResetAllPowermeters();
+            _0Gbl._myEntities.InputNumber.DailyEnergySaveHelper.SetValue(0);
+            _0Gbl._myServices.Script.ResetAllPowermeters();
 
 
 

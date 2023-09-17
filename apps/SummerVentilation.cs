@@ -9,16 +9,15 @@ namespace NetDaemonApps.apps
     {
         /*
         private enum windowActions {DoNothing, Open, Close};
-        private readonly Entities _myEntities;
         private const double mininumOutdoorsTemp = 20;
         private readonly TimeSpan notificationInterval = TimeSpan.FromMinutes(30);
         private DateTime lastTimeNotificationSent = DateTime.MinValue;
         public SummerVentilation(IHaContext ha) {
-            _myEntities = new Entities(ha);
+            _00_Globals._myEntities = new Entities(ha);
 
-            _myEntities.Sensor.OutsideTemperatureMeterTemperature.StateChanges().Subscribe(_=>DetermineAction());
-            _myEntities.Sensor.WifiTemperatureHumiditySensorTemperature.StateChanges().Subscribe(_ => DetermineAction());
-            _myEntities.BinarySensor.LivingroomWindowSensorContact.StateChanges().Subscribe(_ => lastTimeNotificationSent = DateTime.Now + TimeSpan.FromHours(1));
+            _00_Globals._myEntities.Sensor.OutsideTemperatureMeterTemperature.StateChanges().Subscribe(_=>DetermineAction());
+            _00_Globals._myEntities.Sensor.WifiTemperatureHumiditySensorTemperature.StateChanges().Subscribe(_ => DetermineAction());
+            _00_Globals._myEntities.BinarySensor.LivingroomWindowSensorContact.StateChanges().Subscribe(_ => lastTimeNotificationSent = DateTime.Now + TimeSpan.FromHours(1));
 
 
 
@@ -28,7 +27,7 @@ namespace NetDaemonApps.apps
 
         private void DetermineAction()
         {
-            if (_myEntities.Sensor.OutsideTemperatureMeterTemperature.State < mininumOutdoorsTemp) return;
+            if (_00_Globals._myEntities.Sensor.OutsideTemperatureMeterTemperature.State < mininumOutdoorsTemp) return;
             if (DateTime.Now < lastTimeNotificationSent + notificationInterval) return;
 
             windowActions action = GetWindowAction();
@@ -49,12 +48,12 @@ namespace NetDaemonApps.apps
         private bool isOutdoorsColderThanInside()
        {
 
-          return  _myEntities.Sensor.OutsideTemperatureMeterTemperature.State < _myEntities.Sensor.WifiTemperatureHumiditySensorTemperature.State;
+          return  _00_Globals._myEntities.Sensor.OutsideTemperatureMeterTemperature.State < _00_Globals._myEntities.Sensor.WifiTemperatureHumiditySensorTemperature.State;
        }
 
         private bool isWindowOpen()
         {
-            return _myEntities.BinarySensor.LivingroomWindowSensorContact.IsOn();
+            return _00_Globals._myEntities.BinarySensor.LivingroomWindowSensorContact.IsOn();
         }
 
         private windowActions GetWindowAction()

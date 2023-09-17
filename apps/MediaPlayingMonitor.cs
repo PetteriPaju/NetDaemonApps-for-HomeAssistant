@@ -15,15 +15,14 @@ namespace NetDaemonApps.apps
     [NetDaemonApp]
     public class MediaPlayingMonitor
     {
-        private readonly Entities _myEntities;
          private List<IsTrueConditioner> _monitoreres = new List<IsTrueConditioner>();
 
-        public MediaPlayingMonitor(IHaContext ha, IScheduler scheduler) {
-            _myEntities = new Entities(ha);
+        public MediaPlayingMonitor() {
 
-            MediaPlayerEntities mPlayers = _myEntities.MediaPlayer;
-            Entity phoneEntity = _myEntities.Sensor.MotoG8PowerLiteMediaSession;
-            Entity tabletEntity = _myEntities.Sensor.SmT530MediaSession;
+
+            MediaPlayerEntities mPlayers = _0Gbl._myEntities.MediaPlayer;
+            Entity phoneEntity = _0Gbl._myEntities.Sensor.MotoG8PowerLiteMediaSession;
+            Entity tabletEntity = _0Gbl._myEntities.Sensor.SmT530MediaSession;
 
             Entity[] mediaPlayerEntities= new Entity[] { mPlayers.AndroidTv192168020, mPlayers.Envy, mPlayers.LivingRoomDisplay, mPlayers.LivingRoomTv, mPlayers.Pc, phoneEntity, tabletEntity };
 
@@ -38,7 +37,7 @@ namespace NetDaemonApps.apps
                 SetEntityForMediaPlayer(e);
             }
 
-            scheduler.ScheduleCron("*/10 * * * *", () => CheckAllStates());
+            _0Gbl._myScheduler.ScheduleCron("*/10 * * * *", () => CheckAllStates());
 
 
         }
@@ -69,8 +68,8 @@ namespace NetDaemonApps.apps
                 }
             }
 
-            if (somethinggPlaying) _myEntities.InputBoolean.MediaPlaying.TurnOn();
-            else _myEntities.InputBoolean.MediaPlaying.TurnOff();
+            if (somethinggPlaying) _0Gbl._myEntities.InputBoolean.MediaPlaying.TurnOn();
+            else _0Gbl._myEntities.InputBoolean.MediaPlaying.TurnOff();
 
         }
 

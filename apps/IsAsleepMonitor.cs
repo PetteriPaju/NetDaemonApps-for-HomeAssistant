@@ -16,50 +16,48 @@ namespace NetDaemonApps.apps
     [NetDaemonApp]
     public class IsAsleepMonitor
     {
-        private Entities _myEntities;
         private Dictionary<Entity, bool> isAsleepCondition = new Dictionary<Entity, bool>();
 
         private TimeSpan sleepTimer;
 
         private IDisposable? alarmTimer;
 
-        public IsAsleepMonitor(IHaContext ha, IScheduler scheduler) {
-            _myEntities = new Entities(ha);
+        public IsAsleepMonitor(IHaContext ha) {
 
             ParseAlertTime();
-            _myEntities.InputDatetime.SettingsSleepduration.StateAllChanges().Subscribe(_=>ParseAlertTime());
+            _0Gbl._myEntities.InputDatetime.SettingsSleepduration.StateAllChanges().Subscribe(_=>ParseAlertTime());
 
-            //DateTime d2 = DateTime.Parse(_myEntities.Sensor.EnvyLastactive.State ?? "", null, System.Globalization.DateTimeStyles.RoundtripKind);
+            //DateTime d2 = DateTime.Parse(_00_Globals._myEntities.Sensor.EnvyLastactive.State ?? "", null, System.Globalization.DateTimeStyles.RoundtripKind);
 
-            _myEntities.Switch.PcPlug.StateChanges().Where(x => x?.New?.State == "on").Subscribe(_ => CheckCondition(_myEntities.Switch.PcPlug, false));
-            _myEntities.Switch.PcPlug.StateChanges().Where(x => x?.New?.State == "off").Subscribe(_ => CheckCondition(_myEntities.Switch.PcPlug, true));
-           isAsleepCondition.Add(_myEntities.Switch.PcPlug, _myEntities.Switch.PcPlug.IsOff());
+            _0Gbl._myEntities.Switch.PcPlug.StateChanges().Where(x => x?.New?.State == "on").Subscribe(_ => CheckCondition(_0Gbl._myEntities.Switch.PcPlug, false));
+            _0Gbl._myEntities.Switch.PcPlug.StateChanges().Where(x => x?.New?.State == "off").Subscribe(_ => CheckCondition(_0Gbl._myEntities.Switch.PcPlug, true));
+           isAsleepCondition.Add(_0Gbl._myEntities.Switch.PcPlug, _0Gbl._myEntities.Switch.PcPlug.IsOff());
 
-            _myEntities.InputBoolean.MediaPlaying.StateChanges().WhenStateIsFor(x => x?.State == "off", TimeSpan.FromMinutes(15)).Subscribe(_ => CheckCondition(_myEntities.InputBoolean.MediaPlaying, true));
-            _myEntities.InputBoolean.MediaPlaying.StateChanges().WhenStateIsFor(x => x?.State == "on", TimeSpan.FromMinutes(1)).Subscribe(_ => CheckCondition(_myEntities.InputBoolean.MediaPlaying, false));
-            isAsleepCondition.Add(_myEntities.InputBoolean.MediaPlaying, _myEntities.InputBoolean.MediaPlaying.IsOff());
+            _0Gbl._myEntities.InputBoolean.MediaPlaying.StateChanges().WhenStateIsFor(x => x?.State == "off", TimeSpan.FromMinutes(15), _0Gbl._myScheduler).Subscribe(_ => CheckCondition(_0Gbl._myEntities.InputBoolean.MediaPlaying, true));
+            _0Gbl._myEntities.InputBoolean.MediaPlaying.StateChanges().WhenStateIsFor(x => x?.State == "on", TimeSpan.FromMinutes(1), _0Gbl._myScheduler).Subscribe(_ => CheckCondition(_0Gbl._myEntities.InputBoolean.MediaPlaying, false));
+            isAsleepCondition.Add(_0Gbl._myEntities.InputBoolean.MediaPlaying, _0Gbl._myEntities.InputBoolean.MediaPlaying.IsOff());
 
-           _myEntities.Sensor.EnvyLastactive.StateChanges().WhenStateIsFor(x => x?.State == "unavailable", TimeSpan.FromMinutes(5)).Subscribe(_ => CheckCondition(_myEntities.Sensor.EnvyLastactive, true));
-            _myEntities.Sensor.EnvyLastactive.StateChanges().WhenStateIsFor(x => x?.State != "unavailable", TimeSpan.FromMinutes(1)).Subscribe(_ => CheckCondition(_myEntities.Sensor.EnvyLastactive, false));
-            isAsleepCondition.Add(_myEntities.Sensor.EnvyLastactive, _myEntities.Sensor.EnvyLastactive.State == "unavailable");
+           _0Gbl._myEntities.Sensor.EnvyLastactive.StateChanges().WhenStateIsFor(x => x?.State == "unavailable", TimeSpan.FromMinutes(5), _0Gbl._myScheduler).Subscribe(_ => CheckCondition(_0Gbl._myEntities.Sensor.EnvyLastactive, true));
+            _0Gbl._myEntities.Sensor.EnvyLastactive.StateChanges().WhenStateIsFor(x => x?.State != "unavailable", TimeSpan.FromMinutes(1), _0Gbl._myScheduler).Subscribe(_ => CheckCondition(_0Gbl._myEntities.Sensor.EnvyLastactive, false));
+            isAsleepCondition.Add(_0Gbl._myEntities.Sensor.EnvyLastactive, _0Gbl._myEntities.Sensor.EnvyLastactive.State == "unavailable");
 
-            _myEntities.Sensor.PcLastactive.StateChanges().WhenStateIsFor(x => x?.State == "unavailable", TimeSpan.FromMinutes(5)).Subscribe(_ => CheckCondition(_myEntities.Sensor.PcLastactive, true));
-            _myEntities.Sensor.PcLastactive.StateChanges().WhenStateIsFor(x => x?.State != "unavailable", TimeSpan.FromMinutes(1)).Subscribe(_ => CheckCondition(_myEntities.Sensor.PcLastactive, false));
-            isAsleepCondition.Add(_myEntities.Sensor.PcLastactive, _myEntities.Sensor.PcLastactive.State == "unavailable");
+            _0Gbl._myEntities.Sensor.PcLastactive.StateChanges().WhenStateIsFor(x => x?.State == "unavailable", TimeSpan.FromMinutes(5), _0Gbl._myScheduler).Subscribe(_ => CheckCondition(_0Gbl._myEntities.Sensor.PcLastactive, true));
+            _0Gbl._myEntities.Sensor.PcLastactive.StateChanges().WhenStateIsFor(x => x?.State != "unavailable", TimeSpan.FromMinutes(1), _0Gbl._myScheduler).Subscribe(_ => CheckCondition(_0Gbl._myEntities.Sensor.PcLastactive, false));
+            isAsleepCondition.Add(_0Gbl._myEntities.Sensor.PcLastactive, _0Gbl._myEntities.Sensor.PcLastactive.State == "unavailable");
 
-            _myEntities.InputBoolean.Ishome.StateChanges().Where(x => x?.New?.State == "off").Subscribe(_ => CheckCondition(_myEntities.InputBoolean.Ishome, false));
-            _myEntities.InputBoolean.Ishome.StateChanges().Where(x => x?.New?.State == "on").Subscribe(_ => CheckCondition(_myEntities.InputBoolean.Ishome, true));
-            isAsleepCondition.Add(_myEntities.InputBoolean.Ishome, _myEntities.InputBoolean.Ishome.IsOn());
+            _0Gbl._myEntities.InputBoolean.Ishome.StateChanges().Where(x => x?.New?.State == "off").Subscribe(_ => CheckCondition(_0Gbl._myEntities.InputBoolean.Ishome, false));
+            _0Gbl._myEntities.InputBoolean.Ishome.StateChanges().Where(x => x?.New?.State == "on").Subscribe(_ => CheckCondition(_0Gbl._myEntities.InputBoolean.Ishome, true));
+            isAsleepCondition.Add(_0Gbl._myEntities.InputBoolean.Ishome, _0Gbl._myEntities.InputBoolean.Ishome.IsOn());
 
 
-            _myEntities.InputBoolean.Isasleep.StateChanges().WhenStateIsFor(x => x?.State == "on", sleepTimer).Subscribe(x => {
-                if (_myEntities.InputBoolean.GuestMode.IsOn()) return;
+            _0Gbl._myEntities.InputBoolean.Isasleep.StateChanges().WhenStateIsFor(x => x?.State == "on", sleepTimer, _0Gbl._myScheduler).Subscribe(x => {
+                if (_0Gbl._myEntities.InputBoolean.GuestMode.IsOn()) return;
                 var alarmnumber = 1;
-                _myEntities.Script.Actiontodoatalarm.TurnOn();
+                _0Gbl._myEntities.Script.Actiontodoatalarm.TurnOn();
                 TTS.Speak("Good Morning, ", TTS.TTSPriority.IgnoreAll);
-                alarmTimer = scheduler.RunEvery(TimeSpan.FromMinutes(20), DateTimeOffset.Now + TimeSpan.FromSeconds(3), () => {
+                alarmTimer = _0Gbl._myScheduler.RunEvery(TimeSpan.FromMinutes(20), DateTimeOffset.Now + TimeSpan.FromSeconds(3), () => {
 
-                    TimeSpan? timeDiff = DateTime.Now - _myEntities?.InputBoolean?.Isasleep?.EntityState?.LastChanged;
+                    TimeSpan? timeDiff = DateTime.Now - _0Gbl._myEntities?.InputBoolean?.Isasleep?.EntityState?.LastChanged;
                     string ttsTime = "its " + DateTime.Now.ToString("H:mm", CultureInfo.InvariantCulture) + ", you have been sleeping for " + timeDiff?.Hours + " hours" + (timeDiff?.Minutes > 0 ?  " and " + timeDiff?.Minutes + "minutes" : ". ");
 
                     ttsTime += "This is alarm number " + alarmnumber + ".";
@@ -70,7 +68,7 @@ namespace NetDaemonApps.apps
 
             });
 
-            _myEntities.InputBoolean.Isasleep.StateChanges().Where(x => x?.New?.State == "off").Subscribe(x => {
+            _0Gbl._myEntities.InputBoolean.Isasleep.StateChanges().Where(x => x?.New?.State == "off").Subscribe(x => {
                 // If alarm timer is on it means that this is after a long sleep
                 if (alarmTimer != null)
                 {
@@ -78,7 +76,7 @@ namespace NetDaemonApps.apps
 
                     EnergyMonitor.ReadOutGoodMorning();
                 }
-                if (_myEntities.InputBoolean.GuestMode.IsOn()) return;
+                if (_0Gbl._myEntities.InputBoolean.GuestMode.IsOn()) return;
 
                 //Run default actions that run everytime isSleep is turned on
                 // Get the offset from current time in UTC time
@@ -87,7 +85,7 @@ namespace NetDaemonApps.apps
                 long unixTime = dto.ToUnixTimeSeconds();
 
 
-                _myEntities.InputDatetime.Awoketime.SetDatetime(timestamp: unixTime);
+                _0Gbl._myEntities.InputDatetime.Awoketime.SetDatetime(timestamp: unixTime);
 
 
             });
@@ -98,7 +96,7 @@ namespace NetDaemonApps.apps
 
         private void ParseAlertTime()
         {
-            if (TimeSpan.TryParse(_myEntities.InputDatetime.SettingsSleepduration.State, out sleepTimer))
+            if (TimeSpan.TryParse(_0Gbl._myEntities.InputDatetime.SettingsSleepduration.State, out sleepTimer))
             {
                 // Conversion succeeded
                
@@ -120,7 +118,7 @@ namespace NetDaemonApps.apps
 
         private bool trainingLora()
         {
-            return _myEntities.Automation.TurnOffPcWhenLoraTrainingDone.IsOn() && _myEntities.InputSelect.Atloraended.State == "Shutdown";
+            return _0Gbl._myEntities.Automation.TurnOffPcWhenLoraTrainingDone.IsOn() && _0Gbl._myEntities.InputSelect.Atloraended.State == "Shutdown";
         }
 
         private void CheckAllIsSleepConditions()
@@ -128,7 +126,7 @@ namespace NetDaemonApps.apps
 
             bool areAllTrue = true;
 
-            if (trainingLora()) isAsleepCondition[_myEntities.Switch.PcPlug] = true;
+            if (trainingLora()) isAsleepCondition[_0Gbl._myEntities.Switch.PcPlug] = true;
 
             foreach (bool cond in isAsleepCondition.Values)
             {
@@ -141,12 +139,12 @@ namespace NetDaemonApps.apps
 
             // If all conditions are true or false, we might need to change isSleep-state
 
-            bool stateOfIsasleep = _myEntities.InputBoolean.Isasleep.IsOn();
+            bool stateOfIsasleep = _0Gbl._myEntities.InputBoolean.Isasleep.IsOn();
 
             if (stateOfIsasleep != areAllTrue)
             {
-                if (areAllTrue) _myEntities.InputBoolean.Isasleep.TurnOn();
-                else _myEntities.InputBoolean.Isasleep.TurnOff();
+                if (areAllTrue) _0Gbl._myEntities.InputBoolean.Isasleep.TurnOn();
+                else _0Gbl._myEntities.InputBoolean.Isasleep.TurnOff();
             }
         }
 

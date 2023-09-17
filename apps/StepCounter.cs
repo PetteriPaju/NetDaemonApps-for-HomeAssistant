@@ -10,17 +10,16 @@ namespace NetDaemonApps.apps
     [NetDaemonApp]
     public class StepCounter
     {
-        protected readonly Entities _myEntities;
         private int lastKnownThreshold = 0;
         private int notificationThreashold = 1000;
-        public StepCounter(IHaContext ha, IScheduler scheduler)
+        public StepCounter()
         {
-            _myEntities = new Entities(ha);
-            _myEntities.Sensor.MotoG8PowerLiteLastNotification?.StateAllChanges().Where(x => IsValidStep(x))?.Subscribe(x => ParseSteps(x?.Entity?.EntityState?.Attributes?.Android_title));
-            lastKnownThreshold = (int)_myEntities.InputNumber.LastKnowStepThreshold.State;
-            scheduler.ScheduleCron("0 0 * * *", () => { 
+
+            _0Gbl._myEntities.Sensor.MotoG8PowerLiteLastNotification?.StateAllChanges().Where(x => IsValidStep(x))?.Subscribe(x => ParseSteps(x?.Entity?.EntityState?.Attributes?.Android_title));
+            lastKnownThreshold = (int)_0Gbl._myEntities.InputNumber.LastKnowStepThreshold.State;
+            _0Gbl._myScheduler.ScheduleCron("0 0 * * *", () => { 
                 lastKnownThreshold = 0; 
-                _myEntities.InputNumber.LastKnowStepThreshold.SetValue(0);
+                _0Gbl._myEntities.InputNumber.LastKnowStepThreshold.SetValue(0);
             });
         }
 
@@ -39,7 +38,7 @@ namespace NetDaemonApps.apps
 
                 var stepsFloored = FloorDownToThousand(steps);
 
-                _myEntities.InputNumber.Dailysteps.SetValue(steps);
+                _0Gbl._myEntities.InputNumber.Dailysteps.SetValue(steps);
 
                 if (stepsFloored < lastKnownThreshold)
                 {
@@ -50,7 +49,7 @@ namespace NetDaemonApps.apps
                 {
 
                     lastKnownThreshold = (int)stepsFloored;
-                    _myEntities.InputNumber.LastKnowStepThreshold.SetValue(lastKnownThreshold);
+                    _0Gbl._myEntities.InputNumber.LastKnowStepThreshold.SetValue(lastKnownThreshold);
 
                     TTS.Speak("You have reached " + lastKnownThreshold.ToString() + "steps", TTS.TTSPriority.PlayInGuestMode);
 

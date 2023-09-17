@@ -5,11 +5,11 @@ namespace NetDaemonApps.apps.Lights
     [NetDaemonApp]
     public class Livingroom_Lights : AllowOnlyOneLightGroup
     {
-        public Livingroom_Lights(IHaContext ha) : base(ha){ }
+        public Livingroom_Lights() : base() { }
 
         protected override LightEntity[] SetLights()
         {
-            return new LightEntity[] { _myEntities.Light.LivingRoomLight,  _myEntities.Light.PcMultipowermeterL2, _myEntities.Light.DesktopLight, _myEntities.Light.BedLight };
+            return new LightEntity[] { _0Gbl._myEntities.Light.LivingRoomLight,  _0Gbl._myEntities.Light.PcMultipowermeterL2, _0Gbl._myEntities.Light.DesktopLight, _0Gbl._myEntities.Light.BedLight };
         }
 
     }
