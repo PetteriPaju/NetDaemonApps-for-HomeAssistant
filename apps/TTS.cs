@@ -77,23 +77,18 @@ namespace NetDaemonApps.apps
                 if (_0Gbl._myEntities.InputBoolean.GuestMode.IsOn() && paramsContain(TTSPriority.PlayInGuestMode)) return true;
                 if (_0Gbl._myEntities.InputBoolean.GuestMode.IsOn() && paramsContain(TTSPriority.DoNotPlayInGuestMode)) return false;
 
+                if (_0Gbl._myEntities.InputBoolean.Isasleep.IsOn() && !paramsContain(TTSPriority.IgnoreSleep)) return false;
+
 
                 return true;
             }
 
-             return true;
+             return false;
 
         }
 
         public void SpeakTTS(string text, params TTSPriority[] overriders)
         {
-           
-           
-            bool paramsContain(TTSPriority target)
-            {
-                return overriders.Contains(target);
-            }
-
 
             if (allowTTS(overriders))
             {
