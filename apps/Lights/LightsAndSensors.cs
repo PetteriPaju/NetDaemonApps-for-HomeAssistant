@@ -57,7 +57,7 @@ namespace NetDaemonApps.apps.Lights
            */
 
 
-            _0Gbl._myEntities.BinarySensor.KitchenSensorOccupancy.StateChanges().Where(x => x?.New?.State == "on" && _0Gbl._myEntities.Light.AllLights.IsOff() && _0Gbl._myEntities.Light.AllLights?.EntityState?.LastChanged< DateTime.Now + TimeSpan.FromSeconds(30) && _0Gbl._myEntities.InputBoolean.GuestMode.IsOff() && luxSensorEntity.State > defaultFluz).SubscribeAsync(async s => {
+            _0Gbl._myEntities.BinarySensor.KitchenSensorOccupancy.StateChanges().Where(x => x?.New?.State == "on" && _0Gbl._myEntities.Light.AllLights.IsOff() && _0Gbl._myEntities.Light.AllLights?.EntityState?.LastChanged< DateTime.Now + TimeSpan.FromSeconds(30) && _0Gbl._myEntities.InputBoolean.GuestMode.IsOff() && luxSensorEntity.State < defaultFluz).SubscribeAsync(async s => {
 
                 _0Gbl._myEntities.Light.HallwayLight.TurnOn();
 
