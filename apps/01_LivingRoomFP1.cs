@@ -13,6 +13,7 @@ namespace NetDaemonApps.apps
     [NetDaemonApp]
     public class _01_LivingRoomFP1
     {
+        /*
         public static AqaraFP1Extender LivingRoomFP1;
         private InputTextEntity inputText;
         public _01_LivingRoomFP1() {
@@ -54,5 +55,6 @@ namespace NetDaemonApps.apps
             inputText.SetValue(text);
 
         }
+        */
     }
 }

@@ -10,10 +10,13 @@ using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 
+//Rename to run after globals
+
 namespace NetDaemonApps.apps
 {
     public class AqaraFP1Extender
     {
+        /*
         public List<Region> Regions = new List<Region>();
         public List<Region> occupiedRegions= new List<Region>();
         public List<Region> enteredRegions = new List<Region>();
@@ -234,6 +237,7 @@ namespace NetDaemonApps.apps
             public Fp1EventType eventType;
             public AqaraFP1Extender sensorData;
         }
-
+         */
     }
+
 }
