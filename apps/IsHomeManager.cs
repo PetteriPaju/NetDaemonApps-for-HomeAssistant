@@ -23,16 +23,12 @@ namespace NetDaemonApps.apps
   //  [NetDaemonApp]
     public class IsHomeManager
     {
-        protected readonly Entities _myEntities;
-        protected readonly Services _myServices;
         protected Notifications.Actionable_NotificationData mobileNotificationData;
         private IDisposable? isHomeCancelFollower;
         private IDisposable? outOfHomeUntilTimeoutFollower;
         private  TimeSpan notificationTimeOut = TimeSpan.FromSeconds(30);
-        public IsHomeManager(IHaContext ha, IScheduler scheduler) {
+        public IsHomeManager() {
 
-            _myServices = new Services(ha);
-            _myEntities = new Entities(ha);
 
         /*
      
@@ -55,22 +51,22 @@ namespace NetDaemonApps.apps
 
             var isCancelled = false;
 
-            _myEntities.InputBoolean.SensorsActive.StateChanges().Where(x => x.New?.State == "off" && x.Old?.State == "on").Subscribe(x => {_myEntities.InputBoolean.Ishome.TurnOn(); });
-            _myEntities.InputBoolean.GuestMode.StateChanges().Where(x => x.New?.State == "off" && x.Old?.State == "on").Subscribe(x => { _myEntities.InputBoolean.Ishome.TurnOn(); });
+            _0Gbl._myEntities.InputBoolean.SensorsActive.StateChanges().Where(x => x.New?.State == "off" && x.Old?.State == "on").Subscribe(x => {_0Gbl._myEntities.InputBoolean.Ishome.TurnOn(); });
+            _0Gbl._myEntities.InputBoolean.GuestMode.StateChanges().Where(x => x.New?.State == "off" && x.Old?.State == "on").Subscribe(x => { _0Gbl._myEntities.InputBoolean.Ishome.TurnOn(); });
 
-            _myEntities.BinarySensor.FrontDoorSensorContact.StateChanges().Where(x => x.New?.State == "off" && x.Old?.State == "on" && _myEntities.InputBoolean.Ishome.IsOff() && _myEntities.InputBoolean.SensorsActive.IsOn() && _myEntities.InputBoolean.GuestMode.IsOff())
+            _0Gbl._myEntities.BinarySensor.FrontDoorSensorContact.StateChanges().Where(x => x.New?.State == "off" && x.Old?.State == "on" && _0Gbl._myEntities.InputBoolean.Ishome.IsOff() && _0Gbl._myEntities.InputBoolean.SensorsActive.IsOn() && _0Gbl._myEntities.InputBoolean.GuestMode.IsOff())
                 .Subscribe(x => {
-                _myEntities.InputBoolean.Ishome.TurnOn();
+                _0Gbl._myEntities.InputBoolean.Ishome.TurnOn();
                     isHomeCancelFollower?.Dispose();
                     outOfHomeUntilTimeoutFollower?.Dispose();
                     isCancelled = true;
                 });
 
-            _myEntities.BinarySensor.FrontDoorSensorContact.StateChanges().Where(x => x.New?.State == "off" && x.Old?.State == "on" && _myEntities.InputBoolean.Ishome.IsOn() && _myEntities.InputBoolean.SensorsActive.IsOn() && _myEntities.InputBoolean.GuestMode.IsOff())
+            _0Gbl._myEntities.BinarySensor.FrontDoorSensorContact.StateChanges().Where(x => x.New?.State == "off" && x.Old?.State == "on" && _0Gbl._myEntities.InputBoolean.Ishome.IsOn() && _0Gbl._myEntities.InputBoolean.SensorsActive.IsOn() && _0Gbl._myEntities.InputBoolean.GuestMode.IsOff())
                 .SubscribeAsync(async s => {
 
                     isCancelled = false;
-                    _myServices.Script.Sendishomephonenotification();
+                    _0Gbl._myServices.Script.Sendishomephonenotification();
                     await Task.Delay(1000);
                   
 
@@ -78,8 +74,8 @@ namespace NetDaemonApps.apps
 
 
 
-                    outOfHomeUntilTimeoutFollower = _myEntities.BinarySensor.FrontDoorSensorContact.StateChanges().Where(x => x.New?.State == "off" && x.Old?.State == "on").Subscribe(x => { isCancelled = true; });
-                    isHomeCancelFollower = ha.Events.Filter<Notifications.ActionableNotificationResponseData>("mobile_app_notification_action").Where(x => x.Data.action == "IsHome")
+                    outOfHomeUntilTimeoutFollower = _0Gbl._myEntities.BinarySensor.FrontDoorSensorContact.StateChanges().Where(x => x.New?.State == "off" && x.Old?.State == "on").Subscribe(x => { isCancelled = true; });
+                    isHomeCancelFollower = _0Gbl._events.Filter<Notifications.ActionableNotificationResponseData>("mobile_app_notification_action").Where(x => x.Data.action == "IsHome")
                     .Subscribe(x => { 
                         isHomeCancelFollower?.Dispose();
                         outOfHomeUntilTimeoutFollower?.Dispose(); 
@@ -90,7 +86,7 @@ namespace NetDaemonApps.apps
 
                     if (!isCancelled)
                     {
-                        _myEntities.InputBoolean.Ishome.TurnOff();
+                        _0Gbl._myEntities.InputBoolean.Ishome.TurnOff();
                         TTS.Instance?.SpeakTTS("I guess he left");
 
                     }

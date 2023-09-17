@@ -9,26 +9,27 @@ using System.Threading.Tasks;
 namespace NetDaemonApps.apps
 {
     [NetDaemonApp]
-    public class _00_Globals
+    public class _0Gbl
     {
 
-        public static _00_Globals _instance;
-        public static Entities _myEntities;
-        public static Services _myServices;
-        public static IScheduler _myScheduler;
-        public static Action HourlyResetFunction;
-        public static Action DailyResetFunction;
+        public static _0Gbl _instance;
+        public static Entities _myEntities { get; private set; }
+        public static Services _myServices { get; private set; }
+        public static IObservable<Event> _events { get; private set; }
+        public static IScheduler _myScheduler { get; private set; }
+        public static Action HourlyResetFunction { get; private set; }
+        public static Action DailyResetFunction { get; private set; }
 
 
-        public _00_Globals(IHaContext ha, IScheduler scheduler)
+        public _0Gbl(IHaContext ha, IScheduler scheduler)
         {
             _instance = this;
             _myEntities = new Entities(ha);
             _myScheduler = scheduler;
             _myServices = new Services(ha);
+            _events = ha.Events;
 
             Task.Run(OnLateStart);
-
         }
 
 
@@ -50,7 +51,7 @@ namespace NetDaemonApps.apps
 
         bool checkDateChanged()
         {
-            DateTime dateTimeVariable = DateTime.ParseExact(_myEntities.InputDatetime.Lastknowndate.State ?? "", "yyyy-MM-dd", System.Globalization.CultureInfo.InvariantCulture);
+            DateTime dateTimeVariable = DateTime.ParseExact(_0Gbl._myEntities.InputDatetime.Lastknowndate.State ?? "", "yyyy-MM-dd", System.Globalization.CultureInfo.InvariantCulture);
             return dateTimeVariable != DateTime.Now.Date;
         }
     }

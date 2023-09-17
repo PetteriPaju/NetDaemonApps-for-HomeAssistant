@@ -12,7 +12,7 @@ namespace NetDaemonApps.apps.Hue_Switches
     public class BedHueSwitch : HueSwitch
     {
 
-        public BedHueSwitch(IHaContext ha) : base(ha){}
+        public BedHueSwitch() : base(){}
 
         protected override SensorEntity ObtainSwitch(Entities entities)
         {
@@ -22,7 +22,7 @@ namespace NetDaemonApps.apps.Hue_Switches
         protected override void OnOnPress()
         {
 
-                _myEntities.Light.BedLight.Toggle();
+                _0Gbl._myEntities.Light.BedLight.Toggle();
        
            
         }
@@ -30,12 +30,12 @@ namespace NetDaemonApps.apps.Hue_Switches
         //Fan
         protected override void OnOffPressRelease()
         {
-            _myEntities.Switch.BedMultiPlugL1.Toggle(); 
+            _0Gbl._myEntities.Switch.BedMultiPlugL1.Toggle(); 
         }
 
         protected override void OnOffHoldRelease()
         {
-            _myEntities.Switch.BedMultiPlugL3.Toggle();
+            _0Gbl._myEntities.Switch.BedMultiPlugL3.Toggle();
         }
 
 

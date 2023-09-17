@@ -5,12 +5,8 @@ namespace NetDaemonApps.apps.Hue_Switches
     public abstract class HueSwitch
     {
         protected SensorEntity ?hueSwitchEntity;
-        protected Entities _myEntities;
-        public HueSwitch(IHaContext ha) {
-
-            _myEntities = new Entities(ha);
-
-            hueSwitchEntity = ObtainSwitch(_myEntities);
+        public HueSwitch() {
+            hueSwitchEntity = ObtainSwitch(_0Gbl._myEntities);
 
 
             if (hueSwitchEntity == null) return;

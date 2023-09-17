@@ -15,9 +15,9 @@ namespace NetDaemonApps.apps
     {
         public static AqaraFP1Extender LivingRoomFP1;
         private InputTextEntity inputText;
-        public _00_LivingRoomFP1(IHaContext ha) {
+        public _00_LivingRoomFP1() {
 
-           Entities e = new Entities(ha);
+            Entities e = _0Gbl._myEntities;
             inputText = e.InputText.Fp1debugger;
 
 

@@ -24,7 +24,6 @@ namespace NetDaemonApps.apps
 
         private static TTS? instance;
         protected readonly ITextToSpeechService tts;
-        protected readonly Entities _myEntities;
         protected readonly InputBooleanEntity isAsleepEntity;
         protected DateTime lastAnnounsmentTime = DateTime.MinValue;
         protected TimeSpan timeBetweenAnnounsments = TimeSpan.FromSeconds(15);
@@ -32,11 +31,10 @@ namespace NetDaemonApps.apps
 
         public static TTS? Instance { get => instance; set => instance = value; }
 
-        public TTS(IHaContext ha, ITextToSpeechService ttsService) {
+        public TTS(ITextToSpeechService ttsService) {
 
             lastAnnounsmentTime = DateTime.MinValue;
-            _myEntities = new Entities(ha);
-            isAsleepEntity = _myEntities.InputBoolean.Isasleep;
+            isAsleepEntity = _0Gbl._myEntities.InputBoolean.Isasleep;
             this.tts = ttsService;
             Instance = this;
         }
@@ -67,17 +65,17 @@ namespace NetDaemonApps.apps
             if (overriders.Length == 0) return true;
             if (paramsContain(TTSPriority.IgnoreAll)) return true;
            
-            if (_myEntities.InputBoolean.HydrationCheckActive.IsOn())
+            if (_0Gbl._myEntities.InputBoolean.HydrationCheckActive.IsOn())
             {
                if( paramsContain(TTSPriority.IgnoreDisabled)) return true;
 
-                if (_myEntities.InputBoolean.Isasleep.IsOn() && paramsContain(TTSPriority.IgnoreSleep) && 
-                   (_myEntities.InputBoolean.GuestMode.IsOff() || paramsContain(TTSPriority.PlayInGuestMode))) return true;
+                if (_0Gbl._myEntities.InputBoolean.Isasleep.IsOn() && paramsContain(TTSPriority.IgnoreSleep) && 
+                   (_0Gbl._myEntities.InputBoolean.GuestMode.IsOff() || paramsContain(TTSPriority.PlayInGuestMode))) return true;
 
-                if (_myEntities.InputBoolean.GuestMode.IsOn() && (DateTime.Now.Hour < 7 || DateTime.Now.Hour == 23)) return false;
+                if (_0Gbl._myEntities.InputBoolean.GuestMode.IsOn() && (DateTime.Now.Hour < 7 || DateTime.Now.Hour == 23)) return false;
 
-                if (_myEntities.InputBoolean.GuestMode.IsOn() && paramsContain(TTSPriority.PlayInGuestMode)) return true;
-                if (_myEntities.InputBoolean.GuestMode.IsOn() && paramsContain(TTSPriority.DoNotPlayInGuestMode)) return false;
+                if (_0Gbl._myEntities.InputBoolean.GuestMode.IsOn() && paramsContain(TTSPriority.PlayInGuestMode)) return true;
+                if (_0Gbl._myEntities.InputBoolean.GuestMode.IsOn() && paramsContain(TTSPriority.DoNotPlayInGuestMode)) return false;
 
 
                 return true;
@@ -102,7 +100,7 @@ namespace NetDaemonApps.apps
                /*
                 if (lastAnnounsmentTime + timeBetweenAnnounsments > DateTime.Now)
                 {
-                    _myEntities.MediaPlayer.VlcTelnet.PlayMedia("media-source://media_source/local/tos_shipannouncement.mp3", "audio/mpeg");
+                    _00_Globals._myEntities.MediaPlayer.VlcTelnet.PlayMedia("media-source://media_source/local/tos_shipannouncement.mp3", "audio/mpeg");
                     await Task.Delay(1000);
 
                 }

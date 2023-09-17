@@ -20,27 +20,23 @@ namespace NetDaemonApps.apps
     [NetDaemonApp]
     public class Notifications
     {
-        protected readonly Entities _myEntities;
         public static InputBooleanEntity? _sensorsOnBooleanEntity = null;
         public DateTime lastMemoryAlert = DateTime.MinValue;
 
-        public Notifications(IHaContext ha, IScheduler scheduler) {
+        public Notifications() {
+
+            _sensorsOnBooleanEntity = _0Gbl._myEntities.InputBoolean.SensorsActive;
 
 
-
-            _myEntities = new Entities(ha);
-            _sensorsOnBooleanEntity = _myEntities.InputBoolean.SensorsActive;
-
-
-            scheduler.ScheduleCron("30 * * * *", () => TTS.Speak("Hydration Check",TTS.TTSPriority.DoNotPlayInGuestMode));
+            _0Gbl._myScheduler.ScheduleCron("30 * * * *", () => TTS.Speak("Hydration Check",TTS.TTSPriority.DoNotPlayInGuestMode));
 
 
             string gamingtime = "0" + (DateTime.Now.IsDaylightSavingTime() ? " 3 " : " 2 ") + "* * *";
-            scheduler.ScheduleCron(gamingtime, () => TTS.Speak("Gaming Time",TTS.TTSPriority.DoNotPlayInGuestMode));
+            _0Gbl._myScheduler.ScheduleCron(gamingtime, () => TTS.Speak("Gaming Time",TTS.TTSPriority.DoNotPlayInGuestMode));
 
-            //_myEntities.BinarySensor.OpenCurtainLimit.StateChanges().WhenStateIsFor(x => x?.State == "on", TimeSpan.FromMinutes(10)).Subscribe(_ => { TTS.Speak("Open Curtains"); });
+            //_00_Globals._myEntities.BinarySensor.OpenCurtainLimit.StateChanges().WhenStateIsFor(x => x?.State == "on", TimeSpan.FromMinutes(10)).Subscribe(_ => { TTS.Speak("Open Curtains"); });
 
-            _myEntities.Sensor.PcMemoryusage.StateChanges().Where(x => x?.New?.State > 90 && x?.Old?.State < 90).Subscribe(_ => { 
+            _0Gbl._myEntities.Sensor.PcMemoryusage.StateChanges().Where(x => x?.New?.State > 90 && x?.Old?.State < 90).Subscribe(_ => { 
                 if(lastMemoryAlert < DateTime.Now - TimeSpan.FromMinutes(2))
                 {
                     TTS.Speak("Memory Alert, Memory Alert",TTS.TTSPriority.DoNotPlayInGuestMode);
@@ -48,7 +44,7 @@ namespace NetDaemonApps.apps
                 }
 
             });
-            _myEntities.Sensor.MotoG8PowerLiteBatteryLevel.StateChanges().Where(x => x?.New?.State < 15 && _myEntities.InputBoolean.Ishome.State == "on" && _myEntities.BinarySensor.MotoG8PowerLiteIsCharging.State == "off").Subscribe(_ => { TTS.Speak("Phone Battery Low", TTS.TTSPriority.DoNotPlayInGuestMode); });
+            _0Gbl._myEntities.Sensor.MotoG8PowerLiteBatteryLevel.StateChanges().Where(x => x?.New?.State < 15 && _0Gbl._myEntities.InputBoolean.Ishome.State == "on" && _0Gbl._myEntities.BinarySensor.MotoG8PowerLiteIsCharging.State == "off").Subscribe(_ => { TTS.Speak("Phone Battery Low", TTS.TTSPriority.DoNotPlayInGuestMode); });
    
 
 
