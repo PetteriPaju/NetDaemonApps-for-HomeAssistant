@@ -414,7 +414,7 @@ public class EnergyMonitor
          
           double ecoflowAdjustedPrice = calculatePrice(ecoflowCacl(energy));
 
-        energy -= _0Gbl._myEntities.Sensor.EcoflowAcOutputHourly.AsNumeric().State ?? 0;
+        energy -= MathF.Max(0,_0Gbl._myEntities.Sensor.EcoflowAcOutputHourly.AsNumeric().State ?? 0);
         double priceForLastHout = calculatePrice(energy);
 
         var ecoflowAdjustedHourlycost = priceForLastHout - ecoflowAdjustedPrice;
