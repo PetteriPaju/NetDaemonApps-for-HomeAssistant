@@ -240,7 +240,7 @@ public class EnergyMonitor
             bool isWarning = priceChange == PriceChangeType.Increase || inFoForNextHour.peak == 1;
 
 
-        TTSMessage = "Electricity " + (isWarning ? "Warning. " : "Notice. ") + "The Price is About ";
+        TTSMessage = "Electricity " + (isWarning ? "Warning. " : "Notice. ") + "The Price is About to ";
 
 
         if (priceChange != PriceChangeType.NoChange)
