@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.Formatters;
 using NetDaemon.Extensions.Scheduler;
 using NetDaemon.HassModel.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reactive.Concurrency;
@@ -240,21 +241,12 @@ public class EnergyMonitor
             bool isWarning = priceChange == PriceChangeType.Increase || inFoForNextHour.peak == 1;
 
 
-        TTSMessage = "Electricity " + (isWarning ? "Warning. " : "Notice. ") + "The Price is About ";
+        TTSMessage = "Electricity " + (isWarning ? "Warning. " : "Notice. ") + "The Price is About to ";
 
 
         if (priceChange != PriceChangeType.NoChange)
         {
-
-            if (priceChange == PriceChangeType.Increase)
-            {
-                TTSMessage += "increase to " + electiricityRanges.Values.ElementAt(inFoForNextHour.range) +".";
-            }
-            else if(priceChange == PriceChangeType.Descrease)
-            {
-                TTSMessage += "fall to " + electiricityRanges.Values.ElementAt(inFoForNextHour.range) + ".";
-            }
-
+            TTSMessage += (priceChange == PriceChangeType.Increase ? "increase to " : "fall to ") + electiricityRanges.Values.ElementAt(inFoForNextHour.range) + ".";
 
             var hoursTillChange = FindWhenElectricityRangeChanges(inFoForNextHour);
 
@@ -269,7 +261,7 @@ public class EnergyMonitor
             else if (priceChange == PriceChangeType.Increase || priceChange == PriceChangeType.Descrease)
             {
 
-                TTSMessage += "And will " + (priceChangeType == PriceChangeType.Increase ? "increase to " : "decrease to ") + GetNameOfRange(hoursTillChange.range) + " after " + GetHoursAndMinutesFromTimeSpan(timeDiff);
+                TTSMessage += "And will " + (priceChangeType == PriceChangeType.Increase ? "increase to " : "fall to ") + GetNameOfRange(hoursTillChange.range) + " after " + GetHoursAndMinutesFromTimeSpan(timeDiff);
             }
 
             if (inFoForNextHour.peak != 0)
@@ -424,9 +416,9 @@ public class EnergyMonitor
         }
 
         double ecoflowAdjustedPrice = calculatePrice(ecoflowCacl(energy));
-      
 
-        energy -= _0Gbl._myEntities.Sensor.EcoflowAcOutputHourly.AsNumeric().State ?? 0;
+
+        energy -= Math.Max(0, _0Gbl._myEntities.Sensor.EcoflowAcOutputHourly.AsNumeric().State ?? 0);
         double transsfercost = calculateTransfer(energy);
         double priceForLastHout = calculatePrice(energy);
 
