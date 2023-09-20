@@ -1,5 +1,6 @@
 ﻿using HomeAssistantGenerated;
 using NetDaemon.Extensions.Scheduler;
+using NetDaemon.HassModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,14 +22,17 @@ namespace NetDaemonApps.apps
         public static Action? HourlyResetFunction { get; set; }
         public static Action? DailyResetFunction { get; set; }
 
+        public static ITriggerManager TriggerManager { get; set; }
 
-        public _0Gbl(IHaContext ha, IScheduler scheduler)
+
+        public _0Gbl(IHaContext ha, IScheduler scheduler, ITriggerManager _triggerManager)
         {
             _instance = this;
             _myEntities = new Entities(ha);
             _myScheduler = scheduler;
             _myServices = new Services(ha);
             _events = ha.Events;
+            TriggerManager = _triggerManager;
             _0Gbl._myScheduler.ScheduleCron("59 * * * *", hourlyResetFunction);
             _0Gbl._myScheduler.ScheduleCron("0 0 * * *", dailyResetFunction);
             Task.Run(OnLateStart);

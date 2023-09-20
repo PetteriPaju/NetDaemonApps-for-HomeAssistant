@@ -74,6 +74,10 @@ namespace NetDaemonApps.apps
             _0Gbl._myEntities.BinarySensor.LivingroomWindowSensorContact.StateChanges().Where(x => x?.New?.State == "off" && x?.Old?.State == "on").Subscribe(_ => {
                // _00_Globals._myEntities.Switch.TbdPowermeter.TurnOn();
             });
+
+
+
+
         }
     }
 }

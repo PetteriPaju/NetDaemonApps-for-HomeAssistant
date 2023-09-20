@@ -411,10 +411,23 @@ public class EnergyMonitor
             return (double)thisHourTotal;
         }
 
-         
-          double ecoflowAdjustedPrice = calculatePrice(ecoflowCacl(energy));
+        double calculateTransfer(double inpt)
+        {
+            var thisHourFortum = inpt * _0Gbl._myEntities.InputNumber.EnergyFortumHardCost.State;
+            thisHourFortum += thisHourFortum * (_0Gbl._myEntities.InputNumber.EnergyFortumAlv.State / 100);
+
+            var thisHourTranster = inpt * _0Gbl._myEntities.InputNumber.EnergyTransferCost.State;
+            thisHourTranster += thisHourTranster * _0Gbl._myEntities.InputNumber.EnergyTransferAlv.State;
+            var thisHourTotal = thisHourFortum + thisHourTranster;
+
+            return (double)thisHourTotal;
+        }
+
+        double ecoflowAdjustedPrice = calculatePrice(ecoflowCacl(energy));
+      
 
         energy -= _0Gbl._myEntities.Sensor.EcoflowAcOutputHourly.AsNumeric().State ?? 0;
+        double transsfercost = calculateTransfer(energy);
         double priceForLastHout = calculatePrice(energy);
 
         var ecoflowAdjustedHourlycost = priceForLastHout - ecoflowAdjustedPrice;
