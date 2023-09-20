@@ -9,14 +9,34 @@ namespace NetDaemonApps.apps
         protected readonly SensorEntity? cubeSideEntity;
         protected string? lastKnownSide;
 
+        private readonly string[] events = { "rotate_left", "rotate_right", "tap", "flip90", "flip180",};
+
 
 
         public AqaraCube()
         {
             cubeEntity = SetCubeActionEntity();
             cubeSideEntity = SetCubeSideEntity();
+
+
             
-            cubeEntity?.StateChanges().Subscribe(x => DetermineAction(x?.Entity?.State ?? "Unknown"));
+           // cubeEntity?.StateChanges().Subscribe(x => DetermineAction(x?.Entity?.State ?? "Unknown"));
+
+
+
+            foreach (var e in events)
+            {
+                var triggerObservable = _0Gbl.TriggerManager.RegisterTrigger(
+                 new
+                 {
+                     platform = "state",
+                     entity_id = new string[] { cubeEntity.EntityId },
+                     to = e
+                 });
+                triggerObservable.Subscribe(n => DetermineAction(e)
+                   );
+            }
+
             cubeSideEntity?.StateChanges().Subscribe(x => OnSideChaged(x?.Old?.State, x?.New?.State));
 
             lastKnownSide = cubeSideEntity?.State;

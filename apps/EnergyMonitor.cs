@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.Formatters;
 using NetDaemon.Extensions.Scheduler;
 using NetDaemon.HassModel.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reactive.Concurrency;
@@ -402,10 +403,23 @@ public class EnergyMonitor
             return (double)thisHourTotal;
         }
 
-         
-          double ecoflowAdjustedPrice = calculatePrice(ecoflowCacl(energy));
+        double calculateTransfer(double inpt)
+        {
+            var thisHourFortum = inpt * _0Gbl._myEntities.InputNumber.EnergyFortumHardCost.State;
+            thisHourFortum += thisHourFortum * (_0Gbl._myEntities.InputNumber.EnergyFortumAlv.State / 100);
 
-        energy -= Math.Max(0,_0Gbl._myEntities.Sensor.EcoflowAcOutputHourly.AsNumeric().State ?? 0);
+            var thisHourTranster = inpt * _0Gbl._myEntities.InputNumber.EnergyTransferCost.State;
+            thisHourTranster += thisHourTranster * _0Gbl._myEntities.InputNumber.EnergyTransferAlv.State;
+            var thisHourTotal = thisHourFortum + thisHourTranster;
+
+            return (double)thisHourTotal;
+        }
+
+        double ecoflowAdjustedPrice = calculatePrice(ecoflowCacl(energy));
+
+
+        energy -= Math.Max(0, _0Gbl._myEntities.Sensor.EcoflowAcOutputHourly.AsNumeric().State ?? 0);
+        double transsfercost = calculateTransfer(energy);
         double priceForLastHout = calculatePrice(energy);
 
         var ecoflowAdjustedHourlycost = priceForLastHout - ecoflowAdjustedPrice;
