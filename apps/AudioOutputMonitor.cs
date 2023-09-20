@@ -17,13 +17,13 @@ namespace NetDaemonApps.apps
         {
             _0Gbl._myEntities.Sensor.EnvyAudioDefaultDevice.StateChanges().Where(x => x?.New?.State == "Headphone (Realtek(R) Audio)").Subscribe(_ => CheckCondition(_0Gbl._myEntities.Sensor.EnvyAudioDefaultDevice, true));
             _0Gbl._myEntities.Sensor.EnvyAudioDefaultDevice.StateChanges().Where(x => x?.New?.State != "Headphone (Realtek(R) Audio)").Subscribe(_ => CheckCondition(_0Gbl._myEntities.Sensor.EnvyAudioDefaultDevice, false));
-            _0Gbl._myEntities.Sensor.PcAudioDefaultDevice.StateChanges().Where(x => x?.New?.State == "Headphone (Realtek(R) Audio)").Subscribe(_ => CheckCondition(_0Gbl._myEntities.Sensor.PcAudioDefaultDevice, true));
-            _0Gbl._myEntities.Sensor.PcAudioDefaultDevice.StateChanges().Where(x => x?.New?.State != "Headphone (Realtek(R) Audio)").Subscribe(_ => CheckCondition(_0Gbl._myEntities.Sensor.PcAudioDefaultDevice, false));
+            _0Gbl._myEntities.Sensor.PcAudioDefaultDevice.StateChanges().Where(x => x?.New?.State == "Speakers (Realtek(R) Audio)").Subscribe(_ => CheckCondition(_0Gbl._myEntities.Sensor.PcAudioDefaultDevice, true));
+            _0Gbl._myEntities.Sensor.PcAudioDefaultDevice.StateChanges().Where(x => x?.New?.State != "Speakers (Realtek(R) Audio)").Subscribe(_ => CheckCondition(_0Gbl._myEntities.Sensor.PcAudioDefaultDevice, false));
             _0Gbl._myEntities.BinarySensor.PortableHeadphoneSensors.StateChanges().Where(x => (bool)(x?.New?.IsOn())).Subscribe(_ => CheckCondition(_0Gbl._myEntities.BinarySensor.PortableHeadphoneSensors, true));
             _0Gbl._myEntities.BinarySensor.PortableHeadphoneSensors.StateChanges().Where(x => (bool)(x?.New?.IsOff())).Subscribe(_ => CheckCondition(_0Gbl._myEntities.BinarySensor.PortableHeadphoneSensors, false));
 
             isConnectedCondition.Add(_0Gbl._myEntities.Sensor.EnvyAudioDefaultDevice, _0Gbl._myEntities.Sensor.EnvyAudioDefaultDevice.State == "Headphone (Realtek(R) Audio)");
-            isConnectedCondition.Add(_0Gbl._myEntities.Sensor.PcAudioDefaultDevice, _0Gbl._myEntities.Sensor.PcAudioDefaultDevice.State == "Headphone (Realtek(R) Audio)");
+            isConnectedCondition.Add(_0Gbl._myEntities.Sensor.PcAudioDefaultDevice, _0Gbl._myEntities.Sensor.PcAudioDefaultDevice.State == "Speakers (Realtek(R) Audio)");
             isConnectedCondition.Add(_0Gbl._myEntities.BinarySensor.PortableHeadphoneSensors, _0Gbl._myEntities.BinarySensor.PortableHeadphoneSensors.IsOn());
 
         }
