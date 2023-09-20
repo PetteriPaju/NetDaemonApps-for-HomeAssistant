@@ -29,6 +29,11 @@
           "cSharpName": "AwoketimeHelper"
         },
         {
+          "id": "automation.cable_connected_notification",
+          "friendlyName": "Cable Connected Notification",
+          "cSharpName": "CableConnectedNotification"
+        },
+        {
           "id": "automation.cast",
           "friendlyName": "Cast",
           "cSharpName": "Cast"
@@ -922,1664 +927,144 @@
           "cSharpName": "NasOn"
         },
         {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1"
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_01_living_room_fp1",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__01_living_room_fp1",
+          "cSharpName": "NetdaemonNetDaemonAppsApps01LivingRoomFp1"
         },
         {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_10",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp110"
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_01_living_room_fp1_10",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__01_living_room_fp1",
+          "cSharpName": "NetdaemonNetDaemonAppsApps01LivingRoomFp110"
         },
         {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_100",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1100"
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_01_living_room_fp1_11",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__01_living_room_fp1",
+          "cSharpName": "NetdaemonNetDaemonAppsApps01LivingRoomFp111"
         },
         {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_101",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1101"
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_01_living_room_fp1_12",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__01_living_room_fp1",
+          "cSharpName": "NetdaemonNetDaemonAppsApps01LivingRoomFp112"
         },
         {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_102",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1102"
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_01_living_room_fp1_13",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__01_living_room_fp1",
+          "cSharpName": "NetdaemonNetDaemonAppsApps01LivingRoomFp113"
         },
         {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_103",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1103"
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_01_living_room_fp1_14",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__01_living_room_fp1",
+          "cSharpName": "NetdaemonNetDaemonAppsApps01LivingRoomFp114"
         },
         {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_104",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1104"
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_01_living_room_fp1_2",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__01_living_room_fp1",
+          "cSharpName": "NetdaemonNetDaemonAppsApps01LivingRoomFp12"
         },
         {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_105",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1105"
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_01_living_room_fp1_3",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__01_living_room_fp1",
+          "cSharpName": "NetdaemonNetDaemonAppsApps01LivingRoomFp13"
         },
         {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_106",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1106"
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_01_living_room_fp1_4",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__01_living_room_fp1",
+          "cSharpName": "NetdaemonNetDaemonAppsApps01LivingRoomFp14"
         },
         {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_107",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1107"
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_01_living_room_fp1_5",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__01_living_room_fp1",
+          "cSharpName": "NetdaemonNetDaemonAppsApps01LivingRoomFp15"
         },
         {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_108",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1108"
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_01_living_room_fp1_6",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__01_living_room_fp1",
+          "cSharpName": "NetdaemonNetDaemonAppsApps01LivingRoomFp16"
         },
         {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_109",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1109"
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_01_living_room_fp1_7",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__01_living_room_fp1",
+          "cSharpName": "NetdaemonNetDaemonAppsApps01LivingRoomFp17"
         },
         {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_11",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp111"
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_01_living_room_fp1_8",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__01_living_room_fp1",
+          "cSharpName": "NetdaemonNetDaemonAppsApps01LivingRoomFp18"
         },
         {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_110",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1110"
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_01_living_room_fp1_9",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__01_living_room_fp1",
+          "cSharpName": "NetdaemonNetDaemonAppsApps01LivingRoomFp19"
         },
         {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_111",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1111"
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_0gbl",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__0gbl",
+          "cSharpName": "NetdaemonNetDaemonAppsApps0gbl"
         },
         {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_112",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1112"
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_0gbl_10",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__0gbl",
+          "cSharpName": "NetdaemonNetDaemonAppsApps0gbl10"
         },
         {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_113",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1113"
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_0gbl_11",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__0gbl",
+          "cSharpName": "NetdaemonNetDaemonAppsApps0gbl11"
         },
         {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_114",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1114"
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_0gbl_12",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__0gbl",
+          "cSharpName": "NetdaemonNetDaemonAppsApps0gbl12"
         },
         {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_115",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1115"
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_0gbl_13",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__0gbl",
+          "cSharpName": "NetdaemonNetDaemonAppsApps0gbl13"
         },
         {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_116",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1116"
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_0gbl_14",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__0gbl",
+          "cSharpName": "NetdaemonNetDaemonAppsApps0gbl14"
         },
         {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_117",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1117"
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_0gbl_2",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__0gbl",
+          "cSharpName": "NetdaemonNetDaemonAppsApps0gbl2"
         },
         {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_118",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1118"
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_0gbl_3",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__0gbl",
+          "cSharpName": "NetdaemonNetDaemonAppsApps0gbl3"
         },
         {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_119",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1119"
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_0gbl_4",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__0gbl",
+          "cSharpName": "NetdaemonNetDaemonAppsApps0gbl4"
         },
         {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_12",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp112"
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_0gbl_5",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__0gbl",
+          "cSharpName": "NetdaemonNetDaemonAppsApps0gbl5"
         },
         {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_120",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1120"
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_0gbl_6",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__0gbl",
+          "cSharpName": "NetdaemonNetDaemonAppsApps0gbl6"
         },
         {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_121",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1121"
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_0gbl_7",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__0gbl",
+          "cSharpName": "NetdaemonNetDaemonAppsApps0gbl7"
         },
         {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_122",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1122"
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_0gbl_8",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__0gbl",
+          "cSharpName": "NetdaemonNetDaemonAppsApps0gbl8"
         },
         {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_123",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1123"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_124",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1124"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_125",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1125"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_126",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1126"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_127",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1127"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_128",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1128"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_129",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1129"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_13",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp113"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_130",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1130"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_131",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1131"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_132",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1132"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_133",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1133"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_134",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1134"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_135",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1135"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_136",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1136"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_137",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1137"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_138",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1138"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_139",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1139"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_14",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp114"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_140",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1140"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_141",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1141"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_142",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1142"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_143",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1143"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_144",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1144"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_145",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1145"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_146",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1146"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_147",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1147"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_148",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1148"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_149",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1149"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_15",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp115"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_150",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1150"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_151",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1151"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_152",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1152"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_153",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1153"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_154",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1154"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_155",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1155"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_156",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1156"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_157",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1157"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_158",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1158"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_159",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1159"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_16",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp116"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_160",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1160"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_161",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1161"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_162",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1162"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_163",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1163"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_164",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1164"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_165",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1165"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_166",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1166"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_167",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1167"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_168",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1168"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_169",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1169"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_17",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp117"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_170",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1170"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_171",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1171"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_172",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1172"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_173",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1173"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_174",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1174"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_175",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1175"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_176",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1176"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_177",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1177"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_178",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1178"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_179",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1179"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_18",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp118"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_180",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1180"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_181",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1181"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_182",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1182"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_183",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1183"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_184",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1184"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_185",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1185"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_186",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1186"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_187",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1187"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_188",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1188"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_189",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1189"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_19",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp119"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_190",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1190"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_191",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1191"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_192",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1192"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_193",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1193"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_194",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1194"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_195",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1195"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_196",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1196"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_197",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1197"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_198",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1198"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_199",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1199"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_2",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp12"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_20",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp120"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_200",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1200"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_201",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1201"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_202",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1202"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_203",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1203"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_204",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1204"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_205",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1205"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_206",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1206"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_207",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1207"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_208",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1208"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_209",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1209"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_21",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp121"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_210",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1210"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_211",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1211"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_212",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1212"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_213",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1213"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_214",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1214"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_215",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1215"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_216",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1216"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_217",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1217"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_218",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1218"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_219",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1219"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_22",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp122"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_220",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1220"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_221",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1221"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_222",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1222"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_223",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1223"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_224",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1224"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_225",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1225"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_226",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1226"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_227",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1227"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_228",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1228"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_229",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1229"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_23",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp123"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_230",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1230"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_231",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1231"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_232",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1232"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_233",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1233"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_234",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1234"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_235",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1235"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_236",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1236"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_237",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1237"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_238",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1238"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_239",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1239"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_24",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp124"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_240",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1240"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_241",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1241"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_242",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1242"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_243",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1243"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_244",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1244"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_245",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1245"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_246",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1246"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_247",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1247"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_248",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1248"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_249",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1249"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_25",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp125"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_250",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1250"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_251",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1251"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_252",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1252"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_253",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1253"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_254",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1254"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_255",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1255"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_256",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1256"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_257",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1257"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_258",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1258"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_259",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1259"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_26",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp126"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_260",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1260"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_261",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1261"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_262",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1262"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_263",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1263"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_264",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1264"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_265",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1265"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_266",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1266"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_267",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1267"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_268",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1268"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_269",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1269"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_27",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp127"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_270",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1270"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_271",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1271"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_272",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1272"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_273",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1273"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_274",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1274"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_275",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1275"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_276",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1276"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_277",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1277"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_278",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1278"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_279",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1279"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_28",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp128"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_280",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1280"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_281",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1281"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_282",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1282"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_283",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1283"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_284",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1284"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_285",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1285"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_286",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1286"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_287",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1287"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_288",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1288"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_289",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1289"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_29",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp129"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_290",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1290"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_291",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1291"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_292",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1292"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_293",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1293"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_294",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1294"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_295",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1295"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_296",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1296"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_297",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1297"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_298",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1298"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_299",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1299"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_3",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp13"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_30",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp130"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_300",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1300"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_301",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1301"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_302",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1302"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_303",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1303"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_304",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1304"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_305",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1305"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_306",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1306"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_307",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1307"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_308",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1308"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_309",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1309"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_31",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp131"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_310",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1310"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_311",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1311"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_312",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1312"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_313",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1313"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_314",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1314"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_315",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1315"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_316",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1316"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_317",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1317"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_318",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1318"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_319",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1319"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_32",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp132"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_320",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1320"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_321",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1321"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_322",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1322"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_323",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1323"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_324",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1324"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_325",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1325"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_326",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1326"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_327",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1327"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_328",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1328"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_329",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1329"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_33",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp133"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_330",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1330"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_331",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1331"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_332",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp1332"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_34",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp134"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_35",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp135"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_36",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp136"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_37",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp137"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_38",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp138"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_39",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp139"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_4",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp14"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_40",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp140"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_41",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp141"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_42",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp142"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_43",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp143"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_44",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp144"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_45",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp145"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_46",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp146"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_47",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp147"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_48",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp148"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_49",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp149"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_5",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp15"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_50",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp150"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_51",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp151"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_52",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp152"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_53",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp153"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_54",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp154"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_55",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp155"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_56",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp156"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_57",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp157"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_58",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp158"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_59",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp159"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_6",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp16"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_60",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp160"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_61",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp161"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_62",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp162"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_63",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp163"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_64",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp164"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_65",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp165"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_66",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp166"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_67",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp167"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_68",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp168"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_69",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp169"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_7",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp17"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_70",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp170"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_71",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp171"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_72",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp172"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_73",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp173"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_74",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp174"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_75",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp175"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_76",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp176"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_77",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp177"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_78",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp178"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_79",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp179"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_8",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp18"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_80",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp180"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_81",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp181"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_82",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp182"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_83",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp183"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_84",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp184"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_85",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp185"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_86",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp186"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_87",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp187"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_88",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp188"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_89",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp189"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_9",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp19"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_90",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp190"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_91",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp191"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_92",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp192"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_93",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp193"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_94",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp194"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_95",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp195"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_96",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp196"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_97",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp197"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_98",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp198"
-        },
-        {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_00_living_room_fp1_99",
-          "friendlyName": "netdaemon_net_daemon_apps_apps__00_living_room_fp1",
-          "cSharpName": "NetdaemonNetDaemonAppsApps00LivingRoomFp199"
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_0gbl_9",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__0gbl",
+          "cSharpName": "NetdaemonNetDaemonAppsApps0gbl9"
         },
         {
           "id": "input_boolean.netdaemon_net_daemon_apps_apps_agara_cube_living_room",
@@ -3756,6 +2241,11 @@
           "cSharpName": "ResetAllPowermeters"
         },
         {
+          "id": "script.restart_modem",
+          "friendlyName": "Restart Modem",
+          "cSharpName": "RestartModem"
+        },
+        {
           "id": "script.send_audio_notification",
           "friendlyName": "Send Audio Notification TTS",
           "cSharpName": "SendAudioNotification"
@@ -3769,6 +2259,11 @@
           "id": "script.sendishomephonenotification",
           "friendlyName": "SendIsHomePhoneNotification",
           "cSharpName": "Sendishomephonenotification"
+        },
+        {
+          "id": "script.turn_off_everything",
+          "friendlyName": "Turn Off Everything",
+          "cSharpName": "TurnOffEverything"
         },
         {
           "id": "script.turn_off_proxmox_and_server",
@@ -4130,6 +2625,56 @@
           "cSharpName": "EcoflowTimeUntilNextCharge"
         },
         {
+          "id": "sensor.envy_audio_audio_sessions",
+          "friendlyName": "ENVY _audio Audio Sessions",
+          "cSharpName": "EnvyAudioAudioSessions"
+        },
+        {
+          "id": "sensor.envy_audio_default_device",
+          "friendlyName": "ENVY _audio Default Device",
+          "cSharpName": "EnvyAudioDefaultDevice"
+        },
+        {
+          "id": "sensor.envy_audio_default_device_muted",
+          "friendlyName": "ENVY _audio Default Device Muted",
+          "cSharpName": "EnvyAudioDefaultDeviceMuted"
+        },
+        {
+          "id": "sensor.envy_audio_default_device_state",
+          "friendlyName": "ENVY _audio Default Device State",
+          "cSharpName": "EnvyAudioDefaultDeviceState"
+        },
+        {
+          "id": "sensor.envy_audio_default_device_volume",
+          "friendlyName": "ENVY _audio Default Device Volume",
+          "cSharpName": "EnvyAudioDefaultDeviceVolume"
+        },
+        {
+          "id": "sensor.envy_audio_default_input_device",
+          "friendlyName": "ENVY _audio Default Input Device",
+          "cSharpName": "EnvyAudioDefaultInputDevice"
+        },
+        {
+          "id": "sensor.envy_audio_default_input_device_muted",
+          "friendlyName": "ENVY _audio Default Input Device Muted",
+          "cSharpName": "EnvyAudioDefaultInputDeviceMuted"
+        },
+        {
+          "id": "sensor.envy_audio_default_input_device_state",
+          "friendlyName": "ENVY _audio Default Input Device State",
+          "cSharpName": "EnvyAudioDefaultInputDeviceState"
+        },
+        {
+          "id": "sensor.envy_audio_default_input_device_volume",
+          "friendlyName": "ENVY _audio Default Input Device Volume",
+          "cSharpName": "EnvyAudioDefaultInputDeviceVolume"
+        },
+        {
+          "id": "sensor.envy_audio_peak_volume",
+          "friendlyName": "ENVY _audio Peak Volume",
+          "cSharpName": "EnvyAudioPeakVolume"
+        },
+        {
           "id": "sensor.envy_battery_charge_remaining",
           "friendlyName": "ENVY _battery Charge Remaining",
           "cSharpName": "EnvyBatteryChargeRemaining"
@@ -4418,6 +2963,56 @@
           "id": "sensor.node_pve_uptime",
           "friendlyName": "Node pve Uptime",
           "cSharpName": "NodePveUptime"
+        },
+        {
+          "id": "sensor.pc_audio_audio_sessions",
+          "friendlyName": "PC _audio Audio Sessions",
+          "cSharpName": "PcAudioAudioSessions"
+        },
+        {
+          "id": "sensor.pc_audio_default_device",
+          "friendlyName": "PC _audio Default Device",
+          "cSharpName": "PcAudioDefaultDevice"
+        },
+        {
+          "id": "sensor.pc_audio_default_device_muted",
+          "friendlyName": "PC _audio Default Device Muted",
+          "cSharpName": "PcAudioDefaultDeviceMuted"
+        },
+        {
+          "id": "sensor.pc_audio_default_device_state",
+          "friendlyName": "PC _audio Default Device State",
+          "cSharpName": "PcAudioDefaultDeviceState"
+        },
+        {
+          "id": "sensor.pc_audio_default_device_volume",
+          "friendlyName": "PC _audio Default Device Volume",
+          "cSharpName": "PcAudioDefaultDeviceVolume"
+        },
+        {
+          "id": "sensor.pc_audio_default_input_device",
+          "friendlyName": "PC _audio Default Input Device",
+          "cSharpName": "PcAudioDefaultInputDevice"
+        },
+        {
+          "id": "sensor.pc_audio_default_input_device_muted",
+          "friendlyName": "PC _audio Default Input Device Muted",
+          "cSharpName": "PcAudioDefaultInputDeviceMuted"
+        },
+        {
+          "id": "sensor.pc_audio_default_input_device_state",
+          "friendlyName": "PC _audio Default Input Device State",
+          "cSharpName": "PcAudioDefaultInputDeviceState"
+        },
+        {
+          "id": "sensor.pc_audio_default_input_device_volume",
+          "friendlyName": "PC _audio Default Input Device Volume",
+          "cSharpName": "PcAudioDefaultInputDeviceVolume"
+        },
+        {
+          "id": "sensor.pc_audio_peak_volume",
+          "friendlyName": "PC _audio Peak Volume",
+          "cSharpName": "PcAudioPeakVolume"
         },
         {
           "id": "sensor.pc_display_display_count",
@@ -5114,7 +3709,7 @@
         {
           "jsonName": "duration_com.itunestoppodcastplayer.app",
           "cSharpName": "DurationCom_itunestoppodcastplayer_app",
-          "clrType": "System.Double"
+          "clrType": "System.Object"
         },
         {
           "jsonName": "media_id_com.itunestoppodcastplayer.app",
@@ -5124,7 +3719,7 @@
         {
           "jsonName": "playback_position_com.itunestoppodcastplayer.app",
           "cSharpName": "PlaybackPositionCom_itunestoppodcastplayer_app",
-          "clrType": "System.Double"
+          "clrType": "System.Object"
         },
         {
           "jsonName": "playback_state_com.itunestoppodcastplayer.app",
@@ -5408,6 +4003,11 @@
           "cSharpName": "EcoflowAcInVolts"
         },
         {
+          "id": "sensor.ecoflow_ac_input_daily",
+          "friendlyName": "Ecoflow AC Input Daily",
+          "cSharpName": "EcoflowAcInputDaily"
+        },
+        {
           "id": "sensor.ecoflow_ac_input_sum",
           "friendlyName": "Ecoflow AC Input Sum",
           "cSharpName": "EcoflowAcInputSum"
@@ -5614,12 +4214,12 @@
         },
         {
           "id": "sensor.internetgatewaydevicev2_fritz_box_6660_cable_kib_s_received",
-          "friendlyName": "Download speed",
+          "friendlyName": "InternetGatewayDeviceV2 - FRITZ!Box 6660 Cable Download speed",
           "cSharpName": "Internetgatewaydevicev2FritzBox6660CableKibSReceived"
         },
         {
           "id": "sensor.internetgatewaydevicev2_fritz_box_6660_cable_kib_s_sent",
-          "friendlyName": "Upload speed",
+          "friendlyName": "InternetGatewayDeviceV2 - FRITZ!Box 6660 Cable Upload speed",
           "cSharpName": "Internetgatewaydevicev2FritzBox6660CableKibSSent"
         },
         {
