@@ -9,7 +9,7 @@ namespace NetDaemonApps.apps
         protected readonly SensorEntity? cubeSideEntity;
         protected string? lastKnownSide;
 
-        private readonly string[] events = { "rotate_left", "rotate_right", "tap", "flip90", "flip180",};
+        private readonly string[] events = { "rotate_left", "rotate_right", "tap", "flip90", "flip180", "shake" };
 
 
 
