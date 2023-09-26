@@ -136,7 +136,7 @@ public class EnergyMonitor
         for (int i = startFrom; i < tmp.Count - 1; i++)
         {
 
-            var rangeForPrice = FindRangeForPrice(tmp.ElementAt(i));
+            var rangeForPrice = FindRangeForPrice(Math.Max(0,tmp.ElementAt(i)));
 
             if (!foundPerRange.ContainsKey(rangeForPrice)) foundPerRange.Add(rangeForPrice, 1);
             else foundPerRange[rangeForPrice]++;
