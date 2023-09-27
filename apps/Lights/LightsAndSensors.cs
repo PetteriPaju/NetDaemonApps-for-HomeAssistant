@@ -26,8 +26,10 @@ namespace NetDaemonApps.apps.Lights
             SubcribeLightOn(_0Gbl._myEntities.BinarySensor.HallwaySensorOccupancy, _0Gbl._myEntities.Light.HallwayLight, fluzSensor:luxSensorEntity,maxFlux: defaultFluz);
             SubcribeLightOff(_0Gbl._myEntities.BinarySensor.HallwaySensorOccupancy, _0Gbl._myEntities.Light.HallwayLight, defaulMotionTimeout);
 
- 
-            SubcribeLightOn(_0Gbl._myEntities.BinarySensor.StorageSensorOccupancy, _0Gbl._myEntities.Light.StorageLight2);
+
+            SubcribeLightOn(_0Gbl._myEntities.BinarySensor.StorageSensorOccupancy,  _0Gbl._myEntities.Light.StorageLight2, () => { return _0Gbl._myEntities.BinarySensor.HallwaySensorOccupancy.EntityState.LastChanged > DateTime.Now - TimeSpan.FromMinutes(10); });
+            SubcribeLightOn(_0Gbl._myEntities.BinarySensor.HallwaySensorOccupancy, _0Gbl._myEntities.Light.StorageLight2, _0Gbl._myEntities.BinarySensor.StorageSensorOccupancy.IsOn);
+
             SubcribeLightOff(_0Gbl._myEntities.BinarySensor.StorageSensorOccupancy, _0Gbl._myEntities.Light.StorageLight2, new TimeSpan(0, 0, 0));
 
  
