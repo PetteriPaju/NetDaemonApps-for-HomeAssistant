@@ -11,7 +11,6 @@ using static System.Net.Mime.MediaTypeNames;
 
 namespace NetDaemonApps.apps
 {
-    [NetDaemonApp]
     public class KeepServerPoweredDownWhenAsleep
     {
         private IDisposable? qnapMonitor;

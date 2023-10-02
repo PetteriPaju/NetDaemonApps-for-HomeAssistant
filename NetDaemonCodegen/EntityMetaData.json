@@ -533,6 +533,11 @@
           "cSharpName": "FritzBox6660CableRestart"
         },
         {
+          "id": "button.node_pve_reboot",
+          "friendlyName": "Node pve Reboot",
+          "cSharpName": "NodePveReboot"
+        },
+        {
           "id": "button.node_pve_shutdown",
           "friendlyName": "Node pve Shutdown",
           "cSharpName": "NodePveShutdown"
@@ -751,7 +756,7 @@
         },
         {
           "id": "device_tracker.zatnas",
-          "friendlyName": "PC-24-5E-BE-5F-72-F4",
+          "friendlyName": "Zatnas",
           "cSharpName": "Zatnas"
         }
       ],
@@ -957,14 +962,104 @@
           "cSharpName": "NetdaemonNetDaemonAppsApps01LivingRoomFp114"
         },
         {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_01_living_room_fp1_15",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__01_living_room_fp1",
+          "cSharpName": "NetdaemonNetDaemonAppsApps01LivingRoomFp115"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_01_living_room_fp1_16",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__01_living_room_fp1",
+          "cSharpName": "NetdaemonNetDaemonAppsApps01LivingRoomFp116"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_01_living_room_fp1_17",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__01_living_room_fp1",
+          "cSharpName": "NetdaemonNetDaemonAppsApps01LivingRoomFp117"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_01_living_room_fp1_18",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__01_living_room_fp1",
+          "cSharpName": "NetdaemonNetDaemonAppsApps01LivingRoomFp118"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_01_living_room_fp1_19",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__01_living_room_fp1",
+          "cSharpName": "NetdaemonNetDaemonAppsApps01LivingRoomFp119"
+        },
+        {
           "id": "input_boolean.netdaemon_net_daemon_apps_apps_01_living_room_fp1_2",
           "friendlyName": "netdaemon_net_daemon_apps_apps__01_living_room_fp1",
           "cSharpName": "NetdaemonNetDaemonAppsApps01LivingRoomFp12"
         },
         {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_01_living_room_fp1_20",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__01_living_room_fp1",
+          "cSharpName": "NetdaemonNetDaemonAppsApps01LivingRoomFp120"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_01_living_room_fp1_21",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__01_living_room_fp1",
+          "cSharpName": "NetdaemonNetDaemonAppsApps01LivingRoomFp121"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_01_living_room_fp1_22",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__01_living_room_fp1",
+          "cSharpName": "NetdaemonNetDaemonAppsApps01LivingRoomFp122"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_01_living_room_fp1_23",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__01_living_room_fp1",
+          "cSharpName": "NetdaemonNetDaemonAppsApps01LivingRoomFp123"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_01_living_room_fp1_24",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__01_living_room_fp1",
+          "cSharpName": "NetdaemonNetDaemonAppsApps01LivingRoomFp124"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_01_living_room_fp1_25",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__01_living_room_fp1",
+          "cSharpName": "NetdaemonNetDaemonAppsApps01LivingRoomFp125"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_01_living_room_fp1_26",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__01_living_room_fp1",
+          "cSharpName": "NetdaemonNetDaemonAppsApps01LivingRoomFp126"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_01_living_room_fp1_27",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__01_living_room_fp1",
+          "cSharpName": "NetdaemonNetDaemonAppsApps01LivingRoomFp127"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_01_living_room_fp1_28",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__01_living_room_fp1",
+          "cSharpName": "NetdaemonNetDaemonAppsApps01LivingRoomFp128"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_01_living_room_fp1_29",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__01_living_room_fp1",
+          "cSharpName": "NetdaemonNetDaemonAppsApps01LivingRoomFp129"
+        },
+        {
           "id": "input_boolean.netdaemon_net_daemon_apps_apps_01_living_room_fp1_3",
           "friendlyName": "netdaemon_net_daemon_apps_apps__01_living_room_fp1",
           "cSharpName": "NetdaemonNetDaemonAppsApps01LivingRoomFp13"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_01_living_room_fp1_30",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__01_living_room_fp1",
+          "cSharpName": "NetdaemonNetDaemonAppsApps01LivingRoomFp130"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_01_living_room_fp1_31",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__01_living_room_fp1",
+          "cSharpName": "NetdaemonNetDaemonAppsApps01LivingRoomFp131"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_01_living_room_fp1_32",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__01_living_room_fp1",
+          "cSharpName": "NetdaemonNetDaemonAppsApps01LivingRoomFp132"
         },
         {
           "id": "input_boolean.netdaemon_net_daemon_apps_apps_01_living_room_fp1_4",
@@ -1027,14 +1122,104 @@
           "cSharpName": "NetdaemonNetDaemonAppsApps0gbl14"
         },
         {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_0gbl_15",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__0gbl",
+          "cSharpName": "NetdaemonNetDaemonAppsApps0gbl15"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_0gbl_16",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__0gbl",
+          "cSharpName": "NetdaemonNetDaemonAppsApps0gbl16"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_0gbl_17",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__0gbl",
+          "cSharpName": "NetdaemonNetDaemonAppsApps0gbl17"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_0gbl_18",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__0gbl",
+          "cSharpName": "NetdaemonNetDaemonAppsApps0gbl18"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_0gbl_19",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__0gbl",
+          "cSharpName": "NetdaemonNetDaemonAppsApps0gbl19"
+        },
+        {
           "id": "input_boolean.netdaemon_net_daemon_apps_apps_0gbl_2",
           "friendlyName": "netdaemon_net_daemon_apps_apps__0gbl",
           "cSharpName": "NetdaemonNetDaemonAppsApps0gbl2"
         },
         {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_0gbl_20",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__0gbl",
+          "cSharpName": "NetdaemonNetDaemonAppsApps0gbl20"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_0gbl_21",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__0gbl",
+          "cSharpName": "NetdaemonNetDaemonAppsApps0gbl21"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_0gbl_22",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__0gbl",
+          "cSharpName": "NetdaemonNetDaemonAppsApps0gbl22"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_0gbl_23",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__0gbl",
+          "cSharpName": "NetdaemonNetDaemonAppsApps0gbl23"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_0gbl_24",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__0gbl",
+          "cSharpName": "NetdaemonNetDaemonAppsApps0gbl24"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_0gbl_25",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__0gbl",
+          "cSharpName": "NetdaemonNetDaemonAppsApps0gbl25"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_0gbl_26",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__0gbl",
+          "cSharpName": "NetdaemonNetDaemonAppsApps0gbl26"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_0gbl_27",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__0gbl",
+          "cSharpName": "NetdaemonNetDaemonAppsApps0gbl27"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_0gbl_28",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__0gbl",
+          "cSharpName": "NetdaemonNetDaemonAppsApps0gbl28"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_0gbl_29",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__0gbl",
+          "cSharpName": "NetdaemonNetDaemonAppsApps0gbl29"
+        },
+        {
           "id": "input_boolean.netdaemon_net_daemon_apps_apps_0gbl_3",
           "friendlyName": "netdaemon_net_daemon_apps_apps__0gbl",
           "cSharpName": "NetdaemonNetDaemonAppsApps0gbl3"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_0gbl_30",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__0gbl",
+          "cSharpName": "NetdaemonNetDaemonAppsApps0gbl30"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_0gbl_31",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__0gbl",
+          "cSharpName": "NetdaemonNetDaemonAppsApps0gbl31"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_0gbl_32",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__0gbl",
+          "cSharpName": "NetdaemonNetDaemonAppsApps0gbl32"
         },
         {
           "id": "input_boolean.netdaemon_net_daemon_apps_apps_0gbl_4",
@@ -1070,6 +1255,11 @@
           "id": "input_boolean.netdaemon_net_daemon_apps_apps_agara_cube_living_room",
           "friendlyName": "netdaemon_net_daemon_apps_apps_agara_cube_living_room",
           "cSharpName": "NetdaemonNetDaemonAppsAppsAgaraCubeLivingRoom"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_audio_output_monitor",
+          "friendlyName": "netdaemon_net_daemon_apps_apps_audio_output_monitor",
+          "cSharpName": "NetdaemonNetDaemonAppsAppsAudioOutputMonitor"
         },
         {
           "id": "input_boolean.netdaemon_net_daemon_apps_apps_auto_turn_offs",
@@ -1985,6 +2175,51 @@
           "cSharpName": "KitchenSensorOccupancyTimeout"
         },
         {
+          "id": "number.switchbot_air_purifier_power_delay",
+          "friendlyName": "Switchbot Air Purifier Power Delay",
+          "cSharpName": "SwitchbotAirPurifierPowerDelay"
+        },
+        {
+          "id": "number.switchbot_air_purifier_power_lower",
+          "friendlyName": "Switchbot Air Purifier Power Lower",
+          "cSharpName": "SwitchbotAirPurifierPowerLower"
+        },
+        {
+          "id": "number.switchbot_air_purifier_power_upper",
+          "friendlyName": "Switchbot Air Purifier Power Upper",
+          "cSharpName": "SwitchbotAirPurifierPowerUpper"
+        },
+        {
+          "id": "number.switchbot_ecoflow_delay",
+          "friendlyName": "Switchbot Ecoflow Delay",
+          "cSharpName": "SwitchbotEcoflowDelay"
+        },
+        {
+          "id": "number.switchbot_ecoflow_lower",
+          "friendlyName": "Switchbot Ecoflow Lower",
+          "cSharpName": "SwitchbotEcoflowLower"
+        },
+        {
+          "id": "number.switchbot_ecoflow_upper",
+          "friendlyName": "Switchbot Ecoflow Upper",
+          "cSharpName": "SwitchbotEcoflowUpper"
+        },
+        {
+          "id": "number.switchbot_server_delay",
+          "friendlyName": "Switchbot Server Delay",
+          "cSharpName": "SwitchbotServerDelay"
+        },
+        {
+          "id": "number.switchbot_server_lower",
+          "friendlyName": "Switchbot Server Lower",
+          "cSharpName": "SwitchbotServerLower"
+        },
+        {
+          "id": "number.switchbot_server_upper",
+          "friendlyName": "Switchbot Server Upper",
+          "cSharpName": "SwitchbotServerUpper"
+        },
+        {
           "id": "number.toilet_sensor_occupancy_timeout",
           "friendlyName": "Toilet Sensor Occupancy timeout",
           "cSharpName": "ToiletSensorOccupancyTimeout"
@@ -2488,6 +2723,21 @@
           "cSharpName": "StorageLightPowerOnBehavior"
         },
         {
+          "id": "select.switchbot_air_purifier_power_mode",
+          "friendlyName": "Switchbot Air Purifier Power Mode",
+          "cSharpName": "SwitchbotAirPurifierPowerMode"
+        },
+        {
+          "id": "select.switchbot_ecoflow_mode",
+          "friendlyName": "Switchbot Ecoflow Mode",
+          "cSharpName": "SwitchbotEcoflowMode"
+        },
+        {
+          "id": "select.switchbot_server_mode",
+          "friendlyName": "Switchbot Server Mode",
+          "cSharpName": "SwitchbotServerMode"
+        },
+        {
           "id": "select.tbd_powermeter_indicator_mode",
           "friendlyName": "TBD-PowerMeter Indicator mode",
           "cSharpName": "TbdPowermeterIndicatorMode"
@@ -2618,11 +2868,6 @@
           "id": "sensor.ecoflow_status",
           "friendlyName": "EcoFlow Status",
           "cSharpName": "EcoflowStatus"
-        },
-        {
-          "id": "sensor.ecoflow_time_until_next_charge",
-          "friendlyName": "EcoFlow Time until next charge",
-          "cSharpName": "EcoflowTimeUntilNextCharge"
         },
         {
           "id": "sensor.envy_audio_audio_sessions",
@@ -3008,11 +3253,6 @@
           "id": "sensor.pc_audio_default_input_device_volume",
           "friendlyName": "PC _audio Default Input Device Volume",
           "cSharpName": "PcAudioDefaultInputDeviceVolume"
-        },
-        {
-          "id": "sensor.pc_audio_peak_volume",
-          "friendlyName": "PC _audio Peak Volume",
-          "cSharpName": "PcAudioPeakVolume"
         },
         {
           "id": "sensor.pc_display_display_count",
@@ -4543,6 +4783,21 @@
           "cSharpName": "SurfaceLaptopBatteryChargeRemainingPercentage"
         },
         {
+          "id": "sensor.switchbot_air_purifier_power_battery",
+          "friendlyName": "Switchbot Air Purifier Power Battery",
+          "cSharpName": "SwitchbotAirPurifierPowerBattery"
+        },
+        {
+          "id": "sensor.switchbot_ecoflow_battery",
+          "friendlyName": "Switchbot Ecoflow Battery",
+          "cSharpName": "SwitchbotEcoflowBattery"
+        },
+        {
+          "id": "sensor.switchbot_server_battery",
+          "friendlyName": "Switchbot Server Battery",
+          "cSharpName": "SwitchbotServerBattery"
+        },
+        {
           "id": "sensor.tbd_consumption",
           "friendlyName": "TDB Consumption",
           "cSharpName": "TbdConsumption"
@@ -5275,6 +5530,51 @@
           "cSharpName": "ScheduleE85023"
         },
         {
+          "id": "switch.switchbot_air_purifier_power",
+          "friendlyName": "Switchbot Air Purifier Power",
+          "cSharpName": "SwitchbotAirPurifierPower"
+        },
+        {
+          "id": "switch.switchbot_air_purifier_power_reverse",
+          "friendlyName": "Switchbot Air Purifier Power Reverse",
+          "cSharpName": "SwitchbotAirPurifierPowerReverse"
+        },
+        {
+          "id": "switch.switchbot_air_purifier_power_touch",
+          "friendlyName": "Switchbot Air Purifier Power Touch",
+          "cSharpName": "SwitchbotAirPurifierPowerTouch"
+        },
+        {
+          "id": "switch.switchbot_ecoflow",
+          "friendlyName": "Switchbot Ecoflow",
+          "cSharpName": "SwitchbotEcoflow"
+        },
+        {
+          "id": "switch.switchbot_ecoflow_reverse",
+          "friendlyName": "Switchbot Ecoflow Reverse",
+          "cSharpName": "SwitchbotEcoflowReverse"
+        },
+        {
+          "id": "switch.switchbot_ecoflow_touch",
+          "friendlyName": "Switchbot Ecoflow Touch",
+          "cSharpName": "SwitchbotEcoflowTouch"
+        },
+        {
+          "id": "switch.switchbot_server",
+          "friendlyName": "Switchbot Server",
+          "cSharpName": "SwitchbotServer"
+        },
+        {
+          "id": "switch.switchbot_server_reverse",
+          "friendlyName": "Switchbot Server Reverse",
+          "cSharpName": "SwitchbotServerReverse"
+        },
+        {
+          "id": "switch.switchbot_server_touch",
+          "friendlyName": "Switchbot Server Touch",
+          "cSharpName": "SwitchbotServerTouch"
+        },
+        {
           "id": "switch.tbd_powermeter",
           "friendlyName": "TBD-PowerMeter",
           "cSharpName": "TbdPowermeter"
@@ -5301,7 +5601,7 @@
         },
         {
           "id": "switch.zatnas_internet_access",
-          "friendlyName": "PC-24-5E-BE-5F-72-F4 Internet Access",
+          "friendlyName": "Zatnas Internet Access",
           "cSharpName": "ZatnasInternetAccess"
         }
       ],

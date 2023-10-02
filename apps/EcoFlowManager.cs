@@ -42,13 +42,17 @@ namespace NetDaemonApps.apps
          
             });
 
-            _0Gbl._myEntities.Sensor.EcoflowBatteryLevel.StateChanges().Where(x => x.New?.State == 100 && _0Gbl._myEntities.Switch.ScheduleE85023.IsOff()).Subscribe(x => {
+            _0Gbl._myEntities.Sensor.EcoflowBatteryLevel.StateChanges().Where(x => x.New?.State == 100 && _0Gbl._myEntities.Switch.Schedule9ee8ea.IsOff()).Subscribe(x => {
 
                 _0Gbl._myEntities.Switch.EcoflowPlug.TurnOff();
                // DetermineNextChargeTime();
             });
+            _0Gbl._myEntities.Switch.EcoflowPlug.StateChanges().WhenStateIsFor(x => x.IsOff() && _0Gbl._myEntities.Sensor.EcoflowAcOutPower.State == 0, TimeSpan.FromSeconds(6),_0Gbl._myScheduler).Subscribe(x =>
+            {
+                _0Gbl._myEntities.Switch.SwitchbotEcoflow.Toggle();
+            });
 
-            _0Gbl._myEntities.Sensor.EcoflowBatteryLevel.StateChanges().Where(x => x.New?.State < 5 && x.Old?.State >= 5).Subscribe(x => {
+                _0Gbl._myEntities.Sensor.EcoflowBatteryLevel.StateChanges().Where(x => x.New?.State < 5 && x.Old?.State >= 5).Subscribe(x => {
 
                 TTS.Speak("Warning Only 5% of Power remaining", TTS.TTSPriority.PlayInGuestMode);
             });

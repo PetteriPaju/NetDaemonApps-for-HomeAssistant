@@ -27,7 +27,7 @@ public class EnergyMonitor
     private bool loPeakAlertGiven = false;
     private bool solarChargingNotificationGiven = false;
     private bool solarChargingOffNotificationGiven = false;
-
+    private bool apOnToday = false;
     private readonly List<double>? electricityRangeKeys;
 
     private static EnergyMonitor? _instance;
@@ -43,18 +43,27 @@ public class EnergyMonitor
         infoForCurrentHour = new ElectricityPriceInfo(DateTime.Now, _0Gbl._myEntities?.Sensor?.NordpoolKwhFiEur31001, electricityRangeKeys);
 
         _0Gbl.HourlyResetFunction += () => UpdatePriceHourly(_0Gbl._myEntities?.Sensor.TotalHourlyEnergyConsumptions.State ?? 0);
-
+        _0Gbl.HourlyResetFunction += () => AirPurifierOn();
         _0Gbl._myScheduler.ScheduleCron("50 * * * *", () => EnergiPriceChengeAlert());
 
         solarChargingNotificationGiven = _0Gbl._myEntities?.Sensor?.EcoflowSolarInPower.State >= 0;
         _0Gbl._myEntities?.Sensor.EcoflowSolarInPower.AsNumeric().StateAllChanges().Where(x => x?.New?.State > 0 && !solarChargingNotificationGiven).Subscribe(x => { TTS.Instance.SpeakTTS("Solar Charging On",TTS.TTSPriority.PlayInGuestMode); solarChargingNotificationGiven = true; });
-       // _00_Globals._myEntities?.Sensor.EcoflowSolarInPower.AsNumeric().StateAllChanges().Where(x => (x?.New?.State <= 0 && !solarChargingOffNotificationGiven && _00_Globals._myEntities.Sun.Sun.Attributes.Elevation<5)).Subscribe(x => { TTS.Instance.SpeakTTS("Solar Charging Ended", TTS.TTSPriority.PlayInGuestMode); solarChargingNotificationGiven = true; });
+        _0Gbl._myEntities?.Sun.Sun.StateAllChanges().Where(x => (x?.New?.Attributes.Elevation <= 5 && !solarChargingOffNotificationGiven && _0Gbl._myEntities?.Sensor.EcoflowSolarInPower.AsNumeric().State==0)).Subscribe(x => { TTS.Instance.SpeakTTS("Solar Charging Ended", TTS.TTSPriority.PlayInGuestMode); solarChargingOffNotificationGiven = true; });
 
         _0Gbl._myEntities?.Sensor.NordpoolKwhFiEur31001.StateAllChanges().Where(x => x?.New?.Attributes?.TomorrowValid == true && x.Old?.Attributes?.TomorrowValid == false).Subscribe(_ => { ReadOutEnergyUpdate(); });
         _0Gbl.DailyResetFunction += OnDayChanged;
-  
+
+        
+
+
 
     }
+
+    private void AirPurifierOn()
+    {
+        if (infoForCurrentHour.peak == -1 && !apOnToday) { _0Gbl._myEntities.Switch.SwitchbotAirPurifierPower.Toggle(); apOnToday = true; }
+    }
+
 
     private void DailyReset()
     {
@@ -71,8 +80,10 @@ public class EnergyMonitor
         public double max;
         public double min;
         public int majorityRange;
+        public int averageRange;
         public bool isAllSameRange;
         public int subZeroCount;
+
     }
 
 
@@ -89,7 +100,7 @@ public class EnergyMonitor
 
             EnergyForecastInfo energyForecastInfo = GetEnergyForecast(list);
 
-            message += "Tomorrows Prices will be" + (energyForecastInfo.isAllSameRange ? " all " : " mostly ") + "in " + GetNameOfRange(energyForecastInfo.majorityRange);
+            message += "Tomorrows Prices will be" + (energyForecastInfo.isAllSameRange ? " all " : " mostly ") + "in " +  GetNameOfRange(energyForecastInfo.averageRange);
             message += " and  " + PercentageDifference(_0Gbl._myEntities.Sensor?.NordpoolKwhFiEur31001?.EntityState?.Attributes?.Average ?? 0, energyForecastInfo.avarage) + "% " + (_0Gbl._myEntities.Sensor?.NordpoolKwhFiEur31001?.EntityState?.Attributes?.Average > energyForecastInfo.avarage ? "lower" : "higher") + " than today.";
 
             if (energyForecastInfo.subZeroCount > 0) message += " There will also be " + energyForecastInfo.subZeroCount + " sub zero hour" + (energyForecastInfo.subZeroCount > 1 ? "s." : ".");
@@ -149,6 +160,7 @@ public class EnergyMonitor
         energyForecastInfo.avarage = avg;
         energyForecastInfo.max = max;
         energyForecastInfo.min = min;
+        energyForecastInfo.averageRange = FindRangeForPrice(Math.Max(0, avg));
         energyForecastInfo.majorityRange = foundPerRange.MaxBy(x => x.Value).Key;
         energyForecastInfo.isAllSameRange = foundPerRange.Count == 1;
         energyForecastInfo.subZeroCount = subZeroCount;
@@ -281,6 +293,7 @@ public class EnergyMonitor
             {
                 TTSMessage += "be the lowest price of the day";
             loPeakAlertGiven = true;
+
             }
 
         
@@ -344,7 +357,7 @@ public class EnergyMonitor
 
         private int FindRangeForPrice(double? price, List<double>? electricityRangeKeys)
         {
-            var range = electricityRangeKeys?.FindIndex(x => x >= price);
+            var range = electricityRangeKeys?.FindIndex(x => x >= Math.Max(0,price ?? 0));
             range = range == -1 ? electricityRangeKeys.Count : range;
 
             return (int)range - 1;
@@ -442,6 +455,7 @@ public class EnergyMonitor
         _0Gbl._myEntities.InputDatetime.Lastknowndate.SetDatetime(date: DateTime.Now.Date.ToString("yyyy-MM-dd"));
         solarChargingNotificationGiven = false;
         solarChargingOffNotificationGiven = false;
+        apOnToday = false;
         _0Gbl._myEntities.InputNumber.DailyEnergySaveHelper.SetValue(0);
         _0Gbl._myServices.Script.ResetAllPowermeters();
     }
