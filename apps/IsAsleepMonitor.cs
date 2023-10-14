@@ -73,7 +73,7 @@ namespace NetDaemonApps.apps
                 if (alarmTimer != null)
                 {
                     alarmTimer.Dispose();
-
+                   
                     EnergyMonitor.ReadOutGoodMorning();
                 }
                 if (_0Gbl._myEntities.InputBoolean.GuestMode.IsOn()) return;
@@ -103,7 +103,7 @@ namespace NetDaemonApps.apps
             }
             else
             {
-                sleepTimer = TimeSpan.FromHours(8) + TimeSpan.FromMinutes(15);
+                sleepTimer = TimeSpan.FromHours(9);
 
             }
         }

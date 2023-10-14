@@ -35,6 +35,7 @@ namespace NetDaemonApps.apps
             TriggerManager = _triggerManager;
             _0Gbl._myScheduler.ScheduleCron("59 * * * *", hourlyResetFunction);
             _0Gbl._myScheduler.ScheduleCron("0 0 * * *", dailyResetFunction);
+            DailyResetFunction += () => { _myEntities?.InputDatetime.Lastknowndate.SetDatetime(date:DateTime.Now.Date.ToString("yyyy-MM-dd"));};
             Task.Run(OnLateStart);
          
         }
@@ -51,14 +52,20 @@ namespace NetDaemonApps.apps
         {
             if (checkDateChanged())
             {
-                HourlyResetFunction?.Invoke();
+                DailyResetFunction?.Invoke();
             }
         }
 
         private void hourlyResetFunction()
         {
-            HourlyResetFunction?.Invoke();
+
+            Task.Run(async () => {
+                await Task.Delay(TimeSpan.FromSeconds(55));
+                HourlyResetFunction?.Invoke();
+            });
+           
         }
+      
         private void dailyResetFunction()
         {
             DailyResetFunction?.Invoke();

@@ -4,45 +4,57 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reactive.Concurrency;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace NetDaemonApps.apps
 {
+    
     public class FridgeAutomation
     {
-        private readonly TimeSpan maxTimeOff = TimeSpan.FromHours(2);
-        private readonly TimeSpan thresholdTime = TimeSpan.FromMinutes(15);
-        private readonly double[] turnOffTemperatures = new double[] { 4, 6 };
-        private readonly double[] turnOnTemperatures = new double[] { 7,9 };
-        private readonly double maxTemperature = 10;
 
-        private bool turnOffDuringMaxHours = true;
-        private bool keepOnDuringMinHours = true;
-
-        private InputBooleanEntity isAsleepEntity;
-
-        private NumericSensorEntity Nordpool;
-
+        private int knownFridgeIndex;
+        private int desiredFridgeIndex;
+        private int pressTime = 5000;
+        private bool switchingmode = false;
+ 
 
         public FridgeAutomation()
         {
+            knownFridgeIndex = int.Parse(_0Gbl._myEntities.InputSelect.FridgeCoolingLevel.State);
 
-            Nordpool = _0Gbl._myEntities.Sensor.NordpoolKwhFiEur31001;
+            _0Gbl._myEntities.Switch.SwitchbotAirPurifierPower.StateChanges().Subscribe(x => {
 
-           //Nordpool.EntityState.Attributes.
+                _0Gbl._myEntities.InputSelect.FridgeCoolingLevel.SelectNext(true);
+                knownFridgeIndex = knownFridgeIndex + 1 == 7 ? 1 : knownFridgeIndex + 1;
+                if (knownFridgeIndex != desiredFridgeIndex)
+                {
+                    switchingmode = true;
+                    _0Gbl._myEntities.Switch.SwitchbotAirPurifierPower.Toggle();
+                }
+                else switchingmode = false;
 
+            });
 
+            _0Gbl._myEntities.InputSelect.FridgeCoolingLevel.StateChanges().Subscribe(x => {
+
+                if (switchingmode) return;
+
+                desiredFridgeIndex = int.Parse(_0Gbl._myEntities.InputSelect.FridgeCoolingLevel.State);
+                if (knownFridgeIndex != desiredFridgeIndex)
+                {
+                    switchingmode = true;
+                    _0Gbl._myEntities.Switch.SwitchbotAirPurifierPower.Toggle();
+                }
+                else switchingmode = false;
+            } );
+
+            _0Gbl._myEntities.InputSelect.FridgeCoolingLevel.SelectOption("6");
+
+            
         }
-
-
-            private int getCurrentOffTemp()
-        {
-            return isAsleepEntity == null ? 0 : isAsleepEntity.IsOff() ? 0 : 1;
-        }
-        
-
-
 
     }
 }
