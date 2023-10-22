@@ -21,10 +21,8 @@ namespace NetDaemonApps.apps.Hue_Switches
 
         protected override void OnOnPress()
         {
-
                 _0Gbl._myEntities.Light.BedLight.Toggle();
        
-           
         }
 
         //Fan
@@ -35,8 +33,9 @@ namespace NetDaemonApps.apps.Hue_Switches
 
         protected override void OnOffHoldRelease()
         {
-            _0Gbl._myEntities.Switch.BedMultiPlugL3.Toggle();
+            _0Gbl._myEntities.Script.ReadoutTime.TurnOn();
         }
+
 
 
 

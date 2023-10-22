@@ -73,5 +73,11 @@ namespace NetDaemonApps.apps.Hue_Switches
             this.OnDownPress();
         }
 
+        protected override void OnOffPressRelease()
+        {
+            base.OnOffPressRelease();
+            _0Gbl._myEntities.Switch.BedMultiPlugL3.Toggle();
+        }
+
     }
 }
