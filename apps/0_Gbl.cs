@@ -74,7 +74,7 @@ namespace NetDaemonApps.apps
         bool checkDateChanged()
         {
             DateTime dateTimeVariable = DateTime.ParseExact(_myEntities?.InputDatetime.Lastknowndate.State ?? "", "yyyy-MM-dd", System.Globalization.CultureInfo.InvariantCulture);
-            return dateTimeVariable != DateTime.Now.Date;
+            return dateTimeVariable.Date != DateTime.Now.Date;
         }
     }
 }
