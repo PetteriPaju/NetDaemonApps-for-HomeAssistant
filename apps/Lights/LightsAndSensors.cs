@@ -23,7 +23,7 @@ namespace NetDaemonApps.apps.Lights
         public LightsAndSensors()
         {
             luxSensorEntity = _0Gbl._myEntities.Sensor.StorageSensorAqaraIlluminanceLux;
-            SubcribeLightOn(_0Gbl._myEntities.BinarySensor.HallwaySensorOccupancy, _0Gbl._myEntities.Light.HallwayLight, fluzSensor:luxSensorEntity,maxFlux: defaultFluz);
+            SubcribeLightOn(_0Gbl._myEntities.BinarySensor.HallwaySensorOccupancy, _0Gbl._myEntities.Light.HallwayLight);
             SubcribeLightOff(_0Gbl._myEntities.BinarySensor.HallwaySensorOccupancy, _0Gbl._myEntities.Light.HallwayLight, defaulMotionTimeout);
 
 
@@ -34,7 +34,7 @@ namespace NetDaemonApps.apps.Lights
 
  
             _0Gbl._myEntities.Sensor.Livingroomfp1PresenceEvent.StateChanges().Where(x => x.New?.State == "approach" ).Subscribe(_ => {
-                _0Gbl._myEntities.Light.KitchenLight2.TurnOnWithSensor(luxSensorEntity,defaultFluz);
+                _0Gbl._myEntities.Light.KitchenLight2.TurnOnLight();
             });
 
 
@@ -59,7 +59,7 @@ namespace NetDaemonApps.apps.Lights
            */
 
 
-            _0Gbl._myEntities.BinarySensor.KitchenSensorOccupancy.StateChanges().Where(x => x?.New?.State == "on" && _0Gbl._myEntities.Light.AllLights.IsOff() && _0Gbl._myEntities.Light.AllLights?.EntityState?.LastChanged< DateTime.Now + TimeSpan.FromSeconds(30) && _0Gbl._myEntities.InputBoolean.GuestMode.IsOff() && luxSensorEntity.State < defaultFluz).SubscribeAsync(async s => {
+            _0Gbl._myEntities.BinarySensor.KitchenSensorOccupancy.StateChanges().Where(x => x?.New?.State == "on" && _0Gbl._myEntities.Light.AllLights.IsOff() && _0Gbl._myEntities.Light.AllLights?.EntityState?.LastChanged< DateTime.Now + TimeSpan.FromSeconds(30) && _0Gbl._myEntities.InputBoolean.GuestMode.IsOff()).SubscribeAsync(async s => {
 
                 _0Gbl._myEntities.Light.HallwayLight.TurnOn();
 

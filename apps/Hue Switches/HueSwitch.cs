@@ -114,40 +114,49 @@ namespace NetDaemonApps.apps.Hue_Switches
             return null;
         }
 
+        protected virtual void OnAnyPress() { OnAny();  }
+        protected virtual void OnAnyPressRelease() { OnAny(); }
+        protected virtual void OnAnyHold() { OnAny(); }
+        protected virtual void OnAnyHoldRelease() { OnAny(); }
+
+        protected virtual void OnAny()
+        {
+
+        }
         /// <summary> Power-button Press Down</summary>
-        protected virtual void OnOnPress() { }
+        protected virtual void OnOnPress() { OnAnyPress(); }
         /// <summary> Power-button Press Release</summary>
-        protected virtual void OnOnPressRelease() { }
+        protected virtual void OnOnPressRelease() { OnAnyPressRelease(); }
         /// <summary> Power-button Hold</summary>
-        protected virtual void OnOnHold() { }
+        protected virtual void OnOnHold() { OnAnyHold(); }
         /// <summary> Power-button Hold release</summary>
-        protected virtual void OnOnHoldRelease() { }
+        protected virtual void OnOnHoldRelease() { OnAnyHoldRelease(); }
 
         /// <summary> Brighness Up-button Press Down</summary>
-        protected virtual void OnUpPress() { }
+        protected virtual void OnUpPress() { OnAnyPress(); }
         /// <summary> Brighness Up-button Press Release</summary>
-        protected virtual void OnUpPressRelease() { }
+        protected virtual void OnUpPressRelease() { OnAnyPressRelease(); }
         /// <summary> Brighness Up-button Hold</summary>
-        protected virtual void OnUpHold() { }
+        protected virtual void OnUpHold() { OnAnyHold(); }
         /// <summary> Brighness Up-button Hold release</summary>
-        protected virtual void OnUpHoldRelease() { }
+        protected virtual void OnUpHoldRelease() { OnAnyHoldRelease(); }
 
         /// <summary> Brighness Down-button Press Down</summary>
-        protected virtual void OnDownPress() { }
+        protected virtual void OnDownPress() { OnAnyPress(); }
         /// <summary> Brighness Down-button Press Release</summary>
-        protected virtual void OnDownPressRelease() { }
+        protected virtual void OnDownPressRelease() { OnAnyPressRelease(); }
         /// <summary> Brighness Down-button</summary>
-        protected virtual void OnDownHold() { }
-        protected virtual void OnDownHoldRelease() { }
+        protected virtual void OnDownHold() { OnAnyHold(); }
+        protected virtual void OnDownHoldRelease() { OnAnyHoldRelease(); }
 
         /// <summary> Hue-button Press Down</summary>
-        protected virtual void OnOffPress(){}
+        protected virtual void OnOffPress(){ OnAnyPress(); }
         /// <summary> Hue-button Press Release</summary>
-        protected virtual void OnOffPressRelease(){}
+        protected virtual void OnOffPressRelease() { OnAnyPressRelease(); }
         /// <summary> Hue-button Hold</summary>
-        protected virtual void OnOffHold(){}
+        protected virtual void OnOffHold(){ OnAnyHold(); }
         /// <summary> Hue-button Hold release</summary>
-        protected virtual void OnOffHoldRelease(){}
+        protected virtual void OnOffHoldRelease(){ OnAnyHoldRelease(); }
 
 
 

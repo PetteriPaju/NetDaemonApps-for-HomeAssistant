@@ -85,7 +85,7 @@ namespace NetDaemonApps.apps.Lights
             _0Gbl._myEntities.Light.HallwayLight.TurnOffLight();
             foreach (LightEntity light in targetLights)
             {
-                if (light != null && light.IsOn())
+                if (light != null && light.IsOn() && light != _0Gbl._myEntities.Light.PcMultipowermeterL2)
                 {
                     lightsThatWereOn.Add(light);
                     light.TurnOffLight();
