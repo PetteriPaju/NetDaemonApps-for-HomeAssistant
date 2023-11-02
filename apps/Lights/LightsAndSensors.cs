@@ -28,7 +28,7 @@ namespace NetDaemonApps.apps.Lights
 
             _0Gbl._myEntities.BinarySensor.StorageSensorOccupancy.StateChanges().Where(x => x.New.IsOff()).Subscribe(_ => {
 
-                lastStorageOff = DateTime.Now();
+                lastStorageOff = DateTime.Now;
 
             });
             SubcribeLightOn(_0Gbl._myEntities.BinarySensor.StorageSensorOccupancy,  _0Gbl._myEntities.Light.StorageLight2, () => { return lastStorageOff > DateTime.Now - TimeSpan.FromSeconds(10); });
