@@ -22,7 +22,8 @@ namespace NetDaemonApps.apps
             _0Gbl.DailyResetFunction += () =>
             {
                 lastKnownThreshold = 0;
-                _0Gbl._myEntities.InputNumber.LastKnowStepThreshold.SetValue(0);
+                _0Gbl._myEntities.InputNumber.LastKnowStepThreshold.SetValue(0); 
+                _0Gbl._myEntities.InputNumber.Dailysteps.SetValue(0);
             };
 
 

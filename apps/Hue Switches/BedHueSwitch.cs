@@ -19,10 +19,18 @@ namespace NetDaemonApps.apps.Hue_Switches
             return entities.Sensor.HueSwitchBedAction;
         }
 
+
         protected override void OnOnPress()
         {
+            base.OnOnPress();
                 _0Gbl._myEntities.Light.BedLight.Toggle();
        
+        }
+
+        protected override void OnAnyPress()
+        {
+            base.OnAnyPress();
+            _0Gbl._myEntities.Switch.TvPowerMeter.TurnOn();
         }
 
         //Fan

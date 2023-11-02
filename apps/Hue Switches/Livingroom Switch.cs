@@ -45,6 +45,12 @@ namespace NetDaemonApps.apps.Hue_Switches
             }
         }
 
+        protected override void OnAnyPress()
+        {
+            base.OnAnyPress();
+            _0Gbl._myEntities.Switch.TvPowerMeter.TurnOn();
+        }
+
         protected override void OnUpHold()
         {
             base.OnUpHold();
