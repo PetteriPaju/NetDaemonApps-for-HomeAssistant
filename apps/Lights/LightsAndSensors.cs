@@ -19,15 +19,20 @@ namespace NetDaemonApps.apps.Lights
         private readonly TimeSpan defaulMotionTimeout = new TimeSpan(0, 0, 10);
         public static NumericSensorEntity luxSensorEntity;
         private readonly double defaultFluz = 10;
-
+        DateTime lastStorageOff = DateTime.MinValue;
         public LightsAndSensors()
         {
             luxSensorEntity = _0Gbl._myEntities.Sensor.StorageSensorAqaraIlluminanceLux;
             SubcribeLightOn(_0Gbl._myEntities.BinarySensor.HallwaySensorOccupancy, _0Gbl._myEntities.Light.HallwayLight, fluzSensor:luxSensorEntity,maxFlux: defaultFluz);
             SubcribeLightOff(_0Gbl._myEntities.BinarySensor.HallwaySensorOccupancy, _0Gbl._myEntities.Light.HallwayLight, defaulMotionTimeout);
 
+            _0Gbl._myEntities.BinarySensor.StorageSensorOccupancy.StateChanges().Where(x => x.New.IsOff()).Subscribe(_ => {
 
-            SubcribeLightOn(_0Gbl._myEntities.BinarySensor.StorageSensorOccupancy,  _0Gbl._myEntities.Light.StorageLight2, () => { return _0Gbl._myEntities.BinarySensor.HallwaySensorOccupancy.EntityState.LastChanged > DateTime.Now - TimeSpan.FromMinutes(10); });
+                lastStorageOff = DateTime.Now();
+
+            });
+            SubcribeLightOn(_0Gbl._myEntities.BinarySensor.StorageSensorOccupancy,  _0Gbl._myEntities.Light.StorageLight2, () => { return lastStorageOff > DateTime.Now - TimeSpan.FromSeconds(10); });
+
             SubcribeLightOn(_0Gbl._myEntities.BinarySensor.HallwaySensorOccupancy, _0Gbl._myEntities.Light.StorageLight2, _0Gbl._myEntities.BinarySensor.StorageSensorOccupancy.IsOn);
 
             SubcribeLightOff(_0Gbl._myEntities.BinarySensor.StorageSensorOccupancy, _0Gbl._myEntities.Light.StorageLight2, new TimeSpan(0, 0, 0));
