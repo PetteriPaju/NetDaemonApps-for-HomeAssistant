@@ -34,7 +34,7 @@ namespace NetDaemonApps.apps
         public EcoFlowManager()
         {
 
-            _0Gbl._myEntities.Sensor.EcoflowBatteryLevel.StateChanges().Where(x => x.New?.State <= 2 && x.New?.State.HasValue ?? true  && _0Gbl._myEntities.Sensor.EcoflowAcOutPower.State > 0 && _0Gbl._myEntities.InputBoolean.EcoflowAllow0Battery.IsOff()).Subscribe(x => {
+            _0Gbl._myEntities.Sensor.EcoflowBatteryLevel.StateChanges().Where(x => x.New?.State <= 2 && (x.New?.State.HasValue ?? true)  && _0Gbl._myEntities.Sensor.EcoflowAcOutPower.State > 0 && _0Gbl._myEntities.InputBoolean.EcoflowAllow0Battery.IsOff()).Subscribe(x => {
 
                 _0Gbl._myEntities.Switch.EcoflowPlug.TurnOn();
 
