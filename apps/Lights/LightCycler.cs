@@ -82,7 +82,7 @@ namespace NetDaemonApps.apps.Lights
             else
             {
                 var nLight = GetNext();
-                if (nLight != null) nLight.TurnOn();
+                if (nLight != null && nLight != _currentLight) nLight.TurnOn();
                 else _currentLight?.TurnOff();
             }
 
@@ -116,17 +116,89 @@ namespace NetDaemonApps.apps.Lights
 
         private LightEntity GetNext()
         {
-            int currentIndex = currentLightIndex();
-            Debug.WriteLine(currentIndex);
-            Debug.WriteLine(lightEntities.Count);
-            LightEntity nLight = currentIndex >= lightEntities.Count-1 ? null : lightEntities[currentIndex+1];
+
+            LightEntity nLight = null;
+            int startIndex = currentLightIndex();
+            int nextIndex = startIndex + 1 < lightEntities.Count ? startIndex + 1 : -1;
+            if (nextIndex == -1) return null;
+
+            while(nLight == null) {
+                LightEntity tLight =  lightEntities[nextIndex];
+                if(tLight?.State != "unavailable")
+                {
+                    nLight = tLight;
+
+                    Console.WriteLine(nextIndex);
+                    break;
+                }
+                else
+                {
+                    nextIndex = nextIndex + 1 < lightEntities.Count ? nextIndex + 1 : -1;
+                    if (nextIndex == -1) break;
+
+                }
+
+            }
+         
             return nLight;
         }
+        private LightEntity GetLoop()
+        {
 
+            LightEntity nLight = null;
+            int startIndex = currentLightIndex();
+            int nextIndex = startIndex + 1 < lightEntities.Count ? startIndex + 1 : 0;
+            int maxloop = lightEntities.Count * 2;
+            int currentloop = 0;
+
+            while (nLight == null && nextIndex != startIndex && currentloop < maxloop)
+            {
+                LightEntity tLight = lightEntities[nextIndex];
+                if (tLight?.State != "unavailable")
+                {
+                    nLight = tLight;
+
+                    Console.WriteLine(nextIndex);
+                    break;
+                }
+                else
+                {
+                    nextIndex = nextIndex + 1 < lightEntities.Count ? nextIndex + 1 : 0;
+
+                }
+                currentloop++;
+
+            }
+
+            return nLight;
+        }
         private LightEntity GetPrevious()
         {
-            int currentIndex = currentLightIndex();
-            LightEntity nLight = currentIndex <= 0 ? lightEntities.Last() : lightEntities[currentIndex - 1];
+
+            LightEntity nLight = null;
+            int startIndex = currentLightIndex();
+            int nextIndex = startIndex - 1 < 0 ? -1 : startIndex - 1;
+            if (nextIndex == -1) return null;
+
+            while (nLight == null)
+            {
+                LightEntity tLight = lightEntities[nextIndex];
+                if (tLight?.State != "unavailable")
+                {
+                    nLight = tLight;
+
+                    Console.WriteLine(nextIndex);
+                    break;
+                }
+                else
+                {
+                    nextIndex = nextIndex - 1 < 0 ? -1 : nextIndex -1;
+                    if (nextIndex == -1) break;
+
+                }
+
+            }
+
             return nLight;
         }
 
