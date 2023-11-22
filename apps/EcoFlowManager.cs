@@ -41,12 +41,6 @@ namespace NetDaemonApps.apps
                 TTS.Speak("Battery Recharing", TTS.TTSPriority.PlayInGuestMode);
          
             });
-
-            _0Gbl._myEntities.Sensor.EcoflowBatteryLevel.StateChanges().Where(x => x.New?.State == 100 && _0Gbl._myEntities.Switch.Schedule9ee8ea.IsOff()).Subscribe(x => {
-
-                _0Gbl._myEntities.Switch.EcoflowPlug.TurnOff();
-               // DetermineNextChargeTime();
-            });
             _0Gbl._myEntities.Switch.EcoflowPlug.StateChanges().WhenStateIsFor(x => x.IsOff() && _0Gbl._myEntities.Sensor.EcoflowAcOutPower.State == 0, TimeSpan.FromSeconds(6),_0Gbl._myScheduler).Subscribe(x =>
             {
                 _0Gbl._myEntities.Switch.SwitchbotEcoflow.Toggle();

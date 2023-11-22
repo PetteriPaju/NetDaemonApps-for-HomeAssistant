@@ -6,6 +6,7 @@ namespace NetDaemonApps.apps.Hue_Switches
     public abstract class HueSwitch
     {
         protected SensorEntity ?hueSwitchEntity;
+
         private readonly string[] events = { "on_press", "on_press_release", "on_hold", "on_hold_release", "up_press", "up_press_release", "up_hold", "up_hold_release", "down_press", "down_press_release", "down_hold", "down_hold_release", "off_press", "off_press_release", "off_hold", "off_hold_release" };
         public HueSwitch() {
             hueSwitchEntity = ObtainSwitch(_0Gbl._myEntities);

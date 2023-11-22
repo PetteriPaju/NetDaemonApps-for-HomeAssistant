@@ -37,9 +37,9 @@ namespace NetDaemonApps.apps.Hue_Switches
      
                 if (lightCycler.GetCurrentLight() == null) return;
 
-            if (lightCycler.GetCurrentLight() != null && lightCycler.GetCurrentLight()?.Attributes?.SupportedFeatures != 0 && lightCycler.GetCurrentLight()?.Attributes?.Brightness < 100)
+            if (lightCycler.GetCurrentLight() != null && lightCycler.GetCurrentLight()?.Attributes?.SupportedFeatures != 0 && ((int)lightCycler.GetCurrentLight()?.Attributes?.Brightness) < 100)
             {
-                long minBrightnessFix = (long)MathF.Min((int)(lightCycler.GetCurrentLight().Attributes.Brightness + lightBrigthnessStep), (int)100);
+                long minBrightnessFix = (long)MathF.Min((int)(((int)lightCycler.GetCurrentLight().Attributes.Brightness) + lightBrigthnessStep), (int)100);
 
                 lightCycler.GetCurrentLight().TurnOn(brightness: minBrightnessFix);
             }
@@ -64,9 +64,9 @@ namespace NetDaemonApps.apps.Hue_Switches
 
              if (lightCycler.GetCurrentLight() == null) return;
 
-            if (lightCycler.GetCurrentLight() != null && lightCycler.GetCurrentLight()?.Attributes?.SupportedFeatures != 0 && lightCycler.GetCurrentLight()?.Attributes?.Brightness > miniumBrightness)
+            if (lightCycler.GetCurrentLight() != null && lightCycler.GetCurrentLight()?.Attributes?.SupportedFeatures != 0 && ((int)lightCycler.GetCurrentLight()?.Attributes?.Brightness) > miniumBrightness)
             {
-                long minBrightnessFix = (long)MathF.Max((int)(lightCycler.GetCurrentLight().Attributes.Brightness - lightBrigthnessStep), (int)miniumBrightness);
+                long minBrightnessFix = (long)MathF.Max((int)(((int)lightCycler.GetCurrentLight().Attributes.Brightness) - lightBrigthnessStep), (int)miniumBrightness);
 
                 lightCycler.GetCurrentLight().TurnOn(brightness: minBrightnessFix);
             }

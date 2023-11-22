@@ -65,9 +65,9 @@ namespace NetDaemonApps.apps
         {
             base.OnRotateLeft();
             //Check if any light is on and that it supports brightness
-            if (currentlyActiveLight != null && currentlyActiveLight?.Attributes?.SupportedFeatures != 0 && currentlyActiveLight?.Attributes?.Brightness > miniumBrightness)
+            if (currentlyActiveLight != null && currentlyActiveLight?.Attributes?.SupportedFeatures != 0 && (int)currentlyActiveLight?.Attributes?.Brightness > miniumBrightness)
             {
-                long minBrightnessFix = (long)MathF.Max((int)(currentlyActiveLight.Attributes.Brightness - lightBrigthnessStep), (int)miniumBrightness);
+                long minBrightnessFix = (long)MathF.Max((int)((int)currentlyActiveLight.Attributes.Brightness - lightBrigthnessStep), (int)miniumBrightness);
 
                 currentlyActiveLight.TurnOn(brightness: minBrightnessFix);
             }
@@ -76,9 +76,9 @@ namespace NetDaemonApps.apps
         protected override void OnRotateRight()
         {
             base.OnRotateRight();
-            if (currentlyActiveLight != null && currentlyActiveLight?.Attributes?.SupportedFeatures != 0 && currentlyActiveLight?.Attributes?.Brightness < 255)
+            if (currentlyActiveLight != null && currentlyActiveLight?.Attributes?.SupportedFeatures != 0 && (int)currentlyActiveLight?.Attributes?.Brightness < 255)
             {
-                currentlyActiveLight.TurnOn(brightness: (long)(currentlyActiveLight.Attributes.Brightness + lightBrigthnessStep));
+                currentlyActiveLight.TurnOn(brightness: (long)((int)currentlyActiveLight.Attributes.Brightness + lightBrigthnessStep));
             }
         }
       
