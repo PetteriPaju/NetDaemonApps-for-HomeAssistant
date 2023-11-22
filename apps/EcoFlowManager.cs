@@ -34,11 +34,11 @@ namespace NetDaemonApps.apps
         public EcoFlowManager()
         {
 
-            _0Gbl._myEntities.Sensor.EcoflowBatteryLevel.StateChanges().Where(x => x.New?.State <= 2 && _0Gbl._myEntities.Sensor.EcoflowAcOutPower.State > 0 && _0Gbl._myEntities.InputBoolean.EcoflowAllow0Battery.IsOff()).Subscribe(x => {
+            _0Gbl._myEntities.Sensor.EcoflowBatteryLevel.StateChanges().Where(x => x.New?.State <= 2 && (x.New?.State.HasValue ?? true)  && _0Gbl._myEntities.Sensor.EcoflowAcOutPower.State > 0 && _0Gbl._myEntities.InputBoolean.EcoflowAllow0Battery.IsOff()).Subscribe(x => {
 
                 _0Gbl._myEntities.Switch.EcoflowPlug.TurnOn();
 
-                TTS.Speak("Battery Recharing", TTS.TTSPriority.PlayInGuestMode);
+                TTS.Speak("Battery Recharing", TTS.TTSPriority.Default);
          
             });
             _0Gbl._myEntities.Switch.EcoflowPlug.StateChanges().WhenStateIsFor(x => x.IsOff() && _0Gbl._myEntities.Sensor.EcoflowAcOutPower.State == 0, TimeSpan.FromSeconds(6),_0Gbl._myScheduler).Subscribe(x =>
@@ -48,7 +48,7 @@ namespace NetDaemonApps.apps
 
                 _0Gbl._myEntities.Sensor.EcoflowBatteryLevel.StateChanges().Where(x => x.New?.State < 5 && x.Old?.State >= 5).Subscribe(x => {
 
-                TTS.Speak("Warning Only 5% of Power remaining", TTS.TTSPriority.PlayInGuestMode);
+                TTS.Speak("Warning Only 5% of Power remaining", TTS.TTSPriority.Default);
             });
 
             /*

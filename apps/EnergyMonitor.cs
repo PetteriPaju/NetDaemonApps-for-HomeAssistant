@@ -34,6 +34,7 @@ public class EnergyMonitor
     ElectricityPriceInfo? infoForCurrentHour = null;
 
     private double marginOfErrorFix = 1.07;
+    private bool skipThisHour = true;
 
     public EnergyMonitor()
     {
@@ -41,7 +42,7 @@ public class EnergyMonitor
         electricityRangeKeys = electiricityRanges.Keys.ToList();
 
         infoForCurrentHour = new ElectricityPriceInfo(DateTime.Now, _0Gbl._myEntities?.Sensor?.NordpoolKwhFiEur31001, electricityRangeKeys);
-
+        
         _0Gbl.HourlyResetFunction += () => UpdatePriceHourly(_0Gbl._myEntities?.Sensor.TotalHourlyEnergyConsumptions.State ?? 0);
         _0Gbl.HourlyResetFunction += () => AirPurifierOn();
         _0Gbl._myScheduler.ScheduleCron("50 * * * *", () => EnergiPriceChengeAlert());
@@ -370,6 +371,7 @@ public class EnergyMonitor
 
     private void UpdatePriceHourly(double energy)
     {
+    
         if (_0Gbl._myEntities == null) return;
         if (_0Gbl._myEntities.InputNumber.EnergyCostDaily.State == null) return;
         if (_0Gbl._myEntities.InputNumber.EnergyCostHourly.State == null) return;
@@ -409,7 +411,7 @@ public class EnergyMonitor
         var ecoflowAdjustedHourlycost = priceForLastHout - ecoflowAdjustedPrice;
         infoForCurrentHour = new ElectricityPriceInfo(DateTime.Now + TimeSpan.FromMinutes(15), _0Gbl._myEntities.Sensor?.NordpoolKwhFiEur31001, electricityRangeKeys);
 
-
+        if (skipThisHour) { skipThisHour = false; return; }
         _0Gbl._myEntities.InputNumber.DailyEnergySaveHelper.SetValue((_0Gbl._myEntities.InputNumber.DailyEnergySaveHelper.State ?? 0) + ecoflowAdjustedHourlycost);
         _0Gbl._myEntities.InputNumber.EnergyCostDaily.SetValue(_0Gbl._myEntities.InputNumber.EnergyCostDaily.State + priceForLastHout ?? _0Gbl._myEntities.InputNumber.EnergyCostDaily.State ?? 0);
         _0Gbl._myEntities.InputNumber.EnergyCostHourly.SetValue(priceForLastHout);
