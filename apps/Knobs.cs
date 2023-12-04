@@ -62,7 +62,7 @@ namespace NetDaemonApps.apps
                         long minBrightnessFix = (long)MathF.Min((int)(((int)lightCycler.GetCurrentLight().Attributes.Brightness) + step), (int)255);
                         minBrightnessFix = (long)MathF.Max((int)(((int)lightCycler.GetCurrentLight().Attributes.Brightness) + step), (int)10);
 
-                        lightCycler.GetCurrentLight().TurnOn(brightness: minBrightnessFix);
+                        lightCycler.GetCurrentLight().TurnOn(brightness: minBrightnessFix, transition:1);
                     }
 
 

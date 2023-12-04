@@ -41,7 +41,7 @@ namespace NetDaemonApps.apps.Hue_Switches
             {
                 long minBrightnessFix = (long)MathF.Min((int)(((int)lightCycler.GetCurrentLight().Attributes.Brightness) + lightBrigthnessStep), (int)100);
 
-                lightCycler.GetCurrentLight().TurnOn(brightness: minBrightnessFix);
+                lightCycler.GetCurrentLight().TurnOn(brightness: minBrightnessFix, transition: 1);
             }
         }
 
@@ -68,7 +68,7 @@ namespace NetDaemonApps.apps.Hue_Switches
             {
                 long minBrightnessFix = (long)MathF.Max((int)(((int)lightCycler.GetCurrentLight().Attributes.Brightness) - lightBrigthnessStep), (int)miniumBrightness);
 
-                lightCycler.GetCurrentLight().TurnOn(brightness: minBrightnessFix);
+                lightCycler.GetCurrentLight().TurnOn(brightness: minBrightnessFix, transition: 1);
             }
         }
 
