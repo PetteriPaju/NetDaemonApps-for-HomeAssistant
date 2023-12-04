@@ -17,9 +17,9 @@ namespace NetDaemonApps.apps
         List<Knob> knobs = new List<Knob>();
         public Knobs() {
 
-            knobs.Add(new DesktopKnob(_0Gbl._myEntities.Sensor.KnobDesktopAction, _0Gbl._myEntities.Sensor.KnobDesktopActionStepSize));
-            knobs.Add(new BedKnob(_0Gbl._myEntities.Sensor.BedKnobAction, _0Gbl._myEntities.Sensor.BedKnobActionStepSize));
-            knobs.Add(new SofaKnob(_0Gbl._myEntities.Sensor.KnobCouchAction, _0Gbl._myEntities.Sensor.KnobCouchActionStepSize));
+            knobs.Add(new DesktopKnob(_0Gbl._myEntities.Sensor.KnobDesktopAction, _0Gbl._myEntities.Sensor.KnobDesktopDelta));
+            knobs.Add(new BedKnob(_0Gbl._myEntities.Sensor.BedKnobAction, _0Gbl._myEntities.Sensor.KnobBedDelta));
+            knobs.Add(new SofaKnob(_0Gbl._myEntities.Sensor.KnobCouchAction, _0Gbl._myEntities.Sensor.KnobCouchDelta));
 
         }
 
@@ -30,23 +30,49 @@ namespace NetDaemonApps.apps
         private abstract class Knob{
 
             SensorEntity action;
-            SensorEntity step;
+
+            SensorEntity knobDelta;
+
+            int lasktKnownStep = 0;
             IDisposable knobStepWaiter;
             protected LightCycler lightCycler;
 
-            public Knob(SensorEntity knobAction, SensorEntity knobStep)
+            public Knob(SensorEntity knobAction, SensorEntity _knobDelta)
             {
                 action = knobAction;
-                step = knobStep;
+                knobDelta = _knobDelta;
+
+                knobDelta.StateChanges().Subscribe(x => OnBrightnesssDelta());
 
                 action.StateAllChanges().Subscribe(x=>DetermineAction(x.New.State ?? ""));
-
+       
             }
 
+
+            protected virtual void OnBrightnesssDelta()
+            {
+                if (lightCycler.GetCurrentLight() == null) return;
+
+                if (lightCycler.GetCurrentLight() != null && lightCycler.GetCurrentLight()?.Attributes?.SupportedFeatures != 0)
+                {
+                    int step;
+                    if (int.TryParse(knobDelta.State, out step))
+                    {
+                        long minBrightnessFix = (long)MathF.Min((int)(((int)lightCycler.GetCurrentLight().Attributes.Brightness) + step), (int)255);
+                        minBrightnessFix = (long)MathF.Max((int)(((int)lightCycler.GetCurrentLight().Attributes.Brightness) + step), (int)10);
+
+                        lightCycler.GetCurrentLight().TurnOn(brightness: minBrightnessFix);
+                    }
+
+
+                }
+            }
             protected virtual void OnHold()
             {
-
+                _0Gbl._myServices.Script.PlayInterfaceSound();
             }
+
+            protected virtual void OnHoldRelease() { }
 
             private void DetermineAction(string stateName)
             {
@@ -80,87 +106,27 @@ namespace NetDaemonApps.apps
                     case "hold":
                         OnHold();
                         break;
+
+                    case "hue_move":
+                        OnHold();
+                        break;
+
+                    case "hue_stop":
+                        OnHoldRelease();
+                        break;
+
                 }
 
             }
 
-            private void OnStepUp() {
+            protected virtual void OnStepUp() {
 
-
-                BrigtnessUp((int)_0Gbl._myEntities.InputNumber.SettingsDefaultKnobStep.State);
-                return;
-                if (step.State != "None")
-                {
-                    BrigtnessUp(step.State ?? "");
-                }
-                else
-                {
-                    knobStepWaiter = step.StateChanges().Where(x => x.New.State != "None").Subscribe(x => BrigtnessUp(x.New.State ?? ""));
-                }
-            
+         
             }
-            private void OnStepDown()
+            protected virtual void OnStepDown()
             {
-                BrigtnessDown((int)_0Gbl._myEntities.InputNumber.SettingsDefaultKnobStep.State);
-                return;
-                if (step.State != "None")
-                {
-                    BrigtnessDown(step.State ?? "");
-                }
-                else
-                {
-                    knobStepWaiter = step.StateChanges().Where(x => x.New.State != "None").Subscribe(x => BrigtnessDown(x.New.State ?? ""));
-                }
-
-            }
-            private void BrigtnessUp(string num)
-            {
-                knobStepWaiter?.Dispose();
-                int step;
-                if (int.TryParse(num, out step))
-                {
-                    BrigtnessUp(step);
-                }
-            }
-            private void BrigtnessUp(int num)
-            {
-                knobStepWaiter?.Dispose();
-                int step = num;
-           
-                    if (lightCycler.GetCurrentLight() == null) return;
-
-                    if (lightCycler.GetCurrentLight() != null && lightCycler.GetCurrentLight()?.Attributes?.SupportedFeatures != 0 && lightCycler.GetCurrentLight()?.Attributes?.Brightness < 255)
-                    {
-                        long minBrightnessFix = (long)MathF.Min((int)(((int)lightCycler.GetCurrentLight().Attributes.Brightness) + step), (int)255);
-
-                        lightCycler.GetCurrentLight().TurnOn(brightness: minBrightnessFix);
-                    }
-                
-            }
-            private void BrigtnessDown(string num)
-            {
-                int step;
-                if (int.TryParse(num, out step))
-                {
-                    BrigtnessDown(step);
-                }
-           }
-
-                private void BrigtnessDown(int num)
-            {
-                knobStepWaiter?.Dispose();
-                int step = num;
 
 
-                    if (lightCycler.GetCurrentLight() == null) return;
-
-                    if (lightCycler.GetCurrentLight() != null && lightCycler.GetCurrentLight()?.Attributes?.SupportedFeatures != 0 && ((int)lightCycler.GetCurrentLight()?.Attributes?.Brightness) > 0)
-                    {
-                        long minBrightnessFix = (long)MathF.Max((int)(((int)lightCycler.GetCurrentLight().Attributes.Brightness) - step), (int)0);
-
-                        lightCycler.GetCurrentLight().TurnOn(brightness: minBrightnessFix);
-                    }
-                
             }
         }
 
@@ -173,6 +139,7 @@ namespace NetDaemonApps.apps
 
             protected override void OnHold()
             {
+                base.OnHold();
                 _0Gbl._myEntities.Light.KitchenLight2.TurnOff();
             }
         }
@@ -185,6 +152,7 @@ namespace NetDaemonApps.apps
 
             protected override void OnHold()
             {
+                base.OnHold();
                 _0Gbl._myEntities.Switch.BedMultiPlugL1.Toggle();
             }
         }
@@ -197,6 +165,7 @@ namespace NetDaemonApps.apps
 
             protected override void OnHold()
             {
+                base.OnHold();
                 _0Gbl._myEntities.Switch.BedMultiPlugL3.Toggle();
             }
         }

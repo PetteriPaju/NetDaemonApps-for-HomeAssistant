@@ -31,11 +31,9 @@ namespace NetDaemonApps.apps.Lights
                 lastStorageOff = DateTime.Now;
 
             });
-            SubcribeLightOn(_0Gbl._myEntities.BinarySensor.StorageSensorOccupancy,  _0Gbl._myEntities.Light.StorageLight2, () => { return lastStorageOff > DateTime.Now - TimeSpan.FromSeconds(10); });
+            SubcribeLightOn(_0Gbl._myEntities.BinarySensor.StorageSensorAqaraOccupancy,  _0Gbl._myEntities.Light.StorageLight2);
 
-            SubcribeLightOn(_0Gbl._myEntities.BinarySensor.HallwaySensorOccupancy, _0Gbl._myEntities.Light.StorageLight2, _0Gbl._myEntities.BinarySensor.StorageSensorOccupancy.IsOn);
-
-            SubcribeLightOff(_0Gbl._myEntities.BinarySensor.StorageSensorOccupancy, _0Gbl._myEntities.Light.StorageLight2, new TimeSpan(0, 0, 0));
+            SubcribeLightOff(_0Gbl._myEntities.BinarySensor.StorageSensorAqaraOccupancy, _0Gbl._myEntities.Light.StorageLight2, new TimeSpan(0, 0, 5));
 
  
             _0Gbl._myEntities.Sensor.Livingroomfp1PresenceEvent.StateChanges().Where(x => x.New?.State == "approach" ).Subscribe(_ => {
