@@ -58,7 +58,8 @@ namespace NetDaemonApps.apps
                     int step;
                     if (int.TryParse(knobDelta.State, out step))
                     {
-                        step = step * (flipDialDirection ? -1 : 1);
+                        step = (int)Math.Round(step * (flipDialDirection ? -1 : 1) * _0Gbl._myEntities.InputNumber.SettingsKnobSensitivity.State ?? 1);
+       
                         long minBrightnessFix = (long)MathF.Min((int)(((int)lightCycler.GetCurrentLight().Attributes.Brightness) + step), (int)255);
                         minBrightnessFix = (long)MathF.Max((int)(((int)lightCycler.GetCurrentLight().Attributes.Brightness) + step), (int)10);
 
