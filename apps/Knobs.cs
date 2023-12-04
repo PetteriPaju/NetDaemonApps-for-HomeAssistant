@@ -30,7 +30,7 @@ namespace NetDaemonApps.apps
         private abstract class Knob{
 
             SensorEntity action;
-
+            protected bool flipDialDirection = false;
             SensorEntity knobDelta;
 
             int lasktKnownStep = 0;
@@ -58,6 +58,7 @@ namespace NetDaemonApps.apps
                     int step;
                     if (int.TryParse(knobDelta.State, out step))
                     {
+                        step = step * (flipDialDirection ? -1 : 1);
                         long minBrightnessFix = (long)MathF.Min((int)(((int)lightCycler.GetCurrentLight().Attributes.Brightness) + step), (int)255);
                         minBrightnessFix = (long)MathF.Max((int)(((int)lightCycler.GetCurrentLight().Attributes.Brightness) + step), (int)10);
 
@@ -134,6 +135,7 @@ namespace NetDaemonApps.apps
         {
             public DesktopKnob(SensorEntity knobAction, SensorEntity knobStep) : base(knobAction, knobStep)
             {
+                flipDialDirection = true;
                 lightCycler = new LightCycler(_0Gbl._myEntities.InputBoolean.GuestMode, _0Gbl._myEntities.Light.LivingRoomLight, _0Gbl._myEntities.Light.PcMultipowermeterL2, _0Gbl._myEntities.Light.DesktopLight);
             }
 
