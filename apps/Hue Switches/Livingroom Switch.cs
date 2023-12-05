@@ -5,7 +5,7 @@ using System.Diagnostics;
 
 namespace NetDaemonApps.apps.Hue_Switches
 {
-    [NetDaemonApp]
+
     public class Livingroom_Switch : HueSwitch
     {
         public Livingroom_Switch() : base(){ lightCycler = new LightCycler(_0Gbl._myEntities.InputBoolean.GuestMode,_0Gbl._myEntities.Light.LivingRoomLight, _0Gbl._myEntities.Light.DesktopLight); }
@@ -61,7 +61,7 @@ namespace NetDaemonApps.apps.Hue_Switches
         protected override void OnDownPress()
         {
             base.OnDownPress();
-
+            return;
              if (lightCycler.GetCurrentLight() == null) return;
 
             if (lightCycler.GetCurrentLight() != null && lightCycler.GetCurrentLight()?.Attributes?.SupportedFeatures != 0 && ((int)lightCycler.GetCurrentLight()?.Attributes?.Brightness) > miniumBrightness)
