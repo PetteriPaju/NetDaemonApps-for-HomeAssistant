@@ -42,7 +42,8 @@ public class EnergyMonitor
         electricityRangeKeys = electiricityRanges.Keys.ToList();
 
         infoForCurrentHour = new ElectricityPriceInfo(DateTime.Now, _0Gbl._myEntities?.Sensor?.NordpoolKwhFiEur31001, electricityRangeKeys);
-        
+        _0Gbl._myEntities?.Sensor.TotalHourlyEnergyConsumptions.ResetEnergy();
+
         _0Gbl.HourlyResetFunction += () => UpdatePriceHourly(_0Gbl._myEntities?.Sensor.TotalHourlyEnergyConsumptions.State ?? 0);
         _0Gbl.HourlyResetFunction += () => AirPurifierOn();
         _0Gbl._myScheduler.ScheduleCron("50 * * * *", () => EnergiPriceChengeAlert());
