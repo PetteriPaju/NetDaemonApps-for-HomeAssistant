@@ -34,7 +34,7 @@ namespace NetDaemonApps.apps.Lights
 
             SubcribeLightOff(_0Gbl._myEntities.BinarySensor.StorageSensorAqaraOccupancy, _0Gbl._myEntities.Light.StorageLight2, new TimeSpan(0, 0, 5));
 
-            SubcribeLightOn(_0Gbl._myEntities.BinarySensor.FridgeContactSensorContact, _0Gbl._myEntities.Light.KitchenLight2);
+            SubcribeLightOn(_0Gbl._myEntities.BinarySensor.StorageSensorAqaraOccupancy, _0Gbl._myEntities.Light.StorageLight2);
 
             _0Gbl._myEntities.Sensor.Livingroomfp1PresenceEvent.StateChanges().Where(x => x.New?.State == "approach" ).Subscribe(_ => {
                 _0Gbl._myEntities.Light.KitchenLight2.TurnOnLight();
