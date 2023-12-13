@@ -419,14 +419,15 @@ public class EnergyMonitor
             return (double)thisHourTotal;
         }
 
-        double ecoflowAdjustedPrice = calculatePrice(ecoflowCacl(energy));
+        double ecoflowIgnoredAdjustedPrice = calculatePrice(energy);
 
 
-        energy -= Math.Max(0, _0Gbl._myEntities.Sensor.EcoflowAcOutputHourly.AsNumeric().State ?? 0);
+        energy = ecoflowCacl(energy);
+
         double transsfercost = calculateTransfer(energy);
         double priceForLastHout = calculatePrice(energy);
 
-        var ecoflowAdjustedHourlycost = priceForLastHout - ecoflowAdjustedPrice;
+        var ecoflowAdjustedHourlycost =  ecoflowIgnoredAdjustedPrice - priceForLastHout;
         infoForCurrentHour = new ElectricityPriceInfo(DateTime.Now + TimeSpan.FromMinutes(15), _0Gbl._myEntities.Sensor?.NordpoolKwhFiEur31001, electricityRangeKeys);
 
         if (skipThisHour) { skipThisHour = false; return; }
