@@ -31,11 +31,11 @@ namespace NetDaemonApps.apps.Lights
                 lastStorageOff = DateTime.Now;
 
             });
-            SubcribeLightOn(_0Gbl._myEntities.BinarySensor.StorageSensorAqaraOccupancy,  _0Gbl._myEntities.Light.StorageLight2);
 
             SubcribeLightOff(_0Gbl._myEntities.BinarySensor.StorageSensorAqaraOccupancy, _0Gbl._myEntities.Light.StorageLight2, new TimeSpan(0, 0, 5));
 
- 
+            SubcribeLightOn(_0Gbl._myEntities.BinarySensor.FridgeContactSensorContact, _0Gbl._myEntities.Light.KitchenLight2);
+
             _0Gbl._myEntities.Sensor.Livingroomfp1PresenceEvent.StateChanges().Where(x => x.New?.State == "approach" ).Subscribe(_ => {
                 _0Gbl._myEntities.Light.KitchenLight2.TurnOnLight();
             });
@@ -50,6 +50,18 @@ namespace NetDaemonApps.apps.Lights
                 _0Gbl._myEntities.Light.KitchenLight2.TurnOffLight();
             });
 
+
+
+            _0Gbl._myEntities.BinarySensor.FridgeContactSensorContact.StateChanges().Where(x => (x?.New?.State == "false" )).SubscribeAsync(async _ => {
+                _0Gbl._myEntities.Light.KitchenLight2.TurnOn();
+                await Task.Delay(3000);
+
+                if (_0Gbl._myEntities.BinarySensor.Livingroomfp1Presence.IsOff())
+                {
+                    _0Gbl._myEntities.Light.KitchenLight2.TurnOff();
+                }
+
+            });
 
             /*
            _00_Globals._myEntities.BinarySensor.KitchenSensorOccupancy.StateChanges().Where(x => x.New.IsOn()).Subscribe(_ => {
