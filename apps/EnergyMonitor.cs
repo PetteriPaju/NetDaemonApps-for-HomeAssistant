@@ -71,7 +71,7 @@ public class EnergyMonitor
 
     private void UpdateNextChangeHourTime()
     {
-        ElectricityPriceInfo inFoForNextHour = new ElectricityPriceInfo(DateTime.Now.AddHours(1), _0Gbl._myEntities?.Sensor?.NordpoolKwhFiEur31001, electricityRangeKeys);
+        ElectricityPriceInfo inFoForNextHour = new ElectricityPriceInfo(DateTime.Now.AddMinutes(2), _0Gbl._myEntities?.Sensor?.NordpoolKwhFiEur31001, electricityRangeKeys);
         var hoursTillChange = FindWhenElectricityRangeChanges(inFoForNextHour, 48);
         if(hoursTillChange != null)
         _0Gbl._myEntities.InputDatetime.EnergyChangeTime.SetDatetime(datetime: hoursTillChange.dateTime.ToString(@"yyyy-MM-dd HH\:00\:00"));
