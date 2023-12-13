@@ -711,7 +711,7 @@
         },
         {
           "id": "device_tracker.esp32_ee4b54",
-          "friendlyName": "Desktop-disctance",
+          "friendlyName": "esp32-EE4B54",
           "cSharpName": "Esp32Ee4b54"
         },
         {
@@ -985,116 +985,6 @@
           "id": "input_boolean.desktop_standing",
           "friendlyName": "Desktop Standing",
           "cSharpName": "DesktopStanding"
-        },
-        {
-          "id": "input_boolean.dev_netdaemon_net_daemon_apps_apps_01_living_room_fp1",
-          "friendlyName": "dev_netdaemon_net_daemon_apps_apps__01_living_room_fp1",
-          "cSharpName": "DevNetdaemonNetDaemonAppsApps01LivingRoomFp1"
-        },
-        {
-          "id": "input_boolean.dev_netdaemon_net_daemon_apps_apps_01_living_room_fp1_2",
-          "friendlyName": "dev_netdaemon_net_daemon_apps_apps__01_living_room_fp1",
-          "cSharpName": "DevNetdaemonNetDaemonAppsApps01LivingRoomFp12"
-        },
-        {
-          "id": "input_boolean.dev_netdaemon_net_daemon_apps_apps_01_living_room_fp1_3",
-          "friendlyName": "dev_netdaemon_net_daemon_apps_apps__01_living_room_fp1",
-          "cSharpName": "DevNetdaemonNetDaemonAppsApps01LivingRoomFp13"
-        },
-        {
-          "id": "input_boolean.dev_netdaemon_net_daemon_apps_apps_01_living_room_fp1_4",
-          "friendlyName": "dev_netdaemon_net_daemon_apps_apps__01_living_room_fp1",
-          "cSharpName": "DevNetdaemonNetDaemonAppsApps01LivingRoomFp14"
-        },
-        {
-          "id": "input_boolean.dev_netdaemon_net_daemon_apps_apps_0gbl",
-          "friendlyName": "dev_netdaemon_net_daemon_apps_apps__0gbl",
-          "cSharpName": "DevNetdaemonNetDaemonAppsApps0gbl"
-        },
-        {
-          "id": "input_boolean.dev_netdaemon_net_daemon_apps_apps_0gbl_2",
-          "friendlyName": "dev_netdaemon_net_daemon_apps_apps__0gbl",
-          "cSharpName": "DevNetdaemonNetDaemonAppsApps0gbl2"
-        },
-        {
-          "id": "input_boolean.dev_netdaemon_net_daemon_apps_apps_0gbl_3",
-          "friendlyName": "dev_netdaemon_net_daemon_apps_apps__0gbl",
-          "cSharpName": "DevNetdaemonNetDaemonAppsApps0gbl3"
-        },
-        {
-          "id": "input_boolean.dev_netdaemon_net_daemon_apps_apps_0gbl_4",
-          "friendlyName": "dev_netdaemon_net_daemon_apps_apps__0gbl",
-          "cSharpName": "DevNetdaemonNetDaemonAppsApps0gbl4"
-        },
-        {
-          "id": "input_boolean.dev_netdaemon_net_daemon_apps_apps_agara_cube_living_room",
-          "friendlyName": "dev_netdaemon_net_daemon_apps_apps_agara_cube_living_room",
-          "cSharpName": "DevNetdaemonNetDaemonAppsAppsAgaraCubeLivingRoom"
-        },
-        {
-          "id": "input_boolean.dev_netdaemon_net_daemon_apps_apps_audio_output_monitor",
-          "friendlyName": "dev_netdaemon_net_daemon_apps_apps_audio_output_monitor",
-          "cSharpName": "DevNetdaemonNetDaemonAppsAppsAudioOutputMonitor"
-        },
-        {
-          "id": "input_boolean.dev_netdaemon_net_daemon_apps_apps_auto_turn_offs",
-          "friendlyName": "dev_netdaemon_net_daemon_apps_apps_auto_turn_offs",
-          "cSharpName": "DevNetdaemonNetDaemonAppsAppsAutoTurnOffs"
-        },
-        {
-          "id": "input_boolean.dev_netdaemon_net_daemon_apps_apps_eco_flow_manager",
-          "friendlyName": "dev_netdaemon_net_daemon_apps_apps_eco_flow_manager",
-          "cSharpName": "DevNetdaemonNetDaemonAppsAppsEcoFlowManager"
-        },
-        {
-          "id": "input_boolean.dev_netdaemon_net_daemon_apps_apps_energy_monitor",
-          "friendlyName": "dev_netdaemon_net_daemon_apps_apps_energy_monitor",
-          "cSharpName": "DevNetdaemonNetDaemonAppsAppsEnergyMonitor"
-        },
-        {
-          "id": "input_boolean.dev_netdaemon_net_daemon_apps_apps_is_asleep_monitor",
-          "friendlyName": "dev_netdaemon_net_daemon_apps_apps_is_asleep_monitor",
-          "cSharpName": "DevNetdaemonNetDaemonAppsAppsIsAsleepMonitor"
-        },
-        {
-          "id": "input_boolean.dev_netdaemon_net_daemon_apps_apps_knobs",
-          "friendlyName": "dev_netdaemon_net_daemon_apps_apps_knobs",
-          "cSharpName": "DevNetdaemonNetDaemonAppsAppsKnobs"
-        },
-        {
-          "id": "input_boolean.dev_netdaemon_net_daemon_apps_apps_lights_lights_and_sensors",
-          "friendlyName": "dev_netdaemon_net_daemon_apps_apps_lights_lights_and_sensors",
-          "cSharpName": "DevNetdaemonNetDaemonAppsAppsLightsLightsAndSensors"
-        },
-        {
-          "id": "input_boolean.dev_netdaemon_net_daemon_apps_apps_lights_livingroom_lights",
-          "friendlyName": "dev_netdaemon_net_daemon_apps_apps_lights_livingroom_lights",
-          "cSharpName": "DevNetdaemonNetDaemonAppsAppsLightsLivingroomLights"
-        },
-        {
-          "id": "input_boolean.dev_netdaemon_net_daemon_apps_apps_lights_toiler_light_automation",
-          "friendlyName": "dev_netdaemon_net_daemon_apps_apps_lights_toiler_light_automation",
-          "cSharpName": "DevNetdaemonNetDaemonAppsAppsLightsToilerLightAutomation"
-        },
-        {
-          "id": "input_boolean.dev_netdaemon_net_daemon_apps_apps_media_playing_monitor",
-          "friendlyName": "dev_netdaemon_net_daemon_apps_apps_media_playing_monitor",
-          "cSharpName": "DevNetdaemonNetDaemonAppsAppsMediaPlayingMonitor"
-        },
-        {
-          "id": "input_boolean.dev_netdaemon_net_daemon_apps_apps_notifications",
-          "friendlyName": "dev_netdaemon_net_daemon_apps_apps_notifications",
-          "cSharpName": "DevNetdaemonNetDaemonAppsAppsNotifications"
-        },
-        {
-          "id": "input_boolean.dev_netdaemon_net_daemon_apps_apps_step_counter",
-          "friendlyName": "dev_netdaemon_net_daemon_apps_apps_step_counter",
-          "cSharpName": "DevNetdaemonNetDaemonAppsAppsStepCounter"
-        },
-        {
-          "id": "input_boolean.dev_netdaemon_net_daemon_apps_apps_tts",
-          "friendlyName": "dev_netdaemon_net_daemon_apps_apps_tts",
-          "cSharpName": "DevNetdaemonNetDaemonAppsAppsTts"
         },
         {
           "id": "input_boolean.ecoflow_allow_0_battery",
@@ -2200,6 +2090,16 @@
           "id": "input_boolean.netdaemon_net_daemon_apps_apps_01_living_room_fp1_290",
           "friendlyName": "netdaemon_net_daemon_apps_apps__01_living_room_fp1",
           "cSharpName": "NetdaemonNetDaemonAppsApps01LivingRoomFp1290"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_01_living_room_fp1_291",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__01_living_room_fp1",
+          "cSharpName": "NetdaemonNetDaemonAppsApps01LivingRoomFp1291"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_01_living_room_fp1_292",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__01_living_room_fp1",
+          "cSharpName": "NetdaemonNetDaemonAppsApps01LivingRoomFp1292"
         },
         {
           "id": "input_boolean.netdaemon_net_daemon_apps_apps_01_living_room_fp1_3",
@@ -3652,6 +3552,16 @@
           "cSharpName": "NetdaemonNetDaemonAppsApps0gbl290"
         },
         {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_0gbl_291",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__0gbl",
+          "cSharpName": "NetdaemonNetDaemonAppsApps0gbl291"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_0gbl_292",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__0gbl",
+          "cSharpName": "NetdaemonNetDaemonAppsApps0gbl292"
+        },
+        {
           "id": "input_boolean.netdaemon_net_daemon_apps_apps_0gbl_3",
           "friendlyName": "netdaemon_net_daemon_apps_apps__0gbl",
           "cSharpName": "NetdaemonNetDaemonAppsApps0gbl3"
@@ -4105,6 +4015,66 @@
           "id": "input_boolean.netdaemon_net_daemon_apps_apps_tts",
           "friendlyName": "netdaemon_net_daemon_apps_apps_tts",
           "cSharpName": "NetdaemonNetDaemonAppsAppsTts"
+        },
+        {
+          "id": "input_boolean.notification_alarm",
+          "friendlyName": "Notification Alarm",
+          "cSharpName": "NotificationAlarm"
+        },
+        {
+          "id": "input_boolean.notification_ecoflow",
+          "friendlyName": "Notification Ecoflow",
+          "cSharpName": "NotificationEcoflow"
+        },
+        {
+          "id": "input_boolean.notification_energy_daily_update",
+          "friendlyName": "Notification Energy Daily Update",
+          "cSharpName": "NotificationEnergyDailyUpdate"
+        },
+        {
+          "id": "input_boolean.notification_energy_price_change",
+          "friendlyName": "Notification Energy Price Change",
+          "cSharpName": "NotificationEnergyPriceChange"
+        },
+        {
+          "id": "input_boolean.notification_energy_solar",
+          "friendlyName": "Notification Energy Solar",
+          "cSharpName": "NotificationEnergySolar"
+        },
+        {
+          "id": "input_boolean.notification_gaming_time",
+          "friendlyName": "Notification Gaming Time",
+          "cSharpName": "NotificationGamingTime"
+        },
+        {
+          "id": "input_boolean.notification_humidifier",
+          "friendlyName": "Notification Humidifier",
+          "cSharpName": "NotificationHumidifier"
+        },
+        {
+          "id": "input_boolean.notification_hydration_check",
+          "friendlyName": "Notification Hydration Check",
+          "cSharpName": "NotificationHydrationCheck"
+        },
+        {
+          "id": "input_boolean.notification_memory_alert",
+          "friendlyName": "Notification Memory Alert",
+          "cSharpName": "NotificationMemoryAlert"
+        },
+        {
+          "id": "input_boolean.notification_phone_battery",
+          "friendlyName": "Notification Phone Battery",
+          "cSharpName": "NotificationPhoneBattery"
+        },
+        {
+          "id": "input_boolean.notification_standing",
+          "friendlyName": "Notification Standing",
+          "cSharpName": "NotificationStanding"
+        },
+        {
+          "id": "input_boolean.notification_step_counter",
+          "friendlyName": "Notification Step Counter",
+          "cSharpName": "NotificationStepCounter"
         },
         {
           "id": "input_boolean.pf1_lr_r1",
@@ -4725,11 +4695,6 @@
       "domain": "lock",
       "entities": [
         {
-          "id": "lock.0x70b3d52b60044d25_child_lock",
-          "friendlyName": "0x70b3d52b60044d25 Child lock",
-          "cSharpName": "_0x70b3d52b60044d25ChildLock"
-        },
-        {
           "id": "lock.bigfridge_powermeter_child_lock",
           "friendlyName": "BigFridge-Powermeter Child lock",
           "cSharpName": "BigfridgePowermeterChildLock"
@@ -4748,6 +4713,11 @@
           "id": "lock.modem_and_proxmox_powermeter_child_lock",
           "friendlyName": "Modem and Proxmox PowerMeter Child lock",
           "cSharpName": "ModemAndProxmoxPowermeterChildLock"
+        },
+        {
+          "id": "lock.modem_auto_on_plug_child_lock",
+          "friendlyName": "Modem Auto On Plug Child lock",
+          "cSharpName": "ModemAutoOnPlugChildLock"
         },
         {
           "id": "lock.pc_plug_child_lock",
@@ -5423,16 +5393,6 @@
           "cSharpName": "_0x001788010bcfb16fMotionSensitivity"
         },
         {
-          "id": "select.0x70b3d52b60044d25_indicator_mode",
-          "friendlyName": "0x70b3d52b60044d25 Indicator mode",
-          "cSharpName": "_0x70b3d52b60044d25IndicatorMode"
-        },
-        {
-          "id": "select.0x70b3d52b60044d25_power_outage_memory",
-          "friendlyName": "0x70b3d52b60044d25 Power outage memory",
-          "cSharpName": "_0x70b3d52b60044d25PowerOutageMemory"
-        },
-        {
           "id": "select.bed_knob_operation_mode",
           "friendlyName": "Bed Knob Operation mode",
           "cSharpName": "BedKnobOperationMode"
@@ -5571,6 +5531,16 @@
           "id": "select.modem_and_proxmox_powermeter_power_outage_memory",
           "friendlyName": "Modem and Proxmox PowerMeter Power outage memory",
           "cSharpName": "ModemAndProxmoxPowermeterPowerOutageMemory"
+        },
+        {
+          "id": "select.modem_auto_on_plug_indicator_mode",
+          "friendlyName": "Modem Auto On Plug Indicator mode",
+          "cSharpName": "ModemAutoOnPlugIndicatorMode"
+        },
+        {
+          "id": "select.modem_auto_on_plug_power_outage_memory",
+          "friendlyName": "Modem Auto On Plug Power outage memory",
+          "cSharpName": "ModemAutoOnPlugPowerOutageMemory"
         },
         {
           "id": "select.pc_connector_indicator_light_mode",
@@ -7088,16 +7058,6 @@
           "cSharpName": "_0x001788010bcfb16fTemperature"
         },
         {
-          "id": "sensor.0x70b3d52b60044d25_energy",
-          "friendlyName": "0x70b3d52b60044d25 Energy",
-          "cSharpName": "_0x70b3d52b60044d25Energy"
-        },
-        {
-          "id": "sensor.0x70b3d52b60044d25_power",
-          "friendlyName": "0x70b3d52b60044d25 Power",
-          "cSharpName": "_0x70b3d52b60044d25Power"
-        },
-        {
           "id": "sensor.adguard_home_average_processing_speed",
           "friendlyName": "AdGuard Home Average processing speed",
           "cSharpName": "AdguardHomeAverageProcessingSpeed"
@@ -7601,6 +7561,16 @@
           "id": "sensor.modem_and_proxmox_powermeter_power",
           "friendlyName": "Modem and Proxmox PowerMeter Power",
           "cSharpName": "ModemAndProxmoxPowermeterPower"
+        },
+        {
+          "id": "sensor.modem_auto_on_plug_energy",
+          "friendlyName": "Modem Auto On Plug Energy",
+          "cSharpName": "ModemAutoOnPlugEnergy"
+        },
+        {
+          "id": "sensor.modem_auto_on_plug_power",
+          "friendlyName": "Modem Auto On Plug Power",
+          "cSharpName": "ModemAutoOnPlugPower"
         },
         {
           "id": "sensor.modem_daily_energy",
@@ -8175,11 +8145,6 @@
           "cSharpName": "_0x001788010bcfb16fLedIndication"
         },
         {
-          "id": "switch.0x70b3d52b60044d25",
-          "friendlyName": "0x70b3d52b60044d25",
-          "cSharpName": "_0x70b3d52b60044d25"
-        },
-        {
           "id": "switch.adguard_home_filtering",
           "friendlyName": "AdGuard Home Filtering",
           "cSharpName": "AdguardHomeFiltering"
@@ -8311,7 +8276,7 @@
         },
         {
           "id": "switch.esp32_ee4b54_internet_access",
-          "friendlyName": "Desktop-disctance Internet Access",
+          "friendlyName": "esp32-EE4B54 Internet Access",
           "cSharpName": "Esp32Ee4b54InternetAccess"
         },
         {
@@ -8453,6 +8418,11 @@
           "id": "switch.modem_and_proxmox_powermeter",
           "friendlyName": "Modem and Proxmox PowerMeter",
           "cSharpName": "ModemAndProxmoxPowermeter"
+        },
+        {
+          "id": "switch.modem_auto_on_plug",
+          "friendlyName": "Modem Auto On Plug",
+          "cSharpName": "ModemAutoOnPlug"
         },
         {
           "id": "switch.nintendoswitch_internet_access",
@@ -8757,11 +8727,6 @@
       "domain": "update",
       "entities": [
         {
-          "id": "update.0x70b3d52b60044d25",
-          "friendlyName": "0x70b3d52b60044d25",
-          "cSharpName": "_0x70b3d52b60044d25"
-        },
-        {
           "id": "update.adguard_home_update",
           "friendlyName": "AdGuard Home Update",
           "cSharpName": "AdguardHomeUpdate"
@@ -8895,6 +8860,11 @@
           "id": "update.modem_and_proxmox_powermeter",
           "friendlyName": "Modem and Proxmox PowerMeter",
           "cSharpName": "ModemAndProxmoxPowermeter"
+        },
+        {
+          "id": "update.modem_auto_on_plug",
+          "friendlyName": "Modem Auto On Plug",
+          "cSharpName": "ModemAutoOnPlug"
         },
         {
           "id": "update.mosquitto_broker_update",

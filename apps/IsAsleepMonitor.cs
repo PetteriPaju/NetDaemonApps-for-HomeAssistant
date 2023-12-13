@@ -51,6 +51,7 @@ namespace NetDaemonApps.apps
 
 
             _0Gbl._myEntities.InputBoolean.Isasleep.StateChanges().WhenStateIsFor(x => x?.State == "on", sleepTimer, _0Gbl._myScheduler).Subscribe(x => {
+                if (_0Gbl._myEntities.InputBoolean.NotificationAlarm.IsOff()) return;
                 if (_0Gbl._myEntities.InputBoolean.GuestMode.IsOn()) return;
                 var alarmnumber = 1;
                 _0Gbl._myEntities.Script.Actiontodoatalarm.TurnOn();

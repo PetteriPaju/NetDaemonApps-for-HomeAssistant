@@ -108,6 +108,7 @@ public class EnergyMonitor
 
     public void ReadOutEnergyUpdate()
     {
+        if (_0Gbl._myEntities.InputBoolean.NotificationEnergyDailyUpdate.IsOff()) return;
         string message = "Energy update!";
 
         if (!_0Gbl._myEntities.Sensor?.NordpoolKwhFiEur31001?.EntityState?.Attributes?.TomorrowValid == false)
@@ -189,7 +190,7 @@ public class EnergyMonitor
 
     public void MorningTTS()
     {
-        
+        if (_0Gbl._myEntities.InputBoolean.NotificationEnergyPriceChange.IsOff()) return;
         string TTSMessage = "Good Morning. Current Electricity Cost is " + (infoForCurrentHour.range == -1 ? "Unknown" : "at " + electiricityRanges.Values.ElementAt(infoForCurrentHour.range)) + ". ";
 
 
@@ -220,9 +221,9 @@ public class EnergyMonitor
 
     private void EnergiPriceChengeAlert()
     {
-       
 
 
+        if (_0Gbl._myEntities.InputBoolean.NotificationEnergyPriceChange.IsOff()) return;
         if (_0Gbl._myEntities.InputBoolean.Isasleep.State == "on") return;
         ElectricityPriceInfo inFoForNextHour = new ElectricityPriceInfo(DateTime.Now.AddHours(1), _0Gbl._myEntities?.Sensor?.NordpoolKwhFiEur31001, electricityRangeKeys);
 

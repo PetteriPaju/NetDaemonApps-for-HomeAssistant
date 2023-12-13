@@ -6241,14 +6241,6 @@
         "optional": true
       }
     },
-    "turn_off_proxmox_and_server": {
-      "name": "Turn Off Proxmox and Server",
-      "description": "",
-      "fields": {},
-      "response": {
-        "optional": true
-      }
-    },
     "reset_all_powermeters": {
       "name": "Reset All Powermeters",
       "description": "",
@@ -6350,6 +6342,14 @@
             ]
           }
         ]
+      }
+    },
+    "turn_off_proxmox_and_server": {
+      "name": "Turn Off Proxmox and Server",
+      "description": "",
+      "fields": {},
+      "response": {
+        "optional": true
       }
     }
   },

@@ -57,7 +57,7 @@ namespace NetDaemonApps.apps
                     lastKnownThreshold = (int)stepsFloored;
                     _0Gbl._myEntities.InputNumber.LastKnowStepThreshold.SetValue(lastKnownThreshold);
 
-                    TTS.Speak("You have reached " + lastKnownThreshold.ToString() + "steps", TTS.TTSPriority.PlayInGuestMode);
+                    TTS.Speak("You have reached " + lastKnownThreshold.ToString() + "steps", TTS.TTSPriority.PlayInGuestMode, _0Gbl._myEntities.InputBoolean.NotificationStepCounter);
 
                 }
 

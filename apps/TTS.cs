@@ -40,11 +40,13 @@ namespace NetDaemonApps.apps
         }
 
 
-        public static void Speak(string text, TTSPriority overrider = TTSPriority.Default)
+        public static void Speak(string text, TTSPriority overrider = TTSPriority.Default, InputBooleanEntity? inputBoolean = null)
         {
             if (Instance != null)
             {
+                if(inputBoolean != null && inputBoolean.IsOn())
                 Instance.SpeakTTS(text, overrider);
+                else Console.WriteLine("(Notification Disabled) " + text);
             }
             else
             {
