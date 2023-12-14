@@ -44,7 +44,7 @@ namespace NetDaemonApps.apps
         {
             if (Instance != null)
             {
-                if(inputBoolean != null && inputBoolean.IsOn())
+                if(inputBoolean == null || inputBoolean.IsOn())
                 Instance.SpeakTTS(text, overrider);
                 else Console.WriteLine("(Notification Disabled) " + text);
             }
