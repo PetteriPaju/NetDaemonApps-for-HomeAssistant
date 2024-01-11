@@ -52,11 +52,11 @@ namespace NetDaemonApps.apps.Lights
 
 
 
-            _0Gbl._myEntities.BinarySensor.FridgeContactSensorContact.StateChanges().Where(x => (x?.New?.State == "false" )).Subscribe( _ => {
+            _0Gbl._myEntities.BinarySensor.FridgeContactSensorContact.StateChanges().Where(x => ((bool)x?.New.IsOff())).Subscribe( _ => {
                 _0Gbl._myEntities.Light.KitchenLight2.TurnOn();
             });
 
-            _0Gbl._myEntities.BinarySensor.FridgeContactSensorContact.StateChanges().WhenStateIsFor(x => (x?.State == "true"), TimeSpan.FromSeconds(30)).Subscribe(_ => {
+            _0Gbl._myEntities.BinarySensor.FridgeContactSensorContact.StateChanges().WhenStateIsFor(x => ((bool)x?.IsOn()), TimeSpan.FromSeconds(30)).Subscribe(_ => {
               
                 if (_0Gbl._myEntities.BinarySensor.Livingroomfp1Presence.IsOff())
                 {
