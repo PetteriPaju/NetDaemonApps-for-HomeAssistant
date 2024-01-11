@@ -43,7 +43,7 @@ public class EnergyMonitor
 
         infoForCurrentHour = new ElectricityPriceInfo(DateTime.Now, _0Gbl._myEntities?.Sensor?.NordpoolKwhFiEur31001, electricityRangeKeys);
         _0Gbl._myEntities?.Sensor.TotalHourlyEnergyConsumptions.ResetEnergy();
-
+        
         _0Gbl.HourlyResetFunction += () => UpdatePriceHourly(_0Gbl._myEntities?.Sensor.TotalHourlyEnergyConsumptions.State ?? 0);
         _0Gbl.HourlyResetFunction += () => UpdateNextChangeHourTime();
 
@@ -420,19 +420,22 @@ public class EnergyMonitor
         }
 
         double ecoflowIgnoredAdjustedPrice = calculatePrice(energy);
-
+        double ecoflowChargePrice = calculatePrice(_0Gbl._myEntities.Sensor.EcoflowAcInputHourly.AsNumeric().State ?? 0);
+        _0Gbl._myEntities.InputNumber.EcoflowCharingCost.AddValue(ecoflowChargePrice);
 
         energy = ecoflowCacl(energy);
 
         double transsfercost = calculateTransfer(energy);
         double priceForLastHout = calculatePrice(energy);
 
+
         var ecoflowAdjustedHourlycost =  ecoflowIgnoredAdjustedPrice - priceForLastHout;
+
         infoForCurrentHour = new ElectricityPriceInfo(DateTime.Now + TimeSpan.FromMinutes(15), _0Gbl._myEntities.Sensor?.NordpoolKwhFiEur31001, electricityRangeKeys);
 
         if (skipThisHour) { skipThisHour = false; return; }
-        _0Gbl._myEntities.InputNumber.DailyEnergySaveHelper.SetValue((_0Gbl._myEntities.InputNumber.DailyEnergySaveHelper.State ?? 0) + ecoflowAdjustedHourlycost);
-        _0Gbl._myEntities.InputNumber.EnergyCostDaily.SetValue(_0Gbl._myEntities.InputNumber.EnergyCostDaily.State + priceForLastHout ?? _0Gbl._myEntities.InputNumber.EnergyCostDaily.State ?? 0);
+        _0Gbl._myEntities.InputNumber.DailyEnergySaveHelper.AddValue(ecoflowAdjustedHourlycost - _0Gbl._myEntities.InputNumber.EcoflowCharingCost.State ?? 0);
+        _0Gbl._myEntities.InputNumber.EnergyCostDaily.AddValue(priceForLastHout);
         _0Gbl._myEntities.InputNumber.EnergyCostHourly.SetValue(priceForLastHout);
 
     }
@@ -449,6 +452,7 @@ public class EnergyMonitor
         apOnToday = false;
         _0Gbl._myEntities.InputNumber.DailyEnergySaveHelper.SetValue(0);
         _0Gbl._myServices.Script.ResetAllPowermeters();
+        _0Gbl._myEntities.InputNumber.EcoflowCharingCost.SetValue(0);
     }
 
 }

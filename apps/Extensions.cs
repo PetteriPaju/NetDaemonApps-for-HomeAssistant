@@ -43,5 +43,11 @@ namespace NetDaemonApps
             }
 
         }
+
+        public static void AddValue(this InputNumberEntity entity, double value)
+        {
+            if (entity == null) return;
+            entity.SetValue(entity.State ?? 0 + value);
+        }
     }
 }
