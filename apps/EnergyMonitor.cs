@@ -434,7 +434,7 @@ public class EnergyMonitor
         infoForCurrentHour = new ElectricityPriceInfo(DateTime.Now + TimeSpan.FromMinutes(15), _0Gbl._myEntities.Sensor?.NordpoolKwhFiEur31001, electricityRangeKeys);
 
         if (skipThisHour) { skipThisHour = false; return; }
-        _0Gbl._myEntities.InputNumber.DailyEnergySaveHelper.AddValue(ecoflowAdjustedHourlycost - (_0Gbl._myEntities.InputNumber.EcoflowCharingCost.State ?? 0));
+        _0Gbl._myEntities.InputNumber.DailyEnergySaveHelper.AddValue(ecoflowAdjustedHourlycost - ecoflowChargePrice);
         _0Gbl._myEntities.InputNumber.EnergyCostDaily.AddValue(priceForLastHout);
         _0Gbl._myEntities.InputNumber.EnergyCostHourly.SetValue(priceForLastHout);
 
