@@ -216,7 +216,7 @@ public class EnergyMonitor
     
     private double ecoflowCacl(double hourlyUsedEnergy)
     {
-        return hourlyUsedEnergy - _0Gbl._myEntities.Sensor.EcoflowAcOutputHourly.AsNumeric().State ?? 0 - _0Gbl._myEntities.Sensor.EcoflowSolarInputHourly.AsNumeric().State ?? 0;
+        return hourlyUsedEnergy - (_0Gbl._myEntities.Sensor.EcoflowAcOutputHourly.AsNumeric().State ?? 0) - ( _0Gbl._myEntities.Sensor.EcoflowSolarInputHourly.AsNumeric().State ?? 0);
     }
 
     private void EnergiPriceChengeAlert()
@@ -397,10 +397,10 @@ public class EnergyMonitor
 
         double calculatePrice(double inpt)
         {
-            var thisHourFortum = inpt * marginOfErrorFix * infoForCurrentHour.price + inpt  * _0Gbl._myEntities.InputNumber.EnergyFortumHardCost.State;
+            var thisHourFortum = inpt  * infoForCurrentHour.price + inpt  * _0Gbl._myEntities.InputNumber.EnergyFortumHardCost.State;
             thisHourFortum += thisHourFortum * (_0Gbl._myEntities.InputNumber.EnergyFortumAlv.State / 100);
 
-            var thisHourTranster = inpt * marginOfErrorFix * _0Gbl._myEntities.InputNumber.EnergyTransferCost.State;
+            var thisHourTranster = inpt  * _0Gbl._myEntities.InputNumber.EnergyTransferCost.State;
             thisHourTranster += thisHourTranster * _0Gbl._myEntities.InputNumber.EnergyTransferAlv.State;
             var thisHourTotal = thisHourFortum + thisHourTranster;
 
