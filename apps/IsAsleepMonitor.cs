@@ -30,7 +30,7 @@ namespace NetDaemonApps.apps
             //DateTime d2 = DateTime.Parse(_00_Globals._myEntities.Sensor.EnvyLastactive.State ?? "", null, System.Globalization.DateTimeStyles.RoundtripKind);
 
             _0Gbl._myEntities.Switch.PcPlug.StateChanges().Where(x => x?.New?.State == "on").Subscribe(_ => CheckCondition(_0Gbl._myEntities.Switch.PcPlug, false));
-            _0Gbl._myEntities.Switch.PcPlug.StateChanges().Where(x => x?.New?.State == "off").Subscribe(_ => CheckCondition(_0Gbl._myEntities.Switch.PcPlug, true));
+            _0Gbl._myEntities.Switch.PcPlug.StateChanges().Where(x => x?.New?.State == "off" || x?.New?.State == "unavailable").Subscribe(_ => CheckCondition(_0Gbl._myEntities.Switch.PcPlug, true));
            isAsleepCondition.Add(_0Gbl._myEntities.Switch.PcPlug, _0Gbl._myEntities.Switch.PcPlug.IsOff());
 
             _0Gbl._myEntities.InputBoolean.MediaPlaying.StateChanges().WhenStateIsFor(x => x?.State == "off", TimeSpan.FromMinutes(15), _0Gbl._myScheduler).Subscribe(_ => CheckCondition(_0Gbl._myEntities.InputBoolean.MediaPlaying, true));
@@ -56,7 +56,7 @@ namespace NetDaemonApps.apps
                 var alarmnumber = 1;
                 _0Gbl._myEntities.Script.Actiontodoatalarm.TurnOn();
                 TTS.Speak("Good Morning, ", TTS.TTSPriority.IgnoreAll);
-                alarmTimer = _0Gbl._myScheduler.RunEvery(TimeSpan.FromMinutes(20), DateTimeOffset.Now + TimeSpan.FromSeconds(3), () => {
+                alarmTimer = _0Gbl._myScheduler.RunEvery(TimeSpan.FromMinutes(10), DateTimeOffset.Now + TimeSpan.FromSeconds(3), () => {
 
                     TimeSpan? timeDiff = DateTime.Now - _0Gbl._myEntities?.InputBoolean?.Isasleep?.EntityState?.LastChanged;
                     string ttsTime = "its " + DateTime.Now.ToString("H:mm", CultureInfo.InvariantCulture) + ", you have been sleeping for " + timeDiff?.Hours + " hours" + (timeDiff?.Minutes > 0 ?  " and " + timeDiff?.Minutes + "minutes" : ". ");

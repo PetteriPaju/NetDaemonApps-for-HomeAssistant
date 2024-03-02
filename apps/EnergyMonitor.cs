@@ -34,7 +34,7 @@ public class EnergyMonitor
     ElectricityPriceInfo? infoForCurrentHour = null;
 
     private double marginOfErrorFix = 1.07;
-    private bool skipThisHour = true;
+ 
 
     public EnergyMonitor()
     {
@@ -57,8 +57,6 @@ public class EnergyMonitor
         _0Gbl._myEntities?.Sensor.NordpoolKwhFiEur31001.StateAllChanges().Where(x => x?.New?.Attributes?.TomorrowValid == true && x.Old?.Attributes?.TomorrowValid == false).Subscribe(_ => { ReadOutEnergyUpdate(); });
         _0Gbl.DailyResetFunction += OnDayChanged;
         UpdateNextChangeHourTime();
-
-
 
 
 
@@ -433,7 +431,7 @@ public class EnergyMonitor
 
         infoForCurrentHour = new ElectricityPriceInfo(DateTime.Now + TimeSpan.FromMinutes(15), _0Gbl._myEntities.Sensor?.NordpoolKwhFiEur31001, electricityRangeKeys);
 
-        if (skipThisHour) { skipThisHour = false; return; }
+     
         _0Gbl._myEntities.InputNumber.DailyEnergySaveHelper.AddValue(ecoflowAdjustedHourlycost - ecoflowChargePrice);
         _0Gbl._myEntities.InputNumber.EnergyCostDaily.AddValue(priceForLastHout);
         _0Gbl._myEntities.InputNumber.EnergyCostHourly.SetValue(priceForLastHout);
@@ -450,7 +448,7 @@ public class EnergyMonitor
         solarChargingNotificationGiven = false;
         solarChargingOffNotificationGiven = false;
         apOnToday = false;
-        _0Gbl._myEntities.InputNumber.DailyEnergySaveHelper.SetValue(0);
+       
         _0Gbl._myServices.Script.ResetAllPowermeters();
         _0Gbl._myEntities.InputNumber.EcoflowCharingCost.SetValue(0);
     }
