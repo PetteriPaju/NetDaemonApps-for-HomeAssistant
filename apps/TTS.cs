@@ -116,7 +116,7 @@ namespace NetDaemonApps.apps
 
        private string getTTSService()
         {
-            return _0Gbl._myEntities.BinarySensor.FritzBox6660CableConnection ? "google_translate_say" : "piper";
+            return _0Gbl._myEntities.BinarySensor.FritzBox6660CableConnection.State == "on" ? "google_translate_say" : "piper";
         }
 
     }

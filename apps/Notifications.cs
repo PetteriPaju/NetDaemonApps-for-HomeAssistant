@@ -21,6 +21,7 @@ namespace NetDaemonApps.apps
     public class Notifications
     {
         public static InputBooleanEntity? _sensorsOnBooleanEntity = null;
+
         public DateTime lastMemoryAlert = DateTime.MinValue;
 
         public Notifications() {
@@ -45,9 +46,7 @@ namespace NetDaemonApps.apps
 
             });
             _0Gbl._myEntities.Sensor.MotoG8PowerLiteBatteryLevel.StateChanges().Where(x => x?.New?.State < 15 && _0Gbl._myEntities.InputBoolean.Ishome.State == "on" && _0Gbl._myEntities.BinarySensor.MotoG8PowerLiteIsCharging.State == "off").Subscribe(_ => { TTS.Speak("Phone Battery Low", TTS.TTSPriority.DoNotPlayInGuestMode, _0Gbl._myEntities.InputBoolean.NotificationPhoneBattery); });
-   
-
-
+            _0Gbl._myEntities.Sensor.MotoG8PowerLiteBatteryLevel.StateChanges().Where(x => x?.New?.State < 50 && x?.Old?.State >= 50 && _0Gbl._myEntities.BinarySensor.MotoG8PowerLiteIsCharging.State == "off").Subscribe(_ => { TTS.Speak("Phone Battery Under 50%", TTS.TTSPriority.DoNotPlayInGuestMode, _0Gbl._myEntities.InputBoolean.NotificationPhoneBattery); });
 
         }
 
