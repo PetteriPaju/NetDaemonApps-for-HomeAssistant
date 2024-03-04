@@ -103,7 +103,7 @@ namespace NetDaemonApps.apps
                 }
                */
                 lastAnnounsmentTime = DateTime.Now;
-                tts.Speak("media_player.vlc_telnet", text, "google_translate_say");
+                tts.Speak("media_player.vlc_telnet", text, getTTSService());
 
                
             }
@@ -112,6 +112,11 @@ namespace NetDaemonApps.apps
                 Console.WriteLine("(TTS ignored) " + text);
             }
                
+        }
+
+       private string getTTSService()
+        {
+            return _0Gbl._myEntities.BinarySensor.FritzBox6660CableConnection ? "google_translate_say" : "piper";
         }
 
     }
