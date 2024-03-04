@@ -32,7 +32,7 @@ namespace NetDaemonApps.apps
                     AgaraCube_LivingRoom.BrightLightTurnedOnByPC = true;
                 _0Gbl._myEntities.Switch.PcMultipowermeterMonitors.TurnOn();
                 _0Gbl._myEntities.Switch.FanPlug.TurnOn();
-                _0Gbl._myEntities.Scene.SwitchUsbLaptop.TurnOn();
+               // _0Gbl._myEntities.Scene.SwitchUsbLaptop.TurnOn();
 
             });
 
@@ -46,7 +46,8 @@ namespace NetDaemonApps.apps
                         _0Gbl._myEntities.Light.PcMultipowermeterL2.TurnOff();
                         _0Gbl._myEntities.Switch.PcMultipowermeterMonitors.TurnOff();
                 }
-                _0Gbl._myEntities.Scene.SwitchUsbPc.TurnOn();
+               
+                 //_0Gbl._myEntities.Scene.SwitchUsbPc.TurnOn();
 
             });
 

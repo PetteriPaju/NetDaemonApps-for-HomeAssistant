@@ -7,6 +7,7 @@ using System.Reactive.Concurrency;
 using System.Globalization;
 using System;
 using System.Diagnostics;
+using NetDaemon.HassModel;
 
 namespace NetDaemonApps.apps
 {
@@ -48,6 +49,10 @@ namespace NetDaemonApps.apps
             _0Gbl._myEntities.InputBoolean.Ishome.StateChanges().Where(x => x?.New?.State == "off").Subscribe(_ => CheckCondition(_0Gbl._myEntities.InputBoolean.Ishome, false));
             _0Gbl._myEntities.InputBoolean.Ishome.StateChanges().Where(x => x?.New?.State == "on").Subscribe(_ => CheckCondition(_0Gbl._myEntities.InputBoolean.Ishome, true));
             isAsleepCondition.Add(_0Gbl._myEntities.InputBoolean.Ishome, _0Gbl._myEntities.InputBoolean.Ishome.IsOn());
+
+            _0Gbl._myEntities.Light.Awakelights.StateChanges().WhenStateIsFor(x => x?.State == "off", TimeSpan.FromMinutes(1),_0Gbl._myScheduler).Subscribe(_ => CheckCondition(_0Gbl._myEntities.Light.Awakelights, false));
+            _0Gbl._myEntities.Light.Awakelights.StateChanges().WhenStateIsFor(x => x?.State == "on", TimeSpan.FromMinutes(20), _0Gbl._myScheduler).Subscribe(_ => CheckCondition(_0Gbl._myEntities.Light.Awakelights, true));
+            isAsleepCondition.Add(_0Gbl._myEntities.Light.Awakelights, _0Gbl._myEntities.Light.Awakelights.IsOn());
 
 
             _0Gbl._myEntities.InputBoolean.Isasleep.StateChanges().WhenStateIsFor(x => x?.State == "on", sleepTimer, _0Gbl._myScheduler).Subscribe(x => {
