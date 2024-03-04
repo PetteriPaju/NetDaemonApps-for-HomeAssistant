@@ -50,8 +50,8 @@ namespace NetDaemonApps.apps
             _0Gbl._myEntities.InputBoolean.Ishome.StateChanges().Where(x => x?.New?.State == "on").Subscribe(_ => CheckCondition(_0Gbl._myEntities.InputBoolean.Ishome, true));
             isAsleepCondition.Add(_0Gbl._myEntities.InputBoolean.Ishome, _0Gbl._myEntities.InputBoolean.Ishome.IsOn());
 
-            _0Gbl._myEntities.Light.Awakelights.StateChanges().WhenStateIsFor(x => x?.State == "off", TimeSpan.FromMinutes(1),_0Gbl._myScheduler).Subscribe(_ => CheckCondition(_0Gbl._myEntities.Light.Awakelights, false));
-            _0Gbl._myEntities.Light.Awakelights.StateChanges().WhenStateIsFor(x => x?.State == "on", TimeSpan.FromMinutes(20), _0Gbl._myScheduler).Subscribe(_ => CheckCondition(_0Gbl._myEntities.Light.Awakelights, true));
+            _0Gbl._myEntities.Light.Awakelights.StateChanges().WhenStateIsFor(x => x?.State == "off", TimeSpan.FromMinutes(1),_0Gbl._myScheduler).Subscribe(_ => CheckCondition(_0Gbl._myEntities.Light.Awakelights, true));
+            _0Gbl._myEntities.Light.Awakelights.StateChanges().WhenStateIsFor(x => x?.State == "on", TimeSpan.FromMinutes(20), _0Gbl._myScheduler).Subscribe(_ => CheckCondition(_0Gbl._myEntities.Light.Awakelights, false));
             isAsleepCondition.Add(_0Gbl._myEntities.Light.Awakelights, _0Gbl._myEntities.Light.Awakelights.IsOn());
 
 
