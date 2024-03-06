@@ -22,7 +22,7 @@ namespace NetDaemonApps.apps;
 [NetDaemonApp]
 public class EnergyMonitor
 {
-    private readonly Dictionary<double, string> electiricityRanges = new Dictionary<double, string>() { { 0, "Blue" }, { 0.075, "Green" }, { 0.15, "Yellow" }, { 0.25, "Red" } };
+    private readonly Dictionary<double, string> electiricityRanges = new Dictionary<double, string>() { { 0, "Blue" }, { 7.5, "Green" }, { 15, "Yellow" }, { 25, "Red" } };
     private bool hiPeakAlertGiven = false;
     private bool loPeakAlertGiven = false;
     private bool solarChargingNotificationGiven = false;
@@ -400,7 +400,7 @@ public class EnergyMonitor
 
         double calculatePrice(double inpt)
         {
-            var thisHourFortum = inpt * marginOfErrorFix * infoForCurrentHour.price + inpt  * _0Gbl._myEntities.InputNumber.EnergyFortumHardCost.State;
+            var thisHourFortum = inpt * marginOfErrorFix * infoForCurrentHour.price/100 + inpt  * _0Gbl._myEntities.InputNumber.EnergyFortumHardCost.State;
             thisHourFortum += thisHourFortum * (_0Gbl._myEntities.InputNumber.EnergyFortumAlv.State / 100);
 
             var thisHourTranster = inpt * marginOfErrorFix * _0Gbl._myEntities.InputNumber.EnergyTransferCost.State;
