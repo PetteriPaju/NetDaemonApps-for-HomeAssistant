@@ -39,7 +39,7 @@ namespace NetDaemonApps.apps
             {
                 bool oldState = currentState;
                 currentState = isAwake();
-                if (currentState && _0Gbl._myEntities.BinarySensor.FritzBox6660CableConnection.State != "on" && overrideByNoInternet) currentState = false;
+                if (currentState && !_0Gbl._myEntities.Switch.ModemAutoOnPlug.IsOn() && overrideByNoInternet) currentState = false;
                 return oldState != currentState;
             }
 
@@ -88,7 +88,7 @@ namespace NetDaemonApps.apps
             _0Gbl._myEntities.Light.Awakelights.StateChanges().WhenStateIsFor(x => x?.State == "on", TimeSpan.FromMinutes(20), _0Gbl._myScheduler).Subscribe(_ => CheckStatus(condition));
             isAwakeConditions.Add(condition);
 
-            _0Gbl._myEntities.BinarySensor.FritzBox6660CableConnection.StateChanges().WhenStateIsFor(x=>x.State != "on", TimeSpan.FromMinutes(5)).Subscribe(_ => RefreshAll());
+            _0Gbl._myEntities.Switch.ModemAutoOnPlug.StateChanges().WhenStateIsFor(x=>x.State != "on", TimeSpan.FromMinutes(5)).Subscribe(_ => RefreshAll());
 
 
             _0Gbl._myEntities.InputBoolean.Isasleep.StateChanges().WhenStateIsFor(x => x?.State == "on", sleepTimer, _0Gbl._myScheduler).Subscribe(x => {
