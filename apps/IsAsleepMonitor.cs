@@ -60,8 +60,7 @@ namespace NetDaemonApps.apps
 
             //DateTime d2 = DateTime.Parse(_00_Globals._myEntities.Sensor.EnvyLastactive.State ?? "", null, System.Globalization.DateTimeStyles.RoundtripKind);
             MonitorMember condition = new MonitorMember(_0Gbl._myEntities.Switch.PcPlug.IsOn);
-            _0Gbl._myEntities.Switch.PcPlug.StateChanges().Where(x => x?.New?.State == "on").Subscribe(_ => condition.HasStatusChanged());
-            _0Gbl._myEntities.Switch.PcPlug.StateChanges().Where(x => x?.New?.State == "off" || x?.New?.State == "unavailable").Subscribe(_ => condition.HasStatusChanged());
+            _0Gbl._myEntities.Switch.PcPlug.StateChanges().Subscribe(_ => condition.HasStatusChanged());
             loraTrainingHelper = condition;
             isAwakeConditions.Add(condition);
 
@@ -81,8 +80,7 @@ namespace NetDaemonApps.apps
             isAwakeConditions.Add(condition);
 
             condition = new MonitorMember(_0Gbl._myEntities.InputBoolean.Ishome.IsOff);
-            _0Gbl._myEntities.InputBoolean.Ishome.StateChanges().Where(x => x?.New?.State == "off").Subscribe(_ => CheckStatus(condition));
-            _0Gbl._myEntities.InputBoolean.Ishome.StateChanges().Where(x => x?.New?.State == "on").Subscribe(_ => CheckStatus(condition));
+            _0Gbl._myEntities.InputBoolean.Ishome.StateChanges().Subscribe(_ => CheckStatus(condition));
             isAwakeConditions.Add(condition);
 
             condition = new MonitorMember(_0Gbl._myEntities.Light.Awakelights.IsOn);
