@@ -37,9 +37,11 @@ namespace NetDaemonApps.apps
             
             public bool HasStatusChanged()
             {
+                Console.WriteLine("Condition Check: " + isAwake());
                 bool oldState = currentState;
                 currentState = isAwake();
                 if (currentState && !_0Gbl._myEntities.Switch.ModemAutoOnPlug.IsOn() && overrideByNoInternet) currentState = false;
+
                 return oldState != currentState;
             }
 
@@ -50,6 +52,7 @@ namespace NetDaemonApps.apps
         {
             if (m.HasStatusChanged())
             {
+                Console.WriteLine("Condition Changed!");
                 CheckAllIsSleepConditions();
             }
         }
@@ -59,12 +62,12 @@ namespace NetDaemonApps.apps
             _0Gbl._myEntities.InputDatetime.SettingsSleepduration.StateAllChanges().Subscribe(_ => ParseAlertTime());
 
             //DateTime d2 = DateTime.Parse(_00_Globals._myEntities.Sensor.EnvyLastactive.State ?? "", null, System.Globalization.DateTimeStyles.RoundtripKind);
-            MonitorMember condition = new MonitorMember(_0Gbl._myEntities.Switch.PcPlug.IsOn);
+            MonitorMember condition = new MonitorMember(bool () => { return _0Gbl._myEntities.Switch.PcPlug.IsOn(); });
             _0Gbl._myEntities.Switch.PcPlug.StateChanges().Subscribe(_ => condition.HasStatusChanged());
             loraTrainingHelper = condition;
             isAwakeConditions.Add(condition);
 
-            condition = new MonitorMember(_0Gbl._myEntities.InputBoolean.MediaPlaying.IsOn, true);
+            condition = new MonitorMember(bool () => { return _0Gbl._myEntities.InputBoolean.MediaPlaying.IsOn(); }, true);
             _0Gbl._myEntities.InputBoolean.MediaPlaying.StateChanges().WhenStateIsFor(x => x?.State == "off", TimeSpan.FromMinutes(15), _0Gbl._myScheduler).Subscribe(_ => CheckStatus(condition));
             _0Gbl._myEntities.InputBoolean.MediaPlaying.StateChanges().WhenStateIsFor(x => x?.State == "on", TimeSpan.FromMinutes(1), _0Gbl._myScheduler).Subscribe(_ => CheckStatus(condition));
             isAwakeConditions.Add(condition);
@@ -79,11 +82,11 @@ namespace NetDaemonApps.apps
             _0Gbl._myEntities.Sensor.PcLastactive.StateChanges().WhenStateIsFor(x => x?.State != "unavailable", TimeSpan.FromMinutes(1), _0Gbl._myScheduler).Subscribe(_ => CheckStatus(condition));
             isAwakeConditions.Add(condition);
 
-            condition = new MonitorMember(_0Gbl._myEntities.InputBoolean.Ishome.IsOff);
-            _0Gbl._myEntities.InputBoolean.Ishome.StateChanges().Subscribe(_ => CheckStatus(condition));
+            condition = new MonitorMember(bool () => { return _0Gbl._myEntities.InputBoolean.Ishome.IsOff(); });
+            _0Gbl._myEntities.InputBoolean.Ishome.StateChanges().Subscribe(_ => { CheckStatus(condition); });
             isAwakeConditions.Add(condition);
 
-            condition = new MonitorMember(_0Gbl._myEntities.Light.Awakelights.IsOn);
+            condition = new MonitorMember(bool () => { return _0Gbl._myEntities.Light.Awakelights.IsOn(); });
             _0Gbl._myEntities.Light.Awakelights.StateChanges().WhenStateIsFor(x => x?.State == "off", TimeSpan.FromMinutes(1),_0Gbl._myScheduler).Subscribe(_ => CheckStatus(condition));
             _0Gbl._myEntities.Light.Awakelights.StateChanges().WhenStateIsFor(x => x?.State == "on", TimeSpan.FromMinutes(20), _0Gbl._myScheduler).Subscribe(_ => CheckStatus(condition));
             isAwakeConditions.Add(condition);
