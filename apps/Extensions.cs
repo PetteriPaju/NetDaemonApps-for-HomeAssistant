@@ -1,4 +1,5 @@
 ﻿using HomeAssistantGenerated;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 using NetDaemon.HassModel.Entities;
 using NetDaemonApps.apps;
 using System;
@@ -48,6 +49,12 @@ namespace NetDaemonApps
         {
             if (entity == null) return;
             entity.SetValue((entity.State ?? 0) + value);
+        }
+
+
+        public static bool StateFor(this Entity entity, TimeSpan time)
+        {
+           return entity.EntityState.LastChanged < DateTime.Now - time;
         }
     }
 }
