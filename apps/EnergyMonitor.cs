@@ -74,7 +74,8 @@ public class EnergyMonitor
 
     private void UpdateNextChangeHourTime()
     {
-        ElectricityPriceInfo inFoForNextHour = new ElectricityPriceInfo(DateTime.Now.AddMinutes(2), _0Gbl._myEntities?.Sensor?.NordpoolKwhFiEur31001, electricityRangeKeys);
+        ElectricityPriceInfo inFoForNextHour = new ElectricityPriceInfo(DateTime.Now.AddHours(1), _0Gbl._myEntities?.Sensor?.NordpoolKwhFiEur31001, electricityRangeKeys);
+        _0Gbl._myEntities.InputNumber.EnergyNextPrice.SetValue((double)inFoForNextHour.price);
         var hoursTillChange = FindWhenElectricityRangeChanges(inFoForNextHour, 48);
         if(hoursTillChange != null)
         _0Gbl._myEntities.InputDatetime.EnergyChangeTime.SetDatetime(datetime: hoursTillChange.dateTime.ToString(@"yyyy-MM-dd HH\:00\:00"));
@@ -247,6 +248,7 @@ public class EnergyMonitor
 
 
         TTSMessage = "Electricity " + (isWarning ? "Warning. " : "Notice. ") + "The Price is About to ";
+        int ttsLenght = TTSMessage.Length;
 
 
         if (priceChange != PriceChangeType.NoChange)
@@ -282,13 +284,15 @@ public class EnergyMonitor
                 TTSMessage += "be the peak price of the day.";
             hiPeakAlertGiven = true;
             }
-            else if (inFoForNextHour.peak == -1 && !loPeakAlertGiven)
+            if (inFoForNextHour.peak == -1 && !loPeakAlertGiven)
             {
                 TTSMessage += "be the lowest price of the day";
             loPeakAlertGiven = true;
 
             }
 
+            //Fix for weird bug that prevents Peak Alert from triggering
+        if (ttsLenght == TTSMessage.Length) return;
         
 
         if(TTSMessage!= null)TTS.Speak(TTSMessage, TTS.TTSPriority.PlayInGuestMode);
