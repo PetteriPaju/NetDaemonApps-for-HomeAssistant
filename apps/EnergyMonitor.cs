@@ -1,16 +1,11 @@
 using HomeAssistantGenerated;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc.Formatters;
+
 using NetDaemon.Extensions.Scheduler;
 using NetDaemon.HassModel.Entities;
-using System;
+
 using System.Collections.Generic;
 using System.Linq;
-using System.Reactive.Concurrency;
-using System.Security.Cryptography.X509Certificates;
 using System.Text.Json;
-using System.Text.Json.Nodes;
-using System.Text.Json.Serialization;
 // Use unique namespaces for your apps if you going to share with others to avoid
 // conflicting names
 namespace NetDaemonApps.apps;
@@ -35,6 +30,7 @@ public class EnergyMonitor
 
     private double marginOfErrorFix = 1.07;
     private bool skipThisHour = true;
+    private static int lastCaclHour = -5;
 
     public EnergyMonitor()
     {
@@ -57,7 +53,7 @@ public class EnergyMonitor
         _0Gbl._myEntities?.Sensor.EcoflowSolarInPower.AsNumeric().StateAllChanges().Where(x => x?.New?.State > 0 && !solarChargingNotificationGiven).Subscribe(x => { TTS.Instance.SpeakTTS("Solar Charging On",TTS.TTSPriority.PlayInGuestMode); solarChargingNotificationGiven = true; });
         _0Gbl._myEntities?.Sun.Sun.StateAllChanges().Where(x => (x?.New?.Attributes.Elevation <= 5 && !solarChargingOffNotificationGiven && solarChargingNotificationGiven && _0Gbl._myEntities?.Sensor.EcoflowSolarInPower.AsNumeric().State==0 && _0Gbl._myEntities.Sensor.EcoflowSolarSumDaily.State>0)).Subscribe(x => { TTS.Instance.SpeakTTS("Solar Charging Ended", TTS.TTSPriority.PlayInGuestMode); solarChargingOffNotificationGiven = true; });
 
-        _0Gbl._myEntities?.Sensor.NordpoolKwhFiEur31001.StateAllChanges().Where(x => x?.New?.Attributes?.TomorrowValid == true && x.Old?.Attributes?.TomorrowValid == false).Subscribe(_ => { ReadOutEnergyUpdate(); });
+        _0Gbl._myEntities?.Sensor.NordpoolTomorrowValid.StateChanges().Where(x => x.New.IsOn() && x.Old.IsOff()).Subscribe(_ => { ReadOutEnergyUpdate(); });
         _0Gbl.DailyResetFunction += OnDayChanged;
         UpdateNextChangeHourTime();
 
@@ -126,9 +122,7 @@ public class EnergyMonitor
             if (energyForecastInfo.subZeroCount > 0) message += " There will also be " + energyForecastInfo.subZeroCount + " sub zero hour" + (energyForecastInfo.subZeroCount > 1 ? "s." : ".");
         }
 
-
-        TTS.Speak(message,TTS.TTSPriority.PlayInGuestMode);
-
+            TTS.Speak(message, TTS.TTSPriority.PlayInGuestMode);
 
 
     }
@@ -395,10 +389,10 @@ public class EnergyMonitor
 
     private void UpdatePriceHourly(double energy)
     {
-    
-        if (_0Gbl._myEntities == null) return;
+         
         if (_0Gbl._myEntities.InputNumber.EnergyCostDaily.State == null) return;
         if (_0Gbl._myEntities.InputNumber.EnergyCostHourly.State == null) return;
+        if (lastCaclHour == DateTime.Now.Hour) return;
         if (_0Gbl._myEntities?.Sensor.Powermeters.State == null) return;
 
         double calculatePrice(double inpt)
@@ -443,7 +437,7 @@ public class EnergyMonitor
         _0Gbl._myEntities.InputNumber.DailyEnergySaveHelper.AddValue(ecoflowAdjustedHourlycost - ecoflowChargePrice);
         _0Gbl._myEntities.InputNumber.EnergyCostDaily.AddValue(priceForLastHout);
         _0Gbl._myEntities.InputNumber.EnergyCostHourly.SetValue(priceForLastHout);
-
+        lastCaclHour = DateTime.Now.Hour;
     }
 
     private void OnDayChanged()
