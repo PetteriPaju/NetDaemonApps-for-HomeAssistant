@@ -83,12 +83,6 @@ namespace NetDaemonApps.apps
                 isAwakeConditions.Add(condition);
             }
             {
-                var condition = new MonitorMember(_0Gbl._myEntities.Sensor.PcLastactive.State != "unavailable", "PC Active", true);
-                _0Gbl._myEntities.Sensor.PcLastactive.StateChanges().WhenStateIsFor(x => x?.State == "unavailable", TimeSpan.FromMinutes(5), _0Gbl._myScheduler).Subscribe(_ => { SetConditiotnState(condition, false); });
-                _0Gbl._myEntities.Sensor.PcLastactive.StateChanges().WhenStateIsFor(x => x?.State != "unavailable", TimeSpan.FromMinutes(1), _0Gbl._myScheduler).Subscribe(_ => { SetConditiotnState(condition, true); });
-                isAwakeConditions.Add(condition);
-            }
-            {
                 var condition = new MonitorMember(_0Gbl._myEntities.InputBoolean.Ishome.State == "off", "Is Home");
                 _0Gbl._myEntities.InputBoolean.Ishome.StateChanges().Where(x => x.New.IsOff()).Subscribe(_ => { SetConditiotnState(condition, true); });
                 _0Gbl._myEntities.InputBoolean.Ishome.StateChanges().Where(x => x.New.IsOn()).Subscribe(_ => { SetConditiotnState(condition, false); });
@@ -193,7 +187,9 @@ namespace NetDaemonApps.apps
 
             bool isAnyTrue = false;
 
-            if (trainingLora()) loraTrainingHelper.currentState = false;
+            if (trainingLora()) { 
+                loraTrainingHelper.currentState = false;
+            }
 
             foreach (MonitorMember cond in isAwakeConditions)
             {
