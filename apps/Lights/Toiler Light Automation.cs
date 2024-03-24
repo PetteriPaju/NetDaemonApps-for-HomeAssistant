@@ -21,7 +21,7 @@ namespace NetDaemonApps.apps.Lights
         public Toiler_Light_Automation()
         {
             targetLights.Add(_0Gbl._myEntities.Light.BedLight);
-            targetLights.Add(_0Gbl._myEntities.Light.PcMultipowermeterL2);
+            targetLights.Add(_0Gbl._myEntities.Light.PcMultipowermeterL1);
 
             targetLights.Add(_0Gbl._myEntities.Light.LivingRoomLight);
             targetLights.Add(_0Gbl._myEntities.Light.DesktopLight);
@@ -85,7 +85,7 @@ namespace NetDaemonApps.apps.Lights
             _0Gbl._myEntities.Light.HallwayLight.TurnOffLight();
             foreach (LightEntity light in targetLights)
             {
-                if (light != null && light.State != "unavailable" && light.IsOn() && light != _0Gbl._myEntities.Light.PcMultipowermeterL2)
+                if (light != null && light.State != "unavailable" && light.IsOn() && light != _0Gbl._myEntities.Light.PcMultipowermeterL1)
                 {
                     lightsThatWereOn.Add(light);
                     light.TurnOffLight();

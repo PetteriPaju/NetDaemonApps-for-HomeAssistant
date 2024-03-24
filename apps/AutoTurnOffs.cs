@@ -28,7 +28,7 @@ namespace NetDaemonApps.apps
             _0Gbl._myEntities.Switch.PcPlug.StateChanges().Where(x => x.New?.State == "on" && x.Old?.State == "off")
                 .Subscribe(_ => {
 
-                 _0Gbl._myEntities.Light.PcMultipowermeterL2.TurnOn();
+                 _0Gbl._myEntities.Light.PcMultipowermeterL1.TurnOn();
                     AgaraCube_LivingRoom.BrightLightTurnedOnByPC = true;
                 _0Gbl._myEntities.Switch.PcMultipowermeterMonitors.TurnOn();
                 _0Gbl._myEntities.Switch.FanPlug.TurnOn();
@@ -43,7 +43,7 @@ namespace NetDaemonApps.apps
 
                 if (_0Gbl._myEntities.Sensor.EnvyNetworkNetworkCardCount.AsNumeric().State != 1)
                 {
-                        _0Gbl._myEntities.Light.PcMultipowermeterL2.TurnOff();
+                        _0Gbl._myEntities.Light.PcMultipowermeterL1.TurnOff();
                         _0Gbl._myEntities.Switch.PcMultipowermeterMonitors.TurnOff();
                 }
                
@@ -57,13 +57,13 @@ namespace NetDaemonApps.apps
             _0Gbl._myEntities.Sensor.EnvyBatteryChargeRemainingPercentage.StateChanges().Where(x => x?.New?.State < _0Gbl._myEntities.InputNumber.SettingsLaptopchargerturnonpercent.State)
                 .Subscribe(_ => {
 
-                _0Gbl._myEntities.Switch.PcMultipowermeterLplug.TurnOn();          
+                _0Gbl._myEntities.Switch.PcMultipowermeterLaptop.TurnOn();          
             });
 
             _0Gbl._myEntities.Sensor.EnvyBatteryChargeRemainingPercentage.StateChanges().Where(x => x?.New?.State >= 99)
                 .Subscribe(_ => {
-                _0Gbl._myEntities.Switch.PcMultipowermeterLplug.TurnOff();
-            });
+                    _0Gbl._myEntities.Switch.PcMultipowermeterLaptop.TurnOff();
+                });
 
             _0Gbl._myEntities.BinarySensor.LivingroomWindowSensorContact.StateChanges().Where(x => x?.New?.State == "on" && x?.Old?.State == "off").Subscribe(_ => {
               //  _00_Globals._myEntities.Switch.TbdPowermeter.TurnOff();
