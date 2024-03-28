@@ -57,13 +57,13 @@ namespace NetDaemonApps.apps
             _0Gbl._myEntities.Sensor.EnvyBatteryChargeRemainingPercentage.StateChanges().Where(x => x?.New?.State < _0Gbl._myEntities.InputNumber.SettingsLaptopchargerturnonpercent.State)
                 .Subscribe(_ => {
 
-                _0Gbl._myEntities.Switch.PcMultipowermeterLplug.TurnOn();          
+                _0Gbl._myEntities.Switch.PcMultipowermeterLaptop.TurnOn();          
             });
 
             _0Gbl._myEntities.Sensor.EnvyBatteryChargeRemainingPercentage.StateChanges().Where(x => x?.New?.State >= 99)
                 .Subscribe(_ => {
-                _0Gbl._myEntities.Switch.PcMultipowermeterLplug.TurnOff();
-            });
+                    _0Gbl._myEntities.Switch.PcMultipowermeterLaptop.TurnOff();
+                });
 
             _0Gbl._myEntities.BinarySensor.LivingroomWindowSensorContact.StateChanges().Where(x => x?.New?.State == "on" && x?.Old?.State == "off").Subscribe(_ => {
               //  _00_Globals._myEntities.Switch.TbdPowermeter.TurnOff();

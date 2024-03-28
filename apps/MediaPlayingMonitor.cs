@@ -46,10 +46,10 @@ namespace NetDaemonApps.apps
                 SetEntityForMediaPlayer(e);
             }
 
-            _0Gbl._myScheduler.ScheduleCron("*/10 * * * *", () => CheckAllStates());
+            _0Gbl._myScheduler.ScheduleCron("* * * * *", () => CheckAllStates());
 
 
-
+            CheckAllStates();
         }
 
 
