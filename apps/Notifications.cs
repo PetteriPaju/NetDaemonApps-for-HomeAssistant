@@ -14,6 +14,7 @@ using System.Text.Json.Serialization;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using System.Text.Encodings.Web;
 using System.Text.Unicode;
+using NetDaemon.HassModel.Entities;
 
 namespace NetDaemonApps.apps
 {
@@ -47,6 +48,14 @@ namespace NetDaemonApps.apps
             });
             _0Gbl._myEntities.Sensor.MotoG8PowerLiteBatteryLevel.StateChanges().Where(x => x?.New?.State < 15 && _0Gbl._myEntities.InputBoolean.Ishome.State == "on" && _0Gbl._myEntities.BinarySensor.MotoG8PowerLiteIsCharging.State == "off").Subscribe(_ => { TTS.Speak("Phone Battery Low", TTS.TTSPriority.DoNotPlayInGuestMode, _0Gbl._myEntities.InputBoolean.NotificationPhoneBattery); });
             _0Gbl._myEntities.Sensor.MotoG8PowerLiteBatteryLevel.StateChanges().Where(x => x?.New?.State < 50 && x?.Old?.State >= 50 && _0Gbl._myEntities.BinarySensor.MotoG8PowerLiteIsCharging.State == "off").Subscribe(_ => { TTS.Speak("Phone Battery Under 50%", TTS.TTSPriority.DoNotPlayInGuestMode, _0Gbl._myEntities.InputBoolean.NotificationPhoneBattery); });
+
+
+            _0Gbl._myEntities.InputBoolean.Ishome.StateChanges().Where(x => x.New.IsOn()).Subscribe(_ => {
+                if (_0Gbl._myEntities.BinarySensor.SolarChargingLimit.IsOn() && _0Gbl._myEntities.Sensor.EcoflowSolarInPower.State == 0)
+                 {
+               TTS.Speak("There is potential for solar charging");
+                 }
+            });
 
         }
 

@@ -31,6 +31,7 @@ public class EnergyMonitor
     private double marginOfErrorFix = 1.07;
     private bool skipThisHour = true;
     private static int lastCaclHour = -5;
+    private DateTime timeOfLastSolarNotification = DateTime.MinValue;
 
     public EnergyMonitor()
     {
@@ -50,7 +51,29 @@ public class EnergyMonitor
         _0Gbl._myScheduler.ScheduleCron("50 * * * *", () => EnergiPriceChengeAlert());
 
         solarChargingNotificationGiven = _0Gbl._myEntities?.Sensor?.EcoflowSolarInPower.State >= 0;
-        _0Gbl._myEntities?.Sensor.EcoflowSolarInPower.AsNumeric().StateAllChanges().Where(x => x?.New?.State > 0 && !solarChargingNotificationGiven).Subscribe(x => { TTS.Instance.SpeakTTS("Solar Charging On",TTS.TTSPriority.PlayInGuestMode); solarChargingNotificationGiven = true; });
+
+        _0Gbl._myEntities?.BinarySensor.SolarChargingLimit.StateChanges().Where(e => e.New.IsOn() && e.Old.IsOff()).Subscribe(_e => { 
+        
+        if(DateTime.Now > timeOfLastSolarNotification + TimeSpan.FromMinutes(30))
+         {     
+                if(_0Gbl._myEntities.Sensor.EcoflowStatus.State != "online" )
+                {
+                    if (_0Gbl._myEntities.InputBoolean.NotificationEnergySolar.IsOn())
+                    {
+                        TTS.Instance.SpeakTTS("Solar chargin available", TTS.TTSPriority.PlayInGuestMode);
+                        timeOfLastSolarNotification = DateTime.Now;
+                    }
+
+                }
+         }
+             
+        });
+
+
+
+
+
+            _0Gbl._myEntities?.Sensor.EcoflowSolarInPower.AsNumeric().StateAllChanges().Where(x => x?.New?.State > 0 && !solarChargingNotificationGiven).Subscribe(x => { TTS.Instance.SpeakTTS("Solar Charging On",TTS.TTSPriority.PlayInGuestMode); solarChargingNotificationGiven = true; });
         _0Gbl._myEntities?.Sun.Sun.StateAllChanges().Where(x => (x?.New?.Attributes.Elevation <= 5 && !solarChargingOffNotificationGiven && solarChargingNotificationGiven && _0Gbl._myEntities?.Sensor.EcoflowSolarInPower.AsNumeric().State==0 && _0Gbl._myEntities.Sensor.EcoflowSolarSumDaily.State>0)).Subscribe(x => { TTS.Instance.SpeakTTS("Solar Charging Ended", TTS.TTSPriority.PlayInGuestMode); solarChargingOffNotificationGiven = true; });
 
         _0Gbl._myEntities?.Sensor.NordpoolTomorrowValid.StateChanges().Where(x => x.New.State == "True" && x.Old.State == "False").Subscribe(_ => { ReadOutEnergyUpdate(); });
@@ -185,22 +208,32 @@ public class EnergyMonitor
 
     public void MorningTTS()
     {
-        if (_0Gbl._myEntities.InputBoolean.NotificationEnergyPriceChange.IsOff()) return;
-        string TTSMessage = "Good Morning. Current Electricity Cost is " + (infoForCurrentHour.range == -1 ? "Unknown" : "at " + electiricityRanges.Values.ElementAt(infoForCurrentHour.range)) + ". ";
+        if (_0Gbl._myEntities.InputBoolean.NotificationEnergyPriceChange.IsOff() && _0Gbl._myEntities.InputBoolean.NotificationEnergySolar.IsOff()) return;
+        string TTSMessage = "Good Morning.";
+  
+          
 
 
 
         ElectricityPriceInfo inFoForNextHour = new ElectricityPriceInfo(DateTime.Now.AddHours(1), _0Gbl._myEntities?.Sensor?.NordpoolKwhFiEur31001, electricityRangeKeys);
 
         PriceChangeType priceChange = infoForCurrentHour.Compare(inFoForNextHour);
-
-        if (infoForCurrentHour.range == 0 && priceChange == PriceChangeType.NoChange) return;
-
-        if (priceChange != PriceChangeType.NoChange)
+        bool addAlso = false;
+        if (infoForCurrentHour.range != 0 || priceChange != PriceChangeType.NoChange)
         {
+            TTSMessage += " Current Electricity Cost is " + (infoForCurrentHour.range == -1 ? "Unknown" : "at " + electiricityRanges.Values.ElementAt(infoForCurrentHour.range)) + ". ";
+            if (priceChange != PriceChangeType.NoChange)
+            {
 
-            TTSMessage += "But it will " + (priceChange == PriceChangeType.Increase ? "increase to " : "decrease to ") + electiricityRanges.Values.ElementAt(inFoForNextHour.range);
-            TTSMessage += " in " + (60 - DateTime.Now.Minute) + " minutes";
+                TTSMessage += "But it will " + (priceChange == PriceChangeType.Increase ? "increase to " : "decrease to ") + electiricityRanges.Values.ElementAt(inFoForNextHour.range);
+                TTSMessage += " in " + (60 - DateTime.Now.Minute) + " minutes.";
+            }
+            addAlso = true;
+        }
+
+        if (_0Gbl._myEntities.BinarySensor.SolarChargingLimit.IsOn() && _0Gbl._myEntities.Sensor.EcoflowSolarInPower.State == 0)
+        {
+            TTSMessage += "There is " + (addAlso ? "also" : "") + "potential for solar charging";
         }
 
        
