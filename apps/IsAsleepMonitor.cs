@@ -24,35 +24,42 @@ namespace NetDaemonApps.apps
 
         private IDisposable? alarmTimer;
 
-        private class MonitorMember {
+        private class MonitorMember
+        {
             public bool currentState;
             public bool overrideByNoInternet;
+            private Func<bool> condition;
             public string name;
-            public MonitorMember(bool value, string debugName, bool overrideByNoInternet = false )
+            public MonitorMember(Func<bool> condition, string debugName, bool overrideByNoInternet = false)
             {
                 this.overrideByNoInternet = overrideByNoInternet;
                 this.name = debugName;
-                this.currentState = value;
-            }  
-            
+                this.condition = condition;
+            }
+
             public bool SetState(bool state)
             {
                 bool oldState = currentState;
                 currentState = state;
-              //  if (currentState && !_0Gbl._myEntities.Switch.ModemAutoOnPlug.IsOn() && overrideByNoInternet) currentState = false;
+                //  if (currentState && !_0Gbl._myEntities.Switch.ModemAutoOnPlug.IsOn() && overrideByNoInternet) currentState = false;
 
                 return oldState != currentState;
             }
 
-
-        }
-
-        private void SetConditiotnState(MonitorMember member, bool state)
-        {
-            if (member.SetState(state))
+            public bool CheckState()
             {
-                Console.WriteLine(member.name + "changed to: " + state);
-                CheckAllIsSleepConditions();
+
+                bool oldState = currentState;
+                currentState = condition();
+                return oldState != currentState;
+            }
+            private void SetConditiotnState(MonitorMember member, bool state)
+            {
+                if (member.SetState(state))
+                {
+                    Console.WriteLine(member.name + "changed to: " + state);
+                    CheckAllIsSleepConditions();
+                }
             }
         }
 
@@ -63,35 +70,28 @@ namespace NetDaemonApps.apps
 
             //DateTime d2 = DateTime.Parse(_00_Globals._myEntities.Sensor.EnvyLastactive.State ?? "", null, System.Globalization.DateTimeStyles.RoundtripKind);
             {
-                var condition = new MonitorMember(_0Gbl._myEntities.Switch.PcPlug.IsOn(), "Pc Plug");
-                _0Gbl._myEntities.Switch.PcPlug.StateChanges().Where(x => x.New.IsOn()).Subscribe(_ => SetConditiotnState(condition, true));
-                _0Gbl._myEntities.Switch.PcPlug.StateChanges().Where(x => x.New.IsOff()).Subscribe(_ => SetConditiotnState(condition, false));
+                var condition = new MonitorMember(()=> { return (_0Gbl._myEntities.Switch.PcPlug.IsOn() || _0Gbl._myEntities.Switch.PcPlug.IsOn() && _0Gbl._myEntities.Automation.TurnOffPcWhenLoraTrainingDone.IsOn() && _0Gbl._myEntities.InputSelect.Atloraended.State == "Shutdown");  }, "Pc Plug");
+                _0Gbl._myEntities.Switch.PcPlug.StateChanges().Where(x => x.New.IsOn()).Subscribe(_ => condition.CheckState());
+                _0Gbl._myEntities.Switch.PcPlug.StateChanges().Where(x => x.New.IsOff()).Subscribe(_ => condition.CheckState());
 
-                loraTrainingHelper = condition;
+                isAwakeConditions.Add(condition);
+            }
+            {;
+                var condition = new MonitorMember( _0Gbl._myEntities.InputBoolean.MediaPlaying.IsOn, "Media", true);
+                _0Gbl._myEntities.InputBoolean.MediaPlaying.StateChanges().WhenStateIsFor(x => x?.State == "off", TimeSpan.FromMinutes(15), _0Gbl._myScheduler).Subscribe(_ => { condition.CheckState(); });
+                _0Gbl._myEntities.InputBoolean.MediaPlaying.StateChanges().WhenStateIsFor(x => x?.State == "on", TimeSpan.FromMinutes(1), _0Gbl._myScheduler).Subscribe(_ => { condition.CheckState(); });
                 isAwakeConditions.Add(condition);
             }
             {
-                var condition = new MonitorMember(_0Gbl._myEntities.InputBoolean.MediaPlaying.IsOn(), "Media", true);
-                _0Gbl._myEntities.InputBoolean.MediaPlaying.StateChanges().WhenStateIsFor(x => x?.State == "off", TimeSpan.FromMinutes(15), _0Gbl._myScheduler).Subscribe(_ => { SetConditiotnState(condition, false); });
-                _0Gbl._myEntities.InputBoolean.MediaPlaying.StateChanges().WhenStateIsFor(x => x?.State == "on", TimeSpan.FromMinutes(1), _0Gbl._myScheduler).Subscribe(_ => { SetConditiotnState(condition, true); });
+                var condition = new MonitorMember(() => { return _0Gbl._myEntities.Sensor.EnvyLastactive.State != "unavailable"; }, "Envy Active", true);
+                _0Gbl._myEntities.Sensor.EnvyLastactive.StateChanges().WhenStateIsFor(x => x?.State == "unavailable", TimeSpan.FromMinutes(5), _0Gbl._myScheduler).Subscribe(_ => { condition.CheckState(); });
+                _0Gbl._myEntities.Sensor.EnvyLastactive.StateChanges().WhenStateIsFor(x => x?.State != "unavailable", TimeSpan.FromMinutes(1), _0Gbl._myScheduler).Subscribe(_ => { condition.CheckState(); });
                 isAwakeConditions.Add(condition);
             }
             {
-                var condition = new MonitorMember(_0Gbl._myEntities.Sensor.EnvyLastactive.State != "unavailable", "Envy Active", true);
-                _0Gbl._myEntities.Sensor.EnvyLastactive.StateChanges().WhenStateIsFor(x => x?.State == "unavailable", TimeSpan.FromMinutes(5), _0Gbl._myScheduler).Subscribe(_ => { SetConditiotnState(condition, false); });
-                _0Gbl._myEntities.Sensor.EnvyLastactive.StateChanges().WhenStateIsFor(x => x?.State != "unavailable", TimeSpan.FromMinutes(1), _0Gbl._myScheduler).Subscribe(_ => { SetConditiotnState(condition, true); });
-                isAwakeConditions.Add(condition);
-            }
-            {
-                var condition = new MonitorMember(_0Gbl._myEntities.Sensor.PcLastactive.State != "unavailable", "PC Active", true);
-                _0Gbl._myEntities.Sensor.PcLastactive.StateChanges().WhenStateIsFor(x => x?.State == "unavailable", TimeSpan.FromMinutes(5), _0Gbl._myScheduler).Subscribe(_ => { SetConditiotnState(condition, false); });
-                _0Gbl._myEntities.Sensor.PcLastactive.StateChanges().WhenStateIsFor(x => x?.State != "unavailable", TimeSpan.FromMinutes(1), _0Gbl._myScheduler).Subscribe(_ => { SetConditiotnState(condition, true); });
-                isAwakeConditions.Add(condition);
-            }
-            {
-                var condition = new MonitorMember(_0Gbl._myEntities.InputBoolean.Ishome.State == "off", "Is Home");
-                _0Gbl._myEntities.InputBoolean.Ishome.StateChanges().Where(x => x.New.IsOff()).Subscribe(_ => { SetConditiotnState(condition, true); });
-                _0Gbl._myEntities.InputBoolean.Ishome.StateChanges().Where(x => x.New.IsOn()).Subscribe(_ => { SetConditiotnState(condition, false); });
+                var condition = new MonitorMember( ()=>_0Gbl._myEntities.InputBoolean.Ishome.State == "off", "Is Home");
+                _0Gbl._myEntities.InputBoolean.Ishome.StateChanges().Where(x => x.New.IsOff()).Subscribe(_ => { condition.CheckState(); });
+                _0Gbl._myEntities.InputBoolean.Ishome.StateChanges().Where(x => x.New.IsOn()).Subscribe(_ => { condition.CheckState(); });
 
                 isAwakeConditions.Add(condition);
             }
