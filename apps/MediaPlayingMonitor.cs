@@ -28,7 +28,16 @@ namespace NetDaemonApps.apps
 
             void SetEntityForMediaPlayer(Entity ent)
             {
-                AddEntity(ent, () => { return ent.State?.ToLower() == "playing"; }, CheckAllStates);
+                if(ent == mPlayers.Envy)
+                {
+                    AddEntity(ent, () => { return ent.State?.ToLower() == "playing" && _0Gbl._myEntities.BinarySensor._192168025.IsOn(); }, CheckAllStates);
+                }
+                else if (ent == mPlayers.Pc)
+                {
+                    AddEntity(ent, () => { return ent.State?.ToLower() == "playing" && _0Gbl._myEntities.Switch.PcPlug.IsOn(); }, CheckAllStates);
+                }
+                else
+                    AddEntity(ent, () => { return ent.State?.ToLower() == "playing"; }, CheckAllStates);
             
             }
 

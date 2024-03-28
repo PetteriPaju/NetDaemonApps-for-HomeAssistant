@@ -3525,7 +3525,7 @@ public partial class SensorEntities
     ///<summary>Toilet Seat Sensor Power outage count</summary>
     public SensorEntity ToiletSeatSensorPowerOutageCount => new(_haContext, "sensor.toilet_seat_sensor_power_outage_count");
     ///<summary>Total Hourly Energy Consumptions</summary>
-    public SensorEntity TotalHourlyEnergyConsumptions => new(_haContext, "sensor.total_hourly_energy_consumptions");
+    public NumericSensorEntity TotalHourlyEnergyConsumptions => new(_haContext, "sensor.total_hourly_energy_consumptions");
     ///<summary>Total PC Energy Daily</summary>
     public SensorEntity TotalPcEnergyDaily => new(_haContext, "sensor.total_pc_energy_daily");
     ///<summary>Total PC Wattage</summary>
