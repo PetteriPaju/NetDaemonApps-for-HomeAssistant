@@ -24,7 +24,7 @@ namespace NetDaemonApps.apps
             Entity phoneEntity = _0Gbl._myEntities.Sensor.MotoG8PowerLiteMediaSession;
             Entity tabletEntity = _0Gbl._myEntities.Sensor.SmT530MediaSession;
 
-            Entity[] mediaPlayerEntities= new Entity[] { mPlayers.AndroidTv192168020, mPlayers.Envy, mPlayers.LivingRoomDisplay, mPlayers.LivingRoomTv, mPlayers.Pc, phoneEntity, tabletEntity };
+            Entity[] mediaPlayerEntities= new Entity[] { mPlayers.AndroidTv192168020, mPlayers.Envy, mPlayers.LivingRoomDisplay, mPlayers.LivingRoomTv, mPlayers.Pc, phoneEntity};
 
             void SetEntityForMediaPlayer(Entity ent)
             {
@@ -74,6 +74,7 @@ namespace NetDaemonApps.apps
                 if(monitor.currentState == true)
                 {
                     somethinggPlaying = true;
+                    Console.WriteLine(monitor.entity.EntityId + " is playing something");
                     break;
                 }
             }
