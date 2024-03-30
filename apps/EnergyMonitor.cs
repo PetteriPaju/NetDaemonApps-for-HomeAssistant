@@ -71,7 +71,8 @@ public class EnergyMonitor
 
 
 
-
+        skipThisHour = true;
+        _0Gbl._myEntities.BinarySensor.FritzBox6660CableConnection.StateChanges().Where(e => e.New.IsOn()).Subscribe(_e => { skipThisHour = true; });
 
             _0Gbl._myEntities?.Sensor.EcoflowSolarInPower.AsNumeric().StateAllChanges().Where(x => x?.New?.State > 0 && !solarChargingNotificationGiven).Subscribe(x => { TTS.Instance.SpeakTTS("Solar Charging On",TTS.TTSPriority.PlayInGuestMode); solarChargingNotificationGiven = true; });
         _0Gbl._myEntities?.Sun.Sun.StateAllChanges().Where(x => (x?.New?.Attributes.Elevation <= 5 && !solarChargingOffNotificationGiven && solarChargingNotificationGiven && _0Gbl._myEntities?.Sensor.EcoflowSolarInPower.AsNumeric().State==0 && _0Gbl._myEntities.Sensor.EcoflowSolarSumDaily.State>0)).Subscribe(x => { TTS.Instance.SpeakTTS("Solar Charging Ended", TTS.TTSPriority.PlayInGuestMode); solarChargingOffNotificationGiven = true; });
@@ -208,7 +209,7 @@ public class EnergyMonitor
 
     public void MorningTTS()
     {
-        if (_0Gbl._myEntities.InputBoolean.NotificationEnergyPriceChange.IsOff() && _0Gbl._myEntities.InputBoolean.NotificationEnergySolar.IsOff()) return;
+        if (_0Gbl._myEntities.InputBoolean.NotificationEnergyPriceChange.IsOff() && (_0Gbl._myEntities.InputBoolean.NotificationEnergySolar.IsOff() && _0Gbl._myEntities.Sensor.EcoflowSolarInPower.State == 0)) return;
         string TTSMessage = "Good Morning.";
   
           
@@ -452,7 +453,7 @@ public class EnergyMonitor
 
         double ecoflowIgnoredAdjustedPrice = calculatePrice(energy);
         double ecoflowChargePrice = calculatePrice(_0Gbl._myEntities.Sensor.EcoflowAcInputHourly.AsNumeric().State ?? 0);
-        _0Gbl._myEntities.InputNumber.EcoflowCharingCost.AddValue(ecoflowChargePrice);
+       
 
         energy = ecoflowCacl(energy);
 
@@ -464,7 +465,8 @@ public class EnergyMonitor
 
         infoForCurrentHour = new ElectricityPriceInfo(DateTime.Now + TimeSpan.FromMinutes(15), _0Gbl._myEntities.Sensor?.NordpoolKwhFiEur31001, electricityRangeKeys);
 
-      //  if (skipThisHour) { skipThisHour = false; return; }
+        if (skipThisHour) { skipThisHour = false; return; }
+        _0Gbl._myEntities.InputNumber.EcoflowCharingCost.AddValue(ecoflowChargePrice);
         _0Gbl._myEntities.InputNumber.DailyEnergySaveHelper.AddValue(ecoflowAdjustedHourlycost - ecoflowChargePrice);
         _0Gbl._myEntities.InputNumber.EnergyCostDaily.AddValue(priceForLastHout);
         _0Gbl._myEntities.InputNumber.EnergyCostHourly.SetValue(priceForLastHout);
@@ -481,7 +483,7 @@ public class EnergyMonitor
         solarChargingNotificationGiven = false;
         solarChargingOffNotificationGiven = false;
         apOnToday = false;
-        _0Gbl._myEntities.InputNumber.DailyEnergySaveHelper.SetValue(0);
+       // _0Gbl._myEntities.InputNumber.DailyEnergySaveHelper.SetValue(0);
         _0Gbl._myServices.Script.ResetAllPowermeters();
         _0Gbl._myEntities.InputNumber.EcoflowCharingCost.SetValue(0);
     }
