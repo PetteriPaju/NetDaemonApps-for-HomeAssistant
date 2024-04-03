@@ -74,7 +74,6 @@ namespace NetDaemonApps.apps
                 if(monitor.currentState == true)
                 {
                     somethinggPlaying = true;
-                    Console.WriteLine(monitor.entity.EntityId + " is playing something");
                     break;
                 }
             }

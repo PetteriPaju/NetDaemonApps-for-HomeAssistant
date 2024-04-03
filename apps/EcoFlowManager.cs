@@ -9,6 +9,7 @@ using NetDaemon.Extensions.Scheduler;
 using System.Text.Json;
 using System.Diagnostics;
 using NetDaemon.HassModel.Entities;
+using System.Threading;
 
 namespace NetDaemonApps.apps
 {
@@ -29,7 +30,138 @@ namespace NetDaemonApps.apps
         private List<KeyValuePair<int,double>> todayHoursRaw = new List<KeyValuePair<int,double>>();
         private List<KeyValuePair<int, double>> tomorrowHoursRaw = new List<KeyValuePair<int, double>>();
 
+        private EcoflowPanel ecoflowPanel;
 
+        protected class EcoflowPanel
+        {
+
+
+            private List<EcoflowPanelRow> ecoflowPanelList = new List<EcoflowPanelRow>();
+            public EcoflowPanel() { }
+
+            public void RegisterRow(InputBooleanEntity enabledEntity, InputSelectEntity modeEntity, InputDatetimeEntity timeEntity, InputNumberEntity powerEntity)
+            {
+                ecoflowPanelList.Add(new EcoflowPanelRow(enabledEntity, modeEntity, timeEntity, powerEntity));
+            }
+
+
+
+
+            protected class EcoflowPanelRow
+            {
+                public InputBooleanEntity enabled;
+                public InputSelectEntity mode;
+                public InputDatetimeEntity time;
+                public InputNumberEntity power;
+                private IDisposable schedculedEvent;
+
+
+
+
+                public EcoflowPanelRow (InputBooleanEntity enabledEntity, InputSelectEntity modeEntity, InputDatetimeEntity timeEntity, InputNumberEntity powerEntity)
+                {
+                    enabled = enabledEntity;
+                    mode = modeEntity;
+                    time = timeEntity;
+                    power = powerEntity;
+                    RegisterListeners();
+                }
+
+
+                private void RegisterListeners()
+                {
+
+                    enabled.StateChanges().Subscribe(_ => { RegisterTimeListener(); });
+                    time.StateChanges().Subscribe(_ => { RegisterTimeListener(); });
+                    RegisterTimeListener();
+                }
+
+                private void RegisterTimeListener()
+                {
+                    if (schedculedEvent != null) schedculedEvent.Dispose();
+
+                    if (enabled.IsOff()) return;
+
+                    DateTime dateTimeVariable = DateTime.ParseExact(time.EntityState.State ?? "", "HH:mm:ss", System.Globalization.CultureInfo.InvariantCulture);
+                    // Get the current time.
+                    DateTime now = DateTime.Now;
+
+                    // Create a DateTime object representing the target time today.
+                    DateTime targetTimeToday = new DateTime(now.Year, now.Month, now.Day, dateTimeVariable.Hour, dateTimeVariable.Minute, 0);
+
+                    // Check if the target time has already passed today.
+                    if (targetTimeToday < now)
+                    {
+                        // If so, add a day to get the target time for tomorrow.
+                        targetTimeToday = targetTimeToday.AddDays(1);
+                    }
+
+                    // Calculate the timespan until the target time.
+                    TimeSpan timeSpan = targetTimeToday - now;
+
+                 
+
+                    schedculedEvent = _0Gbl._myScheduler.Schedule(timeSpan, TriggerEvent);
+                }
+
+                private void TriggerEvent()
+                {
+                    if (enabled.IsOff()) return;
+
+                    switch (mode.State)
+                    {
+                        case "On":
+                            TurnOn();
+                            SetPower();
+                        break;
+
+                        case "Off":
+                            TurnOff();
+                         break;
+
+                        case "Power Only":
+                            SetPower();
+                        break;
+
+                    }
+
+                    enabled.TurnOff();
+                }
+
+
+                private void TurnOn()
+                {
+                    if (_0Gbl._myEntities.Switch.EcoflowPlug.IsOff())
+                        _0Gbl._myEntities.Switch.EcoflowPlug.TurnOn();
+                    else _0Gbl._myEntities.Switch.SwitchbotEcoflow.Toggle();
+                }
+                private void TurnOff()
+                {
+                        _0Gbl._myEntities.Switch.EcoflowPlug.TurnOff();
+                }
+
+                private void SetPower()
+                {
+                    Task.Run(async () =>
+                    {
+                        await Task.Run(async () =>
+                        {
+                            var waitTask = Task.Run(async () =>
+                            {
+                                while (_0Gbl._myEntities.Sensor.EcoflowStatus.State != "online") await Task.Delay(1000);
+                            });
+
+                            if (waitTask != await Task.WhenAny(waitTask, Task.Delay(120000)))
+                                throw new TimeoutException();
+                        });
+
+                        _0Gbl._myEntities.Number.EcoflowAcChargingPower.SetValue(power.State.ToString());
+                    });
+                }
+            }
+
+
+        }
 
         public EcoFlowManager()
         {
@@ -50,6 +182,11 @@ namespace NetDaemonApps.apps
 
                 TTS.Speak("Warning Only 5% of Power remaining", TTS.TTSPriority.Default, _0Gbl._myEntities.InputBoolean.NotificationEcoflow);
             });
+
+
+            ecoflowPanel = new EcoflowPanel();
+            ecoflowPanel.RegisterRow(_0Gbl._myEntities.InputBoolean.EcopanelS1Enabled, _0Gbl._myEntities.InputSelect.EcopanelS1Mode, _0Gbl._myEntities.InputDatetime.EcopanelS1Time, _0Gbl._myEntities.InputNumber.EcopanelS1Power);
+            ecoflowPanel.RegisterRow(_0Gbl._myEntities.InputBoolean.EcopanelS2Enabled, _0Gbl._myEntities.InputSelect.EcopanelS2Mode, _0Gbl._myEntities.InputDatetime.EcopanelS2Time, _0Gbl._myEntities.InputNumber.EcopanelS2Power);
 
             /*
             scheduler.ScheduleCron("0 * * * *", () => {

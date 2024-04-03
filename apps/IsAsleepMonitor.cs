@@ -24,6 +24,8 @@ namespace NetDaemonApps.apps
 
         private IDisposable? alarmTimer;
 
+        private IDisposable? isAsleepOnTimer = null;
+        private IDisposable? isAsleepOffTimer = null;
         private class MonitorMember
         {
             public bool currentState;
@@ -173,8 +175,53 @@ namespace NetDaemonApps.apps
             Console.WriteLine("States are: " + isAnyTrue + ": " + DateTime.Now.ToShortTimeString());
             // If all conditions are true or false, we might need to change isSleep-state
 
-                if (isAnyTrue && _0Gbl._myEntities.InputBoolean.Isasleep.IsOn()) _0Gbl._myEntities.InputBoolean.Isasleep.TurnOff();
-                else if (!isAnyTrue && _0Gbl._myEntities.InputBoolean.Isasleep.IsOff()) _0Gbl._myEntities.InputBoolean.Isasleep.TurnOn();
+            if (isAnyTrue && _0Gbl._myEntities.InputBoolean.Isasleep.IsOn())
+            {
+
+                if (isAsleepOffTimer == null)
+                {
+                    isAsleepOffTimer = _0Gbl._myScheduler.Schedule(TimeSpan.FromMinutes(3), () =>
+                    {
+
+                        _0Gbl._myEntities.InputBoolean.Isasleep.TurnOff();
+                        isAsleepOffTimer.Dispose();
+                        isAsleepOffTimer = null;
+                    });
+                }
+
+            }
+            else if (!isAnyTrue && _0Gbl._myEntities.InputBoolean.Isasleep.IsOff()) {
+
+                if (isAsleepOnTimer == null)
+                {
+                    isAsleepOnTimer = _0Gbl._myScheduler.Schedule(TimeSpan.FromMinutes(3), () =>
+                    {
+
+                        _0Gbl._myEntities.InputBoolean.Isasleep.TurnOn();
+                        isAsleepOnTimer.Dispose();
+                        isAsleepOnTimer = null;
+                    });
+                }
+            }
+
+            if (isAnyTrue)
+            {
+                if(isAsleepOffTimer != null)
+                {
+                    isAsleepOffTimer.Dispose();
+                    isAsleepOffTimer = null;
+                }
+
+            }
+            else
+            {
+                if (isAsleepOnTimer != null)
+                {
+                    isAsleepOnTimer.Dispose();
+                    isAsleepOnTimer = null;
+                }
+            }
+          
             
         }
 
