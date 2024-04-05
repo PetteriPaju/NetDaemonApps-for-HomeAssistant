@@ -188,7 +188,7 @@ namespace NetDaemonApps.apps
             ecoflowPanel.RegisterRow(_0Gbl._myEntities.InputBoolean.EcopanelS1Enabled, _0Gbl._myEntities.InputSelect.EcopanelS1Mode, _0Gbl._myEntities.InputDatetime.EcopanelS1Time, _0Gbl._myEntities.InputNumber.EcopanelS1Power);
             ecoflowPanel.RegisterRow(_0Gbl._myEntities.InputBoolean.EcopanelS2Enabled, _0Gbl._myEntities.InputSelect.EcopanelS2Mode, _0Gbl._myEntities.InputDatetime.EcopanelS2Time, _0Gbl._myEntities.InputNumber.EcopanelS2Power);
             ecoflowPanel.RegisterRow(_0Gbl._myEntities.InputBoolean.EcopanelS3Enabled, _0Gbl._myEntities.InputSelect.EcopanelS3Mode, _0Gbl._myEntities.InputDatetime.EcopanelS3Time, _0Gbl._myEntities.InputNumber.EcopanelS3Power);
-            ecoflowPanel.RegisterRow(_0Gbl._myEntities.InputBoolean.EcopanelS4Enabled, _0Gbl._myEntities.InputSelect.EcopanelS4Mode, _0Gbl._myEntities.InputDatetime.EcopanelS4Time, _0Gbl._myEntities.InputNumber.EcopanelS4Power);
+            ecoflowPanel.RegisterRow(_0Gbl._myEntities.InputBoolean.EcopanelS4Enabled, _0Gbl._myEntities.InputSelect.EcopanelS4Mode, _0Gbl._myEntities.InputDatetime.EcopanelS4Time, _0Gbl._myEntities.InputNumber.EcopanelS34Power);
             /*
             scheduler.ScheduleCron("0 * * * *", () => {
 
