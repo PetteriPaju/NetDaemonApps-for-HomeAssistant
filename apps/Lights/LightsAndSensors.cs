@@ -18,7 +18,7 @@ namespace NetDaemonApps.apps.Lights
     {
         private readonly TimeSpan defaulMotionTimeout = new TimeSpan(0, 0, 10);
         public static NumericSensorEntity luxSensorEntity;
-        private readonly double defaultFluz = 10;
+        private readonly double defaultFluz = 500;
         DateTime lastStorageOff = DateTime.MinValue;
         public LightsAndSensors()
         {
@@ -37,7 +37,7 @@ namespace NetDaemonApps.apps.Lights
             SubcribeLightOn(_0Gbl._myEntities.BinarySensor.StorageSensorAqaraOccupancy, _0Gbl._myEntities.Light.StorageLight2);
 
             _0Gbl._myEntities.Sensor.Livingroomfp1PresenceEvent.StateChanges().Where(x => x.New?.State == "approach" ).Subscribe(_ => {
-                _0Gbl._myEntities.Light.KitchenLight2.TurnOnLight();
+                _0Gbl._myEntities.Light.KitchenLight2.TurnOnWithSensor(_0Gbl._myEntities.Sensor.OutdoorsBrightness, defaultFluz);
             });
 
 
@@ -53,7 +53,7 @@ namespace NetDaemonApps.apps.Lights
 
 
             _0Gbl._myEntities.BinarySensor.FridgeContactSensorContact.StateChanges().Where(x => ((bool)x?.New.IsOn())).Subscribe( _ => {
-                _0Gbl._myEntities.Light.KitchenLight2.TurnOn();
+                _0Gbl._myEntities.Light.KitchenLight2.TurnOnWithSensor(_0Gbl._myEntities.Sensor.OutdoorsBrightness, defaultFluz);
             });
 
             _0Gbl._myEntities.BinarySensor.FridgeContactSensorContact.StateChanges().WhenStateIsFor(x => ((bool)x?.IsOff()), TimeSpan.FromSeconds(30)).Subscribe(_ => {
@@ -76,7 +76,7 @@ namespace NetDaemonApps.apps.Lights
 
             _0Gbl._myEntities.BinarySensor.KitchenSensorOccupancy.StateChanges().Where(x => x?.New?.State == "on" && _0Gbl._myEntities.Light.AllLights.IsOff() && _0Gbl._myEntities.Light.AllLights?.EntityState?.LastChanged< DateTime.Now + TimeSpan.FromSeconds(30) && _0Gbl._myEntities.InputBoolean.GuestMode.IsOff()).SubscribeAsync(async s => {
 
-                _0Gbl._myEntities.Light.HallwayLight.TurnOn();
+                _0Gbl._myEntities.Light.HallwayLight.TurnOnWithSensor(_0Gbl._myEntities.Sensor.OutdoorsBrightness, defaultFluz);
 
                 await Task.Delay(30000);
 

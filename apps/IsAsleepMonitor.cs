@@ -204,7 +204,7 @@ namespace NetDaemonApps.apps
                 }
             }
 
-            if (isAnyTrue)
+            if (!isAnyTrue)
             {
                 if(isAsleepOffTimer != null)
                 {
