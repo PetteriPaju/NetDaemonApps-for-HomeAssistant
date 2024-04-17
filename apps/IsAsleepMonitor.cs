@@ -118,8 +118,11 @@ namespace NetDaemonApps.apps
 
             });
 
-            _0Gbl._myScheduler.ScheduleCron("* * * * *", RefreshAll);
+            _0Gbl._myScheduler.ScheduleCron("1-29,31-59 * * * *", RefreshAll);
+            _0Gbl._myScheduler.ScheduleCron("0,30 * * * *", CheckAllIsSleepConditions);
         }
+
+
         private void RefreshAll()
         {
             bool wasThereChange = false;
@@ -184,7 +187,6 @@ namespace NetDaemonApps.apps
                     {
 
                         _0Gbl._myEntities.InputBoolean.Isasleep.TurnOff();
-                        isAsleepOffTimer.Dispose();
                         isAsleepOffTimer = null;
                     });
                 }
@@ -198,7 +200,6 @@ namespace NetDaemonApps.apps
                     {
 
                         _0Gbl._myEntities.InputBoolean.Isasleep.TurnOn();
-                        isAsleepOnTimer.Dispose();
                         isAsleepOnTimer = null;
                     });
                 }

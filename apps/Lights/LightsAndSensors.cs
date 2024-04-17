@@ -18,7 +18,7 @@ namespace NetDaemonApps.apps.Lights
     {
         private readonly TimeSpan defaulMotionTimeout = new TimeSpan(0, 0, 10);
         public static NumericSensorEntity luxSensorEntity;
-        private readonly double defaultFluz = 500;
+        private readonly double defaultFluz = 700;
         DateTime lastStorageOff = DateTime.MinValue;
         public LightsAndSensors()
         {

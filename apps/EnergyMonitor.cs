@@ -373,6 +373,8 @@ public class EnergyMonitor
             IReadOnlyList<double>? day = isToday ? nordPoolEntity?.EntityState?.Attributes?.Today : nordPoolEntity?.EntityState?.Attributes?.TomorrowValid == true ? JsonSerializer.Deserialize<List<double>>(nordPoolEntity?.EntityState?.Attributes?.Tomorrow.ToString()).AsReadOnly() : nordPoolEntity?.EntityState?.Attributes?.Today;
             price = time.Hour < day?.Count ? day?.ElementAt(time.Hour) : day?.LastOrDefault();
             range = price > 0  ? FindRangeForPrice(price, electricityRangeKeys) : 0;
+
+            Console.WriteLine( "Hour" +  time.Hour + ", Price > " + price + ", Range > " + range);
             
             dateTime = time;
 
