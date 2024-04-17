@@ -107,7 +107,7 @@ public class EnergyMonitor
     private void fillToday()
     {
       
-        hoursToday = new ElectricityPriceInfo[48];
+        hoursToday = new ElectricityPriceInfo[24];
         var todayList = _0Gbl._myEntities?.Sensor?.NordpoolKwhFiEur31001?.EntityState?.Attributes?.Today;
 
         for (int i=0; i< todayList.Count; i++)
@@ -467,14 +467,15 @@ public class EnergyMonitor
         ElectricityPriceInfo nextInfo = null;// = new ElectricityPriceInfo(currentHour, _00_Globals._myEntities.Sensor.NordpoolKwhFiEur31001, electricityRangeKeys);
 
         int maxSearchHours = maxhHours;
-        ElectricityPriceInfo[] hours = (ElectricityPriceInfo[])hoursToday.Clone();
+        ElectricityPriceInfo[] hours = hoursToday.ToArray();
         if (hoursTomorrow != null)
         {
             hours = hours.Concat(hoursTomorrow).ToArray();
         }
 
         for (int searchCounter = startInfo.dateTime.Hour; searchCounter < hours.Length; searchCounter++)
-        {
+        { 
+            if (hours[searchCounter] == null) continue;
             if (comparePrice(startInfo.price ?? 0, hours[searchCounter].price ?? 0) != PriceChangeType.NoChange) { 
 
                 nextInfo = hours[searchCounter];
