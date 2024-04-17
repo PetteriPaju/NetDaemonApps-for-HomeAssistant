@@ -272,11 +272,13 @@ public class EnergyMonitor
         // No need for alert on low price days
         if (_0Gbl._myEntities?.Sensor?.NordpoolKwhFiEur31001.Attributes.Max < electiricityRanges.Keys.ToArray()[1] && !checkTomorrow) return;
 
-
+        Console.WriteLine("currentRange: " + infoForCurrentHour.range);
         PriceChangeType priceChange = infoForCurrentHour.Compare(inFoForNextHour);
         string TTSMessage = null;
 
-        if (priceChange == PriceChangeType.NoChange && inFoForNextHour.peak == 0 || (priceChange == PriceChangeType.NoChange && infoForCurrentHour.peak == -1 && loPeakAlertGiven) || (priceChange == PriceChangeType.NoChange && infoForCurrentHour.peak == 1 && hiPeakAlertGiven)) return;
+        if (priceChange == PriceChangeType.NoChange && inFoForNextHour.peak == 0 
+            || (priceChange == PriceChangeType.NoChange && infoForCurrentHour.peak == -1 && loPeakAlertGiven) 
+            || (priceChange == PriceChangeType.NoChange && infoForCurrentHour.peak == 1 && hiPeakAlertGiven)) return;
         
 
 
@@ -385,9 +387,10 @@ public class EnergyMonitor
 
         public PriceChangeType Compare(ElectricityPriceInfo endPoint)
         {
-            if (range == endPoint.range) return PriceChangeType.NoChange;
+            if (range < endPoint.range) return PriceChangeType.Increase;
             if (range > endPoint.range) return PriceChangeType.Descrease;
-            else return PriceChangeType.Increase;
+
+            return PriceChangeType.NoChange;
         }
 
         private int FindRangeForPrice(double? price, List<double>? electricityRangeKeys)
