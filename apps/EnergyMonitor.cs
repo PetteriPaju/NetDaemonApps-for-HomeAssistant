@@ -252,14 +252,16 @@ public class EnergyMonitor
 
     private ElectricityPriceInfo GetPriceForHour(int hour)
     {
+        Console.WriteLine(hoursTomorrow.Length);
         if (hour <= 23)
         {
             return hoursToday[hour];
         }
         else if (hoursTomorrow != null)
         {
-            int tmpHour = hour - 23;
-            return hoursTomorrow[hour];
+            int tmpHour = hour-23;
+
+            return hoursTomorrow[tmpHour];
         }
         else return new ElectricityPriceInfo(DateTime.Now, 0, 0);
     }
