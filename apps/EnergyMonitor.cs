@@ -5,6 +5,7 @@ using NetDaemon.HassModel.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reactive.Concurrency;
 using System.Security.Cryptography.X509Certificates;
 using System.Text.Json;
 // Use unique namespaces for your apps if you going to share with others to avoid
@@ -564,6 +565,14 @@ public class EnergyMonitor
         fillToday();
         fillTomorrow();
         _0Gbl._myEntities.InputNumber.EcoflowCharingCost.SetValue(0);
+
+        var x = _0Gbl._myScheduler.Schedule(TimeSpan.FromSeconds(10), () => {
+            fillToday();
+            fillTomorrow();
+            UpdateNextChangeHourTime();
+        });
     }
+
+  
 
 }
