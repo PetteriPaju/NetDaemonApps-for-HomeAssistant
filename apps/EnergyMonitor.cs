@@ -258,7 +258,7 @@ public class EnergyMonitor
         }
         else if (hoursTomorrow != null)
         {
-            int tmpHour = hour - 23;
+            int tmpHour = (23+hour)-23;
             return hoursTomorrow[hour];
         }
         else return new ElectricityPriceInfo(DateTime.Now, 0, 0);
