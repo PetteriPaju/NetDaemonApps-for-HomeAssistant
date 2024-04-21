@@ -346,7 +346,7 @@ public class EnergyMonitor
 
         if (priceChange != PriceChangeType.NoChange)
         {
-            TTSMessage += (priceChange == PriceChangeType.Increase ? "increase to " : "fall to ") + electiricityRanges.Values.ElementAt(inFoForNextHour.range) + ".";
+            TTSMessage += (priceChange == PriceChangeType.Increase ? "increase to " : "fall to ") + electiricityRanges.Values.ElementAt(FindRangeForPrice(inFoForNextHour.price)) + ".";
 
             var hoursTillChange = FindWhenElectricityRangeChanges(inFoForNextHour, 12);
 
@@ -495,9 +495,9 @@ public class EnergyMonitor
     private int FindRangeForPrice(double? price)
     {
         var range = electricityRangeKeys?.FindIndex(x => x > price) ?? -1;
-        range = range == -1 ? 0 : range;
+        range = range == -1 ? 1 : range;
 
-        return (int)range;
+        return (int)range-1;
     }
 
 

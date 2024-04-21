@@ -36,6 +36,7 @@ namespace NetDaemonApps.apps
             _0Gbl._myScheduler.ScheduleCron("59 * * * *", hourlyResetFunction);
             _0Gbl._myScheduler.ScheduleCron("0 0 * * *", dailyResetFunction);
             DailyResetFunction += () => { _myEntities?.InputDatetime.Lastknowndate.SetDatetime(date:DateTime.Now.Date.ToString("yyyy-MM-dd"));};
+            Console.WriteLine("Is working");
             Task.Run(OnLateStart);
          
         }
