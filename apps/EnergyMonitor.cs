@@ -144,7 +144,7 @@ public class EnergyMonitor
 
     private void UpdateNextChangeHourTime()
     {
-        ElectricityPriceInfo inFoForNextHour2 = new ElectricityPriceInfo(DateTime.Now.AddHours(2), _0Gbl._myEntities?.Sensor?.NordpoolKwhFiEur31001, electricityRangeKeys);
+        ElectricityPriceInfo inFoForNextHour2 = new ElectricityPriceInfo(DateTime.Now.AddHours(1), _0Gbl._myEntities?.Sensor?.NordpoolKwhFiEur31001, electricityRangeKeys);
 
         _0Gbl._myEntities.InputNumber.EnergyNextPrice.SetValue(GetPriceForHour(DateTime.Now.Hour + 2).price ?? 0);
 
