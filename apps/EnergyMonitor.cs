@@ -305,7 +305,7 @@ public class EnergyMonitor
     private PriceChangeType comparePrice(double priceA, double priceB)
     {
         int rangeOfA = FindRangeForPrice(priceA); 
-        int rangeofB = FindRangeForPrice(priceA);
+        int rangeofB = FindRangeForPrice(priceB);
 
 
         if (rangeOfA < rangeofB) return PriceChangeType.Increase;
@@ -495,9 +495,9 @@ public class EnergyMonitor
     private int FindRangeForPrice(double? price)
     {
         var range = electricityRangeKeys?.FindIndex(x => x > price) ?? -1;
-        range = range == -1 ? 1 : range;
+        range = range == -1 ? 0 : range;
 
-        return (int)range - 1;
+        return (int)range;
     }
 
 
