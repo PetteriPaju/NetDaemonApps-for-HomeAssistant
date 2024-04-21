@@ -352,7 +352,7 @@ public class EnergyMonitor
 
             var timeDiff = hoursTillChange.dateTime - inFoForNextHour.dateTime;
 
-            PriceChangeType priceChangeType = comparePrice(infoForCurrentHour.price ?? 0, inFoForNextHour.price ?? 0);
+            PriceChangeType priceChangeType = comparePrice(infoForCurrentHour.price ?? 0, hoursTillChange.price ?? 0);
 
             if (priceChangeType == PriceChangeType.NoChange)
             {
