@@ -352,7 +352,7 @@ public class EnergyMonitor
 
             var timeDiff = hoursTillChange.dateTime - inFoForNextHour.dateTime;
 
-            PriceChangeType priceChangeType = comparePrice(infoForCurrentHour.price ?? 0, hoursTillChange.price ?? 0);
+            PriceChangeType priceChangeType = comparePrice(inFoForNextHour.price ?? 0, hoursTillChange.price ?? 0);
 
             if (priceChangeType == PriceChangeType.NoChange)
             {
@@ -361,7 +361,7 @@ public class EnergyMonitor
             else if (priceChange == PriceChangeType.Increase || priceChange == PriceChangeType.Descrease)
             {
 
-                TTSMessage += "And will " + (priceChangeType == PriceChangeType.Increase ? "increase to " : "fall to ") + GetNameOfRange(hoursTillChange.range) + " after " + GetHoursAndMinutesFromTimeSpan(timeDiff);
+                TTSMessage += "And will " + (priceChangeType == PriceChangeType.Increase ? "increase to " : "fall to ") + electiricityRanges.Values.ElementAt(FindRangeForPrice(hoursTillChange.price)) + " after " + GetHoursAndMinutesFromTimeSpan(timeDiff);
             }
 
             if (inFoForNextHour.peak != 0)
@@ -494,7 +494,7 @@ public class EnergyMonitor
 
     private int FindRangeForPrice(double? price)
     {
-        var range = electricityRangeKeys?.FindIndex(x => x > price) ?? -1;
+        var range = electricityRangeKeys?.FindIndex(x => x >= price) ?? -1;
         range = range == -1 ? 1 : range;
 
         return (int)range-1;
