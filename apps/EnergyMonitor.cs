@@ -351,17 +351,16 @@ public class EnergyMonitor
 
             var hoursTillChange = FindWhenElectricityRangeChanges(inFoForNextHour, 12);
 
-            var timeDiff = hoursTillChange.dateTime - inFoForNextHour.dateTime;
 
-            PriceChangeType priceChangeType = comparePrice(infoForCurrentHour.price ?? 0, hoursTillChange.price ?? 0);
+            PriceChangeType priceChangeType = comparePrice(inFoForNextHour.price ?? 0, hoursTillChange.price ?? 0);
 
-            if (priceChangeType == PriceChangeType.NoChange)
+            if (hoursTillChange == null || priceChangeType == PriceChangeType.NoChange)
             {
                 TTSMessage += "And stays like that for while.";
             }
             else if (priceChange == PriceChangeType.Increase || priceChange == PriceChangeType.Descrease)
             {
-
+                var timeDiff = hoursTillChange.dateTime - inFoForNextHour.dateTime;
                 TTSMessage += "And will " + (priceChangeType == PriceChangeType.Increase ? "increase to " : "fall to ") + GetNameOfRange(hoursTillChange.range) + " after " + GetHoursAndMinutesFromTimeSpan(timeDiff);
             }
 
