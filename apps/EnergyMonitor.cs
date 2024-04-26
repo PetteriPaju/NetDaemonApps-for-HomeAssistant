@@ -361,7 +361,7 @@ public class EnergyMonitor
             else if (priceChange == PriceChangeType.Increase || priceChange == PriceChangeType.Descrease)
             {
                 var timeDiff = hoursTillChange.dateTime - inFoForNextHour.dateTime;
-                TTSMessage += "And will " + (priceChangeType == PriceChangeType.Increase ? "increase to " : "fall to ") + GetNameOfRange(hoursTillChange.range) + " after " + GetHoursAndMinutesFromTimeSpan(timeDiff);
+                TTSMessage += "And will " + (priceChangeType == PriceChangeType.Increase ? "increase to " : "fall to ") + electiricityRanges.Values.ElementAt(FindRangeForPrice(hoursTillChange.price)) + " after " + GetHoursAndMinutesFromTimeSpan(timeDiff);
             }
 
             if (inFoForNextHour.peak != 0)
