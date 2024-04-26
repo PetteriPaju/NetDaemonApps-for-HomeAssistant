@@ -8,6 +8,7 @@ using System.Linq;
 using System.Reactive.Concurrency;
 using System.Security.Cryptography.X509Certificates;
 using System.Text.Json;
+using System.Transactions;
 // Use unique namespaces for your apps if you going to share with others to avoid
 // conflicting names
 namespace NetDaemonApps.apps;
@@ -28,6 +29,7 @@ public class EnergyMonitor
     private bool solarChargingOffNotificationGiven = false;
     private bool apOnToday = false;
     private readonly List<double>? electricityRangeKeys;
+ 
 
     private static EnergyMonitor? _instance;
     ElectricityPriceInfo? infoForCurrentHour { get { return hoursToday[DateTime.Now.Hour]; } }
@@ -36,6 +38,7 @@ public class EnergyMonitor
     private bool skipThisHour = true;
     private static int lastCaclHour = -5;
     private DateTime timeOfLastSolarNotification = DateTime.MinValue;
+
 
     public EnergyMonitor()
     {
@@ -48,8 +51,6 @@ public class EnergyMonitor
             _0Gbl._myEntities.InputNumber.EnergyCostDaily.AddValue(e.New.State.Value);
             e.Entity.SetValue(0);
         });
-
-
 
         _0Gbl.HourlyResetFunction += () => UpdatePriceHourly(_0Gbl._myEntities?.Sensor.TotalHourlyEnergyConsumptions.State ?? 0);
         _0Gbl.HourlyResetFunction += () => UpdateNextChangeHourTime();
@@ -495,7 +496,7 @@ public class EnergyMonitor
     private int FindRangeForPrice(double? price)
     {
         var range = electricityRangeKeys?.FindIndex(x => x > price) ?? -1;
-        range = range == -1 ? 1 : range;
+        range = range == -1 ? electricityRangeKeys.Count : range;
 
         return (int)range-1;
     }
@@ -508,6 +509,13 @@ public class EnergyMonitor
         if (_0Gbl._myEntities.InputNumber.EnergyCostHourly.State == null) return;
         if (lastCaclHour == DateTime.Now.Hour) return;
         if (_0Gbl._myEntities?.Sensor.Powermeters.State == null) return;
+
+        double energyNow = _0Gbl._myEntities.Sensor.TrueDailyEnergyConsumption.State ?? 0;
+        double energyLastHour = _0Gbl._myEntities.InputNumber.EnergyAtStartOfHour.State ?? 0;
+        double energyConsumedThisHour = energyNow - energyLastHour;
+        _0Gbl._myEntities.InputNumber.EnergyAtStartOfHour.AddValue(energyConsumedThisHour);
+
+
 
         double calculatePrice(double inpt)
         {
@@ -533,19 +541,18 @@ public class EnergyMonitor
             return thisHourTotal ?? 0;
         }
 
-        double ecoflowIgnoredAdjustedPrice = calculatePrice(energy);
+        double ecoflowIgnoredAdjustedPrice = calculatePrice(energyConsumedThisHour);
         double ecoflowChargePrice = calculatePrice(_0Gbl._myEntities.Sensor.EcoflowAcInputHourly.AsNumeric().State ?? 0);
-       
 
-        energy = ecoflowCacl(energy);
 
-        double transsfercost = calculateTransfer(energy);
-        double priceForLastHout = calculatePrice(energy);
+        energyConsumedThisHour = ecoflowCacl(energyConsumedThisHour);
+
+        double transsfercost = calculateTransfer(energyConsumedThisHour);
+        double priceForLastHout = calculatePrice(energyConsumedThisHour);
 
 
         var ecoflowAdjustedHourlycost =  ecoflowIgnoredAdjustedPrice - priceForLastHout;
 
-        if (skipThisHour) { skipThisHour = false; return; }
         _0Gbl._myEntities.InputNumber.EcoflowCharingCost.AddValue(ecoflowChargePrice);
         _0Gbl._myEntities.InputNumber.DailyEnergySaveHelper.AddValue(ecoflowAdjustedHourlycost - ecoflowChargePrice);
         _0Gbl._myEntities.InputNumber.EnergyCostDaily.AddValue(priceForLastHout);
@@ -560,6 +567,7 @@ public class EnergyMonitor
         loPeakAlertGiven = false;
         _0Gbl._myEntities.InputNumber.EnergyCostHourly.SetValue(0);
         _0Gbl._myEntities.InputNumber.EnergyCostDaily.SetValue(0);
+        _0Gbl._myEntities.InputNumber.EnergyAtStartOfHour.SetValue(0);
         solarChargingNotificationGiven = false;
         solarChargingOffNotificationGiven = false;
         apOnToday = false;
