@@ -513,7 +513,7 @@ public class EnergyMonitor
         double energyNow = _0Gbl._myEntities.Sensor.TrueDailyEnergyConsumption.State ?? 0;
         double energyLastHour = _0Gbl._myEntities.InputNumber.EnergyAtStartOfHour.State ?? 0;
         double energyConsumedThisHour = energyNow - energyLastHour;
-        _0Gbl._myEntities.InputNumber.EnergyAtStartOfHour.AddValue(energyConsumedThisHour);
+        _0Gbl._myEntities.InputNumber.EnergyAtStartOfHour.SetValue(energyNow);
 
 
 
