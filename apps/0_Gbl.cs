@@ -62,6 +62,7 @@ namespace NetDaemonApps.apps
 
             Task.Run(async () => {
                 await Task.Delay(TimeSpan.FromSeconds(55));
+                dateUpdate();
                 HourlyResetFunction?.Invoke();
             });
            
