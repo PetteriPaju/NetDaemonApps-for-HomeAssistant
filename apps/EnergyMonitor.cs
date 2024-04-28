@@ -509,7 +509,7 @@ public class EnergyMonitor
         if (lastCaclHour == DateTime.Now.Hour) return;
         if (_0Gbl._myEntities?.Sensor.Powermeters.State == null) return;
 
-        double energyNow = _0Gbl._myEntities.Sensor.TrueDailyEnergyConsumption.State ?? 0;
+        double energyNow = _0Gbl._myEntities.Sensor.Powermeters.State ?? 0;
         double energyLastHour = _0Gbl._myEntities.InputNumber.EnergyAtStartOfHour.State ?? 0;
         double energyConsumedThisHour = energyNow - energyLastHour;
         _0Gbl._myEntities.InputNumber.EnergyAtStartOfHour.SetValue(energyNow);
