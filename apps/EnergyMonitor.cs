@@ -515,26 +515,13 @@ public class EnergyMonitor
         _0Gbl._myEntities.InputNumber.EnergyAtStartOfHour.SetValue(energyNow);
 
 
-
         double calculatePrice(double inpt)
         {
             var thisHourFortum = inpt * marginOfErrorFix * infoForCurrentHour.price/100 + inpt  * _0Gbl._myEntities.InputNumber.EnergyFortumHardCost.State;
             thisHourFortum += thisHourFortum * (_0Gbl._myEntities.InputNumber.EnergyFortumAlv.State / 100);
 
             var thisHourTranster = inpt * marginOfErrorFix * _0Gbl._myEntities.InputNumber.EnergyTransferCost.State;
-            thisHourTranster += thisHourTranster * _0Gbl._myEntities.InputNumber.EnergyTransferAlv.State;
-            var thisHourTotal = thisHourFortum + thisHourTranster;
-
-            return thisHourTotal ?? 0;
-        }
-
-        double calculateTransfer(double inpt)
-        {
-            var thisHourFortum = inpt * _0Gbl._myEntities.InputNumber.EnergyFortumHardCost.State;
-            thisHourFortum += thisHourFortum * (_0Gbl._myEntities.InputNumber.EnergyFortumAlv.State / 100);
-
-            var thisHourTranster = inpt * _0Gbl._myEntities.InputNumber.EnergyTransferCost.State;
-            thisHourTranster += thisHourTranster * _0Gbl._myEntities.InputNumber.EnergyTransferAlv.State;
+            thisHourTranster += inpt * marginOfErrorFix * _0Gbl._myEntities.InputNumber.EnergyTransferAlv.State;
             var thisHourTotal = thisHourFortum + thisHourTranster;
 
             return thisHourTotal ?? 0;
@@ -546,7 +533,6 @@ public class EnergyMonitor
 
         energyConsumedThisHour = ecoflowCacl(energyConsumedThisHour);
 
-        double transsfercost = calculateTransfer(energyConsumedThisHour);
         double priceForLastHout = calculatePrice(energyConsumedThisHour);
 
 
