@@ -517,29 +517,34 @@ public class EnergyMonitor
 
         double calculatePrice(double inpt)
         {
-            var thisHourFortum = inpt * marginOfErrorFix * infoForCurrentHour.price/100 + inpt  * _0Gbl._myEntities.InputNumber.EnergyFortumHardCost.State;
+            var thisHourFortum = inpt * infoForCurrentHour.price/100 + inpt  * _0Gbl._myEntities.InputNumber.EnergyFortumHardCost.State;
             thisHourFortum += thisHourFortum * (_0Gbl._myEntities.InputNumber.EnergyFortumAlv.State / 100);
 
-            var thisHourTranster = inpt * marginOfErrorFix * _0Gbl._myEntities.InputNumber.EnergyTransferCost.State;
-            thisHourTranster += inpt * marginOfErrorFix * _0Gbl._myEntities.InputNumber.EnergyTransferAlv.State;
+            var thisHourTranster = inpt * _0Gbl._myEntities.InputNumber.EnergyTransferCost.State;
+            thisHourTranster += inpt * _0Gbl._myEntities.InputNumber.EnergyTransferAlv.State;
             var thisHourTotal = thisHourFortum + thisHourTranster;
 
             return thisHourTotal ?? 0;
         }
 
+        //Price of consumed energy, eevent with EF
         double ecoflowIgnoredAdjustedPrice = calculatePrice(energyConsumedThisHour);
+
+        //Cost of EF charge
         double ecoflowChargePrice = calculatePrice(_0Gbl._myEntities.Sensor.EcoflowAcInputHourly.AsNumeric().State ?? 0);
 
-
+        //subscract energy consumed by EF
         energyConsumedThisHour = ecoflowCacl(energyConsumedThisHour);
 
+        //Calculate price of energy used outside EF
         double priceForLastHout = calculatePrice(energyConsumedThisHour);
 
-
-        var ecoflowAdjustedHourlycost =  ecoflowIgnoredAdjustedPrice - priceForLastHout;
+        //Calculate saving
+        var ecoflowSavedMoney =  ecoflowIgnoredAdjustedPrice - priceForLastHout;
 
         _0Gbl._myEntities.InputNumber.EcoflowCharingCost.AddValue(ecoflowChargePrice);
-        _0Gbl._myEntities.InputNumber.DailyEnergySaveHelper.AddValue(ecoflowAdjustedHourlycost - ecoflowChargePrice);
+        _0Gbl._myEntities.InputNumber.DailyEnergySaveHelper.AddValue(ecoflowSavedMoney - ecoflowChargePrice);
+
         _0Gbl._myEntities.InputNumber.EnergyCostDaily.AddValue(priceForLastHout);
         _0Gbl._myEntities.InputNumber.EnergyCostHourly.SetValue(priceForLastHout);
         lastCaclHour = DateTime.Now.Hour;
