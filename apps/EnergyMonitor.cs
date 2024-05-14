@@ -39,6 +39,7 @@ public class EnergyMonitor
     private static int lastCaclHour = -5;
     private DateTime timeOfLastSolarNotification = DateTime.MinValue;
 
+    private double ecoflowCgargePriceFixHelper = 0.0;
 
     public EnergyMonitor()
     {
@@ -54,6 +55,11 @@ public class EnergyMonitor
 
         _0Gbl.HourlyResetFunction += () => UpdatePriceHourly(_0Gbl._myEntities?.Sensor.TotalHourlyEnergyConsumptions.State ?? 0);
         _0Gbl.HourlyResetFunction += () => UpdateNextChangeHourTime();
+
+        _0Gbl._myScheduler.ScheduleCron("01 * * * *", () => {
+
+            ecoflowCgargePriceFixHelper = _0Gbl._myEntities.Sensor.EcoflowAcInputHourly.AsNumeric().State ?? 0;
+        });
 
         _0Gbl.HourlyResetFunction += () => AirPurifierOn();
         _0Gbl._myScheduler.ScheduleCron("50 * * * *", () => EnergiPriceChengeAlert());
@@ -531,7 +537,7 @@ public class EnergyMonitor
         double ecoflowIgnoredAdjustedPrice = calculatePrice(energyConsumedThisHour);
 
         //Cost of EF charge
-        double ecoflowChargePrice = calculatePrice(_0Gbl._myEntities.Sensor.EcoflowAcInputHourly.AsNumeric().State ?? 0);
+        double ecoflowChargePrice = calculatePrice(_0Gbl._myEntities.Sensor.EcoflowAcInputHourly.AsNumeric().State ?? 0 - ecoflowCgargePriceFixHelper);
 
         //subscract energy consumed by EF
         energyConsumedThisHour = ecoflowCacl(energyConsumedThisHour);
