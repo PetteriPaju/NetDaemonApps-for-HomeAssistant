@@ -517,7 +517,7 @@ public class EnergyMonitor
 
         double energyNow = double.Parse( _0Gbl._myEntities.Sensor.Powermeters.State ?? "0");
         double energyLastHour = _0Gbl._myEntities.InputNumber.EnergyAtStartOfHour.State ?? 0;
-        double energyConsumedThisHour = energyNow - energyLastHour;
+        double energyConsumedThisHour = energyNow - energyLastHour - ecoflowCgargePriceFixHelper;
         _0Gbl._myEntities.InputNumber.EnergyAtStartOfHour.SetValue(energyNow);
 
 
