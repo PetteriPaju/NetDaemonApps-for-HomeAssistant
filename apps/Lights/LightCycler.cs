@@ -122,7 +122,7 @@ namespace NetDaemonApps.apps.Lights
             int nextIndex = startIndex + 1 < lightEntities.Count ? startIndex + 1 : -1;
             if (nextIndex == -1) return null;
 
-            while(nLight == null) {
+            while(nLight == null || nextIndex == startIndex) {
                 LightEntity tLight =  lightEntities[nextIndex];
                 if(tLight?.State != "unavailable")
                 {
@@ -180,14 +180,13 @@ namespace NetDaemonApps.apps.Lights
             int nextIndex = startIndex - 1 < 0 ? -1 : startIndex - 1;
             if (nextIndex == -1) return null;
 
-            while (nLight == null)
+            while (nLight == null || nextIndex == startIndex)
             {
                 LightEntity tLight = lightEntities[nextIndex];
                 if (tLight?.State != "unavailable")
                 {
                     nLight = tLight;
 
-                    Console.WriteLine(nextIndex);
                     break;
                 }
                 else
