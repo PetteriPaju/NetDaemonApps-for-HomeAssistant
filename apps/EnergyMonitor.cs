@@ -537,7 +537,7 @@ public class EnergyMonitor
         double ecoflowIgnoredAdjustedPrice = calculatePrice(energyConsumedThisHour);
 
         //Cost of EF charge
-        double ecoflowChargePrice = calculatePrice(_0Gbl._myEntities.Sensor.EcoflowAcInputDailyNet.AsNumeric().State ?? 0 - ecoflowCgargePriceFixHelper);
+        double ecoflowChargePrice = calculatePrice(_0Gbl._myEntities.Sensor.EcoflowAcInputHourly.AsNumeric().State ?? 0 - ecoflowCgargePriceFixHelper);
 
         //subscract energy consumed by EF
         energyConsumedThisHour = ecoflowCacl(energyConsumedThisHour);
