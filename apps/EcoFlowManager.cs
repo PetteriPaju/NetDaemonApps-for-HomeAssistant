@@ -156,6 +156,7 @@ namespace NetDaemonApps.apps
                         });
 
                         _0Gbl._myEntities.Number.EcoflowAcChargingPower.SetValue(power.State.ToString());
+                        _0Gbl._myEntities.Switch.EcoflowPrioSolarCharging.TurnOff();
                     });
                 }
             }
