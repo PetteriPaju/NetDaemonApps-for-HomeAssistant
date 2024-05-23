@@ -96,11 +96,11 @@ namespace NetDaemonApps.apps
                         OnStepDown();
                     break;
                     case "single":
-                        lightCycler.NextLight();
+                        OnPress();
                         break;
 
                     case "toggle":
-                        lightCycler.NextLight();
+                        OnPress();
                         break;
                     case "double":
                         lightCycler.GetCurrentLight()?.TurnOffLight();
@@ -121,6 +121,11 @@ namespace NetDaemonApps.apps
 
             }
 
+            protected virtual void OnPress()
+            {
+                lightCycler.NextLight();
+            }
+
             protected virtual void OnStepUp() {
 
          
@@ -137,7 +142,7 @@ namespace NetDaemonApps.apps
             public DesktopKnob(SensorEntity knobAction, SensorEntity knobStep) : base(knobAction, knobStep)
             {
                 flipDialDirection = true;
-                lightCycler = new LightCycler(_0Gbl._myEntities.InputBoolean.GuestMode, _0Gbl._myEntities.Light.LivingRoomLight, _0Gbl._myEntities.Light.PcMultipowermeterL1, _0Gbl._myEntities.Light.DesktopLight);
+                lightCycler = new LightCycler(_0Gbl._myEntities.InputBoolean.GuestMode, _0Gbl._myEntities.Light.LivingRoomLight, _0Gbl._myEntities.Light.PcMultipowermeterL1);
             }
 
             protected override void OnHold()
@@ -152,6 +157,14 @@ namespace NetDaemonApps.apps
             {
                 lightCycler = new LightCycler(_0Gbl._myEntities.InputBoolean.GuestMode, _0Gbl._myEntities.Light.BedLight);
             }
+
+            protected override void OnPress()
+            {
+                if (_0Gbl._myEntities.Light.LivingRoomLights.IsOn())
+                    _0Gbl._myEntities.Light.LivingRoomLights.TurnOff();
+                else _0Gbl._myEntities.Light.BedLight.TurnOn();
+            }
+
 
             protected override void OnHold()
             {
