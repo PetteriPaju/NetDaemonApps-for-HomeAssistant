@@ -162,7 +162,7 @@ namespace NetDaemonApps.apps
             {
                 if (_0Gbl._myEntities.Light.LivingRoomLights.IsOn())
                     _0Gbl._myEntities.Light.LivingRoomLights.TurnOff();
-                else _0Gbl._myEntities.Light.BedLight.TurnOn();
+                else _0Gbl._myEntities.Light.BedLight.Toggle();
             }
 
 
