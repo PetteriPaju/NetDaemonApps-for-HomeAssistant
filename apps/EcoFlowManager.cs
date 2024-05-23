@@ -74,6 +74,7 @@ namespace NetDaemonApps.apps
                     enabled.StateChanges().Subscribe(_ => { RegisterTimeListener();});
                     time.StateChanges().Subscribe(_ => { RegisterTimeListener(); OnChanged(); });
                     power.StateChanges().Subscribe(_ => { OnChanged(); });
+                    mode.StateChanges().Subscribe(_ => { OnChanged(); });
                     RegisterTimeListener();
                 }
 
