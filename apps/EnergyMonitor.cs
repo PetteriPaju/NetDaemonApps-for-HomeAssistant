@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reactive.Concurrency;
+using System.Reactive.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.Text.Json;
 using System.Transactions;
@@ -29,7 +30,8 @@ public class EnergyMonitor
     private bool solarChargingOffNotificationGiven = false;
     private bool apOnToday = false;
     private readonly List<double>? electricityRangeKeys;
- 
+
+    private double abNormalEnergyIncreaseThreshold = 0.2;
 
     private static EnergyMonitor? _instance;
     ElectricityPriceInfo? infoForCurrentHour { get { return hoursToday[DateTime.Now.Hour]; } }
@@ -39,8 +41,10 @@ public class EnergyMonitor
     private static int lastCaclHour = -5;
     private DateTime timeOfLastSolarNotification = DateTime.MinValue;
 
-    private double ecoflowChargeInputHoursyFixer = 0.0;
-    private double ecoflowChargeOutputHoursyFixer = 0.0;
+    private double ecoflowCgargePriceFixHelper = 0.0;
+    private double ecoflowUsagePriceFixer = 0.0;
+
+
     public EnergyMonitor()
     {
         _instance = this;
@@ -53,14 +57,18 @@ public class EnergyMonitor
             e.Entity.SetValue(0);
         });
 
+
+        _0Gbl._myEntities.Sensor.EcoflowAcInputHourly.StateChanges().Where(x => x.Old.State == 0 && x.New.State > abNormalEnergyIncreaseThreshold).Subscribe(e => {
+
+            ecoflowCgargePriceFixHelper = _0Gbl._myEntities.Sensor.EcoflowAcInputHourly.State ?? 0;
+        });
+        _0Gbl._myEntities.Sensor.EcoflowAcOutputHourly.StateChanges().Where(x => x.Old.State == 0 && x.New.State > abNormalEnergyIncreaseThreshold).Subscribe(e =>
+        {
+
+            ecoflowUsagePriceFixer = _0Gbl._myEntities.Sensor.EcoflowAcOutputHourly.State ?? 0;
+        });
         _0Gbl.HourlyResetFunction += () => UpdatePriceHourly(_0Gbl._myEntities?.Sensor.TotalHourlyEnergyConsumptions.State ?? 0);
         _0Gbl.HourlyResetFunction += () => UpdateNextChangeHourTime();
-
-        _0Gbl._myScheduler.ScheduleCron("02 * * * *", () => {
-
-            ecoflowChargeInputHoursyFixer = _0Gbl._myEntities.Sensor.EcoflowAcInputHourly.AsNumeric().State ?? 0;
-            ecoflowChargeOutputHoursyFixer = _0Gbl._myEntities.Sensor.EcoflowAcOutputHourly.AsNumeric().State ?? 0; 
-        });
 
         _0Gbl.HourlyResetFunction += () => AirPurifierOn();
         _0Gbl._myScheduler.ScheduleCron("50 * * * *", () => EnergiPriceChengeAlert());
@@ -309,7 +317,7 @@ public class EnergyMonitor
     
     private double ecoflowCacl(double hourlyUsedEnergy)
     {
-        return hourlyUsedEnergy - _0Gbl._myEntities.Sensor.EcoflowAcOutputHourly.AsNumeric().State ?? 0 - _0Gbl._myEntities.Sensor.EcoflowSolarInputHourly.AsNumeric().State ?? 0 - ecoflowChargeOutputHoursyFixer;
+        return hourlyUsedEnergy - _0Gbl._myEntities.Sensor.EcoflowAcOutputHourly.AsNumeric().State ?? 0 - _0Gbl._myEntities.Sensor.EcoflowSolarInputHourly.AsNumeric().State ?? 0 - ecoflowUsagePriceFixer;
     }
 
     private PriceChangeType comparePrice(double priceA, double priceB)
@@ -518,9 +526,9 @@ public class EnergyMonitor
         if (lastCaclHour == DateTime.Now.Hour) return;
         if (_0Gbl._myEntities?.Sensor.Powermeters.State == null) return;
 
-        double energyNow = double.Parse( _0Gbl._myEntities.Sensor.Powermeters.State ?? "0") + _0Gbl._myEntities.Sensor.EcoflowAcInputDailyNet.State ?? 0 ;
+        double energyNow = double.Parse( _0Gbl._myEntities.Sensor.Powermeters.State ?? "0") + _0Gbl._myEntities.Sensor.EcoflowAcInputDailyNet.State ?? 0;
         double energyLastHour = _0Gbl._myEntities.InputNumber.EnergyAtStartOfHour.State ?? 0;
-        double energyConsumedThisHour = energyNow - energyLastHour - ecoflowChargeInputHoursyFixer;
+        double energyConsumedThisHour = energyNow - energyLastHour - ecoflowCgargePriceFixHelper;
         _0Gbl._myEntities.InputNumber.EnergyAtStartOfHour.SetValue(energyNow);
 
 
@@ -540,7 +548,7 @@ public class EnergyMonitor
         double ecoflowIgnoredAdjustedPrice = calculatePrice(energyConsumedThisHour);
 
         //Cost of EF charge
-        double ecoflowChargePrice = calculatePrice(_0Gbl._myEntities.Sensor.EcoflowAcInputHourly.AsNumeric().State ?? 0 - ecoflowChargeInputHoursyFixer);
+        double ecoflowChargePrice = calculatePrice(_0Gbl._myEntities.Sensor.EcoflowAcInputHourly.AsNumeric().State ?? 0 - ecoflowCgargePriceFixHelper);
 
         //subscract energy consumed by EF
         energyConsumedThisHour = ecoflowCacl(energyConsumedThisHour);
@@ -557,6 +565,8 @@ public class EnergyMonitor
         _0Gbl._myEntities.InputNumber.EnergyCostDaily.AddValue(priceForLastHout);
         _0Gbl._myEntities.InputNumber.EnergyCostHourly.SetValue(priceForLastHout);
         lastCaclHour = DateTime.Now.Hour;
+        ecoflowCgargePriceFixHelper = 0;
+        ecoflowUsagePriceFixer= 0;
     }
 
     private void OnDayChanged()
