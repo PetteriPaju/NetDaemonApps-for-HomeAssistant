@@ -317,7 +317,7 @@ public class EnergyMonitor
     
     private double ecoflowCacl(double hourlyUsedEnergy)
     {
-        return hourlyUsedEnergy - _0Gbl._myEntities.Sensor.EcoflowAcOutputHourly.AsNumeric().State ?? 0 - _0Gbl._myEntities.Sensor.EcoflowSolarInputHourly.AsNumeric().State ?? 0;
+        return hourlyUsedEnergy - _0Gbl._myEntities.Sensor.EcoflowAcOutputHourly.AsNumeric().State ?? 0 - _0Gbl._myEntities.Sensor.EcoflowSolarInputHourly.AsNumeric().State ?? 0 - ecoflowUsagePriceFixer;
     }
 
     private PriceChangeType comparePrice(double priceA, double priceB)
@@ -526,7 +526,7 @@ public class EnergyMonitor
         if (lastCaclHour == DateTime.Now.Hour) return;
         if (_0Gbl._myEntities?.Sensor.Powermeters.State == null) return;
 
-        double energyNow = double.Parse( _0Gbl._myEntities.Sensor.Powermeters.State ?? "0") + _0Gbl._myEntities.Sensor.EcoflowAcInputDailyNet.State ?? 0 - ecoflowUsagePriceFixer;
+        double energyNow = double.Parse( _0Gbl._myEntities.Sensor.Powermeters.State ?? "0") + _0Gbl._myEntities.Sensor.EcoflowAcInputDailyNet.State ?? 0;
         double energyLastHour = _0Gbl._myEntities.InputNumber.EnergyAtStartOfHour.State ?? 0;
         double energyConsumedThisHour = energyNow - energyLastHour - ecoflowCgargePriceFixHelper;
         _0Gbl._myEntities.InputNumber.EnergyAtStartOfHour.SetValue(energyNow);
