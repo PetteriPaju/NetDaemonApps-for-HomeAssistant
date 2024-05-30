@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reactive.Concurrency;
+using System.Reactive.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.Text.Json;
 using System.Transactions;
@@ -57,14 +58,15 @@ public class EnergyMonitor
         });
 
 
-        _0Gbl._myEntities.Sensor.EcoflowAcInputHourly.StateChanges().Where(x => x.Old.State == 0 && x.New.State > abNormalEnergyIncreaseThreshold){
+        _0Gbl._myEntities.Sensor.EcoflowAcInputHourly.StateChanges().Where(x => x.Old.State == 0 && x.New.State > abNormalEnergyIncreaseThreshold).Subscribe(e => {
 
             ecoflowCgargePriceFixHelper = _0Gbl._myEntities.Sensor.EcoflowAcInputHourly.State ?? 0;
-        }
-        _0Gbl._myEntities.Sensor.EcoflowAcOutputHourly.StateChanges().Where(x => x.Old.State == 0 && x.New.State > abNormalEnergyIncreaseThreshold){
+        });
+        _0Gbl._myEntities.Sensor.EcoflowAcOutputHourly.StateChanges().Where(x => x.Old.State == 0 && x.New.State > abNormalEnergyIncreaseThreshold).Subscribe(e =>
+        {
 
             ecoflowUsagePriceFixer = _0Gbl._myEntities.Sensor.EcoflowAcOutputHourly.State ?? 0;
-        }
+        });
         _0Gbl.HourlyResetFunction += () => UpdatePriceHourly(_0Gbl._myEntities?.Sensor.TotalHourlyEnergyConsumptions.State ?? 0);
         _0Gbl.HourlyResetFunction += () => UpdateNextChangeHourTime();
 
