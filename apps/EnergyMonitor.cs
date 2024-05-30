@@ -70,11 +70,6 @@ public class EnergyMonitor
         _0Gbl.HourlyResetFunction += () => UpdatePriceHourly(_0Gbl._myEntities?.Sensor.TotalHourlyEnergyConsumptions.State ?? 0);
         _0Gbl.HourlyResetFunction += () => UpdateNextChangeHourTime();
 
-        _0Gbl._myScheduler.ScheduleCron("01 * * * *", () => {
-
-            ecoflowCgargePriceFixHelper = _0Gbl._myEntities.Sensor.EcoflowAcInputHourly.AsNumeric().State ?? 0;
-        });
-
         _0Gbl.HourlyResetFunction += () => AirPurifierOn();
         _0Gbl._myScheduler.ScheduleCron("50 * * * *", () => EnergiPriceChengeAlert());
 
