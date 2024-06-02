@@ -16,6 +16,7 @@ namespace NetDaemonApps.apps.Lights
         private List<LightEntity> lightsThatWereOn = new List<LightEntity>();
 
         private readonly TimeSpan lightOnTimeOutSpan = new TimeSpan(1, 0, 0);
+        public static bool forceLightOn = false;
         private readonly TimeSpan motionSensorTimeOutSpan = new TimeSpan(0, 0, 10);
 
         public Toiler_Light_Automation()
@@ -57,7 +58,7 @@ namespace NetDaemonApps.apps.Lights
             .Where(e => e.New.IsOff() && _0Gbl._myEntities.InputBoolean.SensorsActive.IsOn())
             .Subscribe(_ =>
             {
-                if(_0Gbl._myEntities.InputBoolean.Toiletseathelper.IsOn())
+                if(_0Gbl._myEntities.InputBoolean.Toiletseathelper.IsOn() && !forceLightOn)
                 _0Gbl._myEntities.Light.ToiletLight1.TurnOffLight();
 
             });
@@ -67,7 +68,7 @@ namespace NetDaemonApps.apps.Lights
             .Where(e => e.New.IsOn() && _0Gbl._myEntities.InputBoolean.SensorsActive.IsOn() && _0Gbl._myEntities.InputBoolean.GuestMode.IsOff())
             .Subscribe(_ =>
             {
-                if (_0Gbl._myEntities.InputBoolean.Toiletseathelper.IsOn())
+                if (_0Gbl._myEntities.InputBoolean.Toiletseathelper.IsOn() && !forceLightOn)
                     _0Gbl._myEntities.Light.ToiletLight1.TurnOffLight();
             });
 

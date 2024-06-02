@@ -317,7 +317,7 @@ public class EnergyMonitor
     
     private double ecoflowCacl(double hourlyUsedEnergy)
     {
-        return hourlyUsedEnergy - (_0Gbl._myEntities.Sensor.EcoflowAcOutputHourly.AsNumeric().State ?? 0) - (_0Gbl._myEntities.Sensor.EcoflowSolarInputHourly.AsNumeric().State ?? 0);
+        return hourlyUsedEnergy - (_0Gbl._myEntities.Sensor.hourly.AsNumeric().State ?? 0) - (_0Gbl._myEntities.Sensor.EcoflowSolarInputHourly.AsNumeric().State ?? 0);
     }
 
     private PriceChangeType comparePrice(double priceA, double priceB)

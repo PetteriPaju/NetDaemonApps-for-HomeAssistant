@@ -1,17 +1,20 @@
 ﻿using HomeAssistantGenerated;
 using NetDaemon.HassModel.Entities;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using NetDaemon.Extensions.Scheduler;
+using System.Reactive.Concurrency;
 
 namespace NetDaemonApps.apps.Hue_Switches
 {
 
     public class BedHueSwitch : HueSwitch
     {
-
+        private IDisposable? keepOnRoutine = null;
         public BedHueSwitch() : base(){}
 
         protected override SensorEntity ObtainSwitch(Entities entities)
@@ -23,7 +26,34 @@ namespace NetDaemonApps.apps.Hue_Switches
         protected override void OnOnPress()
         {
             base.OnOnPress();
-               // _0Gbl._myEntities.Light.BedLight.Toggle();
+
+            if (_0Gbl._myEntities.Light.ToiletLight1.IsOn())
+            {
+                _0Gbl._myEntities.Light.ToiletLight1.TurnOffLight();
+                if (keepOnRoutine != null)
+                {
+                    keepOnRoutine.Dispose();
+                    Lights.Toiler_Light_Automation.forceLightOn = false;
+                }
+            }
+            else
+            {
+                _0Gbl._myEntities.Light.ToiletLight1.TurnOn();
+                if (keepOnRoutine != null)
+                {
+                    keepOnRoutine.Dispose();
+                }
+                    keepOnRoutine = _0Gbl._myScheduler.Schedule(TimeSpan.FromMinutes(5), () => {
+
+                    if(_0Gbl._myEntities.BinarySensor.ToiletSensorOccupancy.IsOff() && _0Gbl._myEntities.BinarySensor.ToiletSeatSensorContact.IsOn())
+                    {
+                        _0Gbl._myEntities.Light.ToiletLight1.TurnOff();
+                    }
+                  
+              
+                });
+                Lights.Toiler_Light_Automation.forceLightOn = true;
+            }
        
         }
 
