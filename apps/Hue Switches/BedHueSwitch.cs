@@ -11,7 +11,7 @@ using System.Reactive.Concurrency;
 
 namespace NetDaemonApps.apps.Hue_Switches
 {
-
+ 
     public class BedHueSwitch : HueSwitch
     {
         private IDisposable? keepOnRoutine = null;
