@@ -34,6 +34,7 @@ namespace NetDaemonApps.apps
                 _0Gbl._myEntities.Switch.FanPlug.TurnOn();
                // _0Gbl._myEntities.Scene.SwitchUsbLaptop.TurnOn();
 
+
             });
 
        

@@ -309,8 +309,6 @@ public class EnergyMonitor
             TTSMessage += "There is " + (addAlso ? "also" : "") + "potential for solar charging";
         }
 
-       
-
         TTS.Speak(TTSMessage,TTS.TTSPriority.DoNotPlayInGuestMode);
 
     }
@@ -385,6 +383,13 @@ public class EnergyMonitor
             {
                 TTSMessage += ". This will also ";
             }
+
+            if(priceChange == PriceChangeType.Increase && FindRangeForPrice(inFoForNextHour.price) > 0 && _0Gbl._myEntities.Sensor.EcoflowStatus.State.ToLower() == "online")
+            {
+                _0Gbl._myEntities.Switch.EcoflowAcEnabled.TurnOn();
+
+            }
+
         }
 
          

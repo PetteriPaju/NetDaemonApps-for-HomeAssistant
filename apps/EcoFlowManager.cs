@@ -187,7 +187,12 @@ namespace NetDaemonApps.apps
                 _0Gbl._myEntities.Switch.SwitchbotEcoflow.Toggle();
             });
 
-                _0Gbl._myEntities.Sensor.EcoflowBatteryLevel.StateChanges().Where(x => x.New?.State < 5 && x.Old?.State >= 5).Subscribe(x => {
+            _0Gbl._myEntities.Sensor.EcoflowStatus.StateChanges().Where(x => x.New.State == "Online").Subscribe(x =>
+            {
+                _0Gbl._myEntities.Switch.EcoflowAcEnabled.TurnOn();
+            });
+
+            _0Gbl._myEntities.Sensor.EcoflowBatteryLevel.StateChanges().Where(x => x.New?.State < 5 && x.Old?.State >= 5).Subscribe(x => {
 
                 TTS.Speak("Warning Only 5% of Power remaining", TTS.TTSPriority.Default, _0Gbl._myEntities.InputBoolean.NotificationEcoflow);
             });
