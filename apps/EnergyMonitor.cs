@@ -88,7 +88,7 @@ public class EnergyMonitor
                 {
                     if (_0Gbl._myEntities.InputBoolean.NotificationEnergySolar.IsOn())
                     {
-                        TTS.Instance?.SpeakTTS("Solar chargin available", TTS.TTSPriority.PlayInGuestMode);
+                        TTS.Instance?.SpeakTTS("Solar charging available", TTS.TTSPriority.PlayInGuestMode);
                         timeOfLastSolarNotification = DateTime.Now;
                     }
 
@@ -99,7 +99,7 @@ public class EnergyMonitor
 
         _0Gbl._myScheduler.RunEvery(TimeSpan.FromHours(1)+TimeSpan.FromMinutes(30), DateTimeOffset.Now, () => {
 
-            if (_0Gbl._myEntities.BinarySensor.LivingroomWindowSensorContact.IsOn() && _0Gbl._myEntities.Sensor.EcoflowSolarInPower.State == 0 && _0Gbl._myEntities.BinarySensor.SolarChargingLimit.IsOff() && _0Gbl._myEntities.BinarySensor.SolarChargingLimit.StateFor(TimeSpan.FromMinutes(30)))
+            if (_0Gbl._myEntities.BinarySensor.LivingroomWindowSensorContact.IsOn() && _0Gbl._myEntities.Sensor.EcoflowSolarInPower.State == 0 && _0Gbl._myEntities.BinarySensor.SolarChargingLimit.IsOff() && _0Gbl._myEntities.BinarySensor.SolarChargingLimit.StateFor(TimeSpan.FromMinutes(30)) && _0Gbl._myEntities.Sensor.EcoflowAcOutputFixed.State == 0)
             {
                 TTS.Instance?.SpeakTTS("Solar panels are active", TTS.TTSPriority.PlayInGuestMode);
             }
