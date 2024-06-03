@@ -29,7 +29,6 @@ namespace NetDaemonApps.apps
                 .Subscribe(_ => {
 
                  _0Gbl._myEntities.Light.PcMultipowermeterL1.TurnOn();
-                    AgaraCube_LivingRoom.BrightLightTurnedOnByPC = true;
                 _0Gbl._myEntities.Switch.PcMultipowermeterMonitors.TurnOn();
                 _0Gbl._myEntities.Switch.FanPlug.TurnOn();
                // _0Gbl._myEntities.Scene.SwitchUsbLaptop.TurnOn();
