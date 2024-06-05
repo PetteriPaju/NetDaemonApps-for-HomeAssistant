@@ -35,14 +35,14 @@ namespace NetDaemonApps.apps.Lights
       });
             */
 
-
+            /*
             _0Gbl._myEntities.InputBoolean.Toiletseathelper
            .StateChanges().Where(e => (e.New?.IsOff() ?? true) && _0Gbl._myEntities.InputBoolean.SensorsActive.IsOn())
            .Subscribe(_ => OnToiledLidOpen());
 
             _0Gbl._myEntities.InputBoolean.Toiletseathelper
            .StateChanges().Where(e => (e.New?.IsOn()?? true) && _0Gbl._myEntities.InputBoolean.SensorsActive.IsOn() )
-           .Subscribe(_ => OnToiledLidClose());
+           .Subscribe(_ => OnToiledLidClose());*/
 
 
 
@@ -55,11 +55,12 @@ namespace NetDaemonApps.apps.Lights
             });
 
             _0Gbl._myEntities.BinarySensor.ToiletSensorOccupancy.StateChanges()
-            .Where(e => e.New.IsOff() && _0Gbl._myEntities.InputBoolean.SensorsActive.IsOn())
+            .WhenStateIsFor(e => e?.State == "off" && _0Gbl._myEntities.InputBoolean.SensorsActive.IsOn(), TimeSpan.FromMinutes(3),_0Gbl._myScheduler)
             .Subscribe(_ =>
             {
-                if(_0Gbl._myEntities.InputBoolean.Toiletseathelper.IsOn() && !forceLightOn)
-                _0Gbl._myEntities.Light.ToiletLight1.TurnOffLight();
+                // if(_0Gbl._myEntities.InputBoolean.Toiletseathelper.IsOn() && !forceLightOn)
+                if ( !forceLightOn)
+                    _0Gbl._myEntities.Light.ToiletLight1.TurnOffLight();
 
             });
 
@@ -68,8 +69,8 @@ namespace NetDaemonApps.apps.Lights
             .Where(e => e.New.IsOn() && _0Gbl._myEntities.InputBoolean.SensorsActive.IsOn() && _0Gbl._myEntities.InputBoolean.GuestMode.IsOff())
             .Subscribe(_ =>
             {
-                if (_0Gbl._myEntities.InputBoolean.Toiletseathelper.IsOn() && !forceLightOn)
-                    _0Gbl._myEntities.Light.ToiletLight1.TurnOffLight();
+              //  if (_0Gbl._myEntities.InputBoolean.Toiletseathelper.IsOn() && !forceLightOn)
+               //     _0Gbl._myEntities.Light.ToiletLight1.TurnOffLight();
             });
 
 

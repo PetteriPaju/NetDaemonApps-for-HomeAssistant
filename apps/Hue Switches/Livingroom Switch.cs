@@ -23,7 +23,7 @@ namespace NetDaemonApps.apps.Hue_Switches
         {
             base.OnOnPress();
 
-            if (_0Gbl._myEntities.Light.ToiletLight1.IsOn())
+            if (_0Gbl._myEntities.Light.ToiletLight1.IsOn() && Lights.Toiler_Light_Automation.forceLightOn)
             {
                 _0Gbl._myEntities.Light.ToiletLight1.TurnOffLight();
                 if (keepOnRoutine != null)
@@ -45,7 +45,7 @@ namespace NetDaemonApps.apps.Hue_Switches
                     {
                         _0Gbl._myEntities.Light.ToiletLight1.TurnOff();
                     }
-
+                    Lights.Toiler_Light_Automation.forceLightOn = false;
 
                 });
                 Lights.Toiler_Light_Automation.forceLightOn = true;
