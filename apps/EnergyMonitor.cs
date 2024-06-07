@@ -315,7 +315,7 @@ public class EnergyMonitor
     
     private double ecoflowCacl(double hourlyUsedEnergy)
     {
-        return hourlyUsedEnergy - (_0Gbl._myEntities.Sensor.EcoflowAcOutputHourly.AsNumeric().State ?? 0) - (_0Gbl._myEntities.Sensor.EcoflowSolarInputHourly.AsNumeric().State ?? 0);
+        return hourlyUsedEnergy - (double.Max(0,_0Gbl._myEntities.Sensor.EcoflowAcOutputHourly.AsNumeric().State ?? 0)) - (_0Gbl._myEntities.Sensor.EcoflowSolarInputHourly.AsNumeric().State ?? 0);
     }
 
     private PriceChangeType comparePrice(double priceA, double priceB)
@@ -531,7 +531,7 @@ public class EnergyMonitor
         if (lastCaclHour == DateTime.Now.Hour) return;
         if (_0Gbl._myEntities?.Sensor.Powermeters.State == null) return;
 
-        double energyNow = double.Parse( _0Gbl._myEntities.Sensor.Powermeters.State ?? "0") + _0Gbl._myEntities.Sensor.EcoflowAcInputDaily.State ?? 0;
+        double energyNow = double.Parse( _0Gbl._myEntities.Sensor.Powermeters.State ?? "0") + double.Max(0,_0Gbl._myEntities.Sensor.EcoflowAcInputDaily.State ?? 0);
         double energyLastHour = _0Gbl._myEntities.InputNumber.EnergyAtStartOfHour.State ?? 0;
         double energyConsumedThisHour = energyNow - energyLastHour;
         _0Gbl._myEntities.InputNumber.EnergyAtStartOfHour.SetValue(energyNow);
@@ -553,7 +553,7 @@ public class EnergyMonitor
         double ecoflowIgnoredAdjustedPrice = calculatePrice(energyConsumedThisHour);
 
         //Cost of EF charge
-        double ecoflowChargePrice = calculatePrice(_0Gbl._myEntities.Sensor.EcoflowAcInputHourly.AsNumeric().State ?? 0);
+        double ecoflowChargePrice = calculatePrice(double.Max(0,_0Gbl._myEntities.Sensor.EcoflowAcInputHourly.AsNumeric().State ?? 0));
 
         //subscract energy consumed by EF
         energyConsumedThisHour = ecoflowCacl(energyConsumedThisHour);
