@@ -148,7 +148,7 @@ namespace NetDaemonApps.apps
             protected override void OnHold()
             {
                 base.OnHold();
-                _0Gbl._myEntities.Light.KitchenLight2.TurnOff();
+                _0Gbl._myEntities.Button.PcPcWalkingpadtoggle.Press();
             }
         }
         private class BedKnob : Knob

@@ -41,7 +41,7 @@ namespace NetDaemonApps.apps.Hue_Switches
                 }
                 keepOnRoutine = _0Gbl._myScheduler.Schedule(TimeSpan.FromMinutes(5), () => {
 
-                    if (_0Gbl._myEntities.BinarySensor.ToiletSensorOccupancy.IsOff() && _0Gbl._myEntities.BinarySensor.ToiletSeatSensorContact.IsOn())
+                    if (_0Gbl._myEntities.BinarySensor.ToiletSensorOccupancy.IsOff())
                     {
                         _0Gbl._myEntities.Light.ToiletLight1.TurnOff();
                     }

@@ -55,7 +55,7 @@ namespace NetDaemonApps.apps.Lights
             });
 
             _0Gbl._myEntities.BinarySensor.ToiletSensorOccupancy.StateChanges()
-            .WhenStateIsFor(e => e?.State == "off" && _0Gbl._myEntities.InputBoolean.SensorsActive.IsOn(), TimeSpan.FromMinutes(3),_0Gbl._myScheduler)
+            .WhenStateIsFor(e => e?.State == "off" && _0Gbl._myEntities.InputBoolean.SensorsActive.IsOn(), TimeSpan.FromMinutes(2),_0Gbl._myScheduler)
             .Subscribe(_ =>
             {
                 // if(_0Gbl._myEntities.InputBoolean.Toiletseathelper.IsOn() && !forceLightOn)
