@@ -22,19 +22,23 @@ namespace NetDaemonApps.apps
 
             MediaPlayerEntities mPlayers = _0Gbl._myEntities.MediaPlayer;
             Entity phoneEntity = _0Gbl._myEntities.Sensor.MotoG8PowerLiteMediaSession;
-            Entity tabletEntity = _0Gbl._myEntities.Sensor.SmT530MediaSession;
+            Entity envyEntity = _0Gbl._myEntities.Sensor.EnvyAudioAudioSessions;
+            Entity pcEntity = _0Gbl._myEntities.Sensor.PcAudioAudioSessions;
 
-            Entity[] mediaPlayerEntities= new Entity[] {mPlayers.Envy, mPlayers.LivingRoomDisplay, mPlayers.LivingRoomTv, mPlayers.Pc, phoneEntity};
+
+            Entity[] mediaPlayerEntities= new Entity[] { envyEntity, pcEntity, mPlayers.LivingRoomDisplay, mPlayers.LivingRoomTv, phoneEntity};
 
             void SetEntityForMediaPlayer(Entity ent)
             {
-                if(ent == mPlayers.Envy)
+                if(ent == envyEntity || ent == pcEntity)
                 {
-                    AddEntity(ent, () => { return ent.State?.ToLower() == "playing" && _0Gbl._myEntities.BinarySensor._192168025.IsOn(); }, CheckAllStates);
-                }
-                else if (ent == mPlayers.Pc)
-                {
-                    AddEntity(ent, () => { return ent.State?.ToLower() == "playing" && _0Gbl._myEntities.Switch.PcPlug.IsOn(); }, CheckAllStates);
+                    AddEntity(ent, () => {
+                        
+                        int o = -1;
+                        bool parsed = int.TryParse(ent.State, out o);
+                        return parsed ? o > 0 : false;
+
+                    }, CheckAllStates);
                 }
                 else
                     AddEntity(ent, () => { return ent.State?.ToLower() == "playing"; }, CheckAllStates);

@@ -66,6 +66,10 @@ namespace NetDaemonApps.apps
                 isAwakeConditions.Add(condition);
             }
             {
+                var condition = new MonitorMember(_0Gbl._myEntities.Sensor.EnvyLastactive.State.ToLower().Contains("unavailable"), "Envy last active");
+                isAwakeConditions.Add(condition);
+            }
+            {
                 var condition = new MonitorMember(_0Gbl._myEntities.InputBoolean.Ishome.IsOff, "Is Home");
                 isAwakeConditions.Add(condition);
             }
