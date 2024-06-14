@@ -66,7 +66,7 @@ namespace NetDaemonApps.apps
                 isAwakeConditions.Add(condition);
             }
             {
-                var condition = new MonitorMember(()=> {return _0Gbl._myEntities.Sensor.EnvyLastactive.State.ToLower() == "unavailable"; }, "Envy last active");
+                var condition = new MonitorMember(()=> {return (_0Gbl._myEntities.Sensor.EnvyLastactive.State.ToLower() != "unavailable"); }, "Envy last active");
                 isAwakeConditions.Add(condition);
             }
             {
@@ -166,11 +166,12 @@ namespace NetDaemonApps.apps
 
         private void CheckAllIsSleepConditions()
         {
-
+           
             bool isAnyTrue = false;
 
             foreach (MonitorMember cond in isAwakeConditions)
             {
+           
                 if (cond.currentState)
                 {
                     isAnyTrue = true;
