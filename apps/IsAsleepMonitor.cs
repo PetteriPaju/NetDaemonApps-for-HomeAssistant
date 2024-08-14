@@ -146,16 +146,10 @@ namespace NetDaemonApps.apps
 
             private void ParseAlertTime()
         {
-            if (TimeSpan.TryParse(_0Gbl._myEntities.InputDatetime.SettingsSleepduration.State, out sleepTimer))
-            {
-                // Conversion succeeded
-               
-            }
-            else
-            {
-                sleepTimer = TimeSpan.FromHours(9);
 
-            }
+            sleepTimer = TimeSpan.FromHours(_0Gbl._myEntities.InputDatetime.SettingsSleepduration.Attributes.Hour ?? 0) + TimeSpan.FromMinutes(_0Gbl._myEntities.InputDatetime.SettingsSleepduration.Attributes.Minute ?? 0) + TimeSpan.FromSeconds(_0Gbl._myEntities.InputDatetime.SettingsSleepduration.Attributes.Second ?? 0);
+            Console.WriteLine(sleepTimer);
+
         }
 
 
