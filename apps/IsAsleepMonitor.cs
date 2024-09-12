@@ -65,10 +65,7 @@ namespace NetDaemonApps.apps
                 var condition = new MonitorMember( _0Gbl._myEntities.BinarySensor._192168022.IsOn , "Envy Active");
                 isAwakeConditions.Add(condition);
             }
-            {
-                var condition = new MonitorMember(()=> {return (_0Gbl._myEntities.Sensor.EnvyLastactive.State.ToLower() != "unavailable"); }, "Envy last active");
-                isAwakeConditions.Add(condition);
-            }
+
             {
                 var condition = new MonitorMember(_0Gbl._myEntities.InputBoolean.Ishome.IsOff, "Is Home");
                 isAwakeConditions.Add(condition);
