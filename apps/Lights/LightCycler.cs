@@ -32,7 +32,7 @@ namespace NetDaemonApps.apps.Lights
 
         private void FindActiveLight()
         {
-            _currentLight = lightEntities.FirstOrDefault(x => x != null && x.IsOn(),null);
+            _currentLight = lightEntities.FirstOrDefault(x => x != null && x.IsOn(), lightEntities.First());
 
         }
 
