@@ -141,7 +141,6 @@ namespace NetDaemonApps.apps
                 {
                     if (_0Gbl._myEntities.Switch.EcoflowPlug.IsOff())
                         _0Gbl._myEntities.Switch.EcoflowPlug.TurnOn();
-                    else if(_0Gbl._myEntities.Sensor.EcoflowStatus.State.ToLower() != "online" ) _0Gbl._myEntities.Switch.SwitchbotEcoflow.Toggle();
                 }
                 private void TurnOff()
                 {

@@ -26,7 +26,7 @@ namespace NetDaemonApps.apps
             Entity pcEntity = _0Gbl._myEntities.Sensor.PcAudioAudioSessions;
 
 
-            Entity[] mediaPlayerEntities= new Entity[] { envyEntity, pcEntity, mPlayers.LivingRoomDisplay, mPlayers.LivingRoomTv, phoneEntity};
+            Entity[] mediaPlayerEntities= new Entity[] { envyEntity, pcEntity, mPlayers.LivingRoomTv, phoneEntity};
 
             void SetEntityForMediaPlayer(Entity ent)
             {
