@@ -14,7 +14,7 @@ namespace NetDaemonApps.apps
     
     public class FridgeAutomation
     {
-
+        /*
         private int knownFridgeIndex;
         private int desiredFridgeIndex;
         private int pressTime = 5000;
@@ -55,6 +55,6 @@ namespace NetDaemonApps.apps
 
             
         }
-
+        */
     }
 }

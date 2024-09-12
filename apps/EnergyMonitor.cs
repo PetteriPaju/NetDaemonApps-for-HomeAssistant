@@ -70,7 +70,6 @@ public class EnergyMonitor
         _0Gbl.HourlyResetFunction += () => UpdatePriceHourly(_0Gbl._myEntities?.Sensor.TotalHourlyEnergyConsumptions.State ?? 0);
         _0Gbl.HourlyResetFunction += () => UpdateNextChangeHourTime();
 
-        _0Gbl.HourlyResetFunction += () => AirPurifierOn();
         _0Gbl._myScheduler.ScheduleCron("50 * * * *", () => EnergiPriceChengeAlert());
 
         solarChargingNotificationGiven = _0Gbl._myEntities?.Sensor?.EcoflowSolarInPower.State >= 0;
@@ -155,10 +154,7 @@ public class EnergyMonitor
         }
     }
 
-    private void AirPurifierOn()
-    {
-       if (infoForCurrentHour.peak == -1 && infoForCurrentHour.range <= 0 && !apOnToday) { _0Gbl._myEntities.Switch.SwitchbotAirPurifierPower.Toggle(); apOnToday = true; }
-    }
+
 
     private void UpdateNextChangeHourTime()
     {
@@ -531,7 +527,7 @@ public class EnergyMonitor
         if (lastCaclHour == DateTime.Now.Hour) return;
         if (_0Gbl._myEntities?.Sensor.Powermeters.State == null) return;
 
-        double energyNow = double.Parse( _0Gbl._myEntities.Sensor.Powermeters.State ?? "0") + double.Max(0,_0Gbl._myEntities.Sensor.EcoflowAcInputDaily.State ?? 0);
+        double energyNow = _0Gbl._myEntities.Sensor.Powermeters.State ?? 0 + double.Max(0,_0Gbl._myEntities.Sensor.EcoflowAcInputDaily.State ?? 0);
         double energyLastHour = _0Gbl._myEntities.InputNumber.EnergyAtStartOfHour.State ?? 0;
         double energyConsumedThisHour = energyNow - energyLastHour;
         _0Gbl._myEntities.InputNumber.EnergyAtStartOfHour.SetValue(energyNow);

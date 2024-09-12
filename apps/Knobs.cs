@@ -51,22 +51,22 @@ namespace NetDaemonApps.apps
 
             protected virtual void OnBrightnesssDelta()
             {
+             
                 if (lightCycler.GetCurrentLight() == null) return;
 
                 if (lightCycler.GetCurrentLight() != null && lightCycler.GetCurrentLight()?.Attributes?.SupportedFeatures != 0)
                 {
-                    int step;
-                    if (int.TryParse(knobDelta.State, out step))
+                    long step;
+                    if (long.TryParse(knobDelta.State, out step))
                     {
                         step = (int)Math.Round(step * (flipDialDirection ? -1 : 1) * _0Gbl._myEntities.InputNumber.SettingsKnobSensitivity.State ?? 1);
        
-                        long minBrightnessFix = (long)MathF.Min((int)(((int)lightCycler.GetCurrentLight().Attributes.Brightness) + step), (int)255);
-                        minBrightnessFix = (long)MathF.Max((int)(((int)lightCycler.GetCurrentLight().Attributes.Brightness) + step), (int)10);
-
-                        lightCycler.GetCurrentLight().TurnOn(brightness: minBrightnessFix, transition:1);
+                        long minBrightnessFix = Math.Min(((long)lightCycler.GetCurrentLight().Attributes.Brightness + step), (long)255);
+                        minBrightnessFix = (Math.Max(minBrightnessFix, (long)10));
+                        lightCycler.GetCurrentLight().TurnOn(brightnessPct: (long)(((float)minBrightnessFix / 255f) * 100), transition:1);
                     }
 
-
+                 
                 }
             }
             protected virtual void OnHold()
@@ -142,7 +142,7 @@ namespace NetDaemonApps.apps
             public DesktopKnob(SensorEntity knobAction, SensorEntity knobStep) : base(knobAction, knobStep)
             {
                 flipDialDirection = true;
-                lightCycler = new LightCycler(_0Gbl._myEntities.InputBoolean.GuestMode, _0Gbl._myEntities.Light.LivingRoomLight, _0Gbl._myEntities.Light.PcMultipowermeterL1);
+                lightCycler = new LightCycler(_0Gbl._myEntities.InputBoolean.GuestMode,Extensions.LightgroupToEntytiList(_0Gbl._myEntities.Light.DesktopKnobLights.Attributes.EntityId).ToArray());
             }
 
             protected override void OnHold()
@@ -158,7 +158,7 @@ namespace NetDaemonApps.apps
         {
             public BedKnob(SensorEntity knobAction, SensorEntity knobStep) : base(knobAction, knobStep)
             {
-                lightCycler = new LightCycler(_0Gbl._myEntities.InputBoolean.GuestMode, _0Gbl._myEntities.Light.BedLight);
+                lightCycler = new LightCycler(_0Gbl._myEntities.InputBoolean.GuestMode,Extensions.LightgroupToEntytiList( _0Gbl._myEntities.Light.BedKnobLights.Attributes.EntityId).ToArray());
             }
 
             protected override void OnPress()
@@ -179,7 +179,7 @@ namespace NetDaemonApps.apps
         {
             public SofaKnob(SensorEntity knobAction, SensorEntity knobStep) : base(knobAction, knobStep)
             {
-                lightCycler = new LightCycler(_0Gbl._myEntities.InputBoolean.GuestMode, _0Gbl._myEntities.Light.DesktopLight, _0Gbl._myEntities.Light.LivingRoomLight);
+                lightCycler = new LightCycler(_0Gbl._myEntities.InputBoolean.GuestMode, Extensions.LightgroupToEntytiList(_0Gbl._myEntities.Light.SofaKnobLights.Attributes.EntityId).ToArray());
             }
 
             protected override void OnHold()

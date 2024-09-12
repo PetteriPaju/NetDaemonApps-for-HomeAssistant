@@ -45,6 +45,17 @@ namespace NetDaemonApps
 
         }
 
+        public static List<LightEntity> LightgroupToEntytiList(IEnumerable<string> idList)
+        {
+            List<LightEntity> list = new List<LightEntity>();
+
+            foreach (string entityId in idList)
+            {
+                list.Add(new LightEntity(_0Gbl.HaContext, entityId));
+            }
+            return list;
+        }
+
         public static void AddValue(this InputNumberEntity entity, double value)
         {
             if (entity == null) return;

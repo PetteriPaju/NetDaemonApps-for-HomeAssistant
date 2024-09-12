@@ -23,6 +23,7 @@ namespace NetDaemonApps.apps
         public static Action? DailyResetFunction { get; set; }
 
         public static ITriggerManager TriggerManager { get; set; }
+        public static IHaContext HaContext { get; private set; }
 
 
         public _0Gbl(IHaContext ha, IScheduler scheduler, ITriggerManager _triggerManager)
@@ -32,6 +33,7 @@ namespace NetDaemonApps.apps
             _myScheduler = scheduler;
             _myServices = new Services(ha);
             _events = ha.Events;
+            HaContext = ha;
             TriggerManager = _triggerManager;
             _0Gbl._myScheduler.ScheduleCron("59 * * * *", hourlyResetFunction);
             _0Gbl._myScheduler.ScheduleCron("0 0 * * *", dailyResetFunction);
