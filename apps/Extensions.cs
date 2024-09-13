@@ -45,6 +45,20 @@ namespace NetDaemonApps
 
         }
 
+        public static List<LightEntity> lightEntitiesFromSelectionDropdown(this InputSelectEntity slectionEntity)
+        {
+            if (slectionEntity == null) return new List<LightEntity>();
+            List<LightEntity> list = new List<LightEntity>();
+            foreach (string entityId in slectionEntity.Attributes.Options)
+            {
+                list.Add(new LightEntity(_0Gbl.HaContext, entityId));
+
+            }
+            return list;
+        }
+
+
+
         public static List<LightEntity> LightgroupToEntytiList(IEnumerable<string> idList)
         {
             List<LightEntity> list = new List<LightEntity>();
