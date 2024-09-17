@@ -563,8 +563,8 @@ public class EnergyMonitor
         _0Gbl._myEntities.InputNumber.EcoflowCharingCost.AddValue(ecoflowChargePrice);
         _0Gbl._myEntities.InputNumber.DailyEnergySaveHelper.AddValue(ecoflowSavedMoney - ecoflowChargePrice);
 
-        _0Gbl._myEntities.InputNumber.EnergyCostDaily.AddValue(priceForLastHout);
-        _0Gbl._myEntities.InputNumber.EnergyCostHourly.SetValue(priceForLastHout);
+        _0Gbl._myEntities.InputNumber.EnergyCostDaily.AddValue(priceForLastHout + ecoflowChargePrice);
+        _0Gbl._myEntities.InputNumber.EnergyCostHourly.SetValue(priceForLastHout + ecoflowChargePrice);
         lastCaclHour = DateTime.Now.Hour;
         ecoflowCgargePriceFixHelper = 0;
         ecoflowUsagePriceFixer= 0;
