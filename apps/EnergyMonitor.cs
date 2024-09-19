@@ -527,7 +527,7 @@ public class EnergyMonitor
         if (lastCaclHour == DateTime.Now.Hour) return;
         if (_0Gbl._myEntities?.Sensor.Powermeters.State == null) return;
 
-        double energyNow = _0Gbl._myEntities.Sensor.Powermeters.State ?? 0 + double.Max(0,_0Gbl._myEntities.Sensor.EcoflowAcInputDaily.State ?? 0);
+        double energyNow = double.Max(_0Gbl._myEntities.Sensor.Powermeters.State ?? 0 + double.Max(0,_0Gbl._myEntities.Sensor.EcoflowAcInputDaily.State ?? 0),0);
         double energyLastHour = _0Gbl._myEntities.InputNumber.EnergyAtStartOfHour.State ?? 0;
         double energyConsumedThisHour = energyNow - energyLastHour;
         _0Gbl._myEntities.InputNumber.EnergyAtStartOfHour.SetValue(energyNow);
@@ -578,6 +578,7 @@ public class EnergyMonitor
         _0Gbl._myEntities.InputNumber.EnergyCostHourly.SetValue(0);
         _0Gbl._myEntities.InputNumber.EnergyCostDaily.SetValue(0);
         _0Gbl._myEntities.InputNumber.EnergyAtStartOfHour.SetValue(0);
+
         solarChargingNotificationGiven = false;
         solarChargingOffNotificationGiven = false;
         apOnToday = false;
@@ -587,6 +588,8 @@ public class EnergyMonitor
         _0Gbl._myEntities.InputNumber.EcoflowCharingCost.SetValue(0);
 
         var x = _0Gbl._myScheduler.Schedule(TimeSpan.FromSeconds(10), () => {
+            _0Gbl._myEntities.Sensor.EcoflowAcInputDaily.ResetEnergy();
+            _0Gbl._myEntities.Sensor.EcoflowAcInputHourly.ResetEnergy();
             fillToday();
             fillTomorrow();
             UpdateNextChangeHourTime();
