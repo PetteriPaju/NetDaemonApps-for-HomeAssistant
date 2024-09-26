@@ -22,6 +22,7 @@ namespace NetDaemonApps.apps.Hue_Switches
         protected override void OnOnPress()
         {
             base.OnOnPress();
+            /*
 
             if (_0Gbl._myEntities.Light.ToiletLight1.IsOn() && Lights.Toiler_Light_Automation.forceLightOn)
             {
@@ -50,12 +51,13 @@ namespace NetDaemonApps.apps.Hue_Switches
                 });
                 Lights.Toiler_Light_Automation.forceLightOn = true;
             }
-
+            */
         }
 
         protected override void OnAnyPress()
         {
             base.OnAnyPress();
+            _0Gbl._myEntities.Switch.BedMultiPlugL1.Toggle();
             //  _0Gbl._myEntities.Switch.TvPowerMeter.TurnOn();
         }
 
