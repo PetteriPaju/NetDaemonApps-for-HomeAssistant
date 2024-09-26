@@ -60,7 +60,7 @@ namespace NetDaemonApps.apps.Lights
               
                 if (_0Gbl._myEntities.Sensor.Livingroomfp1PresenceEvent.State != "approach")
                 {
-                    _0Gbl._myEntities.Light.KitchenLight2.TurnOff();
+                    _0Gbl._myEntities.Light.KitchenLight2.TurnOffLight();
                 }
             });
             /*
