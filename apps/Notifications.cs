@@ -30,7 +30,7 @@ namespace NetDaemonApps.apps
             _sensorsOnBooleanEntity = _0Gbl._myEntities.InputBoolean.SensorsActive;
 
 
-            _0Gbl._myScheduler.ScheduleCron("30 * * * *", () => TTS.Speak("Hydration Check",TTS.TTSPriority.DoNotPlayInGuestMode, _0Gbl._myEntities.InputBoolean.NotificationHydrationCheck));
+            _0Gbl._myScheduler.ScheduleCron("30 * * * *", () => { if (DateTime.Now.Hour != 14) TTS.Speak("Hydration Check", TTS.TTSPriority.DoNotPlayInGuestMode, _0Gbl._myEntities.InputBoolean.NotificationHydrationCheck); });
 
 
             string gamingtime = "0" + (DateTime.Now.IsDaylightSavingTime() ? " 3 " : " 2 ") + "* * *";
