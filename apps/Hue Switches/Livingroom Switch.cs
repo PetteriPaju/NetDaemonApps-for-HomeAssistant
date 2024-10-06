@@ -10,7 +10,7 @@ namespace NetDaemonApps.apps.Hue_Switches
     [NetDaemonApp]
     public class Livingroom_Switch : HueSwitch
     {
-        private IDisposable? keepOnRoutine = null;
+        private IDisposable? cancelRoutine = null;
         public Livingroom_Switch() : base() { }
   
 
@@ -32,6 +32,97 @@ namespace NetDaemonApps.apps.Hue_Switches
             base.OnAnyPress();
             //  _0Gbl._myEntities.Switch.TvPowerMeter.TurnOn();
         }
+
+        protected override void OnDownPress()
+        {
+            if (cancelRoutine != null)
+            {
+                cancelRoutine.Dispose();
+                var message = "Cancelled";
+                cancelRoutine = null;
+                TTS.Speak(message, TTS.TTSPriority.IgnoreSleep);
+            }
+
+        }
+        protected override void OnUpPress()
+        {
+            if (cancelRoutine != null)
+            {
+                cancelRoutine.Dispose();
+                cancelRoutine = null;
+                var message = "Cancelled";
+                TTS.Speak(message, TTS.TTSPriority.IgnoreSleep);
+            }
+
+        }
+        protected override void OnUpHold()
+        {
+            base.OnUpHoldRelease();
+            string message = "";
+            if (cancelRoutine != null) {
+                cancelRoutine.Dispose();
+                cancelRoutine = null;
+                message = "Cancelled";
+            }
+            else {
+
+                if (_0Gbl._myEntities.Switch.ModemAutoOnPlug.IsOn())
+                {
+                    message = "Modem Off";
+                }
+                else
+                {
+                    message = "Modem On";
+                }
+         
+                cancelRoutine = _0Gbl._myScheduler.Schedule(TimeSpan.FromSeconds(_0Gbl._myEntities.Switch.ModemAutoOnPlug.IsOn() ? 10 : 0), () => {
+
+                    
+                    if(_0Gbl._myEntities.Switch.ModemAutoOnPlug.IsOn() && _0Gbl._myEntities.BinarySensor.ZatnasPing.IsOn())
+                    {
+                    _0Gbl._myServices.Script.TurnOffServer();
+                     _0Gbl._myScheduler.Schedule(TimeSpan.FromSeconds(_0Gbl._myEntities.Switch.ModemAutoOnPlug.IsOn() ? 5 : 0), () => {
+                         _0Gbl._myEntities.Switch.ModemAutoOnPlug.Toggle();
+                     });
+                    }
+                    else
+                    {
+                        _0Gbl._myEntities.Switch.ModemAutoOnPlug.Toggle();
+                    }
+
+
+                    cancelRoutine = null;
+
+                });
+            }
+            TTS.Speak(message, TTS.TTSPriority.IgnoreSleep);
+
+        }
+        protected override void OnDownHold()
+        {
+
+            base.OnDownHoldRelease();
+            string message = "";
+            if (cancelRoutine != null)
+            {
+                cancelRoutine.Dispose();
+                cancelRoutine = null;
+                message = "Cancelled";
+            }
+            else
+            {
+                 message = "Everything off";
+
+                cancelRoutine = _0Gbl._myScheduler.Schedule(TimeSpan.FromSeconds(10), () => {
+
+                    _0Gbl._myEntities.Script.TurnOffEverything.TurnOn();
+                    cancelRoutine = null;
+
+                });
+            }
+            TTS.Speak(message, TTS.TTSPriority.IgnoreSleep);
+        }
+
 
         protected override void OnHuePress()
         {
