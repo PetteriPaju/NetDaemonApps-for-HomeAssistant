@@ -40,7 +40,7 @@ namespace NetDaemonApps.apps.Hue_Switches
             string ttsTime = "its " + DateTime.Now.ToString("H:mm", CultureInfo.InvariantCulture); 
             if(_0Gbl._myEntities.InputBoolean.Isasleep.IsOn()) ttsTime += ", you have been sleeping for " + timeDiff?.Hours + " hours" + (timeDiff?.Minutes > 0 ? " and " + timeDiff?.Minutes + "minutes" : ". ");
 
-            TTS.Speak(ttsTime);
+            TTS.Speak(ttsTime,TTS.TTSPriority.IgnoreAll);
         }
 
         protected override void OnHueRelease()
