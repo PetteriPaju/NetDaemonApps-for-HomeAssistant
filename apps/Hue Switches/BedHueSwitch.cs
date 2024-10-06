@@ -23,9 +23,9 @@ namespace NetDaemonApps.apps.Hue_Switches
         }
 
 
-        protected override void OnOnPress()
+        protected override void OnPowerPress()
         {
-            base.OnOnPress();
+            base.OnPowerPress();
 
             if (_0Gbl._myEntities.Light.ToiletLight1.IsOn())
             {
@@ -64,12 +64,12 @@ namespace NetDaemonApps.apps.Hue_Switches
         }
 
         //Fan
-        protected override void OnOffPressRelease()
+        protected override void OnHueRelease()
         {
           //  _0Gbl._myEntities.Switch.BedMultiPlugL1.Toggle(); 
         }
 
-        protected override void OnOffHoldRelease()
+        protected override void OnHueHoldRelease()
         {
           //  _0Gbl._myEntities.Script.ReadoutTime.TurnOn();
         }
