@@ -87,7 +87,6 @@ namespace NetDaemonApps.apps.Lights
                 _0Gbl._myEntities.Button.PcTurnoffmonitors.Press();
             */
 
-            TTS.Speak("Open");
 
         }
 
@@ -102,7 +101,6 @@ namespace NetDaemonApps.apps.Lights
             }
 
             lightsThatWereOn.Clear();
-            TTS.Speak("Close");
             //Turn on PC Monitors
             /*
             if (_0Gbl._myEntities.Switch.PcPlug.IsOn())
