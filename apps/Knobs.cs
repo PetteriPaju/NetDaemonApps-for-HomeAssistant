@@ -172,7 +172,7 @@ namespace NetDaemonApps.apps
             protected override void OnHold()
             {
                 base.OnHold();
-                _0Gbl._myEntities.Switch.BedMultiPlugL1.Toggle();
+                _0Gbl._myEntities.Switch.BedMultiPlugL3.Toggle();
             }
         }
         private class SofaKnob : Knob
@@ -185,7 +185,7 @@ namespace NetDaemonApps.apps
             protected override void OnHold()
             {
                 base.OnHold();
-                _0Gbl._myEntities.Switch.BedMultiPlugL3.Toggle();
+               
             }
         }
     }
