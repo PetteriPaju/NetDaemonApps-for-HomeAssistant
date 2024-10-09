@@ -43,7 +43,7 @@ namespace NetDaemonApps.apps
 
                             if (light.IsOn() && _0Gbl._myEntities.InputBoolean.GuestMode.IsOff() && _0Gbl._myEntities.InputBoolean.SensorsActive.IsOn())
                             {
-                               _0Gbl._myScheduler.Schedule(TimeSpan.FromSeconds(40), () => {
+                               _0Gbl._myScheduler.Schedule(TimeSpan.FromSeconds(41), () => {
                                    if (light.IsOn())
                                    {
                                        lightOffDisposables[light][0] = _0Gbl._myEntities.Sensor.PcLastactive.StateChanges().Where(x => x.Old?.State != "unavailable" && x.New?.State != "unavailable").Subscribe(x => {
