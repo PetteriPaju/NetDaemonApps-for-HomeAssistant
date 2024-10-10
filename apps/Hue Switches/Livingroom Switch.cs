@@ -11,6 +11,7 @@ namespace NetDaemonApps.apps.Hue_Switches
     public class Livingroom_Switch : HueSwitch
     {
         private IDisposable? cancelRoutine = null;
+      
         public Livingroom_Switch() : base() { }
   
 
@@ -139,9 +140,10 @@ namespace NetDaemonApps.apps.Hue_Switches
             //  _0Gbl._myEntities.Switch.BedMultiPlugL1.Toggle(); 
         }
 
-        protected override void OnHueHoldRelease()
+        protected override void OnHueHold()
         {
-            //  _0Gbl._myEntities.Script.ReadoutTime.TurnOn();
+            base.OnHueHold();
+            IsAsleepMonitor.ToggleMode();
         }
 
 

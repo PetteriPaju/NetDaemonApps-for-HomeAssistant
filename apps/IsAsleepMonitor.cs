@@ -21,9 +21,13 @@ namespace NetDaemonApps.apps
         private List<MonitorMember> isAwakeConditions = new List<MonitorMember>();
         private MonitorMember loraTrainingHelper;
         private TimeSpan sleepTimer;
+        private TimeSpan napTime = TimeSpan.FromMinutes(90);
+        private static bool inNapMode = false;
+        private static IsAsleepMonitor instance;
 
         private IDisposable? alarmTimer;
-
+        private IDisposable? alarmSubscription = null;
+        private IDisposable? napModeReset = null;
         private IDisposable? isAsleepOnTimer = null;
         private IDisposable? isAsleepOffTimer = null;
         private class MonitorMember
@@ -47,8 +51,57 @@ namespace NetDaemonApps.apps
             }
         }
 
-        public IsAsleepMonitor(IHaContext ha) {
+        public static void ToggleMode()
+        {
+            inNapMode = !inNapMode;
+            TTS.Speak("Sleep Mode set to" + (inNapMode ? "Nap" : "Long"), TTS.TTSPriority.Default);
+            instance.Resub();
+       
+        }
 
+        public void Resub()
+        {
+
+            alarmSubscription?.Dispose();
+
+            alarmSubscription = _0Gbl._myEntities.InputBoolean.Isasleep.StateChanges().WhenStateIsFor(x => x?.State == "on", inNapMode ? napTime : sleepTimer, _0Gbl._myScheduler).Subscribe(x => {
+                if (_0Gbl._myEntities.InputBoolean.NotificationAlarm.IsOff()) return;
+                if (_0Gbl._myEntities.InputBoolean.GuestMode.IsOn()) return;
+                var alarmnumber = 1;
+                _0Gbl._myEntities.Script.Actiontodoatalarm.TurnOn();
+                TTS.Speak("Good Morning, ", TTS.TTSPriority.IgnoreAll);
+                alarmTimer = _0Gbl._myScheduler.RunEvery(TimeSpan.FromMinutes(10), DateTimeOffset.Now + TimeSpan.FromSeconds(3), () => {
+
+                    TimeSpan? timeDiff = DateTime.Now - _0Gbl._myEntities?.InputBoolean?.Isasleep?.EntityState?.LastChanged;
+                    string ttsTime = "its " + DateTime.Now.ToString("H:mm", CultureInfo.InvariantCulture) + ", you have been sleeping for " + timeDiff?.Hours + " hours" + (timeDiff?.Minutes > 0 ? " and " + timeDiff?.Minutes + "minutes" : ". ");
+
+                    ttsTime += "This is alarm number " + alarmnumber + ".";
+
+                    TTS.Speak(ttsTime, TTS.TTSPriority.IgnoreAll);
+                    alarmnumber++;
+                });
+
+            });
+
+
+            napModeReset?.Dispose();
+            if (inNapMode)
+            {
+                napModeReset = _0Gbl._myScheduler.Schedule(TimeSpan.FromHours(2), () => {
+                    if (!_0Gbl._myEntities.InputBoolean.Isasleep.IsOff())
+                    {
+                        inNapMode = false; 
+                        Resub();
+                        napModeReset?.Dispose();
+                    }
+                   
+
+                });
+            }
+        }
+
+        public IsAsleepMonitor(IHaContext ha) {
+            instance = this;
             ParseAlertTime();
             _0Gbl._myEntities.InputDatetime.SettingsSleepduration.StateAllChanges().Subscribe(_ => ParseAlertTime());
 
@@ -78,26 +131,10 @@ namespace NetDaemonApps.apps
 
             CheckAllIsSleepConditions();
 
-            _0Gbl._myEntities.InputBoolean.Isasleep.StateChanges().WhenStateIsFor(x => x?.State == "on", sleepTimer, _0Gbl._myScheduler).Subscribe(x => {
-                if (_0Gbl._myEntities.InputBoolean.NotificationAlarm.IsOff()) return;
-                if (_0Gbl._myEntities.InputBoolean.GuestMode.IsOn()) return;
-                var alarmnumber = 1;
-                _0Gbl._myEntities.Script.Actiontodoatalarm.TurnOn();
-                TTS.Speak("Good Morning, ", TTS.TTSPriority.IgnoreAll);
-                alarmTimer = _0Gbl._myScheduler.RunEvery(TimeSpan.FromMinutes(10), DateTimeOffset.Now + TimeSpan.FromSeconds(3), () => {
-
-                    TimeSpan? timeDiff = DateTime.Now - _0Gbl._myEntities?.InputBoolean?.Isasleep?.EntityState?.LastChanged;
-                    string ttsTime = "its " + DateTime.Now.ToString("H:mm", CultureInfo.InvariantCulture) + ", you have been sleeping for " + timeDiff?.Hours + " hours" + (timeDiff?.Minutes > 0 ?  " and " + timeDiff?.Minutes + "minutes" : ". ");
-
-                    ttsTime += "This is alarm number " + alarmnumber + ".";
-
-                    TTS.Speak(ttsTime, TTS.TTSPriority.IgnoreAll);
-                    alarmnumber++;
-                });
-
-            });
+            Resub();
 
             _0Gbl._myEntities.InputBoolean.Isasleep.StateChanges().Where(x => x?.New?.State == "off").Subscribe(x => {
+                inNapMode = false;
                 // If alarm timer is on it means that this is after a long sleep
                 if (alarmTimer != null)
                 {
