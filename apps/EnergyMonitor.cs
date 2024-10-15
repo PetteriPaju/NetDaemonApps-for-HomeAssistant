@@ -126,13 +126,13 @@ public class EnergyMonitor
     {
       
         hoursToday = new ElectricityPriceInfo[24];
-        var todayList = _0Gbl._myEntities?.Sensor?.NordpoolKwhFiEur31001?.EntityState?.Attributes?.Today;
+        var todayList = _0Gbl._myEntities?.Sensor?.NordpoolKwhFiEur3100255?.EntityState?.Attributes?.Today;
 
         for (int i=0; i< todayList.Count; i++)
         {
             var price = todayList.ElementAt(i);
-            var peak = price == _0Gbl._myEntities?.Sensor?.NordpoolKwhFiEur31001?.EntityState?.Attributes?.Max ? 1 : 0;
-            peak = price == _0Gbl._myEntities?.Sensor?.NordpoolKwhFiEur31001?.EntityState?.Attributes.Min ? -1 : peak;
+            var peak = price == _0Gbl._myEntities?.Sensor?.NordpoolKwhFiEur3100255?.EntityState?.Attributes?.Max ? 1 : 0;
+            peak = price == _0Gbl._myEntities?.Sensor?.NordpoolKwhFiEur3100255?.EntityState?.Attributes.Min ? -1 : peak;
             hoursToday[i] = new ElectricityPriceInfo(DateTime.Today + TimeSpan.FromHours(i),price, peak);
         }
   
@@ -141,10 +141,10 @@ public class EnergyMonitor
     private void fillTomorrow()
     {
         hoursTomorrow = null;
-        if (_0Gbl._myEntities?.Sensor?.NordpoolKwhFiEur31001?.Attributes.TomorrowValid ?? false)
+        if (_0Gbl._myEntities?.Sensor?.NordpoolKwhFiEur3100255?.Attributes.TomorrowValid ?? false)
         {
             hoursTomorrow = new ElectricityPriceInfo[24];
-            var tomorrowList = JsonSerializer.Deserialize<List<double>>(_0Gbl._myEntities.Sensor?.NordpoolKwhFiEur31001?.EntityState?.Attributes?.Tomorrow.ToString());
+            var tomorrowList = JsonSerializer.Deserialize<List<double>>(_0Gbl._myEntities.Sensor?.NordpoolKwhFiEur3100255?.EntityState?.Attributes?.Tomorrow.ToString());
 
             for (int i = 0; i < tomorrowList.Count; i++)
             {
@@ -158,7 +158,7 @@ public class EnergyMonitor
 
     private void UpdateNextChangeHourTime()
     {
-        ElectricityPriceInfo inFoForNextHour2 = new ElectricityPriceInfo(DateTime.Now.AddHours(1), _0Gbl._myEntities?.Sensor?.NordpoolKwhFiEur31001, electricityRangeKeys);
+        ElectricityPriceInfo inFoForNextHour2 = new ElectricityPriceInfo(DateTime.Now.AddHours(1), _0Gbl._myEntities?.Sensor?.NordpoolKwhFiEur3100255, electricityRangeKeys);
 
         _0Gbl._myEntities.InputNumber.EnergyNextPrice.SetValue(GetPriceForHour(DateTime.Now.Hour + 2).price ?? 0);
 
@@ -204,7 +204,7 @@ public class EnergyMonitor
             EnergyForecastInfo energyForecastInfo = GetEnergyForecast(hoursTomorrow);
 
             message += "Tomorrows Prices will be" + (energyForecastInfo.isAllSameRange ? " all " : " mostly ") + "in " +  GetNameOfRange(energyForecastInfo.averageRange);
-            message += " and  " + PercentageDifference(_0Gbl._myEntities.Sensor?.NordpoolKwhFiEur31001?.EntityState?.Attributes?.Average ?? 0, energyForecastInfo.avarage) + "% " + (_0Gbl._myEntities.Sensor?.NordpoolKwhFiEur31001?.EntityState?.Attributes?.Average > energyForecastInfo.avarage ? "lower" : "higher") + " than today.";
+            message += " and  " + PercentageDifference(_0Gbl._myEntities.Sensor?.NordpoolKwhFiEur3100255?.EntityState?.Attributes?.Average ?? 0, energyForecastInfo.avarage) + "% " + (_0Gbl._myEntities.Sensor?.NordpoolKwhFiEur3100255?.EntityState?.Attributes?.Average > energyForecastInfo.avarage ? "lower" : "higher") + " than today.";
 
             if (energyForecastInfo.subZeroCount > 0) message += " There will also be " + energyForecastInfo.subZeroCount + " sub zero hour" + (energyForecastInfo.subZeroCount > 1 ? "s." : ".");
         
@@ -335,7 +335,7 @@ public class EnergyMonitor
         bool checkTomorrow = DateTime.Now.Hour == 23;
 
         // No need for alert on low price days
-        if (_0Gbl._myEntities?.Sensor?.NordpoolKwhFiEur31001.Attributes.Max < electiricityRanges.Keys.ToArray()[1] && !checkTomorrow) return;
+        if (_0Gbl._myEntities?.Sensor?.NordpoolKwhFiEur3100255.Attributes.Max < electiricityRanges.Keys.ToArray()[1] && !checkTomorrow) return;
 
         Console.WriteLine("currentRange: " + infoForCurrentHour.range);
         ElectricityPriceInfo inFoForNextHour = GetPriceForHour(DateTime.Now.Hour + 1);
@@ -485,7 +485,7 @@ public class EnergyMonitor
     private ElectricityPriceInfo FindWhenElectricityRangeChanges(ElectricityPriceInfo startInfo, int maxhHours)
     {
 
-        ElectricityPriceInfo nextInfo = null;// = new ElectricityPriceInfo(currentHour, _00_Globals._myEntities.Sensor.NordpoolKwhFiEur31001, electricityRangeKeys);
+        ElectricityPriceInfo nextInfo = null;// = new ElectricityPriceInfo(currentHour, _00_Globals._myEntities.Sensor.NordpoolKwhFiEur3100255, electricityRangeKeys);
 
         int maxSearchHours = maxhHours;
         ElectricityPriceInfo[] hours = hoursToday.ToArray();
