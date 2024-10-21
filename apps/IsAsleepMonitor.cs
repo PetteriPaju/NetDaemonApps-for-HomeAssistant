@@ -95,7 +95,6 @@ namespace NetDaemonApps.apps
                         napModeReset?.Dispose();
                     }
                    
-
                 });
             }
         }

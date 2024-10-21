@@ -18,14 +18,19 @@ namespace NetDaemonApps.apps.Hue_Switches
 
         protected override SensorEntity ObtainSwitch(Entities entities)
         {
-            return entities.Sensor.HueSwitchLivingRoomAction;
+            return entities.Sensor.HueSwitchBedAction;
         }
 
-        protected override void OnPowerPress()
+        protected override void OnPowerRelease()
         {
             base.OnPowerPress();
             _0Gbl._myEntities.Switch.BedMultiPlugL1.Toggle();
-
+        }
+  
+        protected override void OnPowerHoldRelease()
+        {
+            base.OnPowerHoldRelease();
+            _0Gbl._myEntities.Switch.BedMultiPlugL3.Toggle();
         }
 
         protected override void OnAnyPress()
@@ -34,8 +39,9 @@ namespace NetDaemonApps.apps.Hue_Switches
             //  _0Gbl._myEntities.Switch.TvPowerMeter.TurnOn();
         }
 
-        protected override void OnDownPress()
+        protected override void OnDownPressRelease()
         {
+            base.OnDownPressRelease();
             if (cancelRoutine != null)
             {
                 cancelRoutine.Dispose();
@@ -45,8 +51,10 @@ namespace NetDaemonApps.apps.Hue_Switches
             }
 
         }
-        protected override void OnUpPress()
+        protected override void OnUpPressRelease()
         {
+            base.OnUpPressRelease();
+
             if (cancelRoutine != null)
             {
                 cancelRoutine.Dispose();
@@ -56,7 +64,7 @@ namespace NetDaemonApps.apps.Hue_Switches
             }
 
         }
-        protected override void OnUpHold()
+        protected override void OnUpHoldRelease()
         {
             base.OnUpHoldRelease();
             string message = "";
@@ -99,7 +107,7 @@ namespace NetDaemonApps.apps.Hue_Switches
             TTS.Speak(message, TTS.TTSPriority.IgnoreSleep);
 
         }
-        protected override void OnDownHold()
+        protected override void OnDownHoldRelease()
         {
 
             base.OnDownHoldRelease();
@@ -125,9 +133,10 @@ namespace NetDaemonApps.apps.Hue_Switches
         }
 
 
-        protected override void OnHuePress()
+        protected override void OnHueRelease()
         {
-            base.OnHuePress();
+
+            base.OnHueRelease();
             TimeSpan? timeDiff = DateTime.Now - _0Gbl._myEntities?.InputBoolean?.Isasleep?.EntityState?.LastChanged;
             string ttsTime = "its " + DateTime.Now.ToString("H:mm", CultureInfo.InvariantCulture); 
             if(_0Gbl._myEntities.InputBoolean.Isasleep.IsOn()) ttsTime += ", you have been sleeping for " + timeDiff?.Hours + " hours" + (timeDiff?.Minutes > 0 ? " and " + timeDiff?.Minutes + "minutes" : ". ");
@@ -135,14 +144,10 @@ namespace NetDaemonApps.apps.Hue_Switches
             TTS.Speak(ttsTime,TTS.TTSPriority.IgnoreAll);
         }
 
-        protected override void OnHueRelease()
-        {
-            //  _0Gbl._myEntities.Switch.BedMultiPlugL1.Toggle(); 
-        }
 
-        protected override void OnHueHold()
+        protected override void OnHueHoldRelease()
         {
-            base.OnHueHold();
+            base.OnHueHoldRelease();
             IsAsleepMonitor.ToggleMode();
         }
 

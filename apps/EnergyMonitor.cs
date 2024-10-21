@@ -126,6 +126,7 @@ public class EnergyMonitor
     {
       
         hoursToday = new ElectricityPriceInfo[24];
+
         var todayList = _0Gbl._myEntities?.Sensor?.NordpoolKwhFiEur3100255?.EntityState?.Attributes?.Today;
 
         for (int i=0; i< todayList.Count; i++)
