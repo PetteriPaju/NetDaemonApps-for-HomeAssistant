@@ -181,7 +181,7 @@ namespace NetDaemonApps.apps
                 TTS.Speak("Battery Recharing", TTS.TTSPriority.Default, _0Gbl._myEntities.InputBoolean.NotificationEcoflow);
          
             });
-            _0Gbl._myEntities.Switch.EcoflowPlug.StateChanges().WhenStateIsFor(x => x.IsOff() && _0Gbl._myEntities.Sensor.EcoflowAcOutPower.State == 0 && _0Gbl._myEntities.Sensor.EcoflowStatus.State == "online", TimeSpan.FromSeconds(6),_0Gbl._myScheduler).Subscribe(x =>
+            _0Gbl._myEntities.Switch.EcoflowPlug.StateChanges().WhenStateIsFor(x => x.IsOff() && _0Gbl._myEntities.Sensor.EcoflowAcOutPower.State == 0 && _0Gbl._myEntities.Sensor.EcoflowStatus.State == "online", TimeSpan.FromMinutes(5),_0Gbl._myScheduler).Subscribe(x =>
             {
                 _0Gbl._myEntities.Switch.SwitchbotEcoflow.Toggle();
             });
