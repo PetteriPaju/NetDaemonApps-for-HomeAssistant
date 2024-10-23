@@ -49,7 +49,7 @@ namespace NetDaemonApps.apps
                                        lightOffDisposables[light][0] = _0Gbl._myEntities.Sensor.PcLastactive.StateChanges().Where(x => x.Old?.State != "unavailable" && x.New?.State != "unavailable").Subscribe(x => {
                                            light.TurnOff();
                                        });
-                                       lightOffDisposables[light][1] = _0Gbl._myEntities.Sensor.EnvyLastactive.StateChanges().Where(x => x.Old?.State != "unavailable" && x.New?.State != "unavailable").Subscribe(x => {
+                                       lightOffDisposables[light][1] = _0Gbl._myEntities.Sensor.EnvyLastactive.StateChanges().Where(x => x.Old?.State != "unavailable" && x.New?.State != "unavailable" && _0Gbl._myEntities.Sensor.EnvyNetworkEthernet3?.State?.ToLower() == "up").Subscribe(x => {
 
                                            if (_0Gbl._myEntities.Sensor.EnvyNetworkNetworkCardCount.AsNumeric().State != 1)
                                                light.TurnOff();
