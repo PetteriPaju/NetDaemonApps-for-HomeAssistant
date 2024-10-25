@@ -61,7 +61,7 @@ namespace NetDaemonApps.apps
                     {
                         step = (int)Math.Round(step * (flipDialDirection ? -1 : 1) * _0Gbl._myEntities.InputNumber.SettingsKnobSensitivity.State ?? 1);
        
-                        long minBrightnessFix = Math.Min(((long)lightCycler.GetCurrentLight().Attributes.Brightness + step), (long)255);
+                        long minBrightnessFix = Math.Min(((long)lightCycler.GetCurrentLight().getBrightness() + step), (long)255);
                         minBrightnessFix = (Math.Max(minBrightnessFix, (long)10));
                         lightCycler.GetCurrentLight().TurnOn(brightnessPct: (long)(((float)minBrightnessFix / 255f) * 100), transition:1);
                     }

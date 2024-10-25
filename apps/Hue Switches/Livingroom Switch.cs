@@ -133,7 +133,7 @@ namespace NetDaemonApps.apps.Hue_Switches
         }
 
 
-        protected override void OnHueRelease()
+        protected override void OnHueHoldRelease()
         {
 
             base.OnHueRelease();
@@ -145,9 +145,9 @@ namespace NetDaemonApps.apps.Hue_Switches
         }
 
 
-        protected override void OnHueHoldRelease()
+        protected override void OnHueRelease()
         {
-            base.OnHueHoldRelease();
+            base.OnHueRelease();
             IsAsleepMonitor.ToggleMode();
         }
 
