@@ -73,7 +73,7 @@ public class EnergyMonitor
         _0Gbl._myScheduler.ScheduleCron("50 * * * *", () => EnergiPriceChengeAlert());
 
         solarChargingNotificationGiven = _0Gbl._myEntities?.Sensor?.EcoflowSolarInPower.State >= 0;
-        _0Gbl._myEntities?.BinarySensor.LivingroomWindowSensorContact.StateChanges().Where(e => e.New.IsOn() || e.New.IsOff()).Subscribe(_e =>
+        _0Gbl._myEntities?.BinarySensor.LivingroomWindowSensorContact.StateChanges().Where(e => ((e.New.IsOn() || e.New.IsOff()) && e.Old?.State != "unavailable" )).Subscribe(_e =>
         {
             TTS.Instance?.SpeakTTS("Solar panels " + (_0Gbl._myEntities.BinarySensor.LivingroomWindowSensorContact.IsOn() ? "on" : "off"), TTS.TTSPriority.PlayInGuestMode);
 

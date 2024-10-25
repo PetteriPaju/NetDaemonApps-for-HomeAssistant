@@ -30,7 +30,7 @@ namespace NetDaemonApps.apps.Hue_Switches
         protected override void OnPowerHoldRelease()
         {
             base.OnPowerHoldRelease();
-            _0Gbl._myEntities.Switch.BedMultiPlugL3.Toggle();
+            _0Gbl._myEntities.Switch.InkplatePlug.Toggle();
         }
 
         protected override void OnAnyPress()

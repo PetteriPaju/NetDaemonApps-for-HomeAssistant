@@ -161,18 +161,10 @@ namespace NetDaemonApps.apps
                 lightCycler = new LightCycler(_0Gbl._myEntities.InputBoolean.GuestMode, _0Gbl._myEntities.InputSelect.BedKnobLights.lightEntitiesFromSelectionDropdown().ToArray());
             }
 
-            protected override void OnPress()
-            {
-                if (_0Gbl._myEntities.Light.LivingRoomLights.IsOn() && _0Gbl._myEntities.InputBoolean.GuestMode.IsOff())
-                    _0Gbl._myEntities.Light.LivingRoomLights.TurnOff();
-                else _0Gbl._myEntities.Light.BedLight.Toggle();
-            }
-
-
             protected override void OnHold()
             {
                 base.OnHold();
-                _0Gbl._myEntities.Switch.BedMultiPlugL3.Toggle();
+                _0Gbl._myEntities.Switch.InkplatePlug.Toggle();
             }
         }
         private class SofaKnob : Knob
