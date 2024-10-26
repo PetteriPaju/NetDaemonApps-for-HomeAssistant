@@ -23,7 +23,7 @@ public class EnergyMonitor
 {
     private readonly Dictionary<double, string> electiricityRanges = new Dictionary<double, string>() { { 0, "Blue" }, { 7.5, "Green" }, { 15, "Yellow" }, { 25, "Red" } };
 
-    private ElectricityPriceInfo[] hoursToday;
+    private List<ElectricityPriceInfo> hoursToday;
 
     private bool hiPeakAlertGiven = false;
     private bool loPeakAlertGiven = false;
@@ -54,7 +54,6 @@ public class EnergyMonitor
     public EnergyMonitor()
     {
         _instance = this;
-        Console.WriteLine(double.Parse(_0Gbl._myEntities.Sensor.Powermeters.State.ToString()) + " freterdgh");
         electricityRangeKeys = electiricityRanges.Keys.ToList();
         fillDays();
 
@@ -134,7 +133,7 @@ public class EnergyMonitor
 
     private void fillDays()
     {
-        
+        hoursToday?.Clear();
         var tmplist = new List<ElectricityPriceInfo>();
 
         var todayList = nordPoolEntity?.EntityState?.Attributes?.Today;
@@ -147,24 +146,16 @@ public class EnergyMonitor
             var price = combinelist.ElementAt(i);
             var peak = price == nordPoolEntity?.EntityState?.Attributes?.Max ? 1 : 0;
             peak = price == nordPoolEntity?.EntityState?.Attributes.Min ? -1 : peak;
-            tmplist.Add (new ElectricityPriceInfo(DateTime.Today + TimeSpan.FromHours(i), price, peak));
-        }
-
-        for (int i = 0; i < tmplist.Count; i++)
-        {
-            for (int q = i; q < tmplist.Count; q++)
+            var info = new ElectricityPriceInfo(DateTime.Today + TimeSpan.FromHours(i), price, peak);
+           
+            if(i != 0)
             {
-                if (tmplist[q].range != tmplist[i].range)
-                {
-                    tmplist[i].changeRangeInfo = tmplist[q];
-                    i = q;
-                }
-            }
-
+                tmplist.Last().nexthour = info;
+            } 
+            tmplist.Add (info);
         }
 
-        hoursToday = tmplist.ToArray();
-
+        hoursToday = tmplist;
 
     }
     /*
@@ -205,11 +196,10 @@ public class EnergyMonitor
 
     private void UpdateNextChangeHourTime()
     {
-       
-        var hoursTillChange = hoursToday[DateTime.Now.Hour].changeRangeInfo;
 
+        var hoursTillChange = FindWhenElectricityRangeChanges(infoForCurrentHour);
 
-        _0Gbl._myEntities.InputNumber.EnergyNextPrice.SetValue(hoursToday[DateTime.Now.AddHours(1).Hour].price ?? 0);
+        _0Gbl._myEntities.InputNumber.EnergyNextPrice.SetValue(infoForCurrentHour.nexthour?.price ?? 0);
 
         if (hoursTillChange != null)
         _0Gbl._myEntities.InputDatetime.EnergyChangeTime.SetDatetime(datetime: hoursTillChange.dateTime.ToString(@"yyyy-MM-dd HH\:00\:00"));
@@ -313,7 +303,7 @@ public class EnergyMonitor
 
     private ElectricityPriceInfo GetPriceForHour(int hour)
     {
-      return new ElectricityPriceInfo(DateTime.Now, 0, 0);
+        return hoursToday[hour];
     }
     public void MorningTTS()
     {
@@ -321,7 +311,7 @@ public class EnergyMonitor
         string TTSMessage = "Good Morning.";
   
           
-        PriceChangeType priceChange = comparePrice(GetPriceForHour(DateTime.Now.Hour).price ?? 0 , GetPriceForHour(DateTime.Now.Hour + 1).price ?? 0);
+        PriceChangeType priceChange = comparePrice(infoForCurrentHour.price ?? 0 , infoForCurrentHour.nexthour?.price ?? 0);
         bool addAlso = false;
         if (infoForCurrentHour.range != 0 || priceChange != PriceChangeType.NoChange && DateTime.Now.Hour != 23)
         {
@@ -329,7 +319,7 @@ public class EnergyMonitor
             if (priceChange != PriceChangeType.NoChange)
             {
 
-                TTSMessage += "But it will " + (priceChange == PriceChangeType.Increase ? "increase to " : "decrease to ") + electiricityRanges.Values.ElementAt(FindRangeForPrice( GetPriceForHour(DateTime.Now.Hour+1).price) );
+                TTSMessage += "But it will " + (priceChange == PriceChangeType.Increase ? "increase to " : "decrease to ") + electiricityRanges.Values.ElementAt(FindRangeForPrice(infoForCurrentHour.nexthour.price));
                 TTSMessage += " in " + (60 - DateTime.Now.Minute) + " minutes.";
             }
             addAlso = true;
@@ -367,16 +357,18 @@ public class EnergyMonitor
         if (_0Gbl._myEntities.InputBoolean.NotificationEnergyPriceChange.IsOff()) return;
         if (_0Gbl._myEntities.InputBoolean.Isasleep.State == "on") return;
 
-        bool checkTomorrow = DateTime.Now.Hour == 23;
-
         // No need for alert on low price days
-        if (nordPoolEntity.Attributes.Max < electiricityRanges.Keys.ToArray()[1] && !checkTomorrow) return;
+        if (nordPoolEntity.Attributes.Max < electiricityRanges.Keys.ToArray()[1]) return;
 
-        Console.WriteLine("currentRange: " + infoForCurrentHour.range);
-        ElectricityPriceInfo inFoForNextHour = GetPriceForHour(DateTime.Now.Hour + 1);
-        PriceChangeType priceChange = comparePrice(GetPriceForHour(DateTime.Now.Hour).price ?? 0, inFoForNextHour.price ?? 0);
+        ElectricityPriceInfo inFoForNextHour = infoForCurrentHour.nexthour;
+        PriceChangeType priceChange = comparePrice(infoForCurrentHour.price ?? 0, inFoForNextHour.price ?? 0);
        
         string TTSMessage = null;
+
+        Console.WriteLine("Current Price: " + infoForCurrentHour.price);
+        Console.WriteLine("Next Price: " + inFoForNextHour.price);
+        Console.WriteLine("Price Change: " + priceChange.ToString());
+        Console.WriteLine("Range Change in: " + FindWhenElectricityRangeChanges(inFoForNextHour.nexthour)?.dateTime);
 
         if (priceChange == PriceChangeType.NoChange && inFoForNextHour.peak == 0 
             || (priceChange == PriceChangeType.NoChange && infoForCurrentHour.peak == -1 && loPeakAlertGiven) 
@@ -395,7 +387,7 @@ public class EnergyMonitor
         {
             TTSMessage += (priceChange == PriceChangeType.Increase ? "increase to " : "fall to ") + electiricityRanges.Values.ElementAt(FindRangeForPrice(inFoForNextHour.price)) + ".";
 
-            var hoursTillChange = inFoForNextHour.changeRangeInfo;
+            var hoursTillChange =  FindWhenElectricityRangeChanges(inFoForNextHour.nexthour);
 
 
             PriceChangeType priceChangeType = comparePrice(inFoForNextHour.price ?? 0, hoursTillChange.price ?? 0);
@@ -476,7 +468,7 @@ public class EnergyMonitor
         public int range;
         public int peak = 0;
 
-        public ElectricityPriceInfo changeRangeInfo = null;
+        public ElectricityPriceInfo nexthour = null;
 
         public ElectricityPriceInfo(DateTime dateTime, double price, int peak)
         {
@@ -519,34 +511,19 @@ public class EnergyMonitor
         }
 
     }
-    /*
-    private ElectricityPriceInfo FindWhenElectricityRangeChanges(ElectricityPriceInfo startInfo, int maxhHours)
+
+    private ElectricityPriceInfo FindWhenElectricityRangeChanges(ElectricityPriceInfo startInfo)
     {
+        ElectricityPriceInfo nextInfo = startInfo;
 
-        ElectricityPriceInfo nextInfo = startInfo.changeRangeInfo;// = new ElectricityPriceInfo(currentHour, _00_Globals._myEntities.Sensor.NordpoolKwhFiEur3100255, electricityRangeKeys);
-
-        int maxSearchHours = maxhHours;
-        ElectricityPriceInfo[] hours = hoursToday.ToArray();
-        if (hoursTomorrow != null)
+        do
         {
-            hours = hours.Concat(hoursTomorrow).ToArray();
-        }
-
-        for (int searchCounter = startInfo.dateTime.Hour; searchCounter < hours.Length; searchCounter++)
-        { 
-            if (hours[searchCounter] == null) continue;
-            if (comparePrice(startInfo.price ?? 0, hours[searchCounter].price ?? 0) != PriceChangeType.NoChange) { 
-
-                nextInfo = hours[searchCounter];
-            break;
-            }
-
-        }
-
+          nextInfo = nextInfo.nexthour;
+        } while (nextInfo.range == startInfo.range && nextInfo.nexthour != null);
 
         return nextInfo;
     }
-    */
+
 
     private int FindRangeForPrice(double? price)
     {
