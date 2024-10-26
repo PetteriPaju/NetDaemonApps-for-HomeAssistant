@@ -370,7 +370,9 @@ public class EnergyMonitor
 
         Console.WriteLine("Current Price: " + infoForCurrentHour.price);
         Console.WriteLine("Next Price: " + inFoForNextHour.price);
+        Console.WriteLine("Price Range: " + inFoForNextHour.range);
         Console.WriteLine("Price Change: " + priceChange.ToString());
+        
         Console.WriteLine("Range Change in: " + FindWhenElectricityRangeChanges(inFoForNextHour.nexthour)?.dateTime);
 
         if (priceChange == PriceChangeType.NoChange && inFoForNextHour.peak == 0 
@@ -490,9 +492,9 @@ public class EnergyMonitor
         private int FindRangeForPrice(double? price, List<double>? electricityRangeKeys)
         {
             var range = electricityRangeKeys?.FindIndex(x => x >= Math.Max(0,price ?? 0));
-            range = range == -1 ? electricityRangeKeys.Count : range;
+            range = range == -1 ? 0 : range;
 
-            return (int)range - 1;
+            return (int)range;
         }
 
     }
