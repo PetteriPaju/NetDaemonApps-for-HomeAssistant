@@ -21,7 +21,7 @@ namespace NetDaemonApps.apps;
 [NetDaemonApp]
 public class EnergyMonitor
 {
-    private readonly Dictionary<double, string> electiricityRanges = new Dictionary<double, string>() { { 0, "Blue" }, { 7.5, "Green" }, { 15, "Yellow" }, { 25, "Red" } };
+    public static readonly Dictionary<double, string> electiricityRanges = new Dictionary<double, string>() { { 0, "Blue" }, { 7.5, "Green" }, { 15, "Yellow" }, { 25, "Red" } };
 
     private List<ElectricityPriceInfo> hoursToday;
 
@@ -475,6 +475,9 @@ public class EnergyMonitor
             this.dateTime = dateTime;
             this.price = price;
             this.peak = peak;
+            this.range = FindRangeForPrice(price, EnergyMonitor.electiricityRanges.Keys.ToList());
+
+
         }
 
             public ElectricityPriceInfo(DateTime time, NumericSensorEntity? nordPoolEntity, List<double>? electricityRangeKeys)
@@ -515,10 +518,10 @@ public class EnergyMonitor
     private ElectricityPriceInfo FindWhenElectricityRangeChanges(ElectricityPriceInfo startInfo)
     {
         ElectricityPriceInfo nextInfo = startInfo;
-
         do
         {
           nextInfo = nextInfo.nexthour;
+
         } while (nextInfo.range == startInfo.range && nextInfo.nexthour != null);
 
         return nextInfo;
