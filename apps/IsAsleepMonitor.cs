@@ -50,7 +50,31 @@ namespace NetDaemonApps.apps
         public static void ToggleMode()
         {
             _0Gbl._myEntities.InputSelect.AlarmSleepMode.SelectNext();
-            TTS.Speak("Sleep Mode set to" + _0Gbl._myEntities.InputSelect.AlarmSleepMode.State, TTS.TTSPriority.Default);
+            string nextmode;
+            switch (_0Gbl._myEntities.InputSelect.AlarmSleepMode.State)
+            {
+                case "Normal":
+                    nextmode = "Nap";
+                        break;
+
+                case "Nap":
+                    nextmode = "Free";
+                    break;
+
+                case "Free":
+                    nextmode = "Exact Time";
+                    break;
+
+                case "Exact Time":
+                    nextmode = "Normal";
+                    break;
+
+                default:
+                    nextmode = "Unkwon";
+                    break;
+
+            }
+            TTS.Speak("Sleep Mode set to" +nextmode, TTS.TTSPriority.Default);
             instance.Resub();
        
         }
