@@ -122,8 +122,6 @@ public class EnergyMonitor
             ReadOutEnergyUpdate();
         });
         _0Gbl.DailyResetFunction += OnDayChanged;
-
-        _0Gbl._myScheduler.ScheduleCron("0 * * * *", () => { UpdateNextChangeHourTime(); });
         UpdateNextChangeHourTime();
 
 
@@ -197,9 +195,9 @@ public class EnergyMonitor
     private void UpdateNextChangeHourTime()
     {
 
-        var hoursTillChange = FindWhenElectricityRangeChanges(infoForCurrentHour);
+        var hoursTillChange = FindWhenElectricityRangeChanges(infoForCurrentHour.nexthour);
 
-        _0Gbl._myEntities.InputNumber.EnergyNextPrice.SetValue(infoForCurrentHour.nexthour?.price ?? 0);
+        _0Gbl._myEntities.InputNumber.EnergyNextPrice.SetValue(infoForCurrentHour.nexthour.nexthour?.price ?? 0);
 
         if (hoursTillChange != null)
         _0Gbl._myEntities.InputDatetime.EnergyChangeTime.SetDatetime(datetime: hoursTillChange.dateTime.ToString(@"yyyy-MM-dd HH\:00\:00"));
