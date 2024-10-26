@@ -196,7 +196,7 @@ public class EnergyMonitor
 
         var hoursTillChange = FindWhenElectricityRangeChanges(infoForCurrentHour.nexthour);
 
-        _0Gbl._myEntities.InputNumber.EnergyNextPrice.SetValue(infoForCurrentHour.nexthour.nexthour?.price ?? 0);
+        _0Gbl._myEntities.InputNumber.EnergyNextPrice.SetValue(infoForCurrentHour?.nexthour.nexthour?.price ?? 0);
 
         if (hoursTillChange != null)
         _0Gbl._myEntities.InputDatetime.EnergyChangeTime.SetDatetime(datetime: hoursTillChange.dateTime.ToString(@"yyyy-MM-dd HH\:00\:00"));
@@ -514,6 +514,8 @@ public class EnergyMonitor
 
     private ElectricityPriceInfo FindWhenElectricityRangeChanges(ElectricityPriceInfo startInfo)
     {
+        if (startInfo == null) return null;
+
         ElectricityPriceInfo nextInfo = startInfo;
         do
         {
