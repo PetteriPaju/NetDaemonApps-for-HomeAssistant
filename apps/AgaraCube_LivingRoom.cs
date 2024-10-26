@@ -10,7 +10,6 @@ using System.Threading.Tasks;
 
 namespace NetDaemonApps.apps
 {
-    [NetDaemonApp]
 
     public class AgaraCube_LivingRoom : AqaraCube
     {

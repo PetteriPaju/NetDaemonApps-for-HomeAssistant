@@ -38,19 +38,19 @@ namespace NetDaemonApps.apps.Hue_Switches
             {
                 // Power Button
                 case "on_press":
-                    OnOnPress();
+                    OnPowerPress();
                 break;
 
                 case "on_press_release":
-                    OnOnPressRelease();
+                    OnPowerRelease();
                 break;
 
                 case "on_hold":
-                    OnOnHold();
+                    OnPowerHold();
                 break;
 
                 case "on_hold_release":
-                    OnOnHoldRelease();
+                    OnPowerHoldRelease();
                 break;
 
                 //Brightness Up
@@ -90,19 +90,19 @@ namespace NetDaemonApps.apps.Hue_Switches
 
                 // Hue Button
                 case "off_press":
-                    OnOffPress();
+                    OnHuePress();
                     break;
 
                 case "off_press_release":
-                    OnOffPressRelease();
+                    OnHueRelease();
                     break;
 
                 case "off_hold":
-                    OnOffHold();
+                    OnHueHold();
                     break;
 
                 case "off_hold_release":
-                    OnOffHoldRelease();
+                    OnHueHoldRelease();
                     break;
 
 
@@ -125,13 +125,13 @@ namespace NetDaemonApps.apps.Hue_Switches
 
         }
         /// <summary> Power-button Press Down</summary>
-        protected virtual void OnOnPress() { OnAnyPress(); }
+        protected virtual void OnPowerPress() { OnAnyPress(); }
         /// <summary> Power-button Press Release</summary>
-        protected virtual void OnOnPressRelease() { OnAnyPressRelease(); }
+        protected virtual void OnPowerRelease() { OnAnyPressRelease(); }
         /// <summary> Power-button Hold</summary>
-        protected virtual void OnOnHold() { OnAnyHold(); }
+        protected virtual void OnPowerHold() { OnAnyHold(); }
         /// <summary> Power-button Hold release</summary>
-        protected virtual void OnOnHoldRelease() { OnAnyHoldRelease(); }
+        protected virtual void OnPowerHoldRelease() { OnAnyHoldRelease(); }
 
         /// <summary> Brighness Up-button Press Down</summary>
         protected virtual void OnUpPress() { OnAnyPress(); }
@@ -151,13 +151,13 @@ namespace NetDaemonApps.apps.Hue_Switches
         protected virtual void OnDownHoldRelease() { OnAnyHoldRelease(); }
 
         /// <summary> Hue-button Press Down</summary>
-        protected virtual void OnOffPress(){ OnAnyPress(); }
+        protected virtual void OnHuePress(){ OnAnyPress(); }
         /// <summary> Hue-button Press Release</summary>
-        protected virtual void OnOffPressRelease() { OnAnyPressRelease(); }
+        protected virtual void OnHueRelease() { OnAnyPressRelease(); }
         /// <summary> Hue-button Hold</summary>
-        protected virtual void OnOffHold(){ OnAnyHold(); }
+        protected virtual void OnHueHold(){ OnAnyHold(); }
         /// <summary> Hue-button Hold release</summary>
-        protected virtual void OnOffHoldRelease(){ OnAnyHoldRelease(); }
+        protected virtual void OnHueHoldRelease(){ OnAnyHoldRelease(); }
 
 
 

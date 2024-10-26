@@ -2,14 +2,23 @@
 using NetDaemon.HassModel;
 using NetDaemon.HassModel.Entities;
 using NetDaemonApps.apps.Lights;
+using System.Collections;
 using System.Linq;
+using System.Reactive.Disposables;
+using System.Threading.Tasks;
+using System.Reactive.Concurrency;
+using System.Collections.Generic;
 
 namespace NetDaemonApps.apps
 {
     [NetDaemonApp]
     public class AutoTurnOffs
     {
-
+        private IDisposable? toiletLightOffWaiterPC = null;
+        private IDisposable? toiletLightOffWaiterLaptop = null;
+        private IDisposable? kitchenLightOffWaiterPc = null;
+        private IDisposable? kitchenLightOffWaiterLaptop = null;
+        Dictionary<LightEntity, IDisposable[]> lightOffDisposables = new Dictionary<LightEntity, IDisposable[]>(); 
         public AutoTurnOffs() {
 
             _0Gbl._myEntities.Sensor.PcDisplayDisplayCount.StateChanges().Subscribe(_ => { _0Gbl._myEntities.Button.PcResetbrigtness.Press(); });
@@ -20,6 +29,47 @@ namespace NetDaemonApps.apps
 
             _0Gbl._myEntities.Light.ToiletLight1.StateChanges().WhenStateIsFor(x => x?.State == "on", TimeSpan.FromHours(1), _0Gbl._myScheduler)
                .Subscribe(x => { _0Gbl._myEntities.Light.ToiletLight1.TurnOff();});
+
+            _0Gbl._myEntities.Sensor.InkplatePlugPower.StateChanges().WhenStateIsFor(x => x?.State < 50, TimeSpan.FromMinutes(30), _0Gbl._myScheduler)
+               .Subscribe(x => { _0Gbl._myEntities.Switch.InkplatePlug.TurnOff(); });
+
+
+            void sub(LightEntity light)
+            {
+                if (!lightOffDisposables.ContainsKey(light)) lightOffDisposables.Add(light, new IDisposable[2]);
+                
+                light.StateChanges()
+                        .Subscribe(x => {
+                            lightOffDisposables[light][0]?.Dispose();
+                            lightOffDisposables[light][1]?.Dispose();
+
+
+                            if (light.IsOn() && _0Gbl._myEntities.InputBoolean.GuestMode.IsOff() && _0Gbl._myEntities.InputBoolean.SensorsActive.IsOn())
+                            {
+                               _0Gbl._myScheduler.Schedule(TimeSpan.FromSeconds(60), () => {
+                                   if (light.IsOn())
+                                   {
+                                       lightOffDisposables[light][0] = _0Gbl._myEntities.Sensor.PcLastactive.StateChanges().Where(x => x.Old?.State != "unavailable" && x.New?.State != "unavailable").Subscribe(x => {
+                                           light.TurnOff();
+                                       });
+                                       lightOffDisposables[light][1] = _0Gbl._myEntities.Sensor.EnvyLastactive.StateChanges().Where(x => x.Old?.State != "unavailable" && x.New?.State != "unavailable" && _0Gbl._myEntities.Sensor.EnvyNetworkNetworkCardCount.State == "1").Subscribe(x => {
+
+                                           if (_0Gbl._myEntities.Sensor.EnvyNetworkNetworkCardCount.AsNumeric().State != 1)
+                                               light.TurnOff();
+                                       });
+                                   }
+                         
+                               });
+                            }
+
+                        });
+            }
+            sub(_0Gbl._myEntities.Light.ToiletLight1);
+            sub(_0Gbl._myEntities.Light.KitchenLight2);
+            sub(_0Gbl._myEntities.Light.HallwayLight);
+            sub(_0Gbl._myEntities.Light.StorageLight2);
+
+
 
             //Fan
             _0Gbl._myEntities.Switch.BedMultiPlugL1.StateChanges().WhenStateIsFor(x => x?.State == "on", TimeSpan.FromHours(1)+TimeSpan.FromMinutes(30), _0Gbl._myScheduler)
@@ -35,6 +85,8 @@ namespace NetDaemonApps.apps
 
 
             });
+
+
 
        
             _0Gbl._myEntities.Switch.PcPlug.StateChanges().Where(x => x.New?.State == "off" && x.Old?.State == "on")

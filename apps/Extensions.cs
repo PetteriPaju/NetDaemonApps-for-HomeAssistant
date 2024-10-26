@@ -13,6 +13,29 @@ namespace NetDaemonApps
     public static class Extensions
     {
 
+        public static int getBrightness(this LightEntity light)
+        {
+            int brightness = 0;
+            if(int.TryParse(light?.EntityState?.Attributes?.Brightness.ToString(),out brightness))
+            {
+                return brightness;
+            }
+            else
+            {
+                return 0;
+            }
+            
+        }
+
+        public static DateTime GetDateTime(this InputDatetimeEntity inputDatetime)
+        {
+            return new DateTime((int)inputDatetime.Attributes.Year, (int)inputDatetime.Attributes.Month, (int)inputDatetime.Attributes.Day, (int)inputDatetime.Attributes.Hour, (int)inputDatetime.Attributes.Minute, (int)inputDatetime.Attributes.Second );
+        }
+
+        public static TimeSpan GetTimeSpan(this InputDatetimeEntity inputDatetime)
+        {
+            return new TimeSpan((int)inputDatetime.Attributes.Hour, (int)inputDatetime.Attributes.Minute,0);
+        }
         public static void TurnOnLight(this LightEntity light)
         {
             SetLightState(light, true);

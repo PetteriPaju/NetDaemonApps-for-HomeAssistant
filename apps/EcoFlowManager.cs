@@ -181,7 +181,7 @@ namespace NetDaemonApps.apps
                 TTS.Speak("Battery Recharing", TTS.TTSPriority.Default, _0Gbl._myEntities.InputBoolean.NotificationEcoflow);
          
             });
-            _0Gbl._myEntities.Switch.EcoflowPlug.StateChanges().WhenStateIsFor(x => x.IsOff() && _0Gbl._myEntities.Sensor.EcoflowAcOutPower.State == 0 && _0Gbl._myEntities.Sensor.EcoflowStatus.State == "online", TimeSpan.FromSeconds(6),_0Gbl._myScheduler).Subscribe(x =>
+            _0Gbl._myEntities.Switch.EcoflowPlug.StateChanges().WhenStateIsFor(x => x.IsOff() && _0Gbl._myEntities.Sensor.EcoflowAcOutPower.State == 0 && _0Gbl._myEntities.Sensor.EcoflowStatus.State == "online", TimeSpan.FromMinutes(5),_0Gbl._myScheduler).Subscribe(x =>
             {
                 _0Gbl._myEntities.Switch.SwitchbotEcoflow.Toggle();
             });
@@ -225,20 +225,20 @@ namespace NetDaemonApps.apps
             });
 
             scheduler.ScheduleCron("0 0 * * *", () => {
-                plan(_00_Globals._myEntities?.Sensor.NordpoolKwhFiEur31001.Attributes?.Today, todayHoursRaw, plannedOnHoursToday);
+                plan(_00_Globals._myEntities?.Sensor.NordpoolKwhFiEur3100255.Attributes?.Today, todayHoursRaw, plannedOnHoursToday);
             });
 
 
-            _00_Globals._myEntities?.Sensor.NordpoolKwhFiEur31001.StateChanges().Where(x => x?.New?.State == _00_Globals._myEntities?.Sensor.NordpoolKwhFiEur31001.Attributes?.Min).Subscribe(_ => { _00_Globals._myEntities.Switch.EcoflowPlug.TurnOn(); });
-            _00_Globals._myEntities?.Sensor.NordpoolKwhFiEur31001.StateAllChanges().Where(x => x?.New?.Attributes?.TomorrowValid == true && x.Old?.Attributes?.TomorrowValid == false).Subscribe(_ => { DetermineNextChargeTime(); });
+            _00_Globals._myEntities?.Sensor.NordpoolKwhFiEur3100255.StateChanges().Where(x => x?.New?.State == _00_Globals._myEntities?.Sensor.NordpoolKwhFiEur3100255.Attributes?.Min).Subscribe(_ => { _00_Globals._myEntities.Switch.EcoflowPlug.TurnOn(); });
+            _00_Globals._myEntities?.Sensor.NordpoolKwhFiEur3100255.StateAllChanges().Where(x => x?.New?.Attributes?.TomorrowValid == true && x.Old?.Attributes?.TomorrowValid == false).Subscribe(_ => { DetermineNextChargeTime(); });
 
 
 
 
-            plan(_00_Globals._myEntities?.Sensor.NordpoolKwhFiEur31001.Attributes?.Today, todayHoursRaw, plannedOnHoursToday);
-            if (_00_Globals._myEntities?.Sensor.NordpoolKwhFiEur31001?.Attributes?.TomorrowValid ?? false )
+            plan(_00_Globals._myEntities?.Sensor.NordpoolKwhFiEur3100255.Attributes?.Today, todayHoursRaw, plannedOnHoursToday);
+            if (_00_Globals._myEntities?.Sensor.NordpoolKwhFiEur3100255?.Attributes?.TomorrowValid ?? false )
             {
-                var list = JsonSerializer.Deserialize<List<double>?>(_00_Globals._myEntities.Sensor?.NordpoolKwhFiEur31001?.EntityState?.Attributes?.Tomorrow.ToString());
+                var list = JsonSerializer.Deserialize<List<double>?>(_00_Globals._myEntities.Sensor?.NordpoolKwhFiEur3100255?.EntityState?.Attributes?.Tomorrow.ToString());
                 plan(list, tomorrowHoursRaw, plannedChargeHoursTomorrow);
             }
 
@@ -283,7 +283,7 @@ namespace NetDaemonApps.apps
             {
                 _0Gbl._myEntities.InputDatetime.NextPlannedEcocharge.SetDatetime(datetime: new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, hour, 0, 0).ToString(@"yyyy-MM-dd HH\:mm\:ss"));
             }
-            else if(_0Gbl._myEntities?.Sensor.NordpoolKwhFiEur31001?.Attributes?.TomorrowValid ?? false)
+            else if(_0Gbl._myEntities?.Sensor.NordpoolKwhFiEur3100255?.Attributes?.TomorrowValid ?? false)
             {
                 hour = plannedChargeHoursTomorrow.FirstOrDefault(-1);
             
