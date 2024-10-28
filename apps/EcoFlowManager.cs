@@ -71,7 +71,7 @@ namespace NetDaemonApps.apps
                 private void RegisterListeners()
                 {
 
-                    enabled.StateChanges().Subscribe(_ => { RegisterTimeListener();});
+                    enabled.StateChanges().Where(x=>x.Old.IsOff() || x.Old.IsOn()).Subscribe(_ => { RegisterTimeListener();});
                     time.StateChanges().Subscribe(_ => { RegisterTimeListener(); OnChanged(); });
                     power.StateChanges().Subscribe(_ => { OnChanged(); });
                     mode.StateChanges().Subscribe(_ => { OnChanged(); });
@@ -81,7 +81,7 @@ namespace NetDaemonApps.apps
 
                 private void OnChanged()
                 {
-                    enabled.TurnOn();
+                    //enabled.TurnOn();
                 }
 
                 private void RegisterTimeListener()
