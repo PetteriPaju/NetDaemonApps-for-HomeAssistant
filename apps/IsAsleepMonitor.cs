@@ -81,11 +81,12 @@ namespace NetDaemonApps.apps
             instance.Resub();
        
         }
-        public void Resub()
+        public void Resub(bool reboot = false)
         {
+
             alarmSubscription?.Dispose();
            
-            alarmSubscription = _0Gbl._myScheduler.Schedule(_0Gbl._myEntities.InputDatetime.AlarmTargetTime.GetDateTime(),x => {
+            alarmSubscription = _0Gbl._myScheduler.Schedule(reboot ? _0Gbl._myEntities.InputDatetime.AlarmTargetTime.GetDateTime() : DetermineAlarmTagetTime(), x => {
                 if (_0Gbl._myEntities.InputBoolean.NotificationAlarm.IsOff()) return;
                 if (_0Gbl._myEntities.InputBoolean.GuestMode.IsOn()) return;
                 if (_0Gbl._myEntities.InputBoolean.Isasleep.IsOff()) return;
@@ -109,9 +110,11 @@ namespace NetDaemonApps.apps
 
         }
 
-        private void DetermineAlarmTagetTime()
+        private DateTimeOffset DetermineAlarmTagetTime()
         {
+    
             DateTimeOffset dto;
+         
             switch (_0Gbl._myEntities.InputSelect.AlarmSleepMode.State)
             {
                 case "Normal":
@@ -143,6 +146,8 @@ namespace NetDaemonApps.apps
 
             _0Gbl._myEntities.InputDatetime.AlarmTargetTime.SetDatetime(timestamp: unixTime);
             Console.WriteLine("Alarm: " + _0Gbl._myEntities.InputDatetime.AlarmTargetTime.GetDateTime());
+
+            return dto;
 
         }
 
@@ -176,7 +181,7 @@ namespace NetDaemonApps.apps
 
             CheckAllIsSleepConditions();
 
-            Resub();
+            Resub(true);
 
             _0Gbl._myEntities.InputBoolean.Isasleep.StateChanges().Where(x => x?.New?.State == "off" && x?.Old.State == "on").Subscribe(x => {
 
@@ -203,7 +208,6 @@ namespace NetDaemonApps.apps
 
             _0Gbl._myEntities.InputSelect.AlarmSleepMode.StateChanges().Where(x => (x?.Old.State != "unavailable" && x?.Old.State != "unknown")).Subscribe(x => {
 
-                DetermineAlarmTagetTime();
                 Resub();
 
             });
@@ -222,7 +226,6 @@ namespace NetDaemonApps.apps
             });
                 
             _0Gbl._myEntities.InputBoolean.Isasleep.StateChanges().Where(x => x?.New?.State == "on" && x?.Old.State == "off").Subscribe(x => {
-                DetermineAlarmTagetTime();
                 Resub();
             });
 
