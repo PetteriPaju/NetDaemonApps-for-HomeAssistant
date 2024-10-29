@@ -6,6 +6,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace NetDaemonApps
@@ -16,14 +18,13 @@ namespace NetDaemonApps
         public static int getBrightness(this LightEntity light)
         {
             int brightness = 0;
-            if(int.TryParse(light?.EntityState?.Attributes?.Brightness.ToString(),out brightness))
+
+            try
             {
-                return brightness;
+                brightness = ((JsonElement)light?.EntityState.Attributes.Brightness).GetInt32();
             }
-            else
-            {
-                return 0;
-            }
+            catch { }
+            return brightness;
             
         }
 
