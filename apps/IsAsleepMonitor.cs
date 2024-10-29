@@ -19,13 +19,16 @@ namespace NetDaemonApps.apps
     public class IsAsleepMonitor
     {
         private List<MonitorMember> isAwakeConditions = new List<MonitorMember>();
-
+        private readonly TimeSpan toSleepSpareTime = TimeSpan.FromMinutes(10);
         private static IsAsleepMonitor instance;
 
         private IDisposable? alarmTimer;
         private IDisposable? alarmSubscription = null;
         private IDisposable? isAsleepOnTimer = null;
         private IDisposable? isAsleepOffTimer = null;
+
+        private IDisposable? rebootTimer = null;
+
         private class MonitorMember
         {
             public bool currentState;
@@ -100,8 +103,9 @@ namespace NetDaemonApps.apps
                     TTS.Speak(ttsTime, TTS.TTSPriority.IgnoreAll);
                     alarmnumber++;
                 });
-
+                rebootTimer?.Dispose();
             });
+
 
 
         }
@@ -198,7 +202,7 @@ namespace NetDaemonApps.apps
                 // Get the unix timestamp in seconds
                 long unixTime = dto.ToUnixTimeSeconds();
 
-
+                rebootTimer?.Dispose();
                 _0Gbl._myEntities.InputDatetime.Awoketime.SetDatetime(timestamp: unixTime);
             });
 
@@ -209,6 +213,18 @@ namespace NetDaemonApps.apps
             });
 
 
+            _0Gbl._myEntities.InputBoolean.Isasleep.StateChanges().WhenStateIsFor(x => x.IsOn() ,TimeSpan.FromHours(3), _0Gbl._myScheduler).Subscribe(x => {
+
+                rebootTimer?.Dispose();
+
+                rebootTimer = _0Gbl._myScheduler.ScheduleCron("10 * * * *", () =>
+                {
+                    _0Gbl._myEntities.Button.NodePveReboot.Press();  
+                    rebootTimer?.Dispose();
+                });
+
+            });
+                
             _0Gbl._myEntities.InputBoolean.Isasleep.StateChanges().Where(x => x?.New?.State == "on" && x?.Old.State == "off").Subscribe(x => {
                 Resub();
                 _0Gbl._myEntities.InputDatetime.Lastisasleeptime.SetDatetime(time: DateTime.Now);
@@ -264,7 +280,7 @@ namespace NetDaemonApps.apps
 
                 if (isAsleepOffTimer == null)
                 {
-                    isAsleepOffTimer = _0Gbl._myScheduler.Schedule(TimeSpan.FromMinutes(3), () =>
+                    isAsleepOffTimer = _0Gbl._myScheduler.Schedule(TimeSpan.FromMinutes(10), () =>
                     {
 
                         _0Gbl._myEntities.InputBoolean.Isasleep.TurnOff();
@@ -277,13 +293,15 @@ namespace NetDaemonApps.apps
 
                 if (isAsleepOnTimer == null)
                 {
-                    isAsleepOnTimer = _0Gbl._myScheduler.Schedule(TimeSpan.FromMinutes(3), () =>
+                    isAsleepOnTimer = _0Gbl._myScheduler.Schedule(toSleepSpareTime, () =>
                     {
 
                         _0Gbl._myEntities.InputBoolean.Isasleep.TurnOn();
                         isAsleepOnTimer = null;
                     });
                 }
+
+               
             }
 
             if (!isAnyTrue)
