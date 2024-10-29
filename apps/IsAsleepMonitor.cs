@@ -92,7 +92,7 @@ namespace NetDaemonApps.apps
                 TTS.Speak("Good Morning, ", TTS.TTSPriority.IgnoreAll);
                 alarmTimer = _0Gbl._myScheduler.RunEvery(TimeSpan.FromMinutes(10), DateTimeOffset.Now + TimeSpan.FromSeconds(3), () => {
 
-                    TimeSpan? timeDiff = DateTime.Now - _0Gbl._myEntities?.InputBoolean?.Isasleep?.EntityState?.LastChanged;
+                    TimeSpan? timeDiff = DateTime.Now - _0Gbl._myEntities?.InputDatetime.Lastisasleeptime.GetDateTime();
                     string ttsTime = "its " + DateTime.Now.ToString("H:mm", CultureInfo.InvariantCulture) + ", you have been sleeping for " + timeDiff?.Hours + " hours" + (timeDiff?.Minutes > 0 ? " and " + timeDiff?.Minutes + "minutes" : ". ");
 
                     ttsTime += "This is alarm number " + alarmnumber + ".";
@@ -211,6 +211,7 @@ namespace NetDaemonApps.apps
 
             _0Gbl._myEntities.InputBoolean.Isasleep.StateChanges().Where(x => x?.New?.State == "on" && x?.Old.State == "off").Subscribe(x => {
                 Resub();
+                _0Gbl._myEntities.InputDatetime.Lastisasleeptime.SetDatetime(time: DateTime.Now);
             });
 
             _0Gbl._myScheduler.ScheduleCron("1-29,31-59 * * * *", RefreshAll);
