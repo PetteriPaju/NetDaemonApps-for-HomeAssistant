@@ -316,7 +316,7 @@ public class EnergyMonitor
           
         PriceChangeType priceChange = comparePrice(infoForCurrentHour , infoForCurrentHour.nexthour);
         bool addAlso = false;
-        if (infoForCurrentHour.range != 0 || priceChange != PriceChangeType.NoChange && DateTime.Now.Hour != 23)
+        if (infoForCurrentHour.range != 0 || priceChange != PriceChangeType.NoChange)
         {
             TTSMessage += " Current Electricity Cost is " + (infoForCurrentHour.range == -1 ? "Unknown" : "at " + electiricityRanges.Values.ElementAt(infoForCurrentHour.range) + ". ");
             if (priceChange != PriceChangeType.NoChange)
