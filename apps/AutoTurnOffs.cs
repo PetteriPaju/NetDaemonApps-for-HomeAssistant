@@ -61,6 +61,11 @@ namespace NetDaemonApps.apps
                          
                                });
                             }
+                            else if (light.IsOn())
+                            {
+                                lightOffDisposables[light][0]?.Dispose();
+                                lightOffDisposables[light][1]?.Dispose();
+                            }
 
                         });
             }
