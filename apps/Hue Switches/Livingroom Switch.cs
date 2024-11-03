@@ -137,7 +137,7 @@ namespace NetDaemonApps.apps.Hue_Switches
         {
 
             base.OnHueRelease();
-            TimeSpan? timeDiff = DateTime.Now - _0Gbl._myEntities?.InputBoolean?.Isasleep?.EntityState?.LastChanged;
+            TimeSpan? timeDiff = DateTime.Now - _0Gbl._myEntities?.InputDatetime.Lastisasleeptime.GetDateTime();
             string ttsTime = "its " + DateTime.Now.ToString("H:mm", CultureInfo.InvariantCulture); 
             if(_0Gbl._myEntities.InputBoolean.Isasleep.IsOn()) ttsTime += ", you have been sleeping for " + timeDiff?.Hours + " hours" + (timeDiff?.Minutes > 0 ? " and " + timeDiff?.Minutes + "minutes" : ". ");
 
