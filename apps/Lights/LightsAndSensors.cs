@@ -41,12 +41,12 @@ namespace NetDaemonApps.apps.Lights
             });
 
 
-            _0Gbl._myEntities.BinarySensor.Livingroomfp1Presence.StateChanges().Where(x => x.New.IsOff() ).Subscribe(_ => {
+            _0Gbl._myEntities.BinarySensor.Livingroomfp1Presence.StateChanges().Where(x => x.New.IsOff() && _0Gbl._myEntities.BinarySensor.FridgeContactSensorContact.IsOff()).Subscribe(_ => {
 
                 _0Gbl._myEntities.Light.KitchenLight2.TurnOffLight();
             });
 
-            _0Gbl._myEntities.Sensor.Livingroomfp1PresenceEvent.StateChanges().WhenStateIsFor(x=> (x?.State != "approach"), TimeSpan.FromSeconds(30)).Subscribe(_ => {
+            _0Gbl._myEntities.Sensor.Livingroomfp1PresenceEvent.StateChanges().WhenStateIsFor(x=> (x?.State != "approach") && _0Gbl._myEntities.BinarySensor.FridgeContactSensorContact.IsOff(), TimeSpan.FromSeconds(50), _0Gbl._myScheduler).Subscribe(_ => {
                 _0Gbl._myEntities.Light.KitchenLight2.TurnOffLight();
             });
 
@@ -56,7 +56,7 @@ namespace NetDaemonApps.apps.Lights
                 _0Gbl._myEntities.Light.KitchenLight2.TurnOnWithSensor(_0Gbl._myEntities.Sensor.OutdoorsBrightness, defaultFluz);
             });
 
-            _0Gbl._myEntities.BinarySensor.FridgeContactSensorContact.StateChanges().WhenStateIsFor(x => ((bool)x?.IsOff()), TimeSpan.FromSeconds(30)).Subscribe(_ => {
+            _0Gbl._myEntities.BinarySensor.FridgeContactSensorContact.StateChanges().WhenStateIsFor(x => ((bool)x?.IsOff()), TimeSpan.FromSeconds(50), _0Gbl._myScheduler).Subscribe(_ => {
               
                 if (_0Gbl._myEntities.Sensor.Livingroomfp1PresenceEvent.State != "approach")
                 {
