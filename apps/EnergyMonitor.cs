@@ -45,6 +45,20 @@ public class EnergyMonitor
     private double ecoflowCgargePriceFixHelper = 0.0;
     private double ecoflowUsagePriceFixer = 0.0;
 
+    protected int priceToRange(double price)
+    {
+        var range = electricityRangeKeys?.FindIndex(x => x > price) ?? -1;
+        range = range == -1 ? electricityRangeKeys.Count : range;
+
+        return (int)range - 1;
+    }
+
+    protected string priceToRangeName(double price)
+    {
+        return electiricityRanges.Values.ElementAtOrDefault(priceToRange(price)) ?? "unknown";
+    }
+
+
 
     private NumericSensorEntity nordPoolEntity
     {
@@ -196,8 +210,6 @@ public class EnergyMonitor
 
         var hoursTillChange = FindWhenElectricityRangeChanges(infoForCurrentHour.nexthour);
 
-        _0Gbl._myEntities.InputNumber.EnergyNextPrice.SetValue(infoForCurrentHour?.nexthour.nexthour?.price ?? 0);
-
         if (hoursTillChange != null)
         _0Gbl._myEntities.InputDatetime.EnergyChangeTime.SetDatetime(datetime: hoursTillChange.dateTime.ToString(@"yyyy-MM-dd HH\:00\:00"));
         else
@@ -238,7 +250,7 @@ public class EnergyMonitor
 
             EnergyForecastInfo energyForecastInfo = GetEnergyForecast(nordPoolEntity?.Attributes.TomorrowValid.Value == true ? JsonSerializer.Deserialize<double[]>(nordPoolEntity?.EntityState?.Attributes?.Tomorrow.ToString()) : new double[0]);
 
-            message += "Tomorrows Prices will be" + (energyForecastInfo.isAllSameRange ? " all " : " mostly ") + "in " +  GetNameOfRange(energyForecastInfo.averageRange);
+        message += "Tomorrows Prices will be" + (energyForecastInfo.isAllSameRange ? " all " : " mostly ") + "in " + priceToRangeName(energyForecastInfo.avarage);
             message += " and  " + PercentageDifference(nordPoolEntity?.EntityState?.Attributes?.Average ?? 0, energyForecastInfo.avarage) + "% " + (nordPoolEntity?.EntityState?.Attributes?.Average > energyForecastInfo.avarage ? "lower" : "higher") + " than today.";
 
             if (energyForecastInfo.subZeroCount > 0) message += " There will also be " + energyForecastInfo.subZeroCount + " sub zero hour" + (energyForecastInfo.subZeroCount > 1 ? "s." : ".");
@@ -314,15 +326,15 @@ public class EnergyMonitor
         string TTSMessage = "Good Morning.";
   
           
-        PriceChangeType priceChange = comparePrice(infoForCurrentHour , infoForCurrentHour.nexthour);
+        PriceChangeType priceChange = comparePrice(infoForCurrentHour.price ?? 0, _0Gbl._myEntities.Sensor.NextPrice.State ?? 0 );
         bool addAlso = false;
         if (infoForCurrentHour.range != 0 || priceChange != PriceChangeType.NoChange)
         {
-            TTSMessage += " Current Electricity Cost is " + (infoForCurrentHour.range == -1 ? "Unknown" : "at " + electiricityRanges.Values.ElementAt(infoForCurrentHour.range) + ". ");
+            TTSMessage += " Current Electricity Cost is at " + priceToRangeName(infoForCurrentHour.price ?? 0) + ". ";
             if (priceChange != PriceChangeType.NoChange)
             {
 
-                TTSMessage += "But it will " + (priceChange == PriceChangeType.Increase ? "increase to " : "decrease to ") + electiricityRanges.Values.ElementAt(infoForCurrentHour.nexthour.range);
+                TTSMessage += "But it will " + (priceChange == PriceChangeType.Increase ? "increase to " : "decrease to ") + priceToRangeName(_0Gbl._myEntities.Sensor.NextPrice.State ?? 0);
                 TTSMessage += " in " + (60 - DateTime.Now.Minute) + " minutes.";
             }
             addAlso = true;
@@ -352,7 +364,16 @@ public class EnergyMonitor
         else if (rangeOfA > rangeofB) return PriceChangeType.Descrease;
         else return PriceChangeType.NoChange;
     }
+    private PriceChangeType comparePrice(double priceA, double priceB)
+    {
+        int rangeOfA = FindRangeForPrice(priceA);
+        int rangeofB = FindRangeForPrice(priceB);
 
+
+        if (rangeOfA < rangeofB) return PriceChangeType.Increase;
+        else if (rangeOfA > rangeofB) return PriceChangeType.Descrease;
+        else return PriceChangeType.NoChange;
+    }
     private void EnergiPriceChengeAlert()
     {
 
@@ -389,7 +410,7 @@ public class EnergyMonitor
 
         if (priceChange != PriceChangeType.NoChange)
         {
-            TTSMessage += (priceChange == PriceChangeType.Increase ? "increase to " : "fall to ") + electiricityRanges.Values.ElementAt(inFoForNextHour.range) + ".";
+            TTSMessage += (priceChange == PriceChangeType.Increase ? "increase to " : "fall to ") + priceToRangeName(_0Gbl._myEntities.Sensor.NextPrice.State ?? 0) + ".";
 
             var hoursTillChange =  FindWhenElectricityRangeChanges(inFoForNextHour.nexthour);
 
@@ -403,7 +424,7 @@ public class EnergyMonitor
             else if (priceChange == PriceChangeType.Increase || priceChange == PriceChangeType.Descrease)
             {
                 var timeDiff = hoursTillChange.dateTime - inFoForNextHour.dateTime;
-                TTSMessage += "And will " + (priceChangeType == PriceChangeType.Increase ? "increase to " : "fall to ") + electiricityRanges.Values.ElementAt(hoursTillChange.range) + " after " + GetHoursAndMinutesFromTimeSpan(timeDiff);
+                TTSMessage += "And will " + (priceChangeType == PriceChangeType.Increase ? "increase to " : "fall to ") + priceToRangeName(hoursTillChange.price ?? 0) + " after " + GetHoursAndMinutesFromTimeSpan(timeDiff);
             }
 
             if (inFoForNextHour.peak != 0)
@@ -513,7 +534,13 @@ public class EnergyMonitor
         return nextInfo;
     }
 
+    private int FindRangeForPrice(double? price)
+    {
+        var range = electricityRangeKeys?.FindIndex(x => x >= Math.Max(0, price ?? 0)) - 1;
+        range = range < 0 ? 0 : range;
 
+        return (int)range;
+    }
 
 
 
