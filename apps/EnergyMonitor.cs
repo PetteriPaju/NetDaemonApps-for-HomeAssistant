@@ -356,7 +356,7 @@ public class EnergyMonitor
     private void EnergiPriceChengeAlert()
     {
 
-    
+        UpdateNextChangeHourTime();
         if (_0Gbl._myEntities.InputBoolean.NotificationEnergyPriceChange.IsOff()) return;
         if (_0Gbl._myEntities.InputBoolean.Isasleep.State == "on") return;
 
