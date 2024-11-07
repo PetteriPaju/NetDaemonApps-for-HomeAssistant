@@ -227,7 +227,7 @@ namespace NetDaemonApps.apps
                 
             _0Gbl._myEntities.InputBoolean.Isasleep.StateChanges().Where(x => x?.New?.State == "on" && x?.Old.State == "off").Subscribe(x => {
                 Resub();
-                _0Gbl._myEntities.InputDatetime.Lastisasleeptime.SetDatetime(time: DateTime.Now);
+                _0Gbl._myEntities.InputDatetime.Lastisasleeptime.SetDatetime(timestamp: new DateTimeOffset(DateTime.Now).ToUnixTimeSeconds());
             });
 
             _0Gbl._myScheduler.ScheduleCron("1-29,31-59 * * * *", RefreshAll);
