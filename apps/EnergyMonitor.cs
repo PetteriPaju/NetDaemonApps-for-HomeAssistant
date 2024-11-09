@@ -62,7 +62,7 @@ public class EnergyMonitor
 
     private NumericSensorEntity nordPoolEntity
     {
-        get { return _0Gbl._myEntities.Sensor?.NordpoolKwhFiEur3100255; }
+        get { return _0Gbl._myEntities.Sensor?.Nordpool; }
     }
 
     public EnergyMonitor()

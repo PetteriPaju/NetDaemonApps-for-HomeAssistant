@@ -283,7 +283,7 @@ namespace NetDaemonApps.apps
             {
                 _0Gbl._myEntities.InputDatetime.NextPlannedEcocharge.SetDatetime(datetime: new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, hour, 0, 0).ToString(@"yyyy-MM-dd HH\:mm\:ss"));
             }
-            else if(_0Gbl._myEntities?.Sensor.NordpoolKwhFiEur3100255?.Attributes?.TomorrowValid ?? false)
+            else if(_0Gbl._myEntities?.Sensor.Nordpool?.Attributes?.TomorrowValid ?? false)
             {
                 hour = plannedChargeHoursTomorrow.FirstOrDefault(-1);
             
