@@ -53,6 +53,11 @@ public class EnergyMonitor
         return (int)range - 1;
     }
 
+    protected DateTime dateFromHourIndex(int index)
+    {
+        return DateTime.Today.AddHours(index);
+    }
+
     protected string priceToRangeName(double price)
     {
         return electiricityRanges.Values.ElementAtOrDefault(priceToRange(price)) ?? "unknown";
