@@ -1,4 +1,57 @@
 {
+  "persistent_notification": {
+    "create": {
+      "name": "Create",
+      "description": "Shows a notification on the notifications panel.",
+      "fields": {
+        "message": {
+          "required": true,
+          "example": "Please check your configuration.yaml.",
+          "selector": {
+            "text": null
+          },
+          "name": "Message",
+          "description": "Message body of the notification."
+        },
+        "title": {
+          "example": "Test notification",
+          "selector": {
+            "text": null
+          },
+          "name": "Title",
+          "description": "Optional title of the notification."
+        },
+        "notification_id": {
+          "example": 1234,
+          "selector": {
+            "text": null
+          },
+          "name": "Notification ID",
+          "description": "ID of the notification. This new notification will overwrite an existing notification with the same ID."
+        }
+      }
+    },
+    "dismiss": {
+      "name": "Dismiss",
+      "description": "Removes a notification from the notifications panel.",
+      "fields": {
+        "notification_id": {
+          "required": true,
+          "example": 1234,
+          "selector": {
+            "text": null
+          },
+          "name": "Notification ID",
+          "description": "ID of the notification to be removed."
+        }
+      }
+    },
+    "dismiss_all": {
+      "name": "Dismiss all",
+      "description": "Removes all notifications from the notifications panel.",
+      "fields": {}
+    }
+  },
   "homeassistant": {
     "save_persistent_states": {
       "name": "Save persistent states",
@@ -149,59 +202,6 @@
     "reload_all": {
       "name": "Reload all",
       "description": "Reload all YAML configuration that can be reloaded without restarting Home Assistant.",
-      "fields": {}
-    }
-  },
-  "persistent_notification": {
-    "create": {
-      "name": "Create",
-      "description": "Shows a notification on the notifications panel.",
-      "fields": {
-        "message": {
-          "required": true,
-          "example": "Please check your configuration.yaml.",
-          "selector": {
-            "text": null
-          },
-          "name": "Message",
-          "description": "Message body of the notification."
-        },
-        "title": {
-          "example": "Test notification",
-          "selector": {
-            "text": null
-          },
-          "name": "Title",
-          "description": "Optional title of the notification."
-        },
-        "notification_id": {
-          "example": 1234,
-          "selector": {
-            "text": null
-          },
-          "name": "Notification ID",
-          "description": "ID of the notification. This new notification will overwrite an existing notification with the same ID."
-        }
-      }
-    },
-    "dismiss": {
-      "name": "Dismiss",
-      "description": "Removes a notification from the notifications panel.",
-      "fields": {
-        "notification_id": {
-          "required": true,
-          "example": 1234,
-          "selector": {
-            "text": null
-          },
-          "name": "Notification ID",
-          "description": "ID of the notification to be removed."
-        }
-      }
-    },
-    "dismiss_all": {
-      "name": "Dismiss all",
-      "description": "Removes all notifications from the notifications panel.",
       "fields": {}
     }
   },
@@ -1018,106 +1018,6 @@
       "fields": {}
     }
   },
-  "select": {
-    "select_first": {
-      "name": "First",
-      "description": "Selects the first option.",
-      "fields": {},
-      "target": {
-        "entity": [
-          {
-            "domain": [
-              "select"
-            ]
-          }
-        ]
-      }
-    },
-    "select_last": {
-      "name": "Last",
-      "description": "Selects the last option.",
-      "fields": {},
-      "target": {
-        "entity": [
-          {
-            "domain": [
-              "select"
-            ]
-          }
-        ]
-      }
-    },
-    "select_next": {
-      "name": "Next",
-      "description": "Selects the next option.",
-      "fields": {
-        "cycle": {
-          "default": true,
-          "selector": {
-            "boolean": null
-          },
-          "name": "Cycle",
-          "description": "If the option should cycle from the last to the first."
-        }
-      },
-      "target": {
-        "entity": [
-          {
-            "domain": [
-              "select"
-            ]
-          }
-        ]
-      }
-    },
-    "select_option": {
-      "name": "Select",
-      "description": "Selects an option.",
-      "fields": {
-        "option": {
-          "required": true,
-          "example": "\u0022Item A\u0022",
-          "selector": {
-            "text": null
-          },
-          "name": "Option",
-          "description": "Option to be selected."
-        }
-      },
-      "target": {
-        "entity": [
-          {
-            "domain": [
-              "select"
-            ]
-          }
-        ]
-      }
-    },
-    "select_previous": {
-      "name": "Previous",
-      "description": "Selects the previous option.",
-      "fields": {
-        "cycle": {
-          "default": true,
-          "selector": {
-            "boolean": null
-          },
-          "name": "Cycle",
-          "description": "If the option should cycle from the first to the last."
-        }
-      },
-      "target": {
-        "entity": [
-          {
-            "domain": [
-              "select"
-            ]
-          }
-        ]
-      }
-    }
-  },
   "scene": {
     "reload": {
       "name": "Reload",
@@ -1220,6 +1120,106 @@
           {
             "domain": [
               "scene"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "select": {
+    "select_first": {
+      "name": "First",
+      "description": "Selects the first option.",
+      "fields": {},
+      "target": {
+        "entity": [
+          {
+            "domain": [
+              "select"
+            ]
+          }
+        ]
+      }
+    },
+    "select_last": {
+      "name": "Last",
+      "description": "Selects the last option.",
+      "fields": {},
+      "target": {
+        "entity": [
+          {
+            "domain": [
+              "select"
+            ]
+          }
+        ]
+      }
+    },
+    "select_next": {
+      "name": "Next",
+      "description": "Selects the next option.",
+      "fields": {
+        "cycle": {
+          "default": true,
+          "selector": {
+            "boolean": null
+          },
+          "name": "Cycle",
+          "description": "If the option should cycle from the last to the first."
+        }
+      },
+      "target": {
+        "entity": [
+          {
+            "domain": [
+              "select"
+            ]
+          }
+        ]
+      }
+    },
+    "select_option": {
+      "name": "Select",
+      "description": "Selects an option.",
+      "fields": {
+        "option": {
+          "required": true,
+          "example": "\u0022Item A\u0022",
+          "selector": {
+            "text": null
+          },
+          "name": "Option",
+          "description": "Option to be selected."
+        }
+      },
+      "target": {
+        "entity": [
+          {
+            "domain": [
+              "select"
+            ]
+          }
+        ]
+      }
+    },
+    "select_previous": {
+      "name": "Previous",
+      "description": "Selects the previous option.",
+      "fields": {
+        "cycle": {
+          "default": true,
+          "selector": {
+            "boolean": null
+          },
+          "name": "Cycle",
+          "description": "If the option should cycle from the first to the last."
+        }
+      },
+      "target": {
+        "entity": [
+          {
+            "domain": [
+              "select"
             ]
           }
         ]
@@ -2198,6 +2198,221 @@
       }
     }
   },
+  "camera": {
+    "enable_motion_detection": {
+      "name": "Enable motion detection",
+      "description": "Enables the motion detection.",
+      "fields": {},
+      "target": {
+        "entity": [
+          {
+            "domain": [
+              "camera"
+            ]
+          }
+        ]
+      }
+    },
+    "disable_motion_detection": {
+      "name": "Disable motion detection",
+      "description": "Disables the motion detection.",
+      "fields": {},
+      "target": {
+        "entity": [
+          {
+            "domain": [
+              "camera"
+            ]
+          }
+        ]
+      }
+    },
+    "turn_off": {
+      "name": "Turn off",
+      "description": "Turns off the camera.",
+      "fields": {},
+      "target": {
+        "entity": [
+          {
+            "domain": [
+              "camera"
+            ]
+          }
+        ]
+      }
+    },
+    "turn_on": {
+      "name": "Turn on",
+      "description": "Turns on the camera.",
+      "fields": {},
+      "target": {
+        "entity": [
+          {
+            "domain": [
+              "camera"
+            ]
+          }
+        ]
+      }
+    },
+    "snapshot": {
+      "name": "Take snapshot",
+      "description": "Takes a snapshot from a camera.",
+      "fields": {
+        "filename": {
+          "required": true,
+          "example": "/tmp/snapshot_{{ entity_id.name }}.jpg",
+          "selector": {
+            "text": null
+          },
+          "name": "Filename",
+          "description": "Full path to filename."
+        }
+      },
+      "target": {
+        "entity": [
+          {
+            "domain": [
+              "camera"
+            ]
+          }
+        ]
+      }
+    },
+    "play_stream": {
+      "name": "Play stream",
+      "description": "Plays the camera stream on a supported media player.",
+      "fields": {
+        "media_player": {
+          "required": true,
+          "selector": {
+            "entity": {
+              "domain": "media_player"
+            }
+          },
+          "name": "Media player",
+          "description": "Media players to stream to."
+        },
+        "format": {
+          "default": "hls",
+          "selector": {
+            "select": {
+              "options": [
+                "hls"
+              ]
+            }
+          },
+          "name": "Format",
+          "description": "Stream format supported by the media player."
+        }
+      },
+      "target": {
+        "entity": [
+          {
+            "domain": [
+              "camera"
+            ]
+          }
+        ]
+      }
+    },
+    "record": {
+      "name": "Record",
+      "description": "Creates a recording of a live camera feed.",
+      "fields": {
+        "filename": {
+          "required": true,
+          "example": "/tmp/snapshot_{{ entity_id.name }}.mp4",
+          "selector": {
+            "text": null
+          },
+          "name": "Filename",
+          "description": "Full path to filename. Must be mp4."
+        },
+        "duration": {
+          "default": 30,
+          "selector": {
+            "number": {
+              "min": 1,
+              "max": 3600,
+              "unit_of_measurement": "seconds"
+            }
+          },
+          "name": "Duration",
+          "description": "Planned duration of the recording. The actual duration may vary."
+        },
+        "lookback": {
+          "default": 0,
+          "selector": {
+            "number": {
+              "min": 0,
+              "max": 300,
+              "unit_of_measurement": "seconds"
+            }
+          },
+          "name": "Lookback",
+          "description": "Planned lookback period to include in the recording (in addition to the duration). Only available if there is currently an active HLS stream. The actual length of the lookback period may vary."
+        }
+      },
+      "target": {
+        "entity": [
+          {
+            "domain": [
+              "camera"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "logbook": {
+    "log": {
+      "name": "Log",
+      "description": "Creates a custom entry in the logbook.",
+      "fields": {
+        "name": {
+          "required": true,
+          "example": "Kitchen",
+          "selector": {
+            "text": null
+          },
+          "name": "Name",
+          "description": "Custom name for an entity, can be referenced using an \u0060entity_id\u0060."
+        },
+        "message": {
+          "required": true,
+          "example": "is being used",
+          "selector": {
+            "text": null
+          },
+          "name": "Message",
+          "description": "Message of the logbook entry."
+        },
+        "entity_id": {
+          "selector": {
+            "entity": null
+          },
+          "name": "Entity ID",
+          "description": "Entity to reference in the logbook entry."
+        },
+        "domain": {
+          "example": "light",
+          "selector": {
+            "text": null
+          },
+          "name": "Domain",
+          "description": "Determines which icon is used in the logbook entry. The icon illustrates the integration domain related to this logbook entry."
+        }
+      }
+    }
+  },
+  "zone": {
+    "reload": {
+      "name": "Reload",
+      "description": "Reloads zones from the YAML-configuration.",
+      "fields": {}
+    }
+  },
   "group": {
     "reload": {
       "name": "Reload",
@@ -2813,13 +3028,6 @@
       }
     }
   },
-  "zone": {
-    "reload": {
-      "name": "Reload",
-      "description": "Reloads zones from the YAML-configuration.",
-      "fields": {}
-    }
-  },
   "timer": {
     "reload": {
       "name": "Reload",
@@ -2917,44 +3125,24 @@
       }
     }
   },
-  "logbook": {
-    "log": {
-      "name": "Log",
-      "description": "Creates a custom entry in the logbook.",
-      "fields": {
-        "name": {
-          "required": true,
-          "example": "Kitchen",
-          "selector": {
-            "text": null
-          },
-          "name": "Name",
-          "description": "Custom name for an entity, can be referenced using an \u0060entity_id\u0060."
-        },
-        "message": {
-          "required": true,
-          "example": "is being used",
-          "selector": {
-            "text": null
-          },
-          "name": "Message",
-          "description": "Message of the logbook entry."
-        },
-        "entity_id": {
-          "selector": {
-            "entity": null
-          },
-          "name": "Entity ID",
-          "description": "Entity to reference in the logbook entry."
-        },
-        "domain": {
-          "example": "light",
-          "selector": {
-            "text": null
-          },
-          "name": "Domain",
-          "description": "Determines which icon is used in the logbook entry. The icon illustrates the integration domain related to this logbook entry."
-        }
+  "input_button": {
+    "reload": {
+      "name": "Reload",
+      "description": "Reloads helpers from the YAML-configuration.",
+      "fields": {}
+    },
+    "press": {
+      "name": "Press",
+      "description": "Mimics the physical button press on the device.",
+      "fields": {},
+      "target": {
+        "entity": [
+          {
+            "domain": [
+              "input_button"
+            ]
+          }
+        ]
       }
     }
   },
@@ -3029,34 +3217,69 @@
       }
     }
   },
-  "input_button": {
-    "reload": {
-      "name": "Reload",
-      "description": "Reloads helpers from the YAML-configuration.",
-      "fields": {}
-    },
-    "press": {
-      "name": "Press",
-      "description": "Mimics the physical button press on the device.",
-      "fields": {},
-      "target": {
-        "entity": [
-          {
-            "domain": [
-              "input_button"
-            ]
-          }
-        ]
-      }
-    }
-  },
-  "shell_command": {
-    "turn_off_qnap": {
-      "name": "",
-      "description": "",
-      "fields": {},
+  "conversation": {
+    "process": {
+      "name": "Process",
+      "description": "Launches a conversation from a transcribed text.",
+      "fields": {
+        "text": {
+          "example": "Turn all lights on",
+          "required": true,
+          "selector": {
+            "text": null
+          },
+          "name": "Text",
+          "description": "Transcribed text input."
+        },
+        "language": {
+          "example": "NL",
+          "selector": {
+            "text": null
+          },
+          "name": "Language",
+          "description": "Language of text. Defaults to server language."
+        },
+        "agent_id": {
+          "example": "homeassistant",
+          "selector": {
+            "conversation_agent": null
+          },
+          "name": "Agent",
+          "description": "Conversation agent to process your request. The conversation agent is the brains of your assistant. It processes the incoming text commands."
+        },
+        "conversation_id": {
+          "example": "my_conversation_1",
+          "selector": {
+            "text": null
+          },
+          "name": "Conversation ID",
+          "description": "ID of the conversation, to be able to continue a previous conversation"
+        }
+      },
       "response": {
         "optional": true
+      }
+    },
+    "reload": {
+      "name": "Reload",
+      "description": "Reloads the intent configuration.",
+      "fields": {
+        "language": {
+          "example": "NL",
+          "selector": {
+            "text": null
+          },
+          "name": "Language",
+          "description": "Language to clear cached intents for. Defaults to server language."
+        },
+        "agent_id": {
+          "example": "homeassistant",
+          "selector": {
+            "conversation_agent": null
+          },
+          "name": "Agent",
+          "description": "Conversation agent to reload."
+        }
       }
     }
   },
@@ -3103,69 +3326,6 @@
           {
             "domain": [
               "input_boolean"
-            ]
-          }
-        ]
-      }
-    }
-  },
-  "input_number": {
-    "reload": {
-      "name": "Reload",
-      "description": "Reloads helpers from the YAML-configuration.",
-      "fields": {}
-    },
-    "set_value": {
-      "name": "Set",
-      "description": "Sets the value.",
-      "fields": {
-        "value": {
-          "required": true,
-          "selector": {
-            "number": {
-              "min": 0,
-              "max": 9223372036854775807,
-              "step": 0.001,
-              "mode": "box"
-            }
-          },
-          "name": "Value",
-          "description": "The target value."
-        }
-      },
-      "target": {
-        "entity": [
-          {
-            "domain": [
-              "input_number"
-            ]
-          }
-        ]
-      }
-    },
-    "increment": {
-      "name": "Increment",
-      "description": "Increments the value by 1 step.",
-      "fields": {},
-      "target": {
-        "entity": [
-          {
-            "domain": [
-              "input_number"
-            ]
-          }
-        ]
-      }
-    },
-    "decrement": {
-      "name": "Decrement",
-      "description": "Decrements the current value by 1 step.",
-      "fields": {},
-      "target": {
-        "entity": [
-          {
-            "domain": [
-              "input_number"
             ]
           }
         ]
@@ -3303,111 +3463,499 @@
       }
     }
   },
-  "conversation": {
-    "process": {
-      "name": "Process",
-      "description": "Launches a conversation from a transcribed text.",
-      "fields": {
-        "text": {
-          "example": "Turn all lights on",
-          "required": true,
-          "selector": {
-            "text": null
-          },
-          "name": "Text",
-          "description": "Transcribed text input."
-        },
-        "language": {
-          "example": "NL",
-          "selector": {
-            "text": null
-          },
-          "name": "Language",
-          "description": "Language of text. Defaults to server language."
-        },
-        "agent_id": {
-          "example": "homeassistant",
-          "selector": {
-            "conversation_agent": null
-          },
-          "name": "Agent",
-          "description": "Conversation agent to process your request. The conversation agent is the brains of your assistant. It processes the incoming text commands."
-        },
-        "conversation_id": {
-          "example": "my_conversation_1",
-          "selector": {
-            "text": null
-          },
-          "name": "Conversation ID",
-          "description": "ID of the conversation, to be able to continue a previous conversation"
-        }
-      },
-      "response": {
-        "optional": true
-      }
-    },
+  "input_number": {
     "reload": {
       "name": "Reload",
-      "description": "Reloads the intent configuration.",
+      "description": "Reloads helpers from the YAML-configuration.",
+      "fields": {}
+    },
+    "set_value": {
+      "name": "Set",
+      "description": "Sets the value.",
       "fields": {
-        "language": {
-          "example": "NL",
+        "value": {
+          "required": true,
+          "selector": {
+            "number": {
+              "min": 0,
+              "max": 9223372036854775807,
+              "step": 0.001,
+              "mode": "box"
+            }
+          },
+          "name": "Value",
+          "description": "The target value."
+        }
+      },
+      "target": {
+        "entity": [
+          {
+            "domain": [
+              "input_number"
+            ]
+          }
+        ]
+      }
+    },
+    "increment": {
+      "name": "Increment",
+      "description": "Increments the value by 1 step.",
+      "fields": {},
+      "target": {
+        "entity": [
+          {
+            "domain": [
+              "input_number"
+            ]
+          }
+        ]
+      }
+    },
+    "decrement": {
+      "name": "Decrement",
+      "description": "Decrements the current value by 1 step.",
+      "fields": {},
+      "target": {
+        "entity": [
+          {
+            "domain": [
+              "input_number"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "schedule": {
+    "reload": {
+      "name": "Reload",
+      "description": "Reloads schedules from the YAML-configuration.",
+      "fields": {}
+    }
+  },
+  "google_assistant": {
+    "request_sync": {
+      "name": "Request sync",
+      "description": "Sends a request_sync command to Google.",
+      "fields": {
+        "agent_user_id": {
           "selector": {
             "text": null
           },
-          "name": "Language",
-          "description": "Language to clear cached intents for. Defaults to server language."
-        },
-        "agent_id": {
-          "example": "homeassistant",
-          "selector": {
-            "conversation_agent": null
-          },
-          "name": "Agent",
-          "description": "Conversation agent to reload."
+          "name": "Agent user ID",
+          "description": "Only needed for automations. Specific Home Assistant user id (not username, ID in configuration \u003E users \u003E under username) to sync with Google Assistant. Do not need when you use this action through Home Assistant front end or API. Used in automation script or other place where context.user_id is missing."
         }
       }
     }
   },
-  "switch": {
-    "turn_off": {
-      "name": "Turn off",
-      "description": "Turns a switch off.",
-      "fields": {},
+  "mass": {
+    "search": {
+      "name": "Search Music Assistant",
+      "description": "Perform a global search on the Music Assistant library and all providers.",
+      "fields": {
+        "name": {
+          "required": true,
+          "example": "We Are The Champions",
+          "selector": {
+            "text": null
+          },
+          "name": "Search name",
+          "description": "The name/title to search for."
+        },
+        "media_type": {
+          "required": false,
+          "example": "playlist",
+          "selector": {
+            "select": {
+              "multiple": true,
+              "translation_key": "media_type",
+              "options": [
+                "artist",
+                "album",
+                "playlist",
+                "track",
+                "radio"
+              ]
+            }
+          },
+          "name": "Media type(s)",
+          "description": "The type of the content to search. Such as artist, album, track, radio or playlist. All types if omitted."
+        },
+        "artist": {
+          "required": false,
+          "example": "Queen",
+          "selector": {
+            "text": null
+          },
+          "name": "Artist name",
+          "description": "When specifying a track or album name in the name field, you can optionally restrict results by this artist name."
+        },
+        "album": {
+          "required": false,
+          "example": "News of the world",
+          "selector": {
+            "text": null
+          },
+          "name": "Album name",
+          "description": "When specifying a track name in the name field, you can optionally restrict results by this album name."
+        },
+        "limit": {
+          "required": false,
+          "advanced": true,
+          "example": 25,
+          "default": 5,
+          "selector": {
+            "number": {
+              "min": 1,
+              "max": 100,
+              "step": 1
+            }
+          },
+          "name": "Limit",
+          "description": "Maximum number of items to return (per media type)."
+        },
+        "library_only": {
+          "required": false,
+          "example": "true",
+          "default": false,
+          "selector": {
+            "boolean": null
+          },
+          "name": "Only library items",
+          "description": "Only include results that are in the library."
+        }
+      },
+      "response": {
+        "optional": false
+      }
+    },
+    "get_queue": {
+      "name": "Get PlayerQueue details (advanced)",
+      "description": "Get the full queue details of a Music Assistant Queue.",
+      "fields": {
+        "queue_id": {
+          "required": true,
+          "example": "00:11:22:33:44:55",
+          "selector": {
+            "text": null
+          },
+          "name": "Queue ID",
+          "description": "The Music Assistant Queue ID to request details for."
+        }
+      },
+      "response": {
+        "optional": false
+      }
+    },
+    "get_library": {
+      "name": "Get Library items",
+      "description": "Get items from a Music Assistant Library.",
+      "fields": {
+        "media_type": {
+          "required": true,
+          "example": "playlist",
+          "selector": {
+            "select": {
+              "translation_key": "media_type",
+              "options": [
+                "artist",
+                "album",
+                "playlist",
+                "track",
+                "radio"
+              ]
+            }
+          },
+          "name": "Media Type",
+          "description": "The MediaType for which to request details for."
+        },
+        "favorite": {
+          "required": false,
+          "example": "true",
+          "default": false,
+          "selector": {
+            "boolean": null
+          },
+          "name": "Favorites only",
+          "description": "Filter items so only favorites items are returned."
+        },
+        "search": {
+          "required": false,
+          "example": "We Are The Champions",
+          "selector": {
+            "text": null
+          },
+          "name": "Search",
+          "description": "Optional search string to search through this library."
+        },
+        "limit": {
+          "required": false,
+          "advanced": true,
+          "example": 25,
+          "default": 25,
+          "selector": {
+            "number": {
+              "min": 1,
+              "max": 500,
+              "step": 1
+            }
+          },
+          "name": "Limit",
+          "description": "Maximum number of items to return."
+        },
+        "offset": {
+          "required": false,
+          "advanced": true,
+          "example": 25,
+          "default": 0,
+          "selector": {
+            "number": {
+              "min": 1,
+              "max": 1000000,
+              "step": 1
+            }
+          },
+          "name": "Offset",
+          "description": "Offset to start the list from."
+        },
+        "order_by": {
+          "required": false,
+          "example": "playlist",
+          "selector": {
+            "select": {
+              "translation_key": "order_by",
+              "options": [
+                "name",
+                "name_desc",
+                "sort_name",
+                "sort_name_desc",
+                "timestamp_added",
+                "timestamp_added_desc",
+                "last_played",
+                "last_played_desc",
+                "play_count",
+                "play_count_desc",
+                "year",
+                "year_desc",
+                "position",
+                "position_desc",
+                "artist_name",
+                "artist_name_desc",
+                "random",
+                "random_play_count"
+              ]
+            }
+          },
+          "name": "Order By",
+          "description": "Sort the list by this field."
+        },
+        "album_type": {
+          "required": false,
+          "example": "single",
+          "selector": {
+            "select": {
+              "multiple": true,
+              "translation_key": "album_type",
+              "options": [
+                "album",
+                "single",
+                "compilation",
+                "ep",
+                "unknown"
+              ]
+            }
+          },
+          "name": "Album Type filter (albums library only)",
+          "description": "Filter albums by type."
+        },
+        "album_artists_only": {
+          "required": false,
+          "example": "true",
+          "default": false,
+          "selector": {
+            "boolean": null
+          },
+          "name": "Enable album artists filter (only for artist library)",
+          "description": "Only return Album Artists when listing the Artists library items."
+        }
+      },
+      "response": {
+        "optional": false
+      }
+    },
+    "play_media": {
+      "name": "Play Media (advanced)",
+      "description": "Play media on a Music Assistant player with more fine grained control options.",
+      "fields": {
+        "media_id": {
+          "required": true,
+          "example": "spotify://playlist/aabbccddeeff",
+          "selector": {
+            "object": null
+          },
+          "name": "Media ID(s)",
+          "description": "URI or name of the item you want to play. Specify a list if you want to play/enqueue multiple items."
+        },
+        "media_type": {
+          "required": false,
+          "example": "playlist",
+          "selector": {
+            "select": {
+              "translation_key": "media_type",
+              "options": [
+                "artist",
+                "album",
+                "playlist",
+                "track",
+                "radio"
+              ]
+            }
+          },
+          "name": "Media type",
+          "description": "The type of the content to play. Such as artist, album, track or playlist. Will be auto determined if omitted."
+        },
+        "artist": {
+          "required": false,
+          "example": "Queen",
+          "selector": {
+            "text": null
+          },
+          "name": "Artist name",
+          "description": "When specifying a track or album by name in the Media ID field, you can optionally restrict results by this artist name."
+        },
+        "album": {
+          "required": false,
+          "example": "News of the world",
+          "selector": {
+            "text": null
+          },
+          "name": "Album name",
+          "description": "When specifying a track by name in the Media ID field, you can optionally restrict results by this album name."
+        },
+        "enqueue": {
+          "required": false,
+          "selector": {
+            "select": {
+              "options": [
+                "play",
+                "replace",
+                "next",
+                "replace_next",
+                "add"
+              ],
+              "translation_key": "enqueue"
+            }
+          },
+          "name": "Enqueue",
+          "description": "If the content should be played now or be added to the queue. Options are: play, replace, next. replace_next, add"
+        },
+        "radio_mode": {
+          "required": false,
+          "advanced": true,
+          "selector": {
+            "boolean": null
+          },
+          "name": "Enable Radio Mode",
+          "description": "Enable radio mode to auto generate a playlist based on the selection."
+        }
+      },
       "target": {
         "entity": [
           {
             "domain": [
-              "switch"
+              "media_player"
+            ],
+            "integration": "mass",
+            "supported_features": [
+              512
             ]
           }
         ]
       }
     },
-    "turn_on": {
-      "name": "Turn on",
-      "description": "Turns a switch on.",
-      "fields": {},
+    "play_announcement": {
+      "name": "Play Announcement (advanced)",
+      "description": "Play announcement on a Music Assistant player with more fine grained control options.",
+      "fields": {
+        "url": {
+          "required": true,
+          "example": "http://someremotesite.com/doorbell.mp3",
+          "selector": {
+            "text": null
+          },
+          "name": "URL",
+          "description": "URL to the notification sound."
+        },
+        "use_pre_announce": {
+          "required": false,
+          "example": "true",
+          "selector": {
+            "boolean": null
+          },
+          "name": "Use pre-announce",
+          "description": "Use pre-announcement sound for the announcement. Omit to use the player default."
+        },
+        "announce_volume": {
+          "required": false,
+          "example": 75,
+          "selector": {
+            "number": {
+              "min": 1,
+              "max": 100,
+              "step": 1
+            }
+          },
+          "name": "Announce volume",
+          "description": "Use a forced volume level for the announcement. Omit to use player default."
+        }
+      },
       "target": {
         "entity": [
           {
             "domain": [
-              "switch"
+              "media_player"
+            ],
+            "integration": "mass",
+            "supported_features": [
+              512,
+              1048576
             ]
           }
         ]
       }
     },
-    "toggle": {
-      "name": "Toggle",
-      "description": "Toggles a switch on/off.",
-      "fields": {},
+    "transfer_queue": {
+      "name": "Transfer Queue",
+      "description": "Transfer the player\u0027s queue to another player.",
+      "fields": {
+        "source_player": {
+          "required": false,
+          "selector": {
+            "entity": {
+              "domain": "media_player",
+              "integration": "mass"
+            }
+          },
+          "name": "Source media player",
+          "description": "The source media player which has the queue you want to transfer. When omitted, the first playing player will be used."
+        },
+        "auto_play": {
+          "required": false,
+          "example": "true",
+          "selector": {
+            "boolean": null
+          },
+          "name": "Auto play",
+          "description": "Start playing the queue on the target player. Omit to use the default behavior."
+        }
+      },
       "target": {
         "entity": [
           {
             "domain": [
-              "switch"
-            ]
+              "media_player"
+            ],
+            "integration": "mass"
           }
         ]
       }
@@ -3441,21 +3989,6 @@
             ]
           }
         ]
-      }
-    }
-  },
-  "google_assistant": {
-    "request_sync": {
-      "name": "Request sync",
-      "description": "Sends a request_sync command to Google.",
-      "fields": {
-        "agent_user_id": {
-          "selector": {
-            "text": null
-          },
-          "name": "Agent user ID",
-          "description": "Only needed for automations. Specific Home Assistant user id (not username, ID in configuration \u003E users \u003E under username) to sync with Google Assistant. Do not need when you use this action through Home Assistant front end or API. Used in automation script or other place where context.user_id is missing."
-        }
       }
     }
   },
@@ -3498,6 +4031,52 @@
             "integration": "utility_meter"
           }
         ]
+      }
+    }
+  },
+  "shell_command": {
+    "turn_off_qnap": {
+      "name": "",
+      "description": "",
+      "fields": {},
+      "response": {
+        "optional": true
+      }
+    }
+  },
+  "cast": {
+    "show_lovelace_view": {
+      "name": "Show dashboard view",
+      "description": "Shows a dashboard view on a Chromecast device.",
+      "fields": {
+        "entity_id": {
+          "required": true,
+          "selector": {
+            "entity": {
+              "integration": "cast",
+              "domain": "media_player"
+            }
+          },
+          "name": "Entity",
+          "description": "Media player entity to show the dashboard view on."
+        },
+        "dashboard_path": {
+          "required": true,
+          "example": "lovelace-cast",
+          "selector": {
+            "text": null
+          },
+          "name": "Dashboard path",
+          "description": "The URL path of the dashboard to show."
+        },
+        "view_path": {
+          "example": "downstairs",
+          "selector": {
+            "text": null
+          },
+          "name": "View path",
+          "description": "The path of the dashboard view to show."
+        }
       }
     }
   },
@@ -3594,44 +4173,16 @@
       }
     }
   },
-  "camera": {
-    "enable_motion_detection": {
-      "name": "Enable motion detection",
-      "description": "Enables the motion detection.",
-      "fields": {},
-      "target": {
-        "entity": [
-          {
-            "domain": [
-              "camera"
-            ]
-          }
-        ]
-      }
-    },
-    "disable_motion_detection": {
-      "name": "Disable motion detection",
-      "description": "Disables the motion detection.",
-      "fields": {},
-      "target": {
-        "entity": [
-          {
-            "domain": [
-              "camera"
-            ]
-          }
-        ]
-      }
-    },
+  "switch": {
     "turn_off": {
       "name": "Turn off",
-      "description": "Turns off the camera.",
+      "description": "Turns a switch off.",
       "fields": {},
       "target": {
         "entity": [
           {
             "domain": [
-              "camera"
+              "switch"
             ]
           }
         ]
@@ -3639,368 +4190,67 @@
     },
     "turn_on": {
       "name": "Turn on",
-      "description": "Turns on the camera.",
+      "description": "Turns a switch on.",
       "fields": {},
       "target": {
         "entity": [
           {
             "domain": [
-              "camera"
+              "switch"
             ]
           }
         ]
       }
     },
-    "snapshot": {
-      "name": "Take snapshot",
-      "description": "Takes a snapshot from a camera.",
-      "fields": {
-        "filename": {
-          "required": true,
-          "example": "/tmp/snapshot_{{ entity_id.name }}.jpg",
-          "selector": {
-            "text": null
-          },
-          "name": "Filename",
-          "description": "Full path to filename."
-        }
-      },
+    "toggle": {
+      "name": "Toggle",
+      "description": "Toggles a switch on/off.",
+      "fields": {},
       "target": {
         "entity": [
           {
             "domain": [
-              "camera"
-            ]
-          }
-        ]
-      }
-    },
-    "play_stream": {
-      "name": "Play stream",
-      "description": "Plays the camera stream on a supported media player.",
-      "fields": {
-        "media_player": {
-          "required": true,
-          "selector": {
-            "entity": {
-              "domain": "media_player"
-            }
-          },
-          "name": "Media player",
-          "description": "Media players to stream to."
-        },
-        "format": {
-          "default": "hls",
-          "selector": {
-            "select": {
-              "options": [
-                "hls"
-              ]
-            }
-          },
-          "name": "Format",
-          "description": "Stream format supported by the media player."
-        }
-      },
-      "target": {
-        "entity": [
-          {
-            "domain": [
-              "camera"
-            ]
-          }
-        ]
-      }
-    },
-    "record": {
-      "name": "Record",
-      "description": "Creates a recording of a live camera feed.",
-      "fields": {
-        "filename": {
-          "required": true,
-          "example": "/tmp/snapshot_{{ entity_id.name }}.mp4",
-          "selector": {
-            "text": null
-          },
-          "name": "Filename",
-          "description": "Full path to filename. Must be mp4."
-        },
-        "duration": {
-          "default": 30,
-          "selector": {
-            "number": {
-              "min": 1,
-              "max": 3600,
-              "unit_of_measurement": "seconds"
-            }
-          },
-          "name": "Duration",
-          "description": "Planned duration of the recording. The actual duration may vary."
-        },
-        "lookback": {
-          "default": 0,
-          "selector": {
-            "number": {
-              "min": 0,
-              "max": 300,
-              "unit_of_measurement": "seconds"
-            }
-          },
-          "name": "Lookback",
-          "description": "Planned lookback period to include in the recording (in addition to the duration). Only available if there is currently an active HLS stream. The actual length of the lookback period may vary."
-        }
-      },
-      "target": {
-        "entity": [
-          {
-            "domain": [
-              "camera"
+              "switch"
             ]
           }
         ]
       }
     }
   },
-  "schedule": {
-    "reload": {
-      "name": "Reload",
-      "description": "Reloads schedules from the YAML-configuration.",
-      "fields": {}
-    }
-  },
-  "cast": {
-    "show_lovelace_view": {
-      "name": "Show dashboard view",
-      "description": "Shows a dashboard view on a Chromecast device.",
-      "fields": {
-        "entity_id": {
-          "required": true,
-          "selector": {
-            "entity": {
-              "integration": "cast",
-              "domain": "media_player"
-            }
-          },
-          "name": "Entity",
-          "description": "Media player entity to show the dashboard view on."
-        },
-        "dashboard_path": {
-          "required": true,
-          "example": "lovelace-cast",
-          "selector": {
-            "text": null
-          },
-          "name": "Dashboard path",
-          "description": "The URL path of the dashboard to show."
-        },
-        "view_path": {
-          "example": "downstairs",
-          "selector": {
-            "text": null
-          },
-          "name": "View path",
-          "description": "The path of the dashboard view to show."
-        }
-      }
-    }
-  },
-  "template": {
-    "reload": {
-      "name": "Reload",
-      "description": "Reloads template entities from the YAML-configuration.",
-      "fields": {}
-    }
-  },
-  "notify": {
-    "send_message": {
-      "name": "Send a notification message",
-      "description": "Sends a notification message.",
+  "assist_satellite": {
+    "announce": {
+      "name": "Announce",
+      "description": "Let the satellite announce a message.",
       "fields": {
         "message": {
-          "required": true,
+          "required": false,
+          "example": "Time to wake up!",
           "selector": {
             "text": null
           },
           "name": "Message",
-          "description": "Your notification message."
+          "description": "The message to announce."
         },
-        "title": {
+        "media_id": {
           "required": false,
           "selector": {
             "text": null
           },
-          "filter": {
-            "supported_features": [
-              1
-            ]
-          },
-          "name": "Title",
-          "description": "Title for your notification message."
+          "name": "Media ID",
+          "description": "The media ID to announce instead of using text-to-speech."
         }
       },
       "target": {
         "entity": [
           {
             "domain": [
-              "notify"
+              "assist_satellite"
+            ],
+            "supported_features": [
+              1
             ]
           }
         ]
-      }
-    },
-    "persistent_notification": {
-      "name": "Send a persistent notification",
-      "description": "Sends a notification that is visible in the notifications panel.",
-      "fields": {
-        "message": {
-          "required": true,
-          "example": "The garage door has been open for 10 minutes.",
-          "selector": {
-            "text": null
-          },
-          "name": "Message",
-          "description": "Message body of the notification."
-        },
-        "title": {
-          "example": "Your Garage Door Friend",
-          "selector": {
-            "text": null
-          },
-          "name": "Title",
-          "description": "Title of the notification."
-        },
-        "data": {
-          "example": "platform specific",
-          "selector": {
-            "object": null
-          },
-          "name": "Data",
-          "description": "Some integrations provide extended functionality. For information on how to use _data_, refer to the integration documentation.."
-        }
-      }
-    },
-    "google_assistant_sdk": {
-      "name": "Send a notification with google_assistant_sdk",
-      "description": "Sends a notification message using the google_assistant_sdk service.",
-      "fields": {
-        "message": {
-          "required": true,
-          "example": "The garage door has been open for 10 minutes.",
-          "selector": {
-            "text": null
-          }
-        },
-        "title": {
-          "example": "Your Garage Door Friend",
-          "selector": {
-            "text": null
-          }
-        },
-        "target": {
-          "example": "platform specific",
-          "selector": {
-            "object": null
-          }
-        },
-        "data": {
-          "example": "platform specific",
-          "selector": {
-            "object": null
-          }
-        }
-      }
-    },
-    "mobile_app_sm_t530": {
-      "name": "Send a notification via mobile_app_sm_t530",
-      "description": "Sends a notification message using the mobile_app_sm_t530 integration.",
-      "fields": {
-        "message": {
-          "required": true,
-          "example": "The garage door has been open for 10 minutes.",
-          "selector": {
-            "text": null
-          }
-        },
-        "title": {
-          "example": "Your Garage Door Friend",
-          "selector": {
-            "text": null
-          }
-        },
-        "target": {
-          "example": "platform specific",
-          "selector": {
-            "object": null
-          }
-        },
-        "data": {
-          "example": "platform specific",
-          "selector": {
-            "object": null
-          }
-        }
-      }
-    },
-    "mobile_app_moto_g_8_power_lite": {
-      "name": "Send a notification via mobile_app_moto_g_8_power_lite",
-      "description": "Sends a notification message using the mobile_app_moto_g_8_power_lite integration.",
-      "fields": {
-        "message": {
-          "required": true,
-          "example": "The garage door has been open for 10 minutes.",
-          "selector": {
-            "text": null
-          }
-        },
-        "title": {
-          "example": "Your Garage Door Friend",
-          "selector": {
-            "text": null
-          }
-        },
-        "target": {
-          "example": "platform specific",
-          "selector": {
-            "object": null
-          }
-        },
-        "data": {
-          "example": "platform specific",
-          "selector": {
-            "object": null
-          }
-        }
-      }
-    },
-    "notify": {
-      "name": "Send a notification with notify",
-      "description": "Sends a notification message using the notify service.",
-      "fields": {
-        "message": {
-          "required": true,
-          "example": "The garage door has been open for 10 minutes.",
-          "selector": {
-            "text": null
-          }
-        },
-        "title": {
-          "example": "Your Garage Door Friend",
-          "selector": {
-            "text": null
-          }
-        },
-        "target": {
-          "example": "platform specific",
-          "selector": {
-            "object": null
-          }
-        },
-        "data": {
-          "example": "platform specific",
-          "selector": {
-            "object": null
-          }
-        }
       }
     }
   },
@@ -4318,22 +4568,6 @@
       }
     }
   },
-  "button": {
-    "press": {
-      "name": "Press",
-      "description": "Press the button entity.",
-      "fields": {},
-      "target": {
-        "entity": [
-          {
-            "domain": [
-              "button"
-            ]
-          }
-        ]
-      }
-    }
-  },
   "weather": {
     "get_forecasts": {
       "name": "Get forecasts",
@@ -4374,201 +4608,196 @@
       }
     }
   },
-  "cover": {
-    "open_cover": {
-      "name": "Open",
-      "description": "Opens a cover.",
-      "fields": {},
-      "target": {
-        "entity": [
-          {
-            "domain": [
-              "cover"
-            ],
+  "notify": {
+    "send_message": {
+      "name": "Send a notification message",
+      "description": "Sends a notification message.",
+      "fields": {
+        "message": {
+          "required": true,
+          "selector": {
+            "text": null
+          },
+          "name": "Message",
+          "description": "Your notification message."
+        },
+        "title": {
+          "required": false,
+          "selector": {
+            "text": null
+          },
+          "filter": {
             "supported_features": [
               1
             ]
-          }
-        ]
-      }
-    },
-    "close_cover": {
-      "name": "Close",
-      "description": "Closes a cover.",
-      "fields": {},
-      "target": {
-        "entity": [
-          {
-            "domain": [
-              "cover"
-            ],
-            "supported_features": [
-              2
-            ]
-          }
-        ]
-      }
-    },
-    "set_cover_position": {
-      "name": "Set position",
-      "description": "Moves a cover to a specific position.",
-      "fields": {
-        "position": {
-          "required": true,
-          "selector": {
-            "number": {
-              "min": 0,
-              "max": 100,
-              "unit_of_measurement": "%"
-            }
           },
-          "name": "Position",
-          "description": "Target position."
+          "name": "Title",
+          "description": "Title for your notification message."
         }
       },
       "target": {
         "entity": [
           {
             "domain": [
-              "cover"
-            ],
-            "supported_features": [
-              4
+              "notify"
             ]
           }
         ]
       }
     },
-    "stop_cover": {
-      "name": "Stop",
-      "description": "Stops the cover movement.",
-      "fields": {},
-      "target": {
-        "entity": [
-          {
-            "domain": [
-              "cover"
-            ],
-            "supported_features": [
-              8
-            ]
-          }
-        ]
-      }
-    },
-    "toggle": {
-      "name": "Toggle",
-      "description": "Toggles a cover open/closed.",
-      "fields": {},
-      "target": {
-        "entity": [
-          {
-            "domain": [
-              "cover"
-            ],
-            "supported_features": [
-              3
-            ]
-          }
-        ]
-      }
-    },
-    "open_cover_tilt": {
-      "name": "Open tilt",
-      "description": "Tilts a cover open.",
-      "fields": {},
-      "target": {
-        "entity": [
-          {
-            "domain": [
-              "cover"
-            ],
-            "supported_features": [
-              16
-            ]
-          }
-        ]
-      }
-    },
-    "close_cover_tilt": {
-      "name": "Close tilt",
-      "description": "Tilts a cover to close.",
-      "fields": {},
-      "target": {
-        "entity": [
-          {
-            "domain": [
-              "cover"
-            ],
-            "supported_features": [
-              32
-            ]
-          }
-        ]
-      }
-    },
-    "stop_cover_tilt": {
-      "name": "Stop tilt",
-      "description": "Stops a tilting cover movement.",
-      "fields": {},
-      "target": {
-        "entity": [
-          {
-            "domain": [
-              "cover"
-            ],
-            "supported_features": [
-              64
-            ]
-          }
-        ]
-      }
-    },
-    "set_cover_tilt_position": {
-      "name": "Set tilt position",
-      "description": "Moves a cover tilt to a specific position.",
+    "persistent_notification": {
+      "name": "Send a persistent notification",
+      "description": "Sends a notification that is visible in the notifications panel.",
       "fields": {
-        "tilt_position": {
+        "message": {
           "required": true,
+          "example": "The garage door has been open for 10 minutes.",
           "selector": {
-            "number": {
-              "min": 0,
-              "max": 100,
-              "unit_of_measurement": "%"
-            }
+            "text": null
           },
-          "name": "Tilt position",
-          "description": "Target tilt positition."
+          "name": "Message",
+          "description": "Message body of the notification."
+        },
+        "title": {
+          "example": "Your Garage Door Friend",
+          "selector": {
+            "text": null
+          },
+          "name": "Title",
+          "description": "Title of the notification."
+        },
+        "data": {
+          "example": "platform specific",
+          "selector": {
+            "object": null
+          },
+          "name": "Data",
+          "description": "Some integrations provide extended functionality. For information on how to use _data_, refer to the integration documentation.."
         }
-      },
-      "target": {
-        "entity": [
-          {
-            "domain": [
-              "cover"
-            ],
-            "supported_features": [
-              128
-            ]
-          }
-        ]
       }
     },
-    "toggle_cover_tilt": {
-      "name": "Toggle tilt",
-      "description": "Toggles a cover tilt open/closed.",
-      "fields": {},
-      "target": {
-        "entity": [
-          {
-            "domain": [
-              "cover"
-            ],
-            "supported_features": [
-              48
-            ]
+    "mobile_app_sm_t530": {
+      "name": "Send a notification via mobile_app_sm_t530",
+      "description": "Sends a notification message using the mobile_app_sm_t530 integration.",
+      "fields": {
+        "message": {
+          "required": true,
+          "example": "The garage door has been open for 10 minutes.",
+          "selector": {
+            "text": null
           }
-        ]
+        },
+        "title": {
+          "example": "Your Garage Door Friend",
+          "selector": {
+            "text": null
+          }
+        },
+        "target": {
+          "example": "platform specific",
+          "selector": {
+            "object": null
+          }
+        },
+        "data": {
+          "example": "platform specific",
+          "selector": {
+            "object": null
+          }
+        }
+      }
+    },
+    "mobile_app_moto_g_8_power_lite": {
+      "name": "Send a notification via mobile_app_moto_g_8_power_lite",
+      "description": "Sends a notification message using the mobile_app_moto_g_8_power_lite integration.",
+      "fields": {
+        "message": {
+          "required": true,
+          "example": "The garage door has been open for 10 minutes.",
+          "selector": {
+            "text": null
+          }
+        },
+        "title": {
+          "example": "Your Garage Door Friend",
+          "selector": {
+            "text": null
+          }
+        },
+        "target": {
+          "example": "platform specific",
+          "selector": {
+            "object": null
+          }
+        },
+        "data": {
+          "example": "platform specific",
+          "selector": {
+            "object": null
+          }
+        }
+      }
+    },
+    "notify": {
+      "name": "Send a notification with notify",
+      "description": "Sends a notification message using the notify service.",
+      "fields": {
+        "message": {
+          "required": true,
+          "example": "The garage door has been open for 10 minutes.",
+          "selector": {
+            "text": null
+          }
+        },
+        "title": {
+          "example": "Your Garage Door Friend",
+          "selector": {
+            "text": null
+          }
+        },
+        "target": {
+          "example": "platform specific",
+          "selector": {
+            "object": null
+          }
+        },
+        "data": {
+          "example": "platform specific",
+          "selector": {
+            "object": null
+          }
+        }
+      }
+    },
+    "google_assistant_sdk": {
+      "name": "Send a notification with google_assistant_sdk",
+      "description": "Sends a notification message using the google_assistant_sdk service.",
+      "fields": {
+        "message": {
+          "required": true,
+          "example": "The garage door has been open for 10 minutes.",
+          "selector": {
+            "text": null
+          }
+        },
+        "title": {
+          "example": "Your Garage Door Friend",
+          "selector": {
+            "text": null
+          }
+        },
+        "target": {
+          "example": "platform specific",
+          "selector": {
+            "object": null
+          }
+        },
+        "data": {
+          "example": "platform specific",
+          "selector": {
+            "object": null
+          }
+        }
       }
     }
   },
@@ -4808,6 +5037,29 @@
       "fields": {}
     }
   },
+  "button": {
+    "press": {
+      "name": "Press",
+      "description": "Press the button entity.",
+      "fields": {},
+      "target": {
+        "entity": [
+          {
+            "domain": [
+              "button"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "template": {
+    "reload": {
+      "name": "Reload",
+      "description": "Reloads template entities from the YAML-configuration.",
+      "fields": {}
+    }
+  },
   "device_tracker": {
     "see": {
       "name": "See",
@@ -4967,6 +5219,31 @@
       "fields": {}
     }
   },
+  "number": {
+    "set_value": {
+      "name": "Set",
+      "description": "Sets the value of a number.",
+      "fields": {
+        "value": {
+          "example": 42,
+          "selector": {
+            "text": null
+          },
+          "name": "Value",
+          "description": "The target value to set."
+        }
+      },
+      "target": {
+        "entity": [
+          {
+            "domain": [
+              "number"
+            ]
+          }
+        ]
+      }
+    }
+  },
   "lock": {
     "unlock": {
       "name": "Unlock",
@@ -5035,31 +5312,6 @@
             ],
             "supported_features": [
               1
-            ]
-          }
-        ]
-      }
-    }
-  },
-  "number": {
-    "set_value": {
-      "name": "Set",
-      "description": "Sets the value of a number.",
-      "fields": {
-        "value": {
-          "example": 42,
-          "selector": {
-            "text": null
-          },
-          "name": "Value",
-          "description": "The target value to set."
-        }
-      },
-      "target": {
-        "entity": [
-          {
-            "domain": [
-              "number"
             ]
           }
         ]
@@ -5733,6 +5985,204 @@
       "fields": {}
     }
   },
+  "cover": {
+    "open_cover": {
+      "name": "Open",
+      "description": "Opens a cover.",
+      "fields": {},
+      "target": {
+        "entity": [
+          {
+            "domain": [
+              "cover"
+            ],
+            "supported_features": [
+              1
+            ]
+          }
+        ]
+      }
+    },
+    "close_cover": {
+      "name": "Close",
+      "description": "Closes a cover.",
+      "fields": {},
+      "target": {
+        "entity": [
+          {
+            "domain": [
+              "cover"
+            ],
+            "supported_features": [
+              2
+            ]
+          }
+        ]
+      }
+    },
+    "set_cover_position": {
+      "name": "Set position",
+      "description": "Moves a cover to a specific position.",
+      "fields": {
+        "position": {
+          "required": true,
+          "selector": {
+            "number": {
+              "min": 0,
+              "max": 100,
+              "unit_of_measurement": "%"
+            }
+          },
+          "name": "Position",
+          "description": "Target position."
+        }
+      },
+      "target": {
+        "entity": [
+          {
+            "domain": [
+              "cover"
+            ],
+            "supported_features": [
+              4
+            ]
+          }
+        ]
+      }
+    },
+    "stop_cover": {
+      "name": "Stop",
+      "description": "Stops the cover movement.",
+      "fields": {},
+      "target": {
+        "entity": [
+          {
+            "domain": [
+              "cover"
+            ],
+            "supported_features": [
+              8
+            ]
+          }
+        ]
+      }
+    },
+    "toggle": {
+      "name": "Toggle",
+      "description": "Toggles a cover open/closed.",
+      "fields": {},
+      "target": {
+        "entity": [
+          {
+            "domain": [
+              "cover"
+            ],
+            "supported_features": [
+              3
+            ]
+          }
+        ]
+      }
+    },
+    "open_cover_tilt": {
+      "name": "Open tilt",
+      "description": "Tilts a cover open.",
+      "fields": {},
+      "target": {
+        "entity": [
+          {
+            "domain": [
+              "cover"
+            ],
+            "supported_features": [
+              16
+            ]
+          }
+        ]
+      }
+    },
+    "close_cover_tilt": {
+      "name": "Close tilt",
+      "description": "Tilts a cover to close.",
+      "fields": {},
+      "target": {
+        "entity": [
+          {
+            "domain": [
+              "cover"
+            ],
+            "supported_features": [
+              32
+            ]
+          }
+        ]
+      }
+    },
+    "stop_cover_tilt": {
+      "name": "Stop tilt",
+      "description": "Stops a tilting cover movement.",
+      "fields": {},
+      "target": {
+        "entity": [
+          {
+            "domain": [
+              "cover"
+            ],
+            "supported_features": [
+              64
+            ]
+          }
+        ]
+      }
+    },
+    "set_cover_tilt_position": {
+      "name": "Set tilt position",
+      "description": "Moves a cover tilt to a specific position.",
+      "fields": {
+        "tilt_position": {
+          "required": true,
+          "selector": {
+            "number": {
+              "min": 0,
+              "max": 100,
+              "unit_of_measurement": "%"
+            }
+          },
+          "name": "Tilt position",
+          "description": "Target tilt positition."
+        }
+      },
+      "target": {
+        "entity": [
+          {
+            "domain": [
+              "cover"
+            ],
+            "supported_features": [
+              128
+            ]
+          }
+        ]
+      }
+    },
+    "toggle_cover_tilt": {
+      "name": "Toggle tilt",
+      "description": "Toggles a cover tilt open/closed.",
+      "fields": {},
+      "target": {
+        "entity": [
+          {
+            "domain": [
+              "cover"
+            ],
+            "supported_features": [
+              48
+            ]
+          }
+        ]
+      }
+    }
+  },
   "google_assistant_sdk": {
     "send_text_command": {
       "name": "Send text command",
@@ -5759,6 +6209,32 @@
       },
       "response": {
         "optional": true
+      }
+    }
+  },
+  "image": {
+    "snapshot": {
+      "name": "Take snapshot",
+      "description": "Takes a snapshot from an image.",
+      "fields": {
+        "filename": {
+          "required": true,
+          "example": "/tmp/image_snapshot.jpg",
+          "selector": {
+            "text": null
+          },
+          "name": "Filename",
+          "description": "Template of a filename. Variable available is \u0060entity_id\u0060."
+        }
+      },
+      "target": {
+        "entity": [
+          {
+            "domain": [
+              "image"
+            ]
+          }
+        ]
       }
     }
   },
@@ -5799,268 +6275,6 @@
           "name": "Password length",
           "description": "Length of the new password. The password will be auto-generated, if no password is set."
         }
-      }
-    }
-  },
-  "mass": {
-    "search": {
-      "name": "Search Music Assistant",
-      "description": "Perform a global search on the Music Assistant library and all providers.",
-      "fields": {
-        "name": {
-          "required": true,
-          "example": "We Are The Champions",
-          "selector": {
-            "text": null
-          },
-          "name": "Search name",
-          "description": "The name/title to search for."
-        },
-        "media_type": {
-          "required": false,
-          "example": "playlist",
-          "selector": {
-            "select": {
-              "multiple": true,
-              "options": [
-                "artist",
-                "album",
-                "playlist",
-                "track",
-                "radio"
-              ]
-            }
-          },
-          "name": "Media type(s)",
-          "description": "The type of the content to search. Such as artist, album, track, radio or playlist. All types if omitted."
-        },
-        "artist": {
-          "required": false,
-          "example": "Queen",
-          "selector": {
-            "text": null
-          },
-          "name": "Artist name",
-          "description": "When specifying a track or album name in the name field, you can optionally restrict results by this artist name."
-        },
-        "album": {
-          "required": false,
-          "example": "News of the world",
-          "selector": {
-            "text": null
-          },
-          "name": "Album name",
-          "description": "When specifying a track name in the name field, you can optionally restrict results by this album name."
-        },
-        "limit": {
-          "required": false,
-          "advanced": true,
-          "example": 25,
-          "default": 5,
-          "selector": {
-            "number": {
-              "min": 1,
-              "max": 100,
-              "step": 1
-            }
-          },
-          "name": "Limit",
-          "description": "Maximum number of items to return (per media type)."
-        },
-        "library_only": {
-          "required": false,
-          "example": "true",
-          "default": false,
-          "selector": {
-            "boolean": null
-          },
-          "name": "Only library items",
-          "description": "Only include results that are in the library."
-        }
-      },
-      "response": {
-        "optional": false
-      }
-    },
-    "play_media": {
-      "name": "Play Media (advanced)",
-      "description": "Play media on a Music Assistant player with more fine grained control options.",
-      "fields": {
-        "media_id": {
-          "required": true,
-          "example": "spotify://playlist/aabbccddeeff",
-          "selector": {
-            "object": null
-          },
-          "name": "Media ID(s)",
-          "description": "URI or name of the item you want to play. Specify a list if you want to play/enqueue multiple items."
-        },
-        "media_type": {
-          "required": false,
-          "example": "playlist",
-          "selector": {
-            "select": {
-              "options": [
-                "artist",
-                "album",
-                "playlist",
-                "track",
-                "radio"
-              ]
-            }
-          },
-          "name": "Media type",
-          "description": "The type of the content to play. Such as artist, album, track or playlist. Will be auto determined if omitted."
-        },
-        "artist": {
-          "required": false,
-          "example": "Queen",
-          "selector": {
-            "text": null
-          },
-          "name": "Artist name",
-          "description": "When specifying a track or album by name in the Media ID field, you can optionally restrict results by this artist name."
-        },
-        "album": {
-          "required": false,
-          "example": "News of the world",
-          "selector": {
-            "text": null
-          },
-          "name": "Album name",
-          "description": "When specifying a track by name in the Media ID field, you can optionally restrict results by this album name."
-        },
-        "enqueue": {
-          "filter": {
-            "supported_features": [
-              2097152
-            ]
-          },
-          "required": false,
-          "selector": {
-            "select": {
-              "options": [
-                "play",
-                "replace",
-                "next",
-                "replace_next",
-                "add"
-              ],
-              "translation_key": "enqueue"
-            }
-          },
-          "name": "Enqueue",
-          "description": "If the content should be played now or be added to the queue. Options are: play, replace, next. replace_next, add"
-        },
-        "radio_mode": {
-          "required": false,
-          "advanced": true,
-          "selector": {
-            "boolean": null
-          },
-          "name": "Enable Radio Mode",
-          "description": "Enable radio mode to auto generate a playlist based on the selection."
-        }
-      },
-      "target": {
-        "entity": [
-          {
-            "domain": [
-              "media_player"
-            ],
-            "integration": "mass",
-            "supported_features": [
-              512
-            ]
-          }
-        ]
-      }
-    },
-    "play_announcement": {
-      "name": "Play Announcement (advanced)",
-      "description": "Play announcement on a Music Assistant player with more fine grained control options.",
-      "fields": {
-        "url": {
-          "required": true,
-          "example": "http://someremotesite.com/doorbell.mp3",
-          "selector": {
-            "text": null
-          },
-          "name": "URL",
-          "description": "URL to the notification sound."
-        },
-        "use_pre_announce": {
-          "required": false,
-          "example": "true",
-          "selector": {
-            "boolean": null
-          },
-          "name": "Use pre-announce",
-          "description": "Use pre-announcement sound for the announcement. Omit to use the player default."
-        },
-        "announce_volume": {
-          "required": false,
-          "example": 75,
-          "selector": {
-            "number": {
-              "min": 1,
-              "max": 100,
-              "step": 1
-            }
-          },
-          "name": "Announce volume",
-          "description": "Use a forced volume level for the announcement. Omit to use player default."
-        }
-      },
-      "target": {
-        "entity": [
-          {
-            "domain": [
-              "media_player"
-            ],
-            "integration": "mass",
-            "supported_features": [
-              512,
-              1048576
-            ]
-          }
-        ]
-      }
-    },
-    "transfer_queue": {
-      "name": "Transfer Queue",
-      "description": "Transfer the player\u0027s queue to another player.",
-      "fields": {
-        "source_player": {
-          "required": false,
-          "selector": {
-            "entity": {
-              "domain": "media_player",
-              "integration": "mass"
-            }
-          },
-          "name": "Source media player",
-          "description": "The source media player which has the queue you want to transfer. When omitted, the first playing player will be used."
-        },
-        "auto_play": {
-          "required": false,
-          "example": "true",
-          "selector": {
-            "boolean": null
-          },
-          "name": "Auto play",
-          "description": "Start playing the queue on the target player. Omit to use the default behavior."
-        }
-      },
-      "target": {
-        "entity": [
-          {
-            "domain": [
-              "media_player"
-            ],
-            "integration": "mass"
-          }
-        ]
       }
     }
   }
