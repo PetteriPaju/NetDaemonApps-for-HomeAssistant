@@ -3,6 +3,7 @@ using NetDaemon.Extensions.Scheduler;
 using NetDaemon.HassModel;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Reactive.Concurrency;
 using System.Text;
@@ -40,7 +41,7 @@ namespace NetDaemonApps.apps
             DailyResetFunction += () => { _myEntities?.InputDatetime.Lastknowndate.SetDatetime(date:DateTime.Now.Date.ToString("yyyy-MM-dd"));};
             Console.WriteLine("Is working");
             Task.Run(OnLateStart);
-         
+    
         }
 
 
@@ -70,6 +71,32 @@ namespace NetDaemonApps.apps
            
         }
       
+        private void whatever()
+        {
+            string filePath = "D:/characternames.txt"; // Replace with your actual file path
+
+
+            
+            try
+            {
+                string[] lines = File.ReadAllLines(filePath);
+
+                // Print each line or process them as needed
+                foreach (string line in lines)
+                {
+                    bool addColons = line.Contains(" ");
+                    string name = "$" + (addColons ? "(" : "") + line + (addColons ? ")" : "") + " <ppp:stn> $UniversalNegative(flip), $0/Anti-Thick(flip)<ppp:/stn>";
+                    Console.WriteLine(name);
+                    // Add further processing or manipulation of the lines here
+                }
+            }
+            catch (IOException e)
+            {
+                Console.WriteLine("Error reading file: " + e.Message);
+            }
+        }
+
+
         private void dailyResetFunction()
         {
             DailyResetFunction?.Invoke();
