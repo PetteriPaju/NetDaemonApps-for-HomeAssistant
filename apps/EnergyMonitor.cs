@@ -1,9 +1,10 @@
 using HomeAssistantGenerated;
-
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 using NetDaemon.Extensions.Scheduler;
 using NetDaemon.HassModel.Entities;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Reactive.Concurrency;
 using System.Reactive.Linq;
@@ -21,7 +22,7 @@ namespace NetDaemonApps.apps;
 [NetDaemonApp]
 public class EnergyMonitor
 {
-    public static readonly Dictionary<double, string> electiricityRanges = new Dictionary<double, string>() { { 0, "Blue" }, { 7.5, "Green" }, { 15, "Yellow" }, { 25, "Red" } };
+    public static Dictionary<double, string> electiricityRanges;
 
     private List<ElectricityPriceInfo> hoursToday;
 
@@ -30,7 +31,7 @@ public class EnergyMonitor
     private bool solarChargingNotificationGiven = false;
     private bool solarChargingOffNotificationGiven = false;
 
-    private readonly List<double>? electricityRangeKeys;
+    private List<double>? electricityRangeKeys;
 
     private double abNormalEnergyIncreaseThreshold = 0.2;
 
@@ -73,7 +74,24 @@ public class EnergyMonitor
     public EnergyMonitor()
     {
         _instance = this;
-        electricityRangeKeys = electiricityRanges.Keys.ToList();
+
+        void ResetRanges()
+        {
+            electiricityRanges = new Dictionary<double, string>();
+            foreach (string s in _0Gbl._myEntities.InputSelect.Electricityranges.stringsFromSelectionDropdown())
+            {
+                string[] stings = s.Split(';', StringSplitOptions.TrimEntries);
+                electiricityRanges.TryAdd(double.Parse(stings[0].Replace(".", ","), System.Globalization.NumberStyles.Float), stings[1]);
+            }
+        }
+        ResetRanges();
+
+        _0Gbl._myEntities.InputSelect.Electricityranges.StateAllChanges().Subscribe(x => {
+            ResetRanges();
+
+            Console.WriteLine("Electricity Ranges Reset");
+        });
+
         fillDays();
 
         _0Gbl._myEntities?.InputNumber.ElectricityPriceFixer.StateChanges().Where(e => e.New.State != 0).Subscribe(e => {

@@ -80,7 +80,10 @@ namespace NetDaemonApps
             }
             return list;
         }
-
+        public static List<string> stringsFromSelectionDropdown(this InputSelectEntity slectionEntity)
+        {
+            return slectionEntity.Attributes.Options.ToList();
+        }
 
 
         public static List<LightEntity> LightgroupToEntytiList(IEnumerable<string> idList)
