@@ -4,6 +4,7 @@ using NetDaemon.Extensions.Tts;
 using NetDaemon.HassModel.Entities;
 using System;
 using System.Linq;
+using System.Reactive.Concurrency;
 using System.Threading.Tasks;
 
 namespace NetDaemonApps.apps
@@ -40,13 +41,23 @@ namespace NetDaemonApps.apps
         }
 
 
-        public static void Speak(string text, TTSPriority overrider = TTSPriority.Default, InputBooleanEntity? inputBoolean = null)
+
+        public static void Speak(string text, TTSPriority overrider = TTSPriority.Default, InputBooleanEntity? inputBoolean = null, Action<MediaPlayerEntity> callback = null)
         {
             if (Instance != null)
             {
                 if(inputBoolean == null || inputBoolean.IsOn())
-                Instance.SpeakTTS(text, overrider);
+                {
+                    Instance.SpeakTTS(text, callback, overrider);
+
+                    if (callback != null)
+                    {
+
+                    }
+                }
+                
                 else Console.WriteLine("(Notification Disabled) " + text);
+
             }
             else
             {
@@ -89,7 +100,7 @@ namespace NetDaemonApps.apps
 
         }
 
-        public void SpeakTTS(string text, params TTSPriority[] overriders)
+        public void SpeakTTS(string text,Action<MediaPlayerEntity> callback = null, params TTSPriority[] overriders)
         {
 
             if (allowTTS(overriders))
@@ -105,8 +116,18 @@ namespace NetDaemonApps.apps
                 lastAnnounsmentTime = DateTime.Now;
                 tts.Speak("media_player.vlc_telnet", text, getTTSService());
 
+                _0Gbl._myScheduler.Schedule(TimeSpan.FromSeconds(1),() => {
+                    IDisposable disp = null;
+                   disp = _0Gbl._myEntities.MediaPlayer.VlcTelnet.StateChanges().Where(x => x.New?.State != "playing").Subscribe(x => {
+
+                        callback?.Invoke(_0Gbl._myEntities.MediaPlayer.VlcTelnet);
+                        
+                       disp?.Dispose();
+                    });
+                    _0Gbl._myScheduler.Schedule(TimeSpan.FromSeconds(30), () => { disp?.Dispose(); });
+                });
                
-            }
+                }
             else
             {
                 Console.WriteLine("(TTS ignored) " + text);

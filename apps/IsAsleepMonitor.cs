@@ -100,7 +100,7 @@ namespace NetDaemonApps.apps
 
                     ttsTime += "This is alarm number " + alarmnumber + ".";
 
-                    TTS.Speak(ttsTime, TTS.TTSPriority.IgnoreAll);
+                    TTS.Speak(ttsTime, TTS.TTSPriority.IgnoreAll, null, (MediaPlayerEntity med) => { _0Gbl._myServices.Script.Playmoomin(); });
                     alarmnumber++;
                 });
                 rebootTimer?.Dispose();
