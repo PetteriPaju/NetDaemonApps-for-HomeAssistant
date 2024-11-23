@@ -41,6 +41,16 @@ namespace NetDaemonApps.apps.Lights
             return _currentLight;
         }
 
+        public void Reset()
+        {
+
+            foreach (var l in lightEntities)
+            {
+                l.TurnOff();
+            }
+            _currentLight = null;
+            NextLight();
+        }
 
         private void SetListener(LightEntity light)
         {
@@ -110,8 +120,7 @@ namespace NetDaemonApps.apps.Lights
             }else
             _currentLight?.TurnOff();
 
-           
-         
+
         }
 
         private LightEntity GetNext()
@@ -122,7 +131,7 @@ namespace NetDaemonApps.apps.Lights
             int nextIndex = startIndex + 1 < lightEntities.Count ? startIndex + 1 : -1;
             if (nextIndex == -1) return null;
 
-            while(nLight == null || nextIndex == startIndex) {
+            while(nLight == null && nextIndex != startIndex) {
                 LightEntity tLight =  lightEntities[nextIndex];
                 if(tLight?.State != "unavailable")
                 {
@@ -139,8 +148,7 @@ namespace NetDaemonApps.apps.Lights
                 }
 
             }
-         
-            return nLight;
+            return nLight ?? lightEntities.First();
         }
         private LightEntity GetLoop()
         {
