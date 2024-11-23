@@ -108,13 +108,16 @@ namespace NetDaemonApps.apps
 
         protected override void On1Press()
         {
-            base.On1Press();
-            
+            base.On1Press();        
             _0Gbl._myEntities.Light.BedLight.Toggle();
 
+        }
+        protected override void On2Press()
+        {
+            base.On1Press();
+            _0Gbl._myEntities.Switch.BedMultiPlugL1.Toggle();
 
         }
-
     }
 
     public abstract class LoraTabs
