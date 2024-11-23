@@ -28,6 +28,7 @@ namespace NetDaemonApps.apps
         private IDisposable? isAsleepOffTimer = null;
 
         private IDisposable? rebootTimer = null;
+        private IDisposable? modentimer = null;
 
         private class MonitorMember
         {
@@ -85,8 +86,20 @@ namespace NetDaemonApps.apps
         {
 
             alarmSubscription?.Dispose();
-           
-            alarmSubscription = _0Gbl._myScheduler.Schedule(reboot ? _0Gbl._myEntities.InputDatetime.AlarmTargetTime.GetDateTime() : DetermineAlarmTagetTime(), x => {
+            modentimer?.Dispose();
+
+            modentimer = _0Gbl._myScheduler.Schedule(reboot ? _0Gbl._myEntities.InputDatetime.AlarmTargetTime.GetDateTime()-TimeSpan.FromMinutes(45) : DetermineAlarmTagetTime() - TimeSpan.FromMinutes(45), x =>
+            {
+                if (_0Gbl._myEntities.InputBoolean.NotificationAlarm.IsOff()) return;
+                if (_0Gbl._myEntities.InputBoolean.GuestMode.IsOn()) return;
+                if (_0Gbl._myEntities.InputBoolean.Isasleep.IsOff()) return;
+                if (_0Gbl._myEntities.InputSelect.AsleepModemBehaviour.State.ToLower() != "nothing") return;
+
+                _0Gbl._myEntities.Switch.ModemAutoOnPlug.TurnOn();
+
+            });
+
+                alarmSubscription = _0Gbl._myScheduler.Schedule(reboot ? _0Gbl._myEntities.InputDatetime.AlarmTargetTime.GetDateTime() : DetermineAlarmTagetTime(), x => {
                 if (_0Gbl._myEntities.InputBoolean.NotificationAlarm.IsOff()) return;
                 if (_0Gbl._myEntities.InputBoolean.GuestMode.IsOn()) return;
                 if (_0Gbl._myEntities.InputBoolean.Isasleep.IsOff()) return;
