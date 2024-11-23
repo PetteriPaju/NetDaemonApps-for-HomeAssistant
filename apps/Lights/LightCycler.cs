@@ -41,6 +41,16 @@ namespace NetDaemonApps.apps.Lights
             return _currentLight;
         }
 
+        public void Reset()
+        {
+
+            foreach (var l in lightEntities)
+            {
+                l.TurnOff();
+            }
+            _currentLight = null;
+            NextLight();
+        }
 
         private void SetListener(LightEntity light)
         {
@@ -110,8 +120,7 @@ namespace NetDaemonApps.apps.Lights
             }else
             _currentLight?.TurnOff();
 
-           
-         
+
         }
 
         private LightEntity GetNext()
