@@ -118,6 +118,13 @@ namespace NetDaemonApps.apps
             _0Gbl._myEntities.Switch.BedMultiPlugL1.Toggle();
 
         }
+
+        protected override void On3Press()
+        {
+            base.On2Press();
+            _0Gbl._myEntities.Switch.InkplatePlug.Toggle();
+        }
+
     }
 
     public abstract class LoraTabs

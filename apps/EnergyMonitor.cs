@@ -81,7 +81,7 @@ public class EnergyMonitor
             foreach (string s in _0Gbl._myEntities.InputSelect.Electricityranges.stringsFromSelectionDropdown())
             {
                 string[] stings = s.Split(';', StringSplitOptions.TrimEntries);
-                electiricityRanges.TryAdd(double.Parse(stings[0].Replace(".", ","), System.Globalization.NumberStyles.Float), stings[1]);
+                electiricityRanges.TryAdd(double.Parse(stings[0].Replace(",", "."), System.Globalization.NumberStyles.Float), stings[1]);
             }
         }
         ResetRanges();
