@@ -36,7 +36,7 @@ namespace NetDaemonApps.apps
 
             void sub(LightEntity light)
             {
-                if (!lightOffDisposables.ContainsKey(light)) lightOffDisposables.Add(light, new IDisposable[3]);
+                lightOffDisposables.Add(light, new IDisposable[3] {null, null, null});
                 
                 light.StateChanges()
                         .Subscribe(x => {
