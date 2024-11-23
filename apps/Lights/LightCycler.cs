@@ -148,8 +148,7 @@ namespace NetDaemonApps.apps.Lights
                 }
 
             }
-         
-            return nLight;
+            return nLight ?? lightEntities.First();
         }
         private LightEntity GetLoop()
         {
