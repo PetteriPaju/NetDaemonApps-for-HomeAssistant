@@ -93,7 +93,7 @@ namespace NetDaemonApps.apps
                 if (_0Gbl._myEntities.InputBoolean.NotificationAlarm.IsOff()) return;
                 if (_0Gbl._myEntities.InputBoolean.GuestMode.IsOn()) return;
                 if (_0Gbl._myEntities.InputBoolean.Isasleep.IsOff()) return;
-                if (_0Gbl._myEntities.InputSelect.AsleepModemBehaviour.State.ToLower() != "nothing") return;
+                if (_0Gbl._myEntities.InputSelect.AsleepModemBehaviour.State.ToLower() == "nothing") return;
 
                 _0Gbl._myEntities.Switch.ModemAutoOnPlug.TurnOn();
 
