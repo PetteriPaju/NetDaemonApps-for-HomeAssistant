@@ -77,6 +77,26 @@ namespace NetDaemonApps.apps
 
             }
         }
+        protected override void On4Press()
+        {
+            base.On4Press();
+            if (_0Gbl._myEntities.Switch.PcPlug.IsOn())
+                _0Gbl._myEntities.Button.PcPcWalkingpadtoggle.Press();
+            else
+                return;
+        }
+
+        protected override void On4Double()
+        {
+            base.On4Double();
+
+            if (_0Gbl._myEntities.Switch.PcPlug.IsOn())
+                _0Gbl._myEntities.Button.PcPcWalkingpadspeedup.Press();
+            else
+                return;
+          
+        }
+
 
         protected override void On5Hold()
         {

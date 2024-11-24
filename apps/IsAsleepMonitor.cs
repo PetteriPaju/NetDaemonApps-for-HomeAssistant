@@ -100,12 +100,11 @@ namespace NetDaemonApps.apps
             });
 
                 alarmSubscription = _0Gbl._myScheduler.Schedule(reboot ? _0Gbl._myEntities.InputDatetime.AlarmTargetTime.GetDateTime() : DetermineAlarmTagetTime(), x => {
-                if (_0Gbl._myEntities.InputBoolean.NotificationAlarm.IsOff()) return;
-                if (_0Gbl._myEntities.InputBoolean.GuestMode.IsOn()) return;
-                if (_0Gbl._myEntities.InputBoolean.Isasleep.IsOff()) return;
-                var alarmnumber = 1;
-                _0Gbl._myEntities.Script.Actiontodoatalarm.TurnOn();
-                TTS.Speak("Good Morning, ", TTS.TTSPriority.IgnoreAll);
+                    if (_0Gbl._myEntities.InputBoolean.NotificationAlarm.IsOff()) return;
+                    if (_0Gbl._myEntities.InputBoolean.GuestMode.IsOn()) return;
+                    if (_0Gbl._myEntities.InputBoolean.Isasleep.IsOff()) return;
+                    var alarmnumber = 1;
+                    TTS.Speak("Good Morning, ", TTS.TTSPriority.IgnoreAll, null, (MediaPlayerEntity e) => { _0Gbl._myEntities.Script.Actiontodoatalarm.TurnOn(); } );
                 alarmTimer = _0Gbl._myScheduler.RunEvery(TimeSpan.FromMinutes(10), DateTimeOffset.Now + TimeSpan.FromSeconds(3), () => {
 
                     TimeSpan? timeDiff = DateTime.Now - _0Gbl._myEntities?.InputDatetime.Lastisasleeptime.GetDateTime();
