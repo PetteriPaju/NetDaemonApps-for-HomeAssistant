@@ -36,7 +36,7 @@ namespace NetDaemonApps.apps
 
             void sub(LightEntity light)
             {
-                lightOffDisposables.Add(light, new IDisposable[3] {null, null, null});
+                lightOffDisposables.TryAdd(light, new IDisposable[3] {null, null, null});
                 
                 light.StateChanges()
                         .Subscribe(x => {
