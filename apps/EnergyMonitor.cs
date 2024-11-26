@@ -83,6 +83,8 @@ public class EnergyMonitor
                 string[] stings = s.Split(';', StringSplitOptions.TrimEntries);
                 electiricityRanges.TryAdd(double.Parse(stings[0].Replace(",", "."), System.Globalization.NumberStyles.Float), stings[1]);
             }
+
+            electricityRangeKeys = electiricityRanges.Keys.ToList();
         }
         ResetRanges();
 
