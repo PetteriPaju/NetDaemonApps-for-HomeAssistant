@@ -104,15 +104,17 @@ namespace NetDaemonApps.apps
                     if (_0Gbl._myEntities.InputBoolean.GuestMode.IsOn()) return;
                     if (_0Gbl._myEntities.InputBoolean.Isasleep.IsOff()) return;
                     var alarmnumber = 1;
-                    TTS.Speak("Good Morning, ", TTS.TTSPriority.IgnoreAll, null, (MediaPlayerEntity e) => { _0Gbl._myEntities.Script.Actiontodoatalarm.TurnOn(); } );
-                alarmTimer = _0Gbl._myScheduler.RunEvery(TimeSpan.FromMinutes(10), DateTimeOffset.Now + TimeSpan.FromSeconds(3), () => {
+                    _0Gbl._myEntities.Script.Actiontodoatalarm.TurnOn();
+                    _0Gbl._myServices.Script.Playmoomin();
+                    TTS.Speak("Good Morning, ", TTS.TTSPriority.IgnoreAll);
+                alarmTimer = _0Gbl._myScheduler.RunEvery(TimeSpan.FromMinutes(10), DateTimeOffset.Now + TimeSpan.FromSeconds(10), () => {
 
                     TimeSpan? timeDiff = DateTime.Now - _0Gbl._myEntities?.InputDatetime.Lastisasleeptime.GetDateTime();
                     string ttsTime = "its " + DateTime.Now.ToString("H:mm", CultureInfo.InvariantCulture) + ", you have been sleeping for " + timeDiff?.Hours + " hours" + (timeDiff?.Minutes > 0 ? " and " + timeDiff?.Minutes + "minutes" : ". ");
 
                     ttsTime += "This is alarm number " + alarmnumber + ".";
 
-                    TTS.Speak(ttsTime, TTS.TTSPriority.IgnoreAll, null, (MediaPlayerEntity med) => { _0Gbl._myServices.Script.Playmoomin(); });
+                    TTS.Speak(ttsTime, TTS.TTSPriority.IgnoreAll);
                     alarmnumber++;
                 });
                 rebootTimer?.Dispose();
