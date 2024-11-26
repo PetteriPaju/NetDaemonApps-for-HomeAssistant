@@ -18,7 +18,14 @@ namespace NetDaemonApps.apps
         private IDisposable? toiletLightOffWaiterLaptop = null;
         private IDisposable? kitchenLightOffWaiterPc = null;
         private IDisposable? kitchenLightOffWaiterLaptop = null;
-        Dictionary<LightEntity, IDisposable[]> lightOffDisposables = new Dictionary<LightEntity, IDisposable[]>(); 
+        Dictionary<LightEntity, AutorunDisposables> lightOffDisposables = new Dictionary<LightEntity, AutorunDisposables>(); 
+
+        protected class AutorunDisposables
+        {
+            public IDisposable pc = null;
+            public IDisposable laptop = null;
+            public IDisposable disposer = null;
+        }
         public AutoTurnOffs() {
 
             _0Gbl._myEntities.Sensor.PcDisplayDisplayCount.StateChanges().Subscribe(_ => { _0Gbl._myEntities.Button.PcResetbrigtness.Press(); });
@@ -36,39 +43,39 @@ namespace NetDaemonApps.apps
 
             void sub(LightEntity light)
             {
-                lightOffDisposables.TryAdd(light, new IDisposable[3] {null, null, null});
+                lightOffDisposables.TryAdd(light, new AutorunDisposables());
                 
                 light.StateChanges()
                         .Subscribe(x => {
-                            lightOffDisposables[light][0]?.Dispose();
-                            lightOffDisposables[light][1]?.Dispose();
-                            lightOffDisposables[light][2]?.Dispose();
+                            lightOffDisposables[light].pc?.Dispose();
+                            lightOffDisposables[light].laptop?.Dispose();
+                            lightOffDisposables[light].disposer?.Dispose();
 
                             if (light.IsOn() && _0Gbl._myEntities.InputBoolean.GuestMode.IsOff() && _0Gbl._myEntities.InputBoolean.SensorsActive.IsOn())
                             {
                                _0Gbl._myScheduler.Schedule(TimeSpan.FromSeconds(60), () => {
                                    if (light.IsOn())
                                    {
-                                       lightOffDisposables[light][0] = _0Gbl._myEntities.Sensor.PcLastactive.StateChanges().Where(x => x.Old?.State != "unavailable" && x.New?.State != "unavailable").Subscribe(x => {
+                                       lightOffDisposables[light].pc = _0Gbl._myEntities.Sensor.PcLastactive.StateChanges().Where(x => x.Old?.State != "unavailable" && x.New?.State != "unavailable").Subscribe(x => {
                                            light.TurnOff();
-                                           lightOffDisposables[light][0]?.Dispose();
-                                           lightOffDisposables[light][0] = null;
+                                           lightOffDisposables[light].pc?.Dispose();
+                                           lightOffDisposables[light].pc = null;
                                        });
-                                       lightOffDisposables[light][1] = _0Gbl._myEntities.Sensor.EnvyLastactive.StateChanges().Where(x => x.Old?.State != "unavailable" && x.New?.State != "unavailable" && _0Gbl._myEntities.Sensor.EnvyNetworkNetworkCardCount.State == "1").Subscribe(x => {
+                                       lightOffDisposables[light].laptop = _0Gbl._myEntities.Sensor.EnvyLastactive.StateChanges().Where(x => x.Old?.State != "unavailable" && x.New?.State != "unavailable" && _0Gbl._myEntities.Sensor.EnvyNetworkNetworkCardCount.State == "1").Subscribe(x => {
 
                                            light.TurnOff();
-                                           lightOffDisposables[light][1]?.Dispose();
-                                           lightOffDisposables[light][1] = null;
+                                           lightOffDisposables[light].laptop?.Dispose();
+                                           lightOffDisposables[light].laptop = null;
 
                                        });
                                    }
 
                                });
-                                    lightOffDisposables[light][2] = _0Gbl._myScheduler.Schedule(TimeSpan.FromSeconds(600), () => {
-                                    if(lightOffDisposables[light][0] != null)
+                                    lightOffDisposables[light].disposer= _0Gbl._myScheduler.Schedule(TimeSpan.FromSeconds(600), () => {
+                                    if(lightOffDisposables[light].pc != null)
                                     {
-                                        lightOffDisposables[light][0]?.Dispose();
-                                        lightOffDisposables[light][1]?.Dispose();
+                                        lightOffDisposables[light].pc?.Dispose();
+                                        lightOffDisposables[light].laptop?.Dispose();
                                     }
                                 });
                             }
@@ -77,9 +84,9 @@ namespace NetDaemonApps.apps
 
                             if (light.IsOff())
                             {
-                                lightOffDisposables[light][0]?.Dispose();
-                                lightOffDisposables[light][1]?.Dispose();
-                                lightOffDisposables[light][3]?.Dispose();
+                                lightOffDisposables[light].pc?.Dispose();
+                                lightOffDisposables[light].laptop?.Dispose();
+                                lightOffDisposables[light].disposer?.Dispose();
                             }
 
 
