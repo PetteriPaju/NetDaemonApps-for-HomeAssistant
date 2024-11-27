@@ -105,7 +105,7 @@ namespace NetDaemonApps.apps
                     if (_0Gbl._myEntities.InputBoolean.Isasleep.IsOff()) return;
                     var alarmnumber = 1;
                     _0Gbl._myEntities.Script.Actiontodoatalarm.TurnOn();
-                    _0Gbl._myServices.Script.Playmoomin();
+                    _0Gbl._myEntities.Script.Playmoomin.TurnOn();
                     TTS.Speak("Good Morning, ", TTS.TTSPriority.IgnoreAll);
                 alarmTimer = _0Gbl._myScheduler.RunEvery(TimeSpan.FromMinutes(10), DateTimeOffset.Now + TimeSpan.FromSeconds(10), () => {
 
@@ -244,7 +244,7 @@ namespace NetDaemonApps.apps
                 _0Gbl._myEntities.InputDatetime.Lastisasleeptime.SetDatetime(timestamp: new DateTimeOffset(DateTime.Now).ToUnixTimeSeconds());
             });
 
-            _0Gbl._myScheduler.ScheduleCron("1-29,31-59 * * * *", RefreshAll);
+            _0Gbl._myScheduler.ScheduleCron("1-29,31-59 * * * *", CheckAllIsSleepConditions);
             _0Gbl._myScheduler.ScheduleCron("0,30 * * * *", CheckAllIsSleepConditions);
         }
 
