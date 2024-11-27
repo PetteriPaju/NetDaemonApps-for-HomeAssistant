@@ -9,6 +9,7 @@ using System;
 using System.Diagnostics;
 using NetDaemon.HassModel;
 using System.Reactive.Linq;
+using System.Security.Cryptography;
 
 namespace NetDaemonApps.apps
 {
@@ -244,7 +245,7 @@ namespace NetDaemonApps.apps
                 _0Gbl._myEntities.InputDatetime.Lastisasleeptime.SetDatetime(timestamp: new DateTimeOffset(DateTime.Now).ToUnixTimeSeconds());
             });
 
-            _0Gbl._myScheduler.ScheduleCron("1-29,31-59 * * * *", RefreshAll);
+            _0Gbl._myScheduler.ScheduleCron("1-29,31-59 * * * *", CheckAllIsSleepConditions);
             _0Gbl._myScheduler.ScheduleCron("0,30 * * * *", CheckAllIsSleepConditions);
         }
 
@@ -277,7 +278,7 @@ namespace NetDaemonApps.apps
 
             foreach (MonitorMember cond in isAwakeConditions)
             {
-           
+                cond.CheckState();
                 if (cond.currentState)
                 {
                     isAnyTrue = true;
