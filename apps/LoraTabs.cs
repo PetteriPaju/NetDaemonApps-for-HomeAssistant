@@ -4,10 +4,12 @@ using NetDaemonApps.apps.Lights;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Globalization;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
+using System.Reactive.Concurrency;
 
 namespace NetDaemonApps.apps
 {
@@ -45,9 +47,9 @@ namespace NetDaemonApps.apps
             _0Gbl._myEntities.Switch.PcPlug.TurnOn();
         }
 
-        protected override void On3Press()
+        protected override void On4Press()
         {
-            base.On2Press();
+            base.On3Press();
             _0Gbl._myEntities.Switch.PcMultipowermeterMonitors.Toggle();
         }
 
@@ -77,18 +79,18 @@ namespace NetDaemonApps.apps
 
             }
         }
-        protected override void On4Press()
+        protected override void On3Press()
         {
-            base.On4Press();
+            base.On3Press();
             if (_0Gbl._myEntities.Switch.PcPlug.IsOn())
                 _0Gbl._myEntities.Button.PcPcWalkingpadtoggle.Press();
             else
                 return;
         }
 
-        protected override void On4Double()
+        protected override void On3Double()
         {
-            base.On4Double();
+            base.On3Double();
 
             if (_0Gbl._myEntities.Switch.PcPlug.IsOn())
                 _0Gbl._myEntities.Button.PcPcWalkingpadspeedup.Press();
@@ -96,7 +98,16 @@ namespace NetDaemonApps.apps
                 return;
           
         }
+        protected override void On3Hold()
+        {
+            base.On3Hold();
 
+            if (_0Gbl._myEntities.Switch.PcPlug.IsOn())
+                _0Gbl._myEntities.Button.PcPcCwalkingpadspeeddown.Press();
+            else
+                return;
+
+        }
 
         protected override void On5Hold()
         {
@@ -107,16 +118,13 @@ namespace NetDaemonApps.apps
         {
             _0Gbl._myEntities.Switch.SwitchbotEcoflow.Toggle();
         }
-        protected override void On6Hold()
-        {
-            _0Gbl._myEntities.Switch.SwitchbotEcoflow.Toggle();
-        }
-
     }
 
     [NetDaemonApp]
     public class LoraTapBed : LoraTabs
     {
+        private IDisposable? cancelRoutine = null;
+        int pwrpressMode = 0;
 
         public LoraTapBed() : base()
         {
@@ -141,9 +149,88 @@ namespace NetDaemonApps.apps
 
         protected override void On3Press()
         {
-            base.On2Press();
+            base.On3Press();
             _0Gbl._myEntities.Switch.InkplatePlug.Toggle();
         }
+        protected override void On4Press()
+        {
+            base.On2Press();
+            TimeSpan? timeDiff = DateTime.Now - _0Gbl._myEntities?.InputDatetime.Lastisasleeptime.GetDateTime();
+            string ttsTime = "its " + DateTime.Now.ToString("H:mm", CultureInfo.InvariantCulture);
+            if (_0Gbl._myEntities.InputBoolean.Isasleep.IsOn()) ttsTime += ", you have been sleeping for " + timeDiff?.Hours + " hours" + (timeDiff?.Minutes > 0 ? " and " + timeDiff?.Minutes + "minutes" : ". ");
+
+            TTS.Speak(ttsTime, TTS.TTSPriority.IgnoreAll);
+        }
+
+        protected override void On5Press()
+        {
+            base.On5Press();
+            string message = "";
+            pwrpressMode = pwrpressMode == -1 ? 0 : pwrpressMode;
+            switch (pwrpressMode)
+            {
+                case 0:
+                    if (_0Gbl._myEntities.Switch.ModemAutoOnPlug.IsOn())
+                    {
+                        message = "Modem Off";
+                    }
+                    else
+                    {
+                        message = "Modem On";
+                    }
+
+                    cancelRoutine?.Dispose();
+                    cancelRoutine = _0Gbl._myScheduler.Schedule(TimeSpan.FromSeconds(_0Gbl._myEntities.Switch.ModemAutoOnPlug.IsOn() ? 10 : 0), () => {
+
+
+                        if (_0Gbl._myEntities.Switch.ModemAutoOnPlug.IsOn() && _0Gbl._myEntities.BinarySensor.ZatnasPing.IsOn())
+                        {
+                            _0Gbl._myServices.Script.TurnOffServer();
+                            _0Gbl._myScheduler.Schedule(TimeSpan.FromSeconds(_0Gbl._myEntities.Switch.ModemAutoOnPlug.IsOn() ? 5 : 0), () => {
+                                _0Gbl._myEntities.Switch.ModemAutoOnPlug.Toggle();
+                            });
+                        }
+                        else
+                        {
+                            _0Gbl._myEntities.Switch.ModemAutoOnPlug.Toggle();
+                        }
+
+                        pwrpressMode = -1;
+                        cancelRoutine = null;
+
+                    });
+                    break;
+
+                case 1:
+                    cancelRoutine?.Dispose();
+                    message = "Everything Off";
+                    cancelRoutine = _0Gbl._myScheduler.Schedule(TimeSpan.FromSeconds(30), () => {
+                        _0Gbl._myServices.Script.TurnOffEverything();
+                        pwrpressMode = 0;
+                    });
+                    break;
+                case 2:
+                    message = "Cancel";
+                    if (cancelRoutine != null)
+                    {
+                        cancelRoutine.Dispose();
+                        cancelRoutine = null;
+                    }
+                    break;
+            }
+            pwrpressMode = pwrpressMode == 2 ? 0 : pwrpressMode + 1;
+
+            TTS.Speak(message, TTS.TTSPriority.IgnoreSleep);
+
+        }
+
+        protected override void On6Press()
+        {
+            base.On6Press();
+            IsAsleepMonitor.ToggleMode();
+
+        }
+
 
     }
 

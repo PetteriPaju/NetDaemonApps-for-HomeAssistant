@@ -114,13 +114,13 @@ namespace NetDaemonApps.apps
                 }
                */
                 lastAnnounsmentTime = DateTime.Now;
-                tts.Speak("media_player.vlc_telnet_2", text, getTTSService());
+                tts.Speak("media_player.vlc_telnet", text, getTTSService());
 
                 _0Gbl._myScheduler.Schedule(TimeSpan.FromSeconds(1),() => {
                     IDisposable disp = null;
-                   disp = _0Gbl._myEntities.MediaPlayer.VlcTelnet2.StateChanges().Where(x => x.New?.State != "playing").Subscribe(x => {
+                   disp = _0Gbl._myEntities.MediaPlayer.VlcTelnet.StateChanges().Where(x => x.New?.State != "playing").Subscribe(x => {
 
-                        callback?.Invoke(_0Gbl._myEntities.MediaPlayer.VlcTelnet2);
+                        callback?.Invoke(_0Gbl._myEntities.MediaPlayer.VlcTelnet);
                         
                        disp?.Dispose();
                     });

@@ -79,17 +79,15 @@ namespace NetDaemonApps.apps
                     break;
 
             }
-            TTS.Speak("Sleep Mode set to" +nextmode, TTS.TTSPriority.Default);
-            instance.Resub();
-       
+            TTS.Speak("Sleep Mode set to" +nextmode, TTS.TTSPriority.Default);       
         }
-        public void Resub(bool reboot = false)
+        public void Resub(bool reboot = false, string mode = null)
         {
 
             alarmSubscription?.Dispose();
             modentimer?.Dispose();
 
-            modentimer = _0Gbl._myScheduler.Schedule(reboot ? _0Gbl._myEntities.InputDatetime.AlarmTargetTime.GetDateTime()-TimeSpan.FromMinutes(45) : DetermineAlarmTagetTime() - TimeSpan.FromMinutes(45), x =>
+            modentimer = _0Gbl._myScheduler.Schedule(reboot ? _0Gbl._myEntities.InputDatetime.AlarmTargetTime.GetDateTime()-TimeSpan.FromMinutes(45) : DetermineAlarmTagetTime(mode) - TimeSpan.FromMinutes(45), x =>
             {
                 if (_0Gbl._myEntities.InputBoolean.NotificationAlarm.IsOff()) return;
                 if (_0Gbl._myEntities.InputBoolean.GuestMode.IsOn()) return;
@@ -100,7 +98,7 @@ namespace NetDaemonApps.apps
 
             });
 
-                alarmSubscription = _0Gbl._myScheduler.Schedule(reboot ? _0Gbl._myEntities.InputDatetime.AlarmTargetTime.GetDateTime() : DetermineAlarmTagetTime(), x => {
+                alarmSubscription = _0Gbl._myScheduler.Schedule(reboot ? _0Gbl._myEntities.InputDatetime.AlarmTargetTime.GetDateTime() : DetermineAlarmTagetTime(mode), x => {
                     if (_0Gbl._myEntities.InputBoolean.NotificationAlarm.IsOff()) return;
                     if (_0Gbl._myEntities.InputBoolean.GuestMode.IsOn()) return;
                     if (_0Gbl._myEntities.InputBoolean.Isasleep.IsOff()) return;
@@ -128,12 +126,12 @@ namespace NetDaemonApps.apps
 
         }
 
-        private DateTimeOffset DetermineAlarmTagetTime()
+        private DateTimeOffset DetermineAlarmTagetTime(string mode)
         {
     
             DateTimeOffset dto;
          
-            switch (_0Gbl._myEntities.InputSelect.AlarmSleepMode.State)
+            switch (mode)
             {
                 case "Normal":
                     dto =  DateTime.Now + new TimeSpan((int)_0Gbl._myEntities.InputDatetime.AlarmSleepDuration.Attributes.Hour, (int)_0Gbl._myEntities.InputDatetime.AlarmSleepDuration.Attributes.Minute, 0);
@@ -163,7 +161,6 @@ namespace NetDaemonApps.apps
 
 
             _0Gbl._myEntities.InputDatetime.AlarmTargetTime.SetDatetime(timestamp: unixTime);
-            Console.WriteLine("Alarm: " + _0Gbl._myEntities.InputDatetime.AlarmTargetTime.GetDateTime());
 
             return dto;
 
@@ -226,7 +223,13 @@ namespace NetDaemonApps.apps
 
             _0Gbl._myEntities.InputSelect.AlarmSleepMode.StateChanges().Where(x => (x?.Old.State != "unavailable" && x?.Old.State != "unknown")).Subscribe(x => {
 
-                Resub();
+                Resub(false, _0Gbl._myEntities.InputSelect.AlarmSleepMode.State);
+
+            });
+
+            _0Gbl._myEntities.InputDatetime.AlarmTargetTime.StateChanges().Where(x => (x?.Old.State != "unavailable" && x?.Old.State != "unknown")).Subscribe(x => {
+
+                Console.WriteLine("Alarm: " + _0Gbl._myEntities.InputDatetime.AlarmTargetTime.GetDateTime());
 
             });
 

@@ -5,6 +5,7 @@ using NetDaemon.HassModel.Entities;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Globalization;
 using System.Linq;
 using System.Reactive.Concurrency;
 using System.Reactive.Linq;
@@ -78,10 +79,12 @@ public class EnergyMonitor
         void ResetRanges()
         {
             electiricityRanges = new Dictionary<double, string>();
+
             foreach (string s in _0Gbl._myEntities.InputSelect.Electricityranges.stringsFromSelectionDropdown())
             {
                 string[] stings = s.Split(';', StringSplitOptions.TrimEntries);
-                electiricityRanges.TryAdd(double.Parse(stings[0].Replace(",", "."), System.Globalization.NumberStyles.Float), stings[1]);
+                Console.WriteLine(NumberFormatInfo.CurrentInfo.CurrencyDecimalSeparator);
+                electiricityRanges.TryAdd(double.Parse(stings[0].Replace(",",NumberFormatInfo.CurrentInfo.CurrencyDecimalSeparator).Replace(".", NumberFormatInfo.CurrentInfo.CurrencyDecimalSeparator)), stings[1]);
             }
 
             electricityRangeKeys = electiricityRanges.Keys.ToList();
