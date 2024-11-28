@@ -130,6 +130,7 @@ namespace NetDaemonApps.apps
                 }
             else
             {
+                callback?.Invoke();
                 Console.WriteLine("(TTS ignored) " + text);
             }
                
