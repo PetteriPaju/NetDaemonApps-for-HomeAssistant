@@ -9,6 +9,7 @@ using System;
 using System.Diagnostics;
 using NetDaemon.HassModel;
 using System.Reactive.Linq;
+using System.Security.Cryptography;
 
 namespace NetDaemonApps.apps
 {
@@ -280,7 +281,7 @@ namespace NetDaemonApps.apps
 
             foreach (MonitorMember cond in isAwakeConditions)
             {
-           
+                cond.CheckState();
                 if (cond.currentState)
                 {
                     isAnyTrue = true;
