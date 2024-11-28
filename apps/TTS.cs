@@ -42,7 +42,7 @@ namespace NetDaemonApps.apps
 
 
 
-        public static void Speak(string text, TTSPriority overrider = TTSPriority.Default, InputBooleanEntity? inputBoolean = null, Action<MediaPlayerEntity> callback = null)
+        public static void Speak(string text, TTSPriority overrider = TTSPriority.Default, InputBooleanEntity? inputBoolean = null, Action callback = null)
         {
             if (Instance != null)
             {
@@ -100,7 +100,7 @@ namespace NetDaemonApps.apps
 
         }
 
-        public void SpeakTTS(string text,Action<MediaPlayerEntity> callback = null, params TTSPriority[] overriders)
+        public void SpeakTTS(string text,Action callback = null, params TTSPriority[] overriders)
         {
 
             if (allowTTS(overriders))
@@ -120,7 +120,7 @@ namespace NetDaemonApps.apps
                     IDisposable disp = null;
                    disp = _0Gbl._myEntities.MediaPlayer.VlcTelnet.StateChanges().Where(x => x.New?.State != "playing").Subscribe(x => {
 
-                        callback?.Invoke(_0Gbl._myEntities.MediaPlayer.VlcTelnet);
+                        callback?.Invoke();
                         
                        disp?.Dispose();
                     });
