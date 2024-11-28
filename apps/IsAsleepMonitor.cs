@@ -106,13 +106,16 @@ namespace NetDaemonApps.apps
                     var alarmnumber = 1;
                     _0Gbl._myEntities.Script.Actiontodoatalarm.TurnOn();
                     _0Gbl._myEntities.Script.Playmoomin.TurnOn();
-                    TTS.Speak("Good Morning, ", TTS.TTSPriority.IgnoreAll);
+
                 alarmTimer = _0Gbl._myScheduler.RunEvery(TimeSpan.FromMinutes(10), DateTimeOffset.Now + TimeSpan.FromSeconds(10), () => {
 
                     TimeSpan? timeDiff = DateTime.Now - _0Gbl._myEntities?.InputDatetime.Lastisasleeptime.GetDateTime();
-                    string ttsTime = "its " + DateTime.Now.ToString("H:mm", CultureInfo.InvariantCulture) + ", you have been sleeping for " + timeDiff?.Hours + " hours" + (timeDiff?.Minutes > 0 ? " and " + timeDiff?.Minutes + "minutes" : ". ");
+                    string ttsTime;
+                    if (alarmnumber == 1) ttsTime = "Good Morning";
+                     ttsTime = "its " + DateTime.Now.ToString("H:mm", CultureInfo.InvariantCulture) + ", you have been sleeping for " + timeDiff?.Hours + " hours" + (timeDiff?.Minutes > 0 ? " and " + timeDiff?.Minutes + "minutes" : ". ");
 
-                    ttsTime += "This is alarm number " + alarmnumber + ".";
+                    if(alarmnumber > 1)
+                    ttsTime += "It has been " + (alarmnumber-1)*10 +" minutes" ;
 
                     TTS.Speak(ttsTime, TTS.TTSPriority.IgnoreAll);
                     alarmnumber++;
