@@ -25,11 +25,17 @@ namespace NetDaemonApps.apps
 
         private IDisposable? alarmTimer;
         private IDisposable? alarmSubscription = null;
+        private IDisposable? alarmSubscription2 = null;
+        private IDisposable? lightSleepWaiter = null;
+
         private IDisposable? isAsleepOnTimer = null;
         private IDisposable? isAsleepOffTimer = null;
 
         private IDisposable? rebootTimer = null;
         private IDisposable? modentimer = null;
+
+        private bool ringingAlarm = false;
+
 
         private class MonitorMember
         {
@@ -85,10 +91,74 @@ namespace NetDaemonApps.apps
         {
 
             alarmSubscription?.Dispose();
+            alarmSubscription2?.Dispose();
+
             modentimer?.Dispose();
 
-            modentimer = _0Gbl._myScheduler.Schedule(reboot ? _0Gbl._myEntities.InputDatetime.AlarmTargetTime.GetDateTime()-TimeSpan.FromMinutes(45) : DetermineAlarmTagetTime(mode) - TimeSpan.FromMinutes(45), x =>
+    
+
+
+            void AlarmFunction()
             {
+                if (_0Gbl._myEntities.InputBoolean.NotificationAlarm.IsOff()) return;
+                if (_0Gbl._myEntities.InputBoolean.GuestMode.IsOn()) return;
+                if (_0Gbl._myEntities.InputBoolean.Isasleep.IsOff()) return;
+                var alarmnumber = 1;
+                _0Gbl._myEntities.Script.Actiontodoatalarm.TurnOn();
+
+                alarmTimer = _0Gbl._myScheduler.RunEvery(TimeSpan.FromMinutes(10), DateTime.Now, () => {
+
+                    TimeSpan? timeDiff = DateTime.Now - _0Gbl._myEntities?.InputDatetime.Lastisasleeptime.GetDateTime();
+                    string ttsTime;
+                    if (alarmnumber == 1) ttsTime = "Good Morning";
+                    ttsTime = "its " + DateTime.Now.ToString("H:mm", CultureInfo.InvariantCulture) + ", you have been sleeping for " + timeDiff?.Hours + " hours" + (timeDiff?.Minutes > 0 ? " and " + timeDiff?.Minutes + "minutes" : ". ");
+
+                    if (alarmnumber > 1)
+                        ttsTime += "It has been " + (alarmnumber - 1) * 10 + " minutes";
+
+                    TTS.Speak(ttsTime, TTS.TTSPriority.IgnoreAll, null, _0Gbl._myEntities.Script.Playmoomin.TurnOn);
+                    ringingAlarm = true;
+                    alarmnumber++;
+                });
+                rebootTimer?.Dispose();
+            }
+
+            TimeSpan awakeSpan = TimeSpan.Zero;
+            TimeSpan awakeAfter = TimeSpan.Zero;
+
+            mode = mode == null ? _0Gbl._myEntities.InputSelect.AlarmSleepMode.State : mode;
+
+            switch (mode)
+            {
+                case "Normal" :
+                    awakeSpan = TimeSpan.FromMinutes(45);
+                    awakeAfter = TimeSpan.FromMinutes(15);
+                    break;
+                case "Exact Time":
+                    awakeSpan = TimeSpan.FromMinutes(15);
+                    break;
+
+                case "Nap":
+                    awakeSpan = TimeSpan.FromMinutes(15);
+                    awakeAfter = TimeSpan.FromMinutes(15);
+                    break;
+            }
+
+            lightSleepWaiter = _0Gbl._myScheduler.Schedule((reboot ? _0Gbl._myEntities.InputDatetime.AlarmTargetTime.GetDateTime() : DetermineAlarmTagetTime(mode)) - awakeSpan, x =>
+            {
+
+                alarmSubscription2 = _0Gbl._myEntities.InputText.WithingsSleepState.StateChanges().Where(x => x.New.State == "Light").Subscribe(x =>
+                {
+                    alarmSubscription?.Dispose();
+                    alarmSubscription2?.Dispose();
+                    AlarmFunction();
+                });
+
+            });
+
+            modentimer = _0Gbl._myScheduler.Schedule((reboot ? _0Gbl._myEntities.InputDatetime.AlarmTargetTime.GetDateTime(): DetermineAlarmTagetTime(mode))- TimeSpan.FromMinutes(45), x =>
+            {              
+
                 if (_0Gbl._myEntities.InputBoolean.NotificationAlarm.IsOff()) return;
                 if (_0Gbl._myEntities.InputBoolean.GuestMode.IsOn()) return;
                 if (_0Gbl._myEntities.InputBoolean.Isasleep.IsOff()) return;
@@ -96,30 +166,16 @@ namespace NetDaemonApps.apps
 
                 _0Gbl._myEntities.Switch.ModemAutoOnPlug.TurnOn();
 
+
+
             });
 
-                alarmSubscription = _0Gbl._myScheduler.Schedule(reboot ? _0Gbl._myEntities.InputDatetime.AlarmTargetTime.GetDateTime() : DetermineAlarmTagetTime(mode), x => {
-                    if (_0Gbl._myEntities.InputBoolean.NotificationAlarm.IsOff()) return;
-                    if (_0Gbl._myEntities.InputBoolean.GuestMode.IsOn()) return;
-                    if (_0Gbl._myEntities.InputBoolean.Isasleep.IsOff()) return;
-                    var alarmnumber = 1;
-                    _0Gbl._myEntities.Script.Actiontodoatalarm.TurnOn();
 
-                alarmTimer = _0Gbl._myScheduler.RunEvery(TimeSpan.FromMinutes(10), DateTime.Now, () => {
+            alarmSubscription = _0Gbl._myScheduler.Schedule((reboot ? _0Gbl._myEntities.InputDatetime.AlarmTargetTime.GetDateTime() : DetermineAlarmTagetTime(mode))+awakeAfter, x => {
+                alarmSubscription?.Dispose();
+                alarmSubscription2?.Dispose();
+                AlarmFunction();
 
-                    TimeSpan? timeDiff = DateTime.Now - _0Gbl._myEntities?.InputDatetime.Lastisasleeptime.GetDateTime();
-                    string ttsTime;
-                    if (alarmnumber == 1) ttsTime = "Good Morning";
-                     ttsTime = "its " + DateTime.Now.ToString("H:mm", CultureInfo.InvariantCulture) + ", you have been sleeping for " + timeDiff?.Hours + " hours" + (timeDiff?.Minutes > 0 ? " and " + timeDiff?.Minutes + "minutes" : ". ");
-
-                    if(alarmnumber > 1)
-                    ttsTime += "It has been " + (alarmnumber-1)*10 +" minutes" ;
-
-                    TTS.Speak(ttsTime, TTS.TTSPriority.IgnoreAll,null, _0Gbl._myEntities.Script.Playmoomin.TurnOn);
-
-                    alarmnumber++;
-                });
-                rebootTimer?.Dispose();
             });
 
 
@@ -197,6 +253,17 @@ namespace NetDaemonApps.apps
             CheckAllIsSleepConditions();
 
             Resub(true);
+
+
+            _0Gbl._myEntities.BinarySensor.WithingsInBed.StateChanges().Where(x => x.New.IsOff()).Subscribe(x => {
+
+                if (ringingAlarm)
+                {
+                    _0Gbl._myEntities.InputBoolean.Isasleep.IsOff();
+                    ringingAlarm = false;
+                }
+            
+            });
 
             _0Gbl._myEntities.InputBoolean.Isasleep.StateChanges().Where(x => x?.New?.State == "off" && x?.Old.State == "on").Subscribe(x => {
 
@@ -345,7 +412,6 @@ namespace NetDaemonApps.apps
           
             
         }
-
 
         }
 
