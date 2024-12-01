@@ -115,25 +115,6 @@ namespace NetDaemonApps.apps
             });
 
 
-
-       
-            _0Gbl._myEntities.Switch.PcPlug.StateChanges().Where(x => x.New?.State == "off" && x.Old?.State == "on")
-                .Subscribe(_ => {
-
-
-                if (_0Gbl._myEntities.Sensor.EnvyNetworkNetworkCardCount.AsNumeric().State != 1)
-                {
-                        _0Gbl._myEntities.Light.PcMultipowermeterL1.TurnOff();
-                        _0Gbl._myEntities.Switch.PcMultipowermeterMonitors.TurnOff();
-                }
-               
-                 //_0Gbl._myEntities.Scene.SwitchUsbPc.TurnOn();
-
-            });
-
-            
-
-
             _0Gbl._myEntities.Sensor.EnvyBatteryChargeRemainingPercentage.StateChanges().Where(x => x?.New?.State < _0Gbl._myEntities.InputNumber.SettingsLaptopchargerturnonpercent.State)
                 .Subscribe(_ => {
 

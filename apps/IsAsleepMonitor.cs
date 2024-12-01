@@ -307,7 +307,7 @@ namespace NetDaemonApps.apps
 
                 rebootTimer = _0Gbl._myScheduler.ScheduleCron("10 * * * *", () =>
                 {
-                    _0Gbl._myEntities.Button.NodePveReboot.Press();  
+                 //   _0Gbl._myEntities.Button.NodePveReboot.Press();  
                     rebootTimer?.Dispose();
                 });
 
