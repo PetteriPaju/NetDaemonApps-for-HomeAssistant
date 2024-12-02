@@ -252,10 +252,6 @@ namespace NetDaemonApps.apps
                 var condition = new MonitorMember(_0Gbl._myEntities.Light.Awakelights.IsOn, "Lights");
                 isAwakeConditions.Add(condition);
             }
-            {
-                var condition = new MonitorMember(() => { return (_0Gbl._myEntities.BinarySensor.WithingsInBed.IsOn() || _0Gbl._myEntities.BinarySensor.WithingsInBed.State == "unavalable"); }, "In Bed");
-                isAwakeConditions.Add(condition);
-            }
 
             CheckAllIsSleepConditions();
 
