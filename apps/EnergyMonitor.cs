@@ -36,7 +36,7 @@ public class EnergyMonitor
 
     private double abNormalEnergyIncreaseThreshold = 0.2;
 
-    private static EnergyMonitor? _instance;
+    public static EnergyMonitor? _instance;
     ElectricityPriceInfo? infoForCurrentHour { get { return hoursToday[DateTime.Now.Hour]; } }
 
     private double marginOfErrorFix = 1.07;

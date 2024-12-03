@@ -269,6 +269,9 @@ namespace NetDaemonApps.apps
 
             _0Gbl._myEntities.InputBoolean.Isasleep.StateChanges().Where(x => x?.New?.State == "off" && x?.Old.State == "on").Subscribe(x => {
 
+                ringingAlarm = false;
+
+
                 if(_0Gbl._myEntities.InputSelect.AlarmSleepMode.State == "Nap" || _0Gbl._myEntities.InputSelect.AlarmSleepMode.State == "Free")
                 _0Gbl._myEntities.InputSelect.AlarmSleepMode.SelectOption("Normal");
 
