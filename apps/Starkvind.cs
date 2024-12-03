@@ -15,7 +15,7 @@ namespace NetDaemonApps.apps
     {
         public Starkvind(IHaContext ha) {
 
-            _0Gbl._myScheduler.ScheduleCron("1 * * * *", HourlyTurnOnCheck);
+            _0Gbl._myScheduler.ScheduleCron("30 0 * * * *", HourlyTurnOnCheck,true);
 
         }
 
