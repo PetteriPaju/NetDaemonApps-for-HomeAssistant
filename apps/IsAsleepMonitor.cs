@@ -261,7 +261,7 @@ namespace NetDaemonApps.apps
 
                 if (ringingAlarm)
                 {
-                    _0Gbl._myEntities.InputBoolean.Isasleep.IsOff();
+                    _0Gbl._myEntities.InputBoolean.Isasleep.TurnOff();
                     ringingAlarm = false;
                 }
             
