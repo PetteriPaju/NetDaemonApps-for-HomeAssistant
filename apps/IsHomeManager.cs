@@ -69,9 +69,9 @@ namespace NetDaemonApps.apps
                 });
 
 
-            _0Gbl._myEntities.BinarySensor.FrontDoorSensorContact.StateChanges().Where(x => x.New?.State == "on" && x.Old?.State == "off" && _0Gbl._myEntities.InputBoolean.Ishome.IsOn() && _0Gbl._myEntities.InputBoolean.SensorsActive.IsOn() && _0Gbl._myEntities.InputBoolean.GuestMode.IsOff())
+            _0Gbl._myEntities.BinarySensor.FrontDoorSensorContact.StateChanges().Where(x => x.New?.State == "off" && x.Old?.State == "on" && _0Gbl._myEntities.InputBoolean.Ishome.IsOn() && _0Gbl._myEntities.InputBoolean.SensorsActive.IsOn() && _0Gbl._myEntities.InputBoolean.GuestMode.IsOff())
                 .SubscribeAsync(async s => {
-                    await Task.Delay((int)TimeSpan.FromSeconds(15).TotalMilliseconds);
+                    await Task.Delay((int)TimeSpan.FromSeconds(5).TotalMilliseconds);
                     isCancelled = false;
 
                     _instance.cancelWait = true;
