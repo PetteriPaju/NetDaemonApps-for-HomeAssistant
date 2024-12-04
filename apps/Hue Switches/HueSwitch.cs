@@ -34,6 +34,7 @@ namespace NetDaemonApps.apps.Hue_Switches
         private void DetermineAction(string stateName)
         {
             Console.WriteLine("State:" + stateName);
+            if (IsHomeManager.CancelIsHome()) return;
             switch (stateName)
             {
                 // Power Button

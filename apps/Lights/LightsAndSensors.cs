@@ -54,6 +54,7 @@ namespace NetDaemonApps.apps.Lights
 
             _0Gbl._myEntities.BinarySensor.FridgeContactSensorContact.StateChanges().Where(x => ((bool)x?.New.IsOn())).Subscribe( _ => {
                 _0Gbl._myEntities.Light.KitchenLight2.TurnOnWithSensor(_0Gbl._myEntities.Sensor.OutdoorsBrightness, defaultFluz);
+                IsHomeManager.CancelIsHome();
             });
 
             _0Gbl._myEntities.BinarySensor.FridgeContactSensorContact.StateChanges().WhenStateIsFor(x => ((bool)x?.IsOff()), TimeSpan.FromSeconds(50), _0Gbl._myScheduler).Subscribe(_ => {

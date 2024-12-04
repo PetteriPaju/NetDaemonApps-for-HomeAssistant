@@ -79,7 +79,7 @@ namespace NetDaemonApps.apps
             private void DetermineAction(string stateName)
             {
                 knobStepWaiter?.Dispose();
-             
+                if (IsHomeManager.CancelIsHome()) return;
                 switch (stateName)
                 {
                     case "brightness_step_down":

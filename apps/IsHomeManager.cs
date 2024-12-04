@@ -20,16 +20,30 @@ using System.Reactive.Linq;
 
 namespace NetDaemonApps.apps
 {
-  //  [NetDaemonApp]
+  [NetDaemonApp]
     public class IsHomeManager
     {
-        protected Notifications.Actionable_NotificationData mobileNotificationData;
-        private IDisposable? isHomeCancelFollower;
-        private IDisposable? outOfHomeUntilTimeoutFollower;
         private  TimeSpan notificationTimeOut = TimeSpan.FromSeconds(30);
+        public bool isCancelled = false;
+        public bool cancelWait = false;
+
+        public static IsHomeManager _instance { get; private set; }
+        public static bool CancelIsHome()
+        {
+            if (_instance.cancelWait)
+            {
+                _instance.isCancelled = true;
+                _instance.cancelWait = false;
+                TTS.Instance?.SpeakTTS("OK never mind");
+                return true;
+            }
+
+            return false;
+        }
+
         public IsHomeManager() {
 
-
+            _instance = this;
         /*
      
             mobileNotificationData = new Notifications.Actionable_NotificationData("I noticed you might not be home.");
@@ -44,12 +58,6 @@ namespace NetDaemonApps.apps
                 Data = mobileNotificationData.data
             };
         */
-            isHomeCancelFollower = null;
-
-
-
-
-            var isCancelled = false;
 
             _0Gbl._myEntities.InputBoolean.SensorsActive.StateChanges().Where(x => x.New?.State == "off" && x.Old?.State == "on").Subscribe(x => {_0Gbl._myEntities.InputBoolean.Ishome.TurnOn(); });
             _0Gbl._myEntities.InputBoolean.GuestMode.StateChanges().Where(x => x.New?.State == "off" && x.Old?.State == "on").Subscribe(x => { _0Gbl._myEntities.InputBoolean.Ishome.TurnOn(); });
@@ -57,30 +65,17 @@ namespace NetDaemonApps.apps
             _0Gbl._myEntities.BinarySensor.FrontDoorSensorContact.StateChanges().Where(x => x.New?.State == "off" && x.Old?.State == "on" && _0Gbl._myEntities.InputBoolean.Ishome.IsOff() && _0Gbl._myEntities.InputBoolean.SensorsActive.IsOn() && _0Gbl._myEntities.InputBoolean.GuestMode.IsOff())
                 .Subscribe(x => {
                 _0Gbl._myEntities.InputBoolean.Ishome.TurnOn();
-                    isHomeCancelFollower?.Dispose();
-                    outOfHomeUntilTimeoutFollower?.Dispose();
                     isCancelled = true;
                 });
+
 
             _0Gbl._myEntities.BinarySensor.FrontDoorSensorContact.StateChanges().Where(x => x.New?.State == "off" && x.Old?.State == "on" && _0Gbl._myEntities.InputBoolean.Ishome.IsOn() && _0Gbl._myEntities.InputBoolean.SensorsActive.IsOn() && _0Gbl._myEntities.InputBoolean.GuestMode.IsOff())
                 .SubscribeAsync(async s => {
 
                     isCancelled = false;
-                    _0Gbl._myServices.Script.Sendishomephonenotification();
-                    await Task.Delay(1000);
-                  
 
+                    _instance.cancelWait = true;
                     TTS.Instance?.SpeakTTS("I noticed you might not be at home, can you confirm?");
-
-
-
-                    outOfHomeUntilTimeoutFollower = _0Gbl._myEntities.BinarySensor.FrontDoorSensorContact.StateChanges().Where(x => x.New?.State == "off" && x.Old?.State == "on").Subscribe(x => { isCancelled = true; });
-                    isHomeCancelFollower = _0Gbl._events.Filter<Notifications.ActionableNotificationResponseData>("mobile_app_notification_action").Where(x => x.Data.action == "IsHome")
-                    .Subscribe(x => { 
-                        isHomeCancelFollower?.Dispose();
-                        outOfHomeUntilTimeoutFollower?.Dispose(); 
-                        TTS.Instance?.SpeakTTS("OK never mind");
-                        isCancelled = true; });
 
                     await Task.Delay((int)notificationTimeOut.TotalMilliseconds);
 
@@ -90,11 +85,7 @@ namespace NetDaemonApps.apps
                         TTS.Instance?.SpeakTTS("I guess he left");
 
                     }
-
-
-                    isHomeCancelFollower?.Dispose();
-                    outOfHomeUntilTimeoutFollower?.Dispose();
-
+                    _instance.cancelWait = false;
                 });
 
 

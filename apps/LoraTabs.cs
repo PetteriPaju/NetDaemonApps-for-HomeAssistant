@@ -255,6 +255,8 @@ namespace NetDaemonApps.apps
 
             if (entity == null) return;
 
+            if (IsHomeManager.CancelIsHome()) return;
+
             switch (entity.State) {
 
                 case "1_single": On1Press(); break;                
