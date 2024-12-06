@@ -220,7 +220,7 @@ namespace NetDaemonApps.apps
             }
             pwrpressMode = pwrpressMode == 2 ? 0 : pwrpressMode + 1;
 
-            TTS.Speak(message, TTS.TTSPriority.IgnoreSleep);
+            TTS.Speak(message, TTS.TTSPriority.IgnoreAll);
 
         }
 

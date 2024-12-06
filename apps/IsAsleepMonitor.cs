@@ -85,7 +85,7 @@ namespace NetDaemonApps.apps
                     break;
 
             }
-            TTS.Speak("Sleep Mode set to" +nextmode, TTS.TTSPriority.Default);       
+            TTS.Speak("Sleep Mode set to" +nextmode, TTS.TTSPriority.IgnoreAll);
         }
         public void Resub(bool reboot = false, string mode = null)
         {
