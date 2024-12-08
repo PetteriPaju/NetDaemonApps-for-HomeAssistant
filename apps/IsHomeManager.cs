@@ -68,6 +68,13 @@ namespace NetDaemonApps.apps
                     isCancelled = true;
                 });
 
+            _0Gbl._myEntities.BinarySensor.HallwaySensorOccupancy.StateChanges().Where(x => x.New?.State == "on" && x.Old?.State == "off" && _0Gbl._myEntities.InputBoolean.Ishome.IsOff() && _0Gbl._myEntities.InputBoolean.SensorsActive.IsOn() && _0Gbl._myEntities.InputBoolean.GuestMode.IsOff() && _0Gbl._myEntities.InputBoolean.Ishome.StateFor(TimeSpan.FromMinutes(2)))
+                .Subscribe(x => {
+                    _0Gbl._myEntities.InputBoolean.Ishome.TurnOn();
+
+                });
+
+
 
             _0Gbl._myEntities.BinarySensor.FrontDoorSensorContact.StateChanges().Where(x => x.New?.State == "off" && x.Old?.State == "on" && _0Gbl._myEntities.InputBoolean.Ishome.IsOn() && _0Gbl._myEntities.InputBoolean.SensorsActive.IsOn() && _0Gbl._myEntities.InputBoolean.GuestMode.IsOff())
                 .SubscribeAsync(async s => {

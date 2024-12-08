@@ -171,12 +171,16 @@ namespace NetDaemonApps.apps
         {
             public SofaKnob(SensorEntity knobAction, SensorEntity knobStep) : base(knobAction, knobStep)
             {
-                lightCycler = new LightCycler(_0Gbl._myEntities.InputBoolean.GuestMode, _0Gbl._myEntities.InputSelect.SofaKnobLights.lightEntitiesFromSelectionDropdown().ToArray());
+               // lightCycler = new LightCycler(_0Gbl._myEntities.InputBoolean.GuestMode, _0Gbl._myEntities.InputSelect.SofaKnobLights.lightEntitiesFromSelectionDropdown().ToArray());
             }
 
-            protected override void OnHold()
+            protected override void OnPress()
             {
-                base.OnHold();
+                base.OnPress();
+
+                _0Gbl._myEntities.InputBoolean.Ishome.TurnOff();
+
+                TTS.Speak("Ok, bye!", TTS.TTSPriority.IgnoreAll);
                
             }
         }
