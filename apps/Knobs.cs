@@ -123,7 +123,7 @@ namespace NetDaemonApps.apps
 
             protected virtual void OnPress()
             {
-                lightCycler.NextLight();
+                lightCycler?.NextLight();
             }
 
             protected virtual void OnStepUp() {
@@ -178,9 +178,10 @@ namespace NetDaemonApps.apps
             {
                 base.OnPress();
 
-                _0Gbl._myEntities.InputBoolean.Ishome.TurnOff();
+                
+                _0Gbl._myEntities.InputBoolean.Ishome.Toggle();
 
-                TTS.Speak("Ok, bye!", TTS.TTSPriority.IgnoreAll);
+                TTS.Speak(_0Gbl._myEntities.InputBoolean.Ishome.IsOn() ? "Ok, bye!" : "Welcome Back", TTS.TTSPriority.IgnoreAll);
                
             }
         }
