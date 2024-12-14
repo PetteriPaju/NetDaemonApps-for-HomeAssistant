@@ -29,7 +29,7 @@ namespace NetDaemonApps.apps
         public AutoTurnOffs() {
 
             _0Gbl._myEntities.Sensor.PcDisplayDisplayCount.StateChanges().Subscribe(_ => { _0Gbl._myEntities.Button.PcResetbrigtness.Press(); });
-            _0Gbl._myEntities.Sensor.PcDisplayDisplay1Resolution.StateChanges().Subscribe(_ => { _0Gbl._myEntities.Button.PcResetbrigtness.Press(); });
+            //_0Gbl._myEntities.Sensor.PcDisplayDisplay1Resolution.StateChanges().Subscribe(_ => { _0Gbl._myEntities.Button.PcResetbrigtness.Press(); });
 
             _0Gbl._myEntities.Light.KitchenLight2.StateChanges().WhenStateIsFor(x => x?.State == "on" && _0Gbl._myEntities.InputBoolean.GuestMode.IsOff() , TimeSpan.FromHours(1), _0Gbl._myScheduler)
                 .Subscribe(x => { _0Gbl._myEntities.Light.KitchenLight2.TurnOffLight(); });

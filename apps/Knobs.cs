@@ -149,7 +149,7 @@ namespace NetDaemonApps.apps
             {
                 base.OnHold();
                 if (_0Gbl._myEntities.Switch.PcPlug.IsOn())
-                    _0Gbl._myEntities.Button.PcPcWalkingpadtoggle.Press();
+                    _0Gbl._myEntities.Button.PcWalkingpadtoggle.Press();
                 else
                     return;
             }

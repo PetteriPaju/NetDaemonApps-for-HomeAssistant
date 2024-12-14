@@ -22,25 +22,15 @@ namespace NetDaemonApps.apps
 
             MediaPlayerEntities mPlayers = _0Gbl._myEntities.MediaPlayer;
             Entity phoneEntity = _0Gbl._myEntities.Sensor.MotoG8PowerLiteMediaSession;
-            Entity envyEntity = _0Gbl._myEntities.Sensor.EnvyAudioAudioSessions;
-            Entity pcEntity = _0Gbl._myEntities.Sensor.PcAudioAudioSessions;
+            Entity envyEntity = _0Gbl._myEntities.MediaPlayer.Envy;
+            Entity pcEntity = _0Gbl._myEntities.MediaPlayer.Pc;
 
 
             Entity[] mediaPlayerEntities= new Entity[] { envyEntity, pcEntity, mPlayers.LivingRoomTv, phoneEntity};
 
             void SetEntityForMediaPlayer(Entity ent)
             {
-                if(ent == envyEntity || ent == pcEntity)
-                {
-                    AddEntity(ent, () => {
-                        
-                        int o = -1;
-                        bool parsed = int.TryParse(ent.State, out o);
-                        return parsed ? o > 0 : false;
 
-                    }, CheckAllStates);
-                }
-                else
                     AddEntity(ent, () => { return ent.State?.ToLower() == "playing"; }, CheckAllStates);
             
             }

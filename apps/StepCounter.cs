@@ -2,6 +2,7 @@
 using Microsoft.VisualBasic.FileIO;
 using NetDaemon.Extensions.Scheduler;
 using NetDaemon.HassModel.Entities;
+using System.Collections.Generic;
 using System.Linq;
 using System.Reactive.Concurrency;
 
@@ -13,40 +14,98 @@ namespace NetDaemonApps.apps
     {
         private int lastKnownThreshold = 0;
         private int notificationThreashold = 1000;
-        private static string runnerCsvPath = "/share/runner.csv";
+        private static string runnerCsvPath = "//192.168.0.12/share/runner.csv";
         public StepCounter()
         {
 
-            _0Gbl._myEntities.Sensor.MotoG8PowerLiteLastNotification?.StateAllChanges().Where(x => IsValidStep(x))?.Subscribe(x => ParseSteps(x?.Entity?.EntityState?.Attributes?.Android_title));
+            // _0Gbl._myEntities.Sensor.MotoG8PowerLiteLastNotification?.StateAllChanges().Where(x => IsValidStep(x))?.Subscribe(x => ParseSteps(x?.Entity?.EntityState?.Attributes?.Android_title));
+            _0Gbl._myEntities.Sensor.MotoG8PowerLiteStepsSensor.StateChanges().Subscribe(x => CalculatePhoneSteps(x.Old.State ?? x.New.State, x.New.State));
             lastKnownThreshold = (int)_0Gbl._myEntities.InputNumber.LastKnowStepThreshold.State;
 
+
+            _0Gbl._myEntities.Event.FolderWatcherShare.StateChanges().Subscribe(x => ReadCSV());
             ReadCSV();
             _0Gbl.DailyResetFunction += () =>
             {
                 lastKnownThreshold = 0;
                 _0Gbl._myEntities.InputNumber.LastKnowStepThreshold.SetValue(0); 
                 _0Gbl._myEntities.InputNumber.Dailysteps.SetValue(0);
+                _0Gbl._myEntities.InputNumber.WalkingpadStepsDaily.SetValue(0);
             };
-
 
         }
 
-        void ReadCSV()
+        void RefreshThreshold()
         {
+            var stepsFloored = FloorDownToThousand(_0Gbl._myEntities.InputNumber.Dailysteps.State ?? 0 + (_0Gbl._myEntities.InputNumber.WalkingpadStepsDaily.State ?? 0));
+
+            if (stepsFloored < lastKnownThreshold)
+            {
+                lastKnownThreshold = (int)stepsFloored;
+            }
+
+            if (stepsFloored >= FloorDownToThousand(lastKnownThreshold + notificationThreashold))
+            {
+
+                lastKnownThreshold = (int)stepsFloored;
+                _0Gbl._myEntities.InputNumber.LastKnowStepThreshold.SetValue(lastKnownThreshold);
+
+                TTS.Speak("You have reached " + lastKnownThreshold.ToString() + "steps", TTS.TTSPriority.PlayInGuestMode, _0Gbl._myEntities.InputBoolean.NotificationStepCounter);
+
+            }
+        }
+        void CalculatePhoneSteps(double? old, double? now) {
+
+            double dif = double.Max(0,now ?? 0 - old ?? 0);
+            _0Gbl._myEntities.InputNumber.Dailysteps.AddValue(dif);
+            RefreshThreshold();
+        }
+        int ReadCSV()
+        {
+            int totalSteps = 0;
             using (TextFieldParser parser = new TextFieldParser(runnerCsvPath))
             {
                 parser.TextFieldType = FieldType.Delimited;
                 parser.SetDelimiters(",");
+                List<string[]> strings = new List<string[]>();
                 while (!parser.EndOfData)
                 {
                     //Processing row
                     string[] fields = parser.ReadFields();
-                    foreach (string field in fields)
+                    strings.Add(fields);
+                }
+
+                for(int i = strings.Count-1; i >= 0; i--)
+                {
+                    // Using DateTime.TryParse (more robust for potential parsing errors)
+                    DateTime parsedDateTime;
+                    if (DateTime.TryParse(strings[i][0], out parsedDateTime))
                     {
-                        Console.WriteLine(field);
+                        Console.WriteLine(parsedDateTime);
+                        if (parsedDateTime.Date == DateTime.Today)
+                        {
+                            totalSteps = totalSteps+=int.Parse(strings[i][3]);
+                            break;
+                        }
+                        else
+                        {
+                            break;
+                        }
+
+                        // Successful parsing
+                       
+                    }
+                    else
+                    {   
+                        // Parsing failed
+                        Console.WriteLine("Invalid date-time format.");
                     }
                 }
             }
+
+            _0Gbl._myEntities.InputNumber.WalkingpadStepsDaily.SetValue(totalSteps);
+            RefreshThreshold();
+            return totalSteps;
         }
 
         private void ParseSteps(string? message)
@@ -61,10 +120,11 @@ namespace NetDaemonApps.apps
       
             if (wasParsed && steps>0)
             {
-
-                var stepsFloored = FloorDownToThousand(steps);
-
                 _0Gbl._myEntities.InputNumber.Dailysteps.SetValue(steps);
+
+                var stepsFloored = FloorDownToThousand(steps + (_0Gbl._myEntities.InputNumber.WalkingpadStepsDaily.State ?? 0));
+
+               
 
                 if (stepsFloored < lastKnownThreshold)
                 {

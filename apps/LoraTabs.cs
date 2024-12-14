@@ -83,7 +83,7 @@ namespace NetDaemonApps.apps
         {
             base.On3Press();
             if (_0Gbl._myEntities.Switch.PcPlug.IsOn())
-                _0Gbl._myEntities.Button.PcPcWalkingpadtoggle.Press();
+                _0Gbl._myEntities.Button.PcWalkingpadtoggle.Press();
             else
                 return;
         }
@@ -93,7 +93,7 @@ namespace NetDaemonApps.apps
             base.On3Double();
 
             if (_0Gbl._myEntities.Switch.PcPlug.IsOn())
-                _0Gbl._myEntities.Button.PcPcWalkingpadspeedup.Press();
+                _0Gbl._myEntities.Button.PcWalkingpadspeedup.Press();
             else
                 return;
           
@@ -103,7 +103,7 @@ namespace NetDaemonApps.apps
             base.On3Hold();
 
             if (_0Gbl._myEntities.Switch.PcPlug.IsOn())
-                _0Gbl._myEntities.Button.PcPcCwalkingpadspeeddown.Press();
+                _0Gbl._myEntities.Button.PcCwalkingpadspeeddown.Press();
             else
                 return;
 
@@ -183,17 +183,9 @@ namespace NetDaemonApps.apps
                     cancelRoutine = _0Gbl._myScheduler.Schedule(TimeSpan.FromSeconds(_0Gbl._myEntities.Switch.ModemAutoOnPlug.IsOn() ? 10 : 0), () => {
 
 
-                        if (_0Gbl._myEntities.Switch.ModemAutoOnPlug.IsOn() && _0Gbl._myEntities.BinarySensor.ZatnasPing.IsOn())
-                        {
-                            _0Gbl._myServices.Script.TurnOffServer();
-                            _0Gbl._myScheduler.Schedule(TimeSpan.FromSeconds(_0Gbl._myEntities.Switch.ModemAutoOnPlug.IsOn() ? 5 : 0), () => {
-                                _0Gbl._myEntities.Switch.ModemAutoOnPlug.Toggle();
-                            });
-                        }
-                        else
-                        {
+ 
                             _0Gbl._myEntities.Switch.ModemAutoOnPlug.Toggle();
-                        }
+                        
 
                         pwrpressMode = -1;
                         cancelRoutine = null;

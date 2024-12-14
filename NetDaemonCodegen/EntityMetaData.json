@@ -341,11 +341,6 @@
           "cSharpName": "_192168022"
         },
         {
-          "id": "binary_sensor.192_168_0_25",
-          "friendlyName": "Inkplate Ping",
-          "cSharpName": "_192168025"
-        },
-        {
           "id": "binary_sensor.backups_stale",
           "friendlyName": "Backups Stale",
           "cSharpName": "BackupsStale"
@@ -389,11 +384,6 @@
           "id": "binary_sensor.disk_pve_wdc_wds200t1r0a_68a4w0_dev_sdd_health",
           "friendlyName": "Health",
           "cSharpName": "DiskPveWdcWds200t1r0a68a4w0DevSddHealth"
-        },
-        {
-          "id": "binary_sensor.elegoo_plus_fila",
-          "friendlyName": "Fila",
-          "cSharpName": "ElegooPlusFila"
         },
         {
           "id": "binary_sensor.fan_plug_update_available",
@@ -552,12 +542,12 @@
         },
         {
           "id": "binary_sensor.qemu_haos9_5_100_health",
-          "friendlyName": "QEMU haos9.5 (100) Health",
+          "friendlyName": "QEMU haos14.0 (100) Health",
           "cSharpName": "QemuHaos95100Health"
         },
         {
           "id": "binary_sensor.qemu_haos9_5_100_status",
-          "friendlyName": "QEMU haos9.5 (100) Status",
+          "friendlyName": "QEMU haos14.0 (100) Status",
           "cSharpName": "QemuHaos95100Status"
         },
         {
@@ -661,11 +651,6 @@
           "cSharpName": "WithingsInBed"
         },
         {
-          "id": "binary_sensor.zatnas_ping",
-          "friendlyName": "Zatnas Ping",
-          "cSharpName": "ZatnasPing"
-        },
-        {
           "id": "binary_sensor.zigbee2mqtt_bridge_connection_state",
           "friendlyName": "Zigbee2MQTT Bridge Connection state",
           "cSharpName": "Zigbee2mqttBridgeConnectionState"
@@ -758,141 +743,6 @@
       "domain": "button",
       "entities": [
         {
-          "id": "button.elegoo_plus_cancel_print",
-          "friendlyName": "Cancel Print",
-          "cSharpName": "ElegooPlusCancelPrint"
-        },
-        {
-          "id": "button.elegoo_plus_emergency_stop",
-          "friendlyName": "Emergency Stop",
-          "cSharpName": "ElegooPlusEmergencyStop"
-        },
-        {
-          "id": "button.elegoo_plus_firmware_restart",
-          "friendlyName": "Firmware Restart",
-          "cSharpName": "ElegooPlusFirmwareRestart"
-        },
-        {
-          "id": "button.elegoo_plus_host_restart",
-          "friendlyName": "Host Restart",
-          "cSharpName": "ElegooPlusHostRestart"
-        },
-        {
-          "id": "button.elegoo_plus_host_shutdown",
-          "friendlyName": "Host Shutdown",
-          "cSharpName": "ElegooPlusHostShutdown"
-        },
-        {
-          "id": "button.elegoo_plus_machine_update_refresh",
-          "friendlyName": "Machine Update Refresh",
-          "cSharpName": "ElegooPlusMachineUpdateRefresh"
-        },
-        {
-          "id": "button.elegoo_plus_macro_cancel_print",
-          "friendlyName": "Macro Cancel Print",
-          "cSharpName": "ElegooPlusMacroCancelPrint"
-        },
-        {
-          "id": "button.elegoo_plus_macro_clear_last_file",
-          "friendlyName": "Macro Clear Last File",
-          "cSharpName": "ElegooPlusMacroClearLastFile"
-        },
-        {
-          "id": "button.elegoo_plus_macro_g29",
-          "friendlyName": "Macro G29",
-          "cSharpName": "ElegooPlusMacroG29"
-        },
-        {
-          "id": "button.elegoo_plus_macro_g31",
-          "friendlyName": "Macro G31",
-          "cSharpName": "ElegooPlusMacroG31"
-        },
-        {
-          "id": "button.elegoo_plus_macro_log_z",
-          "friendlyName": "Macro Log Z",
-          "cSharpName": "ElegooPlusMacroLogZ"
-        },
-        {
-          "id": "button.elegoo_plus_macro_m104",
-          "friendlyName": "Macro M104",
-          "cSharpName": "ElegooPlusMacroM104"
-        },
-        {
-          "id": "button.elegoo_plus_macro_m106",
-          "friendlyName": "Macro M106",
-          "cSharpName": "ElegooPlusMacroM106"
-        },
-        {
-          "id": "button.elegoo_plus_macro_m109",
-          "friendlyName": "Macro M109",
-          "cSharpName": "ElegooPlusMacroM109"
-        },
-        {
-          "id": "button.elegoo_plus_macro_m140",
-          "friendlyName": "Macro M140",
-          "cSharpName": "ElegooPlusMacroM140"
-        },
-        {
-          "id": "button.elegoo_plus_macro_m17",
-          "friendlyName": "Macro M17",
-          "cSharpName": "ElegooPlusMacroM17"
-        },
-        {
-          "id": "button.elegoo_plus_macro_m190",
-          "friendlyName": "Macro M190",
-          "cSharpName": "ElegooPlusMacroM190"
-        },
-        {
-          "id": "button.elegoo_plus_macro_m84",
-          "friendlyName": "Macro M84",
-          "cSharpName": "ElegooPlusMacroM84"
-        },
-        {
-          "id": "button.elegoo_plus_macro_pause",
-          "friendlyName": "Macro Pause",
-          "cSharpName": "ElegooPlusMacroPause"
-        },
-        {
-          "id": "button.elegoo_plus_macro_print_end",
-          "friendlyName": "Macro Print End",
-          "cSharpName": "ElegooPlusMacroPrintEnd"
-        },
-        {
-          "id": "button.elegoo_plus_macro_print_start",
-          "friendlyName": "Macro Print Start",
-          "cSharpName": "ElegooPlusMacroPrintStart"
-        },
-        {
-          "id": "button.elegoo_plus_macro_resume",
-          "friendlyName": "Macro Resume",
-          "cSharpName": "ElegooPlusMacroResume"
-        },
-        {
-          "id": "button.elegoo_plus_macro_resume_interrupted",
-          "friendlyName": "Macro Resume Interrupted",
-          "cSharpName": "ElegooPlusMacroResumeInterrupted"
-        },
-        {
-          "id": "button.elegoo_plus_macro_save_last_file",
-          "friendlyName": "Macro Save Last File",
-          "cSharpName": "ElegooPlusMacroSaveLastFile"
-        },
-        {
-          "id": "button.elegoo_plus_pause_print",
-          "friendlyName": "Pause Print",
-          "cSharpName": "ElegooPlusPausePrint"
-        },
-        {
-          "id": "button.elegoo_plus_resume_print",
-          "friendlyName": "Resume Print",
-          "cSharpName": "ElegooPlusResumePrint"
-        },
-        {
-          "id": "button.elegoo_plus_server_restart",
-          "friendlyName": "Server Restart",
-          "cSharpName": "ElegooPlusServerRestart"
-        },
-        {
           "id": "button.envy_turnoffmonitors",
           "friendlyName": "ENVY ENVY_TurnOffMonitors",
           "cSharpName": "EnvyTurnoffmonitors"
@@ -938,6 +788,11 @@
           "cSharpName": "NodePveShutdown"
         },
         {
+          "id": "button.pc_cwalkingpadspeeddown",
+          "friendlyName": "PC PC_cWalkingPadSpeedDown",
+          "cSharpName": "PcCwalkingpadspeeddown"
+        },
+        {
           "id": "button.pc_mediavolumedown",
           "friendlyName": "PC PC_mediavolumedown",
           "cSharpName": "PcMediavolumedown"
@@ -946,21 +801,6 @@
           "id": "button.pc_mediavolumeup",
           "friendlyName": "PC PC_mediavolumeup",
           "cSharpName": "PcMediavolumeup"
-        },
-        {
-          "id": "button.pc_pc_cwalkingpadspeeddown",
-          "friendlyName": "PC PC_cWalkingPadSpeedDown",
-          "cSharpName": "PcPcCwalkingpadspeeddown"
-        },
-        {
-          "id": "button.pc_pc_walkingpadspeedup",
-          "friendlyName": "PC PC_WalkingPadSpeedUp",
-          "cSharpName": "PcPcWalkingpadspeedup"
-        },
-        {
-          "id": "button.pc_pc_walkingpadtoggle",
-          "friendlyName": "PC PC-WalkingPadToggle",
-          "cSharpName": "PcPcWalkingpadtoggle"
         },
         {
           "id": "button.pc_resetbrigtness",
@@ -986,6 +826,16 @@
           "id": "button.pc_wakekey",
           "friendlyName": "PC PC_WakeKey",
           "cSharpName": "PcWakekey"
+        },
+        {
+          "id": "button.pc_walkingpadspeedup",
+          "friendlyName": "PC PC_WalkingPadSpeedUp",
+          "cSharpName": "PcWalkingpadspeedup"
+        },
+        {
+          "id": "button.pc_walkingpadtoggle",
+          "friendlyName": "PC PC-WalkingPadToggle",
+          "cSharpName": "PcWalkingpadtoggle"
         },
         {
           "id": "button.starkvind_identify",
@@ -1108,6 +958,11 @@
           "id": "device_tracker.homeassistant",
           "friendlyName": "homeAssistant",
           "cSharpName": "Homeassistant"
+        },
+        {
+          "id": "device_tracker.homeassistant_2",
+          "friendlyName": "homeassistant",
+          "cSharpName": "Homeassistant2"
         },
         {
           "id": "device_tracker.homeassistantcontainer",
@@ -1382,9 +1237,59 @@
           "cSharpName": "DevNetdaemonNetDaemonAppsApps01LivingRoomFp1"
         },
         {
+          "id": "input_boolean.dev_netdaemon_net_daemon_apps_apps_01_living_room_fp1_10",
+          "friendlyName": "dev_netdaemon_net_daemon_apps_apps__01_living_room_fp1",
+          "cSharpName": "DevNetdaemonNetDaemonAppsApps01LivingRoomFp110"
+        },
+        {
+          "id": "input_boolean.dev_netdaemon_net_daemon_apps_apps_01_living_room_fp1_11",
+          "friendlyName": "dev_netdaemon_net_daemon_apps_apps__01_living_room_fp1",
+          "cSharpName": "DevNetdaemonNetDaemonAppsApps01LivingRoomFp111"
+        },
+        {
+          "id": "input_boolean.dev_netdaemon_net_daemon_apps_apps_01_living_room_fp1_12",
+          "friendlyName": "dev_netdaemon_net_daemon_apps_apps__01_living_room_fp1",
+          "cSharpName": "DevNetdaemonNetDaemonAppsApps01LivingRoomFp112"
+        },
+        {
           "id": "input_boolean.dev_netdaemon_net_daemon_apps_apps_01_living_room_fp1_2",
           "friendlyName": "dev_netdaemon_net_daemon_apps_apps__01_living_room_fp1",
           "cSharpName": "DevNetdaemonNetDaemonAppsApps01LivingRoomFp12"
+        },
+        {
+          "id": "input_boolean.dev_netdaemon_net_daemon_apps_apps_01_living_room_fp1_3",
+          "friendlyName": "dev_netdaemon_net_daemon_apps_apps__01_living_room_fp1",
+          "cSharpName": "DevNetdaemonNetDaemonAppsApps01LivingRoomFp13"
+        },
+        {
+          "id": "input_boolean.dev_netdaemon_net_daemon_apps_apps_01_living_room_fp1_4",
+          "friendlyName": "dev_netdaemon_net_daemon_apps_apps__01_living_room_fp1",
+          "cSharpName": "DevNetdaemonNetDaemonAppsApps01LivingRoomFp14"
+        },
+        {
+          "id": "input_boolean.dev_netdaemon_net_daemon_apps_apps_01_living_room_fp1_5",
+          "friendlyName": "dev_netdaemon_net_daemon_apps_apps__01_living_room_fp1",
+          "cSharpName": "DevNetdaemonNetDaemonAppsApps01LivingRoomFp15"
+        },
+        {
+          "id": "input_boolean.dev_netdaemon_net_daemon_apps_apps_01_living_room_fp1_6",
+          "friendlyName": "dev_netdaemon_net_daemon_apps_apps__01_living_room_fp1",
+          "cSharpName": "DevNetdaemonNetDaemonAppsApps01LivingRoomFp16"
+        },
+        {
+          "id": "input_boolean.dev_netdaemon_net_daemon_apps_apps_01_living_room_fp1_7",
+          "friendlyName": "dev_netdaemon_net_daemon_apps_apps__01_living_room_fp1",
+          "cSharpName": "DevNetdaemonNetDaemonAppsApps01LivingRoomFp17"
+        },
+        {
+          "id": "input_boolean.dev_netdaemon_net_daemon_apps_apps_01_living_room_fp1_8",
+          "friendlyName": "dev_netdaemon_net_daemon_apps_apps__01_living_room_fp1",
+          "cSharpName": "DevNetdaemonNetDaemonAppsApps01LivingRoomFp18"
+        },
+        {
+          "id": "input_boolean.dev_netdaemon_net_daemon_apps_apps_01_living_room_fp1_9",
+          "friendlyName": "dev_netdaemon_net_daemon_apps_apps__01_living_room_fp1",
+          "cSharpName": "DevNetdaemonNetDaemonAppsApps01LivingRoomFp19"
         },
         {
           "id": "input_boolean.dev_netdaemon_net_daemon_apps_apps_0gbl",
@@ -1392,9 +1297,59 @@
           "cSharpName": "DevNetdaemonNetDaemonAppsApps0gbl"
         },
         {
+          "id": "input_boolean.dev_netdaemon_net_daemon_apps_apps_0gbl_10",
+          "friendlyName": "dev_netdaemon_net_daemon_apps_apps__0gbl",
+          "cSharpName": "DevNetdaemonNetDaemonAppsApps0gbl10"
+        },
+        {
+          "id": "input_boolean.dev_netdaemon_net_daemon_apps_apps_0gbl_11",
+          "friendlyName": "dev_netdaemon_net_daemon_apps_apps__0gbl",
+          "cSharpName": "DevNetdaemonNetDaemonAppsApps0gbl11"
+        },
+        {
+          "id": "input_boolean.dev_netdaemon_net_daemon_apps_apps_0gbl_12",
+          "friendlyName": "dev_netdaemon_net_daemon_apps_apps__0gbl",
+          "cSharpName": "DevNetdaemonNetDaemonAppsApps0gbl12"
+        },
+        {
           "id": "input_boolean.dev_netdaemon_net_daemon_apps_apps_0gbl_2",
           "friendlyName": "dev_netdaemon_net_daemon_apps_apps__0gbl",
           "cSharpName": "DevNetdaemonNetDaemonAppsApps0gbl2"
+        },
+        {
+          "id": "input_boolean.dev_netdaemon_net_daemon_apps_apps_0gbl_3",
+          "friendlyName": "dev_netdaemon_net_daemon_apps_apps__0gbl",
+          "cSharpName": "DevNetdaemonNetDaemonAppsApps0gbl3"
+        },
+        {
+          "id": "input_boolean.dev_netdaemon_net_daemon_apps_apps_0gbl_4",
+          "friendlyName": "dev_netdaemon_net_daemon_apps_apps__0gbl",
+          "cSharpName": "DevNetdaemonNetDaemonAppsApps0gbl4"
+        },
+        {
+          "id": "input_boolean.dev_netdaemon_net_daemon_apps_apps_0gbl_5",
+          "friendlyName": "dev_netdaemon_net_daemon_apps_apps__0gbl",
+          "cSharpName": "DevNetdaemonNetDaemonAppsApps0gbl5"
+        },
+        {
+          "id": "input_boolean.dev_netdaemon_net_daemon_apps_apps_0gbl_6",
+          "friendlyName": "dev_netdaemon_net_daemon_apps_apps__0gbl",
+          "cSharpName": "DevNetdaemonNetDaemonAppsApps0gbl6"
+        },
+        {
+          "id": "input_boolean.dev_netdaemon_net_daemon_apps_apps_0gbl_7",
+          "friendlyName": "dev_netdaemon_net_daemon_apps_apps__0gbl",
+          "cSharpName": "DevNetdaemonNetDaemonAppsApps0gbl7"
+        },
+        {
+          "id": "input_boolean.dev_netdaemon_net_daemon_apps_apps_0gbl_8",
+          "friendlyName": "dev_netdaemon_net_daemon_apps_apps__0gbl",
+          "cSharpName": "DevNetdaemonNetDaemonAppsApps0gbl8"
+        },
+        {
+          "id": "input_boolean.dev_netdaemon_net_daemon_apps_apps_0gbl_9",
+          "friendlyName": "dev_netdaemon_net_daemon_apps_apps__0gbl",
+          "cSharpName": "DevNetdaemonNetDaemonAppsApps0gbl9"
         },
         {
           "id": "input_boolean.dev_netdaemon_net_daemon_apps_apps_audio_output_monitor",
@@ -1425,6 +1380,11 @@
           "id": "input_boolean.dev_netdaemon_net_daemon_apps_apps_is_asleep_monitor",
           "friendlyName": "dev_netdaemon_net_daemon_apps_apps_is_asleep_monitor",
           "cSharpName": "DevNetdaemonNetDaemonAppsAppsIsAsleepMonitor"
+        },
+        {
+          "id": "input_boolean.dev_netdaemon_net_daemon_apps_apps_is_home_manager",
+          "friendlyName": "dev_netdaemon_net_daemon_apps_apps_is_home_manager",
+          "cSharpName": "DevNetdaemonNetDaemonAppsAppsIsHomeManager"
         },
         {
           "id": "input_boolean.dev_netdaemon_net_daemon_apps_apps_knobs",
@@ -3632,14 +3592,139 @@
           "cSharpName": "NetdaemonNetDaemonAppsApps01LivingRoomFp11374"
         },
         {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_01_living_room_fp1_1375",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__01_living_room_fp1",
+          "cSharpName": "NetdaemonNetDaemonAppsApps01LivingRoomFp11375"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_01_living_room_fp1_1376",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__01_living_room_fp1",
+          "cSharpName": "NetdaemonNetDaemonAppsApps01LivingRoomFp11376"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_01_living_room_fp1_1377",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__01_living_room_fp1",
+          "cSharpName": "NetdaemonNetDaemonAppsApps01LivingRoomFp11377"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_01_living_room_fp1_1378",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__01_living_room_fp1",
+          "cSharpName": "NetdaemonNetDaemonAppsApps01LivingRoomFp11378"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_01_living_room_fp1_1379",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__01_living_room_fp1",
+          "cSharpName": "NetdaemonNetDaemonAppsApps01LivingRoomFp11379"
+        },
+        {
           "id": "input_boolean.netdaemon_net_daemon_apps_apps_01_living_room_fp1_138",
           "friendlyName": "netdaemon_net_daemon_apps_apps__01_living_room_fp1",
           "cSharpName": "NetdaemonNetDaemonAppsApps01LivingRoomFp1138"
         },
         {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_01_living_room_fp1_1380",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__01_living_room_fp1",
+          "cSharpName": "NetdaemonNetDaemonAppsApps01LivingRoomFp11380"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_01_living_room_fp1_1381",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__01_living_room_fp1",
+          "cSharpName": "NetdaemonNetDaemonAppsApps01LivingRoomFp11381"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_01_living_room_fp1_1382",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__01_living_room_fp1",
+          "cSharpName": "NetdaemonNetDaemonAppsApps01LivingRoomFp11382"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_01_living_room_fp1_1383",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__01_living_room_fp1",
+          "cSharpName": "NetdaemonNetDaemonAppsApps01LivingRoomFp11383"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_01_living_room_fp1_1384",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__01_living_room_fp1",
+          "cSharpName": "NetdaemonNetDaemonAppsApps01LivingRoomFp11384"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_01_living_room_fp1_1385",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__01_living_room_fp1",
+          "cSharpName": "NetdaemonNetDaemonAppsApps01LivingRoomFp11385"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_01_living_room_fp1_1386",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__01_living_room_fp1",
+          "cSharpName": "NetdaemonNetDaemonAppsApps01LivingRoomFp11386"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_01_living_room_fp1_1387",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__01_living_room_fp1",
+          "cSharpName": "NetdaemonNetDaemonAppsApps01LivingRoomFp11387"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_01_living_room_fp1_1388",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__01_living_room_fp1",
+          "cSharpName": "NetdaemonNetDaemonAppsApps01LivingRoomFp11388"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_01_living_room_fp1_1389",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__01_living_room_fp1",
+          "cSharpName": "NetdaemonNetDaemonAppsApps01LivingRoomFp11389"
+        },
+        {
           "id": "input_boolean.netdaemon_net_daemon_apps_apps_01_living_room_fp1_139",
           "friendlyName": "netdaemon_net_daemon_apps_apps__01_living_room_fp1",
           "cSharpName": "NetdaemonNetDaemonAppsApps01LivingRoomFp1139"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_01_living_room_fp1_1390",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__01_living_room_fp1",
+          "cSharpName": "NetdaemonNetDaemonAppsApps01LivingRoomFp11390"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_01_living_room_fp1_1391",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__01_living_room_fp1",
+          "cSharpName": "NetdaemonNetDaemonAppsApps01LivingRoomFp11391"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_01_living_room_fp1_1392",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__01_living_room_fp1",
+          "cSharpName": "NetdaemonNetDaemonAppsApps01LivingRoomFp11392"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_01_living_room_fp1_1393",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__01_living_room_fp1",
+          "cSharpName": "NetdaemonNetDaemonAppsApps01LivingRoomFp11393"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_01_living_room_fp1_1394",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__01_living_room_fp1",
+          "cSharpName": "NetdaemonNetDaemonAppsApps01LivingRoomFp11394"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_01_living_room_fp1_1395",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__01_living_room_fp1",
+          "cSharpName": "NetdaemonNetDaemonAppsApps01LivingRoomFp11395"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_01_living_room_fp1_1396",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__01_living_room_fp1",
+          "cSharpName": "NetdaemonNetDaemonAppsApps01LivingRoomFp11396"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_01_living_room_fp1_1397",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__01_living_room_fp1",
+          "cSharpName": "NetdaemonNetDaemonAppsApps01LivingRoomFp11397"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_01_living_room_fp1_1398",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__01_living_room_fp1",
+          "cSharpName": "NetdaemonNetDaemonAppsApps01LivingRoomFp11398"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_01_living_room_fp1_1399",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__01_living_room_fp1",
+          "cSharpName": "NetdaemonNetDaemonAppsApps01LivingRoomFp11399"
         },
         {
           "id": "input_boolean.netdaemon_net_daemon_apps_apps_01_living_room_fp1_14",
@@ -3652,9 +3737,109 @@
           "cSharpName": "NetdaemonNetDaemonAppsApps01LivingRoomFp1140"
         },
         {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_01_living_room_fp1_1400",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__01_living_room_fp1",
+          "cSharpName": "NetdaemonNetDaemonAppsApps01LivingRoomFp11400"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_01_living_room_fp1_1401",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__01_living_room_fp1",
+          "cSharpName": "NetdaemonNetDaemonAppsApps01LivingRoomFp11401"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_01_living_room_fp1_1402",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__01_living_room_fp1",
+          "cSharpName": "NetdaemonNetDaemonAppsApps01LivingRoomFp11402"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_01_living_room_fp1_1403",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__01_living_room_fp1",
+          "cSharpName": "NetdaemonNetDaemonAppsApps01LivingRoomFp11403"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_01_living_room_fp1_1404",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__01_living_room_fp1",
+          "cSharpName": "NetdaemonNetDaemonAppsApps01LivingRoomFp11404"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_01_living_room_fp1_1405",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__01_living_room_fp1",
+          "cSharpName": "NetdaemonNetDaemonAppsApps01LivingRoomFp11405"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_01_living_room_fp1_1406",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__01_living_room_fp1",
+          "cSharpName": "NetdaemonNetDaemonAppsApps01LivingRoomFp11406"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_01_living_room_fp1_1407",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__01_living_room_fp1",
+          "cSharpName": "NetdaemonNetDaemonAppsApps01LivingRoomFp11407"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_01_living_room_fp1_1408",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__01_living_room_fp1",
+          "cSharpName": "NetdaemonNetDaemonAppsApps01LivingRoomFp11408"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_01_living_room_fp1_1409",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__01_living_room_fp1",
+          "cSharpName": "NetdaemonNetDaemonAppsApps01LivingRoomFp11409"
+        },
+        {
           "id": "input_boolean.netdaemon_net_daemon_apps_apps_01_living_room_fp1_141",
           "friendlyName": "netdaemon_net_daemon_apps_apps__01_living_room_fp1",
           "cSharpName": "NetdaemonNetDaemonAppsApps01LivingRoomFp1141"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_01_living_room_fp1_1410",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__01_living_room_fp1",
+          "cSharpName": "NetdaemonNetDaemonAppsApps01LivingRoomFp11410"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_01_living_room_fp1_1411",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__01_living_room_fp1",
+          "cSharpName": "NetdaemonNetDaemonAppsApps01LivingRoomFp11411"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_01_living_room_fp1_1412",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__01_living_room_fp1",
+          "cSharpName": "NetdaemonNetDaemonAppsApps01LivingRoomFp11412"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_01_living_room_fp1_1413",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__01_living_room_fp1",
+          "cSharpName": "NetdaemonNetDaemonAppsApps01LivingRoomFp11413"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_01_living_room_fp1_1414",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__01_living_room_fp1",
+          "cSharpName": "NetdaemonNetDaemonAppsApps01LivingRoomFp11414"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_01_living_room_fp1_1415",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__01_living_room_fp1",
+          "cSharpName": "NetdaemonNetDaemonAppsApps01LivingRoomFp11415"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_01_living_room_fp1_1416",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__01_living_room_fp1",
+          "cSharpName": "NetdaemonNetDaemonAppsApps01LivingRoomFp11416"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_01_living_room_fp1_1417",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__01_living_room_fp1",
+          "cSharpName": "NetdaemonNetDaemonAppsApps01LivingRoomFp11417"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_01_living_room_fp1_1418",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__01_living_room_fp1",
+          "cSharpName": "NetdaemonNetDaemonAppsApps01LivingRoomFp11418"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_01_living_room_fp1_1419",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__01_living_room_fp1",
+          "cSharpName": "NetdaemonNetDaemonAppsApps01LivingRoomFp11419"
         },
         {
           "id": "input_boolean.netdaemon_net_daemon_apps_apps_01_living_room_fp1_142",
@@ -3662,9 +3847,109 @@
           "cSharpName": "NetdaemonNetDaemonAppsApps01LivingRoomFp1142"
         },
         {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_01_living_room_fp1_1420",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__01_living_room_fp1",
+          "cSharpName": "NetdaemonNetDaemonAppsApps01LivingRoomFp11420"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_01_living_room_fp1_1421",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__01_living_room_fp1",
+          "cSharpName": "NetdaemonNetDaemonAppsApps01LivingRoomFp11421"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_01_living_room_fp1_1422",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__01_living_room_fp1",
+          "cSharpName": "NetdaemonNetDaemonAppsApps01LivingRoomFp11422"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_01_living_room_fp1_1423",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__01_living_room_fp1",
+          "cSharpName": "NetdaemonNetDaemonAppsApps01LivingRoomFp11423"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_01_living_room_fp1_1424",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__01_living_room_fp1",
+          "cSharpName": "NetdaemonNetDaemonAppsApps01LivingRoomFp11424"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_01_living_room_fp1_1425",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__01_living_room_fp1",
+          "cSharpName": "NetdaemonNetDaemonAppsApps01LivingRoomFp11425"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_01_living_room_fp1_1426",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__01_living_room_fp1",
+          "cSharpName": "NetdaemonNetDaemonAppsApps01LivingRoomFp11426"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_01_living_room_fp1_1427",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__01_living_room_fp1",
+          "cSharpName": "NetdaemonNetDaemonAppsApps01LivingRoomFp11427"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_01_living_room_fp1_1428",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__01_living_room_fp1",
+          "cSharpName": "NetdaemonNetDaemonAppsApps01LivingRoomFp11428"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_01_living_room_fp1_1429",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__01_living_room_fp1",
+          "cSharpName": "NetdaemonNetDaemonAppsApps01LivingRoomFp11429"
+        },
+        {
           "id": "input_boolean.netdaemon_net_daemon_apps_apps_01_living_room_fp1_143",
           "friendlyName": "netdaemon_net_daemon_apps_apps__01_living_room_fp1",
           "cSharpName": "NetdaemonNetDaemonAppsApps01LivingRoomFp1143"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_01_living_room_fp1_1430",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__01_living_room_fp1",
+          "cSharpName": "NetdaemonNetDaemonAppsApps01LivingRoomFp11430"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_01_living_room_fp1_1431",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__01_living_room_fp1",
+          "cSharpName": "NetdaemonNetDaemonAppsApps01LivingRoomFp11431"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_01_living_room_fp1_1432",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__01_living_room_fp1",
+          "cSharpName": "NetdaemonNetDaemonAppsApps01LivingRoomFp11432"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_01_living_room_fp1_1433",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__01_living_room_fp1",
+          "cSharpName": "NetdaemonNetDaemonAppsApps01LivingRoomFp11433"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_01_living_room_fp1_1434",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__01_living_room_fp1",
+          "cSharpName": "NetdaemonNetDaemonAppsApps01LivingRoomFp11434"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_01_living_room_fp1_1435",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__01_living_room_fp1",
+          "cSharpName": "NetdaemonNetDaemonAppsApps01LivingRoomFp11435"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_01_living_room_fp1_1436",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__01_living_room_fp1",
+          "cSharpName": "NetdaemonNetDaemonAppsApps01LivingRoomFp11436"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_01_living_room_fp1_1437",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__01_living_room_fp1",
+          "cSharpName": "NetdaemonNetDaemonAppsApps01LivingRoomFp11437"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_01_living_room_fp1_1438",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__01_living_room_fp1",
+          "cSharpName": "NetdaemonNetDaemonAppsApps01LivingRoomFp11438"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_01_living_room_fp1_1439",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__01_living_room_fp1",
+          "cSharpName": "NetdaemonNetDaemonAppsApps01LivingRoomFp11439"
         },
         {
           "id": "input_boolean.netdaemon_net_daemon_apps_apps_01_living_room_fp1_144",
@@ -3672,9 +3957,109 @@
           "cSharpName": "NetdaemonNetDaemonAppsApps01LivingRoomFp1144"
         },
         {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_01_living_room_fp1_1440",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__01_living_room_fp1",
+          "cSharpName": "NetdaemonNetDaemonAppsApps01LivingRoomFp11440"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_01_living_room_fp1_1441",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__01_living_room_fp1",
+          "cSharpName": "NetdaemonNetDaemonAppsApps01LivingRoomFp11441"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_01_living_room_fp1_1442",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__01_living_room_fp1",
+          "cSharpName": "NetdaemonNetDaemonAppsApps01LivingRoomFp11442"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_01_living_room_fp1_1443",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__01_living_room_fp1",
+          "cSharpName": "NetdaemonNetDaemonAppsApps01LivingRoomFp11443"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_01_living_room_fp1_1444",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__01_living_room_fp1",
+          "cSharpName": "NetdaemonNetDaemonAppsApps01LivingRoomFp11444"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_01_living_room_fp1_1445",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__01_living_room_fp1",
+          "cSharpName": "NetdaemonNetDaemonAppsApps01LivingRoomFp11445"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_01_living_room_fp1_1446",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__01_living_room_fp1",
+          "cSharpName": "NetdaemonNetDaemonAppsApps01LivingRoomFp11446"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_01_living_room_fp1_1447",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__01_living_room_fp1",
+          "cSharpName": "NetdaemonNetDaemonAppsApps01LivingRoomFp11447"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_01_living_room_fp1_1448",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__01_living_room_fp1",
+          "cSharpName": "NetdaemonNetDaemonAppsApps01LivingRoomFp11448"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_01_living_room_fp1_1449",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__01_living_room_fp1",
+          "cSharpName": "NetdaemonNetDaemonAppsApps01LivingRoomFp11449"
+        },
+        {
           "id": "input_boolean.netdaemon_net_daemon_apps_apps_01_living_room_fp1_145",
           "friendlyName": "netdaemon_net_daemon_apps_apps__01_living_room_fp1",
           "cSharpName": "NetdaemonNetDaemonAppsApps01LivingRoomFp1145"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_01_living_room_fp1_1450",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__01_living_room_fp1",
+          "cSharpName": "NetdaemonNetDaemonAppsApps01LivingRoomFp11450"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_01_living_room_fp1_1451",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__01_living_room_fp1",
+          "cSharpName": "NetdaemonNetDaemonAppsApps01LivingRoomFp11451"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_01_living_room_fp1_1452",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__01_living_room_fp1",
+          "cSharpName": "NetdaemonNetDaemonAppsApps01LivingRoomFp11452"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_01_living_room_fp1_1453",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__01_living_room_fp1",
+          "cSharpName": "NetdaemonNetDaemonAppsApps01LivingRoomFp11453"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_01_living_room_fp1_1454",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__01_living_room_fp1",
+          "cSharpName": "NetdaemonNetDaemonAppsApps01LivingRoomFp11454"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_01_living_room_fp1_1455",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__01_living_room_fp1",
+          "cSharpName": "NetdaemonNetDaemonAppsApps01LivingRoomFp11455"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_01_living_room_fp1_1456",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__01_living_room_fp1",
+          "cSharpName": "NetdaemonNetDaemonAppsApps01LivingRoomFp11456"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_01_living_room_fp1_1457",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__01_living_room_fp1",
+          "cSharpName": "NetdaemonNetDaemonAppsApps01LivingRoomFp11457"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_01_living_room_fp1_1458",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__01_living_room_fp1",
+          "cSharpName": "NetdaemonNetDaemonAppsApps01LivingRoomFp11458"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_01_living_room_fp1_1459",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__01_living_room_fp1",
+          "cSharpName": "NetdaemonNetDaemonAppsApps01LivingRoomFp11459"
         },
         {
           "id": "input_boolean.netdaemon_net_daemon_apps_apps_01_living_room_fp1_146",
@@ -3682,9 +4067,84 @@
           "cSharpName": "NetdaemonNetDaemonAppsApps01LivingRoomFp1146"
         },
         {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_01_living_room_fp1_1460",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__01_living_room_fp1",
+          "cSharpName": "NetdaemonNetDaemonAppsApps01LivingRoomFp11460"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_01_living_room_fp1_1461",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__01_living_room_fp1",
+          "cSharpName": "NetdaemonNetDaemonAppsApps01LivingRoomFp11461"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_01_living_room_fp1_1462",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__01_living_room_fp1",
+          "cSharpName": "NetdaemonNetDaemonAppsApps01LivingRoomFp11462"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_01_living_room_fp1_1463",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__01_living_room_fp1",
+          "cSharpName": "NetdaemonNetDaemonAppsApps01LivingRoomFp11463"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_01_living_room_fp1_1464",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__01_living_room_fp1",
+          "cSharpName": "NetdaemonNetDaemonAppsApps01LivingRoomFp11464"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_01_living_room_fp1_1465",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__01_living_room_fp1",
+          "cSharpName": "NetdaemonNetDaemonAppsApps01LivingRoomFp11465"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_01_living_room_fp1_1466",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__01_living_room_fp1",
+          "cSharpName": "NetdaemonNetDaemonAppsApps01LivingRoomFp11466"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_01_living_room_fp1_1467",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__01_living_room_fp1",
+          "cSharpName": "NetdaemonNetDaemonAppsApps01LivingRoomFp11467"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_01_living_room_fp1_1468",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__01_living_room_fp1",
+          "cSharpName": "NetdaemonNetDaemonAppsApps01LivingRoomFp11468"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_01_living_room_fp1_1469",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__01_living_room_fp1",
+          "cSharpName": "NetdaemonNetDaemonAppsApps01LivingRoomFp11469"
+        },
+        {
           "id": "input_boolean.netdaemon_net_daemon_apps_apps_01_living_room_fp1_147",
           "friendlyName": "netdaemon_net_daemon_apps_apps__01_living_room_fp1",
           "cSharpName": "NetdaemonNetDaemonAppsApps01LivingRoomFp1147"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_01_living_room_fp1_1470",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__01_living_room_fp1",
+          "cSharpName": "NetdaemonNetDaemonAppsApps01LivingRoomFp11470"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_01_living_room_fp1_1471",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__01_living_room_fp1",
+          "cSharpName": "NetdaemonNetDaemonAppsApps01LivingRoomFp11471"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_01_living_room_fp1_1472",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__01_living_room_fp1",
+          "cSharpName": "NetdaemonNetDaemonAppsApps01LivingRoomFp11472"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_01_living_room_fp1_1473",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__01_living_room_fp1",
+          "cSharpName": "NetdaemonNetDaemonAppsApps01LivingRoomFp11473"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_01_living_room_fp1_1474",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__01_living_room_fp1",
+          "cSharpName": "NetdaemonNetDaemonAppsApps01LivingRoomFp11474"
         },
         {
           "id": "input_boolean.netdaemon_net_daemon_apps_apps_01_living_room_fp1_148",
@@ -10502,14 +10962,139 @@
           "cSharpName": "NetdaemonNetDaemonAppsApps0gbl1374"
         },
         {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_0gbl_1375",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__0gbl",
+          "cSharpName": "NetdaemonNetDaemonAppsApps0gbl1375"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_0gbl_1376",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__0gbl",
+          "cSharpName": "NetdaemonNetDaemonAppsApps0gbl1376"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_0gbl_1377",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__0gbl",
+          "cSharpName": "NetdaemonNetDaemonAppsApps0gbl1377"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_0gbl_1378",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__0gbl",
+          "cSharpName": "NetdaemonNetDaemonAppsApps0gbl1378"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_0gbl_1379",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__0gbl",
+          "cSharpName": "NetdaemonNetDaemonAppsApps0gbl1379"
+        },
+        {
           "id": "input_boolean.netdaemon_net_daemon_apps_apps_0gbl_138",
           "friendlyName": "netdaemon_net_daemon_apps_apps__0gbl",
           "cSharpName": "NetdaemonNetDaemonAppsApps0gbl138"
         },
         {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_0gbl_1380",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__0gbl",
+          "cSharpName": "NetdaemonNetDaemonAppsApps0gbl1380"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_0gbl_1381",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__0gbl",
+          "cSharpName": "NetdaemonNetDaemonAppsApps0gbl1381"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_0gbl_1382",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__0gbl",
+          "cSharpName": "NetdaemonNetDaemonAppsApps0gbl1382"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_0gbl_1383",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__0gbl",
+          "cSharpName": "NetdaemonNetDaemonAppsApps0gbl1383"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_0gbl_1384",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__0gbl",
+          "cSharpName": "NetdaemonNetDaemonAppsApps0gbl1384"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_0gbl_1385",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__0gbl",
+          "cSharpName": "NetdaemonNetDaemonAppsApps0gbl1385"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_0gbl_1386",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__0gbl",
+          "cSharpName": "NetdaemonNetDaemonAppsApps0gbl1386"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_0gbl_1387",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__0gbl",
+          "cSharpName": "NetdaemonNetDaemonAppsApps0gbl1387"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_0gbl_1388",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__0gbl",
+          "cSharpName": "NetdaemonNetDaemonAppsApps0gbl1388"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_0gbl_1389",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__0gbl",
+          "cSharpName": "NetdaemonNetDaemonAppsApps0gbl1389"
+        },
+        {
           "id": "input_boolean.netdaemon_net_daemon_apps_apps_0gbl_139",
           "friendlyName": "netdaemon_net_daemon_apps_apps__0gbl",
           "cSharpName": "NetdaemonNetDaemonAppsApps0gbl139"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_0gbl_1390",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__0gbl",
+          "cSharpName": "NetdaemonNetDaemonAppsApps0gbl1390"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_0gbl_1391",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__0gbl",
+          "cSharpName": "NetdaemonNetDaemonAppsApps0gbl1391"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_0gbl_1392",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__0gbl",
+          "cSharpName": "NetdaemonNetDaemonAppsApps0gbl1392"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_0gbl_1393",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__0gbl",
+          "cSharpName": "NetdaemonNetDaemonAppsApps0gbl1393"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_0gbl_1394",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__0gbl",
+          "cSharpName": "NetdaemonNetDaemonAppsApps0gbl1394"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_0gbl_1395",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__0gbl",
+          "cSharpName": "NetdaemonNetDaemonAppsApps0gbl1395"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_0gbl_1396",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__0gbl",
+          "cSharpName": "NetdaemonNetDaemonAppsApps0gbl1396"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_0gbl_1397",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__0gbl",
+          "cSharpName": "NetdaemonNetDaemonAppsApps0gbl1397"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_0gbl_1398",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__0gbl",
+          "cSharpName": "NetdaemonNetDaemonAppsApps0gbl1398"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_0gbl_1399",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__0gbl",
+          "cSharpName": "NetdaemonNetDaemonAppsApps0gbl1399"
         },
         {
           "id": "input_boolean.netdaemon_net_daemon_apps_apps_0gbl_14",
@@ -10522,9 +11107,109 @@
           "cSharpName": "NetdaemonNetDaemonAppsApps0gbl140"
         },
         {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_0gbl_1400",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__0gbl",
+          "cSharpName": "NetdaemonNetDaemonAppsApps0gbl1400"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_0gbl_1401",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__0gbl",
+          "cSharpName": "NetdaemonNetDaemonAppsApps0gbl1401"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_0gbl_1402",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__0gbl",
+          "cSharpName": "NetdaemonNetDaemonAppsApps0gbl1402"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_0gbl_1403",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__0gbl",
+          "cSharpName": "NetdaemonNetDaemonAppsApps0gbl1403"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_0gbl_1404",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__0gbl",
+          "cSharpName": "NetdaemonNetDaemonAppsApps0gbl1404"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_0gbl_1405",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__0gbl",
+          "cSharpName": "NetdaemonNetDaemonAppsApps0gbl1405"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_0gbl_1406",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__0gbl",
+          "cSharpName": "NetdaemonNetDaemonAppsApps0gbl1406"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_0gbl_1407",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__0gbl",
+          "cSharpName": "NetdaemonNetDaemonAppsApps0gbl1407"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_0gbl_1408",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__0gbl",
+          "cSharpName": "NetdaemonNetDaemonAppsApps0gbl1408"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_0gbl_1409",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__0gbl",
+          "cSharpName": "NetdaemonNetDaemonAppsApps0gbl1409"
+        },
+        {
           "id": "input_boolean.netdaemon_net_daemon_apps_apps_0gbl_141",
           "friendlyName": "netdaemon_net_daemon_apps_apps__0gbl",
           "cSharpName": "NetdaemonNetDaemonAppsApps0gbl141"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_0gbl_1410",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__0gbl",
+          "cSharpName": "NetdaemonNetDaemonAppsApps0gbl1410"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_0gbl_1411",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__0gbl",
+          "cSharpName": "NetdaemonNetDaemonAppsApps0gbl1411"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_0gbl_1412",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__0gbl",
+          "cSharpName": "NetdaemonNetDaemonAppsApps0gbl1412"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_0gbl_1413",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__0gbl",
+          "cSharpName": "NetdaemonNetDaemonAppsApps0gbl1413"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_0gbl_1414",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__0gbl",
+          "cSharpName": "NetdaemonNetDaemonAppsApps0gbl1414"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_0gbl_1415",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__0gbl",
+          "cSharpName": "NetdaemonNetDaemonAppsApps0gbl1415"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_0gbl_1416",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__0gbl",
+          "cSharpName": "NetdaemonNetDaemonAppsApps0gbl1416"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_0gbl_1417",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__0gbl",
+          "cSharpName": "NetdaemonNetDaemonAppsApps0gbl1417"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_0gbl_1418",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__0gbl",
+          "cSharpName": "NetdaemonNetDaemonAppsApps0gbl1418"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_0gbl_1419",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__0gbl",
+          "cSharpName": "NetdaemonNetDaemonAppsApps0gbl1419"
         },
         {
           "id": "input_boolean.netdaemon_net_daemon_apps_apps_0gbl_142",
@@ -10532,9 +11217,109 @@
           "cSharpName": "NetdaemonNetDaemonAppsApps0gbl142"
         },
         {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_0gbl_1420",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__0gbl",
+          "cSharpName": "NetdaemonNetDaemonAppsApps0gbl1420"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_0gbl_1421",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__0gbl",
+          "cSharpName": "NetdaemonNetDaemonAppsApps0gbl1421"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_0gbl_1422",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__0gbl",
+          "cSharpName": "NetdaemonNetDaemonAppsApps0gbl1422"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_0gbl_1423",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__0gbl",
+          "cSharpName": "NetdaemonNetDaemonAppsApps0gbl1423"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_0gbl_1424",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__0gbl",
+          "cSharpName": "NetdaemonNetDaemonAppsApps0gbl1424"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_0gbl_1425",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__0gbl",
+          "cSharpName": "NetdaemonNetDaemonAppsApps0gbl1425"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_0gbl_1426",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__0gbl",
+          "cSharpName": "NetdaemonNetDaemonAppsApps0gbl1426"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_0gbl_1427",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__0gbl",
+          "cSharpName": "NetdaemonNetDaemonAppsApps0gbl1427"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_0gbl_1428",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__0gbl",
+          "cSharpName": "NetdaemonNetDaemonAppsApps0gbl1428"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_0gbl_1429",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__0gbl",
+          "cSharpName": "NetdaemonNetDaemonAppsApps0gbl1429"
+        },
+        {
           "id": "input_boolean.netdaemon_net_daemon_apps_apps_0gbl_143",
           "friendlyName": "netdaemon_net_daemon_apps_apps__0gbl",
           "cSharpName": "NetdaemonNetDaemonAppsApps0gbl143"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_0gbl_1430",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__0gbl",
+          "cSharpName": "NetdaemonNetDaemonAppsApps0gbl1430"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_0gbl_1431",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__0gbl",
+          "cSharpName": "NetdaemonNetDaemonAppsApps0gbl1431"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_0gbl_1432",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__0gbl",
+          "cSharpName": "NetdaemonNetDaemonAppsApps0gbl1432"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_0gbl_1433",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__0gbl",
+          "cSharpName": "NetdaemonNetDaemonAppsApps0gbl1433"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_0gbl_1434",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__0gbl",
+          "cSharpName": "NetdaemonNetDaemonAppsApps0gbl1434"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_0gbl_1435",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__0gbl",
+          "cSharpName": "NetdaemonNetDaemonAppsApps0gbl1435"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_0gbl_1436",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__0gbl",
+          "cSharpName": "NetdaemonNetDaemonAppsApps0gbl1436"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_0gbl_1437",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__0gbl",
+          "cSharpName": "NetdaemonNetDaemonAppsApps0gbl1437"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_0gbl_1438",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__0gbl",
+          "cSharpName": "NetdaemonNetDaemonAppsApps0gbl1438"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_0gbl_1439",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__0gbl",
+          "cSharpName": "NetdaemonNetDaemonAppsApps0gbl1439"
         },
         {
           "id": "input_boolean.netdaemon_net_daemon_apps_apps_0gbl_144",
@@ -10542,9 +11327,109 @@
           "cSharpName": "NetdaemonNetDaemonAppsApps0gbl144"
         },
         {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_0gbl_1440",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__0gbl",
+          "cSharpName": "NetdaemonNetDaemonAppsApps0gbl1440"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_0gbl_1441",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__0gbl",
+          "cSharpName": "NetdaemonNetDaemonAppsApps0gbl1441"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_0gbl_1442",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__0gbl",
+          "cSharpName": "NetdaemonNetDaemonAppsApps0gbl1442"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_0gbl_1443",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__0gbl",
+          "cSharpName": "NetdaemonNetDaemonAppsApps0gbl1443"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_0gbl_1444",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__0gbl",
+          "cSharpName": "NetdaemonNetDaemonAppsApps0gbl1444"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_0gbl_1445",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__0gbl",
+          "cSharpName": "NetdaemonNetDaemonAppsApps0gbl1445"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_0gbl_1446",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__0gbl",
+          "cSharpName": "NetdaemonNetDaemonAppsApps0gbl1446"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_0gbl_1447",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__0gbl",
+          "cSharpName": "NetdaemonNetDaemonAppsApps0gbl1447"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_0gbl_1448",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__0gbl",
+          "cSharpName": "NetdaemonNetDaemonAppsApps0gbl1448"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_0gbl_1449",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__0gbl",
+          "cSharpName": "NetdaemonNetDaemonAppsApps0gbl1449"
+        },
+        {
           "id": "input_boolean.netdaemon_net_daemon_apps_apps_0gbl_145",
           "friendlyName": "netdaemon_net_daemon_apps_apps__0gbl",
           "cSharpName": "NetdaemonNetDaemonAppsApps0gbl145"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_0gbl_1450",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__0gbl",
+          "cSharpName": "NetdaemonNetDaemonAppsApps0gbl1450"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_0gbl_1451",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__0gbl",
+          "cSharpName": "NetdaemonNetDaemonAppsApps0gbl1451"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_0gbl_1452",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__0gbl",
+          "cSharpName": "NetdaemonNetDaemonAppsApps0gbl1452"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_0gbl_1453",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__0gbl",
+          "cSharpName": "NetdaemonNetDaemonAppsApps0gbl1453"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_0gbl_1454",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__0gbl",
+          "cSharpName": "NetdaemonNetDaemonAppsApps0gbl1454"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_0gbl_1455",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__0gbl",
+          "cSharpName": "NetdaemonNetDaemonAppsApps0gbl1455"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_0gbl_1456",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__0gbl",
+          "cSharpName": "NetdaemonNetDaemonAppsApps0gbl1456"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_0gbl_1457",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__0gbl",
+          "cSharpName": "NetdaemonNetDaemonAppsApps0gbl1457"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_0gbl_1458",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__0gbl",
+          "cSharpName": "NetdaemonNetDaemonAppsApps0gbl1458"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_0gbl_1459",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__0gbl",
+          "cSharpName": "NetdaemonNetDaemonAppsApps0gbl1459"
         },
         {
           "id": "input_boolean.netdaemon_net_daemon_apps_apps_0gbl_146",
@@ -10552,9 +11437,84 @@
           "cSharpName": "NetdaemonNetDaemonAppsApps0gbl146"
         },
         {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_0gbl_1460",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__0gbl",
+          "cSharpName": "NetdaemonNetDaemonAppsApps0gbl1460"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_0gbl_1461",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__0gbl",
+          "cSharpName": "NetdaemonNetDaemonAppsApps0gbl1461"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_0gbl_1462",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__0gbl",
+          "cSharpName": "NetdaemonNetDaemonAppsApps0gbl1462"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_0gbl_1463",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__0gbl",
+          "cSharpName": "NetdaemonNetDaemonAppsApps0gbl1463"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_0gbl_1464",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__0gbl",
+          "cSharpName": "NetdaemonNetDaemonAppsApps0gbl1464"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_0gbl_1465",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__0gbl",
+          "cSharpName": "NetdaemonNetDaemonAppsApps0gbl1465"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_0gbl_1466",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__0gbl",
+          "cSharpName": "NetdaemonNetDaemonAppsApps0gbl1466"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_0gbl_1467",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__0gbl",
+          "cSharpName": "NetdaemonNetDaemonAppsApps0gbl1467"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_0gbl_1468",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__0gbl",
+          "cSharpName": "NetdaemonNetDaemonAppsApps0gbl1468"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_0gbl_1469",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__0gbl",
+          "cSharpName": "NetdaemonNetDaemonAppsApps0gbl1469"
+        },
+        {
           "id": "input_boolean.netdaemon_net_daemon_apps_apps_0gbl_147",
           "friendlyName": "netdaemon_net_daemon_apps_apps__0gbl",
           "cSharpName": "NetdaemonNetDaemonAppsApps0gbl147"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_0gbl_1470",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__0gbl",
+          "cSharpName": "NetdaemonNetDaemonAppsApps0gbl1470"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_0gbl_1471",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__0gbl",
+          "cSharpName": "NetdaemonNetDaemonAppsApps0gbl1471"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_0gbl_1472",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__0gbl",
+          "cSharpName": "NetdaemonNetDaemonAppsApps0gbl1472"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_0gbl_1473",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__0gbl",
+          "cSharpName": "NetdaemonNetDaemonAppsApps0gbl1473"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_0gbl_1474",
+          "friendlyName": "netdaemon_net_daemon_apps_apps__0gbl",
+          "cSharpName": "NetdaemonNetDaemonAppsApps0gbl1474"
         },
         {
           "id": "input_boolean.netdaemon_net_daemon_apps_apps_0gbl_148",
@@ -15312,6 +16272,11 @@
           "cSharpName": "NetdaemonNetDaemonAppsAppsIsAsleepMonitor"
         },
         {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_is_home_manager",
+          "friendlyName": "netdaemon_net_daemon_apps_apps_is_home_manager",
+          "cSharpName": "NetdaemonNetDaemonAppsAppsIsHomeManager"
+        },
+        {
           "id": "input_boolean.netdaemon_net_daemon_apps_apps_knobs",
           "friendlyName": "netdaemon_net_daemon_apps_apps_knobs",
           "cSharpName": "NetdaemonNetDaemonAppsAppsKnobs"
@@ -15352,9 +16317,9 @@
           "cSharpName": "NetdaemonNetDaemonAppsAppsNotifications"
         },
         {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_sleep_analyzer",
-          "friendlyName": "netdaemon_net_daemon_apps_apps_sleep_analyzer",
-          "cSharpName": "NetdaemonNetDaemonAppsAppsSleepAnalyzer"
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_starkvind",
+          "friendlyName": "netdaemon_net_daemon_apps_apps_starkvind",
+          "cSharpName": "NetdaemonNetDaemonAppsAppsStarkvind"
         },
         {
           "id": "input_boolean.netdaemon_net_daemon_apps_apps_step_counter",
@@ -15815,6 +16780,11 @@
           "id": "input_number.total_daily_energy",
           "friendlyName": "Total Daily Energy",
           "cSharpName": "TotalDailyEnergy"
+        },
+        {
+          "id": "input_number.walkingpad_steps_daily",
+          "friendlyName": "Walkingpad_Steps_Daily",
+          "cSharpName": "WalkingpadStepsDaily"
         }
       ],
       "attributes": [
@@ -16297,16 +17267,6 @@
           "cSharpName": "LivingRoomDisplay"
         },
         {
-          "id": "media_player.living_room_display_2",
-          "friendlyName": null,
-          "cSharpName": "LivingRoomDisplay2"
-        },
-        {
-          "id": "media_player.living_room_display_3",
-          "friendlyName": null,
-          "cSharpName": "LivingRoomDisplay3"
-        },
-        {
           "id": "media_player.living_room_tv",
           "friendlyName": null,
           "cSharpName": "LivingRoomTv"
@@ -16315,16 +17275,6 @@
           "id": "media_player.olohuone_nest",
           "friendlyName": null,
           "cSharpName": "OlohuoneNest"
-        },
-        {
-          "id": "media_player.olohuone_nest_2",
-          "friendlyName": null,
-          "cSharpName": "OlohuoneNest2"
-        },
-        {
-          "id": "media_player.olohuone_nest_3",
-          "friendlyName": null,
-          "cSharpName": "OlohuoneNest3"
         },
         {
           "id": "media_player.pc",
@@ -16337,9 +17287,9 @@
           "cSharpName": "VlcTelnet"
         },
         {
-          "id": "media_player.vlc_telnet_2",
+          "id": "media_player.vlc_telnet_3",
           "friendlyName": "VLC-TELNET",
-          "cSharpName": "VlcTelnet2"
+          "cSharpName": "VlcTelnet3"
         }
       ],
       "attributes": [
@@ -16568,11 +17518,6 @@
           "id": "number.ecoflow_min_discharge_level",
           "friendlyName": "Ecoflow Min Discharge Level",
           "cSharpName": "EcoflowMinDischargeLevel"
-        },
-        {
-          "id": "number.elegoo_plus_output_pin_beeper",
-          "friendlyName": "Output Pin Beeper",
-          "cSharpName": "ElegooPlusOutputPinBeeper"
         },
         {
           "id": "number.hallway_sensor_occupancy_timeout",
@@ -17446,7 +18391,7 @@
         },
         {
           "id": "sensor.ecoflow_charge_or_remain_time",
-          "friendlyName": "Discharging",
+          "friendlyName": "Offline",
           "cSharpName": "EcoflowChargeOrRemainTime"
         },
         {
@@ -17463,71 +18408,6 @@
           "id": "sensor.ecoflow_status",
           "friendlyName": "Ecoflow Status",
           "cSharpName": "EcoflowStatus"
-        },
-        {
-          "id": "sensor.elegoo_plus_current_display_message",
-          "friendlyName": "Current Display Message",
-          "cSharpName": "ElegooPlusCurrentDisplayMessage"
-        },
-        {
-          "id": "sensor.elegoo_plus_current_layer",
-          "friendlyName": "Current Layer",
-          "cSharpName": "ElegooPlusCurrentLayer"
-        },
-        {
-          "id": "sensor.elegoo_plus_current_print_message",
-          "friendlyName": "Current Print Message",
-          "cSharpName": "ElegooPlusCurrentPrintMessage"
-        },
-        {
-          "id": "sensor.elegoo_plus_current_print_state",
-          "friendlyName": "Current Print State",
-          "cSharpName": "ElegooPlusCurrentPrintState"
-        },
-        {
-          "id": "sensor.elegoo_plus_filename",
-          "friendlyName": "Filename",
-          "cSharpName": "ElegooPlusFilename"
-        },
-        {
-          "id": "sensor.elegoo_plus_longest_print",
-          "friendlyName": "Longest Print",
-          "cSharpName": "ElegooPlusLongestPrint"
-        },
-        {
-          "id": "sensor.elegoo_plus_print_eta",
-          "friendlyName": "Print ETA",
-          "cSharpName": "ElegooPlusPrintEta"
-        },
-        {
-          "id": "sensor.elegoo_plus_printer_message",
-          "friendlyName": "Printer Message",
-          "cSharpName": "ElegooPlusPrinterMessage"
-        },
-        {
-          "id": "sensor.elegoo_plus_printer_state",
-          "friendlyName": "Printer State",
-          "cSharpName": "ElegooPlusPrinterState"
-        },
-        {
-          "id": "sensor.elegoo_plus_queue_state",
-          "friendlyName": "Queue State",
-          "cSharpName": "ElegooPlusQueueState"
-        },
-        {
-          "id": "sensor.elegoo_plus_system_load",
-          "friendlyName": "System Load",
-          "cSharpName": "ElegooPlusSystemLoad"
-        },
-        {
-          "id": "sensor.elegoo_plus_total_layer",
-          "friendlyName": "Total Layer",
-          "cSharpName": "ElegooPlusTotalLayer"
-        },
-        {
-          "id": "sensor.elegoo_plus_totals_print_time",
-          "friendlyName": "Totals Print Time",
-          "cSharpName": "ElegooPlusTotalsPrintTime"
         },
         {
           "id": "sensor.envy_audio_audio_sessions",
@@ -17970,204 +18850,84 @@
           "cSharpName": "OutdoorsBrightnessSensor"
         },
         {
-          "id": "sensor.pc_audio_audio_sessions",
-          "friendlyName": "PC PC_audio Audio Sessions",
-          "cSharpName": "PcAudioAudioSessions"
-        },
-        {
           "id": "sensor.pc_audio_default_device",
-          "friendlyName": "PC PC_audio Default Device",
+          "friendlyName": "PC Default Device",
           "cSharpName": "PcAudioDefaultDevice"
         },
         {
           "id": "sensor.pc_audio_default_device_muted",
-          "friendlyName": "PC PC_audio Default Device Muted",
+          "friendlyName": "PC Default Device Muted",
           "cSharpName": "PcAudioDefaultDeviceMuted"
         },
         {
           "id": "sensor.pc_audio_default_device_state",
-          "friendlyName": "PC PC_audio Default Device State",
+          "friendlyName": "PC Default Device State",
           "cSharpName": "PcAudioDefaultDeviceState"
         },
         {
           "id": "sensor.pc_audio_default_device_volume",
-          "friendlyName": "PC PC_audio Default Device Volume",
+          "friendlyName": "PC Default Device Volume",
           "cSharpName": "PcAudioDefaultDeviceVolume"
         },
         {
           "id": "sensor.pc_audio_default_input_device",
-          "friendlyName": "PC PC_audio Default Input Device",
+          "friendlyName": "PC Default Input Device",
           "cSharpName": "PcAudioDefaultInputDevice"
         },
         {
           "id": "sensor.pc_audio_default_input_device_muted",
-          "friendlyName": "PC PC_audio Default Input Device Muted",
+          "friendlyName": "PC Default Input Device Muted",
           "cSharpName": "PcAudioDefaultInputDeviceMuted"
         },
         {
           "id": "sensor.pc_audio_default_input_device_state",
-          "friendlyName": "PC PC_audio Default Input Device State",
+          "friendlyName": "PC Default Input Device State",
           "cSharpName": "PcAudioDefaultInputDeviceState"
         },
         {
           "id": "sensor.pc_audio_default_input_device_volume",
-          "friendlyName": "PC PC_audio Default Input Device Volume",
+          "friendlyName": "PC Default Input Device Volume",
           "cSharpName": "PcAudioDefaultInputDeviceVolume"
         },
         {
+          "id": "sensor.pc_audio_input_devices",
+          "friendlyName": "PC Audio Input Devices",
+          "cSharpName": "PcAudioInputDevices"
+        },
+        {
+          "id": "sensor.pc_audio_output_devices",
+          "friendlyName": "PC Audio Output Devices",
+          "cSharpName": "PcAudioOutputDevices"
+        },
+        {
+          "id": "sensor.pc_audio_peak_volume",
+          "friendlyName": "PC Peak Volume",
+          "cSharpName": "PcAudioPeakVolume"
+        },
+        {
+          "id": "sensor.pc_audio_sessions",
+          "friendlyName": "PC Audio Sessions",
+          "cSharpName": "PcAudioSessions"
+        },
+        {
+          "id": "sensor.pc_c2ce4541_3a85_4b03_aacc_016f116bc0fd_display1",
+          "friendlyName": "PC DISPLAY1",
+          "cSharpName": "PcC2ce45413a854b03Aacc016f116bc0fdDisplay1"
+        },
+        {
+          "id": "sensor.pc_c2ce4541_3a85_4b03_aacc_016f116bc0fd_display2",
+          "friendlyName": "PC DISPLAY2",
+          "cSharpName": "PcC2ce45413a854b03Aacc016f116bc0fdDisplay2"
+        },
+        {
           "id": "sensor.pc_display_display_count",
-          "friendlyName": "PC PC_display Display Count",
+          "friendlyName": "PC Display Count",
           "cSharpName": "PcDisplayDisplayCount"
         },
         {
-          "id": "sensor.pc_display_display1",
-          "friendlyName": "PC PC_display DISPLAY1",
-          "cSharpName": "PcDisplayDisplay1"
-        },
-        {
-          "id": "sensor.pc_display_display1_bits_per_pixel",
-          "friendlyName": "PC PC_display \\\\.\\DISPLAY1 Bits Per Pixel",
-          "cSharpName": "PcDisplayDisplay1BitsPerPixel"
-        },
-        {
-          "id": "sensor.pc_display_display1_name",
-          "friendlyName": "PC PC_display \\\\.\\DISPLAY1 Name",
-          "cSharpName": "PcDisplayDisplay1Name"
-        },
-        {
-          "id": "sensor.pc_display_display1_resolution",
-          "friendlyName": "PC PC_display \\\\.\\DISPLAY1 Resolution",
-          "cSharpName": "PcDisplayDisplay1Resolution"
-        },
-        {
-          "id": "sensor.pc_display_display2",
-          "friendlyName": "PC PC_display DISPLAY2",
-          "cSharpName": "PcDisplayDisplay2"
-        },
-        {
-          "id": "sensor.pc_display_display2_bits_per_pixel",
-          "friendlyName": "PC PC_display \\\\.\\DISPLAY2 Bits Per Pixel",
-          "cSharpName": "PcDisplayDisplay2BitsPerPixel"
-        },
-        {
-          "id": "sensor.pc_display_display2_name",
-          "friendlyName": "PC PC_display \\\\.\\DISPLAY2 Name",
-          "cSharpName": "PcDisplayDisplay2Name"
-        },
-        {
-          "id": "sensor.pc_display_display2_resolution",
-          "friendlyName": "PC PC_display \\\\.\\DISPLAY2 Resolution",
-          "cSharpName": "PcDisplayDisplay2Resolution"
-        },
-        {
-          "id": "sensor.pc_display_display3",
-          "friendlyName": "PC PC_display DISPLAY3",
-          "cSharpName": "PcDisplayDisplay3"
-        },
-        {
-          "id": "sensor.pc_display_display3_bits_per_pixel",
-          "friendlyName": "PC PC_display \\\\.\\DISPLAY3 Bits Per Pixel",
-          "cSharpName": "PcDisplayDisplay3BitsPerPixel"
-        },
-        {
-          "id": "sensor.pc_display_display3_name",
-          "friendlyName": "PC PC_display \\\\.\\DISPLAY3 Name",
-          "cSharpName": "PcDisplayDisplay3Name"
-        },
-        {
-          "id": "sensor.pc_display_display3_resolution",
-          "friendlyName": "PC PC_display \\\\.\\DISPLAY3 Resolution",
-          "cSharpName": "PcDisplayDisplay3Resolution"
-        },
-        {
-          "id": "sensor.pc_display_display4",
-          "friendlyName": "PC PC_display DISPLAY4",
-          "cSharpName": "PcDisplayDisplay4"
-        },
-        {
-          "id": "sensor.pc_display_display4_bits_per_pixel",
-          "friendlyName": "PC PC_display \\\\.\\DISPLAY4 Bits Per Pixel",
-          "cSharpName": "PcDisplayDisplay4BitsPerPixel"
-        },
-        {
-          "id": "sensor.pc_display_display4_name",
-          "friendlyName": "PC PC_display \\\\.\\DISPLAY4 Name",
-          "cSharpName": "PcDisplayDisplay4Name"
-        },
-        {
-          "id": "sensor.pc_display_display4_resolution",
-          "friendlyName": "PC PC_display \\\\.\\DISPLAY4 Resolution",
-          "cSharpName": "PcDisplayDisplay4Resolution"
-        },
-        {
-          "id": "sensor.pc_display_display6",
-          "friendlyName": "PC PC_display DISPLAY6",
-          "cSharpName": "PcDisplayDisplay6"
-        },
-        {
-          "id": "sensor.pc_display_display6_bits_per_pixel",
-          "friendlyName": "PC PC_display \\\\.\\DISPLAY6 Bits Per Pixel",
-          "cSharpName": "PcDisplayDisplay6BitsPerPixel"
-        },
-        {
-          "id": "sensor.pc_display_display6_name",
-          "friendlyName": "PC PC_display \\\\.\\DISPLAY6 Name",
-          "cSharpName": "PcDisplayDisplay6Name"
-        },
-        {
-          "id": "sensor.pc_display_display6_resolution",
-          "friendlyName": "PC PC_display \\\\.\\DISPLAY6 Resolution",
-          "cSharpName": "PcDisplayDisplay6Resolution"
-        },
-        {
-          "id": "sensor.pc_display_display7",
-          "friendlyName": "PC PC_display DISPLAY7",
-          "cSharpName": "PcDisplayDisplay7"
-        },
-        {
-          "id": "sensor.pc_display_display7_bits_per_pixel",
-          "friendlyName": "PC PC_display \\\\.\\DISPLAY7 Bits Per Pixel",
-          "cSharpName": "PcDisplayDisplay7BitsPerPixel"
-        },
-        {
-          "id": "sensor.pc_display_display7_name",
-          "friendlyName": "PC PC_display \\\\.\\DISPLAY7 Name",
-          "cSharpName": "PcDisplayDisplay7Name"
-        },
-        {
-          "id": "sensor.pc_display_display7_resolution",
-          "friendlyName": "PC PC_display \\\\.\\DISPLAY7 Resolution",
-          "cSharpName": "PcDisplayDisplay7Resolution"
-        },
-        {
-          "id": "sensor.pc_display_display8",
-          "friendlyName": "PC PC_display DISPLAY8",
-          "cSharpName": "PcDisplayDisplay8"
-        },
-        {
           "id": "sensor.pc_display_primary_display",
-          "friendlyName": "PC PC_display Primary Display",
+          "friendlyName": "PC Primary Display",
           "cSharpName": "PcDisplayPrimaryDisplay"
-        },
-        {
-          "id": "sensor.pc_display_windisc",
-          "friendlyName": "PC PC_display WinDisc",
-          "cSharpName": "PcDisplayWindisc"
-        },
-        {
-          "id": "sensor.pc_display_windisc_bits_per_pixel",
-          "friendlyName": "PC PC_display WinDisc Bits Per Pixel",
-          "cSharpName": "PcDisplayWindiscBitsPerPixel"
-        },
-        {
-          "id": "sensor.pc_display_windisc_name",
-          "friendlyName": "PC PC_display WinDisc Name",
-          "cSharpName": "PcDisplayWindiscName"
-        },
-        {
-          "id": "sensor.pc_display_windisc_resolution",
-          "friendlyName": "PC PC_display WinDisc Resolution",
-          "cSharpName": "PcDisplayWindiscResolution"
         },
         {
           "id": "sensor.pc_lastactive",
@@ -18186,17 +18946,17 @@
         },
         {
           "id": "sensor.qemu_haos9_5_100_node",
-          "friendlyName": "QEMU haos9.5 (100) Node",
+          "friendlyName": "QEMU haos14.0 (100) Node",
           "cSharpName": "QemuHaos95100Node"
         },
         {
           "id": "sensor.qemu_haos9_5_100_status",
-          "friendlyName": "QEMU haos9.5 (100) Status",
+          "friendlyName": "QEMU haos14.0 (100) Status",
           "cSharpName": "QemuHaos95100Status"
         },
         {
           "id": "sensor.qemu_haos9_5_100_uptime",
-          "friendlyName": "QEMU haos9.5 (100) Last boot",
+          "friendlyName": "QEMU haos14.0 (100) Last boot",
           "cSharpName": "QemuHaos95100Uptime"
         },
         {
@@ -18295,14 +19055,14 @@
           "cSharpName": "Uptime"
         },
         {
-          "id": "sensor.zatnas_network_link_eth0",
-          "friendlyName": "eth0 link",
-          "cSharpName": "ZatnasNetworkLinkEth0"
+          "id": "sensor.withings_last_workout_intensity",
+          "friendlyName": "Withings Last workout intensity",
+          "cSharpName": "WithingsLastWorkoutIntensity"
         },
         {
-          "id": "sensor.zatnas_status",
-          "friendlyName": "Status",
-          "cSharpName": "ZatnasStatus"
+          "id": "sensor.withings_last_workout_type",
+          "friendlyName": "Withings Last workout type",
+          "cSharpName": "WithingsLastWorkoutType"
         },
         {
           "id": "sensor.zigbee2mqtt_bridge_version",
@@ -19040,6 +19800,36 @@
           "jsonName": "desired_bed_temperature",
           "cSharpName": "DesiredBedTemperature",
           "clrType": "System.Double"
+        },
+        {
+          "jsonName": "VirtualResolution",
+          "cSharpName": "VirtualResolution",
+          "clrType": "System.String"
+        },
+        {
+          "jsonName": "VirtualWidth",
+          "cSharpName": "VirtualWidth",
+          "clrType": "System.Double"
+        },
+        {
+          "jsonName": "VirtualHeight",
+          "cSharpName": "VirtualHeight",
+          "clrType": "System.Double"
+        },
+        {
+          "jsonName": "RotatedDegrees",
+          "cSharpName": "RotatedDegrees",
+          "clrType": "System.Double"
+        },
+        {
+          "jsonName": "OutputDevices",
+          "cSharpName": "OutputDevices",
+          "clrType": "System.Collections.Generic.IReadOnlyList\u00601[System.String]"
+        },
+        {
+          "jsonName": "InputDevices",
+          "cSharpName": "InputDevices",
+          "clrType": "System.Collections.Generic.IReadOnlyList\u00601[System.String]"
         }
       ]
     },
@@ -19438,146 +20228,6 @@
           "cSharpName": "EcoflowUsbQc2OutPower"
         },
         {
-          "id": "sensor.elegoo_plus_bed_power",
-          "friendlyName": "Bed Power",
-          "cSharpName": "ElegooPlusBedPower"
-        },
-        {
-          "id": "sensor.elegoo_plus_bed_target",
-          "friendlyName": "Bed Target",
-          "cSharpName": "ElegooPlusBedTarget"
-        },
-        {
-          "id": "sensor.elegoo_plus_bed_temperature",
-          "friendlyName": "Bed Temperature",
-          "cSharpName": "ElegooPlusBedTemperature"
-        },
-        {
-          "id": "sensor.elegoo_plus_extruder_power",
-          "friendlyName": "Extruder Power",
-          "cSharpName": "ElegooPlusExtruderPower"
-        },
-        {
-          "id": "sensor.elegoo_plus_extruder_target",
-          "friendlyName": "Extruder Target",
-          "cSharpName": "ElegooPlusExtruderTarget"
-        },
-        {
-          "id": "sensor.elegoo_plus_extruder_temperature",
-          "friendlyName": "Extruder Temperature",
-          "cSharpName": "ElegooPlusExtruderTemperature"
-        },
-        {
-          "id": "sensor.elegoo_plus_fan_speed",
-          "friendlyName": "Fan speed",
-          "cSharpName": "ElegooPlusFanSpeed"
-        },
-        {
-          "id": "sensor.elegoo_plus_fan1",
-          "friendlyName": "Fan1",
-          "cSharpName": "ElegooPlusFan1"
-        },
-        {
-          "id": "sensor.elegoo_plus_filament_used",
-          "friendlyName": "Filament Used",
-          "cSharpName": "ElegooPlusFilamentUsed"
-        },
-        {
-          "id": "sensor.elegoo_plus_jobs_in_queue",
-          "friendlyName": "Jobs in queue",
-          "cSharpName": "ElegooPlusJobsInQueue"
-        },
-        {
-          "id": "sensor.elegoo_plus_mcu_awake",
-          "friendlyName": "Mcu Awake",
-          "cSharpName": "ElegooPlusMcuAwake"
-        },
-        {
-          "id": "sensor.elegoo_plus_mcu_load",
-          "friendlyName": "Mcu Load",
-          "cSharpName": "ElegooPlusMcuLoad"
-        },
-        {
-          "id": "sensor.elegoo_plus_mcu_rpi_awake",
-          "friendlyName": "Mcu Rpi Awake",
-          "cSharpName": "ElegooPlusMcuRpiAwake"
-        },
-        {
-          "id": "sensor.elegoo_plus_mcu_rpi_load",
-          "friendlyName": "Mcu Rpi Load",
-          "cSharpName": "ElegooPlusMcuRpiLoad"
-        },
-        {
-          "id": "sensor.elegoo_plus_memory_used",
-          "friendlyName": "Memory Used",
-          "cSharpName": "ElegooPlusMemoryUsed"
-        },
-        {
-          "id": "sensor.elegoo_plus_object_height",
-          "friendlyName": "Object Height",
-          "cSharpName": "ElegooPlusObjectHeight"
-        },
-        {
-          "id": "sensor.elegoo_plus_print_duration",
-          "friendlyName": "Print Duration",
-          "cSharpName": "ElegooPlusPrintDuration"
-        },
-        {
-          "id": "sensor.elegoo_plus_print_projected_total_duration",
-          "friendlyName": "Print Projected Total Duration",
-          "cSharpName": "ElegooPlusPrintProjectedTotalDuration"
-        },
-        {
-          "id": "sensor.elegoo_plus_print_time_left",
-          "friendlyName": "Print Time Left",
-          "cSharpName": "ElegooPlusPrintTimeLeft"
-        },
-        {
-          "id": "sensor.elegoo_plus_progress",
-          "friendlyName": "Progress",
-          "cSharpName": "ElegooPlusProgress"
-        },
-        {
-          "id": "sensor.elegoo_plus_slicer_print_duration_estimate",
-          "friendlyName": "Slicer Print Duration Estimate",
-          "cSharpName": "ElegooPlusSlicerPrintDurationEstimate"
-        },
-        {
-          "id": "sensor.elegoo_plus_slicer_print_time_left_estimate",
-          "friendlyName": "Slicer Print Time Left Estimate",
-          "cSharpName": "ElegooPlusSlicerPrintTimeLeftEstimate"
-        },
-        {
-          "id": "sensor.elegoo_plus_speed_factor",
-          "friendlyName": "Speed factor",
-          "cSharpName": "ElegooPlusSpeedFactor"
-        },
-        {
-          "id": "sensor.elegoo_plus_toolhead_position_x",
-          "friendlyName": "Toolhead position X",
-          "cSharpName": "ElegooPlusToolheadPositionX"
-        },
-        {
-          "id": "sensor.elegoo_plus_toolhead_position_y",
-          "friendlyName": "Toolhead position Y",
-          "cSharpName": "ElegooPlusToolheadPositionY"
-        },
-        {
-          "id": "sensor.elegoo_plus_toolhead_position_z",
-          "friendlyName": "Toolhead position Z",
-          "cSharpName": "ElegooPlusToolheadPositionZ"
-        },
-        {
-          "id": "sensor.elegoo_plus_totals_filament_used",
-          "friendlyName": "Totals Filament Used",
-          "cSharpName": "ElegooPlusTotalsFilamentUsed"
-        },
-        {
-          "id": "sensor.elegoo_plus_totals_jobs",
-          "friendlyName": "Totals jobs",
-          "cSharpName": "ElegooPlusTotalsJobs"
-        },
-        {
           "id": "sensor.energy_cost_rounded",
           "friendlyName": "Energy Cost Rounded",
           "cSharpName": "EnergyCostRounded"
@@ -19908,6 +20558,11 @@
           "cSharpName": "MotoG8PowerLiteBatteryLevel"
         },
         {
+          "id": "sensor.moto_g_8_power_lite_steps_sensor",
+          "friendlyName": "moto g(8) power lite Steps sensor",
+          "cSharpName": "MotoG8PowerLiteStepsSensor"
+        },
+        {
           "id": "sensor.next_energy_price_rounded",
           "friendlyName": "Next Energy Price Rounded",
           "cSharpName": "NextEnergyPriceRounded"
@@ -20024,27 +20679,27 @@
         },
         {
           "id": "sensor.qemu_haos9_5_100_cpu_used",
-          "friendlyName": "QEMU haos9.5 (100) CPU used",
+          "friendlyName": "QEMU haos14.0 (100) CPU used",
           "cSharpName": "QemuHaos95100CpuUsed"
         },
         {
           "id": "sensor.qemu_haos9_5_100_disk_used_percentage",
-          "friendlyName": "QEMU haos9.5 (100) Disk used percentage",
+          "friendlyName": "QEMU haos14.0 (100) Disk used percentage",
           "cSharpName": "QemuHaos95100DiskUsedPercentage"
         },
         {
           "id": "sensor.qemu_haos9_5_100_memory_free",
-          "friendlyName": "QEMU haos9.5 (100) Memory free",
+          "friendlyName": "QEMU haos14.0 (100) Memory free",
           "cSharpName": "QemuHaos95100MemoryFree"
         },
         {
           "id": "sensor.qemu_haos9_5_100_memory_used",
-          "friendlyName": "QEMU haos9.5 (100) Memory used",
+          "friendlyName": "QEMU haos14.0 (100) Memory used",
           "cSharpName": "QemuHaos95100MemoryUsed"
         },
         {
           "id": "sensor.qemu_haos9_5_100_memory_used_percentage",
-          "friendlyName": "QEMU haos9.5 (100) Memory used percentage",
+          "friendlyName": "QEMU haos14.0 (100) Memory used percentage",
           "cSharpName": "QemuHaos95100MemoryUsedPercentage"
         },
         {
@@ -20263,34 +20918,34 @@
           "cSharpName": "UntLightsPower"
         },
         {
+          "id": "sensor.withings_calories_burnt_last_workout",
+          "friendlyName": "Withings Calories burnt last workout",
+          "cSharpName": "WithingsCaloriesBurntLastWorkout"
+        },
+        {
           "id": "sensor.withings_deep_sleep",
           "friendlyName": "Withings Deep sleep",
           "cSharpName": "WithingsDeepSleep"
         },
         {
-          "id": "sensor.withings_weight",
-          "friendlyName": "Withings Weight",
-          "cSharpName": "WithingsWeight"
+          "id": "sensor.withings_distance_travelled_last_workout",
+          "friendlyName": "Withings Distance travelled last workout",
+          "cSharpName": "WithingsDistanceTravelledLastWorkout"
         },
         {
-          "id": "sensor.zatnas_cpu_usage",
-          "friendlyName": "CPU usage",
-          "cSharpName": "ZatnasCpuUsage"
+          "id": "sensor.withings_elevation_change_last_workout",
+          "friendlyName": "Withings Elevation change last workout",
+          "cSharpName": "WithingsElevationChangeLastWorkout"
         },
         {
-          "id": "sensor.zatnas_memory_usage",
-          "friendlyName": "Memory usage",
-          "cSharpName": "ZatnasMemoryUsage"
+          "id": "sensor.withings_last_workout_duration",
+          "friendlyName": "Withings Last workout duration",
+          "cSharpName": "WithingsLastWorkoutDuration"
         },
         {
-          "id": "sensor.zatnas_system_temperature",
-          "friendlyName": "System temperature",
-          "cSharpName": "ZatnasSystemTemperature"
-        },
-        {
-          "id": "sensor.zatnas_volume_used_content",
-          "friendlyName": "Volume used (Content)",
-          "cSharpName": "ZatnasVolumeUsedContent"
+          "id": "sensor.withings_pause_during_last_workout",
+          "friendlyName": "Withings Pause during last workout",
+          "cSharpName": "WithingsPauseDuringLastWorkout"
         },
         {
           "id": "sensor.zigbee2mqtt_bridge_permit_join_timeout",
@@ -20820,6 +21475,11 @@
           "cSharpName": "FritzBox6660CablePortForwardHttpServer8123"
         },
         {
+          "id": "switch.fritz_box_6660_cable_port_forward_https_server",
+          "friendlyName": "FRITZ!Box 6660 Cable Port forward HTTPS-Server",
+          "cSharpName": "FritzBox6660CablePortForwardHttpsServer"
+        },
+        {
           "id": "switch.fritz_box_6660_cable_port_forward_maxcio_pistoke",
           "friendlyName": "FRITZ!Box 6660 Cable Port forward Maxcio Pistoke",
           "cSharpName": "FritzBox6660CablePortForwardMaxcioPistoke"
@@ -20873,6 +21533,11 @@
           "id": "switch.homeassistant_internet_access",
           "friendlyName": "homeAssistant Internet Access",
           "cSharpName": "HomeassistantInternetAccess"
+        },
+        {
+          "id": "switch.homeassistant_internet_access_2",
+          "friendlyName": "homeassistant Internet Access",
+          "cSharpName": "HomeassistantInternetAccess2"
         },
         {
           "id": "switch.homeassistantcontainer_internet_access",
@@ -21028,6 +21693,11 @@
           "id": "switch.schedule_606cd1",
           "friendlyName": "Schedule #606cd1",
           "cSharpName": "Schedule606cd1"
+        },
+        {
+          "id": "switch.schedule_74a63f",
+          "friendlyName": "Schedule #74a63f",
+          "cSharpName": "Schedule74a63f"
         },
         {
           "id": "switch.schedule_ca82ae",
@@ -21272,6 +21942,11 @@
           "cSharpName": "ApexchartsCardUpdate"
         },
         {
+          "id": "update.assist_microphone_update",
+          "friendlyName": "Assist Microphone Update",
+          "cSharpName": "AssistMicrophoneUpdate"
+        },
+        {
           "id": "update.assist_microphone_update_2",
           "friendlyName": "Assist Microphone Update",
           "cSharpName": "AssistMicrophoneUpdate2"
@@ -21367,19 +22042,9 @@
           "cSharpName": "HallwaySensor"
         },
         {
-          "id": "update.hass_agent_mediaplayer_update",
-          "friendlyName": "HASS.Agent MediaPlayer update",
-          "cSharpName": "HassAgentMediaplayerUpdate"
-        },
-        {
-          "id": "update.hass_agent_notifier_update",
-          "friendlyName": "HASS.Agent Notifier update",
-          "cSharpName": "HassAgentNotifierUpdate"
-        },
-        {
-          "id": "update.hass_agent_update",
-          "friendlyName": "HASS.Agent update",
-          "cSharpName": "HassAgentUpdate"
+          "id": "update.hass_agent_2_integration_media_player_notifications_update",
+          "friendlyName": "HASS.Agent 2 Integration - Media Player \u0026 Notifications update",
+          "cSharpName": "HassAgent2IntegrationMediaPlayerNotificationsUpdate"
         },
         {
           "id": "update.home_assistant_core_update",
@@ -21505,11 +22170,6 @@
           "id": "update.music_assistant_server_update",
           "friendlyName": "Music Assistant Server Update",
           "cSharpName": "MusicAssistantServerUpdate"
-        },
-        {
-          "id": "update.music_assistant_update",
-          "friendlyName": "Music Assistant update",
-          "cSharpName": "MusicAssistantUpdate"
         },
         {
           "id": "update.netdaemon_update",
@@ -22112,16 +22772,6 @@
       "domain": "camera",
       "entities": [
         {
-          "id": "camera.elegoo_plus_thumbnail",
-          "friendlyName": "Elegoo Plus Thumbnail",
-          "cSharpName": "ElegooPlusThumbnail"
-        },
-        {
-          "id": "camera.elegoo_plus_webcam",
-          "friendlyName": "Elegoo Plus webcam",
-          "cSharpName": "ElegooPlusWebcam"
-        },
-        {
           "id": "camera.weathercam_digitraffic_fi",
           "friendlyName": "weathercam_digitraffic_fi",
           "cSharpName": "WeathercamDigitrafficFi"
@@ -22305,6 +22955,65 @@
           "jsonName": "supported_features",
           "cSharpName": "SupportedFeatures",
           "clrType": "System.Double"
+        }
+      ]
+    },
+    {
+      "domain": "calendar",
+      "entities": [
+        {
+          "id": "calendar.withings_workouts",
+          "friendlyName": "Withings Workouts",
+          "cSharpName": "WithingsWorkouts"
+        }
+      ],
+      "attributes": [
+        {
+          "jsonName": "friendly_name",
+          "cSharpName": "FriendlyName",
+          "clrType": "System.String"
+        }
+      ]
+    },
+    {
+      "domain": "event",
+      "entities": [
+        {
+          "id": "event.folder_watcher_share",
+          "friendlyName": "Folder Watcher /share",
+          "cSharpName": "FolderWatcherShare"
+        }
+      ],
+      "attributes": [
+        {
+          "jsonName": "event_types",
+          "cSharpName": "EventTypes",
+          "clrType": "System.Collections.Generic.IReadOnlyList\u00601[System.String]"
+        },
+        {
+          "jsonName": "event_type",
+          "cSharpName": "EventType",
+          "clrType": "System.String"
+        },
+        {
+          "jsonName": "path",
+          "cSharpName": "Path",
+          "clrType": "System.String"
+        },
+        {
+          "jsonName": "file",
+          "cSharpName": "File",
+          "clrType": "System.String"
+        },
+        {
+          "jsonName": "folder",
+          "cSharpName": "Folder",
+          "clrType": "System.String"
+        },
+        {
+          "jsonName": "friendly_name",
+          "cSharpName": "FriendlyName",
+          "clrType": "System.String"
         }
       ]
     }
