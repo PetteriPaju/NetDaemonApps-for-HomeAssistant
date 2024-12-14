@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace NetDaemonApps.apps
 {
-    public class _01_LivingRoomFP1
+    public class LivingRoomFP1
     {
         /*
         public static AqaraFP1Extender LivingRoomFP1;

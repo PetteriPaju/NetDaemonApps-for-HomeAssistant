@@ -578,12 +578,12 @@ public class EnergyMonitor
         if (A0Gbl._myEntities.InputNumber.EnergyCostDaily.State == null) return;
         if (A0Gbl._myEntities.InputNumber.EnergyCostHourly.State == null) return;
         if (lastCaclHour == DateTime.Now.Hour) return;
-        if (A0Gbl._myEntities?.Sensor.Powermeters.State == null) return;
+        if (A0Gbl._myEntities?.Sensor.AllPowersEnergyHourly.State == null) return;
 
-        double energyNow = double.Max(double.Parse(A0Gbl._myEntities.Sensor.Powermeters.State.ToString()), 0) ;
-        double energyLastHour = A0Gbl._myEntities.InputNumber.EnergyAtStartOfHour.State ?? 0;
-        double energyConsumedThisHour = energyNow - energyLastHour;
-        A0Gbl._myEntities.InputNumber.EnergyAtStartOfHour.SetValue(energyNow);
+       // double energyNow = double.Max(double.Parse(A0Gbl._myEntities.Sensor.Powermeters.State.ToString()), 0) ;
+       // double energyLastHour = A0Gbl._myEntities.InputNumber.EnergyAtStartOfHour.State ?? 0;
+        double energyConsumedThisHour = A0Gbl._myEntities?.Sensor.AllPowersEnergyHourly.State ?? 0;
+       // A0Gbl._myEntities.InputNumber.EnergyAtStartOfHour.SetValue(energyNow);
 
 
         double calculatePrice(double inpt)
