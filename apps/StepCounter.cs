@@ -1,4 +1,5 @@
 ﻿using HomeAssistantGenerated;
+using Microsoft.VisualBasic.FileIO;
 using NetDaemon.Extensions.Scheduler;
 using NetDaemon.HassModel.Entities;
 using System.Linq;
@@ -12,13 +13,14 @@ namespace NetDaemonApps.apps
     {
         private int lastKnownThreshold = 0;
         private int notificationThreashold = 1000;
+        private static string runnerCsvPath = "/share/runner.csv";
         public StepCounter()
         {
 
             _0Gbl._myEntities.Sensor.MotoG8PowerLiteLastNotification?.StateAllChanges().Where(x => IsValidStep(x))?.Subscribe(x => ParseSteps(x?.Entity?.EntityState?.Attributes?.Android_title));
             lastKnownThreshold = (int)_0Gbl._myEntities.InputNumber.LastKnowStepThreshold.State;
 
-
+            ReadCSV();
             _0Gbl.DailyResetFunction += () =>
             {
                 lastKnownThreshold = 0;
@@ -27,6 +29,24 @@ namespace NetDaemonApps.apps
             };
 
 
+        }
+
+        void ReadCSV()
+        {
+            using (TextFieldParser parser = new TextFieldParser(runnerCsvPath))
+            {
+                parser.TextFieldType = FieldType.Delimited;
+                parser.SetDelimiters(",");
+                while (!parser.EndOfData)
+                {
+                    //Processing row
+                    string[] fields = parser.ReadFields();
+                    foreach (string field in fields)
+                    {
+                        Console.WriteLine(field);
+                    }
+                }
+            }
         }
 
         private void ParseSteps(string? message)
