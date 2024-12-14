@@ -14,17 +14,17 @@ namespace NetDaemonApps.apps
     {
         private int lastKnownThreshold = 0;
         private int notificationThreashold = 1000;
-        private static string runnerCsvPath = "//192.168.0.12/share/runner.csv";
         public StepCounter()
         {
 
             // _0Gbl._myEntities.Sensor.MotoG8PowerLiteLastNotification?.StateAllChanges().Where(x => IsValidStep(x))?.Subscribe(x => ParseSteps(x?.Entity?.EntityState?.Attributes?.Android_title));
             _0Gbl._myEntities.Sensor.MotoG8PowerLiteStepsSensor.StateChanges().Subscribe(x => CalculatePhoneSteps(x.Old.State ?? x.New.State, x.New.State));
+
             lastKnownThreshold = (int)_0Gbl._myEntities.InputNumber.LastKnowStepThreshold.State;
 
 
-            _0Gbl._myEntities.Event.FolderWatcherShare.StateChanges().Subscribe(x => ReadCSV());
-            ReadCSV();
+            _0Gbl._myEntities.Sensor.Runnersteps.StateChanges().Where(x=>x.Old.State != "unavailable").Subscribe(x => AddRunnerSteps(x.New.State));
+
             _0Gbl.DailyResetFunction += () =>
             {
                 lastKnownThreshold = 0;
@@ -34,6 +34,48 @@ namespace NetDaemonApps.apps
             };
 
         }
+
+        void AddRunnerSteps(string state)
+        {
+            int totalSteps = 0;
+
+
+
+            //Processing row
+            string[] fields = state.Split(",");
+               
+
+
+                // Using DateTime.TryParse (more robust for potential parsing errors)
+                DateTime parsedDateTime;
+                if (DateTime.TryParse(fields[0], out parsedDateTime))
+                {
+                    Console.WriteLine(parsedDateTime);
+                    if (parsedDateTime.Date == DateTime.Today)
+                    {
+                        totalSteps = totalSteps += int.Parse(fields[3]);
+                        _0Gbl._myEntities.InputNumber.WalkingpadStepsDaily.SetValue(totalSteps);
+                        RefreshThreshold();
+                    }
+                    else
+                    {
+
+                    }
+
+                    // Successful parsing
+
+                }
+                else
+                {
+                    // Parsing failed
+                    Console.WriteLine("Invalid date-time format.");
+                }
+            
+            _0Gbl._myEntities.InputNumber.WalkingpadStepsDaily.AddValue(totalSteps);
+            RefreshThreshold();
+        }
+                
+            
 
         void RefreshThreshold()
         {
@@ -60,8 +102,10 @@ namespace NetDaemonApps.apps
             _0Gbl._myEntities.InputNumber.Dailysteps.AddValue(dif);
             RefreshThreshold();
         }
+       /*
         int ReadCSV()
         {
+                   
             int totalSteps = 0;
             using (TextFieldParser parser = new TextFieldParser(runnerCsvPath))
             {
@@ -107,6 +151,7 @@ namespace NetDaemonApps.apps
             RefreshThreshold();
             return totalSteps;
         }
+        */
 
         private void ParseSteps(string? message)
         {
