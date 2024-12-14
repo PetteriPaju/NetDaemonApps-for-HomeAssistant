@@ -26,7 +26,7 @@ namespace NetDaemonApps.apps
 
             foreach (var e in events)
             {
-                var triggerObservable = _0Gbl.TriggerManager.RegisterTrigger(
+                var triggerObservable = A0Gbl.TriggerManager.RegisterTrigger(
                  new
                  {
                      platform = "state",

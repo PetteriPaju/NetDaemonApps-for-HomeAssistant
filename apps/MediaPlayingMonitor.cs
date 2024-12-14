@@ -20,10 +20,10 @@ namespace NetDaemonApps.apps
         public MediaPlayingMonitor() {
 
 
-            MediaPlayerEntities mPlayers = _0Gbl._myEntities.MediaPlayer;
-            Entity phoneEntity = _0Gbl._myEntities.Sensor.MotoG8PowerLiteMediaSession;
-            Entity envyEntity = _0Gbl._myEntities.MediaPlayer.Envy;
-            Entity pcEntity = _0Gbl._myEntities.MediaPlayer.Pc;
+            MediaPlayerEntities mPlayers = A0Gbl._myEntities.MediaPlayer;
+            Entity phoneEntity = A0Gbl._myEntities.Sensor.MotoG8PowerLiteMediaSession;
+            Entity envyEntity = A0Gbl._myEntities.MediaPlayer.Envy;
+            Entity pcEntity = A0Gbl._myEntities.MediaPlayer.Pc;
 
 
             Entity[] mediaPlayerEntities= new Entity[] { envyEntity, pcEntity, mPlayers.LivingRoomTv, phoneEntity};
@@ -40,7 +40,7 @@ namespace NetDaemonApps.apps
                 SetEntityForMediaPlayer(e);
             }
 
-            _0Gbl._myScheduler.ScheduleCron("* * * * *", () => CheckAllStates());
+            A0Gbl._myScheduler.ScheduleCron("* * * * *", () => CheckAllStates());
 
 
             CheckAllStates();
@@ -72,8 +72,8 @@ namespace NetDaemonApps.apps
                 }
             }
 
-            if (somethinggPlaying) _0Gbl._myEntities.InputBoolean.MediaPlaying.TurnOn();
-            else _0Gbl._myEntities.InputBoolean.MediaPlaying.TurnOff();
+            if (somethinggPlaying) A0Gbl._myEntities.InputBoolean.MediaPlaying.TurnOn();
+            else A0Gbl._myEntities.InputBoolean.MediaPlaying.TurnOff();
 
         }
 

@@ -28,17 +28,17 @@ namespace NetDaemonApps.apps
         }
         public AutoTurnOffs() {
 
-            _0Gbl._myEntities.Sensor.PcDisplayDisplayCount.StateChanges().Subscribe(_ => { _0Gbl._myEntities.Button.PcResetbrigtness.Press(); });
+            A0Gbl._myEntities.Sensor.PcDisplayDisplayCount.StateChanges().Subscribe(_ => { A0Gbl._myEntities.Button.PcResetbrigtness.Press(); });
             //_0Gbl._myEntities.Sensor.PcDisplayDisplay1Resolution.StateChanges().Subscribe(_ => { _0Gbl._myEntities.Button.PcResetbrigtness.Press(); });
 
-            _0Gbl._myEntities.Light.KitchenLight2.StateChanges().WhenStateIsFor(x => x?.State == "on" && _0Gbl._myEntities.InputBoolean.GuestMode.IsOff() , TimeSpan.FromHours(1), _0Gbl._myScheduler)
-                .Subscribe(x => { _0Gbl._myEntities.Light.KitchenLight2.TurnOffLight(); });
+            A0Gbl._myEntities.Light.KitchenLight2.StateChanges().WhenStateIsFor(x => x?.State == "on" && A0Gbl._myEntities.InputBoolean.GuestMode.IsOff() , TimeSpan.FromHours(1), A0Gbl._myScheduler)
+                .Subscribe(x => { A0Gbl._myEntities.Light.KitchenLight2.TurnOffLight(); });
 
-            _0Gbl._myEntities.Light.ToiletLight1.StateChanges().WhenStateIsFor(x => x?.State == "on", TimeSpan.FromHours(1), _0Gbl._myScheduler)
-               .Subscribe(x => { _0Gbl._myEntities.Light.ToiletLight1.TurnOff();});
+            A0Gbl._myEntities.Light.ToiletLight1.StateChanges().WhenStateIsFor(x => x?.State == "on", TimeSpan.FromHours(1), A0Gbl._myScheduler)
+               .Subscribe(x => { A0Gbl._myEntities.Light.ToiletLight1.TurnOff();});
 
-            _0Gbl._myEntities.Sensor.InkplatePlugPower.StateChanges().WhenStateIsFor(x => x?.State < 50, TimeSpan.FromMinutes(30), _0Gbl._myScheduler)
-               .Subscribe(x => { _0Gbl._myEntities.Switch.InkplatePlug.TurnOff(); });
+            A0Gbl._myEntities.Sensor.InkplatePlugPower.StateChanges().WhenStateIsFor(x => x?.State < 50, TimeSpan.FromMinutes(30), A0Gbl._myScheduler)
+               .Subscribe(x => { A0Gbl._myEntities.Switch.InkplatePlug.TurnOff(); });
 
 
             void sub(LightEntity light)
@@ -51,17 +51,17 @@ namespace NetDaemonApps.apps
                             lightOffDisposables[light].laptop?.Dispose();
                             lightOffDisposables[light].disposer?.Dispose();
 
-                            if (light.IsOn() && _0Gbl._myEntities.InputBoolean.GuestMode.IsOff() && _0Gbl._myEntities.InputBoolean.SensorsActive.IsOn())
+                            if (light.IsOn() && A0Gbl._myEntities.InputBoolean.GuestMode.IsOff() && A0Gbl._myEntities.InputBoolean.SensorsActive.IsOn())
                             {
-                               _0Gbl._myScheduler.Schedule(TimeSpan.FromSeconds(60), () => {
+                               A0Gbl._myScheduler.Schedule(TimeSpan.FromSeconds(60), () => {
                                    if (light.IsOn())
                                    {
-                                       lightOffDisposables[light].pc = _0Gbl._myEntities.Sensor.PcLastactive.StateChanges().Where(x => x.Old?.State != "unavailable" && x.New?.State != "unavailable").Subscribe(x => {
+                                       lightOffDisposables[light].pc = A0Gbl._myEntities.Sensor.PcLastactive.StateChanges().Where(x => x.Old?.State != "unavailable" && x.New?.State != "unavailable").Subscribe(x => {
                                            light.TurnOff();
                                            lightOffDisposables[light].pc?.Dispose();
                                            lightOffDisposables[light].pc = null;
                                        });
-                                       lightOffDisposables[light].laptop = _0Gbl._myEntities.Sensor.EnvyLastactive.StateChanges().Where(x => x.Old?.State != "unavailable" && x.New?.State != "unavailable" && _0Gbl._myEntities.Sensor.EnvyNetworkNetworkCardCount.State == "1").Subscribe(x => {
+                                       lightOffDisposables[light].laptop = A0Gbl._myEntities.Sensor.EnvyLastactive.StateChanges().Where(x => x.Old?.State != "unavailable" && x.New?.State != "unavailable" && A0Gbl._myEntities.Sensor.EnvyNetworkNetworkCardCount.State == "1").Subscribe(x => {
 
                                            light.TurnOff();
                                            lightOffDisposables[light].laptop?.Dispose();
@@ -71,7 +71,7 @@ namespace NetDaemonApps.apps
                                    }
 
                                });
-                                    lightOffDisposables[light].disposer= _0Gbl._myScheduler.Schedule(TimeSpan.FromSeconds(600), () => {
+                                    lightOffDisposables[light].disposer= A0Gbl._myScheduler.Schedule(TimeSpan.FromSeconds(600), () => {
                                     if(lightOffDisposables[light].pc != null)
                                     {
                                         lightOffDisposables[light].pc?.Dispose();
@@ -92,45 +92,45 @@ namespace NetDaemonApps.apps
 
                         });
             }
-            sub(_0Gbl._myEntities.Light.ToiletLight1);
-            sub(_0Gbl._myEntities.Light.KitchenLight2);
-            sub(_0Gbl._myEntities.Light.HallwayLight);
-            sub(_0Gbl._myEntities.Light.StorageLight2);
+            sub(A0Gbl._myEntities.Light.ToiletLight1);
+            sub(A0Gbl._myEntities.Light.KitchenLight2);
+            sub(A0Gbl._myEntities.Light.HallwayLight);
+            sub(A0Gbl._myEntities.Light.StorageLight2);
 
 
 
             //Fan
-            _0Gbl._myEntities.Switch.BedMultiPlugL1.StateChanges().WhenStateIsFor(x => x?.State == "on", TimeSpan.FromHours(1)+TimeSpan.FromMinutes(30), _0Gbl._myScheduler)
-               .Subscribe(x => { _0Gbl._myEntities.Switch.BedMultiPlugL1.TurnOff(); });
+            A0Gbl._myEntities.Switch.BedMultiPlugL1.StateChanges().WhenStateIsFor(x => x?.State == "on", TimeSpan.FromHours(1)+TimeSpan.FromMinutes(30), A0Gbl._myScheduler)
+               .Subscribe(x => { A0Gbl._myEntities.Switch.BedMultiPlugL1.TurnOff(); });
 
-            _0Gbl._myEntities.Switch.PcPlug.StateChanges().Where(x => x.New?.State == "on" && x.Old?.State == "off")
+            A0Gbl._myEntities.Switch.PcPlug.StateChanges().Where(x => x.New?.State == "on" && x.Old?.State == "off")
                 .Subscribe(_ => {
 
-                 _0Gbl._myEntities.Light.PcMultipowermeterL1.TurnOn();
-                _0Gbl._myEntities.Switch.PcMultipowermeterMonitors.TurnOn();
-                _0Gbl._myEntities.Switch.FanPlug.TurnOn();
+                 A0Gbl._myEntities.Light.PcMultipowermeterL1.TurnOn();
+                A0Gbl._myEntities.Switch.PcMultipowermeterMonitors.TurnOn();
+                A0Gbl._myEntities.Switch.FanPlug.TurnOn();
                // _0Gbl._myEntities.Scene.SwitchUsbLaptop.TurnOn();
 
 
             });
 
 
-            _0Gbl._myEntities.Sensor.EnvyBatteryChargeRemainingPercentage.StateChanges().Where(x => x?.New?.State < _0Gbl._myEntities.InputNumber.SettingsLaptopchargerturnonpercent.State)
+            A0Gbl._myEntities.Sensor.EnvyBatteryChargeRemainingPercentage.StateChanges().Where(x => x?.New?.State < A0Gbl._myEntities.InputNumber.SettingsLaptopchargerturnonpercent.State)
                 .Subscribe(_ => {
 
-                _0Gbl._myEntities.Switch.PcMultipowermeterLaptop.TurnOn();          
+                A0Gbl._myEntities.Switch.PcMultipowermeterLaptop.TurnOn();          
             });
 
-            _0Gbl._myEntities.Sensor.EnvyBatteryChargeRemainingPercentage.StateChanges().Where(x => x?.New?.State >= 99)
+            A0Gbl._myEntities.Sensor.EnvyBatteryChargeRemainingPercentage.StateChanges().Where(x => x?.New?.State >= 99)
                 .Subscribe(_ => {
-                    _0Gbl._myEntities.Switch.PcMultipowermeterLaptop.TurnOff();
+                    A0Gbl._myEntities.Switch.PcMultipowermeterLaptop.TurnOff();
                 });
 
-            _0Gbl._myEntities.BinarySensor.LivingroomWindowSensorContact.StateChanges().Where(x => x?.New?.State == "on" && x?.Old?.State == "off").Subscribe(_ => {
+            A0Gbl._myEntities.BinarySensor.LivingroomWindowSensorContact.StateChanges().Where(x => x?.New?.State == "on" && x?.Old?.State == "off").Subscribe(_ => {
               //  _00_Globals._myEntities.Switch.TbdPowermeter.TurnOff();
             });
 
-            _0Gbl._myEntities.BinarySensor.LivingroomWindowSensorContact.StateChanges().Where(x => x?.New?.State == "off" && x?.Old?.State == "on").Subscribe(_ => {
+            A0Gbl._myEntities.BinarySensor.LivingroomWindowSensorContact.StateChanges().Where(x => x?.New?.State == "off" && x?.Old?.State == "on").Subscribe(_ => {
                // _00_Globals._myEntities.Switch.TbdPowermeter.TurnOn();
             });
 

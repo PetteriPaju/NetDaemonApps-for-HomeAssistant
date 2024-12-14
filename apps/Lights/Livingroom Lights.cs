@@ -14,7 +14,7 @@ namespace NetDaemonApps.apps.Lights
 
         protected override LightEntity[] SetLights()
         {
-            return _0Gbl._myEntities.InputSelect.LivingRoomLights.lightEntitiesFromSelectionDropdown().ToArray();
+            return A0Gbl._myEntities.InputSelect.LivingRoomLights.lightEntitiesFromSelectionDropdown().ToArray();
         }
 
     }

@@ -24,13 +24,13 @@ namespace NetDaemonApps.apps.Hue_Switches
         protected override void OnPowerRelease()
         {
             base.OnPowerPress();
-            _0Gbl._myEntities.Switch.BedMultiPlugL1.Toggle();
+            A0Gbl._myEntities.Switch.BedMultiPlugL1.Toggle();
         }
   
         protected override void OnPowerHoldRelease()
         {
             base.OnPowerHoldRelease();
-            _0Gbl._myEntities.Switch.InkplatePlug.Toggle();
+            A0Gbl._myEntities.Switch.InkplatePlug.Toggle();
         }
 
         protected override void OnAnyPress()
@@ -75,7 +75,7 @@ namespace NetDaemonApps.apps.Hue_Switches
             }
             else {
 
-                if (_0Gbl._myEntities.Switch.ModemAutoOnPlug.IsOn())
+                if (A0Gbl._myEntities.Switch.ModemAutoOnPlug.IsOn())
                 {
                     message = "Modem Off";
                 }
@@ -84,8 +84,8 @@ namespace NetDaemonApps.apps.Hue_Switches
                     message = "Modem On";
                 }
          
-                cancelRoutine = _0Gbl._myScheduler.Schedule(TimeSpan.FromSeconds(_0Gbl._myEntities.Switch.ModemAutoOnPlug.IsOn() ? 10 : 0), () => {
-                        _0Gbl._myEntities.Switch.ModemAutoOnPlug.Toggle();
+                cancelRoutine = A0Gbl._myScheduler.Schedule(TimeSpan.FromSeconds(A0Gbl._myEntities.Switch.ModemAutoOnPlug.IsOn() ? 10 : 0), () => {
+                        A0Gbl._myEntities.Switch.ModemAutoOnPlug.Toggle();
                     
 
                     cancelRoutine = null;
@@ -110,9 +110,9 @@ namespace NetDaemonApps.apps.Hue_Switches
             {
                  message = "Everything off";
 
-                cancelRoutine = _0Gbl._myScheduler.Schedule(TimeSpan.FromSeconds(10), () => {
+                cancelRoutine = A0Gbl._myScheduler.Schedule(TimeSpan.FromSeconds(10), () => {
 
-                    _0Gbl._myEntities.Script.TurnOffEverything.TurnOn();
+                    A0Gbl._myEntities.Script.TurnOffEverything.TurnOn();
                     cancelRoutine = null;
 
                 });
@@ -125,9 +125,9 @@ namespace NetDaemonApps.apps.Hue_Switches
         {
 
             base.OnHueRelease();
-            TimeSpan? timeDiff = DateTime.Now - _0Gbl._myEntities?.InputDatetime.Lastisasleeptime.GetDateTime();
+            TimeSpan? timeDiff = DateTime.Now - A0Gbl._myEntities?.InputDatetime.Lastisasleeptime.GetDateTime();
             string ttsTime = "its " + DateTime.Now.ToString("H:mm", CultureInfo.InvariantCulture); 
-            if(_0Gbl._myEntities.InputBoolean.Isasleep.IsOn()) ttsTime += ", you have been sleeping for " + timeDiff?.Hours + " hours" + (timeDiff?.Minutes > 0 ? " and " + timeDiff?.Minutes + "minutes" : ". ");
+            if(A0Gbl._myEntities.InputBoolean.Isasleep.IsOn()) ttsTime += ", you have been sleeping for " + timeDiff?.Hours + " hours" + (timeDiff?.Minutes > 0 ? " and " + timeDiff?.Minutes + "minutes" : ". ");
 
             TTS.Speak(ttsTime,TTS.TTSPriority.IgnoreAll);
         }

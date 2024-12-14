@@ -35,7 +35,7 @@ namespace NetDaemonApps.apps
         public TTS(ITextToSpeechService ttsService) {
 
             lastAnnounsmentTime = DateTime.MinValue;
-            isAsleepEntity = _0Gbl._myEntities.InputBoolean.Isasleep;
+            isAsleepEntity = A0Gbl._myEntities.InputBoolean.Isasleep;
             this.tts = ttsService;
             Instance = this;
         }
@@ -78,19 +78,19 @@ namespace NetDaemonApps.apps
             if (overriders.Length == 0) return true;
             if (paramsContain(TTSPriority.IgnoreAll)) return true;
            
-            if (_0Gbl._myEntities.InputBoolean.HydrationCheckActive.IsOn())
+            if (A0Gbl._myEntities.InputBoolean.HydrationCheckActive.IsOn())
             {
                if( paramsContain(TTSPriority.IgnoreDisabled)) return true;
 
-                if (_0Gbl._myEntities.InputBoolean.Isasleep.IsOn() && paramsContain(TTSPriority.IgnoreSleep) && 
-                   (_0Gbl._myEntities.InputBoolean.GuestMode.IsOff() || paramsContain(TTSPriority.PlayInGuestMode))) return true;
+                if (A0Gbl._myEntities.InputBoolean.Isasleep.IsOn() && paramsContain(TTSPriority.IgnoreSleep) && 
+                   (A0Gbl._myEntities.InputBoolean.GuestMode.IsOff() || paramsContain(TTSPriority.PlayInGuestMode))) return true;
 
-                if (_0Gbl._myEntities.InputBoolean.GuestMode.IsOn() && (DateTime.Now.Hour < 7 || DateTime.Now.Hour == 23)) return false;
+                if (A0Gbl._myEntities.InputBoolean.GuestMode.IsOn() && (DateTime.Now.Hour < 7 || DateTime.Now.Hour == 23)) return false;
 
-                if (_0Gbl._myEntities.InputBoolean.GuestMode.IsOn() && paramsContain(TTSPriority.PlayInGuestMode)) return true;
-                if (_0Gbl._myEntities.InputBoolean.GuestMode.IsOn() && paramsContain(TTSPriority.DoNotPlayInGuestMode)) return false;
+                if (A0Gbl._myEntities.InputBoolean.GuestMode.IsOn() && paramsContain(TTSPriority.PlayInGuestMode)) return true;
+                if (A0Gbl._myEntities.InputBoolean.GuestMode.IsOn() && paramsContain(TTSPriority.DoNotPlayInGuestMode)) return false;
 
-                if (_0Gbl._myEntities.InputBoolean.Isasleep.IsOn() && !paramsContain(TTSPriority.IgnoreSleep)) return false;
+                if (A0Gbl._myEntities.InputBoolean.Isasleep.IsOn() && !paramsContain(TTSPriority.IgnoreSleep)) return false;
 
 
                 return true;
@@ -116,15 +116,15 @@ namespace NetDaemonApps.apps
                 lastAnnounsmentTime = DateTime.Now;
                 tts.Speak("media_player.vlc_telnet", text, getTTSService());
 
-                _0Gbl._myScheduler.Schedule(TimeSpan.FromSeconds(1),() => {
+                A0Gbl._myScheduler.Schedule(TimeSpan.FromSeconds(1),() => {
                     IDisposable disp = null;
-                   disp = _0Gbl._myEntities.MediaPlayer.VlcTelnet.StateChanges().Where(x => x.New?.State != "playing").Subscribe(x => {
+                   disp = A0Gbl._myEntities.MediaPlayer.VlcTelnet.StateChanges().Where(x => x.New?.State != "playing").Subscribe(x => {
 
                         callback?.Invoke();
                         
                        disp?.Dispose();
                     });
-                    _0Gbl._myScheduler.Schedule(TimeSpan.FromSeconds(30), () => { disp?.Dispose(); });
+                    A0Gbl._myScheduler.Schedule(TimeSpan.FromSeconds(30), () => { disp?.Dispose(); });
                 });
                
                 }
@@ -138,7 +138,7 @@ namespace NetDaemonApps.apps
 
        private string getTTSService()
         {
-            return _0Gbl._myEntities.BinarySensor.FritzBox6660CableConnection.State == "on" ? "google_translate_say" : "picotts_say";
+            return A0Gbl._myEntities.BinarySensor.FritzBox6660CableConnection.State == "on" ? "google_translate_say" : "picotts_say";
         }
 
     }

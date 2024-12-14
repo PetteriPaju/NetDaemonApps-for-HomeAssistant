@@ -27,7 +27,7 @@ namespace NetDaemonApps.apps.Lights
 
         private void OnLightTurnOn(LightEntity poweredLight)
         {
-            if(_0Gbl._myEntities.InputBoolean.GuestMode.IsOn())return;
+            if(A0Gbl._myEntities.InputBoolean.GuestMode.IsOn())return;
 
             foreach (LightEntity light in lights)
             {

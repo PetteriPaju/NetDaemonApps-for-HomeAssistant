@@ -75,7 +75,7 @@ namespace NetDaemonApps
             List<LightEntity> list = new List<LightEntity>();
             foreach (string entityId in slectionEntity.Attributes.Options)
             {
-                list.Add(new LightEntity(_0Gbl.HaContext, entityId));
+                list.Add(new LightEntity(A0Gbl.HaContext, entityId));
 
             }
             return list;
@@ -92,7 +92,7 @@ namespace NetDaemonApps
 
             foreach (string entityId in idList)
             {
-                list.Add(new LightEntity(_0Gbl.HaContext, entityId));
+                list.Add(new LightEntity(A0Gbl.HaContext, entityId));
             }
             return list;
         }

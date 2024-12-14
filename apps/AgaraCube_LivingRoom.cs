@@ -21,18 +21,18 @@ namespace NetDaemonApps.apps
 
         }
 
-        protected override SensorEntity? SetCubeActionEntity() { return _0Gbl._myEntities?.Sensor.CubeAction; }
-        protected override SensorEntity? SetCubeSideEntity() { return _0Gbl._myEntities?.Sensor.CubeSide; }
+        protected override SensorEntity? SetCubeActionEntity() { return A0Gbl._myEntities?.Sensor.CubeAction; }
+        protected override SensorEntity? SetCubeSideEntity() { return A0Gbl._myEntities?.Sensor.CubeSide; }
 
 
         protected override void OnShake()
         {
             base.OnShake();
 
-            if (_0Gbl._myEntities.Sensor.EcoflowStatus.State.ToLower() != "online")
+            if (A0Gbl._myEntities.Sensor.EcoflowStatus.State.ToLower() != "online")
             {
 
-                _0Gbl._myEntities.Switch.SwitchbotEcoflow.Toggle();
+                A0Gbl._myEntities.Switch.SwitchbotEcoflow.Toggle();
 
                 Task.Run(async () =>
                 {
@@ -40,14 +40,14 @@ namespace NetDaemonApps.apps
                     {
                         var waitTask = Task.Run(async () =>
                         {
-                            while (_0Gbl._myEntities.Sensor.EcoflowStatus.State != "online") await Task.Delay(1000);
+                            while (A0Gbl._myEntities.Sensor.EcoflowStatus.State != "online") await Task.Delay(1000);
                         });
 
                         if (waitTask != await Task.WhenAny(waitTask, Task.Delay(120000)))
                             throw new TimeoutException();
                     });
 
-                    _0Gbl._myEntities.Switch.EcoflowAcEnabled.TurnOn();
+                    A0Gbl._myEntities.Switch.EcoflowAcEnabled.TurnOn();
 
 
                 });
@@ -55,20 +55,20 @@ namespace NetDaemonApps.apps
 
 
             }
-            else if (_0Gbl._myEntities.Sensor.EcoflowAcOutputFixed.State == 0)
+            else if (A0Gbl._myEntities.Sensor.EcoflowAcOutputFixed.State == 0)
             {
-                _0Gbl._myEntities.Switch.EcoflowPlug.TurnOff();
+                A0Gbl._myEntities.Switch.EcoflowPlug.TurnOff();
                 Task.Run(async () =>
                 {
                     await Task.Delay(5000);
 
-                    _0Gbl._myEntities.Switch.SwitchbotEcoflow.Toggle();
+                    A0Gbl._myEntities.Switch.SwitchbotEcoflow.Toggle();
 
 
                 });
               
 
-                if(_0Gbl._myEntities.Sensor.EcoflowSolarInPower.State > 0)
+                if(A0Gbl._myEntities.Sensor.EcoflowSolarInPower.State > 0)
                 {
                     TTS.Speak("Solar Panels are active", TTS.TTSPriority.Default);
                 }

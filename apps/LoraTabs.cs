@@ -18,11 +18,11 @@ namespace NetDaemonApps.apps
     {
         protected LightCycler lightCycler;
         public LoraTapDekstop() : base() {
-            lightCycler = new LightCycler(_0Gbl._myEntities.InputBoolean.GuestMode, _0Gbl._myEntities.InputSelect.DesktopKnobLights.lightEntitiesFromSelectionDropdown().ToArray());
+            lightCycler = new LightCycler(A0Gbl._myEntities.InputBoolean.GuestMode, A0Gbl._myEntities.InputSelect.DesktopKnobLights.lightEntitiesFromSelectionDropdown().ToArray());
         }
         protected override SensorEntity GetEntity()
         {
-            return _0Gbl._myEntities.Sensor.LrtabPcAction;
+            return A0Gbl._myEntities.Sensor.LrtabPcAction;
         }
 
         protected override void On1Press()
@@ -44,13 +44,13 @@ namespace NetDaemonApps.apps
         protected override void On2Press()
         {
             base.On2Press();
-            _0Gbl._myEntities.Switch.PcPlug.TurnOn();
+            A0Gbl._myEntities.Switch.PcPlug.TurnOn();
         }
 
         protected override void On4Press()
         {
             base.On3Press();
-            _0Gbl._myEntities.Switch.PcMultipowermeterMonitors.Toggle();
+            A0Gbl._myEntities.Switch.PcMultipowermeterMonitors.Toggle();
         }
 
 
@@ -59,31 +59,31 @@ namespace NetDaemonApps.apps
         {
             base.On5Press();
 
-            if (_0Gbl._myEntities.Switch.DeskFans.IsOff())
+            if (A0Gbl._myEntities.Switch.DeskFans.IsOff())
             {
-                _0Gbl._myEntities.Switch.DeskFans.TurnOn();
+                A0Gbl._myEntities.Switch.DeskFans.TurnOn();
             }
-            else if (_0Gbl._myEntities.Switch.UsbMultiFansCenter.IsOn() && _0Gbl._myEntities.Switch.UsbMultiFansCenter.IsOn())
+            else if (A0Gbl._myEntities.Switch.UsbMultiFansCenter.IsOn() && A0Gbl._myEntities.Switch.UsbMultiFansCenter.IsOn())
             {
-                _0Gbl._myEntities.Switch.UsbMultiFansCenter.TurnOff();
+                A0Gbl._myEntities.Switch.UsbMultiFansCenter.TurnOff();
             }
-            else if (_0Gbl._myEntities.Switch.UsbMultiFansCenter.IsOff() && _0Gbl._myEntities.Switch.UsbMultiFansLeft.IsOn())
+            else if (A0Gbl._myEntities.Switch.UsbMultiFansCenter.IsOff() && A0Gbl._myEntities.Switch.UsbMultiFansLeft.IsOn())
             {
-                _0Gbl._myEntities.Switch.UsbMultiFansCenter.Toggle();
-                _0Gbl._myEntities.Switch.UsbMultiFansLeft.Toggle();
+                A0Gbl._myEntities.Switch.UsbMultiFansCenter.Toggle();
+                A0Gbl._myEntities.Switch.UsbMultiFansLeft.Toggle();
 
             }
             else
             {
-                _0Gbl._myEntities.Switch.DeskFans.TurnOff();
+                A0Gbl._myEntities.Switch.DeskFans.TurnOff();
 
             }
         }
         protected override void On3Press()
         {
             base.On3Press();
-            if (_0Gbl._myEntities.Switch.PcPlug.IsOn())
-                _0Gbl._myEntities.Button.PcWalkingpadtoggle.Press();
+            if (A0Gbl._myEntities.Switch.PcPlug.IsOn())
+                A0Gbl._myEntities.Button.PcWalkingpadtoggle.Press();
             else
                 return;
         }
@@ -92,8 +92,8 @@ namespace NetDaemonApps.apps
         {
             base.On3Double();
 
-            if (_0Gbl._myEntities.Switch.PcPlug.IsOn())
-                _0Gbl._myEntities.Button.PcWalkingpadspeedup.Press();
+            if (A0Gbl._myEntities.Switch.PcPlug.IsOn())
+                A0Gbl._myEntities.Button.PcWalkingpadspeedup.Press();
             else
                 return;
           
@@ -102,8 +102,8 @@ namespace NetDaemonApps.apps
         {
             base.On3Hold();
 
-            if (_0Gbl._myEntities.Switch.PcPlug.IsOn())
-                _0Gbl._myEntities.Button.PcCwalkingpadspeeddown.Press();
+            if (A0Gbl._myEntities.Switch.PcPlug.IsOn())
+                A0Gbl._myEntities.Button.PcCwalkingpadspeeddown.Press();
             else
                 return;
 
@@ -111,12 +111,12 @@ namespace NetDaemonApps.apps
 
         protected override void On5Hold()
         {
-            _0Gbl._myEntities.Switch.DeskFans.Toggle();
+            A0Gbl._myEntities.Switch.DeskFans.Toggle();
         }
 
         protected override void On6Press()
         {
-            _0Gbl._myEntities.Switch.SwitchbotEcoflow.Toggle();
+            A0Gbl._myEntities.Switch.SwitchbotEcoflow.Toggle();
         }
     }
 
@@ -131,33 +131,33 @@ namespace NetDaemonApps.apps
         }
         protected override SensorEntity GetEntity()
         {
-            return _0Gbl._myEntities.Sensor.LrTabBedAction;
+            return A0Gbl._myEntities.Sensor.LrTabBedAction;
         }
 
         protected override void On1Press()
         {
             base.On1Press();        
-            _0Gbl._myEntities.Light.BedLight.Toggle();
+            A0Gbl._myEntities.Light.BedLight.Toggle();
 
         }
         protected override void On2Press()
         {
             base.On1Press();
-            _0Gbl._myEntities.Switch.BedMultiPlugL1.Toggle();
+            A0Gbl._myEntities.Switch.BedMultiPlugL1.Toggle();
 
         }
 
         protected override void On3Press()
         {
             base.On3Press();
-            _0Gbl._myEntities.Switch.InkplatePlug.Toggle();
+            A0Gbl._myEntities.Switch.InkplatePlug.Toggle();
         }
         protected override void On4Press()
         {
             base.On2Press();
-            TimeSpan? timeDiff = DateTime.Now - _0Gbl._myEntities?.InputDatetime.Lastisasleeptime.GetDateTime();
+            TimeSpan? timeDiff = DateTime.Now - A0Gbl._myEntities?.InputDatetime.Lastisasleeptime.GetDateTime();
             string ttsTime = "its " + DateTime.Now.ToString("H:mm", CultureInfo.InvariantCulture);
-            if (_0Gbl._myEntities.InputBoolean.Isasleep.IsOn()) ttsTime += ", you have been sleeping for " + timeDiff?.Hours + " hours" + (timeDiff?.Minutes > 0 ? " and " + timeDiff?.Minutes + "minutes" : ". ");
+            if (A0Gbl._myEntities.InputBoolean.Isasleep.IsOn()) ttsTime += ", you have been sleeping for " + timeDiff?.Hours + " hours" + (timeDiff?.Minutes > 0 ? " and " + timeDiff?.Minutes + "minutes" : ". ");
 
             TTS.Speak(ttsTime, TTS.TTSPriority.IgnoreAll);
         }
@@ -170,7 +170,7 @@ namespace NetDaemonApps.apps
             switch (pwrpressMode)
             {
                 case 0:
-                    if (_0Gbl._myEntities.Switch.ModemAutoOnPlug.IsOn())
+                    if (A0Gbl._myEntities.Switch.ModemAutoOnPlug.IsOn())
                     {
                         message = "Modem Off";
                     }
@@ -180,11 +180,11 @@ namespace NetDaemonApps.apps
                     }
 
                     cancelRoutine?.Dispose();
-                    cancelRoutine = _0Gbl._myScheduler.Schedule(TimeSpan.FromSeconds(_0Gbl._myEntities.Switch.ModemAutoOnPlug.IsOn() ? 10 : 0), () => {
+                    cancelRoutine = A0Gbl._myScheduler.Schedule(TimeSpan.FromSeconds(A0Gbl._myEntities.Switch.ModemAutoOnPlug.IsOn() ? 10 : 0), () => {
 
 
  
-                            _0Gbl._myEntities.Switch.ModemAutoOnPlug.Toggle();
+                            A0Gbl._myEntities.Switch.ModemAutoOnPlug.Toggle();
                         
 
                         pwrpressMode = -1;
@@ -196,8 +196,8 @@ namespace NetDaemonApps.apps
                 case 1:
                     cancelRoutine?.Dispose();
                     message = "Everything Off";
-                    cancelRoutine = _0Gbl._myScheduler.Schedule(TimeSpan.FromSeconds(30), () => {
-                        _0Gbl._myServices.Script.TurnOffEverything();
+                    cancelRoutine = A0Gbl._myScheduler.Schedule(TimeSpan.FromSeconds(30), () => {
+                        A0Gbl._myServices.Script.TurnOffEverything();
                         pwrpressMode = 0;
                     });
                     break;

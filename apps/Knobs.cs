@@ -17,9 +17,9 @@ namespace NetDaemonApps.apps
         List<Knob> knobs = new List<Knob>();
         public Knobs() {
 
-            knobs.Add(new DesktopKnob(_0Gbl._myEntities.Sensor.KnobDesktopAction, _0Gbl._myEntities.Sensor.KnobDesktopDelta));
-            knobs.Add(new BedKnob(_0Gbl._myEntities.Sensor.BedKnobAction, _0Gbl._myEntities.Sensor.KnobBedDelta));
-            knobs.Add(new SofaKnob(_0Gbl._myEntities.Sensor.KnobCouchAction, _0Gbl._myEntities.Sensor.KnobCouchDelta));
+            knobs.Add(new DesktopKnob(A0Gbl._myEntities.Sensor.KnobDesktopAction, A0Gbl._myEntities.Sensor.KnobDesktopDelta));
+            knobs.Add(new BedKnob(A0Gbl._myEntities.Sensor.BedKnobAction, A0Gbl._myEntities.Sensor.KnobBedDelta));
+            knobs.Add(new SofaKnob(A0Gbl._myEntities.Sensor.KnobCouchAction, A0Gbl._myEntities.Sensor.KnobCouchDelta));
 
         }
 
@@ -59,7 +59,7 @@ namespace NetDaemonApps.apps
                     long step;
                     if (long.TryParse(knobDelta.State, out step))
                     {
-                        step = (int)Math.Round(step * (flipDialDirection ? -1 : 1) * _0Gbl._myEntities.InputNumber.SettingsKnobSensitivity.State ?? 1);
+                        step = (int)Math.Round(step * (flipDialDirection ? -1 : 1) * A0Gbl._myEntities.InputNumber.SettingsKnobSensitivity.State ?? 1);
        
                         long minBrightnessFix = Math.Min(((long)lightCycler.GetCurrentLight().getBrightness() + step), (long)255);
                         minBrightnessFix = (Math.Max(minBrightnessFix, (long)10));
@@ -71,7 +71,7 @@ namespace NetDaemonApps.apps
             }
             protected virtual void OnHold()
             {
-                _0Gbl._myServices.Script.PlayInterfaceSound();
+                A0Gbl._myServices.Script.PlayInterfaceSound();
             }
 
             protected virtual void OnHoldRelease() { }
@@ -142,14 +142,14 @@ namespace NetDaemonApps.apps
             public DesktopKnob(SensorEntity knobAction, SensorEntity knobStep) : base(knobAction, knobStep)
             {
                 flipDialDirection = false;
-                lightCycler = new LightCycler(_0Gbl._myEntities.InputBoolean.GuestMode,_0Gbl._myEntities.InputSelect.DesktopKnobLights.lightEntitiesFromSelectionDropdown().ToArray());
+                lightCycler = new LightCycler(A0Gbl._myEntities.InputBoolean.GuestMode,A0Gbl._myEntities.InputSelect.DesktopKnobLights.lightEntitiesFromSelectionDropdown().ToArray());
             }
 
             protected override void OnHold()
             {
                 base.OnHold();
-                if (_0Gbl._myEntities.Switch.PcPlug.IsOn())
-                    _0Gbl._myEntities.Button.PcWalkingpadtoggle.Press();
+                if (A0Gbl._myEntities.Switch.PcPlug.IsOn())
+                    A0Gbl._myEntities.Button.PcWalkingpadtoggle.Press();
                 else
                     return;
             }
@@ -158,13 +158,13 @@ namespace NetDaemonApps.apps
         {
             public BedKnob(SensorEntity knobAction, SensorEntity knobStep) : base(knobAction, knobStep)
             {
-                lightCycler = new LightCycler(_0Gbl._myEntities.InputBoolean.GuestMode, _0Gbl._myEntities.InputSelect.BedKnobLights.lightEntitiesFromSelectionDropdown().ToArray());
+                lightCycler = new LightCycler(A0Gbl._myEntities.InputBoolean.GuestMode, A0Gbl._myEntities.InputSelect.BedKnobLights.lightEntitiesFromSelectionDropdown().ToArray());
             }
 
             protected override void OnHold()
             {
                 base.OnHold();
-                _0Gbl._myEntities.Switch.InkplatePlug.Toggle();
+                A0Gbl._myEntities.Switch.InkplatePlug.Toggle();
             }
         }
         private class SofaKnob : Knob
@@ -179,9 +179,9 @@ namespace NetDaemonApps.apps
                 base.OnPress();
 
                 
-                _0Gbl._myEntities.InputBoolean.Ishome.Toggle();
+                A0Gbl._myEntities.InputBoolean.Ishome.Toggle();
 
-                TTS.Speak(_0Gbl._myEntities.InputBoolean.Ishome.IsOn() ? "Ok, bye!" : "Welcome Back", TTS.TTSPriority.IgnoreAll);
+                TTS.Speak(A0Gbl._myEntities.InputBoolean.Ishome.IsOn() ? "Ok, bye!" : "Welcome Back", TTS.TTSPriority.IgnoreAll);
                
             }
         }

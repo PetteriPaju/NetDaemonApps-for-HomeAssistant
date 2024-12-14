@@ -12,10 +12,10 @@ using System.Threading.Tasks;
 namespace NetDaemonApps.apps
 {
     [NetDaemonApp]
-    public class _0Gbl
+    public class A0Gbl
     {
 
-        public static _0Gbl? _instance;
+        public static A0Gbl? _instance;
         public static Entities? _myEntities { get; private set; }
         public static Services? _myServices { get; private set; }
         public static IObservable<Event>? _events { get; private set; }
@@ -27,7 +27,7 @@ namespace NetDaemonApps.apps
         public static IHaContext HaContext { get; private set; }
 
 
-        public _0Gbl(IHaContext ha, IScheduler scheduler, ITriggerManager _triggerManager)
+        public A0Gbl(IHaContext ha, IScheduler scheduler, ITriggerManager _triggerManager)
         {
             _instance = this;
             _myEntities = new Entities(ha);
@@ -36,8 +36,8 @@ namespace NetDaemonApps.apps
             _events = ha.Events;
             HaContext = ha;
             TriggerManager = _triggerManager;
-            _0Gbl._myScheduler.ScheduleCron("59 * * * *", hourlyResetFunction);
-            _0Gbl._myScheduler.ScheduleCron("0 0 * * *", dailyResetFunction);
+            A0Gbl._myScheduler.ScheduleCron("59 * * * *", hourlyResetFunction);
+            A0Gbl._myScheduler.ScheduleCron("0 0 * * *", dailyResetFunction);
             DailyResetFunction += () => { _myEntities?.InputDatetime.Lastknowndate.SetDatetime(date:DateTime.Now.Date.ToString("yyyy-MM-dd"));};
             Console.WriteLine("Is working");
             Task.Run(OnLateStart);

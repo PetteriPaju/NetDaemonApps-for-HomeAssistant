@@ -25,7 +25,7 @@ namespace NetDaemonApps.apps.Lights
 
             foreach (var l in lightEntities) { 
                 SetListener(l);
-                if (l.IsOn() && l != _currentLight && _0Gbl._myEntities.InputBoolean.GuestMode.IsOff()) l.TurnOff();
+                if (l.IsOn() && l != _currentLight && A0Gbl._myEntities.InputBoolean.GuestMode.IsOff()) l.TurnOff();
                     
                         }
         }

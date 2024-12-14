@@ -59,24 +59,24 @@ namespace NetDaemonApps.apps
             };
         */
 
-            _0Gbl._myEntities.InputBoolean.SensorsActive.StateChanges().Where(x => x.New?.State == "off" && x.Old?.State == "on").Subscribe(x => {_0Gbl._myEntities.InputBoolean.Ishome.TurnOn(); });
-            _0Gbl._myEntities.InputBoolean.GuestMode.StateChanges().Where(x => x.New?.State == "off" && x.Old?.State == "on").Subscribe(x => { _0Gbl._myEntities.InputBoolean.Ishome.TurnOn(); });
+            A0Gbl._myEntities.InputBoolean.SensorsActive.StateChanges().Where(x => x.New?.State == "off" && x.Old?.State == "on").Subscribe(x => {A0Gbl._myEntities.InputBoolean.Ishome.TurnOn(); });
+            A0Gbl._myEntities.InputBoolean.GuestMode.StateChanges().Where(x => x.New?.State == "off" && x.Old?.State == "on").Subscribe(x => { A0Gbl._myEntities.InputBoolean.Ishome.TurnOn(); });
 
-            _0Gbl._myEntities.BinarySensor.FrontDoorSensorContact.StateChanges().Where(x => x.New?.State == "off" && x.Old?.State == "on" && _0Gbl._myEntities.InputBoolean.Ishome.IsOff() && _0Gbl._myEntities.InputBoolean.SensorsActive.IsOn() && _0Gbl._myEntities.InputBoolean.GuestMode.IsOff())
+            A0Gbl._myEntities.BinarySensor.FrontDoorSensorContact.StateChanges().Where(x => x.New?.State == "off" && x.Old?.State == "on" && A0Gbl._myEntities.InputBoolean.Ishome.IsOff() && A0Gbl._myEntities.InputBoolean.SensorsActive.IsOn() && A0Gbl._myEntities.InputBoolean.GuestMode.IsOff())
                 .Subscribe(x => {
-                _0Gbl._myEntities.InputBoolean.Ishome.TurnOn();
+                A0Gbl._myEntities.InputBoolean.Ishome.TurnOn();
                     isCancelled = true;
                 });
 
-            _0Gbl._myEntities.BinarySensor.HallwaySensorOccupancy.StateChanges().Where(x => x.New?.State == "on" && x.Old?.State == "off" && _0Gbl._myEntities.InputBoolean.Ishome.IsOff() && _0Gbl._myEntities.InputBoolean.SensorsActive.IsOn() && _0Gbl._myEntities.InputBoolean.GuestMode.IsOff() && _0Gbl._myEntities.InputBoolean.Ishome.StateFor(TimeSpan.FromMinutes(2)))
+            A0Gbl._myEntities.BinarySensor.HallwaySensorOccupancy.StateChanges().Where(x => x.New?.State == "on" && x.Old?.State == "off" && A0Gbl._myEntities.InputBoolean.Ishome.IsOff() && A0Gbl._myEntities.InputBoolean.SensorsActive.IsOn() && A0Gbl._myEntities.InputBoolean.GuestMode.IsOff() && A0Gbl._myEntities.InputBoolean.Ishome.StateFor(TimeSpan.FromMinutes(2)))
                 .Subscribe(x => {
-                    _0Gbl._myEntities.InputBoolean.Ishome.TurnOn();
+                    A0Gbl._myEntities.InputBoolean.Ishome.TurnOn();
 
                 });
 
 
 
-            _0Gbl._myEntities.BinarySensor.FrontDoorSensorContact.StateChanges().Where(x => x.New?.State == "off" && x.Old?.State == "on" && _0Gbl._myEntities.InputBoolean.Ishome.IsOn() && _0Gbl._myEntities.InputBoolean.SensorsActive.IsOn() && _0Gbl._myEntities.InputBoolean.GuestMode.IsOff())
+            A0Gbl._myEntities.BinarySensor.FrontDoorSensorContact.StateChanges().Where(x => x.New?.State == "off" && x.Old?.State == "on" && A0Gbl._myEntities.InputBoolean.Ishome.IsOn() && A0Gbl._myEntities.InputBoolean.SensorsActive.IsOn() && A0Gbl._myEntities.InputBoolean.GuestMode.IsOff())
                 .SubscribeAsync(async s => {
                     await Task.Delay((int)TimeSpan.FromSeconds(5).TotalMilliseconds);
                     isCancelled = false;
@@ -88,7 +88,7 @@ namespace NetDaemonApps.apps
 
                     if (!isCancelled)
                     {
-                        _0Gbl._myEntities.InputBoolean.Ishome.TurnOff();
+                        A0Gbl._myEntities.InputBoolean.Ishome.TurnOff();
                         TTS.Instance?.SpeakTTS("I guess he left");
 
                     }

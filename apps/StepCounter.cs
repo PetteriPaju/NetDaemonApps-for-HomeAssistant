@@ -18,19 +18,19 @@ namespace NetDaemonApps.apps
         {
 
             // _0Gbl._myEntities.Sensor.MotoG8PowerLiteLastNotification?.StateAllChanges().Where(x => IsValidStep(x))?.Subscribe(x => ParseSteps(x?.Entity?.EntityState?.Attributes?.Android_title));
-            _0Gbl._myEntities.Sensor.MotoG8PowerLiteStepsSensor.StateChanges().Subscribe(x => CalculatePhoneSteps(x.Old.State ?? x.New.State, x.New.State));
+            A0Gbl._myEntities.Sensor.MotoG8PowerLiteStepsSensor.StateChanges().Subscribe(x => CalculatePhoneSteps(x.Old.State ?? x.New.State, x.New.State));
 
-            lastKnownThreshold = (int)_0Gbl._myEntities.InputNumber.LastKnowStepThreshold.State;
+            lastKnownThreshold = (int)A0Gbl._myEntities.InputNumber.LastKnowStepThreshold.State;
 
 
-            _0Gbl._myEntities.Sensor.Runnersteps.StateChanges().Where(x=>x.Old.State != "unavailable").Subscribe(x => AddRunnerSteps(x.New.State));
+            A0Gbl._myEntities.Sensor.Runnersteps.StateChanges().Where(x=>x.Old.State != "unavailable").Subscribe(x => AddRunnerSteps(x.New.State));
 
-            _0Gbl.DailyResetFunction += () =>
+            A0Gbl.DailyResetFunction += () =>
             {
                 lastKnownThreshold = 0;
-                _0Gbl._myEntities.InputNumber.LastKnowStepThreshold.SetValue(0); 
-                _0Gbl._myEntities.InputNumber.Dailysteps.SetValue(0);
-                _0Gbl._myEntities.InputNumber.WalkingpadStepsDaily.SetValue(0);
+                A0Gbl._myEntities.InputNumber.LastKnowStepThreshold.SetValue(0); 
+                A0Gbl._myEntities.InputNumber.Dailysteps.SetValue(0);
+                A0Gbl._myEntities.InputNumber.WalkingpadStepsDaily.SetValue(0);
             };
 
         }
@@ -54,7 +54,7 @@ namespace NetDaemonApps.apps
                     if (parsedDateTime.Date == DateTime.Today)
                     {
                         totalSteps = totalSteps += int.Parse(fields[3]);
-                        _0Gbl._myEntities.InputNumber.WalkingpadStepsDaily.SetValue(totalSteps);
+                        A0Gbl._myEntities.InputNumber.WalkingpadStepsDaily.SetValue(totalSteps);
                         RefreshThreshold();
                     }
                     else
@@ -71,7 +71,7 @@ namespace NetDaemonApps.apps
                     Console.WriteLine("Invalid date-time format.");
                 }
             
-            _0Gbl._myEntities.InputNumber.WalkingpadStepsDaily.AddValue(totalSteps);
+            A0Gbl._myEntities.InputNumber.WalkingpadStepsDaily.AddValue(totalSteps);
             RefreshThreshold();
         }
                 
@@ -79,7 +79,7 @@ namespace NetDaemonApps.apps
 
         void RefreshThreshold()
         {
-            var stepsFloored = FloorDownToThousand(_0Gbl._myEntities.InputNumber.Dailysteps.State ?? 0 + (_0Gbl._myEntities.InputNumber.WalkingpadStepsDaily.State ?? 0));
+            var stepsFloored = FloorDownToThousand(A0Gbl._myEntities.InputNumber.Dailysteps.State ?? 0 + (A0Gbl._myEntities.InputNumber.WalkingpadStepsDaily.State ?? 0));
 
             if (stepsFloored < lastKnownThreshold)
             {
@@ -90,16 +90,16 @@ namespace NetDaemonApps.apps
             {
 
                 lastKnownThreshold = (int)stepsFloored;
-                _0Gbl._myEntities.InputNumber.LastKnowStepThreshold.SetValue(lastKnownThreshold);
+                A0Gbl._myEntities.InputNumber.LastKnowStepThreshold.SetValue(lastKnownThreshold);
 
-                TTS.Speak("You have reached " + lastKnownThreshold.ToString() + "steps", TTS.TTSPriority.PlayInGuestMode, _0Gbl._myEntities.InputBoolean.NotificationStepCounter);
+                TTS.Speak("You have reached " + lastKnownThreshold.ToString() + "steps", TTS.TTSPriority.PlayInGuestMode, A0Gbl._myEntities.InputBoolean.NotificationStepCounter);
 
             }
         }
         void CalculatePhoneSteps(double? old, double? now) {
 
             double dif = double.Max(0,now ?? 0 - old ?? 0);
-            _0Gbl._myEntities.InputNumber.Dailysteps.AddValue(dif);
+            A0Gbl._myEntities.InputNumber.Dailysteps.AddValue(dif);
             RefreshThreshold();
         }
        /*
@@ -165,9 +165,9 @@ namespace NetDaemonApps.apps
       
             if (wasParsed && steps>0)
             {
-                _0Gbl._myEntities.InputNumber.Dailysteps.SetValue(steps);
+                A0Gbl._myEntities.InputNumber.Dailysteps.SetValue(steps);
 
-                var stepsFloored = FloorDownToThousand(steps + (_0Gbl._myEntities.InputNumber.WalkingpadStepsDaily.State ?? 0));
+                var stepsFloored = FloorDownToThousand(steps + (A0Gbl._myEntities.InputNumber.WalkingpadStepsDaily.State ?? 0));
 
                
 
@@ -180,9 +180,9 @@ namespace NetDaemonApps.apps
                 {
 
                     lastKnownThreshold = (int)stepsFloored;
-                    _0Gbl._myEntities.InputNumber.LastKnowStepThreshold.SetValue(lastKnownThreshold);
+                    A0Gbl._myEntities.InputNumber.LastKnowStepThreshold.SetValue(lastKnownThreshold);
 
-                    TTS.Speak("You have reached " + lastKnownThreshold.ToString() + "steps", TTS.TTSPriority.PlayInGuestMode, _0Gbl._myEntities.InputBoolean.NotificationStepCounter);
+                    TTS.Speak("You have reached " + lastKnownThreshold.ToString() + "steps", TTS.TTSPriority.PlayInGuestMode, A0Gbl._myEntities.InputBoolean.NotificationStepCounter);
 
                 }
 

@@ -109,7 +109,7 @@ namespace NetDaemonApps.apps
 
                  
 
-                    schedculedEvent = _0Gbl._myScheduler.Schedule(timeSpan, TriggerEvent);
+                    schedculedEvent = A0Gbl._myScheduler.Schedule(timeSpan, TriggerEvent);
                 }
 
                 private void TriggerEvent()
@@ -139,12 +139,12 @@ namespace NetDaemonApps.apps
 
                 private void TurnOn()
                 {
-                    if (_0Gbl._myEntities.Switch.EcoflowPlug.IsOff())
-                        _0Gbl._myEntities.Switch.EcoflowPlug.TurnOn();
+                    if (A0Gbl._myEntities.Switch.EcoflowPlug.IsOff())
+                        A0Gbl._myEntities.Switch.EcoflowPlug.TurnOn();
                 }
                 private void TurnOff()
                 {
-                        _0Gbl._myEntities.Switch.EcoflowPlug.TurnOff();
+                        A0Gbl._myEntities.Switch.EcoflowPlug.TurnOff();
                 }
 
                 private void SetPower()
@@ -155,15 +155,15 @@ namespace NetDaemonApps.apps
                         {
                             var waitTask = Task.Run(async () =>
                             {
-                                while (_0Gbl._myEntities.Sensor.EcoflowStatus.State != "online") await Task.Delay(1000);
+                                while (A0Gbl._myEntities.Sensor.EcoflowStatus.State != "online") await Task.Delay(1000);
                             });
 
                             if (waitTask != await Task.WhenAny(waitTask, Task.Delay(120000)))
                                 throw new TimeoutException();
                         });
 
-                        _0Gbl._myEntities.Number.EcoflowAcChargingPower.SetValue(power.State.ToString());
-                        _0Gbl._myEntities.Switch.EcoflowPrioSolarCharging.TurnOff();
+                        A0Gbl._myEntities.Number.EcoflowAcChargingPower.SetValue(power.State.ToString());
+                        A0Gbl._myEntities.Switch.EcoflowPrioSolarCharging.TurnOff();
                     });
                 }
             }
@@ -174,34 +174,34 @@ namespace NetDaemonApps.apps
         public EcoFlowManager()
         {
 
-            _0Gbl._myEntities.Sensor.EcoflowBatteryLevel.StateChanges().Where(x => x.New?.State <= 2 && (x.New?.State.HasValue ?? true)  && _0Gbl._myEntities.Sensor.EcoflowAcOutPower.State > 0 && _0Gbl._myEntities.InputBoolean.EcoflowAllow0Battery.IsOff()).Subscribe(x => {
+            A0Gbl._myEntities.Sensor.EcoflowBatteryLevel.StateChanges().Where(x => x.New?.State <= 2 && (x.New?.State.HasValue ?? true)  && A0Gbl._myEntities.Sensor.EcoflowAcOutPower.State > 0 && A0Gbl._myEntities.InputBoolean.EcoflowAllow0Battery.IsOff()).Subscribe(x => {
 
-                _0Gbl._myEntities.Switch.EcoflowPlug.TurnOn();
+                A0Gbl._myEntities.Switch.EcoflowPlug.TurnOn();
 
-                TTS.Speak("Battery Recharing", TTS.TTSPriority.Default, _0Gbl._myEntities.InputBoolean.NotificationEcoflow);
+                TTS.Speak("Battery Recharing", TTS.TTSPriority.Default, A0Gbl._myEntities.InputBoolean.NotificationEcoflow);
          
             });
-            _0Gbl._myEntities.Switch.EcoflowPlug.StateChanges().WhenStateIsFor(x => x.IsOff() && _0Gbl._myEntities.Sensor.EcoflowAcOutPower.State == 0 && _0Gbl._myEntities.Sensor.EcoflowStatus.State == "online", TimeSpan.FromMinutes(5),_0Gbl._myScheduler).Subscribe(x =>
+            A0Gbl._myEntities.Switch.EcoflowPlug.StateChanges().WhenStateIsFor(x => x.IsOff() && A0Gbl._myEntities.Sensor.EcoflowAcOutPower.State == 0 && A0Gbl._myEntities.Sensor.EcoflowStatus.State == "online", TimeSpan.FromMinutes(5),A0Gbl._myScheduler).Subscribe(x =>
             {
-                _0Gbl._myEntities.Switch.SwitchbotEcoflow.Toggle();
+                A0Gbl._myEntities.Switch.SwitchbotEcoflow.Toggle();
             });
 
-            _0Gbl._myEntities.Sensor.EcoflowStatus.StateChanges().Where(x => x.New.State == "Online").Subscribe(x =>
+            A0Gbl._myEntities.Sensor.EcoflowStatus.StateChanges().Where(x => x.New.State == "Online").Subscribe(x =>
             {
-                _0Gbl._myEntities.Switch.EcoflowAcEnabled.TurnOn();
+                A0Gbl._myEntities.Switch.EcoflowAcEnabled.TurnOn();
             });
 
-            _0Gbl._myEntities.Sensor.EcoflowBatteryLevel.StateChanges().Where(x => x.New?.State < 5 && x.Old?.State >= 5).Subscribe(x => {
+            A0Gbl._myEntities.Sensor.EcoflowBatteryLevel.StateChanges().Where(x => x.New?.State < 5 && x.Old?.State >= 5).Subscribe(x => {
 
-                TTS.Speak("Warning Only 5% of Power remaining", TTS.TTSPriority.Default, _0Gbl._myEntities.InputBoolean.NotificationEcoflow);
+                TTS.Speak("Warning Only 5% of Power remaining", TTS.TTSPriority.Default, A0Gbl._myEntities.InputBoolean.NotificationEcoflow);
             });
 
 
             ecoflowPanel = new EcoflowPanel();
-            ecoflowPanel.RegisterRow(_0Gbl._myEntities.InputBoolean.EcopanelS1Enabled, _0Gbl._myEntities.InputSelect.EcopanelS1Mode, _0Gbl._myEntities.InputDatetime.EcopanelS1Time, _0Gbl._myEntities.InputNumber.EcopanelS1Power);
-            ecoflowPanel.RegisterRow(_0Gbl._myEntities.InputBoolean.EcopanelS2Enabled, _0Gbl._myEntities.InputSelect.EcopanelS2Mode, _0Gbl._myEntities.InputDatetime.EcopanelS2Time, _0Gbl._myEntities.InputNumber.EcopanelS2Power);
-            ecoflowPanel.RegisterRow(_0Gbl._myEntities.InputBoolean.EcopanelS3Enabled, _0Gbl._myEntities.InputSelect.EcopanelS3Mode, _0Gbl._myEntities.InputDatetime.EcopanelS3Time, _0Gbl._myEntities.InputNumber.EcopanelS3Power);
-            ecoflowPanel.RegisterRow(_0Gbl._myEntities.InputBoolean.EcopanelS4Enabled, _0Gbl._myEntities.InputSelect.EcopanelS4Mode, _0Gbl._myEntities.InputDatetime.EcopanelS4Time, _0Gbl._myEntities.InputNumber.EcopanelS34Power);
+            ecoflowPanel.RegisterRow(A0Gbl._myEntities.InputBoolean.EcopanelS1Enabled, A0Gbl._myEntities.InputSelect.EcopanelS1Mode, A0Gbl._myEntities.InputDatetime.EcopanelS1Time, A0Gbl._myEntities.InputNumber.EcopanelS1Power);
+            ecoflowPanel.RegisterRow(A0Gbl._myEntities.InputBoolean.EcopanelS2Enabled, A0Gbl._myEntities.InputSelect.EcopanelS2Mode, A0Gbl._myEntities.InputDatetime.EcopanelS2Time, A0Gbl._myEntities.InputNumber.EcopanelS2Power);
+            ecoflowPanel.RegisterRow(A0Gbl._myEntities.InputBoolean.EcopanelS3Enabled, A0Gbl._myEntities.InputSelect.EcopanelS3Mode, A0Gbl._myEntities.InputDatetime.EcopanelS3Time, A0Gbl._myEntities.InputNumber.EcopanelS3Power);
+            ecoflowPanel.RegisterRow(A0Gbl._myEntities.InputBoolean.EcopanelS4Enabled, A0Gbl._myEntities.InputSelect.EcopanelS4Mode, A0Gbl._myEntities.InputDatetime.EcopanelS4Time, A0Gbl._myEntities.InputNumber.EcopanelS34Power);
             /*
             scheduler.ScheduleCron("0 * * * *", () => {
 
@@ -277,19 +277,19 @@ namespace NetDaemonApps.apps
         {
             int hour = -1;
             hour = plannedOnHoursToday.LastOrDefault(x => x > DateTime.Now.Hour,-1);
-            _0Gbl._myEntities.InputDatetime.NextPlannedEcocharge.SetDatetime(datetime:DateTime.Now.ToString(@"yyyy-MM-dd HH\:mm\:ss"));
+            A0Gbl._myEntities.InputDatetime.NextPlannedEcocharge.SetDatetime(datetime:DateTime.Now.ToString(@"yyyy-MM-dd HH\:mm\:ss"));
             
             if (hour != -1)
             {
-                _0Gbl._myEntities.InputDatetime.NextPlannedEcocharge.SetDatetime(datetime: new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, hour, 0, 0).ToString(@"yyyy-MM-dd HH\:mm\:ss"));
+                A0Gbl._myEntities.InputDatetime.NextPlannedEcocharge.SetDatetime(datetime: new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, hour, 0, 0).ToString(@"yyyy-MM-dd HH\:mm\:ss"));
             }
-            else if(_0Gbl._myEntities?.Sensor.Nordpool?.Attributes?.TomorrowValid ?? false)
+            else if(A0Gbl._myEntities?.Sensor.Nordpool?.Attributes?.TomorrowValid ?? false)
             {
                 hour = plannedChargeHoursTomorrow.FirstOrDefault(-1);
             
                 DateTime tmrw = DateTime.Now.AddDays(1);
                 if(hour != -1)
-                _0Gbl._myEntities.InputDatetime.NextPlannedEcocharge.SetDatetime(datetime: new DateTime(tmrw.Year, tmrw.Month, tmrw.Day, hour, 0, 0).ToString(@"yyyy-MM-dd HH\:mm\:ss"));
+                A0Gbl._myEntities.InputDatetime.NextPlannedEcocharge.SetDatetime(datetime: new DateTime(tmrw.Year, tmrw.Month, tmrw.Day, hour, 0, 0).ToString(@"yyyy-MM-dd HH\:mm\:ss"));
 
             }
 

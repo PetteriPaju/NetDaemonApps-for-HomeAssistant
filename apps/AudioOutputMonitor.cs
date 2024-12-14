@@ -15,16 +15,16 @@ namespace NetDaemonApps.apps
 
         public AudioOutputMonitor()
         {
-            _0Gbl._myEntities.Sensor.EnvyAudioDefaultDevice.StateChanges().Where(x => x?.New?.State == "Headphone (Realtek(R) Audio)").Subscribe(_ => CheckCondition(_0Gbl._myEntities.Sensor.EnvyAudioDefaultDevice, true));
-            _0Gbl._myEntities.Sensor.EnvyAudioDefaultDevice.StateChanges().Where(x => x?.New?.State != "Headphone (Realtek(R) Audio)").Subscribe(_ => CheckCondition(_0Gbl._myEntities.Sensor.EnvyAudioDefaultDevice, false));
-            _0Gbl._myEntities.Sensor.PcAudioDefaultDevice.StateChanges().Where(x => x?.New?.State == "Speakers (Realtek(R) Audio)").Subscribe(_ => CheckCondition(_0Gbl._myEntities.Sensor.PcAudioDefaultDevice, true));
-            _0Gbl._myEntities.Sensor.PcAudioDefaultDevice.StateChanges().Where(x => x?.New?.State != "Speakers (Realtek(R) Audio)").Subscribe(_ => CheckCondition(_0Gbl._myEntities.Sensor.PcAudioDefaultDevice, false));
-            _0Gbl._myEntities.BinarySensor.PortableHeadphoneSensors.StateChanges().Where(x => (bool)(x?.New?.IsOn())).Subscribe(_ => CheckCondition(_0Gbl._myEntities.BinarySensor.PortableHeadphoneSensors, true));
-            _0Gbl._myEntities.BinarySensor.PortableHeadphoneSensors.StateChanges().Where(x => (bool)(x?.New?.IsOff())).Subscribe(_ => CheckCondition(_0Gbl._myEntities.BinarySensor.PortableHeadphoneSensors, false));
+            A0Gbl._myEntities.Sensor.EnvyAudioDefaultDevice.StateChanges().Where(x => x?.New?.State == "Headphone (Realtek(R) Audio)").Subscribe(_ => CheckCondition(A0Gbl._myEntities.Sensor.EnvyAudioDefaultDevice, true));
+            A0Gbl._myEntities.Sensor.EnvyAudioDefaultDevice.StateChanges().Where(x => x?.New?.State != "Headphone (Realtek(R) Audio)").Subscribe(_ => CheckCondition(A0Gbl._myEntities.Sensor.EnvyAudioDefaultDevice, false));
+            A0Gbl._myEntities.Sensor.PcAudioDefaultDevice.StateChanges().Where(x => x?.New?.State == "Speakers (Realtek(R) Audio)").Subscribe(_ => CheckCondition(A0Gbl._myEntities.Sensor.PcAudioDefaultDevice, true));
+            A0Gbl._myEntities.Sensor.PcAudioDefaultDevice.StateChanges().Where(x => x?.New?.State != "Speakers (Realtek(R) Audio)").Subscribe(_ => CheckCondition(A0Gbl._myEntities.Sensor.PcAudioDefaultDevice, false));
+            A0Gbl._myEntities.BinarySensor.PortableHeadphoneSensors.StateChanges().Where(x => (bool)(x?.New?.IsOn())).Subscribe(_ => CheckCondition(A0Gbl._myEntities.BinarySensor.PortableHeadphoneSensors, true));
+            A0Gbl._myEntities.BinarySensor.PortableHeadphoneSensors.StateChanges().Where(x => (bool)(x?.New?.IsOff())).Subscribe(_ => CheckCondition(A0Gbl._myEntities.BinarySensor.PortableHeadphoneSensors, false));
 
-            isConnectedCondition.Add(_0Gbl._myEntities.Sensor.EnvyAudioDefaultDevice, _0Gbl._myEntities.Sensor.EnvyAudioDefaultDevice.State == "Headphone (Realtek(R) Audio)");
-            isConnectedCondition.Add(_0Gbl._myEntities.Sensor.PcAudioDefaultDevice, _0Gbl._myEntities.Sensor.PcAudioDefaultDevice.State == "Speakers (Realtek(R) Audio)");
-            isConnectedCondition.Add(_0Gbl._myEntities.BinarySensor.PortableHeadphoneSensors, _0Gbl._myEntities.BinarySensor.PortableHeadphoneSensors.IsOn());
+            isConnectedCondition.Add(A0Gbl._myEntities.Sensor.EnvyAudioDefaultDevice, A0Gbl._myEntities.Sensor.EnvyAudioDefaultDevice.State == "Headphone (Realtek(R) Audio)");
+            isConnectedCondition.Add(A0Gbl._myEntities.Sensor.PcAudioDefaultDevice, A0Gbl._myEntities.Sensor.PcAudioDefaultDevice.State == "Speakers (Realtek(R) Audio)");
+            isConnectedCondition.Add(A0Gbl._myEntities.BinarySensor.PortableHeadphoneSensors, A0Gbl._myEntities.BinarySensor.PortableHeadphoneSensors.IsOn());
 
         }
 
@@ -51,8 +51,8 @@ namespace NetDaemonApps.apps
             }
 
             // If all conditions are true or false, we might need to change isSleep-state
-            if (isConnected) _0Gbl._myEntities.Switch.FanPlug.TurnOn();
-            else _0Gbl._myEntities.Switch.FanPlug.TurnOff();
+            if (isConnected) A0Gbl._myEntities.Switch.FanPlug.TurnOn();
+            else A0Gbl._myEntities.Switch.FanPlug.TurnOff();
         }
     }
 }

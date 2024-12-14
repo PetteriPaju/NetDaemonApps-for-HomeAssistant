@@ -60,9 +60,9 @@ namespace NetDaemonApps.apps
 
         public static void ToggleMode()
         {
-            _0Gbl._myEntities.InputSelect.AlarmSleepMode.SelectNext();
+            A0Gbl._myEntities.InputSelect.AlarmSleepMode.SelectNext();
             string nextmode;
-            switch (_0Gbl._myEntities.InputSelect.AlarmSleepMode.State)
+            switch (A0Gbl._myEntities.InputSelect.AlarmSleepMode.State)
             {
                 case "Normal":
                     nextmode = "Nap";
@@ -100,17 +100,17 @@ namespace NetDaemonApps.apps
 
             void AlarmFunction()
             {
-                if (_0Gbl._myEntities.InputBoolean.NotificationAlarm.IsOff()) return;
-                if (_0Gbl._myEntities.InputBoolean.GuestMode.IsOn()) return;
-                if (_0Gbl._myEntities.InputBoolean.Isasleep.IsOff()) return;
+                if (A0Gbl._myEntities.InputBoolean.NotificationAlarm.IsOff()) return;
+                if (A0Gbl._myEntities.InputBoolean.GuestMode.IsOn()) return;
+                if (A0Gbl._myEntities.InputBoolean.Isasleep.IsOff()) return;
                 var alarmnumber = 1;
-                _0Gbl._myEntities.Script.Actiontodoatalarm.TurnOn(); 
+                A0Gbl._myEntities.Script.Actiontodoatalarm.TurnOn(); 
                 
                 ringingAlarm = true;
 
-                alarmTimer = _0Gbl._myScheduler.RunEvery(TimeSpan.FromMinutes(10), DateTime.Now, () => {
+                alarmTimer = A0Gbl._myScheduler.RunEvery(TimeSpan.FromMinutes(10), DateTime.Now, () => {
 
-                    TimeSpan? timeDiff = DateTime.Now - _0Gbl._myEntities?.InputDatetime.Lastisasleeptime.GetDateTime();
+                    TimeSpan? timeDiff = DateTime.Now - A0Gbl._myEntities?.InputDatetime.Lastisasleeptime.GetDateTime();
                     string ttsTime;
                     if (alarmnumber == 1) ttsTime = "Good Morning";
                     ttsTime = "its " + DateTime.Now.ToString("H:mm", CultureInfo.InvariantCulture) + ", you have been sleeping for " + timeDiff?.Hours + " hours" + (timeDiff?.Minutes > 0 ? " and " + timeDiff?.Minutes + "minutes" : ". ");
@@ -118,7 +118,7 @@ namespace NetDaemonApps.apps
                     if (alarmnumber > 1)
                         ttsTime += "It has been " + (alarmnumber - 1) * 10 + " minutes";
 
-                    TTS.Speak(ttsTime, TTS.TTSPriority.IgnoreAll, null, _0Gbl._myEntities.Script.Playmoomin.TurnOn);
+                    TTS.Speak(ttsTime, TTS.TTSPriority.IgnoreAll, null, A0Gbl._myEntities.Script.Playmoomin.TurnOn);
                    
                     alarmnumber++;
                 });
@@ -128,7 +128,7 @@ namespace NetDaemonApps.apps
             TimeSpan awakeSpan = TimeSpan.Zero;
             TimeSpan awakeAfter = TimeSpan.Zero;
 
-            mode = mode == null ? _0Gbl._myEntities.InputSelect.AlarmSleepMode.State : mode;
+            mode = mode == null ? A0Gbl._myEntities.InputSelect.AlarmSleepMode.State : mode;
 
             switch (mode)
             {
@@ -159,22 +159,22 @@ namespace NetDaemonApps.apps
             });
             */
 
-            modentimer = _0Gbl._myScheduler.Schedule((reboot ? _0Gbl._myEntities.InputDatetime.AlarmTargetTime.GetDateTime(): DetermineAlarmTagetTime(mode))- TimeSpan.FromMinutes(45), x =>
+            modentimer = A0Gbl._myScheduler.Schedule((reboot ? A0Gbl._myEntities.InputDatetime.AlarmTargetTime.GetDateTime(): DetermineAlarmTagetTime(mode))- TimeSpan.FromMinutes(45), x =>
             {              
 
-                if (_0Gbl._myEntities.InputBoolean.NotificationAlarm.IsOff()) return;
-                if (_0Gbl._myEntities.InputBoolean.GuestMode.IsOn()) return;
-                if (_0Gbl._myEntities.InputBoolean.Isasleep.IsOff()) return;
-                if (_0Gbl._myEntities.Switch.ModemAutoOnPlug.IsOn()) return;
+                if (A0Gbl._myEntities.InputBoolean.NotificationAlarm.IsOff()) return;
+                if (A0Gbl._myEntities.InputBoolean.GuestMode.IsOn()) return;
+                if (A0Gbl._myEntities.InputBoolean.Isasleep.IsOff()) return;
+                if (A0Gbl._myEntities.Switch.ModemAutoOnPlug.IsOn()) return;
 
-                _0Gbl._myEntities.Switch.ModemAutoOnPlug.TurnOn();
+                A0Gbl._myEntities.Switch.ModemAutoOnPlug.TurnOn();
 
 
 
             });
 
 
-            alarmSubscription = _0Gbl._myScheduler.Schedule((reboot ? _0Gbl._myEntities.InputDatetime.AlarmTargetTime.GetDateTime() : DetermineAlarmTagetTime(mode)), x => {
+            alarmSubscription = A0Gbl._myScheduler.Schedule((reboot ? A0Gbl._myEntities.InputDatetime.AlarmTargetTime.GetDateTime() : DetermineAlarmTagetTime(mode)), x => {
                 alarmSubscription?.Dispose();
                 alarmSubscription2?.Dispose();
                 AlarmFunction();
@@ -193,11 +193,11 @@ namespace NetDaemonApps.apps
             switch (mode)
             {
                 case "Normal":
-                    dto =  DateTime.Now + new TimeSpan((int)_0Gbl._myEntities.InputDatetime.AlarmSleepDuration.Attributes.Hour, (int)_0Gbl._myEntities.InputDatetime.AlarmSleepDuration.Attributes.Minute, 0);
+                    dto =  DateTime.Now + new TimeSpan((int)A0Gbl._myEntities.InputDatetime.AlarmSleepDuration.Attributes.Hour, (int)A0Gbl._myEntities.InputDatetime.AlarmSleepDuration.Attributes.Minute, 0);
              break;
 
                 case "Nap":
-                    dto = DateTime.Now + new TimeSpan((int)_0Gbl._myEntities.InputDatetime.AlarmNapDuration.Attributes.Hour, (int)_0Gbl._myEntities.InputDatetime.AlarmNapDuration.Attributes.Minute, 0);
+                    dto = DateTime.Now + new TimeSpan((int)A0Gbl._myEntities.InputDatetime.AlarmNapDuration.Attributes.Hour, (int)A0Gbl._myEntities.InputDatetime.AlarmNapDuration.Attributes.Minute, 0);
                     break;
 
                 case "Free":
@@ -205,12 +205,12 @@ namespace NetDaemonApps.apps
                     break;
 
                 case "Exact Time":
-                    DateTime day = DateTime.Now.Hour<=(int)_0Gbl._myEntities.InputDatetime.Alarmtime.Attributes.Hour ?  DateTime.Today : DateTime.Today+TimeSpan.FromDays(1);
-                    dto = new DateTime(day.Year,day.Month, day.Day, (int)_0Gbl._myEntities.InputDatetime.Alarmtime.Attributes.Hour, (int)_0Gbl._myEntities.InputDatetime.Alarmtime.Attributes.Minute, 0);
+                    DateTime day = DateTime.Now.Hour<=(int)A0Gbl._myEntities.InputDatetime.Alarmtime.Attributes.Hour ?  DateTime.Today : DateTime.Today+TimeSpan.FromDays(1);
+                    dto = new DateTime(day.Year,day.Month, day.Day, (int)A0Gbl._myEntities.InputDatetime.Alarmtime.Attributes.Hour, (int)A0Gbl._myEntities.InputDatetime.Alarmtime.Attributes.Minute, 0);
                     break;
 
                 default:
-                    dto = new DateTimeOffset(_0Gbl._myEntities.InputDatetime.AlarmTargetTime.GetDateTime());
+                    dto = new DateTimeOffset(A0Gbl._myEntities.InputDatetime.AlarmTargetTime.GetDateTime());
                     break;
 
             }
@@ -219,7 +219,7 @@ namespace NetDaemonApps.apps
             long unixTime = dto.ToUnixTimeSeconds();
 
 
-            _0Gbl._myEntities.InputDatetime.AlarmTargetTime.SetDatetime(timestamp: unixTime);
+            A0Gbl._myEntities.InputDatetime.AlarmTargetTime.SetDatetime(timestamp: unixTime);
 
             return dto;
 
@@ -231,24 +231,24 @@ namespace NetDaemonApps.apps
             instance = this;
             //DateTime d2 = DateTime.Parse(_00_Globals._myEntities.Sensor.EnvyLastactive.State ?? "", null, System.Globalization.DateTimeStyles.RoundtripKind);
             {
-                var condition = new MonitorMember(_0Gbl._myEntities.Switch.PcMultipowermeterMonitors.IsOn, "Monitors");
+                var condition = new MonitorMember(A0Gbl._myEntities.Switch.PcMultipowermeterMonitors.IsOn, "Monitors");
                 isAwakeConditions.Add(condition);
             }
             {;
-                var condition = new MonitorMember( _0Gbl._myEntities.InputBoolean.MediaPlaying.IsOn, "Media");
+                var condition = new MonitorMember( A0Gbl._myEntities.InputBoolean.MediaPlaying.IsOn, "Media");
                 isAwakeConditions.Add(condition);
             }
             {
-                var condition = new MonitorMember( _0Gbl._myEntities.BinarySensor._192168022.IsOn , "Envy Active");
+                var condition = new MonitorMember( A0Gbl._myEntities.BinarySensor._192168022.IsOn , "Envy Active");
                 isAwakeConditions.Add(condition);
             }
 
             {
-                var condition = new MonitorMember(_0Gbl._myEntities.InputBoolean.Ishome.IsOff, "Is Home");
+                var condition = new MonitorMember(A0Gbl._myEntities.InputBoolean.Ishome.IsOff, "Is Home");
                 isAwakeConditions.Add(condition);
             }
             {
-                var condition = new MonitorMember(_0Gbl._myEntities.Light.Awakelights.IsOn, "Lights");
+                var condition = new MonitorMember(A0Gbl._myEntities.Light.Awakelights.IsOn, "Lights");
                 isAwakeConditions.Add(condition);
             }
 
@@ -257,23 +257,23 @@ namespace NetDaemonApps.apps
             Resub(true);
 
 
-            _0Gbl._myEntities.BinarySensor.WithingsInBed.StateChanges().Where(x => x.New.IsOff()).Subscribe(x => {
+            A0Gbl._myEntities.BinarySensor.WithingsInBed.StateChanges().Where(x => x.New.IsOff()).Subscribe(x => {
 
                 if (ringingAlarm)
                 {
-                    _0Gbl._myEntities.InputBoolean.Isasleep.TurnOff();
+                    A0Gbl._myEntities.InputBoolean.Isasleep.TurnOff();
                     ringingAlarm = false;
                 }
             
             });
 
-            _0Gbl._myEntities.InputBoolean.Isasleep.StateChanges().Where(x => x?.New?.State == "off" && x?.Old.State == "on").Subscribe(x => {
+            A0Gbl._myEntities.InputBoolean.Isasleep.StateChanges().Where(x => x?.New?.State == "off" && x?.Old.State == "on").Subscribe(x => {
 
                 ringingAlarm = false;
 
 
-                if(_0Gbl._myEntities.InputSelect.AlarmSleepMode.State == "Nap" || _0Gbl._myEntities.InputSelect.AlarmSleepMode.State == "Free")
-                _0Gbl._myEntities.InputSelect.AlarmSleepMode.SelectOption("Normal");
+                if(A0Gbl._myEntities.InputSelect.AlarmSleepMode.State == "Nap" || A0Gbl._myEntities.InputSelect.AlarmSleepMode.State == "Free")
+                A0Gbl._myEntities.InputSelect.AlarmSleepMode.SelectOption("Normal");
 
                 // If alarm timer is on it means that this is after a long sleep
                 if (alarmTimer != null)
@@ -281,7 +281,7 @@ namespace NetDaemonApps.apps
                     alarmTimer.Dispose();      
                     EnergyMonitor.ReadOutGoodMorning();
                 }
-                if (_0Gbl._myEntities.InputBoolean.GuestMode.IsOn()) return;
+                if (A0Gbl._myEntities.InputBoolean.GuestMode.IsOn()) return;
 
                 //Run default actions that run everytime isSleep is turned on
                 // Get the offset from current time in UTC time
@@ -290,27 +290,27 @@ namespace NetDaemonApps.apps
                 long unixTime = dto.ToUnixTimeSeconds();
 
                 rebootTimer?.Dispose();
-                _0Gbl._myEntities.InputDatetime.Awoketime.SetDatetime(timestamp: unixTime);
+                A0Gbl._myEntities.InputDatetime.Awoketime.SetDatetime(timestamp: unixTime);
             });
 
-            _0Gbl._myEntities.InputSelect.AlarmSleepMode.StateChanges().Where(x => (x?.Old.State != "unavailable" && x?.Old.State != "unknown")).Subscribe(x => {
+            A0Gbl._myEntities.InputSelect.AlarmSleepMode.StateChanges().Where(x => (x?.Old.State != "unavailable" && x?.Old.State != "unknown")).Subscribe(x => {
 
-                Resub(false, _0Gbl._myEntities.InputSelect.AlarmSleepMode.State);
-
-            });
-
-            _0Gbl._myEntities.InputDatetime.AlarmTargetTime.StateChanges().Where(x => (x?.Old.State != "unavailable" && x?.Old.State != "unknown")).Subscribe(x => {
-
-                Console.WriteLine("Alarm: " + _0Gbl._myEntities.InputDatetime.AlarmTargetTime.GetDateTime());
+                Resub(false, A0Gbl._myEntities.InputSelect.AlarmSleepMode.State);
 
             });
 
+            A0Gbl._myEntities.InputDatetime.AlarmTargetTime.StateChanges().Where(x => (x?.Old.State != "unavailable" && x?.Old.State != "unknown")).Subscribe(x => {
 
-            _0Gbl._myEntities.InputBoolean.Isasleep.StateChanges().WhenStateIsFor(x => x.IsOn() ,TimeSpan.FromHours(3), _0Gbl._myScheduler).Subscribe(x => {
+                Console.WriteLine("Alarm: " + A0Gbl._myEntities.InputDatetime.AlarmTargetTime.GetDateTime());
+
+            });
+
+
+            A0Gbl._myEntities.InputBoolean.Isasleep.StateChanges().WhenStateIsFor(x => x.IsOn() ,TimeSpan.FromHours(3), A0Gbl._myScheduler).Subscribe(x => {
 
                 rebootTimer?.Dispose();
 
-                rebootTimer = _0Gbl._myScheduler.ScheduleCron("10 * * * *", () =>
+                rebootTimer = A0Gbl._myScheduler.ScheduleCron("10 * * * *", () =>
                 {
                  //   _0Gbl._myEntities.Button.NodePveReboot.Press();  
                     rebootTimer?.Dispose();
@@ -318,13 +318,13 @@ namespace NetDaemonApps.apps
 
             });
                 
-            _0Gbl._myEntities.InputBoolean.Isasleep.StateChanges().Where(x => x?.New?.State == "on" && x?.Old.State == "off").Subscribe(x => {
+            A0Gbl._myEntities.InputBoolean.Isasleep.StateChanges().Where(x => x?.New?.State == "on" && x?.Old.State == "off").Subscribe(x => {
                 Resub();
-                _0Gbl._myEntities.InputDatetime.Lastisasleeptime.SetDatetime(timestamp: new DateTimeOffset(DateTime.Now).ToUnixTimeSeconds());
+                A0Gbl._myEntities.InputDatetime.Lastisasleeptime.SetDatetime(timestamp: new DateTimeOffset(DateTime.Now).ToUnixTimeSeconds());
             });
 
-            _0Gbl._myScheduler.ScheduleCron("1-29,31-59 * * * *", CheckAllIsSleepConditions);
-            _0Gbl._myScheduler.ScheduleCron("0,30 * * * *", CheckAllIsSleepConditions);
+            A0Gbl._myScheduler.ScheduleCron("1-29,31-59 * * * *", CheckAllIsSleepConditions);
+            A0Gbl._myScheduler.ScheduleCron("0,30 * * * *", CheckAllIsSleepConditions);
         }
 
 
@@ -346,7 +346,7 @@ namespace NetDaemonApps.apps
 
         private bool trainingLora()
         {
-            return _0Gbl._myEntities.Automation.TurnOffPcWhenLoraTrainingDone.IsOn() && (_0Gbl._myEntities.InputSelect.Atloraended.State == "Shutdown" || _0Gbl._myEntities.InputSelect.Atloraended.State == "Smart" ) ;
+            return A0Gbl._myEntities.Automation.TurnOffPcWhenLoraTrainingDone.IsOn() && (A0Gbl._myEntities.InputSelect.Atloraended.State == "Shutdown" || A0Gbl._myEntities.InputSelect.Atloraended.State == "Smart" ) ;
         }
 
         private void CheckAllIsSleepConditions()
@@ -368,28 +368,28 @@ namespace NetDaemonApps.apps
             Console.WriteLine("States are: " + isAnyTrue + ": " + DateTime.Now.ToShortTimeString());
             // If all conditions are true or false, we might need to change isSleep-state
 
-            if (isAnyTrue && _0Gbl._myEntities.InputBoolean.Isasleep.IsOn())
+            if (isAnyTrue && A0Gbl._myEntities.InputBoolean.Isasleep.IsOn())
             {
 
                 if (isAsleepOffTimer == null)
                 {
-                    isAsleepOffTimer = _0Gbl._myScheduler.Schedule(TimeSpan.FromMinutes(10), () =>
+                    isAsleepOffTimer = A0Gbl._myScheduler.Schedule(TimeSpan.FromMinutes(10), () =>
                     {
 
-                        _0Gbl._myEntities.InputBoolean.Isasleep.TurnOff();
+                        A0Gbl._myEntities.InputBoolean.Isasleep.TurnOff();
                         isAsleepOffTimer = null;
                     });
                 }
 
             }
-            else if (!isAnyTrue && _0Gbl._myEntities.InputBoolean.Isasleep.IsOff()) {
+            else if (!isAnyTrue && A0Gbl._myEntities.InputBoolean.Isasleep.IsOff()) {
 
                 if (isAsleepOnTimer == null)
                 {
-                    isAsleepOnTimer = _0Gbl._myScheduler.Schedule(toSleepSpareTime, () =>
+                    isAsleepOnTimer = A0Gbl._myScheduler.Schedule(toSleepSpareTime, () =>
                     {
 
-                        _0Gbl._myEntities.InputBoolean.Isasleep.TurnOn();
+                        A0Gbl._myEntities.InputBoolean.Isasleep.TurnOn();
                         isAsleepOnTimer = null;
                     });
                 }

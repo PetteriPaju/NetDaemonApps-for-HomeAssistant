@@ -27,9 +27,9 @@ namespace NetDaemonApps.apps.Hue_Switches
         {
             base.OnPowerPress();
 
-            if (_0Gbl._myEntities.Light.ToiletLight1.IsOn())
+            if (A0Gbl._myEntities.Light.ToiletLight1.IsOn())
             {
-                _0Gbl._myEntities.Light.ToiletLight1.TurnOffLight();
+                A0Gbl._myEntities.Light.ToiletLight1.TurnOffLight();
                 if (keepOnRoutine != null)
                 {
                     keepOnRoutine.Dispose();
@@ -38,16 +38,16 @@ namespace NetDaemonApps.apps.Hue_Switches
             }
             else
             {
-                _0Gbl._myEntities.Light.ToiletLight1.TurnOn();
+                A0Gbl._myEntities.Light.ToiletLight1.TurnOn();
                 if (keepOnRoutine != null)
                 {
                     keepOnRoutine.Dispose();
                 }
-                    keepOnRoutine = _0Gbl._myScheduler.Schedule(TimeSpan.FromMinutes(5), () => {
+                    keepOnRoutine = A0Gbl._myScheduler.Schedule(TimeSpan.FromMinutes(5), () => {
 
-                    if(_0Gbl._myEntities.BinarySensor.ToiletSensorOccupancy.IsOff())
+                    if(A0Gbl._myEntities.BinarySensor.ToiletSensorOccupancy.IsOff())
                     {
-                        _0Gbl._myEntities.Light.ToiletLight1.TurnOff();
+                        A0Gbl._myEntities.Light.ToiletLight1.TurnOff();
                     }
                   
               
