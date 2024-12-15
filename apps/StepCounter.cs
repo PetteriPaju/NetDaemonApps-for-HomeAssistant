@@ -56,7 +56,7 @@ namespace NetDaemonApps.apps
                     if (parsedDateTime.Date == DateTime.Today)
                     {
                         totalSteps = totalSteps += int.Parse(fields[3]);
-                        A0Gbl._myEntities.InputNumber.WalkingpadStepsDaily.SetValue(totalSteps);
+                        totalSteps = Math.Max(totalSteps, 0);
                     }
                     else
                     {
