@@ -1243,22 +1243,22 @@
         },
         {
           "id": "input_boolean.ecopanel_s1_enabled",
-          "friendlyName": "Ecopanel-Slot1-Enabled",
+          "friendlyName": "Ecopanel Slot 1 Enabled",
           "cSharpName": "EcopanelS1Enabled"
         },
         {
           "id": "input_boolean.ecopanel_s2_enabled",
-          "friendlyName": "Ecopanel-Slot2-Enabled",
+          "friendlyName": "Ecopanel Slot 2 Enabled",
           "cSharpName": "EcopanelS2Enabled"
         },
         {
           "id": "input_boolean.ecopanel_s3_enabled",
-          "friendlyName": "Ecopanel-Slot3-Enabled",
+          "friendlyName": "Ecopanel Slot 3 Enabled",
           "cSharpName": "EcopanelS3Enabled"
         },
         {
           "id": "input_boolean.ecopanel_s4_enabled",
-          "friendlyName": "Ecopanel-Slot4-Enabled",
+          "friendlyName": "Ecopanel Slot 4 Enabled",
           "cSharpName": "EcopanelS4Enabled"
         },
         {
@@ -3456,7 +3456,7 @@
         },
         {
           "id": "sensor.ecoflow_charge_or_remain_time",
-          "friendlyName": "Offline",
+          "friendlyName": "Discharging",
           "cSharpName": "EcoflowChargeOrRemainTime"
         },
         {
@@ -3475,6 +3475,16 @@
           "cSharpName": "EcoflowStatus"
         },
         {
+          "id": "sensor.envy_af23e097_9eb2_4481_b736_4ba0185e480a_display1",
+          "friendlyName": "ENVY DISPLAY1",
+          "cSharpName": "EnvyAf23e0979eb24481B7364ba0185e480aDisplay1"
+        },
+        {
+          "id": "sensor.envy_af23e097_9eb2_4481_b736_4ba0185e480a_display2",
+          "friendlyName": "ENVY DISPLAY2",
+          "cSharpName": "EnvyAf23e0979eb24481B7364ba0185e480aDisplay2"
+        },
+        {
           "id": "sensor.envy_audio_audio_sessions",
           "friendlyName": "ENVY ENVY_audio Audio Sessions",
           "cSharpName": "EnvyAudioAudioSessions"
@@ -3485,9 +3495,19 @@
           "cSharpName": "EnvyAudioDefaultDevice"
         },
         {
+          "id": "sensor.envy_audio_default_device_2",
+          "friendlyName": "ENVY Default Device",
+          "cSharpName": "EnvyAudioDefaultDevice2"
+        },
+        {
           "id": "sensor.envy_audio_default_device_muted",
           "friendlyName": "ENVY ENVY_audio Default Device Muted",
           "cSharpName": "EnvyAudioDefaultDeviceMuted"
+        },
+        {
+          "id": "sensor.envy_audio_default_device_muted_2",
+          "friendlyName": "ENVY Default Device Muted",
+          "cSharpName": "EnvyAudioDefaultDeviceMuted2"
         },
         {
           "id": "sensor.envy_audio_default_device_state",
@@ -3495,9 +3515,19 @@
           "cSharpName": "EnvyAudioDefaultDeviceState"
         },
         {
+          "id": "sensor.envy_audio_default_device_state_2",
+          "friendlyName": "ENVY Default Device State",
+          "cSharpName": "EnvyAudioDefaultDeviceState2"
+        },
+        {
           "id": "sensor.envy_audio_default_device_volume",
           "friendlyName": "ENVY ENVY_audio Default Device Volume",
           "cSharpName": "EnvyAudioDefaultDeviceVolume"
+        },
+        {
+          "id": "sensor.envy_audio_default_device_volume_2",
+          "friendlyName": "ENVY Default Device Volume",
+          "cSharpName": "EnvyAudioDefaultDeviceVolume2"
         },
         {
           "id": "sensor.envy_audio_default_input_device",
@@ -3505,9 +3535,19 @@
           "cSharpName": "EnvyAudioDefaultInputDevice"
         },
         {
+          "id": "sensor.envy_audio_default_input_device_2",
+          "friendlyName": "ENVY Default Input Device",
+          "cSharpName": "EnvyAudioDefaultInputDevice2"
+        },
+        {
           "id": "sensor.envy_audio_default_input_device_muted",
           "friendlyName": "ENVY ENVY_audio Default Input Device Muted",
           "cSharpName": "EnvyAudioDefaultInputDeviceMuted"
+        },
+        {
+          "id": "sensor.envy_audio_default_input_device_muted_2",
+          "friendlyName": "ENVY Default Input Device Muted",
+          "cSharpName": "EnvyAudioDefaultInputDeviceMuted2"
         },
         {
           "id": "sensor.envy_audio_default_input_device_state",
@@ -3515,9 +3555,39 @@
           "cSharpName": "EnvyAudioDefaultInputDeviceState"
         },
         {
+          "id": "sensor.envy_audio_default_input_device_state_2",
+          "friendlyName": "ENVY Default Input Device State",
+          "cSharpName": "EnvyAudioDefaultInputDeviceState2"
+        },
+        {
           "id": "sensor.envy_audio_default_input_device_volume",
           "friendlyName": "ENVY ENVY_audio Default Input Device Volume",
           "cSharpName": "EnvyAudioDefaultInputDeviceVolume"
+        },
+        {
+          "id": "sensor.envy_audio_default_input_device_volume_2",
+          "friendlyName": "ENVY Default Input Device Volume",
+          "cSharpName": "EnvyAudioDefaultInputDeviceVolume2"
+        },
+        {
+          "id": "sensor.envy_audio_input_devices",
+          "friendlyName": "ENVY Audio Input Devices",
+          "cSharpName": "EnvyAudioInputDevices"
+        },
+        {
+          "id": "sensor.envy_audio_output_devices",
+          "friendlyName": "ENVY Audio Output Devices",
+          "cSharpName": "EnvyAudioOutputDevices"
+        },
+        {
+          "id": "sensor.envy_audio_peak_volume_2",
+          "friendlyName": "ENVY Peak Volume",
+          "cSharpName": "EnvyAudioPeakVolume2"
+        },
+        {
+          "id": "sensor.envy_audio_sessions",
+          "friendlyName": "ENVY Audio Sessions",
+          "cSharpName": "EnvyAudioSessions"
         },
         {
           "id": "sensor.envy_battery_charge_remaining",
@@ -3525,9 +3595,19 @@
           "cSharpName": "EnvyBatteryChargeRemaining"
         },
         {
+          "id": "sensor.envy_battery_charge_remaining_2",
+          "friendlyName": "ENVY Charge Remaining",
+          "cSharpName": "EnvyBatteryChargeRemaining2"
+        },
+        {
           "id": "sensor.envy_battery_charge_status",
           "friendlyName": "ENVY ENVY_battery Charge Status",
           "cSharpName": "EnvyBatteryChargeStatus"
+        },
+        {
+          "id": "sensor.envy_battery_charge_status_2",
+          "friendlyName": "ENVY Charge Status",
+          "cSharpName": "EnvyBatteryChargeStatus2"
         },
         {
           "id": "sensor.envy_battery_full_charge_lifetime",
@@ -3535,9 +3615,19 @@
           "cSharpName": "EnvyBatteryFullChargeLifetime"
         },
         {
+          "id": "sensor.envy_battery_full_charge_lifetime_2",
+          "friendlyName": "ENVY Full Charge Lifetime",
+          "cSharpName": "EnvyBatteryFullChargeLifetime2"
+        },
+        {
           "id": "sensor.envy_battery_powerline_status",
           "friendlyName": "ENVY ENVY_battery Powerline Status",
           "cSharpName": "EnvyBatteryPowerlineStatus"
+        },
+        {
+          "id": "sensor.envy_battery_powerline_status_2",
+          "friendlyName": "ENVY Powerline Status",
+          "cSharpName": "EnvyBatteryPowerlineStatus2"
         },
         {
           "id": "sensor.envy_bluetoothdevices",
@@ -3548,6 +3638,11 @@
           "id": "sensor.envy_display_display_count",
           "friendlyName": "ENVY ENVY_display Display Count",
           "cSharpName": "EnvyDisplayDisplayCount"
+        },
+        {
+          "id": "sensor.envy_display_display_count_2",
+          "friendlyName": "ENVY Display Count",
+          "cSharpName": "EnvyDisplayDisplayCount2"
         },
         {
           "id": "sensor.envy_display_display1",
@@ -3690,6 +3785,11 @@
           "cSharpName": "EnvyDisplayPrimaryDisplay"
         },
         {
+          "id": "sensor.envy_display_primary_display_2",
+          "friendlyName": "ENVY Primary Display",
+          "cSharpName": "EnvyDisplayPrimaryDisplay2"
+        },
+        {
           "id": "sensor.envy_display_windisc_bits_per_pixel",
           "friendlyName": "ENVY ENVY_display WinDisc Bits Per Pixel",
           "cSharpName": "EnvyDisplayWindiscBitsPerPixel"
@@ -3710,6 +3810,11 @@
           "cSharpName": "EnvyLastactive"
         },
         {
+          "id": "sensor.envy_network_eaaf8fc14e9943c1a3be497772840b6b",
+          "friendlyName": "ENVY Ethernet 3",
+          "cSharpName": "EnvyNetworkEaaf8fc14e9943c1a3be497772840b6b"
+        },
+        {
           "id": "sensor.envy_network_ethernet_3",
           "friendlyName": "ENVY ENVY_network Ethernet 3",
           "cSharpName": "EnvyNetworkEthernet3"
@@ -3718,6 +3823,11 @@
           "id": "sensor.envy_network_network_card_count",
           "friendlyName": "ENVY ENVY_network Network Card Count",
           "cSharpName": "EnvyNetworkNetworkCardCount"
+        },
+        {
+          "id": "sensor.envy_network_total_network_card_count",
+          "friendlyName": "ENVY Network Card Count",
+          "cSharpName": "EnvyNetworkTotalNetworkCardCount"
         },
         {
           "id": "sensor.fritz_box_6660_cable_connection_uptime",
@@ -4048,6 +4158,11 @@
           "id": "sensor.starkvind_fan_speed",
           "friendlyName": "Starkvind Fan speed",
           "cSharpName": "StarkvindFanSpeed"
+        },
+        {
+          "id": "sensor.steps_todays_k",
+          "friendlyName": "Steps Todays K",
+          "cSharpName": "StepsTodaysK"
         },
         {
           "id": "sensor.storage_sensor_aqara_power_outage_count",
@@ -5328,6 +5443,11 @@
           "cSharpName": "EnvyBatteryChargeRemainingPercentage"
         },
         {
+          "id": "sensor.envy_battery_charge_remaining_percentage_2",
+          "friendlyName": "ENVY Charge Remaining Percentage",
+          "cSharpName": "EnvyBatteryChargeRemainingPercentage2"
+        },
+        {
           "id": "sensor.fridge_contact_sensor_battery",
           "friendlyName": "Fridge Contact Sensor Battery",
           "cSharpName": "FridgeContactSensorBattery"
@@ -5761,11 +5881,6 @@
           "id": "sensor.power_meters_energy_hourly",
           "friendlyName": "Power_Meters_Energy_Hourly",
           "cSharpName": "PowerMetersEnergyHourly"
-        },
-        {
-          "id": "sensor.powermeters",
-          "friendlyName": "All Energy Meters",
-          "cSharpName": "Powermeters"
         },
         {
           "id": "sensor.qemu_haos9_5_100_cpu_used",

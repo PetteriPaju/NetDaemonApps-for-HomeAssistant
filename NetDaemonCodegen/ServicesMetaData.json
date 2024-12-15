@@ -5758,14 +5758,6 @@
         "optional": true
       }
     },
-    "playmoomin": {
-      "name": "PlayMoomin",
-      "description": "",
-      "fields": {},
-      "response": {
-        "optional": true
-      }
-    },
     "reload": {
       "name": "Reload",
       "description": "Reloads all the available scripts.",
@@ -5811,6 +5803,14 @@
             ]
           }
         ]
+      }
+    },
+    "playmoomin": {
+      "name": "PlayMoomin",
+      "description": "",
+      "fields": {},
+      "response": {
+        "optional": true
       }
     }
   },
