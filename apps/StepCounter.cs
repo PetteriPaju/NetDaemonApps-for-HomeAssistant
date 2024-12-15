@@ -20,6 +20,8 @@ namespace NetDaemonApps.apps
             // _0Gbl._myEntities.Sensor.MotoG8PowerLiteLastNotification?.StateAllChanges().Where(x => IsValidStep(x))?.Subscribe(x => ParseSteps(x?.Entity?.EntityState?.Attributes?.Android_title));
             A0Gbl._myEntities.Sensor.MotoG8PowerLiteStepsSensor.StateChanges().Subscribe(x => CalculatePhoneSteps(x.Old.State ?? x.New.State, x.New.State));
 
+            A0Gbl._myEntities.Sensor.StepsTodays.StateChanges().Where(x=>x.Old.State.HasValue).Subscribe(x=>RefreshThreshold((int)(x.New.State ?? 0)));
+
             lastKnownThreshold = (int)A0Gbl._myEntities.InputNumber.LastKnowStepThreshold.State;
 
 
@@ -55,7 +57,6 @@ namespace NetDaemonApps.apps
                     {
                         totalSteps = totalSteps += int.Parse(fields[3]);
                         A0Gbl._myEntities.InputNumber.WalkingpadStepsDaily.SetValue(totalSteps);
-                        RefreshThreshold();
                     }
                     else
                     {
@@ -72,14 +73,13 @@ namespace NetDaemonApps.apps
                 }
             
             A0Gbl._myEntities.InputNumber.WalkingpadStepsDaily.AddValue(totalSteps);
-            RefreshThreshold();
         }
                 
             
 
-        void RefreshThreshold()
+        void RefreshThreshold(int steps)
         {
-            var stepsFloored = FloorDownToThousand(A0Gbl._myEntities.InputNumber.Dailysteps.State ?? 0 + (A0Gbl._myEntities.InputNumber.WalkingpadStepsDaily.State ?? 0));
+            var stepsFloored = FloorDownToThousand(steps);
 
             if (stepsFloored < lastKnownThreshold)
             {
@@ -100,7 +100,6 @@ namespace NetDaemonApps.apps
 
             double dif = double.Max(0,now ?? 0 - old ?? 0);
             A0Gbl._myEntities.InputNumber.Dailysteps.AddValue(dif);
-            RefreshThreshold();
         }
        /*
         int ReadCSV()
