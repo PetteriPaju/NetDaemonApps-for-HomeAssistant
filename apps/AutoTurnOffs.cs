@@ -61,7 +61,7 @@ namespace NetDaemonApps.apps
                                            lightOffDisposables[light].pc?.Dispose();
                                            lightOffDisposables[light].pc = null;
                                        });
-                                       lightOffDisposables[light].laptop = A0Gbl._myEntities.Sensor.EnvyLastactive.StateChanges().Where(x => x.Old?.State != "unavailable" && x.New?.State != "unavailable" && A0Gbl._myEntities.Sensor.EnvyNetworkNetworkCardCount.State == "1").Subscribe(x => {
+                                       lightOffDisposables[light].laptop = A0Gbl._myEntities.Sensor.EnvyLastactive.StateChanges().Where(x => x.Old?.State != "unavailable" && x.New?.State != "unavailable" && A0Gbl._myEntities.Sensor.EnvyNetworkTotalNetworkCardCount.State == "1").Subscribe(x => {
 
                                            light.TurnOff();
                                            lightOffDisposables[light].laptop?.Dispose();
