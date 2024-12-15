@@ -3631,7 +3631,7 @@
         },
         {
           "id": "sensor.envy_bluetoothdevices",
-          "friendlyName": "ENVY ENVY_bluetoothdevices",
+          "friendlyName": "ENVY bluetoothdevices",
           "cSharpName": "EnvyBluetoothdevices"
         },
         {
@@ -3806,7 +3806,7 @@
         },
         {
           "id": "sensor.envy_lastactive",
-          "friendlyName": "ENVY ENVY_lastactive",
+          "friendlyName": "ENVY lastactive",
           "cSharpName": "EnvyLastactive"
         },
         {
