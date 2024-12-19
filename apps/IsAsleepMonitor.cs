@@ -170,9 +170,9 @@ namespace NetDaemonApps.apps
                 if (A0Gbl._myEntities.InputBoolean.NotificationAlarm.IsOff()) return;
                 if (A0Gbl._myEntities.InputBoolean.GuestMode.IsOn()) return;
                 if (A0Gbl._myEntities.InputBoolean.Isasleep.IsOff()) return;
-                if (A0Gbl._myEntities.Switch.ModemAutoOnPlug.IsOn()) return;
+                if (A0Gbl._myEntities.Switch.BrightLightPlug.IsOn()) return;
 
-                A0Gbl._myEntities.Switch.ModemAutoOnPlug.TurnOn();
+                A0Gbl._myEntities.Switch.BrightLightPlug.TurnOn();
 
 
 

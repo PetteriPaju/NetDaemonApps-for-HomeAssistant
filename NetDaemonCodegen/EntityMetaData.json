@@ -818,6 +818,16 @@
           "cSharpName": "PcShutdowncancel"
         },
         {
+          "id": "button.pc_startrunningpadprocess",
+          "friendlyName": "PC StartRunningPadProcess",
+          "cSharpName": "PcStartrunningpadprocess"
+        },
+        {
+          "id": "button.pc_stopwalkingpadprocess",
+          "friendlyName": "PC StopWalkingPadProcess",
+          "cSharpName": "PcStopwalkingpadprocess"
+        },
+        {
           "id": "button.pc_turnoffmonitors",
           "friendlyName": "PC PC_TurnOffMonitors",
           "cSharpName": "PcTurnoffmonitors"
@@ -834,7 +844,7 @@
         },
         {
           "id": "button.pc_walkingpadtoggle",
-          "friendlyName": "PC PC-WalkingPadToggle",
+          "friendlyName": "PC WalkingPadToggle",
           "cSharpName": "PcWalkingpadtoggle"
         },
         {
@@ -1230,6 +1240,101 @@
           "id": "input_boolean.desktop_standing",
           "friendlyName": "Desktop Standing",
           "cSharpName": "DesktopStanding"
+        },
+        {
+          "id": "input_boolean.dev_netdaemon_net_daemon_apps_apps_a0gbl",
+          "friendlyName": "dev_netdaemon_net_daemon_apps_apps_a0gbl",
+          "cSharpName": "DevNetdaemonNetDaemonAppsAppsA0gbl"
+        },
+        {
+          "id": "input_boolean.dev_netdaemon_net_daemon_apps_apps_audio_output_monitor",
+          "friendlyName": "dev_netdaemon_net_daemon_apps_apps_audio_output_monitor",
+          "cSharpName": "DevNetdaemonNetDaemonAppsAppsAudioOutputMonitor"
+        },
+        {
+          "id": "input_boolean.dev_netdaemon_net_daemon_apps_apps_auto_turn_offs",
+          "friendlyName": "dev_netdaemon_net_daemon_apps_apps_auto_turn_offs",
+          "cSharpName": "DevNetdaemonNetDaemonAppsAppsAutoTurnOffs"
+        },
+        {
+          "id": "input_boolean.dev_netdaemon_net_daemon_apps_apps_eco_flow_manager",
+          "friendlyName": "dev_netdaemon_net_daemon_apps_apps_eco_flow_manager",
+          "cSharpName": "DevNetdaemonNetDaemonAppsAppsEcoFlowManager"
+        },
+        {
+          "id": "input_boolean.dev_netdaemon_net_daemon_apps_apps_energy_monitor",
+          "friendlyName": "dev_netdaemon_net_daemon_apps_apps_energy_monitor",
+          "cSharpName": "DevNetdaemonNetDaemonAppsAppsEnergyMonitor"
+        },
+        {
+          "id": "input_boolean.dev_netdaemon_net_daemon_apps_apps_hue_switches_livingroom_switch",
+          "friendlyName": "dev_netdaemon_net_daemon_apps_apps_hue_switches_livingroom_switch",
+          "cSharpName": "DevNetdaemonNetDaemonAppsAppsHueSwitchesLivingroomSwitch"
+        },
+        {
+          "id": "input_boolean.dev_netdaemon_net_daemon_apps_apps_is_asleep_monitor",
+          "friendlyName": "dev_netdaemon_net_daemon_apps_apps_is_asleep_monitor",
+          "cSharpName": "DevNetdaemonNetDaemonAppsAppsIsAsleepMonitor"
+        },
+        {
+          "id": "input_boolean.dev_netdaemon_net_daemon_apps_apps_is_home_manager",
+          "friendlyName": "dev_netdaemon_net_daemon_apps_apps_is_home_manager",
+          "cSharpName": "DevNetdaemonNetDaemonAppsAppsIsHomeManager"
+        },
+        {
+          "id": "input_boolean.dev_netdaemon_net_daemon_apps_apps_knobs",
+          "friendlyName": "dev_netdaemon_net_daemon_apps_apps_knobs",
+          "cSharpName": "DevNetdaemonNetDaemonAppsAppsKnobs"
+        },
+        {
+          "id": "input_boolean.dev_netdaemon_net_daemon_apps_apps_lights_lights_and_sensors",
+          "friendlyName": "dev_netdaemon_net_daemon_apps_apps_lights_lights_and_sensors",
+          "cSharpName": "DevNetdaemonNetDaemonAppsAppsLightsLightsAndSensors"
+        },
+        {
+          "id": "input_boolean.dev_netdaemon_net_daemon_apps_apps_lights_livingroom_lights",
+          "friendlyName": "dev_netdaemon_net_daemon_apps_apps_lights_livingroom_lights",
+          "cSharpName": "DevNetdaemonNetDaemonAppsAppsLightsLivingroomLights"
+        },
+        {
+          "id": "input_boolean.dev_netdaemon_net_daemon_apps_apps_lights_toiler_light_automation",
+          "friendlyName": "dev_netdaemon_net_daemon_apps_apps_lights_toiler_light_automation",
+          "cSharpName": "DevNetdaemonNetDaemonAppsAppsLightsToilerLightAutomation"
+        },
+        {
+          "id": "input_boolean.dev_netdaemon_net_daemon_apps_apps_lora_tap_bed",
+          "friendlyName": "dev_netdaemon_net_daemon_apps_apps_lora_tap_bed",
+          "cSharpName": "DevNetdaemonNetDaemonAppsAppsLoraTapBed"
+        },
+        {
+          "id": "input_boolean.dev_netdaemon_net_daemon_apps_apps_lora_tap_dekstop",
+          "friendlyName": "dev_netdaemon_net_daemon_apps_apps_lora_tap_dekstop",
+          "cSharpName": "DevNetdaemonNetDaemonAppsAppsLoraTapDekstop"
+        },
+        {
+          "id": "input_boolean.dev_netdaemon_net_daemon_apps_apps_media_playing_monitor",
+          "friendlyName": "dev_netdaemon_net_daemon_apps_apps_media_playing_monitor",
+          "cSharpName": "DevNetdaemonNetDaemonAppsAppsMediaPlayingMonitor"
+        },
+        {
+          "id": "input_boolean.dev_netdaemon_net_daemon_apps_apps_notifications",
+          "friendlyName": "dev_netdaemon_net_daemon_apps_apps_notifications",
+          "cSharpName": "DevNetdaemonNetDaemonAppsAppsNotifications"
+        },
+        {
+          "id": "input_boolean.dev_netdaemon_net_daemon_apps_apps_starkvind",
+          "friendlyName": "dev_netdaemon_net_daemon_apps_apps_starkvind",
+          "cSharpName": "DevNetdaemonNetDaemonAppsAppsStarkvind"
+        },
+        {
+          "id": "input_boolean.dev_netdaemon_net_daemon_apps_apps_step_counter",
+          "friendlyName": "dev_netdaemon_net_daemon_apps_apps_step_counter",
+          "cSharpName": "DevNetdaemonNetDaemonAppsAppsStepCounter"
+        },
+        {
+          "id": "input_boolean.dev_netdaemon_net_daemon_apps_apps_tts",
+          "friendlyName": "dev_netdaemon_net_daemon_apps_apps_tts",
+          "cSharpName": "DevNetdaemonNetDaemonAppsAppsTts"
         },
         {
           "id": "input_boolean.ecoflow_allow_0_battery",
@@ -2333,7 +2438,7 @@
         },
         {
           "id": "media_player.living_room_tv",
-          "friendlyName": "Living Room TV",
+          "friendlyName": null,
           "cSharpName": "LivingRoomTv"
         },
         {
@@ -3865,6 +3970,11 @@
           "cSharpName": "PcC2ce45413a854b03Aacc016f116bc0fdDisplay2"
         },
         {
+          "id": "sensor.pc_c2ce4541_3a85_4b03_aacc_016f116bc0fd_display3",
+          "friendlyName": "PC DISPLAY3",
+          "cSharpName": "PcC2ce45413a854b03Aacc016f116bc0fdDisplay3"
+        },
+        {
           "id": "sensor.pc_display_display_count",
           "friendlyName": "PC Display Count",
           "cSharpName": "PcDisplayDisplayCount"
@@ -3878,6 +3988,11 @@
           "id": "sensor.pc_lastactive",
           "friendlyName": "PC PC_lastactive",
           "cSharpName": "PcLastactive"
+        },
+        {
+          "id": "sensor.pc_walkingpad_active",
+          "friendlyName": "PC walkingpad_active",
+          "cSharpName": "PcWalkingpadActive"
         },
         {
           "id": "sensor.preferred_mediaplayer",
@@ -6321,7 +6436,7 @@
         },
         {
           "id": "switch.bright_light_plug",
-          "friendlyName": "Runner Plug",
+          "friendlyName": "Modem Plug",
           "cSharpName": "BrightLightPlug"
         },
         {

@@ -174,7 +174,7 @@ namespace NetDaemonApps.apps
             switch (pwrpressMode)
             {
                 case 0:
-                    if (A0Gbl._myEntities.Switch.ModemAutoOnPlug.IsOn())
+                    if (A0Gbl._myEntities.Switch.BrightLightPlug.IsOn())
                     {
                         message = "Modem Off";
                     }
@@ -184,7 +184,7 @@ namespace NetDaemonApps.apps
                     }
 
                     cancelRoutine?.Dispose();
-                    cancelRoutine = A0Gbl._myScheduler.Schedule(TimeSpan.FromSeconds(A0Gbl._myEntities.Switch.ModemAutoOnPlug.IsOn() ? 10 : 0), () => {
+                    cancelRoutine = A0Gbl._myScheduler.Schedule(TimeSpan.FromSeconds(A0Gbl._myEntities.Switch.BrightLightPlug.IsOn() ? 10 : 0), () => {
 
 
  

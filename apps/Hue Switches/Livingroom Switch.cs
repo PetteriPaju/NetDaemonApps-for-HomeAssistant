@@ -4,6 +4,9 @@ using NetDaemonApps.apps.Lights;
 using System.Diagnostics;
 using System.Globalization;
 using System.Reactive.Concurrency;
+using System;
+using System.Linq;
+using NetDaemon.Extensions.Scheduler;
 
 namespace NetDaemonApps.apps.Hue_Switches
 {
@@ -12,25 +15,91 @@ namespace NetDaemonApps.apps.Hue_Switches
     {
         private IDisposable? cancelRoutine = null;
       
-        public Livingroom_Switch() : base() { }
+        public Livingroom_Switch() : base() {
+
+            A0Gbl._myEntities.Sensor.ModemAutoOnPlugPower.StateChanges().WhenStateIsFor(x => x?.State < 5, TimeSpan.FromMinutes(10), A0Gbl._myScheduler).Subscribe(x => {
+
+                DeActivateRunningPad();
+
+                A0Gbl._myEntities.Switch.ModemAutoOnPlug.TurnOff();
+
+            });
+            A0Gbl._myEntities.Switch.ModemAutoOnPlug.StateChanges().Where(x => x.New.IsOn()).Subscribe(x => { ActivateRunningPad(); });
+        }
   
 
+        protected bool hasProcess()
+        {
+            return A0Gbl._myEntities.Sensor.PcWalkingpadActive.State == "1";
+        }
+        protected SwitchEntity runnerSwitch { get { return A0Gbl._myEntities.Switch.ModemAutoOnPlug;  } }
+        protected void ActivateRunningPad()
+        {
+            bool wasPlugOn = true;
+            if (runnerSwitch.IsOff())
+            {
+                runnerSwitch.TurnOn();
+                wasPlugOn = false;
+            }
+
+            if (!hasProcess())
+            {
+            A0Gbl._myScheduler.Schedule(TimeSpan.FromSeconds(wasPlugOn ? 0 : 5), A0Gbl._myEntities.Button.PcStartrunningpadprocess.Press);
+            }
+ 
+
+        }
+
+        protected void DeActivateRunningPad()
+        {
+            bool wasRunning = false;
+            if(A0Gbl._myEntities.Sensor.ModemAutoOnPlugPower.State > 15)
+            {
+                ToggleRunner();
+                wasRunning = true;
+            }
+
+            if (hasProcess())
+            {
+                A0Gbl._myScheduler.Schedule(TimeSpan.FromSeconds(wasRunning ? 0 : 30), A0Gbl._myEntities.Button.PcStopwalkingpadprocess.Press);
+            }
+
+        }
+
+        protected void ToggleRunner()
+        {
+            if (hasProcess())
+            {
+                Console.WriteLine("Toggle");
+                A0Gbl._myEntities.Button.PcWalkingpadtoggle.Press();
+            }
+        }
 
         protected override SensorEntity ObtainSwitch(Entities entities)
         {
             return entities.Sensor.HueSwitchBedAction;
+            
         }
 
         protected override void OnPowerRelease()
         {
             base.OnPowerPress();
-            A0Gbl._myEntities.Switch.BedMultiPlugL1.Toggle();
+            if (runnerSwitch.IsOff() || A0Gbl._myEntities.Sensor.PcWalkingpadActive.State != "1")
+            {
+                ActivateRunningPad();
+                return;
+            }
+            else
+            {
+                ToggleRunner();
+            }
+            
         }
   
         protected override void OnPowerHoldRelease()
         {
             base.OnPowerHoldRelease();
-            A0Gbl._myEntities.Switch.InkplatePlug.Toggle();
+      
         }
 
         protected override void OnAnyPress()
@@ -42,82 +111,28 @@ namespace NetDaemonApps.apps.Hue_Switches
         protected override void OnDownPressRelease()
         {
             base.OnDownPressRelease();
-            if (cancelRoutine != null)
-            {
-                cancelRoutine.Dispose();
-                var message = "Cancelled";
-                cancelRoutine = null;
-                TTS.Speak(message, TTS.TTSPriority.IgnoreSleep);
-            }
+            A0Gbl._myEntities.Button.PcWalkingpadspeedup.Press();
+
 
         }
         protected override void OnUpPressRelease()
         {
             base.OnUpPressRelease();
 
-            if (cancelRoutine != null)
-            {
-                cancelRoutine.Dispose();
-                cancelRoutine = null;
-                var message = "Cancelled";
-                TTS.Speak(message, TTS.TTSPriority.IgnoreSleep);
-            }
-
+            A0Gbl._myEntities.Button.PcWalkingpadspeedup.Press();
         }
+
         protected override void OnUpHoldRelease()
         {
             base.OnUpHoldRelease();
-            string message = "";
-            if (cancelRoutine != null) {
-                cancelRoutine.Dispose();
-                cancelRoutine = null;
-                message = "Cancelled";
-            }
-            else {
-
-                if (A0Gbl._myEntities.Switch.ModemAutoOnPlug.IsOn())
-                {
-                    message = "Modem Off";
-                }
-                else
-                {
-                    message = "Modem On";
-                }
-         
-                cancelRoutine = A0Gbl._myScheduler.Schedule(TimeSpan.FromSeconds(A0Gbl._myEntities.Switch.ModemAutoOnPlug.IsOn() ? 10 : 0), () => {
-                        A0Gbl._myEntities.Switch.ModemAutoOnPlug.Toggle();
-                    
-
-                    cancelRoutine = null;
-
-                });
-            }
-            TTS.Speak(message, TTS.TTSPriority.IgnoreSleep);
+          
 
         }
         protected override void OnDownHoldRelease()
         {
 
             base.OnDownHoldRelease();
-            string message = "";
-            if (cancelRoutine != null)
-            {
-                cancelRoutine.Dispose();
-                cancelRoutine = null;
-                message = "Cancelled";
-            }
-            else
-            {
-                 message = "Everything off";
-
-                cancelRoutine = A0Gbl._myScheduler.Schedule(TimeSpan.FromSeconds(10), () => {
-
-                    A0Gbl._myEntities.Script.TurnOffEverything.TurnOn();
-                    cancelRoutine = null;
-
-                });
-            }
-            TTS.Speak(message, TTS.TTSPriority.IgnoreSleep);
+    
         }
 
 
@@ -125,18 +140,24 @@ namespace NetDaemonApps.apps.Hue_Switches
         {
 
             base.OnHueRelease();
-            TimeSpan? timeDiff = DateTime.Now - A0Gbl._myEntities?.InputDatetime.Lastisasleeptime.GetDateTime();
-            string ttsTime = "its " + DateTime.Now.ToString("H:mm", CultureInfo.InvariantCulture); 
-            if(A0Gbl._myEntities.InputBoolean.Isasleep.IsOn()) ttsTime += ", you have been sleeping for " + timeDiff?.Hours + " hours" + (timeDiff?.Minutes > 0 ? " and " + timeDiff?.Minutes + "minutes" : ". ");
 
-            TTS.Speak(ttsTime,TTS.TTSPriority.IgnoreAll);
         }
 
 
         protected override void OnHueRelease()
         {
             base.OnHueRelease();
-            IsAsleepMonitor.ToggleMode();
+
+            if (hasProcess())
+            {
+                DeActivateRunningPad();
+            }
+            else
+            {
+                ActivateRunningPad();
+            }
+
+         
         }
 
 
