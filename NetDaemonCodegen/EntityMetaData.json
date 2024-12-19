@@ -743,6 +743,16 @@
       "domain": "button",
       "entities": [
         {
+          "id": "button.envy_turnoffmonitors",
+          "friendlyName": "ENVY ENVY_TurnOffMonitors",
+          "cSharpName": "EnvyTurnoffmonitors"
+        },
+        {
+          "id": "button.envy_wakekey",
+          "friendlyName": "ENVY ENVY_WakeKey",
+          "cSharpName": "EnvyWakekey"
+        },
+        {
           "id": "button.fritz_box_6660_cable_cleanup",
           "friendlyName": "FRITZ!Box 6660 Cable Cleanup",
           "cSharpName": "FritzBox6660CableCleanup"
@@ -2089,7 +2099,7 @@
         },
         {
           "id": "light.desktop_light",
-          "friendlyName": "Desktop Light",
+          "friendlyName": "Wake light",
           "cSharpName": "DesktopLight"
         },
         {
@@ -2323,7 +2333,7 @@
         },
         {
           "id": "media_player.living_room_tv",
-          "friendlyName": null,
+          "friendlyName": "Living Room TV",
           "cSharpName": "LivingRoomTv"
         },
         {
@@ -2874,6 +2884,11 @@
           "id": "script.av_volume_up",
           "friendlyName": "AV - Volume - Up",
           "cSharpName": "AvVolumeUp"
+        },
+        {
+          "id": "script.clearplaylists",
+          "friendlyName": "ClearPlaylists",
+          "cSharpName": "Clearplaylists"
         },
         {
           "id": "script.launch_youtube",
@@ -3446,7 +3461,7 @@
         },
         {
           "id": "sensor.ecoflow_charge_or_remain_time",
-          "friendlyName": "Discharging",
+          "friendlyName": "Offline",
           "cSharpName": "EcoflowChargeOrRemainTime"
         },
         {

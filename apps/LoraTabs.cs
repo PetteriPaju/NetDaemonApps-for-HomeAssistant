@@ -44,12 +44,14 @@ namespace NetDaemonApps.apps
         protected override void On2Press()
         {
             base.On2Press();
+            IsAsleepMonitor.Awake();
             A0Gbl._myEntities.Switch.PcPlug.TurnOn();
         }
 
         protected override void On4Press()
         {
             base.On3Press();
+            IsAsleepMonitor.Awake();
             A0Gbl._myEntities.Switch.PcMultipowermeterMonitors.Toggle();
         }
 
@@ -58,7 +60,7 @@ namespace NetDaemonApps.apps
         protected override void On5Press()
         {
             base.On5Press();
-
+            IsAsleepMonitor.Awake();
             if (A0Gbl._myEntities.Switch.DeskFans.IsOff())
             {
                 A0Gbl._myEntities.Switch.DeskFans.TurnOn();
@@ -82,6 +84,7 @@ namespace NetDaemonApps.apps
         protected override void On3Press()
         {
             base.On3Press();
+            IsAsleepMonitor.Awake();
             if (A0Gbl._myEntities.Switch.PcPlug.IsOn())
                 A0Gbl._myEntities.Button.PcWalkingpadtoggle.Press();
             else
@@ -116,6 +119,7 @@ namespace NetDaemonApps.apps
 
         protected override void On6Press()
         {
+            IsAsleepMonitor.Awake();
             A0Gbl._myEntities.Switch.SwitchbotEcoflow.Toggle();
         }
     }

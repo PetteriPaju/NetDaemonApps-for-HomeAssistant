@@ -109,6 +109,7 @@ namespace NetDaemonApps.apps
                  A0Gbl._myEntities.Light.PcMultipowermeterL1.TurnOn();
                 A0Gbl._myEntities.Switch.PcMultipowermeterMonitors.TurnOn();
                 A0Gbl._myEntities.Switch.FanPlug.TurnOn();
+                    IsAsleepMonitor.Awake();
                // _0Gbl._myEntities.Scene.SwitchUsbLaptop.TurnOn();
 
 
