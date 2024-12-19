@@ -52,7 +52,6 @@ namespace NetDaemonApps.apps
                 DateTime parsedDateTime;
                 if (DateTime.TryParse(fields[0], out parsedDateTime))
                 {
-                    Console.WriteLine(parsedDateTime);
                     if (parsedDateTime.Date == DateTime.Today)
                     {
                         totalSteps = totalSteps += int.Parse(fields[3]);

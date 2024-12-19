@@ -58,6 +58,11 @@ namespace NetDaemonApps.apps
             }
         }
 
+        public static void Awake()
+        {
+            A0Gbl._myEntities.InputBoolean.Isasleep.TurnOn()
+        }
+
         public static void ToggleMode()
         {
             A0Gbl._myEntities.InputSelect.AlarmSleepMode.SelectNext();
