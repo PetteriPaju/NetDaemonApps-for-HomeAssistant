@@ -118,12 +118,6 @@ namespace NetDaemonApps.apps
                 A0Gbl._myEntities.Script.Clearplaylists.TurnOn();
                 tts.Speak(A0Gbl._myEntities.Sensor.PreferredMediaplayer.State ?? "media_player.vlc_telnet", text, getTTSService());
 
-                if(A0Gbl._myEntities.Sensor.EnvyAudioDefaultDevice.State == "Headphones (2–AIAIAI TMA-2 (S10))")
-                {
-                    tts.Speak("media_player.pc", text, getTTSService());
-                }
-
-
                 A0Gbl._myScheduler.Schedule(TimeSpan.FromSeconds(1),() => {
                     IDisposable disp = null;
 
