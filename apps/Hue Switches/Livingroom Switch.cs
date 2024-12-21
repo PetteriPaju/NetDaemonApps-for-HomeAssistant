@@ -17,13 +17,13 @@ namespace NetDaemonApps.apps.Hue_Switches
       
         public Livingroom_Switch() : base() {
 
-            A0Gbl._myEntities.Sensor.ModemAutoOnPlugPower.StateChanges().WhenStateIsFor(x => x?.State < 5, TimeSpan.FromMinutes(10), A0Gbl._myScheduler).Subscribe(x => {
+            A0Gbl._myEntities.Sensor.ModemAutoOnPlugPower.StateChanges().WhenStateIsFor(x => x?.State < 19, TimeSpan.FromMinutes(10), A0Gbl._myScheduler).Subscribe(x => {
 
                 DeActivateRunningPad();
-
                 A0Gbl._myEntities.Switch.ModemAutoOnPlug.TurnOff();
 
             });
+
             A0Gbl._myEntities.Switch.ModemAutoOnPlug.StateChanges().Where(x => x.New.IsOn()).Subscribe(x => { ActivateRunningPad(); });
         }
   
@@ -111,7 +111,7 @@ namespace NetDaemonApps.apps.Hue_Switches
         protected override void OnDownPressRelease()
         {
             base.OnDownPressRelease();
-            A0Gbl._myEntities.Button.PcWalkingpadspeedup.Press();
+            A0Gbl._myEntities.Button.PcCwalkingpadspeeddown.Press();
 
 
         }
