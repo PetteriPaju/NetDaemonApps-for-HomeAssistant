@@ -61,7 +61,7 @@ namespace NetDaemonApps.apps.Hue_Switches
 
             if (hasProcess())
             {
-                A0Gbl._myScheduler.Schedule(TimeSpan.FromSeconds(wasRunning ? 0 : 30), A0Gbl._myEntities.Button.PcStopwalkingpadprocess.Press);
+                A0Gbl._myScheduler.Schedule(TimeSpan.FromSeconds(wasRunning ? 30 : 0), A0Gbl._myEntities.Button.PcStopwalkingpadprocess.Press);
             }
 
         }
