@@ -99,8 +99,7 @@ namespace NetDaemonApps.apps
         void CalculatePhoneSteps(double? old, double? now) {
 
             double dif = double.Max(0,(now ?? 0) - (old ?? 0));
-            Console.WriteLine(dif);
-            A0Gbl._myEntities.InputNumber.Dailysteps.AddValue(dif);
+            if(dif < 10000)A0Gbl._myEntities.InputNumber.Dailysteps.AddValue(dif);
         }
        /*
         int ReadCSV()
