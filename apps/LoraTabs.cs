@@ -188,7 +188,7 @@ namespace NetDaemonApps.apps
 
 
  
-                            A0Gbl._myEntities.Switch.ModemAutoOnPlug.Toggle();
+                            A0Gbl._myEntities.Switch.BrightLightPlug.Toggle();
                         
 
                         pwrpressMode = -1;
