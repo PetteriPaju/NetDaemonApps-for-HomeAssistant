@@ -1,19 +1,9 @@
 ﻿using HomeAssistantGenerated;
 using NetDaemon.Extensions.Scheduler;
 using System.Linq;
-using System.Reactive.Concurrency;
-using static NetDaemonApps.apps.MediaPlayingMonitor;
 using System.Text.Json;
 using System.Collections.Generic;
-using System.Xml;
-using NetDaemon.HassModel.Integration;
-using YamlDotNet.Serialization;
-using System.IO;
-using System.Net;
 using System.Text.Json.Serialization;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
-using System.Text.Encodings.Web;
-using System.Text.Unicode;
 using NetDaemon.HassModel.Entities;
 
 namespace NetDaemonApps.apps

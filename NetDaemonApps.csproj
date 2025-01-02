@@ -2,7 +2,7 @@
 
     <PropertyGroup>
         <OutputType>Exe</OutputType>
-        <TargetFramework>net7.0</TargetFramework>
+        <TargetFramework>net9.0</TargetFramework>
         <LangVersion>11.0</LangVersion>
         <Nullable>enable</Nullable>
         <RootNamespace>NetDaemonApps</RootNamespace>
@@ -32,15 +32,108 @@
     </Target>
         
     <ItemGroup>
-        <PackageReference Include="JoySoftware.NetDaemon.AppModel" Version="23.44.1" />
-        <PackageReference Include="JoySoftware.NetDaemon.Runtime" Version="23.44.1" />
-        <PackageReference Include="JoySoftware.NetDaemon.HassModel" Version="23.44.1" />
-        <PackageReference Include="JoySoftware.NetDaemon.Client" Version="23.44.1" />
-        <PackageReference Include="JoySoftware.NetDaemon.Extensions.Scheduling" Version="23.44.1" />
-        <PackageReference Include="JoySoftware.NetDaemon.Extensions.Logging" Version="23.44.1" />
-        <PackageReference Include="JoySoftware.NetDaemon.Extensions.Tts" Version="23.44.1" />
+        <PackageReference Include="NetDaemon.AppModel" Version="23.44.1" />
+        <PackageReference Include="NetDaemon.Runtime" Version="23.44.1" />
+        <PackageReference Include="NetDaemon.HassModel" Version="23.44.1" />
+        <PackageReference Include="NetDaemon.Client" Version="23.44.1" />
+        <PackageReference Include="NetDaemon.Extensions.Scheduling" Version="23.44.1" />
+        <PackageReference Include="NetDaemon.Extensions.Logging" Version="23.44.1" />
+        <PackageReference Include="NetDaemon.Extensions.Tts" Version="23.44.1" />
         <PackageReference Include="Microsoft.Extensions.Hosting" Version="8.0.0" />
         <PackageReference Include="Serilog.AspNetCore" Version="8.0.0" />
         <PackageReference Include="System.Reactive" Version="6.0.0" />
+    </ItemGroup>
+        
+    <ItemGroup>
+      <Compile Update="apps\AgaraCube_LivingRoom.cs">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Compile>
+      <Compile Update="apps\AGbl.cs">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Compile>
+      <Compile Update="apps\AqaraCube.cs">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Compile>
+      <Compile Update="apps\AqaraFP1Extender.cs">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Compile>
+      <Compile Update="apps\AudioOutputMonitor.cs">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Compile>
+      <Compile Update="apps\AutoTurnOffs.cs">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Compile>
+      <Compile Update="apps\EcoFlowManager.cs">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Compile>
+      <Compile Update="apps\EnergyMonitor.cs">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Compile>
+      <Compile Update="apps\Extensions.cs">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Compile>
+      <Compile Update="apps\FridgeAutomation.cs">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Compile>
+      <Compile Update="apps\GlobalUsings.cs">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Compile>
+      <Compile Update="apps\Hue Switches\BedHueSwitch.cs">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Compile>
+      <Compile Update="apps\Hue Switches\HueSwitch.cs">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Compile>
+      <Compile Update="apps\Hue Switches\Livingroom Switch.cs">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Compile>
+      <Compile Update="apps\IsAsleepMonitor.cs">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Compile>
+      <Compile Update="apps\IsHomeManager.cs">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Compile>
+      <Compile Update="apps\Knobs.cs">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Compile>
+      <Compile Update="apps\Lights\AllowOnlyOneLightGroup.cs">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Compile>
+      <Compile Update="apps\Lights\LightCycler.cs">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Compile>
+      <Compile Update="apps\Lights\LightsAndSensors.cs">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Compile>
+      <Compile Update="apps\Lights\Livingroom Lights.cs">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Compile>
+      <Compile Update="apps\Lights\Toiler Light Automation.cs">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Compile>
+      <Compile Update="apps\LivingRoomFP1.cs">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Compile>
+      <Compile Update="apps\LoraTabs.cs">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Compile>
+      <Compile Update="apps\MediaPlayingMonitor.cs">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Compile>
+      <Compile Update="apps\Notifications.cs">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Compile>
+      <Compile Update="apps\Starkvind.cs">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Compile>
+      <Compile Update="apps\StepCounter.cs">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Compile>
+      <Compile Update="apps\SummerVentilation.cs">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Compile>
+      <Compile Update="apps\TTS.cs">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Compile>
     </ItemGroup>
 </Project>

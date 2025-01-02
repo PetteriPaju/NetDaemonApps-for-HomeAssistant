@@ -1,5 +1,4 @@
 ﻿using HomeAssistantGenerated;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
 using NetDaemon.Extensions.Scheduler;
 using NetDaemon.HassModel.Entities;
 using System.Collections.Generic;

@@ -1,5 +1,4 @@
 ﻿using HomeAssistantGenerated;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
 using NetDaemon.HassModel.Entities;
 using NetDaemonApps.apps;
 using System;
@@ -62,7 +61,7 @@ namespace NetDaemonApps
             if (light == null) return;
 
 
-            if (luminanceSensorEntity?.State < maxFlux || luminanceSensorEntity == null)
+            if ((luminanceSensorEntity?.State ?? 0) < maxFlux || luminanceSensorEntity == null || luminanceSensorEntity.State == null)
             {
                 light.TurnOnLight();
             }
