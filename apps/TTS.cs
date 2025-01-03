@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Builder;
 using NetDaemon.Extensions.Tts;
 using NetDaemon.HassModel.Entities;
 using System;
+using System.Diagnostics.Eventing.Reader;
 using System.Linq;
 using System.Reactive.Concurrency;
 using System.Threading.Tasks;
@@ -116,9 +117,14 @@ namespace NetDaemonApps.apps
 
                 lastAnnounsmentTime = DateTime.Now;
                 A0Gbl._myEntities.Script.Clearplaylists.TurnOn();
-                tts.Speak(A0Gbl._myEntities.Sensor.PreferredMediaplayer.State ?? "media_player.vlc_telnet", text, getTTSService());
 
-                A0Gbl._myScheduler.Schedule(TimeSpan.FromSeconds(1),() => {
+                if(A0Gbl._myEntities.BinarySensor.FritzBox6660CableConnection.State == "on")
+                A0Gbl._myServices.Tts.GoogleTranslateSay(A0Gbl._myEntities.Sensor.PreferredMediaplayer.State ?? "media_player.vlc_telnet", text);
+                else
+                A0Gbl._myServices.Tts.PicottsSay(A0Gbl._myEntities.Sensor.PreferredMediaplayer.State ?? "media_player.vlc_telnet", text);
+
+                /*
+                A0Gbl._myScheduler.Schedule(TimeSpan.FromSeconds(2),() => {
                     IDisposable disp = null;
 
                     MediaPlayerEntity ent = new MediaPlayerEntity(A0Gbl.HaContext, A0Gbl._myEntities.Sensor.PreferredMediaplayer.State ?? "media_player.vlc_telnet");
@@ -130,6 +136,7 @@ namespace NetDaemonApps.apps
                     });
                     A0Gbl._myScheduler.Schedule(TimeSpan.FromSeconds(30), () => { disp?.Dispose(); });
                 });
+                */
                
                 }
             else
