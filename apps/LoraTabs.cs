@@ -186,11 +186,8 @@ namespace NetDaemonApps.apps
                     cancelRoutine?.Dispose();
                     cancelRoutine = A0Gbl._myScheduler.Schedule(TimeSpan.FromSeconds(A0Gbl._myEntities.Switch.BrightLightPlug.IsOn() ? 10 : 0), () => {
 
-
- 
                             A0Gbl._myEntities.Switch.BrightLightPlug.Toggle();
                         
-
                         pwrpressMode = -1;
                         cancelRoutine = null;
 
