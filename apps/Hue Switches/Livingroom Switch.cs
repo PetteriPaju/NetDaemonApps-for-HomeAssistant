@@ -77,7 +77,7 @@ namespace NetDaemonApps.apps.Hue_Switches
 
         protected override SensorEntity ObtainSwitch(Entities entities)
         {
-            return entities.Sensor.HueSwitchBedAction;
+            return entities.Sensor.HueSwitchRunnerAction;
             
         }
 

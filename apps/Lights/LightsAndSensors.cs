@@ -21,7 +21,7 @@ namespace NetDaemonApps.apps.Lights
         DateTime lastStorageOff = DateTime.MinValue;
         public LightsAndSensors()
         {
-            luxSensorEntity = A0Gbl._myEntities.Sensor.StorageSensorAqaraIlluminanceLux;
+       
             SubcribeLightOn(A0Gbl._myEntities.BinarySensor.HallwaySensorOccupancy, A0Gbl._myEntities.Light.HallwayLight);
             SubcribeLightOff(A0Gbl._myEntities.BinarySensor.HallwaySensorOccupancy, A0Gbl._myEntities.Light.HallwayLight, defaulMotionTimeout);
 

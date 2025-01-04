@@ -18,8 +18,8 @@ namespace NetDaemonApps.apps
         public Knobs() {
 
             knobs.Add(new DesktopKnob(A0Gbl._myEntities.Sensor.KnobDesktopAction, A0Gbl._myEntities.Sensor.KnobDesktopDelta));
-            knobs.Add(new BedKnob(A0Gbl._myEntities.Sensor.BedKnobAction, A0Gbl._myEntities.Sensor.KnobBedDelta));
-            knobs.Add(new SofaKnob(A0Gbl._myEntities.Sensor.KnobCouchAction, A0Gbl._myEntities.Sensor.KnobCouchDelta));
+            knobs.Add(new BedKnob(A0Gbl._myEntities.Sensor.KnobBedAction, A0Gbl._myEntities.Sensor.KnobBedDelta));
+          //  knobs.Add(new SofaKnob(A0Gbl._myEntities.Sensor.KnobCouchAction, A0Gbl._myEntities.Sensor.KnobCouchDelta));
 
         }
 

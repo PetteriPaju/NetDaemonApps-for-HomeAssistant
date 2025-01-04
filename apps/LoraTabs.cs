@@ -22,7 +22,7 @@ namespace NetDaemonApps.apps
         }
         protected override SensorEntity GetEntity()
         {
-            return A0Gbl._myEntities.Sensor.LrtabPcAction;
+            return A0Gbl._myEntities.Sensor.Lrtabdesktopaction;
         }
 
         protected override void On1Press()
@@ -135,7 +135,7 @@ namespace NetDaemonApps.apps
         }
         protected override SensorEntity GetEntity()
         {
-            return A0Gbl._myEntities.Sensor.LrTabBedAction;
+            return A0Gbl._myEntities.Sensor.Lrtabbedaction;
         }
 
         protected override void On1Press()

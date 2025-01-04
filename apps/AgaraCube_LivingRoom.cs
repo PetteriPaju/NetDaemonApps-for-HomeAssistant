@@ -21,7 +21,7 @@ namespace NetDaemonApps.apps
 
         }
 
-        protected override SensorEntity? SetCubeActionEntity() { return A0Gbl._myEntities?.Sensor.CubeAction; }
+        protected override SensorEntity? SetCubeActionEntity() { return null; }
         protected override SensorEntity? SetCubeSideEntity() { return A0Gbl._myEntities?.Sensor.CubeSide; }
 
 

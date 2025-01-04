@@ -341,24 +341,9 @@
           "cSharpName": "BackupsStale"
         },
         {
-          "id": "binary_sensor.bed_light_update_available",
-          "friendlyName": "Bed Light",
-          "cSharpName": "BedLightUpdateAvailable"
-        },
-        {
-          "id": "binary_sensor.bright_light_plug_update_available",
-          "friendlyName": "Bed Light Plug",
-          "cSharpName": "BrightLightPlugUpdateAvailable"
-        },
-        {
           "id": "binary_sensor.cheap_electricity",
           "friendlyName": "Cheap Electricity",
           "cSharpName": "CheapElectricity"
-        },
-        {
-          "id": "binary_sensor.desktop_light_update_available",
-          "friendlyName": "Desktop Light",
-          "cSharpName": "DesktopLightUpdateAvailable"
         },
         {
           "id": "binary_sensor.disk_pve_dev_sda_health",
@@ -379,11 +364,6 @@
           "id": "binary_sensor.disk_pve_wdc_wds200t1r0a_68a4w0_dev_sdd_health",
           "friendlyName": "Health",
           "cSharpName": "DiskPveWdcWds200t1r0a68a4w0DevSddHealth"
-        },
-        {
-          "id": "binary_sensor.fan_plug_update_available",
-          "friendlyName": "Fan Plug",
-          "cSharpName": "FanPlugUpdateAvailable"
         },
         {
           "id": "binary_sensor.fridge_contact_sensor_battery_low",
@@ -416,34 +396,14 @@
           "cSharpName": "FrontDoorSensorContact"
         },
         {
-          "id": "binary_sensor.hallway_light_update_available",
-          "friendlyName": "Hallway Light",
-          "cSharpName": "HallwayLightUpdateAvailable"
-        },
-        {
           "id": "binary_sensor.hallway_sensor_occupancy",
           "friendlyName": "Hallway Sensor Occupancy",
           "cSharpName": "HallwaySensorOccupancy"
         },
         {
-          "id": "binary_sensor.hallway_sensor_update_available",
-          "friendlyName": "Hallway Sensor",
-          "cSharpName": "HallwaySensorUpdateAvailable"
-        },
-        {
           "id": "binary_sensor.home_occupancy_sensors",
           "friendlyName": "Home occupancy sensors",
           "cSharpName": "HomeOccupancySensors"
-        },
-        {
-          "id": "binary_sensor.hue_switch_bed_update_available",
-          "friendlyName": "Hue Switch Bed",
-          "cSharpName": "HueSwitchBedUpdateAvailable"
-        },
-        {
-          "id": "binary_sensor.hue_switch_living_room_update_available",
-          "friendlyName": "Hue Switch Living Room",
-          "cSharpName": "HueSwitchLivingRoomUpdateAvailable"
         },
         {
           "id": "binary_sensor.internetgatewaydevicev2_fritz_box_6660_cable_wan_status",
@@ -461,19 +421,9 @@
           "cSharpName": "KitchenDistanceHelper"
         },
         {
-          "id": "binary_sensor.kitchen_light_update_available",
-          "friendlyName": "Kitchen Light",
-          "cSharpName": "KitchenLightUpdateAvailable"
-        },
-        {
           "id": "binary_sensor.kitchen_sensor_occupancy",
           "friendlyName": "Kitchen Sensor Occupancy",
           "cSharpName": "KitchenSensorOccupancy"
-        },
-        {
-          "id": "binary_sensor.kitchen_sensor_update_available",
-          "friendlyName": "Kitchen Sensor",
-          "cSharpName": "KitchenSensorUpdateAvailable"
         },
         {
           "id": "binary_sensor.livingroom_window_sensor_contact",
@@ -524,11 +474,6 @@
           "id": "binary_sensor.open_curtain_limit",
           "friendlyName": "Open Curtain Limit",
           "cSharpName": "OpenCurtainLimit"
-        },
-        {
-          "id": "binary_sensor.pc_plug_update_available",
-          "friendlyName": "PC-Plug",
-          "cSharpName": "PcPlugUpdateAvailable"
         },
         {
           "id": "binary_sensor.portable_headphone_sensors",
@@ -621,24 +566,9 @@
           "cSharpName": "ToilerSeatSensorContact"
         },
         {
-          "id": "binary_sensor.toilet_light_1_update_available",
-          "friendlyName": "Toilet Light_1",
-          "cSharpName": "ToiletLight1UpdateAvailable"
-        },
-        {
           "id": "binary_sensor.toilet_sensor_occupancy",
           "friendlyName": "Toilet Sensor Occupancy",
           "cSharpName": "ToiletSensorOccupancy"
-        },
-        {
-          "id": "binary_sensor.toilet_sensor_update_available",
-          "friendlyName": "Toilet Sensor",
-          "cSharpName": "ToiletSensorUpdateAvailable"
-        },
-        {
-          "id": "binary_sensor.tv_power_meter_update_available",
-          "friendlyName": "Tv Power Meter",
-          "cSharpName": "TvPowerMeterUpdateAvailable"
         },
         {
           "id": "binary_sensor.withings_in_bed",
@@ -2343,7 +2273,7 @@
         },
         {
           "id": "media_player.living_room_tv",
-          "friendlyName": "Living Room TV",
+          "friendlyName": null,
           "cSharpName": "LivingRoomTv"
         },
         {
@@ -3208,11 +3138,6 @@
           "cSharpName": "Livingroomfp1MotionSensitivity"
         },
         {
-          "id": "select.livingroomfp1_reset_nopresence_status",
-          "friendlyName": "LivingRoomFP1 Reset nopresence status",
-          "cSharpName": "Livingroomfp1ResetNopresenceStatus"
-        },
-        {
           "id": "select.misc_powermeter_indicator_mode",
           "friendlyName": "Misc-PowerMeter Indicator mode",
           "cSharpName": "MiscPowermeterIndicatorMode"
@@ -3370,11 +3295,6 @@
           "cSharpName": "BackupState"
         },
         {
-          "id": "sensor.bed_knob_action",
-          "friendlyName": "Bed Knob Action",
-          "cSharpName": "BedKnobAction"
-        },
-        {
           "id": "sensor.bed_knob_action_rate",
           "friendlyName": "Bed Knob Action rate",
           "cSharpName": "BedKnobActionRate"
@@ -3383,11 +3303,6 @@
           "id": "sensor.bed_knob_action_step_size",
           "friendlyName": "Bed Knob Action step size",
           "cSharpName": "BedKnobActionStepSize"
-        },
-        {
-          "id": "sensor.cube_action",
-          "friendlyName": "Cube Action",
-          "cSharpName": "CubeAction"
         },
         {
           "id": "sensor.cube_action_from_side",
@@ -3471,7 +3386,7 @@
         },
         {
           "id": "sensor.ecoflow_charge_or_remain_time",
-          "friendlyName": "Discharging",
+          "friendlyName": "Offline",
           "cSharpName": "EcoflowChargeOrRemainTime"
         },
         {
@@ -3635,14 +3550,9 @@
           "cSharpName": "FrontDoorSensorPowerOutageCount"
         },
         {
-          "id": "sensor.hue_switch_bed_action",
-          "friendlyName": "Hue Switch Bed Action",
-          "cSharpName": "HueSwitchBedAction"
-        },
-        {
-          "id": "sensor.hue_switch_living_room_action",
-          "friendlyName": "Hue Switch Living Room Action",
-          "cSharpName": "HueSwitchLivingRoomAction"
+          "id": "sensor.hue_switch_runner_action",
+          "friendlyName": "Hue Switch Runner Action",
+          "cSharpName": "HueSwitchRunnerAction"
         },
         {
           "id": "sensor.inkplate_date",
@@ -3655,24 +3565,19 @@
           "cSharpName": "Internetgatewaydevicev2FritzBox6660CableExternalIp"
         },
         {
-          "id": "sensor.keychain_action",
-          "friendlyName": "Keychain Action",
-          "cSharpName": "KeychainAction"
-        },
-        {
           "id": "sensor.kitchen_sensors",
           "friendlyName": "Kitchen Sensors",
           "cSharpName": "KitchenSensors"
         },
         {
+          "id": "sensor.knob_bed_action",
+          "friendlyName": "Knob Bed Action",
+          "cSharpName": "KnobBedAction"
+        },
+        {
           "id": "sensor.knob_bed_delta",
           "friendlyName": "Knob Bed Delta",
           "cSharpName": "KnobBedDelta"
-        },
-        {
-          "id": "sensor.knob_couch_action",
-          "friendlyName": "Knob Couch Action",
-          "cSharpName": "KnobCouchAction"
         },
         {
           "id": "sensor.knob_couch_action_rate",
@@ -3720,11 +3625,6 @@
           "cSharpName": "LivingroomWindowSensorPowerOutageCount"
         },
         {
-          "id": "sensor.livingroomfp1_action",
-          "friendlyName": "LivingRoomFP1 Action",
-          "cSharpName": "Livingroomfp1Action"
-        },
-        {
           "id": "sensor.livingroomfp1_power_outage_count",
           "friendlyName": "LivingRoomFP1 Power outage count",
           "cSharpName": "Livingroomfp1PowerOutageCount"
@@ -3735,14 +3635,14 @@
           "cSharpName": "Livingroomfp1PresenceEvent"
         },
         {
-          "id": "sensor.lr_tab_bed_action",
-          "friendlyName": "LR Tab Bed Action",
-          "cSharpName": "LrTabBedAction"
+          "id": "sensor.lrtabbedaction",
+          "friendlyName": "LrTabBedAction",
+          "cSharpName": "Lrtabbedaction"
         },
         {
-          "id": "sensor.lrtab_pc_action",
-          "friendlyName": "LRtab PC Action",
-          "cSharpName": "LrtabPcAction"
+          "id": "sensor.lrtabdesktopaction",
+          "friendlyName": "LrTabDesktopAction",
+          "cSharpName": "Lrtabdesktopaction"
         },
         {
           "id": "sensor.lxc_jellyfin_101_node",
@@ -4818,11 +4718,6 @@
           "cSharpName": "_0x001788010bcfb16fBattery"
         },
         {
-          "id": "sensor.0x001788010bcfb16f_illuminance_lux",
-          "friendlyName": "PC Sensor Illuminance",
-          "cSharpName": "_0x001788010bcfb16fIlluminanceLux"
-        },
-        {
           "id": "sensor.0x001788010bcfb16f_temperature",
           "friendlyName": "PC Sensor Temperature",
           "cSharpName": "_0x001788010bcfb16fTemperature"
@@ -5303,11 +5198,6 @@
           "cSharpName": "HallwaySensorBattery2"
         },
         {
-          "id": "sensor.hallway_sensor_illuminance_lux",
-          "friendlyName": "Hallway Sensor Illuminance",
-          "cSharpName": "HallwaySensorIlluminanceLux"
-        },
-        {
           "id": "sensor.hallway_sensor_temperature_2",
           "friendlyName": "Hallway Sensor Temperature",
           "cSharpName": "HallwaySensorTemperature2"
@@ -5381,11 +5271,6 @@
           "id": "sensor.kitchen_sensor_battery_2",
           "friendlyName": "Kitchen Sensor Battery",
           "cSharpName": "KitchenSensorBattery2"
-        },
-        {
-          "id": "sensor.kitchen_sensor_illuminance_lux",
-          "friendlyName": "Kitchen Sensor Illuminance",
-          "cSharpName": "KitchenSensorIlluminanceLux"
         },
         {
           "id": "sensor.kitchen_sensor_temperature_2",
@@ -5758,11 +5643,6 @@
           "cSharpName": "StorageSensorAqaraDeviceTemperature"
         },
         {
-          "id": "sensor.storage_sensor_aqara_illuminance_lux",
-          "friendlyName": "Lux Sensor Illuminance",
-          "cSharpName": "StorageSensorAqaraIlluminanceLux"
-        },
-        {
           "id": "sensor.storage_sensor_battery",
           "friendlyName": "Storage Sensor Battery",
           "cSharpName": "StorageSensorBattery"
@@ -5848,11 +5728,6 @@
           "cSharpName": "ToiletSensorBattery2"
         },
         {
-          "id": "sensor.toilet_sensor_illuminance_lux",
-          "friendlyName": "Toilet Sensor Illuminance",
-          "cSharpName": "ToiletSensorIlluminanceLux"
-        },
-        {
           "id": "sensor.toilet_sensor_temperature_2",
           "friendlyName": "Toilet Sensor Temperature",
           "cSharpName": "ToiletSensorTemperature2"
@@ -5936,11 +5811,6 @@
           "id": "sensor.withings_pause_during_last_workout",
           "friendlyName": "Withings Pause during last workout",
           "cSharpName": "WithingsPauseDuringLastWorkout"
-        },
-        {
-          "id": "sensor.zigbee2mqtt_bridge_permit_join_timeout",
-          "friendlyName": "Zigbee2MQTT Bridge Permit join timeout",
-          "cSharpName": "Zigbee2mqttBridgePermitJoinTimeout"
         }
       ],
       "attributes": [
@@ -6335,6 +6205,11 @@
           "cSharpName": "BigfridgePowermeter"
         },
         {
+          "id": "switch.bigfridge_powermeter_child_lock",
+          "friendlyName": "BigFridge-Powermeter Child lock",
+          "cSharpName": "BigfridgePowermeterChildLock"
+        },
+        {
           "id": "switch.bl_65_34_64_internet_access",
           "friendlyName": "BL-65-34-64 Internet Access",
           "cSharpName": "Bl653464InternetAccess"
@@ -6540,6 +6415,11 @@
           "cSharpName": "InkplatePlug"
         },
         {
+          "id": "switch.inkplate_plug_child_lock",
+          "friendlyName": "Inkplate-plug Child lock",
+          "cSharpName": "InkplatePlugChildLock"
+        },
+        {
           "id": "switch.ir_remote_internet_access",
           "friendlyName": "IR-Remote Internet Access",
           "cSharpName": "IrRemoteInternetAccess"
@@ -6553,6 +6433,11 @@
           "id": "switch.kitchen_powermeter_plug",
           "friendlyName": "Kitchen PowerMeter-Plug",
           "cSharpName": "KitchenPowermeterPlug"
+        },
+        {
+          "id": "switch.kitchen_powermeter_plug_child_lock",
+          "friendlyName": "Kitchen PowerMeter-Plug Child lock",
+          "cSharpName": "KitchenPowermeterPlugChildLock"
         },
         {
           "id": "switch.kitchen_sensor_led_indication",
@@ -6590,6 +6475,11 @@
           "cSharpName": "MiscPowermeter"
         },
         {
+          "id": "switch.misc_powermeter_child_lock",
+          "friendlyName": "Misc-PowerMeter Child lock",
+          "cSharpName": "MiscPowermeterChildLock"
+        },
+        {
           "id": "switch.mkspi_internet_access",
           "friendlyName": "mkspi Internet Access",
           "cSharpName": "MkspiInternetAccess"
@@ -6600,9 +6490,19 @@
           "cSharpName": "ModemAndProxmoxPowermeter"
         },
         {
+          "id": "switch.modem_and_proxmox_powermeter_child_lock",
+          "friendlyName": "Modem and Proxmox PowerMeter Child lock",
+          "cSharpName": "ModemAndProxmoxPowermeterChildLock"
+        },
+        {
           "id": "switch.modem_auto_on_plug",
           "friendlyName": "Modem Auto On Plug",
           "cSharpName": "ModemAutoOnPlug"
+        },
+        {
+          "id": "switch.modem_auto_on_plug_child_lock",
+          "friendlyName": "Modem Auto On Plug Child lock",
+          "cSharpName": "ModemAutoOnPlugChildLock"
         },
         {
           "id": "switch.nintendoswitch_internet_access",
@@ -6653,6 +6553,11 @@
           "id": "switch.pc_plug",
           "friendlyName": "PC-Plug",
           "cSharpName": "PcPlug"
+        },
+        {
+          "id": "switch.pc_plug_child_lock",
+          "friendlyName": "PC-Plug Child lock",
+          "cSharpName": "PcPlugChildLock"
         },
         {
           "id": "switch.puhelin_internet_access",
@@ -6745,6 +6650,11 @@
           "cSharpName": "TbdPowermeter"
         },
         {
+          "id": "switch.tbd_powermeter_child_lock",
+          "friendlyName": "TBD-PowerMeter Child lock",
+          "cSharpName": "TbdPowermeterChildLock"
+        },
+        {
           "id": "switch.toilet_disctance_internet_access",
           "friendlyName": "Light-Sensor Internet Access",
           "cSharpName": "ToiletDisctanceInternetAccess"
@@ -6755,6 +6665,11 @@
           "cSharpName": "ToiletPowerPlug"
         },
         {
+          "id": "switch.toilet_power_plug_child_lock",
+          "friendlyName": "Toilet Power Plug Child lock",
+          "cSharpName": "ToiletPowerPlugChildLock"
+        },
+        {
           "id": "switch.toilet_sensor_led_indication",
           "friendlyName": "Toilet Sensor Led indication",
           "cSharpName": "ToiletSensorLedIndication"
@@ -6763,6 +6678,11 @@
           "id": "switch.tv_power_meter",
           "friendlyName": "Tv Power Meter",
           "cSharpName": "TvPowerMeter"
+        },
+        {
+          "id": "switch.tv_power_meter_child_lock",
+          "friendlyName": "Tv Power Meter Child lock",
+          "cSharpName": "TvPowerMeterChildLock"
         },
         {
           "id": "switch.uno_light_sensor_internet_access",
@@ -7170,6 +7090,11 @@
           "id": "update.netdaemon_v3_1_net_7_update",
           "friendlyName": "NetDaemon V3.1 (.NET 7) Update",
           "cSharpName": "NetdaemonV31Net7Update"
+        },
+        {
+          "id": "update.netdaemon_v5_net_9_update",
+          "friendlyName": "NetDaemon V5 (.NET 9) Update",
+          "cSharpName": "NetdaemonV5Net9Update"
         },
         {
           "id": "update.nginx_proxy_manager_update",
