@@ -116,6 +116,10 @@ public class EnergyMonitor
         A0Gbl.HourlyResetFunction += () => UpdatePriceHourly(A0Gbl._myEntities?.Sensor.TotalHourlyEnergyConsumptions.State ?? 0);
 
         A0Gbl._myScheduler.ScheduleCron("50 * * * *", () => EnergiPriceChengeAlert());
+        A0Gbl._myScheduler.ScheduleCron("1 * * * *", () => {A0Gbl._myServices.UtilityMeter.Calibrate(ServiceTarget.FromEntity(A0Gbl._myEntities.Sensor.EcoflowAcInputHourly.EntityId), "0"); });
+        
+
+
 
         solarChargingNotificationGiven = A0Gbl._myEntities?.Sensor?.EcoflowSolarInPower.State >= 0;
         A0Gbl._myEntities?.BinarySensor.LivingroomWindowSensorContact.StateChanges().Where(e => ((e.New.IsOn() || e.New.IsOff()) && e.Old?.State != "unavailable" )).Subscribe(_e =>
@@ -640,6 +644,10 @@ public class EnergyMonitor
         var x = A0Gbl._myScheduler.Schedule(TimeSpan.FromSeconds(10), () => {
             A0Gbl._myEntities.Sensor.EcoflowAcInputDaily.ResetEnergy();
             A0Gbl._myEntities.Sensor.EcoflowAcInputHourly.ResetEnergy();
+            
+            
+
+
             fillDays();
             UpdateNextChangeHourTime();
         });
