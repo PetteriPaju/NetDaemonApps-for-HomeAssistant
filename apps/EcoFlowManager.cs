@@ -196,6 +196,36 @@ namespace NetDaemonApps.apps
                 TTS.Speak("Warning Only 5% of Power remaining", TTS.TTSPriority.Default, A0Gbl._myEntities.InputBoolean.NotificationEcoflow);
             });
 
+            A0Gbl._myEntities.Sensor.EcoflowAcInPower.StateAllChanges().Subscribe(x => {
+
+                A0Gbl._myEntities.InputNumber.EcoflowChargeHelper.SetValue(A0Gbl._myEntities.Sensor.EcoflowAcInPower.State ?? 0);
+            });
+
+            A0Gbl._myScheduler.ScheduleCron("2 * * * *", () => {
+
+                if (A0Gbl._myEntities.Sensor.EcoflowAcInPower.State > 0)
+                {
+                    A0Gbl._myEntities.InputNumber.EcoflowChargeHelper.SetValue((double)(A0Gbl._myEntities.Sensor.EcoflowAcInPower.State - 1));
+                }
+                else
+                {
+                    A0Gbl._myEntities.InputNumber.EcoflowChargeHelper.SetValue(0);
+                }
+            
+            });
+
+            A0Gbl._myScheduler.ScheduleCron("58 * * * *", () => {
+
+                if (A0Gbl._myEntities.Sensor.EcoflowAcInPower.State > 0)
+                {
+                    A0Gbl._myEntities.InputNumber.EcoflowChargeHelper.SetValue((double)(A0Gbl._myEntities.Sensor.EcoflowAcInPower.State + 1));
+                }
+                else
+                {
+                    A0Gbl._myEntities.InputNumber.EcoflowChargeHelper.SetValue(0);
+                }
+
+            });
 
             ecoflowPanel = new EcoflowPanel();
             ecoflowPanel.RegisterRow(A0Gbl._myEntities.InputBoolean.EcopanelS1Enabled, A0Gbl._myEntities.InputSelect.EcopanelS1Mode, A0Gbl._myEntities.InputDatetime.EcopanelS1Time, A0Gbl._myEntities.InputNumber.EcopanelS1Power);
