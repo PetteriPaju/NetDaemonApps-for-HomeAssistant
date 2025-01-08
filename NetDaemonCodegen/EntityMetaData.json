@@ -331,6 +331,11 @@
           "cSharpName": "_19216801"
         },
         {
+          "id": "binary_sensor.192_168_0_14",
+          "friendlyName": "192.168.0.14",
+          "cSharpName": "_192168014"
+        },
+        {
           "id": "binary_sensor.192_168_0_22",
           "friendlyName": "Envy Ping",
           "cSharpName": "_192168022"
@@ -1652,6 +1657,11 @@
           "cSharpName": "Dailysteps"
         },
         {
+          "id": "input_number.ecoflow_charge_helper",
+          "friendlyName": "Ecoflow charge helper",
+          "cSharpName": "EcoflowChargeHelper"
+        },
+        {
           "id": "input_number.ecoflow_charing_cost",
           "friendlyName": "Ecoflow Charing Cost",
           "cSharpName": "EcoflowCharingCost"
@@ -2061,6 +2071,11 @@
           "id": "light.monitor_light",
           "friendlyName": "Monitor Light",
           "cSharpName": "MonitorLight"
+        },
+        {
+          "id": "light.multi_plug_bright_light",
+          "friendlyName": "Multi Plug: Bright Light",
+          "cSharpName": "MultiPlugBrightLight"
         },
         {
           "id": "light.pc_multipowermeter_l1",
@@ -3386,7 +3401,7 @@
         },
         {
           "id": "sensor.ecoflow_charge_or_remain_time",
-          "friendlyName": "Discharging",
+          "friendlyName": "Full",
           "cSharpName": "EcoflowChargeOrRemainTime"
         },
         {
@@ -5043,6 +5058,11 @@
           "cSharpName": "EcoflowMainBatteryLevel"
         },
         {
+          "id": "sensor.ecoflow_main_full_capacity",
+          "friendlyName": "Ecoflow Main Full Capacity",
+          "cSharpName": "EcoflowMainFullCapacity"
+        },
+        {
           "id": "sensor.ecoflow_slave_state_of_health",
           "friendlyName": "Ecoflow Slave State of Health",
           "cSharpName": "EcoflowSlaveStateOfHealth"
@@ -5516,6 +5536,11 @@
           "id": "sensor.pc_memoryusage",
           "friendlyName": "PC PC_memoryusage",
           "cSharpName": "PcMemoryusage"
+        },
+        {
+          "id": "sensor.pc_multipowermeter_current",
+          "friendlyName": "PC-MultiPowerMeter Current",
+          "cSharpName": "PcMultipowermeterCurrent"
         },
         {
           "id": "sensor.pc_multipowermeter_energy",
@@ -7087,11 +7112,6 @@
           "cSharpName": "NetdaemonUpdate"
         },
         {
-          "id": "update.netdaemon_v3_1_net_7_update",
-          "friendlyName": "NetDaemon V3.1 (.NET 7) Update",
-          "cSharpName": "NetdaemonV31Net7Update"
-        },
-        {
           "id": "update.netdaemon_v5_net_9_update",
           "friendlyName": "NetDaemon V5 (.NET 9) Update",
           "cSharpName": "NetdaemonV5Net9Update"
@@ -7145,6 +7165,11 @@
           "id": "update.scheduler_component_update",
           "friendlyName": "Scheduler component update",
           "cSharpName": "SchedulerComponentUpdate"
+        },
+        {
+          "id": "update.slider_entity_row_update",
+          "friendlyName": "slider-entity-row update",
+          "cSharpName": "SliderEntityRowUpdate"
         },
         {
           "id": "update.starkvind",

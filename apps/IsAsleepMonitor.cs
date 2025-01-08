@@ -353,24 +353,26 @@ namespace NetDaemonApps.apps
         {
             return A0Gbl._myEntities.Automation.TurnOffPcWhenLoraTrainingDone.IsOn() && (A0Gbl._myEntities.InputSelect.Atloraended.State == "Shutdown" || A0Gbl._myEntities.InputSelect.Atloraended.State == "Smart" ) ;
         }
+        string msg;
 
         private void CheckAllIsSleepConditions()
         {
            
             bool isAnyTrue = false;
 
+            msg = "States are: " + isAnyTrue + ": " + DateTime.Now.ToShortTimeString();
             foreach (MonitorMember cond in isAwakeConditions)
             {
                 cond.CheckState();
                 if (cond.currentState)
                 {
                     isAnyTrue = true;
-                    Console.WriteLine(cond.name + " is true");
+                    msg+= "/n" + cond.name + " is true";
                    
                 };
             }
 
-            Console.WriteLine("States are: " + isAnyTrue + ": " + DateTime.Now.ToShortTimeString());
+            Console.WriteLine(msg);
             // If all conditions are true or false, we might need to change isSleep-state
 
             if (isAnyTrue && A0Gbl._myEntities.InputBoolean.Isasleep.IsOn())
