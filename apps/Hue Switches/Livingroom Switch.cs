@@ -13,7 +13,7 @@ namespace NetDaemonApps.apps.Hue_Switches
     [NetDaemonApp]
     public class Livingroom_Switch : HueSwitch
     {
-        private IDisposable? cancelRoutine = null;
+        private IDisposable? speedIncrementRoutine = null;
       
         public Livingroom_Switch() : base() {
 
@@ -25,6 +25,19 @@ namespace NetDaemonApps.apps.Hue_Switches
             });
 
             A0Gbl._myEntities.Switch.ModemAutoOnPlug.StateChanges().Where(x => x.New.IsOn()).Subscribe(x => { ActivateRunningPad(); });
+
+                A0Gbl._myEntities.Sensor.PcWalkingpadActive.StateChanges().Where(x => x.New.State == "1").Subscribe(x => {
+                    speedIncrementRoutine?.Dispose();
+                    speedIncrementRoutine = A0Gbl._myScheduler.RunEvery(TimeSpan.FromMinutes(5),(DateTime.Now+TimeSpan.FromMinutes(5)), () => {
+
+
+                        A0Gbl._myEntities.Button.PcWalkingpadSpeedupone.Press();
+                    });
+                });
+
+            A0Gbl._myEntities.Sensor.PcWalkingpadActive.StateChanges().Where(x => x.New.State != "1").Subscribe(x => {
+                speedIncrementRoutine?.Dispose();
+            });
         }
   
 

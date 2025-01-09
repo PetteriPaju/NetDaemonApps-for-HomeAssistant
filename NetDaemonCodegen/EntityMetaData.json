@@ -768,6 +768,11 @@
           "cSharpName": "PcWakekey"
         },
         {
+          "id": "button.pc_walkingpad_speedupone",
+          "friendlyName": "PC walkingpad_speedupone",
+          "cSharpName": "PcWalkingpadSpeedupone"
+        },
+        {
           "id": "button.pc_walkingpadspeedup",
           "friendlyName": "PC PC_WalkingPadSpeedUp",
           "cSharpName": "PcWalkingpadspeedup"
@@ -3401,7 +3406,7 @@
         },
         {
           "id": "sensor.ecoflow_charge_or_remain_time",
-          "friendlyName": "Full",
+          "friendlyName": "Charging",
           "cSharpName": "EcoflowChargeOrRemainTime"
         },
         {

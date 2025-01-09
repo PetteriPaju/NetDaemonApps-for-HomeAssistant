@@ -6392,14 +6392,6 @@
         "optional": true
       }
     },
-    "playmoomin": {
-      "name": "PlayMoomin",
-      "description": "",
-      "fields": {},
-      "response": {
-        "optional": true
-      }
-    },
     "clearplaylists": {
       "name": "ClearPlaylists",
       "description": "",
@@ -6453,6 +6445,14 @@
             ]
           }
         ]
+      }
+    },
+    "playmoomin": {
+      "name": "PlayMoomin",
+      "description": "",
+      "fields": {},
+      "response": {
+        "optional": true
       }
     }
   },
