@@ -112,7 +112,7 @@ namespace NetDaemonApps.apps
                 A0Gbl._myEntities.Script.Actiontodoatalarm.TurnOn(); 
                 
                 ringingAlarm = true;
-
+                A0Gbl._myEntities.Script.Playmoomin.TurnOn();
                 alarmTimer = A0Gbl._myScheduler.RunEvery(TimeSpan.FromMinutes(10), DateTime.Now, () => {
 
                     TimeSpan? timeDiff = DateTime.Now - A0Gbl._myEntities?.InputDatetime.Lastisasleeptime.GetDateTime();
@@ -123,8 +123,8 @@ namespace NetDaemonApps.apps
                     if (alarmnumber > 1)
                         ttsTime += "It has been " + (alarmnumber - 1) * 10 + " minutes";
 
-                    TTS.Speak(ttsTime, TTS.TTSPriority.IgnoreAll, null, A0Gbl._myEntities.Script.Playmoomin.TurnOn);
-                   
+                    TTS.Speak(ttsTime, TTS.TTSPriority.IgnoreAll, null);
+                    A0Gbl._myEntities.Script.Playmoomin.TurnOn();
                     alarmnumber++;
                 });
                 rebootTimer?.Dispose();

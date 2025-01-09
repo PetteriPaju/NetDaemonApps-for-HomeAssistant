@@ -5,6 +5,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using NetDaemon.Extensions.Scheduler;
+using System.Reactive.Concurrency;
 
 namespace NetDaemonApps.apps
 {
@@ -12,7 +14,7 @@ namespace NetDaemonApps.apps
     public class AudioOutputMonitor
     {
         private Dictionary<Entity, bool> isConnectedCondition = new Dictionary<Entity, bool>();
-
+        private IDisposable? offtimer;
         public AudioOutputMonitor()
         {
             A0Gbl._myEntities.Sensor.EnvyAudioDefaultDevice.StateChanges().Where(x => x?.New?.State == "Headphone (Realtek(R) Audio)").Subscribe(_ => CheckCondition(A0Gbl._myEntities.Sensor.EnvyAudioDefaultDevice, true));
@@ -36,23 +38,44 @@ namespace NetDaemonApps.apps
             CheckAllIsSleepConditions();
 
         }
+
+        private bool check()
+        {
+        bool isConnected = false;
+
+                foreach (bool cond in isConnectedCondition.Values)
+                {
+                    if (cond)
+                    {
+                        isConnected = true;
+                        break;
+                    };
+                }
+                return isConnected;
+        }
         private void CheckAllIsSleepConditions()
         {
-
-            bool isConnected = false;
-
-            foreach (bool cond in isConnectedCondition.Values)
-            {
-                if (cond)
-                {
-                    isConnected = true;
-                    break;
-                };
-            }
+            if (A0Gbl._myEntities.BinarySensor._19216801.IsOff()) return;
+            bool isConnected = check();
 
             // If all conditions are true or false, we might need to change isSleep-state
-            if (isConnected) A0Gbl._myEntities.Switch.FanPlug.TurnOn();
-            else A0Gbl._myEntities.Switch.FanPlug.TurnOff();
+            if (!isConnected)
+            {
+                offtimer?.Dispose();
+                offtimer = A0Gbl._myScheduler.Schedule(TimeSpan.FromSeconds(10), () => {
+
+                    if (!check() && (A0Gbl._myEntities.BinarySensor._19216801.IsOn()))
+                    {
+                            A0Gbl._myEntities.Switch.FanPlug.TurnOff();
+                    }
+                });
+                
+
+            }
+            else {
+                offtimer?.Dispose();
+                A0Gbl._myEntities.Switch.FanPlug.TurnOn();
+            }
         }
     }
 }
