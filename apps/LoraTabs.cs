@@ -16,6 +16,8 @@ namespace NetDaemonApps.apps
     [NetDaemonApp]
     public class LoraTapDekstop: LoraTabs
     {
+        private IDisposable? cancelRoutine = null;
+        int pwrpressMode = 0;
         protected LightCycler lightCycler;
         public LoraTapDekstop() : base() {
             lightCycler = new LightCycler(A0Gbl._myEntities.InputBoolean.GuestMode, A0Gbl._myEntities.InputSelect.DesktopKnobLights.lightEntitiesFromSelectionDropdown().ToArray());
@@ -83,32 +85,52 @@ namespace NetDaemonApps.apps
         }
         protected override void On3Press()
         {
-            base.On3Press();
-            IsAsleepMonitor.Awake();
-            if (A0Gbl._myEntities.Switch.PcPlug.IsOn())
-                A0Gbl._myEntities.Button.PcWalkingpadtoggle.Press();
-            else
-                return;
-        }
+            base.On5Press();
+            string message = "";
+            pwrpressMode = pwrpressMode == -1 ? 0 : pwrpressMode;
+            switch (pwrpressMode)
+            {
+                case 0:
+                    if (A0Gbl._myEntities.Switch.BrightLightPlug.IsOn())
+                    {
+                        message = "Modem Off";
+                    }
+                    else
+                    {
+                        message = "Modem On";
+                    }
 
-        protected override void On3Double()
-        {
-            base.On3Double();
+                    cancelRoutine?.Dispose();
+                    cancelRoutine = A0Gbl._myScheduler.Schedule(TimeSpan.FromSeconds(A0Gbl._myEntities.Switch.BrightLightPlug.IsOn() ? 10 : 0), () => {
 
-            if (A0Gbl._myEntities.Switch.PcPlug.IsOn())
-                A0Gbl._myEntities.Button.PcWalkingpadspeedup.Press();
-            else
-                return;
-          
-        }
-        protected override void On3Hold()
-        {
-            base.On3Hold();
+                        A0Gbl._myEntities.Switch.BrightLightPlug.Toggle();
 
-            if (A0Gbl._myEntities.Switch.PcPlug.IsOn())
-                A0Gbl._myEntities.Button.PcCwalkingpadspeeddown.Press();
-            else
-                return;
+                        pwrpressMode = -1;
+                        cancelRoutine = null;
+
+                    });
+                    break;
+
+                case 1:
+                    cancelRoutine?.Dispose();
+                    message = "Everything Off";
+                    cancelRoutine = A0Gbl._myScheduler.Schedule(TimeSpan.FromSeconds(30), () => {
+                        A0Gbl._myServices.Script.TurnOffEverything();
+                        pwrpressMode = 0;
+                    });
+                    break;
+                case 2:
+                    message = "Cancel";
+                    if (cancelRoutine != null)
+                    {
+                        cancelRoutine.Dispose();
+                        cancelRoutine = null;
+                    }
+                    break;
+            }
+            pwrpressMode = pwrpressMode == 2 ? 0 : pwrpressMode + 1;
+
+            TTS.Speak(message, TTS.TTSPriority.IgnoreAll);
 
         }
 
