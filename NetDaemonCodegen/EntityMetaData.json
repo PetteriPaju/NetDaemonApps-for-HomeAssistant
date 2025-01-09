@@ -768,6 +768,11 @@
           "cSharpName": "PcWakekey"
         },
         {
+          "id": "button.pc_walkingpad_speedupone",
+          "friendlyName": "PC walkingpad_speedupone",
+          "cSharpName": "PcWalkingpadSpeedupone"
+        },
+        {
           "id": "button.pc_walkingpadspeedup",
           "friendlyName": "PC PC_WalkingPadSpeedUp",
           "cSharpName": "PcWalkingpadspeedup"
@@ -3593,6 +3598,11 @@
           "id": "sensor.knob_bed_delta",
           "friendlyName": "Knob Bed Delta",
           "cSharpName": "KnobBedDelta"
+        },
+        {
+          "id": "sensor.knob_couch_action",
+          "friendlyName": "Knob Couch Action",
+          "cSharpName": "KnobCouchAction"
         },
         {
           "id": "sensor.knob_couch_action_rate",
