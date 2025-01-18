@@ -57,6 +57,8 @@ namespace NetDaemonApps.apps
         private void TurnOff()
         {
             A0Gbl._myEntities.Fan.Starkvind.TurnOff();
+            A0Gbl._myEntities.Fan.Starkvind.SetPercentage(0);
+
         }
 
     }
