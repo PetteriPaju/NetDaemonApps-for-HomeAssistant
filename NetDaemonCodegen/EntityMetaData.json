@@ -180,7 +180,7 @@
         },
         {
           "id": "automation.oneuseschedule",
-          "friendlyName": "#OneUseSchedule",
+          "friendlyName": "Keep Ecoflow on",
           "cSharpName": "Oneuseschedule"
         },
         {
@@ -3406,7 +3406,7 @@
         },
         {
           "id": "sensor.ecoflow_charge_or_remain_time",
-          "friendlyName": "Charging",
+          "friendlyName": "Offline",
           "cSharpName": "EcoflowChargeOrRemainTime"
         },
         {
@@ -3433,6 +3433,11 @@
           "id": "sensor.envy_af23e097_9eb2_4481_b736_4ba0185e480a_display2",
           "friendlyName": "ENVY DISPLAY2",
           "cSharpName": "EnvyAf23e0979eb24481B7364ba0185e480aDisplay2"
+        },
+        {
+          "id": "sensor.envy_af23e097_9eb2_4481_b736_4ba0185e480a_display3",
+          "friendlyName": "ENVY DISPLAY3",
+          "cSharpName": "EnvyAf23e0979eb24481B7364ba0185e480aDisplay3"
         },
         {
           "id": "sensor.envy_audio_default_device",

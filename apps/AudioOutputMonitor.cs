@@ -62,7 +62,7 @@ namespace NetDaemonApps.apps
             if (!isConnected)
             {
                 offtimer?.Dispose();
-                offtimer = A0Gbl._myScheduler.Schedule(TimeSpan.FromSeconds(10), () => {
+                offtimer = A0Gbl._myScheduler.Schedule(TimeSpan.FromMinutes(5), () => {
 
                     if (!check() && (A0Gbl._myEntities.BinarySensor._19216801.IsOn()))
                     {
