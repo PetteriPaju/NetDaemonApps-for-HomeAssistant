@@ -3600,6 +3600,11 @@
           "cSharpName": "KnobBedDelta"
         },
         {
+          "id": "sensor.knob_couch_action",
+          "friendlyName": "Knob Couch Action",
+          "cSharpName": "KnobCouchAction"
+        },
+        {
           "id": "sensor.knob_couch_action_rate",
           "friendlyName": "Knob Couch Action rate",
           "cSharpName": "KnobCouchActionRate"
