@@ -153,6 +153,10 @@ namespace NetDaemonApps.apps
                 else
                     return;
             }
+            protected override void OnPress()
+            {
+
+            }
         }
         private class BedKnob : Knob
         {
@@ -165,6 +169,10 @@ namespace NetDaemonApps.apps
             {
                 base.OnHold();
                 A0Gbl._myEntities.Switch.InkplatePlug.Toggle();
+            }
+            protected override void OnPress()
+            {
+
             }
         }
         private class SofaKnob : Knob

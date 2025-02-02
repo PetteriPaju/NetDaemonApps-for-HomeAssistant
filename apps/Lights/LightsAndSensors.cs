@@ -22,8 +22,8 @@ namespace NetDaemonApps.apps.Lights
         public LightsAndSensors()
         {
        
-            SubcribeLightOn(A0Gbl._myEntities.BinarySensor.HallwaySensorOccupancy, A0Gbl._myEntities.Light.HallwayLight);
-            SubcribeLightOff(A0Gbl._myEntities.BinarySensor.HallwaySensorOccupancy, A0Gbl._myEntities.Light.HallwayLight, defaulMotionTimeout);
+          //  SubcribeLightOn(A0Gbl._myEntities.BinarySensor.HallwaySensorOccupancy, A0Gbl._myEntities.Light.HallwayLight);
+          //  SubcribeLightOff(A0Gbl._myEntities.BinarySensor.HallwaySensorOccupancy, A0Gbl._myEntities.Light.HallwayLight, defaulMotionTimeout);
 
             A0Gbl._myEntities.BinarySensor.StorageSensorOccupancy.StateChanges().Where(x => x.New.IsOff()).Subscribe(_ => {
 
