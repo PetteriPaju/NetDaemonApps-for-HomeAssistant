@@ -99,6 +99,9 @@
       <Compile Update="apps\Lights\AllowOnlyOneLightGroup.cs">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </Compile>
+      <Compile Update="apps\Lights\Kitchen Light.cs">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Compile>
       <Compile Update="apps\Lights\LightCycler.cs">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </Compile>
