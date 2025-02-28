@@ -50,7 +50,7 @@ namespace NetDaemonApps.apps.Lights
 
 
             A0Gbl._myEntities.BinarySensor.HallwaySensorOccupancy.StateChanges()
-            .Where(e => e.New.IsOn() && A0Gbl._myEntities.InputBoolean.SensorsActive.IsOn() && A0Gbl._myEntities.InputBoolean.GuestMode.IsOff())
+            .Where(e => e.New.IsOn() && A0Gbl._myEntities.InputBoolean.SensorsActive.IsOn() && A0Gbl._myEntities.InputBoolean.GuestMode.IsOff() && A0Gbl._myEntities.BinarySensor.ToiletSensorOccupancy.IsOff())
             .Subscribe(_ =>
             {
                 if (!isSeatOpen() && !forceLightOn)
