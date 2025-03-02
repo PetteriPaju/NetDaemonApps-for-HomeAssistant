@@ -30,6 +30,7 @@ namespace NetDaemonApps.apps.Lights
                 lastStorageOff = DateTime.Now;
 
             });
+            SubcribeLightOn(A0Gbl._myEntities.BinarySensor.StorageSensorAqaraOccupancy, A0Gbl._myEntities.Light.StorageLight2);
 
             SubcribeLightOff(A0Gbl._myEntities.BinarySensor.StorageSensorAqaraOccupancy, A0Gbl._myEntities.Light.StorageLight2, new TimeSpan(0, 0, 5));
 
