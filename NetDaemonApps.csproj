@@ -112,7 +112,7 @@
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </Compile>
       <Compile Update="apps\Lights\Toiler Light Automation.cs">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </Compile>
       <Compile Update="apps\LivingRoomFP1.cs">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
