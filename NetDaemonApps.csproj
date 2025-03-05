@@ -21,6 +21,12 @@
         </None>        
         <None Update="$(MSBuildProjectDir)appsettings.json">
             <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>        
+        <None Update="NetDaemonCodegen\EntityMetaData.json">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>        
+        <None Update="NetDaemonCodegen\ServicesMetaData.json">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </None>
         <None Update="$(MSBuildProjectDir)**\*.yaml">
             <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -46,97 +52,100 @@
         
     <ItemGroup>
       <Compile Update="apps\AgaraCube_LivingRoom.cs">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </Compile>
       <Compile Update="apps\AGbl.cs">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </Compile>
       <Compile Update="apps\AqaraCube.cs">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </Compile>
       <Compile Update="apps\AqaraFP1Extender.cs">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </Compile>
       <Compile Update="apps\AudioOutputMonitor.cs">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </Compile>
       <Compile Update="apps\AutoTurnOffs.cs">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </Compile>
       <Compile Update="apps\EcoFlowManager.cs">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </Compile>
       <Compile Update="apps\EnergyMonitor.cs">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </Compile>
       <Compile Update="apps\Extensions.cs">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </Compile>
       <Compile Update="apps\FridgeAutomation.cs">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </Compile>
       <Compile Update="apps\GlobalUsings.cs">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </Compile>
       <Compile Update="apps\Hue Switches\BedHueSwitch.cs">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </Compile>
       <Compile Update="apps\Hue Switches\HueSwitch.cs">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </Compile>
       <Compile Update="apps\Hue Switches\Livingroom Switch.cs">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </Compile>
       <Compile Update="apps\IsAsleepMonitor.cs">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </Compile>
       <Compile Update="apps\IsHomeManager.cs">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </Compile>
       <Compile Update="apps\Knobs.cs">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </Compile>
       <Compile Update="apps\Lights\AllowOnlyOneLightGroup.cs">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </Compile>
       <Compile Update="apps\Lights\Kitchen Light.cs">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </Compile>
       <Compile Update="apps\Lights\LightCycler.cs">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </Compile>
       <Compile Update="apps\Lights\LightsAndSensors.cs">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </Compile>
       <Compile Update="apps\Lights\Livingroom Lights.cs">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </Compile>
       <Compile Update="apps\Lights\Toiler Light Automation.cs">
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </Compile>
       <Compile Update="apps\LivingRoomFP1.cs">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </Compile>
       <Compile Update="apps\LoraTabs.cs">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </Compile>
       <Compile Update="apps\MediaPlayingMonitor.cs">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </Compile>
       <Compile Update="apps\Notifications.cs">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </Compile>
       <Compile Update="apps\Starkvind.cs">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </Compile>
       <Compile Update="apps\StepCounter.cs">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </Compile>
       <Compile Update="apps\SummerVentilation.cs">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </Compile>
       <Compile Update="apps\TTS.cs">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </Compile>
+      <Compile Update="HomeAssistantGenerated.cs">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </Compile>
     </ItemGroup>
 </Project>
