@@ -30,8 +30,7 @@ namespace NetDaemonApps.apps.Lights
 
             A0Gbl._myEntities.BinarySensor.ToiletSensorOccupancy.StateChanges().Subscribe(_ =>
              {
-                  if (A0Gbl._myEntities.InputBoolean.SensorsActive.IsOn())
-                             A0Gbl._myEntities.Light.ToiletLight1.TurnOnLight();
+                  if (A0Gbl._myEntities.InputBoolean.SensorsActive.IsOn()) A0Gbl._myEntities.Light.ToiletLight1.TurnOnLight();
                   else if (A0Gbl._myEntities.BinarySensor.ToiletSensorOccupancy.IsOff() && !isSeatOpen()) A0Gbl._myEntities.Light.ToiletLight1.TurnOffLight();
              });
 
@@ -46,7 +45,7 @@ namespace NetDaemonApps.apps.Lights
                
                });
 
-
+/*
             A0Gbl._myEntities.BinarySensor.HallwaySensorOccupancy.StateChanges()
             .Where(e => e.New.IsOn() && A0Gbl._myEntities.InputBoolean.SensorsActive.IsOn() && A0Gbl._myEntities.InputBoolean.GuestMode.IsOff() && A0Gbl._myEntities.BinarySensor.ToiletSensorOccupancy.IsOff())
             .Subscribe(_ =>
@@ -54,7 +53,7 @@ namespace NetDaemonApps.apps.Lights
                 if (!isSeatOpen() && !forceLightOn)
                    A0Gbl._myEntities.Light.ToiletLight1.TurnOffLight();
             });
-
+*/
 
         }
       
@@ -98,7 +97,11 @@ namespace NetDaemonApps.apps.Lights
                 light.TurnOnLight();
             }
 
+
             lightsThatWereOn.Clear();
+
+            if(A0Gbl._myEntities.BinarySensor.ToiletSensorOccupancy.IsOff()) A0Gbl._myEntities.Light.ToiletLight1.TurnOffLight();
+
             //Turn on PC Monitors
             /*
             if (_0Gbl._myEntities.Switch.PcPlug.IsOn())
