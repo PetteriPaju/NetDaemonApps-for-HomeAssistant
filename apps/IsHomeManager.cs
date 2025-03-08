@@ -44,6 +44,10 @@ namespace NetDaemonApps.apps
         public IsHomeManager() {
 
             _instance = this;
+
+            A0Gbl._myEntities.BinarySensor.HallwaySensorOccupancy.StateChanges().Where(x => x.New.IsOn()).Subscribe(x => { A0Gbl._myEntities.InputBoolean.Ishome.TurnOn(); });
+
+
             /*
 
                 mobileNotificationData = new Notifications.Actionable_NotificationData("I noticed you might not be home.");

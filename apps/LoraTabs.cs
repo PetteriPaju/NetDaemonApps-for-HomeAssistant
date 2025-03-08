@@ -30,6 +30,7 @@ namespace NetDaemonApps.apps
         protected override void OnAny()
         {
             IsAsleepMonitor.Awake();
+            A0Gbl._myEntities.InputBoolean.Ishome.TurnOn();
         }
 
         protected override void On1Press()
@@ -174,8 +175,9 @@ namespace NetDaemonApps.apps
             {
                 A0Gbl._myEntities.Switch.PcMultipowermeterMonitors.TurnOff();
                 A0Gbl._myEntities.Switch.DeskFans.TurnOff();
+                A0Gbl._myEntities.Light.ToiletLight1.TurnOff();
             }
-            
+            A0Gbl._myEntities.InputBoolean.Ishome.TurnOn();
         }
         protected override void On1Press()
         {

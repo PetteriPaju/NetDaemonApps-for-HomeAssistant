@@ -92,10 +92,10 @@ namespace NetDaemonApps.apps
 
                         });
             }
-            sub(A0Gbl._myEntities.Light.ToiletLight1);
-            sub(A0Gbl._myEntities.Light.KitchenLight2);
-            sub(A0Gbl._myEntities.Light.HallwayLight);
-            sub(A0Gbl._myEntities.Light.StorageLight2);
+           // sub(A0Gbl._myEntities.Light.ToiletLight1);
+           // sub(A0Gbl._myEntities.Light.KitchenLight2);
+           // sub(A0Gbl._myEntities.Light.HallwayLight);
+           // sub(A0Gbl._myEntities.Light.StorageLight2);
 
 
 
