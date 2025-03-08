@@ -30,7 +30,7 @@ namespace NetDaemonApps.apps.Lights
 
             A0Gbl._myEntities.BinarySensor.ToiletSensorOccupancy.StateChanges().Subscribe(_ =>
              {
-                  if (A0Gbl._myEntities.InputBoolean.SensorsActive.IsOn()) A0Gbl._myEntities.Light.ToiletLight1.TurnOnLight();
+                  if (A0Gbl._myEntities.InputBoolean.SensorsActive.IsOn() && A0Gbl._myEntities.BinarySensor.ToiletSensorOccupancy.IsOn()) A0Gbl._myEntities.Light.ToiletLight1.TurnOnLight();
                   else if (A0Gbl._myEntities.BinarySensor.ToiletSensorOccupancy.IsOff() && !isSeatOpen()) A0Gbl._myEntities.Light.ToiletLight1.TurnOffLight();
              });
 
