@@ -13,6 +13,7 @@ namespace NetDaemonApps.apps.Hue_Switches
     [NetDaemonApp]
     public class Livingroom_Switch : HueSwitch
     {
+        /*
         private IDisposable? cancelRoutine = null;
       
         public Livingroom_Switch() : base() {
@@ -161,7 +162,8 @@ namespace NetDaemonApps.apps.Hue_Switches
         }
 
 
-
+*/
 
     }
+        
 }
