@@ -75,7 +75,7 @@ namespace NetDaemonApps.apps
 
         protected bool hasProcess()
         {
-            return A0Gbl._myEntities.Sensor.PcWalkingpadActive.State == "1";
+            return A0Gbl._myEntities.Sensor.PcWalkingpadActive2.State == "1";
         }
         protected SwitchEntity runnerSwitch { get { return A0Gbl._myEntities.Switch.ModemAutoOnPlug; } }
         protected void ActivateRunningPad()
