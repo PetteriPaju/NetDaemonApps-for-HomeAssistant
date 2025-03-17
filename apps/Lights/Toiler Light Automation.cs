@@ -30,15 +30,12 @@ namespace NetDaemonApps.apps.Lights
 
             A0Gbl._myEntities.BinarySensor.ToiletSensorOccupancy.StateChanges().Subscribe(_ =>
              {
-                  if (A0Gbl._myEntities.BinarySensor.ToiletSensorOccupancy.IsOn() && A0Gbl._myEntities.InputBoolean.SensorsActive.IsOn())
-                             A0Gbl._myEntities.Light.ToiletLight1.TurnOnLight();
+                  if (A0Gbl._myEntities.InputBoolean.SensorsActive.IsOn() && A0Gbl._myEntities.BinarySensor.ToiletSensorOccupancy.IsOn()) A0Gbl._myEntities.Light.ToiletLight1.TurnOnLight();
                   else if (A0Gbl._myEntities.BinarySensor.ToiletSensorOccupancy.IsOff() && !isSeatOpen()) A0Gbl._myEntities.Light.ToiletLight1.TurnOffLight();
              });
 
-            A0Gbl._myEntities.BinarySensor.ToilerSeatSensorContact
-           .StateChanges()
-           .Subscribe(_ => {
-
+            A0Gbl._myEntities.BinarySensor.ToiletSeatSensorContact.StateChanges().Subscribe(_ => {
+                Console.WriteLine("Seat changed");
                if (A0Gbl._myEntities.InputBoolean.SensorsActive.IsOff() || A0Gbl._myEntities.InputBoolean.GuestMode.IsOn()) return;
 
                if (isSeatOpen())
@@ -48,21 +45,21 @@ namespace NetDaemonApps.apps.Lights
                
                });
 
-
+/*
             A0Gbl._myEntities.BinarySensor.HallwaySensorOccupancy.StateChanges()
-            .Where(e => e.New.IsOn() && A0Gbl._myEntities.InputBoolean.SensorsActive.IsOn() && A0Gbl._myEntities.InputBoolean.GuestMode.IsOff())
+            .Where(e => e.New.IsOn() && A0Gbl._myEntities.InputBoolean.SensorsActive.IsOn() && A0Gbl._myEntities.InputBoolean.GuestMode.IsOff() && A0Gbl._myEntities.BinarySensor.ToiletSensorOccupancy.IsOff())
             .Subscribe(_ =>
             {
                 if (!isSeatOpen() && !forceLightOn)
                    A0Gbl._myEntities.Light.ToiletLight1.TurnOffLight();
             });
-
+*/
 
         }
       
         private bool isSeatOpen()
         {
-            return A0Gbl._myEntities.BinarySensor.ToilerSeatSensorContact.IsOn() ? true : false;
+            return A0Gbl._myEntities.BinarySensor.ToiletSeatSensorContact.IsOn() ? true : false;
         }
 
 
@@ -100,7 +97,11 @@ namespace NetDaemonApps.apps.Lights
                 light.TurnOnLight();
             }
 
+
             lightsThatWereOn.Clear();
+
+            if(A0Gbl._myEntities.BinarySensor.ToiletSensorOccupancy.IsOff()) A0Gbl._myEntities.Light.ToiletLight1.TurnOffLight();
+
             //Turn on PC Monitors
             /*
             if (_0Gbl._myEntities.Switch.PcPlug.IsOn())

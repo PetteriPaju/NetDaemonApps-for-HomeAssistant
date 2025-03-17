@@ -44,61 +44,65 @@ namespace NetDaemonApps.apps
         public IsHomeManager() {
 
             _instance = this;
-        /*
-     
-            mobileNotificationData = new Notifications.Actionable_NotificationData("I noticed you might not be home.");
 
-            mobileNotificationData.PushToData("actions", new List<Notifications.ActionableData>() { new Notifications.TapableAction("CancelOutGome", "I am home", "ClearedTag", 5) } );
+            A0Gbl._myEntities.BinarySensor.HallwaySensorOccupancy.StateChanges().Where(x => x.New.IsOn()).Subscribe(x => { A0Gbl._myEntities.InputBoolean.Ishome.TurnOn(); });
 
 
+            /*
 
-            NotifyMobileAppMotoG8PowerLiteParameters notifyMobileAppMotoG8PowerLiteParameters = new NotifyMobileAppMotoG8PowerLiteParameters()
-            {
-                Message = mobileNotificationData.message,
-                Data = mobileNotificationData.data
-            };
-        */
+                mobileNotificationData = new Notifications.Actionable_NotificationData("I noticed you might not be home.");
 
-            A0Gbl._myEntities.InputBoolean.SensorsActive.StateChanges().Where(x => x.New?.State == "off" && x.Old?.State == "on").Subscribe(x => {A0Gbl._myEntities.InputBoolean.Ishome.TurnOn(); });
-            A0Gbl._myEntities.InputBoolean.GuestMode.StateChanges().Where(x => x.New?.State == "off" && x.Old?.State == "on").Subscribe(x => { A0Gbl._myEntities.InputBoolean.Ishome.TurnOn(); });
+                mobileNotificationData.PushToData("actions", new List<Notifications.ActionableData>() { new Notifications.TapableAction("CancelOutGome", "I am home", "ClearedTag", 5) } );
 
-            A0Gbl._myEntities.BinarySensor.FrontDoorSensorContact.StateChanges().Where(x => x.New?.State == "off" && x.Old?.State == "on" && A0Gbl._myEntities.InputBoolean.Ishome.IsOff() && A0Gbl._myEntities.InputBoolean.SensorsActive.IsOn() && A0Gbl._myEntities.InputBoolean.GuestMode.IsOff())
-                .Subscribe(x => {
-                A0Gbl._myEntities.InputBoolean.Ishome.TurnOn();
-                    isCancelled = true;
-                });
 
-            A0Gbl._myEntities.BinarySensor.HallwaySensorOccupancy.StateChanges().Where(x => x.New?.State == "on" && x.Old?.State == "off" && A0Gbl._myEntities.InputBoolean.Ishome.IsOff() && A0Gbl._myEntities.InputBoolean.SensorsActive.IsOn() && A0Gbl._myEntities.InputBoolean.GuestMode.IsOff() && A0Gbl._myEntities.InputBoolean.Ishome.StateFor(TimeSpan.FromMinutes(2)))
-                .Subscribe(x => {
+
+                NotifyMobileAppMotoG8PowerLiteParameters notifyMobileAppMotoG8PowerLiteParameters = new NotifyMobileAppMotoG8PowerLiteParameters()
+                {
+                    Message = mobileNotificationData.message,
+                    Data = mobileNotificationData.data
+                };
+
+
+                A0Gbl._myEntities.InputBoolean.SensorsActive.StateChanges().Where(x => x.New?.State == "off" && x.Old?.State == "on").Subscribe(x => {A0Gbl._myEntities.InputBoolean.Ishome.TurnOn(); });
+                A0Gbl._myEntities.InputBoolean.GuestMode.StateChanges().Where(x => x.New?.State == "off" && x.Old?.State == "on").Subscribe(x => { A0Gbl._myEntities.InputBoolean.Ishome.TurnOn(); });
+
+                A0Gbl._myEntities.BinarySensor.FrontDoorSensorContact.StateChanges().Where(x => x.New?.State == "off" && x.Old?.State == "on" && A0Gbl._myEntities.InputBoolean.Ishome.IsOff() && A0Gbl._myEntities.InputBoolean.SensorsActive.IsOn() && A0Gbl._myEntities.InputBoolean.GuestMode.IsOff())
+                    .Subscribe(x => {
                     A0Gbl._myEntities.InputBoolean.Ishome.TurnOn();
+                        isCancelled = true;
+                    });
 
-                });
+                A0Gbl._myEntities.BinarySensor.HallwaySensorOccupancy.StateChanges().Where(x => x.New?.State == "on" && x.Old?.State == "off" && A0Gbl._myEntities.InputBoolean.Ishome.IsOff() && A0Gbl._myEntities.InputBoolean.SensorsActive.IsOn() && A0Gbl._myEntities.InputBoolean.GuestMode.IsOff() && A0Gbl._myEntities.InputBoolean.Ishome.StateFor(TimeSpan.FromMinutes(2)))
+                    .Subscribe(x => {
+                        A0Gbl._myEntities.InputBoolean.Ishome.TurnOn();
 
-
-
-            A0Gbl._myEntities.BinarySensor.FrontDoorSensorContact.StateChanges().Where(x => x.New?.State == "off" && x.Old?.State == "on" && A0Gbl._myEntities.InputBoolean.Ishome.IsOn() && A0Gbl._myEntities.InputBoolean.SensorsActive.IsOn() && A0Gbl._myEntities.InputBoolean.GuestMode.IsOff())
-                .SubscribeAsync(async s => {
-                    await Task.Delay((int)TimeSpan.FromSeconds(5).TotalMilliseconds);
-                    isCancelled = false;
-
-                    _instance.cancelWait = true;
-                    TTS.Instance?.SpeakTTS("I noticed you might not be at home, can you confirm?");
-
-                    await Task.Delay((int)notificationTimeOut.TotalMilliseconds);
-
-                    if (!isCancelled)
-                    {
-                        A0Gbl._myEntities.InputBoolean.Ishome.TurnOff();
-                        TTS.Instance?.SpeakTTS("I guess he left");
-
-                    }
-                    _instance.cancelWait = false;
-                });
+                    });
 
 
-       
 
-            
+                A0Gbl._myEntities.BinarySensor.FrontDoorSensorContact.StateChanges().Where(x => x.New?.State == "off" && x.Old?.State == "on" && A0Gbl._myEntities.InputBoolean.Ishome.IsOn() && A0Gbl._myEntities.InputBoolean.SensorsActive.IsOn() && A0Gbl._myEntities.InputBoolean.GuestMode.IsOff())
+                    .SubscribeAsync(async s => {
+                        await Task.Delay((int)TimeSpan.FromSeconds(5).TotalMilliseconds);
+                        isCancelled = false;
+
+                        _instance.cancelWait = true;
+                        TTS.Instance?.SpeakTTS("I noticed you might not be at home, can you confirm?");
+
+                        await Task.Delay((int)notificationTimeOut.TotalMilliseconds);
+
+                        if (!isCancelled)
+                        {
+                            A0Gbl._myEntities.InputBoolean.Ishome.TurnOff();
+                            TTS.Instance?.SpeakTTS("I guess he left");
+
+                        }
+                        _instance.cancelWait = false;
+                    });
+
+
+
+                 */
+
 
         }
     }

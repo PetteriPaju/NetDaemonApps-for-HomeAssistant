@@ -27,6 +27,12 @@ namespace NetDaemonApps.apps
             return A0Gbl._myEntities.Sensor.Lrtabdesktopaction;
         }
 
+        protected override void OnAny()
+        {
+            IsAsleepMonitor.Awake();
+            A0Gbl._myEntities.InputBoolean.Ishome.TurnOn();
+        }
+
         protected override void On1Press()
         {
             base.On1Press();
@@ -36,24 +42,24 @@ namespace NetDaemonApps.apps
         }
         protected override void On1Hold()
         {
+            base.On1Hold();
             lightCycler.TurnOff();
         }
         protected override void On1Double()
-        {
+        {   
+            base.On1Double();
             lightCycler.Reset();
         }
 
         protected override void On2Press()
         {
-            base.On2Press();
-            IsAsleepMonitor.Awake();
+            base.On2Press();            
             A0Gbl._myEntities.Switch.PcPlug.TurnOn();
         }
 
         protected override void On4Press()
         {
             base.On3Press();
-            IsAsleepMonitor.Awake();
             A0Gbl._myEntities.Switch.PcMultipowermeterMonitors.Toggle();
         }
 
@@ -136,11 +142,13 @@ namespace NetDaemonApps.apps
 
         protected override void On5Hold()
         {
+            base.On5Hold(); 
             A0Gbl._myEntities.Switch.DeskFans.Toggle();
         }
 
         protected override void On6Press()
         {
+            base.On6Press();
             IsAsleepMonitor.Awake();
             A0Gbl._myEntities.Switch.SwitchbotEcoflow.Toggle();
         }
@@ -160,6 +168,17 @@ namespace NetDaemonApps.apps
             return A0Gbl._myEntities.Sensor.Lrtabbedaction;
         }
 
+        protected override void OnAny()
+        {
+            base.OnAny();
+            if (A0Gbl._myEntities.InputBoolean.GuestMode.IsOff())
+            {
+                A0Gbl._myEntities.Switch.PcMultipowermeterMonitors.TurnOff();
+                A0Gbl._myEntities.Switch.DeskFans.TurnOff();
+                A0Gbl._myEntities.Light.ToiletLight1.TurnOff();
+            }
+            A0Gbl._myEntities.InputBoolean.Ishome.TurnOn();
+        }
         protected override void On1Press()
         {
             base.On1Press();        
@@ -312,78 +331,94 @@ namespace NetDaemonApps.apps
 
 
         }
-
-        protected virtual void On1Press()
+        protected virtual void OnAny()
         {
 
+        }
+        protected virtual void OnAnyPress()
+        {
+            OnAny();
+        }
+        protected virtual void OnAnyHold()
+        {
+            OnAny();
+        }
+        protected virtual void OnAnyDouble()
+        {
+            OnAny();
+        }
+        protected virtual void On1Press()
+        {
+            OnAnyPress();
         }        
         protected virtual void On1Double()
         {
-
+            OnAnyDouble();
         }        
         protected virtual void On1Hold()
         {
-
+            OnAnyHold();
         }
         protected virtual void On2Press()
         {
-
+            OnAnyPress();
         }        
         protected virtual void On2Double()
         {
-
+            OnAnyDouble();
         }        
         protected virtual void On2Hold()
         {
-
+            OnAnyHold();
         }
         protected virtual void On3Press()
         {
+            OnAnyPress();
 
         }        
         protected virtual void On3Double()
         {
-
+            OnAnyDouble();
         }        
         protected virtual void On3Hold()
         {
-
+            OnAnyHold();
         }
         protected virtual void On4Press()
         {
-
+            OnAnyPress();
         }        
         protected virtual void On4Double()
         {
-
+            OnAnyDouble();
         }        
         protected virtual void On4Hold()
         {
-
+            OnAnyHold();
         }       
         protected virtual void On5Press()
         {
-
+            OnAnyPress();
         }        
         protected virtual void On5Double()
         {
-
+            OnAnyDouble();
         }        
         protected virtual void On5Hold()
         {
-
+            OnAnyHold();
         }
         protected virtual void On6Press()
         {
-
+            OnAnyPress();
         }        
         protected virtual void On6Double()
         {
-
+            OnAnyDouble();
         }        
         protected virtual void On6Hold()
         {
-
+            OnAnyHold();
         }
         
     
