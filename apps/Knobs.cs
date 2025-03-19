@@ -145,14 +145,6 @@ namespace NetDaemonApps.apps
                 lightCycler = new LightCycler(A0Gbl._myEntities.InputBoolean.GuestMode,A0Gbl._myEntities.InputSelect.DesktopKnobLights.lightEntitiesFromSelectionDropdown().ToArray());
             }
 
-            protected override void OnHold()
-            {
-                base.OnHold();
-                if (A0Gbl._myEntities.Switch.PcPlug.IsOn())
-                    A0Gbl._myEntities.Button.PcWalkingpadtoggle.Press();
-                else
-                    return;
-            }
         }
         private class BedKnob : Knob
         {

@@ -506,16 +506,6 @@
           "cSharpName": "RemoteUi"
         },
         {
-          "id": "binary_sensor.signify_netherlands_b_v_sml003_occupancy",
-          "friendlyName": "Occupancy",
-          "cSharpName": "SignifyNetherlandsBVSml003Occupancy"
-        },
-        {
-          "id": "binary_sensor.signify_netherlands_b_v_sml003_opening",
-          "friendlyName": "Opening",
-          "cSharpName": "SignifyNetherlandsBVSml003Opening"
-        },
-        {
           "id": "binary_sensor.sm_t530_headphones",
           "friendlyName": "SM-T530 Headphones",
           "cSharpName": "SmT530Headphones"
@@ -693,6 +683,11 @@
       "domain": "button",
       "entities": [
         {
+          "id": "button.desktop_k24v8np_wake_on_lan",
+          "friendlyName": "DESKTOP-K24V8NP Wake on LAN",
+          "cSharpName": "DesktopK24v8npWakeOnLan"
+        },
+        {
           "id": "button.envy_turnoffmonitors",
           "friendlyName": "ENVY ENVY_TurnOffMonitors",
           "cSharpName": "EnvyTurnoffmonitors"
@@ -813,21 +808,6 @@
           "cSharpName": "PcWalkingpadtoggle"
         },
         {
-          "id": "button.signify_netherlands_b_v_lom001_identifybutton",
-          "friendlyName": "Identifybutton",
-          "cSharpName": "SignifyNetherlandsBVLom001Identifybutton"
-        },
-        {
-          "id": "button.signify_netherlands_b_v_lwa001_identifybutton",
-          "friendlyName": "Identifybutton",
-          "cSharpName": "SignifyNetherlandsBVLwa001Identifybutton"
-        },
-        {
-          "id": "button.signify_netherlands_b_v_sml003_identifybutton",
-          "friendlyName": "Identifybutton",
-          "cSharpName": "SignifyNetherlandsBVSml003Identifybutton"
-        },
-        {
           "id": "button.starkvind_identify",
           "friendlyName": "Starkvind Identify",
           "cSharpName": "StarkvindIdentify"
@@ -836,6 +816,26 @@
           "id": "button.synchronize_devices",
           "friendlyName": "Google Assistant Synchronize devices",
           "cSharpName": "SynchronizeDevices"
+        },
+        {
+          "id": "button.walkingpad_down",
+          "friendlyName": "Walkingpad_Down",
+          "cSharpName": "WalkingpadDown"
+        },
+        {
+          "id": "button.walkingpad_kill",
+          "friendlyName": "Walkingpad_Kill",
+          "cSharpName": "WalkingpadKill"
+        },
+        {
+          "id": "button.walkingpad_toggle",
+          "friendlyName": "WalkingPad_Toggle",
+          "cSharpName": "WalkingpadToggle"
+        },
+        {
+          "id": "button.walkingpad_up",
+          "friendlyName": "Walkingpad_Up",
+          "cSharpName": "WalkingpadUp"
         },
         {
           "id": "button.zigbee2mqtt_bridge_restart",
@@ -868,6 +868,11 @@
           "jsonName": "supported_features",
           "cSharpName": "SupportedFeatures",
           "clrType": "System.Double"
+        },
+        {
+          "jsonName": "entity_id",
+          "cSharpName": "EntityId",
+          "clrType": "System.Collections.Generic.IReadOnlyList\u00601[System.String]"
         }
       ]
     },
@@ -903,6 +908,11 @@
           "id": "device_tracker.desktop_k24v8np",
           "friendlyName": "DESKTOP-K24V8NP",
           "cSharpName": "DesktopK24v8np"
+        },
+        {
+          "id": "device_tracker.desktop_k24v8np_2",
+          "friendlyName": "DESKTOP-K24V8NP",
+          "cSharpName": "DesktopK24v8np2"
         },
         {
           "id": "device_tracker.envy",
@@ -1375,6 +1385,11 @@
           "id": "input_boolean.netdaemon_net_daemon_apps_apps_step_counter",
           "friendlyName": "netdaemon_net_daemon_apps_apps_step_counter",
           "cSharpName": "NetdaemonNetDaemonAppsAppsStepCounter"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_treadmill_remote",
+          "friendlyName": "netdaemon_net_daemon_apps_apps_treadmill_remote",
+          "cSharpName": "NetdaemonNetDaemonAppsAppsTreadmillRemote"
         },
         {
           "id": "input_boolean.netdaemon_net_daemon_apps_apps_tts",
@@ -2143,11 +2158,6 @@
           "cSharpName": "PcMultipowermeterL1"
         },
         {
-          "id": "light.signify_netherlands_b_v_lwa001_huelight",
-          "friendlyName": "Huelight",
-          "cSharpName": "SignifyNetherlandsBVLwa001Huelight"
-        },
-        {
           "id": "light.sofa_knob_lights",
           "friendlyName": "Sofa Knob Lights",
           "cSharpName": "SofaKnobLights"
@@ -2358,7 +2368,7 @@
         },
         {
           "id": "media_player.living_room_tv",
-          "friendlyName": null,
+          "friendlyName": "Living Room TV",
           "cSharpName": "LivingRoomTv"
         },
         {
@@ -2653,16 +2663,6 @@
           "id": "number.pc_plug_countdown",
           "friendlyName": "PC-Plug Countdown",
           "cSharpName": "PcPlugCountdown"
-        },
-        {
-          "id": "number.signify_netherlands_b_v_lom001_startupcurrentlevelconfiguration",
-          "friendlyName": "Startupcurrentlevelconfiguration",
-          "cSharpName": "SignifyNetherlandsBVLom001Startupcurrentlevelconfiguration"
-        },
-        {
-          "id": "number.signify_netherlands_b_v_lwa001_startupcurrentlevelconfiguration",
-          "friendlyName": "Startupcurrentlevelconfiguration",
-          "cSharpName": "SignifyNetherlandsBVLwa001Startupcurrentlevelconfiguration"
         },
         {
           "id": "number.switchbot_ecoflow_delay",
@@ -3293,16 +3293,6 @@
           "cSharpName": "PcPlugPowerOutageMemory"
         },
         {
-          "id": "select.signify_netherlands_b_v_lom001_startuponoffselect",
-          "friendlyName": "Startuponoffselect",
-          "cSharpName": "SignifyNetherlandsBVLom001Startuponoffselect"
-        },
-        {
-          "id": "select.signify_netherlands_b_v_lwa001_startuponoffselect",
-          "friendlyName": "Startuponoffselect",
-          "cSharpName": "SignifyNetherlandsBVLwa001Startuponoffselect"
-        },
-        {
           "id": "select.storage_light_power_on_behavior",
           "friendlyName": "Storage Light Power-on behavior",
           "cSharpName": "StorageLightPowerOnBehavior"
@@ -3394,11 +3384,6 @@
     {
       "domain": "sensor",
       "entities": [
-        {
-          "id": "sensor.all_standby_energy",
-          "friendlyName": "All standby energy",
-          "cSharpName": "AllStandbyEnergy"
-        },
         {
           "id": "sensor.awake_today",
           "friendlyName": "Awake Today",
@@ -3501,7 +3486,7 @@
         },
         {
           "id": "sensor.ecoflow_charge_or_remain_time",
-          "friendlyName": "Offline",
+          "friendlyName": "Idle",
           "cSharpName": "EcoflowChargeOrRemainTime"
         },
         {
@@ -4918,6 +4903,11 @@
           "cSharpName": "AllPowersPower"
         },
         {
+          "id": "sensor.all_standby_energy",
+          "friendlyName": "All standby energy",
+          "cSharpName": "AllStandbyEnergy"
+        },
+        {
           "id": "sensor.all_standby_power",
           "friendlyName": "All standby power",
           "cSharpName": "AllStandbyPower"
@@ -5708,21 +5698,6 @@
           "cSharpName": "QemuHaos95100MemoryUsedPercentage"
         },
         {
-          "id": "sensor.signify_netherlands_b_v_sml003_battery",
-          "friendlyName": "Battery",
-          "cSharpName": "SignifyNetherlandsBVSml003Battery"
-        },
-        {
-          "id": "sensor.signify_netherlands_b_v_sml003_illuminance",
-          "friendlyName": "Illuminance",
-          "cSharpName": "SignifyNetherlandsBVSml003Illuminance"
-        },
-        {
-          "id": "sensor.signify_netherlands_b_v_sml003_temperature",
-          "friendlyName": "Temperature",
-          "cSharpName": "SignifyNetherlandsBVSml003Temperature"
-        },
-        {
           "id": "sensor.sm_t530_battery_level",
           "friendlyName": "SM-T530 Battery Level",
           "cSharpName": "SmT530BatteryLevel"
@@ -6410,6 +6385,11 @@
           "cSharpName": "DesktopK24v8npInternetAccess"
         },
         {
+          "id": "switch.desktop_k24v8np_internet_access_2",
+          "friendlyName": "DESKTOP-K24V8NP Internet Access",
+          "cSharpName": "DesktopK24v8npInternetAccess2"
+        },
+        {
           "id": "switch.ecoflow_ac_always_on",
           "friendlyName": "Ecoflow AC Always On",
           "cSharpName": "EcoflowAcAlwaysOn"
@@ -6773,11 +6753,6 @@
           "id": "switch.schedule_e85023",
           "friendlyName": "Schedule #e85023",
           "cSharpName": "ScheduleE85023"
-        },
-        {
-          "id": "switch.signify_netherlands_b_v_lom001_switch",
-          "friendlyName": "Switch",
-          "cSharpName": "SignifyNetherlandsBVLom001Switch"
         },
         {
           "id": "switch.starkvind_child_lock",

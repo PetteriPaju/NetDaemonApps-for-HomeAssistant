@@ -103,18 +103,6 @@ namespace NetDaemonApps.apps
             A0Gbl._myEntities.Switch.BedMultiPlugL1.StateChanges().WhenStateIsFor(x => x?.State == "on", TimeSpan.FromHours(1)+TimeSpan.FromMinutes(30), A0Gbl._myScheduler)
                .Subscribe(x => { A0Gbl._myEntities.Switch.BedMultiPlugL1.TurnOff(); });
 
-            A0Gbl._myEntities.Switch.PcPlug.StateChanges().Where(x => x.New?.State == "on" && x.Old?.State == "off")
-                .Subscribe(_ => {
-
-                 A0Gbl._myEntities.Light.PcMultipowermeterL1.TurnOn();
-                A0Gbl._myEntities.Switch.PcMultipowermeterMonitors.TurnOn();
-                A0Gbl._myEntities.Switch.FanPlug.TurnOn();
-                    IsAsleepMonitor.Awake();
-               // _0Gbl._myEntities.Scene.SwitchUsbLaptop.TurnOn();
-
-
-            });
-
 
             A0Gbl._myEntities.Sensor.EnvyBatteryChargeRemainingPercentage.StateChanges().Where(x => x?.New?.State < A0Gbl._myEntities.InputNumber.SettingsLaptopchargerturnonpercent.State)
                 .Subscribe(_ => {
