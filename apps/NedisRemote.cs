@@ -69,8 +69,8 @@ namespace NetDaemonApps.apps
             });
 
 
-            A0Gbl._myEntities.BinarySensor.WalkingpadContactContact.StateChanges().Where(x => x.New.IsOn()).Subscribe(x => { runnerSwitch?.TurnOn(); });
-            A0Gbl._myEntities.BinarySensor.WalkingpadContactContact.StateChanges().Where(x => x.New.IsOff()).Subscribe(x => { runnerSwitch?.TurnOff(); });
+            A0Gbl._myEntities.BinarySensor.WalkingpadContactContact.StateChanges().Where(x => x.New.IsOff()).Subscribe(x => { runnerSwitch?.TurnOn(); });
+            A0Gbl._myEntities.BinarySensor.WalkingpadContactContact.StateChanges().Where(x => x.New.IsOn()).Subscribe(x => { runnerSwitch?.TurnOff(); });
 
             runnerSwitch?.StateChanges().Where(x => x.New.IsOn()).Subscribe(x => { ActivateRunningPad(); });
 
