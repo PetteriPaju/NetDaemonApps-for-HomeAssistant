@@ -506,6 +506,11 @@
           "cSharpName": "RemoteUi"
         },
         {
+          "id": "binary_sensor.should_speaker_be_on",
+          "friendlyName": "Should Speaker be On",
+          "cSharpName": "ShouldSpeakerBeOn"
+        },
+        {
           "id": "binary_sensor.sm_t530_headphones",
           "friendlyName": "SM-T530 Headphones",
           "cSharpName": "SmT530Headphones"
@@ -2368,7 +2373,7 @@
         },
         {
           "id": "media_player.living_room_tv",
-          "friendlyName": "Living Room TV",
+          "friendlyName": null,
           "cSharpName": "LivingRoomTv"
         },
         {
@@ -3486,7 +3491,7 @@
         },
         {
           "id": "sensor.ecoflow_charge_or_remain_time",
-          "friendlyName": "Idle",
+          "friendlyName": "Discharging",
           "cSharpName": "EcoflowChargeOrRemainTime"
         },
         {

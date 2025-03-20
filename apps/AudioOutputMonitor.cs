@@ -10,7 +10,7 @@ using System.Reactive.Concurrency;
 
 namespace NetDaemonApps.apps
 {
-    [NetDaemonApp]
+ 
     public class AudioOutputMonitor
     {
         private Dictionary<Entity, bool> isConnectedCondition = new Dictionary<Entity, bool>();
@@ -27,7 +27,6 @@ namespace NetDaemonApps.apps
             isConnectedCondition.Add(A0Gbl._myEntities.Sensor.EnvyAudioDefaultDevice, A0Gbl._myEntities.Sensor.EnvyAudioDefaultDevice.State == "Headphone (Realtek(R) Audio)");
             isConnectedCondition.Add(A0Gbl._myEntities.Sensor.PcAudioDefaultDevice, A0Gbl._myEntities.Sensor.PcAudioDefaultDevice.State == "Speakers (Realtek(R) Audio)");
             isConnectedCondition.Add(A0Gbl._myEntities.BinarySensor.PortableHeadphoneSensors, A0Gbl._myEntities.BinarySensor.PortableHeadphoneSensors.IsOn());
-
         }
 
         private void CheckCondition(Entity trueConditionEntity, bool newState)

@@ -1,4 +1,57 @@
 {
+  "persistent_notification": {
+    "create": {
+      "name": "Create",
+      "description": "Shows a notification on the notifications panel.",
+      "fields": {
+        "message": {
+          "required": true,
+          "example": "Please check your configuration.yaml.",
+          "selector": {
+            "text": null
+          },
+          "name": "Message",
+          "description": "Message body of the notification."
+        },
+        "title": {
+          "example": "Test notification",
+          "selector": {
+            "text": null
+          },
+          "name": "Title",
+          "description": "Optional title of the notification."
+        },
+        "notification_id": {
+          "example": 1234,
+          "selector": {
+            "text": null
+          },
+          "name": "Notification ID",
+          "description": "ID of the notification. This new notification will overwrite an existing notification with the same ID."
+        }
+      }
+    },
+    "dismiss": {
+      "name": "Dismiss",
+      "description": "Deletes a notification from the notifications panel.",
+      "fields": {
+        "notification_id": {
+          "required": true,
+          "example": 1234,
+          "selector": {
+            "text": null
+          },
+          "name": "Notification ID",
+          "description": "ID of the notification to be deleted."
+        }
+      }
+    },
+    "dismiss_all": {
+      "name": "Dismiss all",
+      "description": "Deletes all notifications from the notifications panel.",
+      "fields": {}
+    }
+  },
   "homeassistant": {
     "save_persistent_states": {
       "name": "Save persistent states",
@@ -149,59 +202,6 @@
     "reload_all": {
       "name": "Reload all",
       "description": "Reload all YAML configuration that can be reloaded without restarting Home Assistant.",
-      "fields": {}
-    }
-  },
-  "persistent_notification": {
-    "create": {
-      "name": "Create",
-      "description": "Shows a notification on the notifications panel.",
-      "fields": {
-        "message": {
-          "required": true,
-          "example": "Please check your configuration.yaml.",
-          "selector": {
-            "text": null
-          },
-          "name": "Message",
-          "description": "Message body of the notification."
-        },
-        "title": {
-          "example": "Test notification",
-          "selector": {
-            "text": null
-          },
-          "name": "Title",
-          "description": "Optional title of the notification."
-        },
-        "notification_id": {
-          "example": 1234,
-          "selector": {
-            "text": null
-          },
-          "name": "Notification ID",
-          "description": "ID of the notification. This new notification will overwrite an existing notification with the same ID."
-        }
-      }
-    },
-    "dismiss": {
-      "name": "Dismiss",
-      "description": "Deletes a notification from the notifications panel.",
-      "fields": {
-        "notification_id": {
-          "required": true,
-          "example": 1234,
-          "selector": {
-            "text": null
-          },
-          "name": "Notification ID",
-          "description": "ID of the notification to be deleted."
-        }
-      }
-    },
-    "dismiss_all": {
-      "name": "Dismiss all",
-      "description": "Deletes all notifications from the notifications panel.",
       "fields": {}
     }
   },
@@ -1117,214 +1117,6 @@
       "fields": {}
     }
   },
-  "scene": {
-    "reload": {
-      "name": "Reload",
-      "description": "Reloads the scenes from the YAML-configuration.",
-      "fields": {}
-    },
-    "apply": {
-      "name": "Apply",
-      "description": "Activates a scene with configuration.",
-      "fields": {
-        "entities": {
-          "required": true,
-          "example": "light.kitchen: \u0022on\u0022\nlight.ceiling:\n  state: \u0022on\u0022\n  brightness: 80\n",
-          "selector": {
-            "object": null
-          },
-          "name": "Entities state",
-          "description": "List of entities and their target state."
-        },
-        "transition": {
-          "selector": {
-            "number": {
-              "min": 0,
-              "max": 300,
-              "unit_of_measurement": "seconds"
-            }
-          },
-          "name": "Transition",
-          "description": "Time it takes the devices to transition into the states defined in the scene."
-        }
-      }
-    },
-    "create": {
-      "name": "Create",
-      "description": "Creates a new scene.",
-      "fields": {
-        "scene_id": {
-          "required": true,
-          "example": "all_lights",
-          "selector": {
-            "text": null
-          },
-          "name": "Scene entity ID",
-          "description": "The entity ID of the new scene."
-        },
-        "entities": {
-          "advanced": true,
-          "example": "light.tv_back_light: \u0022on\u0022\nlight.ceiling:\n  state: \u0022on\u0022\n  brightness: 200\n",
-          "selector": {
-            "object": null
-          },
-          "name": "Entity states",
-          "description": "List of entities and their target state. If your entities are already in the target state right now, use \u0027Entities snapshot\u0027 instead."
-        },
-        "snapshot_entities": {
-          "example": "- light.ceiling\n- light.kitchen\n",
-          "selector": {
-            "entity": {
-              "multiple": true
-            }
-          },
-          "name": "Entities snapshot",
-          "description": "List of entities to be included in the snapshot. By taking a snapshot, you record the current state of those entities. If you do not want to use the current state of all your entities for this scene, you can combine \u0027Entities snapshot\u0027 with \u0027Entity states\u0027."
-        }
-      }
-    },
-    "delete": {
-      "name": "Delete",
-      "description": "Deletes a dynamically created scene.",
-      "fields": {},
-      "target": {
-        "entity": [
-          {
-            "integration": "homeassistant",
-            "domain": [
-              "scene"
-            ]
-          }
-        ]
-      }
-    },
-    "turn_on": {
-      "name": "Activate",
-      "description": "Activates a scene.",
-      "fields": {
-        "transition": {
-          "selector": {
-            "number": {
-              "min": 0,
-              "max": 300,
-              "unit_of_measurement": "seconds"
-            }
-          },
-          "name": "Transition",
-          "description": "Time it takes the devices to transition into the states defined in the scene."
-        }
-      },
-      "target": {
-        "entity": [
-          {
-            "domain": [
-              "scene"
-            ]
-          }
-        ]
-      }
-    }
-  },
-  "select": {
-    "select_first": {
-      "name": "First",
-      "description": "Selects the first option.",
-      "fields": {},
-      "target": {
-        "entity": [
-          {
-            "domain": [
-              "select"
-            ]
-          }
-        ]
-      }
-    },
-    "select_last": {
-      "name": "Last",
-      "description": "Selects the last option.",
-      "fields": {},
-      "target": {
-        "entity": [
-          {
-            "domain": [
-              "select"
-            ]
-          }
-        ]
-      }
-    },
-    "select_next": {
-      "name": "Next",
-      "description": "Selects the next option.",
-      "fields": {
-        "cycle": {
-          "default": true,
-          "selector": {
-            "boolean": null
-          },
-          "name": "Cycle",
-          "description": "If the option should cycle from the last to the first."
-        }
-      },
-      "target": {
-        "entity": [
-          {
-            "domain": [
-              "select"
-            ]
-          }
-        ]
-      }
-    },
-    "select_option": {
-      "name": "Select",
-      "description": "Selects an option.",
-      "fields": {
-        "option": {
-          "required": true,
-          "example": "\u0022Item A\u0022",
-          "selector": {
-            "text": null
-          },
-          "name": "Option",
-          "description": "Option to be selected."
-        }
-      },
-      "target": {
-        "entity": [
-          {
-            "domain": [
-              "select"
-            ]
-          }
-        ]
-      }
-    },
-    "select_previous": {
-      "name": "Previous",
-      "description": "Selects the previous option.",
-      "fields": {
-        "cycle": {
-          "default": true,
-          "selector": {
-            "boolean": null
-          },
-          "name": "Cycle",
-          "description": "If the option should cycle from the first to the last."
-        }
-      },
-      "target": {
-        "entity": [
-          {
-            "domain": [
-              "select"
-            ]
-          }
-        ]
-      }
-    }
-  },
   "conversation": {
     "process": {
       "name": "Process",
@@ -1388,86 +1180,6 @@
           "name": "Agent",
           "description": "Conversation agent to reload."
         }
-      }
-    }
-  },
-  "assist_satellite": {
-    "announce": {
-      "name": "Announce",
-      "description": "Lets a satellite announce a message.",
-      "fields": {
-        "message": {
-          "required": false,
-          "example": "Time to wake up!",
-          "selector": {
-            "text": null
-          },
-          "name": "Message",
-          "description": "The message to announce."
-        },
-        "media_id": {
-          "required": false,
-          "selector": {
-            "text": null
-          },
-          "name": "Media ID",
-          "description": "The media ID to announce instead of using text-to-speech."
-        }
-      },
-      "target": {
-        "entity": [
-          {
-            "domain": [
-              "assist_satellite"
-            ],
-            "supported_features": [
-              1
-            ]
-          }
-        ]
-      }
-    },
-    "start_conversation": {
-      "name": "Start conversation",
-      "description": "Starts a conversation from a satellite.",
-      "fields": {
-        "start_message": {
-          "required": false,
-          "example": "You left the lights on in the living room. Turn them off?",
-          "selector": {
-            "text": null
-          },
-          "name": "Message",
-          "description": "The message to start with."
-        },
-        "start_media_id": {
-          "required": false,
-          "selector": {
-            "text": null
-          },
-          "name": "Media ID",
-          "description": "The media ID to start with instead of using text-to-speech."
-        },
-        "extra_system_prompt": {
-          "required": false,
-          "selector": {
-            "text": null
-          },
-          "name": "Extra system prompt",
-          "description": "Provide background information to the AI about the request."
-        }
-      },
-      "target": {
-        "entity": [
-          {
-            "domain": [
-              "assist_satellite"
-            ],
-            "supported_features": [
-              2
-            ]
-          }
-        ]
       }
     }
   },
@@ -1632,6 +1344,106 @@
           {
             "domain": [
               "camera"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "select": {
+    "select_first": {
+      "name": "First",
+      "description": "Selects the first option.",
+      "fields": {},
+      "target": {
+        "entity": [
+          {
+            "domain": [
+              "select"
+            ]
+          }
+        ]
+      }
+    },
+    "select_last": {
+      "name": "Last",
+      "description": "Selects the last option.",
+      "fields": {},
+      "target": {
+        "entity": [
+          {
+            "domain": [
+              "select"
+            ]
+          }
+        ]
+      }
+    },
+    "select_next": {
+      "name": "Next",
+      "description": "Selects the next option.",
+      "fields": {
+        "cycle": {
+          "default": true,
+          "selector": {
+            "boolean": null
+          },
+          "name": "Cycle",
+          "description": "If the option should cycle from the last to the first."
+        }
+      },
+      "target": {
+        "entity": [
+          {
+            "domain": [
+              "select"
+            ]
+          }
+        ]
+      }
+    },
+    "select_option": {
+      "name": "Select",
+      "description": "Selects an option.",
+      "fields": {
+        "option": {
+          "required": true,
+          "example": "\u0022Item A\u0022",
+          "selector": {
+            "text": null
+          },
+          "name": "Option",
+          "description": "Option to be selected."
+        }
+      },
+      "target": {
+        "entity": [
+          {
+            "domain": [
+              "select"
+            ]
+          }
+        ]
+      }
+    },
+    "select_previous": {
+      "name": "Previous",
+      "description": "Selects the previous option.",
+      "fields": {
+        "cycle": {
+          "default": true,
+          "selector": {
+            "boolean": null
+          },
+          "name": "Cycle",
+          "description": "If the option should cycle from the first to the last."
+        }
+      },
+      "target": {
+        "entity": [
+          {
+            "domain": [
+              "select"
             ]
           }
         ]
@@ -2610,6 +2422,211 @@
       }
     }
   },
+  "scene": {
+    "reload": {
+      "name": "Reload",
+      "description": "Reloads the scenes from the YAML-configuration.",
+      "fields": {}
+    },
+    "apply": {
+      "name": "Apply",
+      "description": "Activates a scene with configuration.",
+      "fields": {
+        "entities": {
+          "required": true,
+          "example": "light.kitchen: \u0022on\u0022\nlight.ceiling:\n  state: \u0022on\u0022\n  brightness: 80\n",
+          "selector": {
+            "object": null
+          },
+          "name": "Entities state",
+          "description": "List of entities and their target state."
+        },
+        "transition": {
+          "selector": {
+            "number": {
+              "min": 0,
+              "max": 300,
+              "unit_of_measurement": "seconds"
+            }
+          },
+          "name": "Transition",
+          "description": "Time it takes the devices to transition into the states defined in the scene."
+        }
+      }
+    },
+    "create": {
+      "name": "Create",
+      "description": "Creates a new scene.",
+      "fields": {
+        "scene_id": {
+          "required": true,
+          "example": "all_lights",
+          "selector": {
+            "text": null
+          },
+          "name": "Scene entity ID",
+          "description": "The entity ID of the new scene."
+        },
+        "entities": {
+          "advanced": true,
+          "example": "light.tv_back_light: \u0022on\u0022\nlight.ceiling:\n  state: \u0022on\u0022\n  brightness: 200\n",
+          "selector": {
+            "object": null
+          },
+          "name": "Entity states",
+          "description": "List of entities and their target state. If your entities are already in the target state right now, use \u0027Entities snapshot\u0027 instead."
+        },
+        "snapshot_entities": {
+          "example": "- light.ceiling\n- light.kitchen\n",
+          "selector": {
+            "entity": {
+              "multiple": true
+            }
+          },
+          "name": "Entities snapshot",
+          "description": "List of entities to be included in the snapshot. By taking a snapshot, you record the current state of those entities. If you do not want to use the current state of all your entities for this scene, you can combine \u0027Entities snapshot\u0027 with \u0027Entity states\u0027."
+        }
+      }
+    },
+    "delete": {
+      "name": "Delete",
+      "description": "Deletes a dynamically created scene.",
+      "fields": {},
+      "target": {
+        "entity": [
+          {
+            "integration": "homeassistant",
+            "domain": [
+              "scene"
+            ]
+          }
+        ]
+      }
+    },
+    "turn_on": {
+      "name": "Activate",
+      "description": "Activates a scene.",
+      "fields": {
+        "transition": {
+          "selector": {
+            "number": {
+              "min": 0,
+              "max": 300,
+              "unit_of_measurement": "seconds"
+            }
+          },
+          "name": "Transition",
+          "description": "Time it takes the devices to transition into the states defined in the scene."
+        }
+      },
+      "target": {
+        "entity": [
+          {
+            "domain": [
+              "scene"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "timer": {
+    "reload": {
+      "name": "Reload",
+      "description": "Reloads timers from the YAML-configuration.",
+      "fields": {}
+    },
+    "start": {
+      "name": "Start",
+      "description": "Starts a timer or restarts it with a provided duration.",
+      "fields": {
+        "duration": {
+          "example": "00:01:00 or 60",
+          "selector": {
+            "text": null
+          },
+          "name": "Duration",
+          "description": "Custom duration to restart the timer with."
+        }
+      },
+      "target": {
+        "entity": [
+          {
+            "domain": [
+              "timer"
+            ]
+          }
+        ]
+      }
+    },
+    "pause": {
+      "name": "Pause",
+      "description": "Pauses a running timer, retaining the remaining duration for later continuation.",
+      "fields": {},
+      "target": {
+        "entity": [
+          {
+            "domain": [
+              "timer"
+            ]
+          }
+        ]
+      }
+    },
+    "cancel": {
+      "name": "Cancel",
+      "description": "Resets a timer\u0027s duration to the last known initial value without firing the timer finished event.",
+      "fields": {},
+      "target": {
+        "entity": [
+          {
+            "domain": [
+              "timer"
+            ]
+          }
+        ]
+      }
+    },
+    "finish": {
+      "name": "Finish",
+      "description": "Finishes a running timer earlier than scheduled.",
+      "fields": {},
+      "target": {
+        "entity": [
+          {
+            "domain": [
+              "timer"
+            ]
+          }
+        ]
+      }
+    },
+    "change": {
+      "name": "Change",
+      "description": "Changes a timer by adding or subtracting a given duration.",
+      "fields": {
+        "duration": {
+          "default": 0,
+          "required": true,
+          "example": "00:01:00, 60 or -60",
+          "selector": {
+            "text": null
+          },
+          "name": "Duration",
+          "description": "Duration to add to or subtract from the running timer."
+        }
+      },
+      "target": {
+        "entity": [
+          {
+            "domain": [
+              "timer"
+            ]
+          }
+        ]
+      }
+    }
+  },
   "group": {
     "reload": {
       "name": "Reload",
@@ -3277,117 +3294,6 @@
       }
     }
   },
-  "zone": {
-    "reload": {
-      "name": "Reload",
-      "description": "Reloads zones from the YAML-configuration.",
-      "fields": {}
-    }
-  },
-  "timer": {
-    "reload": {
-      "name": "Reload",
-      "description": "Reloads timers from the YAML-configuration.",
-      "fields": {}
-    },
-    "start": {
-      "name": "Start",
-      "description": "Starts a timer or restarts it with a provided duration.",
-      "fields": {
-        "duration": {
-          "example": "00:01:00 or 60",
-          "selector": {
-            "text": null
-          },
-          "name": "Duration",
-          "description": "Custom duration to restart the timer with."
-        }
-      },
-      "target": {
-        "entity": [
-          {
-            "domain": [
-              "timer"
-            ]
-          }
-        ]
-      }
-    },
-    "pause": {
-      "name": "Pause",
-      "description": "Pauses a running timer, retaining the remaining duration for later continuation.",
-      "fields": {},
-      "target": {
-        "entity": [
-          {
-            "domain": [
-              "timer"
-            ]
-          }
-        ]
-      }
-    },
-    "cancel": {
-      "name": "Cancel",
-      "description": "Resets a timer\u0027s duration to the last known initial value without firing the timer finished event.",
-      "fields": {},
-      "target": {
-        "entity": [
-          {
-            "domain": [
-              "timer"
-            ]
-          }
-        ]
-      }
-    },
-    "finish": {
-      "name": "Finish",
-      "description": "Finishes a running timer earlier than scheduled.",
-      "fields": {},
-      "target": {
-        "entity": [
-          {
-            "domain": [
-              "timer"
-            ]
-          }
-        ]
-      }
-    },
-    "change": {
-      "name": "Change",
-      "description": "Changes a timer by adding or subtracting a given duration.",
-      "fields": {
-        "duration": {
-          "default": 0,
-          "required": true,
-          "example": "00:01:00, 60 or -60",
-          "selector": {
-            "text": null
-          },
-          "name": "Duration",
-          "description": "Duration to add to or subtract from the running timer."
-        }
-      },
-      "target": {
-        "entity": [
-          {
-            "domain": [
-              "timer"
-            ]
-          }
-        ]
-      }
-    }
-  },
-  "backup": {
-    "create_automatic": {
-      "name": "Create automatic backup",
-      "description": "Creates a new backup with automatic backup settings.",
-      "fields": {}
-    }
-  },
   "logbook": {
     "log": {
       "name": "Log",
@@ -3426,6 +3332,41 @@
           "name": "Domain",
           "description": "Determines which icon is used in the logbook entry. The icon illustrates the integration domain related to this logbook entry."
         }
+      }
+    }
+  },
+  "zone": {
+    "reload": {
+      "name": "Reload",
+      "description": "Reloads zones from the YAML-configuration.",
+      "fields": {}
+    }
+  },
+  "backup": {
+    "create_automatic": {
+      "name": "Create automatic backup",
+      "description": "Creates a new backup with automatic backup settings.",
+      "fields": {}
+    }
+  },
+  "input_button": {
+    "reload": {
+      "name": "Reload",
+      "description": "Reloads helpers from the YAML-configuration.",
+      "fields": {}
+    },
+    "press": {
+      "name": "Press",
+      "description": "Mimics the physical button press on the device.",
+      "fields": {},
+      "target": {
+        "entity": [
+          {
+            "domain": [
+              "input_button"
+            ]
+          }
+        ]
       }
     }
   },
@@ -3500,27 +3441,6 @@
       }
     }
   },
-  "input_button": {
-    "reload": {
-      "name": "Reload",
-      "description": "Reloads helpers from the YAML-configuration.",
-      "fields": {}
-    },
-    "press": {
-      "name": "Press",
-      "description": "Mimics the physical button press on the device.",
-      "fields": {},
-      "target": {
-        "entity": [
-          {
-            "domain": [
-              "input_button"
-            ]
-          }
-        ]
-      }
-    }
-  },
   "input_boolean": {
     "reload": {
       "name": "Reload",
@@ -3564,69 +3484,6 @@
           {
             "domain": [
               "input_boolean"
-            ]
-          }
-        ]
-      }
-    }
-  },
-  "input_number": {
-    "reload": {
-      "name": "Reload",
-      "description": "Reloads helpers from the YAML-configuration.",
-      "fields": {}
-    },
-    "set_value": {
-      "name": "Set",
-      "description": "Sets the value.",
-      "fields": {
-        "value": {
-          "required": true,
-          "selector": {
-            "number": {
-              "min": 0,
-              "max": 9223372036854775807,
-              "step": 0.001,
-              "mode": "box"
-            }
-          },
-          "name": "Value",
-          "description": "The target value."
-        }
-      },
-      "target": {
-        "entity": [
-          {
-            "domain": [
-              "input_number"
-            ]
-          }
-        ]
-      }
-    },
-    "increment": {
-      "name": "Increment",
-      "description": "Increments the current value by 1 step.",
-      "fields": {},
-      "target": {
-        "entity": [
-          {
-            "domain": [
-              "input_number"
-            ]
-          }
-        ]
-      }
-    },
-    "decrement": {
-      "name": "Decrement",
-      "description": "Decrements the current value by 1 step.",
-      "fields": {},
-      "target": {
-        "entity": [
-          {
-            "domain": [
-              "input_number"
             ]
           }
         ]
@@ -3764,6 +3621,149 @@
       }
     }
   },
+  "input_number": {
+    "reload": {
+      "name": "Reload",
+      "description": "Reloads helpers from the YAML-configuration.",
+      "fields": {}
+    },
+    "set_value": {
+      "name": "Set",
+      "description": "Sets the value.",
+      "fields": {
+        "value": {
+          "required": true,
+          "selector": {
+            "number": {
+              "min": 0,
+              "max": 9223372036854775807,
+              "step": 0.001,
+              "mode": "box"
+            }
+          },
+          "name": "Value",
+          "description": "The target value."
+        }
+      },
+      "target": {
+        "entity": [
+          {
+            "domain": [
+              "input_number"
+            ]
+          }
+        ]
+      }
+    },
+    "increment": {
+      "name": "Increment",
+      "description": "Increments the current value by 1 step.",
+      "fields": {},
+      "target": {
+        "entity": [
+          {
+            "domain": [
+              "input_number"
+            ]
+          }
+        ]
+      }
+    },
+    "decrement": {
+      "name": "Decrement",
+      "description": "Decrements the current value by 1 step.",
+      "fields": {},
+      "target": {
+        "entity": [
+          {
+            "domain": [
+              "input_number"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "assist_satellite": {
+    "announce": {
+      "name": "Announce",
+      "description": "Lets a satellite announce a message.",
+      "fields": {
+        "message": {
+          "required": false,
+          "example": "Time to wake up!",
+          "selector": {
+            "text": null
+          },
+          "name": "Message",
+          "description": "The message to announce."
+        },
+        "media_id": {
+          "required": false,
+          "selector": {
+            "text": null
+          },
+          "name": "Media ID",
+          "description": "The media ID to announce instead of using text-to-speech."
+        }
+      },
+      "target": {
+        "entity": [
+          {
+            "domain": [
+              "assist_satellite"
+            ],
+            "supported_features": [
+              1
+            ]
+          }
+        ]
+      }
+    },
+    "start_conversation": {
+      "name": "Start conversation",
+      "description": "Starts a conversation from a satellite.",
+      "fields": {
+        "start_message": {
+          "required": false,
+          "example": "You left the lights on in the living room. Turn them off?",
+          "selector": {
+            "text": null
+          },
+          "name": "Message",
+          "description": "The message to start with."
+        },
+        "start_media_id": {
+          "required": false,
+          "selector": {
+            "text": null
+          },
+          "name": "Media ID",
+          "description": "The media ID to start with instead of using text-to-speech."
+        },
+        "extra_system_prompt": {
+          "required": false,
+          "selector": {
+            "text": null
+          },
+          "name": "Extra system prompt",
+          "description": "Provide background information to the AI about the request."
+        }
+      },
+      "target": {
+        "entity": [
+          {
+            "domain": [
+              "assist_satellite"
+            ],
+            "supported_features": [
+              2
+            ]
+          }
+        ]
+      }
+    }
+  },
   "mqtt": {
     "publish": {
       "name": "Publish",
@@ -3852,6 +3852,37 @@
       "fields": {}
     }
   },
+  "schedule": {
+    "reload": {
+      "name": "Reload",
+      "description": "Reloads schedules from the YAML-configuration.",
+      "fields": {}
+    },
+    "get_schedule": {
+      "name": "Get schedule",
+      "description": "Retrieves the configured time ranges of one or multiple schedules.",
+      "fields": {},
+      "target": {
+        "entity": [
+          {
+            "domain": [
+              "schedule"
+            ]
+          }
+        ]
+      },
+      "response": {
+        "optional": false
+      }
+    }
+  },
+  "template": {
+    "reload": {
+      "name": "Reload",
+      "description": "Reloads template entities from the YAML-configuration.",
+      "fields": {}
+    }
+  },
   "utility_meter": {
     "reset": {
       "name": "Reset",
@@ -3889,6 +3920,50 @@
               "sensor"
             ],
             "integration": "utility_meter"
+          }
+        ]
+      }
+    }
+  },
+  "switch": {
+    "turn_off": {
+      "name": "Turn off",
+      "description": "Turns a switch off.",
+      "fields": {},
+      "target": {
+        "entity": [
+          {
+            "domain": [
+              "switch"
+            ]
+          }
+        ]
+      }
+    },
+    "turn_on": {
+      "name": "Turn on",
+      "description": "Turns a switch on.",
+      "fields": {},
+      "target": {
+        "entity": [
+          {
+            "domain": [
+              "switch"
+            ]
+          }
+        ]
+      }
+    },
+    "toggle": {
+      "name": "Toggle",
+      "description": "Toggles a switch on/off.",
+      "fields": {},
+      "target": {
+        "entity": [
+          {
+            "domain": [
+              "switch"
+            ]
           }
         ]
       }
@@ -3934,40 +4009,34 @@
       }
     }
   },
-  "wake_on_lan": {
-    "send_magic_packet": {
-      "name": "Send magic packet",
-      "description": "Sends a \u0027magic packet\u0027 to wake up a device with \u0027Wake-On-LAN\u0027 capabilities.",
+  "input_text": {
+    "reload": {
+      "name": "Reload",
+      "description": "Reloads helpers from the YAML-configuration.",
+      "fields": {}
+    },
+    "set_value": {
+      "name": "Set",
+      "description": "Sets the value.",
       "fields": {
-        "mac": {
+        "value": {
           "required": true,
-          "example": "aa:bb:cc:dd:ee:ff",
+          "example": "This is an example text",
           "selector": {
             "text": null
           },
-          "name": "MAC address",
-          "description": "MAC address of the device to wake up."
-        },
-        "broadcast_address": {
-          "example": "192.168.255.255",
-          "selector": {
-            "text": null
-          },
-          "name": "Broadcast address",
-          "description": "The IP address of the host to send the magic packet to. Defaults to \u0060255.255.255.255\u0060 and is normally not changed."
-        },
-        "broadcast_port": {
-          "default": 9,
-          "selector": {
-            "number": {
-              "min": 1,
-              "max": 65535,
-              "mode": "box"
-            }
-          },
-          "name": "Broadcast port",
-          "description": "The port to send the magic packet to. Defaults to \u00609\u0060 and is normally not changed."
+          "name": "Value",
+          "description": "The target value."
         }
+      },
+      "target": {
+        "entity": [
+          {
+            "domain": [
+              "input_text"
+            ]
+          }
+        ]
       }
     }
   },
@@ -4028,115 +4097,6 @@
       }
     }
   },
-  "switch": {
-    "turn_off": {
-      "name": "Turn off",
-      "description": "Turns a switch off.",
-      "fields": {},
-      "target": {
-        "entity": [
-          {
-            "domain": [
-              "switch"
-            ]
-          }
-        ]
-      }
-    },
-    "turn_on": {
-      "name": "Turn on",
-      "description": "Turns a switch on.",
-      "fields": {},
-      "target": {
-        "entity": [
-          {
-            "domain": [
-              "switch"
-            ]
-          }
-        ]
-      }
-    },
-    "toggle": {
-      "name": "Toggle",
-      "description": "Toggles a switch on/off.",
-      "fields": {},
-      "target": {
-        "entity": [
-          {
-            "domain": [
-              "switch"
-            ]
-          }
-        ]
-      }
-    }
-  },
-  "input_text": {
-    "reload": {
-      "name": "Reload",
-      "description": "Reloads helpers from the YAML-configuration.",
-      "fields": {}
-    },
-    "set_value": {
-      "name": "Set",
-      "description": "Sets the value.",
-      "fields": {
-        "value": {
-          "required": true,
-          "example": "This is an example text",
-          "selector": {
-            "text": null
-          },
-          "name": "Value",
-          "description": "The target value."
-        }
-      },
-      "target": {
-        "entity": [
-          {
-            "domain": [
-              "input_text"
-            ]
-          }
-        ]
-      }
-    }
-  },
-  "schedule": {
-    "reload": {
-      "name": "Reload",
-      "description": "Reloads schedules from the YAML-configuration.",
-      "fields": {}
-    },
-    "get_schedule": {
-      "name": "Get schedule",
-      "description": "Retrieves the configured time ranges of one or multiple schedules.",
-      "fields": {},
-      "target": {
-        "entity": [
-          {
-            "domain": [
-              "schedule"
-            ]
-          }
-        ]
-      },
-      "response": {
-        "optional": false
-      }
-    }
-  },
-  "shell_command": {
-    "turn_off_qnap": {
-      "name": "",
-      "description": "",
-      "fields": {},
-      "response": {
-        "optional": true
-      }
-    }
-  },
   "google_assistant": {
     "request_sync": {
       "name": "Request sync",
@@ -4152,11 +4112,51 @@
       }
     }
   },
-  "template": {
-    "reload": {
-      "name": "Reload",
-      "description": "Reloads template entities from the YAML-configuration.",
-      "fields": {}
+  "wake_on_lan": {
+    "send_magic_packet": {
+      "name": "Send magic packet",
+      "description": "Sends a \u0027magic packet\u0027 to wake up a device with \u0027Wake-On-LAN\u0027 capabilities.",
+      "fields": {
+        "mac": {
+          "required": true,
+          "example": "aa:bb:cc:dd:ee:ff",
+          "selector": {
+            "text": null
+          },
+          "name": "MAC address",
+          "description": "MAC address of the device to wake up."
+        },
+        "broadcast_address": {
+          "example": "192.168.255.255",
+          "selector": {
+            "text": null
+          },
+          "name": "Broadcast address",
+          "description": "The IP address of the host to send the magic packet to. Defaults to \u0060255.255.255.255\u0060 and is normally not changed."
+        },
+        "broadcast_port": {
+          "default": 9,
+          "selector": {
+            "number": {
+              "min": 1,
+              "max": 65535,
+              "mode": "box"
+            }
+          },
+          "name": "Broadcast port",
+          "description": "The port to send the magic packet to. Defaults to \u00609\u0060 and is normally not changed."
+        }
+      }
+    }
+  },
+  "shell_command": {
+    "turn_off_qnap": {
+      "name": "",
+      "description": "",
+      "fields": {},
+      "response": {
+        "optional": true
+      }
     }
   },
   "music_assistant": {
@@ -4617,6 +4617,300 @@
       }
     }
   },
+  "notify": {
+    "send_message": {
+      "name": "Send a notification message",
+      "description": "Sends a notification message.",
+      "fields": {
+        "message": {
+          "required": true,
+          "selector": {
+            "text": null
+          },
+          "name": "Message",
+          "description": "Your notification message."
+        },
+        "title": {
+          "required": false,
+          "selector": {
+            "text": null
+          },
+          "filter": {
+            "supported_features": [
+              1
+            ]
+          },
+          "name": "Title",
+          "description": "Title for your notification message."
+        }
+      },
+      "target": {
+        "entity": [
+          {
+            "domain": [
+              "notify"
+            ]
+          }
+        ]
+      }
+    },
+    "persistent_notification": {
+      "name": "Send a persistent notification",
+      "description": "Sends a notification that is visible in the notifications panel.",
+      "fields": {
+        "message": {
+          "required": true,
+          "example": "The garage door has been open for 10 minutes.",
+          "selector": {
+            "text": null
+          },
+          "name": "Message",
+          "description": "Message body of the notification."
+        },
+        "title": {
+          "example": "Your Garage Door Friend",
+          "selector": {
+            "text": null
+          },
+          "name": "Title",
+          "description": "Title of the notification."
+        },
+        "data": {
+          "example": "platform specific",
+          "selector": {
+            "object": null
+          },
+          "name": "Data",
+          "description": "Some integrations provide extended functionality via this field. For more information, refer to the integration documentation."
+        }
+      }
+    },
+    "mobile_app_sm_t530": {
+      "name": "Send a notification via mobile_app_sm_t530",
+      "description": "Sends a notification message using the mobile_app_sm_t530 integration.",
+      "fields": {
+        "message": {
+          "required": true,
+          "example": "The garage door has been open for 10 minutes.",
+          "selector": {
+            "text": null
+          }
+        },
+        "title": {
+          "example": "Your Garage Door Friend",
+          "selector": {
+            "text": null
+          }
+        },
+        "target": {
+          "example": "platform specific",
+          "selector": {
+            "object": null
+          }
+        },
+        "data": {
+          "example": "platform specific",
+          "selector": {
+            "object": null
+          }
+        }
+      }
+    },
+    "mobile_app_moto_g_8_power_lite": {
+      "name": "Send a notification via mobile_app_moto_g_8_power_lite",
+      "description": "Sends a notification message using the mobile_app_moto_g_8_power_lite integration.",
+      "fields": {
+        "message": {
+          "required": true,
+          "example": "The garage door has been open for 10 minutes.",
+          "selector": {
+            "text": null
+          }
+        },
+        "title": {
+          "example": "Your Garage Door Friend",
+          "selector": {
+            "text": null
+          }
+        },
+        "target": {
+          "example": "platform specific",
+          "selector": {
+            "object": null
+          }
+        },
+        "data": {
+          "example": "platform specific",
+          "selector": {
+            "object": null
+          }
+        }
+      }
+    },
+    "notify": {
+      "name": "Send a notification with notify",
+      "description": "Sends a notification message using the notify service.",
+      "fields": {
+        "message": {
+          "required": true,
+          "example": "The garage door has been open for 10 minutes.",
+          "selector": {
+            "text": null
+          }
+        },
+        "title": {
+          "example": "Your Garage Door Friend",
+          "selector": {
+            "text": null
+          }
+        },
+        "target": {
+          "example": "platform specific",
+          "selector": {
+            "object": null
+          }
+        },
+        "data": {
+          "example": "platform specific",
+          "selector": {
+            "object": null
+          }
+        }
+      }
+    },
+    "envy": {
+      "name": "Send a notification with envy",
+      "description": "Sends a notification message using the envy service.",
+      "fields": {
+        "message": {
+          "required": true,
+          "example": "The garage door has been open for 10 minutes.",
+          "selector": {
+            "text": null
+          }
+        },
+        "title": {
+          "example": "Your Garage Door Friend",
+          "selector": {
+            "text": null
+          }
+        },
+        "target": {
+          "example": "platform specific",
+          "selector": {
+            "object": null
+          }
+        },
+        "data": {
+          "example": "platform specific",
+          "selector": {
+            "object": null
+          }
+        }
+      }
+    },
+    "pc": {
+      "name": "Send a notification with pc",
+      "description": "Sends a notification message using the pc service.",
+      "fields": {
+        "message": {
+          "required": true,
+          "example": "The garage door has been open for 10 minutes.",
+          "selector": {
+            "text": null
+          }
+        },
+        "title": {
+          "example": "Your Garage Door Friend",
+          "selector": {
+            "text": null
+          }
+        },
+        "target": {
+          "example": "platform specific",
+          "selector": {
+            "object": null
+          }
+        },
+        "data": {
+          "example": "platform specific",
+          "selector": {
+            "object": null
+          }
+        }
+      }
+    }
+  },
+  "device_tracker": {
+    "see": {
+      "name": "See",
+      "description": "Manually update the records of a seen legacy device tracker in the known_devices.yaml file.",
+      "fields": {
+        "mac": {
+          "example": "FF:FF:FF:FF:FF:FF",
+          "selector": {
+            "text": null
+          },
+          "name": "MAC address",
+          "description": "MAC address of the device."
+        },
+        "dev_id": {
+          "example": "phonedave",
+          "selector": {
+            "text": null
+          },
+          "name": "Device ID",
+          "description": "ID of the device (find the ID in \u0060known_devices.yaml\u0060)."
+        },
+        "host_name": {
+          "example": "Dave",
+          "selector": {
+            "text": null
+          },
+          "name": "Hostname",
+          "description": "Hostname of the device."
+        },
+        "location_name": {
+          "example": "home",
+          "selector": {
+            "text": null
+          },
+          "name": "Location",
+          "description": "Name of the location where the device is located. The options are: \u0060home\u0060, \u0060not_home\u0060, or the name of the zone."
+        },
+        "gps": {
+          "example": "[51.509802, -0.086692]",
+          "selector": {
+            "object": null
+          },
+          "name": "GPS coordinates",
+          "description": "GPS coordinates where the device is located, specified by latitude and longitude (for example: [51.513845, -0.100539])."
+        },
+        "gps_accuracy": {
+          "selector": {
+            "number": {
+              "min": 0,
+              "mode": "box",
+              "unit_of_measurement": "m"
+            }
+          },
+          "name": "GPS accuracy",
+          "description": "Accuracy of the GPS coordinates."
+        },
+        "battery": {
+          "selector": {
+            "number": {
+              "min": 0,
+              "max": 100,
+              "unit_of_measurement": "%"
+            }
+          },
+          "name": "Battery level",
+          "description": "Battery level of the device."
+        }
+      }
+    }
+  },
   "scheduler": {
     "run_action": {
       "name": "Run Action",
@@ -4853,296 +5147,87 @@
       "fields": {}
     }
   },
-  "notify": {
-    "send_message": {
-      "name": "Send a notification message",
-      "description": "Sends a notification message.",
+  "adguard": {
+    "add_url": {
+      "name": "Add URL",
+      "description": "Adds a new filter subscription to AdGuard Home.",
       "fields": {
-        "message": {
+        "name": {
           "required": true,
+          "example": "Example",
           "selector": {
             "text": null
           },
-          "name": "Message",
-          "description": "Your notification message."
+          "name": "Name",
+          "description": "The name of the filter subscription."
         },
-        "title": {
-          "required": false,
-          "selector": {
-            "text": null
-          },
-          "filter": {
-            "supported_features": [
-              1
-            ]
-          },
-          "name": "Title",
-          "description": "Title for your notification message."
-        }
-      },
-      "target": {
-        "entity": [
-          {
-            "domain": [
-              "notify"
-            ]
-          }
-        ]
-      }
-    },
-    "persistent_notification": {
-      "name": "Send a persistent notification",
-      "description": "Sends a notification that is visible in the notifications panel.",
-      "fields": {
-        "message": {
+        "url": {
           "required": true,
-          "example": "The garage door has been open for 10 minutes.",
+          "example": "https://www.example.com/filter/1.txt",
           "selector": {
             "text": null
           },
-          "name": "Message",
-          "description": "Message body of the notification."
-        },
-        "title": {
-          "example": "Your Garage Door Friend",
-          "selector": {
-            "text": null
-          },
-          "name": "Title",
-          "description": "Title of the notification."
-        },
-        "data": {
-          "example": "platform specific",
-          "selector": {
-            "object": null
-          },
-          "name": "Data",
-          "description": "Some integrations provide extended functionality via this field. For more information, refer to the integration documentation."
+          "name": "URL",
+          "description": "The filter URL to subscribe to, containing the filter rules."
         }
       }
     },
-    "mobile_app_sm_t530": {
-      "name": "Send a notification via mobile_app_sm_t530",
-      "description": "Sends a notification message using the mobile_app_sm_t530 integration.",
+    "remove_url": {
+      "name": "Remove URL",
+      "description": "Removes a filter subscription from AdGuard Home.",
       "fields": {
-        "message": {
+        "url": {
           "required": true,
-          "example": "The garage door has been open for 10 minutes.",
+          "example": "https://www.example.com/filter/1.txt",
           "selector": {
             "text": null
-          }
-        },
-        "title": {
-          "example": "Your Garage Door Friend",
-          "selector": {
-            "text": null
-          }
-        },
-        "target": {
-          "example": "platform specific",
-          "selector": {
-            "object": null
-          }
-        },
-        "data": {
-          "example": "platform specific",
-          "selector": {
-            "object": null
-          }
+          },
+          "name": "URL",
+          "description": "The filter subscription URL to remove."
         }
       }
     },
-    "mobile_app_moto_g_8_power_lite": {
-      "name": "Send a notification via mobile_app_moto_g_8_power_lite",
-      "description": "Sends a notification message using the mobile_app_moto_g_8_power_lite integration.",
+    "enable_url": {
+      "name": "Enable URL",
+      "description": "Enables a filter subscription in AdGuard Home.",
       "fields": {
-        "message": {
+        "url": {
           "required": true,
-          "example": "The garage door has been open for 10 minutes.",
+          "example": "https://www.example.com/filter/1.txt",
           "selector": {
             "text": null
-          }
-        },
-        "title": {
-          "example": "Your Garage Door Friend",
-          "selector": {
-            "text": null
-          }
-        },
-        "target": {
-          "example": "platform specific",
-          "selector": {
-            "object": null
-          }
-        },
-        "data": {
-          "example": "platform specific",
-          "selector": {
-            "object": null
-          }
+          },
+          "name": "URL",
+          "description": "The filter subscription URL to enable."
         }
       }
     },
-    "notify": {
-      "name": "Send a notification with notify",
-      "description": "Sends a notification message using the notify service.",
+    "disable_url": {
+      "name": "Disable URL",
+      "description": "Disables a filter subscription in AdGuard Home.",
       "fields": {
-        "message": {
+        "url": {
           "required": true,
-          "example": "The garage door has been open for 10 minutes.",
+          "example": "https://www.example.com/filter/1.txt",
           "selector": {
             "text": null
-          }
-        },
-        "title": {
-          "example": "Your Garage Door Friend",
-          "selector": {
-            "text": null
-          }
-        },
-        "target": {
-          "example": "platform specific",
-          "selector": {
-            "object": null
-          }
-        },
-        "data": {
-          "example": "platform specific",
-          "selector": {
-            "object": null
-          }
+          },
+          "name": "URL",
+          "description": "The filter subscription URL to disable."
         }
       }
     },
-    "pc": {
-      "name": "Send a notification with pc",
-      "description": "Sends a notification message using the pc service.",
+    "refresh": {
+      "name": "Refresh",
+      "description": "Refreshes all filter subscriptions in AdGuard Home.",
       "fields": {
-        "message": {
-          "required": true,
-          "example": "The garage door has been open for 10 minutes.",
+        "force": {
+          "default": false,
           "selector": {
-            "text": null
-          }
-        },
-        "title": {
-          "example": "Your Garage Door Friend",
-          "selector": {
-            "text": null
-          }
-        },
-        "target": {
-          "example": "platform specific",
-          "selector": {
-            "object": null
-          }
-        },
-        "data": {
-          "example": "platform specific",
-          "selector": {
-            "object": null
-          }
-        }
-      }
-    },
-    "envy": {
-      "name": "Send a notification with envy",
-      "description": "Sends a notification message using the envy service.",
-      "fields": {
-        "message": {
-          "required": true,
-          "example": "The garage door has been open for 10 minutes.",
-          "selector": {
-            "text": null
-          }
-        },
-        "title": {
-          "example": "Your Garage Door Friend",
-          "selector": {
-            "text": null
-          }
-        },
-        "target": {
-          "example": "platform specific",
-          "selector": {
-            "object": null
-          }
-        },
-        "data": {
-          "example": "platform specific",
-          "selector": {
-            "object": null
-          }
-        }
-      }
-    }
-  },
-  "device_tracker": {
-    "see": {
-      "name": "See",
-      "description": "Manually update the records of a seen legacy device tracker in the known_devices.yaml file.",
-      "fields": {
-        "mac": {
-          "example": "FF:FF:FF:FF:FF:FF",
-          "selector": {
-            "text": null
+            "boolean": null
           },
-          "name": "MAC address",
-          "description": "MAC address of the device."
-        },
-        "dev_id": {
-          "example": "phonedave",
-          "selector": {
-            "text": null
-          },
-          "name": "Device ID",
-          "description": "ID of the device (find the ID in \u0060known_devices.yaml\u0060)."
-        },
-        "host_name": {
-          "example": "Dave",
-          "selector": {
-            "text": null
-          },
-          "name": "Hostname",
-          "description": "Hostname of the device."
-        },
-        "location_name": {
-          "example": "home",
-          "selector": {
-            "text": null
-          },
-          "name": "Location",
-          "description": "Name of the location where the device is located. The options are: \u0060home\u0060, \u0060not_home\u0060, or the name of the zone."
-        },
-        "gps": {
-          "example": "[51.509802, -0.086692]",
-          "selector": {
-            "object": null
-          },
-          "name": "GPS coordinates",
-          "description": "GPS coordinates where the device is located, specified by latitude and longitude (for example: [51.513845, -0.100539])."
-        },
-        "gps_accuracy": {
-          "selector": {
-            "number": {
-              "min": 0,
-              "mode": "box",
-              "unit_of_measurement": "m"
-            }
-          },
-          "name": "GPS accuracy",
-          "description": "Accuracy of the GPS coordinates."
-        },
-        "battery": {
-          "selector": {
-            "number": {
-              "min": 0,
-              "max": 100,
-              "unit_of_measurement": "%"
-            }
-          },
-          "name": "Battery level",
-          "description": "Battery level of the device."
+          "name": "Force",
+          "description": "Force update (bypasses AdGuard Home throttling), omit for a regular refresh."
         }
       }
     }
@@ -5485,91 +5570,6 @@
             ]
           }
         ]
-      }
-    }
-  },
-  "adguard": {
-    "add_url": {
-      "name": "Add URL",
-      "description": "Adds a new filter subscription to AdGuard Home.",
-      "fields": {
-        "name": {
-          "required": true,
-          "example": "Example",
-          "selector": {
-            "text": null
-          },
-          "name": "Name",
-          "description": "The name of the filter subscription."
-        },
-        "url": {
-          "required": true,
-          "example": "https://www.example.com/filter/1.txt",
-          "selector": {
-            "text": null
-          },
-          "name": "URL",
-          "description": "The filter URL to subscribe to, containing the filter rules."
-        }
-      }
-    },
-    "remove_url": {
-      "name": "Remove URL",
-      "description": "Removes a filter subscription from AdGuard Home.",
-      "fields": {
-        "url": {
-          "required": true,
-          "example": "https://www.example.com/filter/1.txt",
-          "selector": {
-            "text": null
-          },
-          "name": "URL",
-          "description": "The filter subscription URL to remove."
-        }
-      }
-    },
-    "enable_url": {
-      "name": "Enable URL",
-      "description": "Enables a filter subscription in AdGuard Home.",
-      "fields": {
-        "url": {
-          "required": true,
-          "example": "https://www.example.com/filter/1.txt",
-          "selector": {
-            "text": null
-          },
-          "name": "URL",
-          "description": "The filter subscription URL to enable."
-        }
-      }
-    },
-    "disable_url": {
-      "name": "Disable URL",
-      "description": "Disables a filter subscription in AdGuard Home.",
-      "fields": {
-        "url": {
-          "required": true,
-          "example": "https://www.example.com/filter/1.txt",
-          "selector": {
-            "text": null
-          },
-          "name": "URL",
-          "description": "The filter subscription URL to disable."
-        }
-      }
-    },
-    "refresh": {
-      "name": "Refresh",
-      "description": "Refreshes all filter subscriptions in AdGuard Home.",
-      "fields": {
-        "force": {
-          "default": false,
-          "selector": {
-            "boolean": null
-          },
-          "name": "Force",
-          "description": "Force update (bypasses AdGuard Home throttling), omit for a regular refresh."
-        }
       }
     }
   },
