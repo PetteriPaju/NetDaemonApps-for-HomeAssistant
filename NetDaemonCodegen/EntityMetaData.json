@@ -244,6 +244,11 @@
           "cSharpName": "SolarLogging"
         },
         {
+          "id": "automation.speaker_controller",
+          "friendlyName": "Speaker Controller",
+          "cSharpName": "SpeakerController"
+        },
+        {
           "id": "automation.test",
           "friendlyName": "Homecoming",
           "cSharpName": "Test"
@@ -586,9 +591,24 @@
           "cSharpName": "ToiletSensorOccupancy"
         },
         {
+          "id": "binary_sensor.walkingpad_contact_battery_low",
+          "friendlyName": "Walkingpad Contact Battery",
+          "cSharpName": "WalkingpadContactBatteryLow"
+        },
+        {
+          "id": "binary_sensor.walkingpad_contact_contact",
+          "friendlyName": "Walkingpad Contact Door",
+          "cSharpName": "WalkingpadContactContact"
+        },
+        {
           "id": "binary_sensor.walkingpad_contact_sensor_contact",
           "friendlyName": "Walkingpad Contact sensor Door",
           "cSharpName": "WalkingpadContactSensorContact"
+        },
+        {
+          "id": "binary_sensor.walkingpad_contact_tamper",
+          "friendlyName": "Walkingpad Contact Tamper",
+          "cSharpName": "WalkingpadContactTamper"
         },
         {
           "id": "binary_sensor.withings_in_bed",
@@ -5901,6 +5921,11 @@
           "id": "sensor.unt_lights_power",
           "friendlyName": "Unt_Lights power",
           "cSharpName": "UntLightsPower"
+        },
+        {
+          "id": "sensor.walkingpad_contact_battery",
+          "friendlyName": "Walkingpad Contact Battery",
+          "cSharpName": "WalkingpadContactBattery"
         },
         {
           "id": "sensor.walkingpad_contact_sensor_battery",

@@ -64,11 +64,15 @@ namespace NetDaemonApps.apps
             A0Gbl._myEntities.Sensor.ModemAutoOnPlugPower.StateChanges().WhenStateIsFor(x => x?.State < 19, TimeSpan.FromMinutes(10), A0Gbl._myScheduler).Subscribe(x => {
 
                 DeActivateRunningPad();
-                A0Gbl._myEntities.Switch.ModemAutoOnPlug.TurnOff();
+                runnerSwitch?.TurnOff();
 
             });
 
-            A0Gbl._myEntities.Switch.ModemAutoOnPlug.StateChanges().Where(x => x.New.IsOn()).Subscribe(x => { ActivateRunningPad(); });
+
+            A0Gbl._myEntities.BinarySensor.WalkingpadContactContact.StateChanges().Where(x => x.New.IsOn()).Subscribe(x => { runnerSwitch?.TurnOn(); });
+            A0Gbl._myEntities.BinarySensor.WalkingpadContactContact.StateChanges().Where(x => x.New.IsOff()).Subscribe(x => { runnerSwitch?.TurnOff(); });
+
+            runnerSwitch?.StateChanges().Where(x => x.New.IsOn()).Subscribe(x => { ActivateRunningPad(); });
 
 
         }
@@ -116,7 +120,7 @@ namespace NetDaemonApps.apps
             if (hasProcess())
             {
                 Console.WriteLine("Toggle");
-                A0Gbl._myEntities.Button.PcWalkingpadtoggle.Press();
+                A0Gbl._myEntities.Button.WalkingpadToggle.Press();
             }
         }
 
@@ -148,13 +152,13 @@ namespace NetDaemonApps.apps
         protected override void On_I()
         {
             base.On_I();
-            A0Gbl._myEntities.Button.PcWalkingpadspeedup.Press();
+            A0Gbl._myEntities.Button.WalkingpadUp.Press();
         }
 
         protected override void On_B()
         {
             base.On_B();
-            A0Gbl._myEntities.Button.PcCwalkingpadspeeddown.Press();
+            A0Gbl._myEntities.Button.WalkingpadDown.Press();
         }
 
 
