@@ -3,6 +3,7 @@ using NetDaemon.Extensions.Scheduler;
 using NetDaemon.HassModel.Entities;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Diagnostics;
 using System.Globalization;
 using System.Linq;
@@ -48,10 +49,10 @@ public class EnergyMonitor
 
     protected int priceToRange(double price)
     {
-        var range = electricityRangeKeys?.FindIndex(x => x > price) ?? -1;
-        range = range == -1 ? electricityRangeKeys.Count : range;
+        var range = electricityRangeKeys?.FirstOrDefault(x => x <= price,0);
+        range = range == -1 ? electricityRangeKeys.Count-1 : range;
 
-        return (int)range - 1;
+        return (int)range;
     }
 
     protected DateTime dateFromHourIndex(int index)
@@ -82,7 +83,6 @@ public class EnergyMonitor
             foreach (string s in A0Gbl._myEntities.InputSelect.Electricityranges.stringsFromSelectionDropdown())
             {
                 string[] stings = s.Split(';', StringSplitOptions.TrimEntries);
-                Console.WriteLine(NumberFormatInfo.CurrentInfo.CurrencyDecimalSeparator);
                 electiricityRanges.TryAdd(double.Parse(stings[0].Replace(",",NumberFormatInfo.CurrentInfo.CurrencyDecimalSeparator).Replace(".", NumberFormatInfo.CurrentInfo.CurrencyDecimalSeparator)), stings[1]);
             }
 
@@ -359,6 +359,7 @@ public class EnergyMonitor
           
         PriceChangeType priceChange = comparePrice(infoForCurrentHour.price ?? 0, A0Gbl._myEntities.Sensor.NextPrice.State ?? 0 );
         bool addAlso = false;
+      
         if (infoForCurrentHour.range != 0 || priceChange != PriceChangeType.NoChange)
         {
             TTSMessage += " Current Electricity Cost is at " + priceToRangeName(infoForCurrentHour.price ?? 0) + ". ";
@@ -427,6 +428,8 @@ public class EnergyMonitor
         
         Console.WriteLine("Range Change in: " + FindWhenElectricityRangeChanges(inFoForNextHour.nexthour)?.dateTime);
 
+        if (infoForCurrentHour.range + inFoForNextHour.range <= 1 && inFoForNextHour.peak == 0) return;
+
         if (priceChange == PriceChangeType.NoChange && inFoForNextHour.peak == 0 
             || (priceChange == PriceChangeType.NoChange && infoForCurrentHour.peak == -1 && loPeakAlertGiven) 
             || (priceChange == PriceChangeType.NoChange && infoForCurrentHour.peak == 1 && hiPeakAlertGiven)) return;
@@ -485,9 +488,9 @@ public class EnergyMonitor
 
             //Fix for weird bug that prevents Peak Alert from triggering
         if (ttsLenght == TTSMessage.Length) return;
-        
 
-        if(TTSMessage!= null)TTS.Speak(TTSMessage, TTS.TTSPriority.PlayInGuestMode);
+        Console.WriteLine(TTSMessage);
+        if (TTSMessage!= null)TTS.Speak(TTSMessage, TTS.TTSPriority.PlayInGuestMode);
     }
 
     private string GetNameOfRange(int rangeIndex)

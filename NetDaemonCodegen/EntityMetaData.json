@@ -1322,11 +1322,6 @@
           "cSharpName": "NetdaemonNetDaemonAppsAppsA0gbl"
         },
         {
-          "id": "input_boolean.netdaemon_net_daemon_apps_apps_audio_output_monitor",
-          "friendlyName": "netdaemon_net_daemon_apps_apps_audio_output_monitor",
-          "cSharpName": "NetdaemonNetDaemonAppsAppsAudioOutputMonitor"
-        },
-        {
           "id": "input_boolean.netdaemon_net_daemon_apps_apps_auto_turn_offs",
           "friendlyName": "netdaemon_net_daemon_apps_apps_auto_turn_offs",
           "cSharpName": "NetdaemonNetDaemonAppsAppsAutoTurnOffs"

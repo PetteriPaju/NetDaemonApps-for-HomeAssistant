@@ -55,6 +55,7 @@ namespace NetDaemonApps.apps
         {
             base.On2Press();
             A0Gbl._myEntities.Button.DesktopK24v8npWakeOnLan.Press();
+            A0Gbl._myEntities.Switch.PcPlug.TurnOn();
             A0Gbl._myEntities.Light.PcMultipowermeterL1.TurnOn();
             A0Gbl._myEntities.Switch.PcMultipowermeterMonitors.TurnOn();
             A0Gbl._myEntities.Switch.FanPlug.TurnOn();
