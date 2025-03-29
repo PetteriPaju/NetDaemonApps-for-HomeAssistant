@@ -120,12 +120,10 @@ namespace NetDaemonApps.apps.Lights
         public void TurnOff()
         {
 
-            if (!IsEnabled())
+            foreach (var l in lightEntities)
             {
-                lightEntities[0]?.TurnOff();
-                
-            }else
-            _currentLight?.TurnOff();
+                l.TurnOff();
+            }
 
 
         }
