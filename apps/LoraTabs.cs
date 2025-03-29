@@ -20,7 +20,7 @@ namespace NetDaemonApps.apps
         int pwrpressMode = 0;
         protected LightCycler lightCycler;
         public LoraTapDekstop() : base() {
-            lightCycler = new LightCycler(A0Gbl._myEntities.InputBoolean.GuestMode, A0Gbl._myEntities.InputSelect.DesktopKnobLights.lightEntitiesFromSelectionDropdown().ToArray());
+            lightCycler = new LightCycler(A0Gbl._myEntities.InputBoolean.GuestMode, A0Gbl._myEntities.InputBoolean.LightgroupLivingroomEnabled, A0Gbl._myEntities.InputSelect.DesktopKnobLights.lightEntitiesFromSelectionDropdown().ToArray());
         }
         protected override SensorEntity GetEntity()
         {

@@ -142,7 +142,7 @@ namespace NetDaemonApps.apps
             public DesktopKnob(SensorEntity knobAction, SensorEntity knobStep) : base(knobAction, knobStep)
             {
                 flipDialDirection = false;
-                lightCycler = new LightCycler(A0Gbl._myEntities.InputBoolean.GuestMode,A0Gbl._myEntities.InputSelect.DesktopKnobLights.lightEntitiesFromSelectionDropdown().ToArray());
+                lightCycler = new LightCycler(A0Gbl._myEntities.InputBoolean.GuestMode, A0Gbl._myEntities.InputBoolean.LightgroupLivingroomEnabled ,A0Gbl._myEntities.InputSelect.DesktopKnobLights.lightEntitiesFromSelectionDropdown().ToArray());
             }
 
         }
@@ -150,7 +150,7 @@ namespace NetDaemonApps.apps
         {
             public BedKnob(SensorEntity knobAction, SensorEntity knobStep) : base(knobAction, knobStep)
             {
-                lightCycler = new LightCycler(A0Gbl._myEntities.InputBoolean.GuestMode, A0Gbl._myEntities.InputSelect.BedKnobLights.lightEntitiesFromSelectionDropdown().ToArray());
+                lightCycler = new LightCycler(A0Gbl._myEntities.InputBoolean.GuestMode, A0Gbl._myEntities.InputBoolean.LightgroupLivingroomEnabled , A0Gbl._myEntities.InputSelect.BedKnobLights.lightEntitiesFromSelectionDropdown().ToArray());
             }
 
             protected override void OnHold()

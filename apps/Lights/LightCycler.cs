@@ -15,19 +15,26 @@ namespace NetDaemonApps.apps.Lights
         private List <LightEntity> lightEntities;
         private LightEntity _currentLight = null;
         private InputBooleanEntity guestModeBoolean;
-        
-        public LightCycler(InputBooleanEntity guestmode, params LightEntity[] lights)
+        private InputBooleanEntity toggleBoolean;
+
+        public LightCycler(InputBooleanEntity guestmode, InputBooleanEntity toggleBoolean, params LightEntity[] lights)
         {
           
             guestModeBoolean = guestmode;
+            this.toggleBoolean = toggleBoolean;
             lightEntities = lights.ToList();
             FindActiveLight();
 
             foreach (var l in lightEntities) { 
                 SetListener(l);
-                if (l.IsOn() && l != _currentLight && A0Gbl._myEntities.InputBoolean.GuestMode.IsOff()) l.TurnOff();
+                if (l.IsOn() && l != _currentLight && IsEnabled()) l.TurnOff();
                     
                         }
+        }
+
+        protected virtual bool IsEnabled()
+        {
+            return A0Gbl._myEntities.InputBoolean.GuestMode.IsOff() && (toggleBoolean == null || toggleBoolean.IsOn());
         }
 
         private void FindActiveLight()
@@ -62,7 +69,7 @@ namespace NetDaemonApps.apps.Lights
             else {
    
             light.StateChanges().Where(x => x?.New?.State == "on").Subscribe(x => { 
-                if(_currentLight != null && _currentLight != light)
+                if(_currentLight != null && _currentLight != light && IsEnabled())
                 {
                     _currentLight?.TurnOff();
                 }
@@ -83,7 +90,7 @@ namespace NetDaemonApps.apps.Lights
 
         public void NextLight()
         {
-            if (guestModeBoolean.IsOn())
+            if (!IsEnabled())
             {
                 _currentLight = lightEntities[0];
                 lightEntities[0]?.Toggle();
@@ -101,7 +108,7 @@ namespace NetDaemonApps.apps.Lights
         }
         public void PreviousLight()
         {
-            if (guestModeBoolean.IsOn())
+            if (!IsEnabled())
             {
                 lightEntities[0]?.Toggle();
                 return;
@@ -113,7 +120,7 @@ namespace NetDaemonApps.apps.Lights
         public void TurnOff()
         {
 
-            if (guestModeBoolean.IsOn())
+            if (!IsEnabled())
             {
                 lightEntities[0]?.TurnOff();
                 
