@@ -187,6 +187,13 @@ namespace NetDaemonApps.apps
             A0Gbl._myEntities.Light.BedLight.Toggle();
 
         }
+
+        protected override void On1Hold()
+        {
+            base.On1Hold();
+            A0Gbl._myEntities.Light.AllLights.TurnOff();    
+        }
+
         protected override void On2Press()
         {
             base.On1Press();
