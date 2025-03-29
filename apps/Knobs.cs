@@ -124,6 +124,7 @@ namespace NetDaemonApps.apps
             protected virtual void OnPress()
             {
                 lightCycler?.NextLight();
+
             }
 
             protected virtual void OnStepUp() {
@@ -143,6 +144,16 @@ namespace NetDaemonApps.apps
             {
                 flipDialDirection = false;
                 lightCycler = new LightCycler(myEntities.InputBoolean.GuestMode, myEntities.InputBoolean.LightgroupLivingroomEnabled ,myEntities.InputSelect.DesktopKnobLights.lightEntitiesFromSelectionDropdown().ToArray());
+            }
+
+            protected override void OnPress()
+            {
+                base.OnPress();
+                if (myEntities.InputBoolean.GuestMode.IsOff() || myEntities.InputBoolean.LightgroupLivingroomEnabled.IsOff() )
+                {
+                    myEntities.Light.BedLight.TurnOff();
+                    myEntities.Light.DesktopLight.TurnOff();
+                }
             }
 
         }

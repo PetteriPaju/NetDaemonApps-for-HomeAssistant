@@ -31,12 +31,18 @@ namespace NetDaemonApps.apps
         {
             IsAsleepMonitor.Awake();
             myEntities.InputBoolean.Ishome.TurnOn();
+            if (myEntities.InputBoolean.GuestMode.IsOff() || myEntities.InputBoolean.LightgroupLivingroomEnabled.IsOff())
+            {
+                myEntities.Light.BedLight.TurnOff();
+                myEntities.Light.DesktopLight.TurnOff();
+            }
         }
 
         protected override void On1Press()
         {
             base.On1Press();
             lightCycler.NextLight();
+
         }
         protected override void On1Hold()
         {
@@ -180,6 +186,15 @@ namespace NetDaemonApps.apps
                 myEntities.Light.ToiletLight1.TurnOff();
             }
             myEntities.InputBoolean.Ishome.TurnOn();
+
+            if (myEntities.InputBoolean.GuestMode.IsOff() || myEntities.InputBoolean.LightgroupLivingroomEnabled.IsOff())
+            {
+                myEntities.Light.MonitorLight.TurnOff();
+                myEntities.Light.MultiPlugBrightLight.TurnOff();
+                myEntities.Light.LivingRoomLight.TurnOff();
+                myEntities.Light.DesktopLight.TurnOff();
+
+            }
         }
         protected override void On1Press()
         {
