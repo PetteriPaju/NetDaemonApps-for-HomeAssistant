@@ -916,7 +916,7 @@
         },
         {
           "id": "device_tracker.bl_65_34_64",
-          "friendlyName": "BL-65-34-64",
+          "friendlyName": "AC",
           "cSharpName": "Bl653464"
         },
         {
@@ -1305,6 +1305,11 @@
           "id": "input_boolean.ishome",
           "friendlyName": "IsHome",
           "cSharpName": "Ishome"
+        },
+        {
+          "id": "input_boolean.lightgroup_livingroom_enabled",
+          "friendlyName": "Lightgroup Livingroom Enabled",
+          "cSharpName": "LightgroupLivingroomEnabled"
         },
         {
           "id": "input_boolean.media_playing",
@@ -3031,6 +3036,16 @@
           "cSharpName": "RestartModem"
         },
         {
+          "id": "script.restart_netdaemon",
+          "friendlyName": "Restart NetDaemon",
+          "cSharpName": "RestartNetdaemon"
+        },
+        {
+          "id": "script.retake_screentshot",
+          "friendlyName": "Retake Screentshot",
+          "cSharpName": "RetakeScreentshot"
+        },
+        {
           "id": "script.send_audio_notification",
           "friendlyName": "Send Audio Notification TTS",
           "cSharpName": "SendAudioNotification"
@@ -3405,6 +3420,11 @@
       "domain": "sensor",
       "entities": [
         {
+          "id": "sensor.all_standby_energy",
+          "friendlyName": "All standby energy",
+          "cSharpName": "AllStandbyEnergy"
+        },
+        {
           "id": "sensor.awake_today",
           "friendlyName": "Awake Today",
           "cSharpName": "AwakeToday"
@@ -3506,7 +3526,7 @@
         },
         {
           "id": "sensor.ecoflow_charge_or_remain_time",
-          "friendlyName": "Discharging",
+          "friendlyName": "Offline",
           "cSharpName": "EcoflowChargeOrRemainTime"
         },
         {
@@ -4921,11 +4941,6 @@
           "id": "sensor.all_powers_power",
           "friendlyName": "All Powers power",
           "cSharpName": "AllPowersPower"
-        },
-        {
-          "id": "sensor.all_standby_energy",
-          "friendlyName": "All standby energy",
-          "cSharpName": "AllStandbyEnergy"
         },
         {
           "id": "sensor.all_standby_power",
@@ -6381,7 +6396,7 @@
         },
         {
           "id": "switch.bl_65_34_64_internet_access",
-          "friendlyName": "BL-65-34-64 Internet Access",
+          "friendlyName": "AC Internet Access",
           "cSharpName": "Bl653464InternetAccess"
         },
         {
@@ -7966,6 +7981,26 @@
           "jsonName": "supported_features",
           "cSharpName": "SupportedFeatures",
           "clrType": "System.Double"
+        },
+        {
+          "jsonName": "current_temperature",
+          "cSharpName": "CurrentTemperature",
+          "clrType": "System.Double"
+        },
+        {
+          "jsonName": "temperature",
+          "cSharpName": "Temperature",
+          "clrType": "System.Double"
+        },
+        {
+          "jsonName": "fan_mode",
+          "cSharpName": "FanMode",
+          "clrType": "System.String"
+        },
+        {
+          "jsonName": "swing_mode",
+          "cSharpName": "SwingMode",
+          "clrType": "System.String"
         }
       ]
     },

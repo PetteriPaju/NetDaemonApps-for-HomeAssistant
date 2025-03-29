@@ -37,8 +37,6 @@ namespace NetDaemonApps.apps
         {
             base.On1Press();
             lightCycler.NextLight();
-
-
         }
         protected override void On1Hold()
         {

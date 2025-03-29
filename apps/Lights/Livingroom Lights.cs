@@ -1,4 +1,5 @@
 ﻿using HomeAssistantGenerated;
+using NetDaemon.HassModel.Entities;
 using System.Collections.Generic;
 
 namespace NetDaemonApps.apps.Lights
@@ -10,6 +11,12 @@ namespace NetDaemonApps.apps.Lights
         
            
       
+        }
+
+
+        protected override bool isEnabled()
+        {
+            return base.isEnabled() && A0Gbl._myEntities.InputBoolean.LightgroupLivingroomEnabled.IsOn();
         }
 
         protected override LightEntity[] SetLights()
