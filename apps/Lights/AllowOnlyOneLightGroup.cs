@@ -20,7 +20,7 @@ namespace NetDaemonApps.apps.Lights
 
             foreach (LightEntity light in lights)
             {
-                light.StateChanges().Where(x => x?.New?.State == "on").Subscribe(_ => OnLightTurnOn(light));
+                light.StateChanges().Where(x => x?.New?.State == "on" && A0Gbl._myEntities.InputBoolean.GuestMode.IsOff()).Subscribe(_ => OnLightTurnOn(light));
             }
 
         }
