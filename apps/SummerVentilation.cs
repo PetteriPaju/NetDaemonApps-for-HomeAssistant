@@ -5,7 +5,7 @@ namespace NetDaemonApps.apps
 {
    
     
-    public class SummerVentilation
+    public class SummerVentilation : AppBase
     {
         /*
         private enum windowActions {DoNothing, Open, Close};

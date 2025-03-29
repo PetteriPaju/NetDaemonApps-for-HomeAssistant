@@ -20,17 +20,17 @@ namespace NetDaemonApps.apps
         int pwrpressMode = 0;
         protected LightCycler lightCycler;
         public LoraTapDekstop() : base() {
-            lightCycler = new LightCycler(A0Gbl._myEntities.InputBoolean.GuestMode, A0Gbl._myEntities.InputBoolean.LightgroupLivingroomEnabled, A0Gbl._myEntities.InputSelect.DesktopKnobLights.lightEntitiesFromSelectionDropdown().ToArray());
+            lightCycler = new LightCycler(myEntities.InputBoolean.GuestMode, myEntities.InputBoolean.LightgroupLivingroomEnabled, myEntities.InputSelect.DesktopKnobLights.lightEntitiesFromSelectionDropdown().ToArray());
         }
         protected override SensorEntity GetEntity()
         {
-            return A0Gbl._myEntities.Sensor.Lrtabdesktopaction;
+            return myEntities.Sensor.Lrtabdesktopaction;
         }
 
         protected override void OnAny()
         {
             IsAsleepMonitor.Awake();
-            A0Gbl._myEntities.InputBoolean.Ishome.TurnOn();
+            myEntities.InputBoolean.Ishome.TurnOn();
         }
 
         protected override void On1Press()
@@ -52,17 +52,17 @@ namespace NetDaemonApps.apps
         protected override void On2Press()
         {
             base.On2Press();
-            A0Gbl._myEntities.Button.DesktopK24v8npWakeOnLan.Press();
-            A0Gbl._myEntities.Switch.PcPlug.TurnOn();
-            A0Gbl._myEntities.Light.PcMultipowermeterL1.TurnOn();
-            A0Gbl._myEntities.Switch.PcMultipowermeterMonitors.TurnOn();
-            A0Gbl._myEntities.Switch.FanPlug.TurnOn();
+            myEntities.Button.DesktopK24v8npWakeOnLan.Press();
+            myEntities.Switch.PcPlug.TurnOn();
+            myEntities.Light.PcMultipowermeterL1.TurnOn();
+            myEntities.Switch.PcMultipowermeterMonitors.TurnOn();
+            myEntities.Switch.FanPlug.TurnOn();
         }
 
         protected override void On4Press()
         {
             base.On3Press();
-            A0Gbl._myEntities.Switch.PcMultipowermeterMonitors.Toggle();
+            myEntities.Switch.PcMultipowermeterMonitors.Toggle();
         }
 
 
@@ -71,23 +71,23 @@ namespace NetDaemonApps.apps
         {
             base.On5Press();
             IsAsleepMonitor.Awake();
-            if (A0Gbl._myEntities.Switch.DeskFans.IsOff())
+            if (myEntities.Switch.DeskFans.IsOff())
             {
-                A0Gbl._myEntities.Switch.DeskFans.TurnOn();
+                myEntities.Switch.DeskFans.TurnOn();
             }
-            else if (A0Gbl._myEntities.Switch.UsbMultiFansCenter.IsOn() && A0Gbl._myEntities.Switch.UsbMultiFansCenter.IsOn())
+            else if (myEntities.Switch.UsbMultiFansCenter.IsOn() && myEntities.Switch.UsbMultiFansCenter.IsOn())
             {
-                A0Gbl._myEntities.Switch.UsbMultiFansCenter.TurnOff();
+                myEntities.Switch.UsbMultiFansCenter.TurnOff();
             }
-            else if (A0Gbl._myEntities.Switch.UsbMultiFansCenter.IsOff() && A0Gbl._myEntities.Switch.UsbMultiFansLeft.IsOn())
+            else if (myEntities.Switch.UsbMultiFansCenter.IsOff() && myEntities.Switch.UsbMultiFansLeft.IsOn())
             {
-                A0Gbl._myEntities.Switch.UsbMultiFansCenter.Toggle();
-                A0Gbl._myEntities.Switch.UsbMultiFansLeft.Toggle();
+                myEntities.Switch.UsbMultiFansCenter.Toggle();
+                myEntities.Switch.UsbMultiFansLeft.Toggle();
 
             }
             else
             {
-                A0Gbl._myEntities.Switch.DeskFans.TurnOff();
+                myEntities.Switch.DeskFans.TurnOff();
 
             }
         }
@@ -99,7 +99,7 @@ namespace NetDaemonApps.apps
             switch (pwrpressMode)
             {
                 case 0:
-                    if (A0Gbl._myEntities.Switch.BrightLightPlug.IsOn())
+                    if (myEntities.Switch.BrightLightPlug.IsOn())
                     {
                         message = "Modem Off";
                     }
@@ -109,9 +109,9 @@ namespace NetDaemonApps.apps
                     }
 
                     cancelRoutine?.Dispose();
-                    cancelRoutine = A0Gbl._myScheduler.Schedule(TimeSpan.FromSeconds(A0Gbl._myEntities.Switch.BrightLightPlug.IsOn() ? 10 : 0), () => {
+                    cancelRoutine = myScheduler.Schedule(TimeSpan.FromSeconds(myEntities.Switch.BrightLightPlug.IsOn() ? 10 : 0), () => {
 
-                        A0Gbl._myEntities.Switch.BrightLightPlug.Toggle();
+                        myEntities.Switch.BrightLightPlug.Toggle();
 
                         pwrpressMode = -1;
                         cancelRoutine = null;
@@ -122,8 +122,8 @@ namespace NetDaemonApps.apps
                 case 1:
                     cancelRoutine?.Dispose();
                     message = "Everything Off";
-                    cancelRoutine = A0Gbl._myScheduler.Schedule(TimeSpan.FromSeconds(30), () => {
-                        A0Gbl._myServices.Script.TurnOffEverything();
+                    cancelRoutine = myScheduler.Schedule(TimeSpan.FromSeconds(30), () => {
+                        myServices.Script.TurnOffEverything();
                         pwrpressMode = 0;
                     });
                     break;
@@ -145,14 +145,14 @@ namespace NetDaemonApps.apps
         protected override void On5Hold()
         {
             base.On5Hold(); 
-            A0Gbl._myEntities.Switch.DeskFans.Toggle();
+            myEntities.Switch.DeskFans.Toggle();
         }
 
         protected override void On6Press()
         {
             base.On6Press();
             IsAsleepMonitor.Awake();
-            A0Gbl._myEntities.Switch.SwitchbotEcoflow.Toggle();
+            myEntities.Switch.SwitchbotEcoflow.Toggle();
         }
     }
 
@@ -167,51 +167,51 @@ namespace NetDaemonApps.apps
         }
         protected override SensorEntity GetEntity()
         {
-            return A0Gbl._myEntities.Sensor.Lrtabbedaction;
+            return myEntities.Sensor.Lrtabbedaction;
         }
 
         protected override void OnAny()
         {
             base.OnAny();
-            if (A0Gbl._myEntities.InputBoolean.GuestMode.IsOff())
+            if (myEntities.InputBoolean.GuestMode.IsOff())
             {
-                A0Gbl._myEntities.Switch.PcMultipowermeterMonitors.TurnOff();
-                A0Gbl._myEntities.Switch.DeskFans.TurnOff();
-                A0Gbl._myEntities.Light.ToiletLight1.TurnOff();
+                myEntities.Switch.PcMultipowermeterMonitors.TurnOff();
+                myEntities.Switch.DeskFans.TurnOff();
+                myEntities.Light.ToiletLight1.TurnOff();
             }
-            A0Gbl._myEntities.InputBoolean.Ishome.TurnOn();
+            myEntities.InputBoolean.Ishome.TurnOn();
         }
         protected override void On1Press()
         {
             base.On1Press();        
-            A0Gbl._myEntities.Light.BedLight.Toggle();
+            myEntities.Light.BedLight.Toggle();
 
         }
 
         protected override void On1Hold()
         {
             base.On1Hold();
-            A0Gbl._myEntities.Light.AllLights.TurnOff();    
+            myEntities.Light.AllLights.TurnOff();    
         }
 
         protected override void On2Press()
         {
             base.On1Press();
-            A0Gbl._myEntities.Switch.BedMultiPlugL1.Toggle();
+            myEntities.Switch.BedMultiPlugL1.Toggle();
 
         }
 
         protected override void On3Press()
         {
             base.On3Press();
-            A0Gbl._myEntities.Switch.InkplatePlug.Toggle();
+            myEntities.Switch.InkplatePlug.Toggle();
         }
         protected override void On4Press()
         {
             base.On2Press();
-            TimeSpan? timeDiff = DateTime.Now - A0Gbl._myEntities?.InputDatetime.Lastisasleeptime.GetDateTime();
+            TimeSpan? timeDiff = DateTime.Now - myEntities?.InputDatetime.Lastisasleeptime.GetDateTime();
             string ttsTime = "its " + DateTime.Now.ToString("H:mm", CultureInfo.InvariantCulture);
-            if (A0Gbl._myEntities.InputBoolean.Isasleep.IsOn()) ttsTime += ", you have been sleeping for " + timeDiff?.Hours + " hours" + (timeDiff?.Minutes > 0 ? " and " + timeDiff?.Minutes + "minutes" : ". ");
+            if (myEntities.InputBoolean.Isasleep.IsOn()) ttsTime += ", you have been sleeping for " + timeDiff?.Hours + " hours" + (timeDiff?.Minutes > 0 ? " and " + timeDiff?.Minutes + "minutes" : ". ");
 
             TTS.Speak(ttsTime, TTS.TTSPriority.IgnoreAll);
         }
@@ -224,7 +224,7 @@ namespace NetDaemonApps.apps
             switch (pwrpressMode)
             {
                 case 0:
-                    if (A0Gbl._myEntities.Switch.BrightLightPlug.IsOn())
+                    if (myEntities.Switch.BrightLightPlug.IsOn())
                     {
                         message = "Modem Off";
                     }
@@ -234,9 +234,9 @@ namespace NetDaemonApps.apps
                     }
 
                     cancelRoutine?.Dispose();
-                    cancelRoutine = A0Gbl._myScheduler.Schedule(TimeSpan.FromSeconds(A0Gbl._myEntities.Switch.BrightLightPlug.IsOn() ? 10 : 0), () => {
+                    cancelRoutine = myScheduler.Schedule(TimeSpan.FromSeconds(myEntities.Switch.BrightLightPlug.IsOn() ? 10 : 0), () => {
 
-                            A0Gbl._myEntities.Switch.BrightLightPlug.Toggle();
+                            myEntities.Switch.BrightLightPlug.Toggle();
                         
                         pwrpressMode = -1;
                         cancelRoutine = null;
@@ -247,8 +247,8 @@ namespace NetDaemonApps.apps
                 case 1:
                     cancelRoutine?.Dispose();
                     message = "Everything Off";
-                    cancelRoutine = A0Gbl._myScheduler.Schedule(TimeSpan.FromSeconds(30), () => {
-                        A0Gbl._myServices.Script.TurnOffEverything();
+                    cancelRoutine = myScheduler.Schedule(TimeSpan.FromSeconds(30), () => {
+                        myServices.Script.TurnOffEverything();
                         pwrpressMode = 0;
                     });
                     break;
@@ -277,7 +277,7 @@ namespace NetDaemonApps.apps
 
     }
 
-    public abstract class LoraTabs
+    public abstract class LoraTabs : AppBase
     {
 
         public LoraTabs()

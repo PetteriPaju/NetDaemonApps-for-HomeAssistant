@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace NetDaemonApps.apps
 {
-    public class NedisRemote
+    public class NedisRemote : AppBase
     {
 
         public NedisRemote() {
@@ -57,11 +57,11 @@ namespace NetDaemonApps.apps
     {
 
 
-        public override SensorEntity? RemoteEntity => A0Gbl._myEntities.Sensor.KeychainAction;
+        public override SensorEntity? RemoteEntity => myEntities.Sensor.KeychainAction;
 
         public TreadmillRemote() {
 
-            A0Gbl._myEntities.Sensor.ModemAutoOnPlugPower.StateChanges().WhenStateIsFor(x => x?.State < 19, TimeSpan.FromMinutes(10), A0Gbl._myScheduler).Subscribe(x => {
+            myEntities.Sensor.ModemAutoOnPlugPower.StateChanges().WhenStateIsFor(x => x?.State < 19, TimeSpan.FromMinutes(10), myScheduler).Subscribe(x => {
 
                 DeActivateRunningPad();
                 runnerSwitch?.TurnOff();
@@ -69,8 +69,8 @@ namespace NetDaemonApps.apps
             });
 
 
-            A0Gbl._myEntities.BinarySensor.WalkingpadContactContact.StateChanges().Where(x => x.New.IsOff()).Subscribe(x => { runnerSwitch?.TurnOn(); });
-            A0Gbl._myEntities.BinarySensor.WalkingpadContactContact.StateChanges().Where(x => x.New.IsOn()).Subscribe(x => { runnerSwitch?.TurnOff(); });
+            myEntities.BinarySensor.WalkingpadContactContact.StateChanges().Where(x => x.New.IsOff()).Subscribe(x => { runnerSwitch?.TurnOn(); });
+            myEntities.BinarySensor.WalkingpadContactContact.StateChanges().Where(x => x.New.IsOn()).Subscribe(x => { runnerSwitch?.TurnOff(); });
 
             runnerSwitch?.StateChanges().Where(x => x.New.IsOn()).Subscribe(x => { ActivateRunningPad(); });
 
@@ -79,9 +79,9 @@ namespace NetDaemonApps.apps
 
         protected bool hasProcess()
         {
-            return A0Gbl._myEntities.Sensor.PcWalkingpadActive2.State == "1";
+            return myEntities.Sensor.PcWalkingpadActive2.State == "1";
         }
-        protected SwitchEntity runnerSwitch { get { return A0Gbl._myEntities.Switch.ModemAutoOnPlug; } }
+        protected SwitchEntity runnerSwitch { get { return myEntities.Switch.ModemAutoOnPlug; } }
         protected void ActivateRunningPad()
         {
             bool wasPlugOn = true;
@@ -93,7 +93,7 @@ namespace NetDaemonApps.apps
 
             if (!hasProcess())
             {
-                A0Gbl._myScheduler.Schedule(TimeSpan.FromSeconds(wasPlugOn ? 0 : 5), A0Gbl._myEntities.Button.PcStartrunningpadprocess.Press);
+                myScheduler.Schedule(TimeSpan.FromSeconds(wasPlugOn ? 0 : 5), myEntities.Button.PcStartrunningpadprocess.Press);
             }
 
 
@@ -102,7 +102,7 @@ namespace NetDaemonApps.apps
         protected void DeActivateRunningPad()
         {
             bool wasRunning = false;
-            if (A0Gbl._myEntities.Sensor.ModemAutoOnPlugPower.State > 15)
+            if (myEntities.Sensor.ModemAutoOnPlugPower.State > 15)
             {
                 ToggleRunner();
                 wasRunning = true;
@@ -110,7 +110,7 @@ namespace NetDaemonApps.apps
 
             if (hasProcess())
             {
-                A0Gbl._myScheduler.Schedule(TimeSpan.FromSeconds(wasRunning ? 30 : 0), A0Gbl._myEntities.Button.PcStopwalkingpadprocess.Press);
+                myScheduler.Schedule(TimeSpan.FromSeconds(wasRunning ? 30 : 0), myEntities.Button.PcStopwalkingpadprocess.Press);
             }
 
         }
@@ -120,14 +120,14 @@ namespace NetDaemonApps.apps
             if (hasProcess())
             {
                 Console.WriteLine("Toggle");
-                A0Gbl._myEntities.Button.WalkingpadToggle.Press();
+                myEntities.Button.WalkingpadToggle.Press();
             }
         }
 
         protected override void On_O()
         {
             base.On_O();
-            if (runnerSwitch.IsOff() || A0Gbl._myEntities.Sensor.PcWalkingpadActive.State != "1")
+            if (runnerSwitch.IsOff() || myEntities.Sensor.PcWalkingpadActive.State != "1")
             {
                 ActivateRunningPad();
                 return;
@@ -141,7 +141,7 @@ namespace NetDaemonApps.apps
         protected override void On_A()
         {
             base.On_A();
-            if (A0Gbl._myEntities.Sensor.ModemAutoOnPlugPower.State < 15)
+            if (myEntities.Sensor.ModemAutoOnPlugPower.State < 15)
                 runnerSwitch.Toggle();
             else
             {
@@ -152,13 +152,13 @@ namespace NetDaemonApps.apps
         protected override void On_I()
         {
             base.On_I();
-            A0Gbl._myEntities.Button.WalkingpadUp.Press();
+            myEntities.Button.WalkingpadUp.Press();
         }
 
         protected override void On_B()
         {
             base.On_B();
-            A0Gbl._myEntities.Button.WalkingpadDown.Press();
+            myEntities.Button.WalkingpadDown.Press();
         }
 
 

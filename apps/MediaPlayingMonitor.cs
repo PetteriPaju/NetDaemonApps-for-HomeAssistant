@@ -12,17 +12,17 @@ namespace NetDaemonApps.apps
 {    
     /// <summary> Monitors all media players and keeps track if any device is playing. </summary>
     [NetDaemonApp]
-    public class MediaPlayingMonitor
+    public class MediaPlayingMonitor : AppBase
     {
          private List<IsTrueConditioner> _monitoreres = new List<IsTrueConditioner>();
 
         public MediaPlayingMonitor() {
 
 
-            MediaPlayerEntities mPlayers = A0Gbl._myEntities.MediaPlayer;
-            Entity phoneEntity = A0Gbl._myEntities.Sensor.MotoG8PowerLiteMediaSession;
-            Entity envyEntity = A0Gbl._myEntities.MediaPlayer.Envy;
-            Entity pcEntity = A0Gbl._myEntities.MediaPlayer.Pc;
+            MediaPlayerEntities mPlayers = myEntities.MediaPlayer;
+            Entity phoneEntity = myEntities.Sensor.MotoG8PowerLiteMediaSession;
+            Entity envyEntity = myEntities.MediaPlayer.Envy;
+            Entity pcEntity = myEntities.MediaPlayer.Pc;
 
 
             Entity[] mediaPlayerEntities= new Entity[] { envyEntity, pcEntity, mPlayers.LivingRoomTv, phoneEntity};
@@ -39,7 +39,7 @@ namespace NetDaemonApps.apps
                 SetEntityForMediaPlayer(e);
             }
 
-            A0Gbl._myScheduler.ScheduleCron("* * * * *", () => CheckAllStates());
+            myScheduler.ScheduleCron("* * * * *", () => CheckAllStates());
 
 
             CheckAllStates();
@@ -71,8 +71,8 @@ namespace NetDaemonApps.apps
                 }
             }
 
-            if (somethinggPlaying) A0Gbl._myEntities.InputBoolean.MediaPlaying.TurnOn();
-            else A0Gbl._myEntities.InputBoolean.MediaPlaying.TurnOff();
+            if (somethinggPlaying) myEntities.InputBoolean.MediaPlaying.TurnOn();
+            else myEntities.InputBoolean.MediaPlaying.TurnOff();
 
         }
 

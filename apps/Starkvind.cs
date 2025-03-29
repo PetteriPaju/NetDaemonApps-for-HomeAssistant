@@ -11,11 +11,11 @@ namespace NetDaemonApps.apps
 {
 
     [NetDaemonApp]
-    public class Starkvind
+    public class Starkvind : AppBase
     {
         public Starkvind(IHaContext ha) {
 
-            A0Gbl._myScheduler.ScheduleCron("30 0 * * * *", HourlyTurnOnCheck,true);
+            myScheduler.ScheduleCron("30 0 * * * *", HourlyTurnOnCheck,true);
 
         }
 
@@ -23,23 +23,23 @@ namespace NetDaemonApps.apps
         {
             if (ShouldTurnOn())
             {
-                if (A0Gbl._myEntities.Fan.Starkvind.IsOff())
+                if (myEntities.Fan.Starkvind.IsOff())
                 {
                     TurnOn();
-                    A0Gbl._myEntities.InputBoolean.StarkvindOnbyauto.TurnOn();
+                    myEntities.InputBoolean.StarkvindOnbyauto.TurnOn();
 
                 }
                 else
                 {
-                    A0Gbl._myEntities.InputBoolean.StarkvindOnbyauto.TurnOff();
+                    myEntities.InputBoolean.StarkvindOnbyauto.TurnOff();
                 }
             }
-            else if (A0Gbl._myEntities.InputBoolean.StarkvindOnbyauto.IsOn())
+            else if (myEntities.InputBoolean.StarkvindOnbyauto.IsOn())
             {
                 TurnOff();
-                A0Gbl._myEntities.InputBoolean.StarkvindOnbyauto.TurnOff();
+                myEntities.InputBoolean.StarkvindOnbyauto.TurnOff();
             }
-            else if (A0Gbl._myEntities.BinarySensor.CheapElectricity.IsOff())
+            else if (myEntities.BinarySensor.CheapElectricity.IsOff())
             {
                 TurnOff();
             }
@@ -47,17 +47,17 @@ namespace NetDaemonApps.apps
 
         private bool ShouldTurnOn()
         {
-            return A0Gbl._myEntities.BinarySensor.CheapElectricity.IsOn() && A0Gbl._myEntities.Sensor.Nordpool.State == A0Gbl._myEntities.Sensor.Nordpool.Attributes.Min;
+            return myEntities.BinarySensor.CheapElectricity.IsOn() && myEntities.Sensor.Nordpool.State == myEntities.Sensor.Nordpool.Attributes.Min;
         }
 
         private void TurnOn()
         {
-            A0Gbl._myEntities.Fan.Starkvind.SetPercentage(A0Gbl._myEntities.InputBoolean.Isasleep.IsOff() ?  (long)A0Gbl._myEntities.InputNumber.StarkvindDefaultSpeed.State : (long)A0Gbl._myEntities.InputNumber.StarkvindSleepSpeed.State);
+            myEntities.Fan.Starkvind.SetPercentage(myEntities.InputBoolean.Isasleep.IsOff() ?  (long)myEntities.InputNumber.StarkvindDefaultSpeed.State : (long)myEntities.InputNumber.StarkvindSleepSpeed.State);
         }
         private void TurnOff()
         {
-            A0Gbl._myEntities.Fan.Starkvind.TurnOff();
-            A0Gbl._myEntities.Fan.Starkvind.SetPercentage(0);
+            myEntities.Fan.Starkvind.TurnOff();
+            myEntities.Fan.Starkvind.SetPercentage(0);
 
         }
 

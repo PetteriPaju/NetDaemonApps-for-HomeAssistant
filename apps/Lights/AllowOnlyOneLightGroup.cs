@@ -10,7 +10,7 @@ namespace NetDaemonApps.apps.Lights
     /// Base class that that makes it so that only one light of given collection can be on at one. 
     /// Once one light is turned on the others lights are automatically turned off.
     /// </summary>
-    public abstract class AllowOnlyOneLightGroup
+    public abstract class AllowOnlyOneLightGroup : AppBase
     {
         protected readonly LightEntity[] lights;
 
@@ -28,12 +28,12 @@ namespace NetDaemonApps.apps.Lights
 
         protected virtual bool isEnabled()
         {
-            return A0Gbl._myEntities.InputBoolean.GuestMode.IsOff();
+            return myEntities.InputBoolean.GuestMode.IsOff();
         }
 
         private void OnLightTurnOn(LightEntity poweredLight)
         {
-            if(A0Gbl._myEntities.InputBoolean.GuestMode.IsOn())return;
+            if(myEntities.InputBoolean.GuestMode.IsOn())return;
 
             foreach (LightEntity light in lights)
             {

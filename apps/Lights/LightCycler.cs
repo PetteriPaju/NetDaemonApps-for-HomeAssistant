@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace NetDaemonApps.apps.Lights
 {
-    public class LightCycler
+    public class LightCycler : AppBase
     {
         private List <LightEntity> lightEntities;
         private LightEntity _currentLight = null;
@@ -34,7 +34,7 @@ namespace NetDaemonApps.apps.Lights
 
         protected virtual bool IsEnabled()
         {
-            return A0Gbl._myEntities.InputBoolean.GuestMode.IsOff() && (toggleBoolean == null || toggleBoolean.IsOn());
+            return myEntities.InputBoolean.GuestMode.IsOff() && (toggleBoolean == null || toggleBoolean.IsOn());
         }
 
         private void FindActiveLight()

@@ -16,12 +16,12 @@ namespace NetDaemonApps.apps.Lights
 
         protected override bool isEnabled()
         {
-            return base.isEnabled() && A0Gbl._myEntities.InputBoolean.LightgroupLivingroomEnabled.IsOn();
+            return base.isEnabled() && myEntities.InputBoolean.LightgroupLivingroomEnabled.IsOn();
         }
 
         protected override LightEntity[] SetLights()
         {
-            return A0Gbl._myEntities.InputSelect.LivingRoomLights.lightEntitiesFromSelectionDropdown().ToArray();
+            return myEntities.InputSelect.LivingRoomLights.lightEntitiesFromSelectionDropdown().ToArray();
         }
 
     }

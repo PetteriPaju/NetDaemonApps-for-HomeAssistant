@@ -11,22 +11,22 @@ using System.Reactive.Concurrency;
 namespace NetDaemonApps.apps
 {
  
-    public class AudioOutputMonitor
+    public class AudioOutputMonitor : AppBase
     {
         private Dictionary<Entity, bool> isConnectedCondition = new Dictionary<Entity, bool>();
         private IDisposable? offtimer;
         public AudioOutputMonitor()
         {
-            A0Gbl._myEntities.Sensor.EnvyAudioDefaultDevice.StateChanges().Where(x => x?.New?.State == "Headphone (Realtek(R) Audio)").Subscribe(_ => CheckCondition(A0Gbl._myEntities.Sensor.EnvyAudioDefaultDevice, true));
-            A0Gbl._myEntities.Sensor.EnvyAudioDefaultDevice.StateChanges().Where(x => x?.New?.State != "Headphone (Realtek(R) Audio)").Subscribe(_ => CheckCondition(A0Gbl._myEntities.Sensor.EnvyAudioDefaultDevice, false));
-            A0Gbl._myEntities.Sensor.PcAudioDefaultDevice.StateChanges().Where(x => x?.New?.State == "Speakers (Realtek(R) Audio)").Subscribe(_ => CheckCondition(A0Gbl._myEntities.Sensor.PcAudioDefaultDevice, true));
-            A0Gbl._myEntities.Sensor.PcAudioDefaultDevice.StateChanges().Where(x => x?.New?.State != "Speakers (Realtek(R) Audio)").Subscribe(_ => CheckCondition(A0Gbl._myEntities.Sensor.PcAudioDefaultDevice, false));
-            A0Gbl._myEntities.BinarySensor.PortableHeadphoneSensors.StateChanges().Where(x => (bool)(x?.New?.IsOn())).Subscribe(_ => CheckCondition(A0Gbl._myEntities.BinarySensor.PortableHeadphoneSensors, true));
-            A0Gbl._myEntities.BinarySensor.PortableHeadphoneSensors.StateChanges().Where(x => (bool)(x?.New?.IsOff())).Subscribe(_ => CheckCondition(A0Gbl._myEntities.BinarySensor.PortableHeadphoneSensors, false));
+            myEntities.Sensor.EnvyAudioDefaultDevice.StateChanges().Where(x => x?.New?.State == "Headphone (Realtek(R) Audio)").Subscribe(_ => CheckCondition(myEntities.Sensor.EnvyAudioDefaultDevice, true));
+            myEntities.Sensor.EnvyAudioDefaultDevice.StateChanges().Where(x => x?.New?.State != "Headphone (Realtek(R) Audio)").Subscribe(_ => CheckCondition(myEntities.Sensor.EnvyAudioDefaultDevice, false));
+            myEntities.Sensor.PcAudioDefaultDevice.StateChanges().Where(x => x?.New?.State == "Speakers (Realtek(R) Audio)").Subscribe(_ => CheckCondition(myEntities.Sensor.PcAudioDefaultDevice, true));
+            myEntities.Sensor.PcAudioDefaultDevice.StateChanges().Where(x => x?.New?.State != "Speakers (Realtek(R) Audio)").Subscribe(_ => CheckCondition(myEntities.Sensor.PcAudioDefaultDevice, false));
+            myEntities.BinarySensor.PortableHeadphoneSensors.StateChanges().Where(x => (bool)(x?.New?.IsOn())).Subscribe(_ => CheckCondition(myEntities.BinarySensor.PortableHeadphoneSensors, true));
+            myEntities.BinarySensor.PortableHeadphoneSensors.StateChanges().Where(x => (bool)(x?.New?.IsOff())).Subscribe(_ => CheckCondition(myEntities.BinarySensor.PortableHeadphoneSensors, false));
 
-            isConnectedCondition.Add(A0Gbl._myEntities.Sensor.EnvyAudioDefaultDevice, A0Gbl._myEntities.Sensor.EnvyAudioDefaultDevice.State == "Headphone (Realtek(R) Audio)");
-            isConnectedCondition.Add(A0Gbl._myEntities.Sensor.PcAudioDefaultDevice, A0Gbl._myEntities.Sensor.PcAudioDefaultDevice.State == "Speakers (Realtek(R) Audio)");
-            isConnectedCondition.Add(A0Gbl._myEntities.BinarySensor.PortableHeadphoneSensors, A0Gbl._myEntities.BinarySensor.PortableHeadphoneSensors.IsOn());
+            isConnectedCondition.Add(myEntities.Sensor.EnvyAudioDefaultDevice, myEntities.Sensor.EnvyAudioDefaultDevice.State == "Headphone (Realtek(R) Audio)");
+            isConnectedCondition.Add(myEntities.Sensor.PcAudioDefaultDevice, myEntities.Sensor.PcAudioDefaultDevice.State == "Speakers (Realtek(R) Audio)");
+            isConnectedCondition.Add(myEntities.BinarySensor.PortableHeadphoneSensors, myEntities.BinarySensor.PortableHeadphoneSensors.IsOn());
         }
 
         private void CheckCondition(Entity trueConditionEntity, bool newState)
@@ -54,18 +54,18 @@ namespace NetDaemonApps.apps
         }
         private void CheckAllIsSleepConditions()
         {
-            if (A0Gbl._myEntities.BinarySensor._19216801.IsOff()) return;
+            if (myEntities.BinarySensor._19216801.IsOff()) return;
             bool isConnected = check();
 
             // If all conditions are true or false, we might need to change isSleep-state
             if (!isConnected)
             {
                 offtimer?.Dispose();
-                offtimer = A0Gbl._myScheduler.Schedule(TimeSpan.FromMinutes(5), () => {
+                offtimer = myScheduler.Schedule(TimeSpan.FromMinutes(5), () => {
 
-                    if (!check() && (A0Gbl._myEntities.BinarySensor._19216801.IsOn()))
+                    if (!check() && (myEntities.BinarySensor._19216801.IsOn()))
                     {
-                            A0Gbl._myEntities.Switch.FanPlug.TurnOff();
+                            myEntities.Switch.FanPlug.TurnOff();
                     }
                 });
                 
@@ -73,7 +73,7 @@ namespace NetDaemonApps.apps
             }
             else {
                 offtimer?.Dispose();
-                A0Gbl._myEntities.Switch.FanPlug.TurnOn();
+                myEntities.Switch.FanPlug.TurnOn();
             }
         }
     }

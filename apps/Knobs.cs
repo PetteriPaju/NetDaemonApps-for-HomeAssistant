@@ -12,14 +12,14 @@ using System.Threading.Tasks;
 namespace NetDaemonApps.apps
 {
     [NetDaemonApp]
-    public class Knobs
+    public class Knobs : AppBase
     {
         List<Knob> knobs = new List<Knob>();
         public Knobs() {
 
-            knobs.Add(new DesktopKnob(A0Gbl._myEntities.Sensor.KnobDesktopAction, A0Gbl._myEntities.Sensor.KnobDesktopDelta));
-            knobs.Add(new BedKnob(A0Gbl._myEntities.Sensor.KnobBedAction, A0Gbl._myEntities.Sensor.KnobBedDelta));
-            knobs.Add(new SofaKnob(A0Gbl._myEntities.Sensor.KnobCouchAction, A0Gbl._myEntities.Sensor.KnobCouchDelta));
+            knobs.Add(new DesktopKnob(myEntities.Sensor.KnobDesktopAction, myEntities.Sensor.KnobDesktopDelta));
+            knobs.Add(new BedKnob(myEntities.Sensor.KnobBedAction, myEntities.Sensor.KnobBedDelta));
+            knobs.Add(new SofaKnob(myEntities.Sensor.KnobCouchAction, myEntities.Sensor.KnobCouchDelta));
 
         }
 
@@ -59,7 +59,7 @@ namespace NetDaemonApps.apps
                     long step;
                     if (long.TryParse(knobDelta.State, out step))
                     {
-                        step = (int)Math.Round(step * (flipDialDirection ? -1 : 1) * A0Gbl._myEntities.InputNumber.SettingsKnobSensitivity.State ?? 1);
+                        step = (int)Math.Round(step * (flipDialDirection ? -1 : 1) * myEntities.InputNumber.SettingsKnobSensitivity.State ?? 1);
        
                         long minBrightnessFix = Math.Min(((long)lightCycler.GetCurrentLight().getBrightness() + step), (long)255);
                         minBrightnessFix = (Math.Max(minBrightnessFix, (long)10));
@@ -71,7 +71,7 @@ namespace NetDaemonApps.apps
             }
             protected virtual void OnHold()
             {
-                A0Gbl._myServices.Script.PlayInterfaceSound();
+                myServices.Script.PlayInterfaceSound();
             }
 
             protected virtual void OnHoldRelease() { }
@@ -142,7 +142,7 @@ namespace NetDaemonApps.apps
             public DesktopKnob(SensorEntity knobAction, SensorEntity knobStep) : base(knobAction, knobStep)
             {
                 flipDialDirection = false;
-                lightCycler = new LightCycler(A0Gbl._myEntities.InputBoolean.GuestMode, A0Gbl._myEntities.InputBoolean.LightgroupLivingroomEnabled ,A0Gbl._myEntities.InputSelect.DesktopKnobLights.lightEntitiesFromSelectionDropdown().ToArray());
+                lightCycler = new LightCycler(myEntities.InputBoolean.GuestMode, myEntities.InputBoolean.LightgroupLivingroomEnabled ,myEntities.InputSelect.DesktopKnobLights.lightEntitiesFromSelectionDropdown().ToArray());
             }
 
         }
@@ -150,13 +150,13 @@ namespace NetDaemonApps.apps
         {
             public BedKnob(SensorEntity knobAction, SensorEntity knobStep) : base(knobAction, knobStep)
             {
-                lightCycler = new LightCycler(A0Gbl._myEntities.InputBoolean.GuestMode, A0Gbl._myEntities.InputBoolean.LightgroupLivingroomEnabled , A0Gbl._myEntities.InputSelect.BedKnobLights.lightEntitiesFromSelectionDropdown().ToArray());
+                lightCycler = new LightCycler(myEntities.InputBoolean.GuestMode, myEntities.InputBoolean.LightgroupLivingroomEnabled , myEntities.InputSelect.BedKnobLights.lightEntitiesFromSelectionDropdown().ToArray());
             }
 
             protected override void OnHold()
             {
                 base.OnHold();
-                A0Gbl._myEntities.Switch.InkplatePlug.Toggle();
+                myEntities.Switch.InkplatePlug.Toggle();
             }
         }
         private class SofaKnob : Knob
@@ -171,9 +171,9 @@ namespace NetDaemonApps.apps
                 base.OnPress();
 
                 
-                A0Gbl._myEntities.InputBoolean.Ishome.Toggle();
+                myEntities.InputBoolean.Ishome.Toggle();
 
-                TTS.Speak(A0Gbl._myEntities.InputBoolean.Ishome.IsOn() ? "Ok, bye!" : "Welcome Back", TTS.TTSPriority.IgnoreAll);
+                TTS.Speak(myEntities.InputBoolean.Ishome.IsOn() ? "Ok, bye!" : "Welcome Back", TTS.TTSPriority.IgnoreAll);
                
             }
         }

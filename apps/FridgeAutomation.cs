@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 namespace NetDaemonApps.apps
 {
     
-    public class FridgeAutomation
+    public class FridgeAutomation : AppBase
     {
         /*
         private int knownFridgeIndex;

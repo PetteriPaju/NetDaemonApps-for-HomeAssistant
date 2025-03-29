@@ -3,7 +3,7 @@
 namespace NetDaemonApps.apps
 {
  
-    public abstract class AqaraCube
+    public abstract class AqaraCube : AppBase
     {
         protected readonly SensorEntity? cubeEntity;
         protected readonly SensorEntity? cubeSideEntity;
@@ -26,7 +26,7 @@ namespace NetDaemonApps.apps
 
             foreach (var e in events)
             {
-                var triggerObservable = A0Gbl.TriggerManager.RegisterTrigger(
+                var triggerObservable = myTriggerManager.RegisterTrigger(
                  new
                  {
                      platform = "state",

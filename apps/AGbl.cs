@@ -36,9 +36,10 @@ namespace NetDaemonApps.apps
             _events = ha.Events;
             HaContext = ha;
             TriggerManager = _triggerManager;
-            A0Gbl._myScheduler.ScheduleCron("59 * * * *", hourlyResetFunction);
-            A0Gbl._myScheduler.ScheduleCron("0 0 * * *", dailyResetFunction);
+            _myScheduler.ScheduleCron("59 * * * *", hourlyResetFunction);
+            _myScheduler.ScheduleCron("0 0 * * *", dailyResetFunction);
             DailyResetFunction += () => { _myEntities?.InputDatetime.Lastknowndate.SetDatetime(date:DateTime.Now.Date.ToString("yyyy-MM-dd"));};
+            AppBase.Init(this);
             Console.WriteLine("Is working");
             Task.Run(OnLateStart);
     

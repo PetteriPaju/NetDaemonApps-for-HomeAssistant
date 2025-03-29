@@ -18,28 +18,28 @@ namespace NetDaemonApps.apps.Hue_Switches
       
         public Livingroom_Switch() : base() {
 
-                A0Gbl._myEntities.Sensor.PcWalkingpadActive2.StateChanges().Where(x => x.New.State == "1").Subscribe(x => {
+                _myEntities.Sensor.PcWalkingpadActive2.StateChanges().Where(x => x.New.State == "1").Subscribe(x => {
                     speedIncrementRoutine?.Dispose();
-                    speedIncrementRoutine = A0Gbl._myScheduler.RunEvery(TimeSpan.FromMinutes(5),(DateTime.Now+TimeSpan.FromMinutes(5)), () => {
-                        A0Gbl._myEntities.Button.PcWalkingpadSpeedupone.Press();
+                    speedIncrementRoutine = _myScheduler.RunEvery(TimeSpan.FromMinutes(5),(DateTime.Now+TimeSpan.FromMinutes(5)), () => {
+                        _myEntities.Button.PcWalkingpadSpeedupone.Press();
                     });
                 });
 
-            A0Gbl._myEntities.Sensor.PcWalkingpadActive2.StateChanges().Where(x => x.New.State != "1").Subscribe(x => {
+            _myEntities.Sensor.PcWalkingpadActive2.StateChanges().Where(x => x.New.State != "1").Subscribe(x => {
                 speedIncrementRoutine?.Dispose();
             });
 
 
-            A0Gbl._myEntities.BinarySensor.WalkingpadContactSensorContact.StateChanges().Where(x => x.New.IsOff()).Subscribe(x => { ActivateRunningPad(); });
-            A0Gbl._myEntities.BinarySensor.WalkingpadContactSensorContact.StateChanges().Where(x => x.New.IsOn()).Subscribe(x => { DeActivateRunningPad(); });
+            _myEntities.BinarySensor.WalkingpadContactSensorContact.StateChanges().Where(x => x.New.IsOff()).Subscribe(x => { ActivateRunningPad(); });
+            _myEntities.BinarySensor.WalkingpadContactSensorContact.StateChanges().Where(x => x.New.IsOn()).Subscribe(x => { DeActivateRunningPad(); });
 
         }
   
         protected bool hasProcess()
         {
-            return A0Gbl._myEntities.Sensor.PcWalkingpadActive2.State == "1";
+            return _myEntities.Sensor.PcWalkingpadActive2.State == "1";
         }
-        protected SwitchEntity runnerSwitch { get { return A0Gbl._myEntities.Switch.ModemAutoOnPlug;  } }
+        protected SwitchEntity runnerSwitch { get { return _myEntities.Switch.ModemAutoOnPlug;  } }
         protected void ActivateRunningPad()
         {
             bool wasPlugOn = true;
@@ -51,11 +51,11 @@ namespace NetDaemonApps.apps.Hue_Switches
 
             if (!hasProcess())
             {
-            A0Gbl._myScheduler.Schedule(TimeSpan.FromSeconds(wasPlugOn ? 0 : 5), A0Gbl._myEntities.Button.PcWalkingpadprocessrun.Press);
+            _myScheduler.Schedule(TimeSpan.FromSeconds(wasPlugOn ? 0 : 5), _myEntities.Button.PcWalkingpadprocessrun.Press);
             }
             else
             {
-                A0Gbl._myEntities.Button.PcWalkingpadprocessrun.Press();    
+                _myEntities.Button.PcWalkingpadprocessrun.Press();    
             }
         }
 
@@ -63,7 +63,7 @@ namespace NetDaemonApps.apps.Hue_Switches
         {
 
             runnerSwitch.TurnOff();
-            A0Gbl._myEntities.Button.PcWalkingpadprocesskill.Press();
+            _myEntities.Button.PcWalkingpadprocesskill.Press();
 
 
         }
@@ -73,7 +73,7 @@ namespace NetDaemonApps.apps.Hue_Switches
             if (hasProcess())
             {
                 Console.WriteLine("Toggle");
-                A0Gbl._myEntities.Button.PcWalkingpadtoggle.Press();
+                _myEntities.Button.PcWalkingpadtoggle.Press();
             }
         }
 
@@ -104,7 +104,7 @@ namespace NetDaemonApps.apps.Hue_Switches
         protected override void OnDownPressRelease()
         {
             base.OnDownPressRelease();
-            A0Gbl._myEntities.Button.PcCwalkingpadspeeddown.Press();
+            _myEntities.Button.PcCwalkingpadspeeddown.Press();
 
 
         }
@@ -112,7 +112,7 @@ namespace NetDaemonApps.apps.Hue_Switches
         {
             base.OnUpPressRelease();
 
-            A0Gbl._myEntities.Button.PcWalkingpadspeedup.Press();
+            _myEntities.Button.PcWalkingpadspeedup.Press();
         }
 
         protected override void OnUpHoldRelease()
