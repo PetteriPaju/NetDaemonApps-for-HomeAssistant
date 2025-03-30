@@ -164,6 +164,8 @@ namespace NetDaemonApps.apps
             });
             */
 
+
+
             modentimer = myScheduler.Schedule((reboot ? myEntities.InputDatetime.AlarmTargetTime.GetDateTime(): DetermineAlarmTagetTime(mode))- TimeSpan.FromMinutes(45), x =>
             {              
 

@@ -124,16 +124,23 @@ namespace NetDaemonApps.apps
 
                     });
                     break;
-
                 case 1:
                     cancelRoutine?.Dispose();
-                    message = "Everything Off";
+                    message = "Assistant Off";
                     cancelRoutine = myScheduler.Schedule(TimeSpan.FromSeconds(30), () => {
-                        myServices.Script.TurnOffEverything();
+                        myEntities.Button.NodePveShutdown.Press();
                         pwrpressMode = 0;
                     });
                     break;
                 case 2:
+                    cancelRoutine?.Dispose();
+                    message = "Everything Off";
+                    cancelRoutine = myScheduler.Schedule(TimeSpan.FromSeconds(30), () => {
+                        myServices.Script.TurnOffEverything();
+                        pwrpressMode = 1;
+                    });
+                    break;
+                case 3:
                     message = "Cancel";
                     if (cancelRoutine != null)
                     {
@@ -142,7 +149,7 @@ namespace NetDaemonApps.apps
                     }
                     break;
             }
-            pwrpressMode = pwrpressMode == 2 ? 0 : pwrpressMode + 1;
+            pwrpressMode = pwrpressMode == 3 ? 0 : pwrpressMode + 1;
 
             TTS.Speak(message, TTS.TTSPriority.IgnoreAll);
 
@@ -251,23 +258,30 @@ namespace NetDaemonApps.apps
                     cancelRoutine?.Dispose();
                     cancelRoutine = myScheduler.Schedule(TimeSpan.FromSeconds(myEntities.Switch.BrightLightPlug.IsOn() ? 10 : 0), () => {
 
-                            myEntities.Switch.BrightLightPlug.Toggle();
-                        
+                        myEntities.Switch.BrightLightPlug.Toggle();
+
                         pwrpressMode = -1;
                         cancelRoutine = null;
 
                     });
                     break;
-
                 case 1:
                     cancelRoutine?.Dispose();
-                    message = "Everything Off";
+                    message = "Assistant Off";
                     cancelRoutine = myScheduler.Schedule(TimeSpan.FromSeconds(30), () => {
-                        myServices.Script.TurnOffEverything();
+                        myEntities.Button.NodePveShutdown.Press();
                         pwrpressMode = 0;
                     });
                     break;
                 case 2:
+                    cancelRoutine?.Dispose();
+                    message = "Everything Off";
+                    cancelRoutine = myScheduler.Schedule(TimeSpan.FromSeconds(30), () => {
+                        myServices.Script.TurnOffEverything();
+                        pwrpressMode = 1;
+                    });
+                    break;
+                case 3:
                     message = "Cancel";
                     if (cancelRoutine != null)
                     {
@@ -276,7 +290,7 @@ namespace NetDaemonApps.apps
                     }
                     break;
             }
-            pwrpressMode = pwrpressMode == 2 ? 0 : pwrpressMode + 1;
+            pwrpressMode = pwrpressMode == 3 ? 0 : pwrpressMode + 1;
 
             TTS.Speak(message, TTS.TTSPriority.IgnoreAll);
 
