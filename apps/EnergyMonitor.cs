@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Diagnostics;
 using System.Globalization;
+using System.IO.Pipelines;
 using System.Linq;
 using System.Reactive.Concurrency;
 using System.Reactive.Linq;
@@ -444,7 +445,7 @@ public class EnergyMonitor : AppBase
 
         if (priceChange != PriceChangeType.NoChange)
         {
-            TTSMessage += (priceChange == PriceChangeType.Increase ? "increase to " : "fall to ") + priceToRangeName(myEntities.Sensor.NextPrice.State ?? 0) + ".";
+            TTSMessage += (priceChange == PriceChangeType.Increase ? "increase to " : "fall to ") + (electiricityRanges.Values.ElementAtOrDefault(inFoForNextHour.range) ?? "unknown") + ".";
 
             var hoursTillChange =  FindWhenElectricityRangeChanges(inFoForNextHour.nexthour);
 
