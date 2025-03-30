@@ -184,6 +184,11 @@
           "cSharpName": "ModemOnForNordpool"
         },
         {
+          "id": "automation.modem_on_for_nordpool_2",
+          "friendlyName": "Modem on for Nordpool",
+          "cSharpName": "ModemOnForNordpool2"
+        },
+        {
           "id": "automation.new_automation",
           "friendlyName": "New Automation",
           "cSharpName": "NewAutomation"
@@ -3420,11 +3425,6 @@
       "domain": "sensor",
       "entities": [
         {
-          "id": "sensor.all_standby_energy",
-          "friendlyName": "All standby energy",
-          "cSharpName": "AllStandbyEnergy"
-        },
-        {
           "id": "sensor.awake_today",
           "friendlyName": "Awake Today",
           "cSharpName": "AwakeToday"
@@ -4941,6 +4941,11 @@
           "id": "sensor.all_powers_power",
           "friendlyName": "All Powers power",
           "cSharpName": "AllPowersPower"
+        },
+        {
+          "id": "sensor.all_standby_energy",
+          "friendlyName": "All standby energy",
+          "cSharpName": "AllStandbyEnergy"
         },
         {
           "id": "sensor.all_standby_power",
@@ -8007,6 +8012,11 @@
     {
       "domain": "input_button",
       "entities": [
+        {
+          "id": "input_button.debug_energy_hourlyupdate",
+          "friendlyName": "Debug_Energy_HourlyUpdate",
+          "cSharpName": "DebugEnergyHourlyupdate"
+        },
         {
           "id": "input_button.lightcycler_bedlights",
           "friendlyName": "LightCycler_BedLights",

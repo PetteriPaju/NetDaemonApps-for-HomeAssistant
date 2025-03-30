@@ -104,7 +104,7 @@ public class EnergyMonitor : AppBase
             e.Entity.SetValue(0);
         });
 
-
+        myEntities.InputButton.DebugEnergyHourlyupdate.StateChanges().Where(e => e.Old.State != "unavailable").Subscribe(e => { EnergiPriceChengeAlert(true); } );
         myEntities.Sensor.EcoflowAcInputHourly.StateChanges().Where(x => x.Old.State == 0 && x.New.State > abNormalEnergyIncreaseThreshold).Subscribe(e => {
 
             ecoflowCgargePriceFixHelper = myEntities.Sensor.EcoflowAcInputHourly.State ?? 0;
@@ -407,37 +407,42 @@ public class EnergyMonitor : AppBase
         else if (rangeOfA > rangeofB) return PriceChangeType.Descrease;
         else return PriceChangeType.NoChange;
     }
-    private void EnergiPriceChengeAlert()
+    private void EnergiPriceChengeAlert(bool force = false)
     {
-
+  
         UpdateNextChangeHourTime();
         if (myEntities.InputBoolean.NotificationEnergyPriceChange.IsOff()) return;
         if (myEntities.InputBoolean.Isasleep.State == "on") return;
 
         // No need for alert on low price days
-        if (nordPoolEntity.Attributes.Max < electiricityRanges.Keys.ToArray()[1]) return;
+        if (nordPoolEntity.Attributes.Max < electiricityRanges.Keys.ToArray()[1] && !force) return;
 
         ElectricityPriceInfo inFoForNextHour = infoForCurrentHour?.nexthour;
         PriceChangeType priceChange = comparePrice(infoForCurrentHour, inFoForNextHour);
        
         string TTSMessage = null;
 
+        if (force)
+        {
         Console.WriteLine("Current Price: " + infoForCurrentHour.price);
         Console.WriteLine("Next Price: " + inFoForNextHour.price);
         Console.WriteLine("Price Range: " + inFoForNextHour.range);
         Console.WriteLine("Price Change: " + priceChange.ToString());
         
         Console.WriteLine("Range Change in: " + FindWhenElectricityRangeChanges(inFoForNextHour.nexthour)?.dateTime);
+        }
 
-        if (infoForCurrentHour.range + inFoForNextHour.range <= 1 && inFoForNextHour.peak == 0) return;
 
-        if (priceChange == PriceChangeType.NoChange && inFoForNextHour.peak == 0 
+        
+
+        if ((priceChange == PriceChangeType.NoChange && inFoForNextHour.peak == 0 
             || (priceChange == PriceChangeType.NoChange && infoForCurrentHour.peak == -1 && loPeakAlertGiven) 
-            || (priceChange == PriceChangeType.NoChange && infoForCurrentHour.peak == 1 && hiPeakAlertGiven)) return;
+            || (priceChange == PriceChangeType.NoChange && infoForCurrentHour.peak == 1 && hiPeakAlertGiven)) && !force) return;
         
 
             bool isWarning = priceChange == PriceChangeType.Increase || inFoForNextHour.peak == 1;
 
+        if (infoForCurrentHour.range + inFoForNextHour.range <= 1 && inFoForNextHour.peak == 0 && isWarning && !force) return;
 
         TTSMessage = "Electricity " + (isWarning ? "Warning. " : "Notice. ") + "The Price is About to ";
         int ttsLenght = TTSMessage.Length;
@@ -459,7 +464,7 @@ public class EnergyMonitor : AppBase
             else if (priceChange == PriceChangeType.Increase || priceChange == PriceChangeType.Descrease)
             {
                 var timeDiff = hoursTillChange.dateTime - inFoForNextHour.dateTime;
-                TTSMessage += "And will " + (priceChangeType == PriceChangeType.Increase ? "increase to " : "fall to ") + priceToRangeName(hoursTillChange.price ?? 0) + " after " + GetHoursAndMinutesFromTimeSpan(timeDiff);
+                TTSMessage += "And will " + (priceChangeType == PriceChangeType.Increase ? "increase to " : "fall to ") + (electiricityRanges.Values.ElementAtOrDefault(hoursTillChange.range) ?? "unknown") + " after " + GetHoursAndMinutesFromTimeSpan(timeDiff);
             }
 
             if (inFoForNextHour.peak != 0)
@@ -489,8 +494,7 @@ public class EnergyMonitor : AppBase
 
             //Fix for weird bug that prevents Peak Alert from triggering
         if (ttsLenght == TTSMessage.Length) return;
-
-        Console.WriteLine(TTSMessage);
+        if(force)Console.WriteLine(TTSMessage);
         if (TTSMessage!= null)TTS.Speak(TTSMessage, TTS.TTSPriority.PlayInGuestMode);
     }
 
