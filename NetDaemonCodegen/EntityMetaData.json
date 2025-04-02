@@ -436,6 +436,16 @@
           "cSharpName": "IsStandingOrOut"
         },
         {
+          "id": "binary_sensor.isasleep",
+          "friendlyName": "IsAsleep",
+          "cSharpName": "Isasleep"
+        },
+        {
+          "id": "binary_sensor.isasleep_helper",
+          "friendlyName": "IsAsleep Helper",
+          "cSharpName": "IsasleepHelper"
+        },
+        {
           "id": "binary_sensor.kitchen_distance_helper",
           "friendlyName": "Kitchen Distance Helper",
           "cSharpName": "KitchenDistanceHelper"
@@ -3425,6 +3435,11 @@
       "domain": "sensor",
       "entities": [
         {
+          "id": "sensor.all_standby_energy",
+          "friendlyName": "All standby energy",
+          "cSharpName": "AllStandbyEnergy"
+        },
+        {
           "id": "sensor.awake_today",
           "friendlyName": "Awake Today",
           "cSharpName": "AwakeToday"
@@ -4941,11 +4956,6 @@
           "id": "sensor.all_powers_power",
           "friendlyName": "All Powers power",
           "cSharpName": "AllPowersPower"
-        },
-        {
-          "id": "sensor.all_standby_energy",
-          "friendlyName": "All standby energy",
-          "cSharpName": "AllStandbyEnergy"
         },
         {
           "id": "sensor.all_standby_power",
