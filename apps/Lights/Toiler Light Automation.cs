@@ -34,26 +34,29 @@ namespace NetDaemonApps.apps.Lights
                   else if (myEntities.BinarySensor.ToiletSensorOccupancy.IsOff() && !isSeatOpen()) myEntities.Light.ToiletLight1.TurnOffLight();
              });
 
-            myEntities.BinarySensor.ToiletSeatSensorContact.StateChanges().Subscribe(_ => {
-                Console.WriteLine("Seat changed");
-               if (myEntities.InputBoolean.SensorsActive.IsOff() || myEntities.InputBoolean.GuestMode.IsOn()) return;
 
-               if (isSeatOpen())
+            myEntities.BinarySensor.ToiletSeatSensorContact.StateChanges().Where(x=>x.New.IsOn()).Subscribe(_ => {
+
+               if (myEntities.InputBoolean.SensorsActive.IsOff() || myEntities.InputBoolean.GuestMode.IsOn()) return;
                    OnToiledLidOpen();
-               else
-                   OnToiledLidClose();
-               
                });
 
-/*
-            _myEntities.BinarySensor.HallwaySensorOccupancy.StateChanges()
-            .Where(e => e.New.IsOn() && _myEntities.InputBoolean.SensorsActive.IsOn() && _myEntities.InputBoolean.GuestMode.IsOff() && _myEntities.BinarySensor.ToiletSensorOccupancy.IsOff())
-            .Subscribe(_ =>
-            {
-                if (!isSeatOpen() && !forceLightOn)
-                   _myEntities.Light.ToiletLight1.TurnOffLight();
+            myEntities.BinarySensor.ToiletSeatSensorContact.StateChanges().WhenStateIsFor(x => x.IsOff(),TimeSpan.FromSeconds(2), myScheduler).Subscribe(_ => {
+                if (myEntities.InputBoolean.SensorsActive.IsOff() || myEntities.InputBoolean.GuestMode.IsOn()) return;
+                OnToiledLidClose();
             });
-*/
+
+
+
+            /*
+                        _myEntities.BinarySensor.HallwaySensorOccupancy.StateChanges()
+                        .Where(e => e.New.IsOn() && _myEntities.InputBoolean.SensorsActive.IsOn() && _myEntities.InputBoolean.GuestMode.IsOff() && _myEntities.BinarySensor.ToiletSensorOccupancy.IsOff())
+                        .Subscribe(_ =>
+                        {
+                            if (!isSeatOpen() && !forceLightOn)
+                               _myEntities.Light.ToiletLight1.TurnOffLight();
+                        });
+            */
 
         }
       
