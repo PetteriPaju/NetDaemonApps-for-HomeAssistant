@@ -531,6 +531,11 @@
           "cSharpName": "SolarChargingLimit"
         },
         {
+          "id": "binary_sensor.solar_helper",
+          "friendlyName": "Solar Helper",
+          "cSharpName": "SolarHelper"
+        },
+        {
           "id": "binary_sensor.standing_threshold",
           "friendlyName": "Standing Threshold",
           "cSharpName": "StandingThreshold"
@@ -1232,6 +1237,66 @@
       "domain": "input_boolean",
       "entities": [
         {
+          "id": "input_boolean.alarm_s1_enabled",
+          "friendlyName": "Alarm Slot 1 Enabled",
+          "cSharpName": "AlarmS1Enabled"
+        },
+        {
+          "id": "input_boolean.alarm_s1_priority",
+          "friendlyName": "Alarm Slot 1 Priority",
+          "cSharpName": "AlarmS1Priority"
+        },
+        {
+          "id": "input_boolean.alarm_s1_repeat",
+          "friendlyName": "Alarm Slot 1 Repeat",
+          "cSharpName": "AlarmS1Repeat"
+        },
+        {
+          "id": "input_boolean.alarm_s2_enabled",
+          "friendlyName": "Alarm Slot 2 Enabled",
+          "cSharpName": "AlarmS2Enabled"
+        },
+        {
+          "id": "input_boolean.alarm_s2_priority",
+          "friendlyName": "Alarm Slot 2 Priority",
+          "cSharpName": "AlarmS2Priority"
+        },
+        {
+          "id": "input_boolean.alarm_s2_repeat",
+          "friendlyName": "Alarm Slot 2 Repeat",
+          "cSharpName": "AlarmS2Repeat"
+        },
+        {
+          "id": "input_boolean.alarm_s3_enabled",
+          "friendlyName": "Alarm Slot 3 Enabled",
+          "cSharpName": "AlarmS3Enabled"
+        },
+        {
+          "id": "input_boolean.alarm_s3_priority",
+          "friendlyName": "Alarm Slot 3 Priority",
+          "cSharpName": "AlarmS3Priority"
+        },
+        {
+          "id": "input_boolean.alarm_s3_repeat",
+          "friendlyName": "Alarm Slot 3 Repeat",
+          "cSharpName": "AlarmS3Repeat"
+        },
+        {
+          "id": "input_boolean.alarm_s4_enabled",
+          "friendlyName": "Alarm Slot 4 Enabled",
+          "cSharpName": "AlarmS4Enabled"
+        },
+        {
+          "id": "input_boolean.alarm_s4_priority",
+          "friendlyName": "Alarm Slot 4 Priority",
+          "cSharpName": "AlarmS4Priority"
+        },
+        {
+          "id": "input_boolean.alarm_s4_repeat",
+          "friendlyName": "Alarm Slot 4 Repeat",
+          "cSharpName": "AlarmS4Repeat"
+        },
+        {
           "id": "input_boolean.alarmenabled",
           "friendlyName": "Alarm Enabled",
           "cSharpName": "Alarmenabled"
@@ -1587,6 +1652,26 @@
           "id": "input_datetime.alarm_nap_duration",
           "friendlyName": "Alarm Nap Duration",
           "cSharpName": "AlarmNapDuration"
+        },
+        {
+          "id": "input_datetime.alarm_s1_time",
+          "friendlyName": "Alarm Slot 1 Time",
+          "cSharpName": "AlarmS1Time"
+        },
+        {
+          "id": "input_datetime.alarm_s2_time",
+          "friendlyName": "Alarm Slot 2 Time",
+          "cSharpName": "AlarmS2Time"
+        },
+        {
+          "id": "input_datetime.alarm_s3_time",
+          "friendlyName": "Alarm Slot 3 Time",
+          "cSharpName": "AlarmS3Time"
+        },
+        {
+          "id": "input_datetime.alarm_s4_time",
+          "friendlyName": "Alarm Slot 4 Time",
+          "cSharpName": "AlarmS4Time"
         },
         {
           "id": "input_datetime.alarm_sleep_duration",
@@ -2060,6 +2145,26 @@
     {
       "domain": "input_text",
       "entities": [
+        {
+          "id": "input_text.alarm_s1_message",
+          "friendlyName": "Alarm Slot 1 Message",
+          "cSharpName": "AlarmS1Message"
+        },
+        {
+          "id": "input_text.alarm_s2_message",
+          "friendlyName": "Alarm Slot 2 Message",
+          "cSharpName": "AlarmS2Message"
+        },
+        {
+          "id": "input_text.alarm_s3_message",
+          "friendlyName": "Alarm Slot 3 Message",
+          "cSharpName": "AlarmS3Message"
+        },
+        {
+          "id": "input_text.alarm_s4_message",
+          "friendlyName": "Alarm Slot 4 Message",
+          "cSharpName": "AlarmS4Message"
+        },
         {
           "id": "input_text.fp1debugger",
           "friendlyName": "FP1Debugger",

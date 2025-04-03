@@ -69,6 +69,9 @@
       <Compile Update="apps\AutoTurnOffs.cs">
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </Compile>
+      <Compile Update="apps\EasyAlarm.cs">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Compile>
       <Compile Update="apps\EcoFlowManager.cs">
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </Compile>
