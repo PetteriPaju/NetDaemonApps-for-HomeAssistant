@@ -102,6 +102,9 @@ public class EnergyMonitor : AppBase
         });
 
         myEntities.InputButton.DebugEnergyHourlyupdate.StateChanges().Where(e => e.Old.State != "unavailable").Subscribe(e => { EnergiPriceChengeAlert(true); } );
+        myEntities.InputButton.DebugEnergyReadforecast.StateChanges().Where(e => e.Old.State != "unavailable").Subscribe(e => { ReadOutEnergyUpdate(); });
+
+
         myEntities.Sensor.EcoflowAcInputHourly.StateChanges().Where(x => x.Old.State == 0 && x.New.State > abNormalEnergyIncreaseThreshold).Subscribe(e => {
 
             ecoflowCgargePriceFixHelper = myEntities.Sensor.EcoflowAcInputHourly.State ?? 0;
@@ -198,41 +201,7 @@ public class EnergyMonitor : AppBase
         hoursToday = tmplist;
 
     }
-    /*
-    private void fillToday()
-    {
-      
-        hoursToday = new ElectricityPriceInfo[24];
-
-        var todayList = nordPoolEntity?.EntityState?.Attributes?.Today;
-
-        for (int i=0; i< todayList.Count; i++)
-        {
-            var price = todayList.ElementAt(i);
-            var peak = price == nordPoolEntity?.EntityState?.Attributes?.Max ? 1 : 0;
-            peak = price == nordPoolEntity?.EntityState?.Attributes.Min ? -1 : peak;
-            hoursToday[i] = new ElectricityPriceInfo(DateTime.Today + TimeSpan.FromHours(i),price, peak);
-        }
-  
-    }
-
-    private void fillTomorrow()
-    {
-        hoursTomorrow = null;
-        if (nordPoolEntity?.Attributes.TomorrowValid ?? false)
-        {
-            hoursTomorrow = new ElectricityPriceInfo[24];
-            var tomorrowList = JsonSerializer.Deserialize<List<double>>(_0Gbl._myEntities.Sensor?.NordpoolKwhFiEur3100255?.EntityState?.Attributes?.Tomorrow.ToString());
-
-            for (int i = 0; i < tomorrowList.Count; i++)
-            {
-                hoursTomorrow[i] = new ElectricityPriceInfo(DateTime.Today+TimeSpan.FromDays(1) + TimeSpan.FromHours(i),tomorrowList.ElementAt(i), 0);
-
-            }
-        }
-    }
-
-    */
+ 
 
     private void UpdateNextChangeHourTime()
     {
@@ -282,7 +251,7 @@ public class EnergyMonitor : AppBase
         message += "Tomorrows Prices will be" + (energyForecastInfo.isAllSameRange ? " all " : " mostly ") + "in " + Price2RangaNme(energyForecastInfo.avarage);
             message += " and  " + PercentageDifference(nordPoolEntity?.EntityState?.Attributes?.Average ?? 0, energyForecastInfo.avarage) + "% " + (nordPoolEntity?.EntityState?.Attributes?.Average > energyForecastInfo.avarage ? "lower" : "higher") + " than today.";
 
-            if (energyForecastInfo.subZeroCount > 0) message += " There will also be " + energyForecastInfo.subZeroCount + " sub zero hour" + (energyForecastInfo.subZeroCount > 1 ? "s." : ".");
+            if (energyForecastInfo.subZeroCount > 0 && energyForecastInfo.majorityRange != 0) message += " There will also be " + energyForecastInfo.subZeroCount + " sub zero hour" + (energyForecastInfo.subZeroCount > 1 ? "s." : ".");
         
 
             TTS.Speak(message, TTS.TTSPriority.PlayInGuestMode);
@@ -313,7 +282,7 @@ public class EnergyMonitor : AppBase
         for (int i = startFrom; i < list.Length - 1; i++)
         {
 
-            var rangeForPrice = Price2RangeIndx(Math.Max(0, list.ElementAt(i)));
+            var rangeForPrice = Price2RangeIndx(list.ElementAt(i));
 
             if (!foundPerRange.ContainsKey(rangeForPrice)) foundPerRange.Add(rangeForPrice, 1);
             else foundPerRange[rangeForPrice]++;
@@ -326,8 +295,8 @@ public class EnergyMonitor : AppBase
         energyForecastInfo.avarage = avg;
         energyForecastInfo.max = max;
         energyForecastInfo.min = min;
-        energyForecastInfo.averageRange = Price2RangeIndx(Math.Max(0, avg));
-        energyForecastInfo.majorityRange = Math.Max(0,foundPerRange.MaxBy(x => x.Value).Key);
+        energyForecastInfo.averageRange = Price2RangeIndx(avg);
+        energyForecastInfo.majorityRange = foundPerRange.MaxBy(x => x.Value).Key;
         energyForecastInfo.isAllSameRange = foundPerRange.Count == 1;
         energyForecastInfo.subZeroCount = subZeroCount;
 

@@ -81,14 +81,14 @@ namespace NetDaemonApps.apps
             {
                 myEntities.Switch.DeskFans.TurnOn();
             }
-            else if (myEntities.Switch.UsbMultiFansCenter.IsOn() && myEntities.Switch.UsbMultiFansCenter.IsOn())
+            else if (myEntities.Switch.UsbMultiFansL2.IsOn())
             {
-                myEntities.Switch.UsbMultiFansCenter.TurnOff();
+                myEntities.Switch.UsbMultiFansL2.TurnOff();
             }
-            else if (myEntities.Switch.UsbMultiFansCenter.IsOff() && myEntities.Switch.UsbMultiFansLeft.IsOn())
+            else if (myEntities.Switch.UsbMultiFansL2.IsOff() && myEntities.Switch.UsbMultiFansL1.IsOn())
             {
-                myEntities.Switch.UsbMultiFansCenter.Toggle();
-                myEntities.Switch.UsbMultiFansLeft.Toggle();
+                myEntities.Switch.UsbMultiFansL2.Toggle();
+                myEntities.Switch.UsbMultiFansL1.Toggle();
 
             }
             else
