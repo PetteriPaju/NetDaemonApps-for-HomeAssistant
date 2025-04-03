@@ -411,19 +411,14 @@
           "cSharpName": "Internetgatewaydevicev2FritzBox6660CableWanStatus"
         },
         {
+          "id": "binary_sensor.is_asleep_helper",
+          "friendlyName": "Is Asleep Helper",
+          "cSharpName": "IsAsleepHelper"
+        },
+        {
           "id": "binary_sensor.is_standing_or_out",
           "friendlyName": "is Standing Or Out",
           "cSharpName": "IsStandingOrOut"
-        },
-        {
-          "id": "binary_sensor.isasleep",
-          "friendlyName": "IsAsleep",
-          "cSharpName": "Isasleep"
-        },
-        {
-          "id": "binary_sensor.isasleep_helper",
-          "friendlyName": "IsAsleep Helper",
-          "cSharpName": "IsasleepHelper"
         },
         {
           "id": "binary_sensor.kitchen_distance_helper",
@@ -1390,6 +1385,11 @@
           "id": "input_boolean.netdaemon_net_daemon_apps_apps_auto_turn_offs",
           "friendlyName": "netdaemon_net_daemon_apps_apps_auto_turn_offs",
           "cSharpName": "NetdaemonNetDaemonAppsAppsAutoTurnOffs"
+        },
+        {
+          "id": "input_boolean.netdaemon_net_daemon_apps_apps_easy_alarm",
+          "friendlyName": "netdaemon_net_daemon_apps_apps_easy_alarm",
+          "cSharpName": "NetdaemonNetDaemonAppsAppsEasyAlarm"
         },
         {
           "id": "input_boolean.netdaemon_net_daemon_apps_apps_eco_flow_manager",

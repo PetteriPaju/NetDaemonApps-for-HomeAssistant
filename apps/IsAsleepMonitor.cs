@@ -217,7 +217,7 @@ namespace NetDaemonApps.apps
             //DateTime d2 = DateTime.Parse(_00_Globals._myEntities.Sensor.EnvyLastactive.State ?? "", null, System.Globalization.DateTimeStyles.RoundtripKind);
             SleepStatusUpdated();
 
-            myEntities.BinarySensor.IsasleepHelper.StateAllChanges().Subscribe(_=>SleepStatusUpdated());
+            myEntities.BinarySensor.IsAsleepHelper.StateAllChanges().Subscribe(_=>SleepStatusUpdated());
 
             Resub(true);
 
@@ -286,10 +286,10 @@ namespace NetDaemonApps.apps
 
         private void SleepStatusUpdated()
         {
-            if (myEntities.InputBoolean.Isasleep.IsOn() == myEntities.BinarySensor.IsasleepHelper.IsOn()) return;
+            if (myEntities.InputBoolean.Isasleep.IsOn() == myEntities.BinarySensor.IsAsleepHelper.IsOn()) return;
 
 
-            if (myEntities.BinarySensor.IsasleepHelper.IsOff())
+            if (myEntities.BinarySensor.IsAsleepHelper.IsOff())
             {
                 isAsleepOnTimer?.Dispose();
                 isAsleepOnTimer = null;

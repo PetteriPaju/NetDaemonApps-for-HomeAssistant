@@ -239,7 +239,48 @@ public class EnergyMonitor : AppBase
 
 
  
+    protected bool DetectQuarterIrregularity()
+    {
+        return false;
 
+
+
+        double differenceThresholdByCents = 33;
+        double differenceThresholdByRation = 7;
+        bool illegularityFound = false;
+
+        List<double> prices = new List<double>();
+        prices.Add(0);
+        prices.Add(4);
+        prices.Add(5);
+        prices.Add(10);
+
+        prices.Sort();
+        int mid = prices.Count / 2;
+        double median = 0;
+        if (mid % 2 != 0)
+        {
+            median = prices[mid];
+        }
+        else
+        {
+            median = (prices[mid - 1] + prices[mid]) / 2;
+        }
+      
+        foreach (double price in prices)
+        {
+            if (price == median) continue;
+            if( Math.Abs(median - price) > differenceThresholdByCents && ((((price - median) / Math.Abs(Math.Abs(median)))*100)) > differenceThresholdByRation )
+            {
+                illegularityFound = true;
+                break;
+            }
+        }
+
+
+        return illegularityFound;
+
+    }
 
     public void ReadOutEnergyUpdate()
     {
