@@ -19,7 +19,7 @@ namespace NetDaemonApps.apps
     [NetDaemonApp]
     public class IsAsleepMonitor : AppBase
     {
-        private readonly TimeSpan toSleepSpareTime = TimeSpan.FromMinutes(10);
+        private readonly TimeSpan toSleepSpareTime = TimeSpan.FromMinutes(6);
 
         private IDisposable? alarmTimer;
         private IDisposable? alarmSubscription = null;
@@ -217,8 +217,7 @@ namespace NetDaemonApps.apps
             //DateTime d2 = DateTime.Parse(_00_Globals._myEntities.Sensor.EnvyLastactive.State ?? "", null, System.Globalization.DateTimeStyles.RoundtripKind);
             SleepStatusUpdated();
 
-            myEntities.BinarySensor.IsAsleepHelper.StateAllChanges().Subscribe(_=>SleepStatusUpdated());
-
+            myEntities.BinarySensor.IsAsleepHelper.StateChanges().WhenStateIsFor(x => (x.IsOff() || x.IsOn()), TimeSpan.FromMinutes(4), myScheduler).Subscribe(_ => SleepStatusUpdated()); ;
             Resub(true);
 
 
@@ -296,7 +295,7 @@ namespace NetDaemonApps.apps
 
                 if (isAsleepOffTimer == null)
                 {
-                    isAsleepOffTimer = myScheduler.Schedule(TimeSpan.FromMinutes(10), () =>
+                    isAsleepOffTimer = myScheduler.Schedule(TimeSpan.FromMinutes(6), () =>
                     {
                         myEntities.InputBoolean.Isasleep.TurnOff();
                         isAsleepOffTimer = null;
