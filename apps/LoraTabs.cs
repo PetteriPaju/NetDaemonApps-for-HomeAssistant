@@ -81,7 +81,7 @@ namespace NetDaemonApps.apps
             {
                 myEntities.Switch.DeskFans.TurnOn();
             }
-            else if (myEntities.Switch.UsbMultiFansL2.IsOn())
+            else if (myEntities.Switch.UsbMultiFansL2.IsOn() && myEntities.Switch.UsbMultiFansL1.IsOn())
             {
                 myEntities.Switch.UsbMultiFansL2.TurnOff();
             }
