@@ -114,7 +114,7 @@ public class EnergyMonitor : AppBase
 
             ecoflowUsagePriceFixer = myEntities.Sensor.EcoflowAcOutputHourly.State ?? 0;
         });
-       A0Gbl.HourlyResetFunction += () => UpdatePriceHourly(myEntities?.Sensor.TotalHourlyEnergyConsumptions.State ?? 0);
+       A0Gbl.HourlyResetFunction += () => UpdatePriceHourly( myEntities.Sensor.EnergyCostThisHour.State ?? 0, myEntities?.Sensor.TotalHourlyEnergyConsumptions.State ?? 0);
 
         myScheduler.ScheduleCron("50 * * * *", () => EnergiPriceChengeAlert());
         myScheduler.ScheduleCron("1 * * * *", () => {myServices.UtilityMeter.Calibrate(ServiceTarget.FromEntity(myEntities.Sensor.EcoflowAcInputHourly.EntityId), "0"); });
@@ -552,52 +552,12 @@ public class EnergyMonitor : AppBase
         return nextInfo;
     }
 
-    private void UpdatePriceHourly(double energy)
+    private void UpdatePriceHourly(double cost,  double energy)
     {
-         
-        if (myEntities.InputNumber.EnergyCostDaily.State == null) return;
-        if (myEntities.InputNumber.EnergyCostHourly.State == null) return;
         if (lastCaclHour == DateTime.Now.Hour) return;
-        if (myEntities?.Sensor.AllPowersEnergyHourly.State == null) return;
 
-       // double energyNow = double.Max(double.Parse(_myEntities.Sensor.Powermeters.State.ToString()), 0) ;
-       // double energyLastHour = _myEntities.InputNumber.EnergyAtStartOfHour.State ?? 0;
-        double energyConsumedThisHour = myEntities?.Sensor.AllPowersEnergyHourly.State ?? 0;
-       // _myEntities.InputNumber.EnergyAtStartOfHour.SetValue(energyNow);
-
-
-        double calculatePrice(double inpt)
-        {
-            var thisHourFortum = inpt * infoForCurrentHour.price/100 + inpt  * myEntities.InputNumber.EnergyFortumHardCost.State;
-            thisHourFortum += thisHourFortum * (myEntities.InputNumber.EnergyFortumAlv.State / 100);
-
-            var thisHourTranster = inpt * myEntities.InputNumber.EnergyTransferCost.State;
-            thisHourTranster += inpt * myEntities.InputNumber.EnergyTransferAlv.State;
-            var thisHourTotal = thisHourFortum + thisHourTranster;
-
-            return thisHourTotal ?? 0;
-        }
-
-        //Price of consumed energy, eevent with EF
-        double ecoflowIgnoredAdjustedPrice = calculatePrice(energyConsumedThisHour);
-
-        //Cost of EF charge
-        double ecoflowChargePrice = calculatePrice(double.Max(0,myEntities.Sensor.EcoflowAcInputHourly.AsNumeric().State ?? 0));
-
-        //subscract energy consumed by EF
-        energyConsumedThisHour = ecoflowCacl(energyConsumedThisHour);
-
-        //Calculate price of energy used outside EF
-        double priceForLastHout = calculatePrice(energyConsumedThisHour);
-
-        //Calculate saving
-        var ecoflowSavedMoney =  ecoflowIgnoredAdjustedPrice - priceForLastHout;
-
-        myEntities.InputNumber.EcoflowCharingCost.AddValue(ecoflowChargePrice);
-        myEntities.InputNumber.DailyEnergySaveHelper.AddValue(ecoflowSavedMoney - ecoflowChargePrice);
-
-        myEntities.InputNumber.EnergyCostDaily.AddValue(priceForLastHout + ecoflowChargePrice);
-        myEntities.InputNumber.EnergyCostHourly.SetValue(priceForLastHout + ecoflowChargePrice);
+        myEntities.InputNumber.DailyEnergySaveHelper.AddValue((myEntities.Sensor.EcoflowCostThisHour.State ?? 0)/100);
+        myEntities.InputNumber.EnergyCostDaily.AddValue((myEntities.Sensor.EnergyCostThisHour.State ?? 0) / 100);
         lastCaclHour = DateTime.Now.Hour;
         ecoflowCgargePriceFixHelper = 0;
         ecoflowUsagePriceFixer= 0;
@@ -621,10 +581,6 @@ public class EnergyMonitor : AppBase
         var x = myScheduler.Schedule(TimeSpan.FromSeconds(10), () => {
             myEntities.Sensor.EcoflowAcInputDaily.ResetEnergy();
             myEntities.Sensor.EcoflowAcInputHourly.ResetEnergy();
-            
-            
-
-
             fillDays();
             UpdateNextChangeHourTime();
         });

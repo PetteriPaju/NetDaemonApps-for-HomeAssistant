@@ -1867,6 +1867,16 @@
           "cSharpName": "EcopanelS34Power"
         },
         {
+          "id": "input_number.electricity_calculator_energy",
+          "friendlyName": "Electricity-Calculator-Energy",
+          "cSharpName": "ElectricityCalculatorEnergy"
+        },
+        {
+          "id": "input_number.electricity_calculator_price",
+          "friendlyName": "Electricity-Calculator-Price",
+          "cSharpName": "ElectricityCalculatorPrice"
+        },
+        {
           "id": "input_number.electricity_price_fixer",
           "friendlyName": "Electricity Price Fixer",
           "cSharpName": "ElectricityPriceFixer"
@@ -2493,7 +2503,7 @@
         },
         {
           "id": "media_player.living_room_display_2",
-          "friendlyName": "Living room display",
+          "friendlyName": null,
           "cSharpName": "LivingRoomDisplay2"
         },
         {
@@ -3668,6 +3678,11 @@
           "id": "sensor.ecoflow_status",
           "friendlyName": "Ecoflow Status",
           "cSharpName": "EcoflowStatus"
+        },
+        {
+          "id": "sensor.energy_eco_out_hourly",
+          "friendlyName": "Energy Eco Out Hourly",
+          "cSharpName": "EnergyEcoOutHourly"
         },
         {
           "id": "sensor.envy_af23e097_9eb2_4481_b736_4ba0185e480a_display1",
@@ -5303,6 +5318,11 @@
           "cSharpName": "EcoflowChargeRemainingTime"
         },
         {
+          "id": "sensor.ecoflow_cost_this_hour",
+          "friendlyName": "Ecoflow Cost This Hour",
+          "cSharpName": "EcoflowCostThisHour"
+        },
+        {
           "id": "sensor.ecoflow_dc_out_power",
           "friendlyName": "Ecoflow DC Out Power",
           "cSharpName": "EcoflowDcOutPower"
@@ -5311,6 +5331,11 @@
           "id": "sensor.ecoflow_discharge_remaining_time",
           "friendlyName": "Ecoflow Discharge Remaining Time",
           "cSharpName": "EcoflowDischargeRemainingTime"
+        },
+        {
+          "id": "sensor.ecoflow_fortum_this_hour",
+          "friendlyName": "Ecoflow Fortum This Hour",
+          "cSharpName": "EcoflowFortumThisHour"
         },
         {
           "id": "sensor.ecoflow_inv_out_temperature",
@@ -5368,6 +5393,11 @@
           "cSharpName": "EcoflowTotalOutPower"
         },
         {
+          "id": "sensor.ecoflow_transfer_this_hour",
+          "friendlyName": "Ecoflow Transfer This Hour",
+          "cSharpName": "EcoflowTransferThisHour"
+        },
+        {
           "id": "sensor.ecoflow_type_c_1_out_power",
           "friendlyName": "Ecoflow Type-C (1) Out Power",
           "cSharpName": "EcoflowTypeC1OutPower"
@@ -5401,6 +5431,26 @@
           "id": "sensor.energy_cost_rounded",
           "friendlyName": "Energy Cost Rounded",
           "cSharpName": "EnergyCostRounded"
+        },
+        {
+          "id": "sensor.energy_cost_this_hour",
+          "friendlyName": "Energy Cost This Hour",
+          "cSharpName": "EnergyCostThisHour"
+        },
+        {
+          "id": "sensor.energy_fortum_this_hour",
+          "friendlyName": "Energy Fortum This Hour",
+          "cSharpName": "EnergyFortumThisHour"
+        },
+        {
+          "id": "sensor.energy_hourly_eco_adjusted",
+          "friendlyName": "Energy Hourly Eco Adjusted",
+          "cSharpName": "EnergyHourlyEcoAdjusted"
+        },
+        {
+          "id": "sensor.energy_transfer_this_hour",
+          "friendlyName": "Energy Transfer This Hour",
+          "cSharpName": "EnergyTransferThisHour"
         },
         {
           "id": "sensor.envy_battery_charge_remaining_percentage",

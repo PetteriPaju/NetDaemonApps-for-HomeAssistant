@@ -303,7 +303,7 @@ namespace NetDaemonApps.apps
                 }
 
             }
-            else if (myEntities.InputBoolean.Isasleep.IsOn()) {
+            else if (myEntities.BinarySensor.IsAsleepHelper.IsOn()) {
                 isAsleepOffTimer?.Dispose();
                 isAsleepOffTimer = null;
                 if (isAsleepOnTimer == null)
