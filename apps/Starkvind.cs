@@ -16,7 +16,7 @@ namespace NetDaemonApps.apps
     public class Starkvind : AppBase
     {
         private readonly List<string>airqualityValues = new List<string> { "excellent", "good", "moderate", "poor", "unhealthy", "hazardous", "out_of_range" };
-        private readonly TimeSpan minAnnoucmentInterval = TimeSpan.FromSeconds(7);
+        private readonly TimeSpan minAnnoucmentInterval = TimeSpan.FromMinutes(10);
 
         private DateTime nextAllowedAnnoucmentTime = DateTime.MinValue;
         
