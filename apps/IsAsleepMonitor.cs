@@ -217,7 +217,6 @@ namespace NetDaemonApps.apps
             //DateTime d2 = DateTime.Parse(_00_Globals._myEntities.Sensor.EnvyLastactive.State ?? "", null, System.Globalization.DateTimeStyles.RoundtripKind);
             SleepStatusUpdated();
 
-            myEntities.BinarySensor.IsAsleepHelper.StateChanges().WhenStateIsFor(x => (x.IsOff() || x.IsOn()), TimeSpan.FromMinutes(4), myScheduler).Subscribe(_ => SleepStatusUpdated()); ;
             Resub(true);
 
 
@@ -275,48 +274,22 @@ namespace NetDaemonApps.apps
                 myEntities.InputDatetime.Lastisasleeptime.SetDatetime(timestamp: new DateTimeOffset(DateTime.Now).ToUnixTimeSeconds());
             });
 
-            myScheduler.ScheduleCron("0,30 * * * *", SleepStatusUpdated);
+            myScheduler.ScheduleCron("*/5 * * * *", SleepStatusUpdated);
         }
+        private void SleepStatusUpdated()
+        {
+            if (myEntities.InputBoolean.Isasleep.IsOn() == myEntities.BinarySensor.IsAsleepHelper.IsOn()) return;
+            if (!myEntities.BinarySensor.IsAsleepHelper.StateFor(TimeSpan.FromMinutes(5))) return;
 
+            if (myEntities.BinarySensor.IsAsleepHelper.IsOn()) myEntities.InputBoolean.Isasleep.TurnOn();
+            else if (myEntities.BinarySensor.IsAsleepHelper.IsOff()) myEntities.InputBoolean.Isasleep.TurnOff();
+        }
         private bool trainingLora()
         {
             return myEntities.Automation.TurnOffPcWhenLoraTrainingDone.IsOn() && (myEntities.InputSelect.Atloraended.State == "Shutdown" || myEntities.InputSelect.Atloraended.State == "Smart" ) ;
         }
 
-        private void SleepStatusUpdated()
-        {
-            if (myEntities.InputBoolean.Isasleep.IsOn() == myEntities.BinarySensor.IsAsleepHelper.IsOn()) return;
 
-
-            if (myEntities.BinarySensor.IsAsleepHelper.IsOff())
-            {
-                isAsleepOnTimer?.Dispose();
-                isAsleepOnTimer = null;
-
-                if (isAsleepOffTimer == null)
-                {
-                    isAsleepOffTimer = myScheduler.Schedule(TimeSpan.FromMinutes(6), () =>
-                    {
-                        myEntities.InputBoolean.Isasleep.TurnOff();
-                        isAsleepOffTimer = null;
-                    });
-                }
-
-            }
-            else if (myEntities.BinarySensor.IsAsleepHelper.IsOn()) {
-                isAsleepOffTimer?.Dispose();
-                isAsleepOffTimer = null;
-                if (isAsleepOnTimer == null)
-                {
-                    isAsleepOnTimer = myScheduler.Schedule(toSleepSpareTime, () =>
-                    {
-
-                        myEntities.InputBoolean.Isasleep.TurnOn();
-                        isAsleepOnTimer = null;
-                    });
-                }
-            }
-        }
 
         }
 
