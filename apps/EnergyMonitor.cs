@@ -123,13 +123,10 @@ public class EnergyMonitor : AppBase
 
 
         solarChargingNotificationGiven = myEntities?.Sensor?.EcoflowSolarInPower.State >= 0;
-        myEntities?.BinarySensor.LivingroomWindowSensorContact.StateChanges().Where(e => ((e.New.IsOn() || e.New.IsOff()) && e.Old?.State != "unavailable" )).Subscribe(_e =>
-        {
-            TTS.Instance?.SpeakTTS("Solar panels " + (myEntities.BinarySensor.LivingroomWindowSensorContact.IsOn() ? "on" : "off"),null , TTS.TTSPriority.PlayInGuestMode);
 
-        }
-        );
-            myEntities?.BinarySensor.SolarChargingLimit.StateChanges().Where(e => e.New.IsOn() && e.Old.IsOff()).Subscribe(_e => { 
+        Notifications.RegisterStateNotification(myEntities.BinarySensor.LivingroomWindowSensorContact, "Solar Panels");
+
+        myEntities?.BinarySensor.SolarChargingLimit.StateChanges().Where(e => e.New.IsOn() && e.Old.IsOff()).Subscribe(_e => { 
         
         if(DateTime.Now > timeOfLastSolarNotification + TimeSpan.FromMinutes(30))
          {     

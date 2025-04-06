@@ -13,7 +13,7 @@ namespace NetDaemonApps
 {
     public static class Extensions
     {
-
+        private static readonly string[] bans = { "unavailable", "unknown" };
         public static int getBrightness(this LightEntity light)
         {
             int brightness = 0;
@@ -56,6 +56,20 @@ namespace NetDaemonApps
             }
         }
 
+        public static bool IsUnavailable(this Entity ent)
+        {
+            if (ent == null) return true;
+
+            return IsUnavailable(ent.EntityState);
+
+        }
+        public static bool IsUnavailable(this EntityState state)
+        {
+            if (state == null) return true;
+
+            return bans.Contains(state.State);
+
+        }
         public static void TurnOnWithSensor(this LightEntity light, NumericSensorEntity? luminanceSensorEntity, double maxFlux = double.MaxValue)
         {
             if (light == null) return;

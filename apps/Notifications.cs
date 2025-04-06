@@ -19,6 +19,7 @@ namespace NetDaemonApps.apps
 
             _sensorsOnBooleanEntity = myEntities.InputBoolean.SensorsActive;
             RegisterStateNotification(myEntities.Switch.BedMultiPlugL1, "Fan");
+            
 
             myScheduler.ScheduleCron("30 * * * *", () => { if (DateTime.Now.Hour != 14 && DateTime.Now.Hour%2 != 0 ) TTS.Speak("Hydration Check", TTS.TTSPriority.DoNotPlayInGuestMode, myEntities.InputBoolean.NotificationHydrationCheck); });
 
@@ -49,10 +50,9 @@ namespace NetDaemonApps.apps
 
         }
 
-        private readonly string[] bans = { "unavailable", "unknown" };
-        protected void RegisterStateNotification(Entity ent, string entityName)
+        public static void RegisterStateNotification(Entity ent, string entityName)
         {
-            ent.StateChanges().Where(x => !bans.Contains(x.Old.State) && !bans.Contains(x.New.State)).Subscribe(_ => {
+            ent.StateChanges().Where(x => !x.Old.IsUnavailable() && !x.New.IsUnavailable() ).Subscribe(_ => {
 
                 TTS.Speak(entityName + " " + ent.State);
             
