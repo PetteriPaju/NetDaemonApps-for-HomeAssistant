@@ -256,13 +256,13 @@ namespace NetDaemonApps.apps
                 myEntities.InputDatetime.Awoketime.SetDatetime(timestamp: unixTime);
             });
 
-            myEntities.InputSelect.AlarmSleepMode.StateChanges().Where(x => (x?.Old.State != "unavailable" && x?.Old.State != "unknown")).Subscribe(x => {
+            myEntities.InputSelect.AlarmSleepMode.StateChanges().Where(x => !x.Old.IsUnavailable() ).Subscribe(x => {
 
                 Resub(false, myEntities.InputSelect.AlarmSleepMode.State);
 
             });
 
-            myEntities.InputDatetime.AlarmTargetTime.StateChanges().Where(x => (x?.Old.State != "unavailable" && x?.Old.State != "unknown")).Subscribe(x => {
+            myEntities.InputDatetime.AlarmTargetTime.StateChanges().Where(x => !x.Old.IsUnavailable()).Subscribe(x => {
 
                 Console.WriteLine("Alarm: " + myEntities.InputDatetime.AlarmTargetTime.GetDateTime());
 

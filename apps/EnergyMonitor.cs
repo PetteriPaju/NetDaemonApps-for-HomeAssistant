@@ -101,8 +101,8 @@ public class EnergyMonitor : AppBase
             e.Entity.SetValue(0);
         });
 
-        myEntities.InputButton.DebugEnergyHourlyupdate.StateChanges().Where(e => e.Old.State != "unavailable").Subscribe(e => { EnergiPriceChengeAlert(true); } );
-        myEntities.InputButton.DebugEnergyReadforecast.StateChanges().Where(e => e.Old.State != "unavailable").Subscribe(e => { ReadOutEnergyUpdate(); });
+        myEntities.InputButton.DebugEnergyHourlyupdate.StateChanges().Where(e => !e.Old.IsUnavailable()).Subscribe(e => { EnergiPriceChengeAlert(true); } );
+        myEntities.InputButton.DebugEnergyReadforecast.StateChanges().Where(e => !e.Old.IsUnavailable()).Subscribe(e => { ReadOutEnergyUpdate(); });
 
 
         myEntities.Sensor.EcoflowAcInputHourly.StateChanges().Where(x => x.Old.State == 0 && x.New.State > abNormalEnergyIncreaseThreshold).Subscribe(e => {

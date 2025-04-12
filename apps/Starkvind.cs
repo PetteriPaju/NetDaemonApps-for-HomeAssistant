@@ -26,8 +26,8 @@ namespace NetDaemonApps.apps
         public Starkvind(IHaContext ha) {
 
             myScheduler.ScheduleCron("30 0 * * * *", HourlyTurnOnCheck,true);
-            myEntities.Sensor.StarkvindAirQuality.StateAllChanges().Where(x => x.Old.State != "unknown" && x.Old.State != "unavailable" && airqualityValues.Contains(x.New.State.ToLower())).Subscribe(x=>Notify(x.Old.State,x.New.State));
-            myEntities.InputSelect.DebugDropdownhelper.StateAllChanges().Where(x => x.Old.State != "unknown" && x.Old.State != "unavailable" && airqualityValues.Contains(x.New.State.ToLower())).Subscribe(x => Notify(x.Old.State, x.New.State));
+            myEntities.Sensor.StarkvindAirQuality.StateAllChanges().Where(x => !x.Old.IsUnavailable() && airqualityValues.Contains(x.New.State.ToLower())).Subscribe(x=>Notify(x.Old.State,x.New.State));
+            myEntities.InputSelect.DebugDropdownhelper.StateAllChanges().Where(x => !x.Old.IsUnavailable() && airqualityValues.Contains(x.New.State.ToLower())).Subscribe(x => Notify(x.Old.State, x.New.State));
 
         }
 

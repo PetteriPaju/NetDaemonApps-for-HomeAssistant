@@ -56,14 +56,14 @@ namespace NetDaemonApps
             }
         }
 
-        public static bool IsUnavailable(this Entity ent)
+        public static bool IsUnavailable(this Entity? ent)
         {
             if (ent == null) return true;
 
             return IsUnavailable(ent.EntityState);
 
         }
-        public static bool IsUnavailable(this EntityState state)
+        public static bool IsUnavailable(this EntityState? state)
         {
             if (state == null) return true;
 

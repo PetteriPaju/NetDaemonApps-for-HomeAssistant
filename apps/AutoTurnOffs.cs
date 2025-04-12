@@ -56,12 +56,12 @@ namespace NetDaemonApps.apps
                                myScheduler.Schedule(TimeSpan.FromSeconds(60), () => {
                                    if (light.IsOn())
                                    {
-                                       lightOffDisposables[light].pc = myEntities.Sensor.PcLastactive.StateChanges().Where(x => x.Old?.State != "unavailable" && x.New?.State != "unavailable").Subscribe(x => {
+                                       lightOffDisposables[light].pc = myEntities.Sensor.PcLastactive.StateChanges().Where(x => !x.Old.IsUnavailable() && !x.New.IsUnavailable()).Subscribe(x => {
                                            light.TurnOff();
                                            lightOffDisposables[light].pc?.Dispose();
                                            lightOffDisposables[light].pc = null;
                                        });
-                                       lightOffDisposables[light].laptop = myEntities.Sensor.EnvyLastactive.StateChanges().Where(x => x.Old?.State != "unavailable" && x.New?.State != "unavailable" && myEntities.Sensor.EnvyNetworkTotalNetworkCardCount.State == "1").Subscribe(x => {
+                                       lightOffDisposables[light].laptop = myEntities.Sensor.EnvyLastactive.StateChanges().Where(x => !x.Old.IsUnavailable() && !x.New.IsUnavailable() && myEntities.Sensor.EnvyNetworkTotalNetworkCardCount.State == "1").Subscribe(x => {
 
                                            light.TurnOff();
                                            lightOffDisposables[light].laptop?.Dispose();

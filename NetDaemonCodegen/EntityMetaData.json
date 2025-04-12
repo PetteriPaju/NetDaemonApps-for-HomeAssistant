@@ -154,6 +154,11 @@
           "cSharpName": "KnobVolumeControl"
         },
         {
+          "id": "automation.lower_audio_during_night",
+          "friendlyName": "Lower Audio During Night",
+          "cSharpName": "LowerAudioDuringNight"
+        },
+        {
           "id": "automation.modem_on_by_bed_knob",
           "friendlyName": "Modem On by Bed Knob",
           "cSharpName": "ModemOnByBedKnob"
@@ -167,6 +172,11 @@
           "id": "automation.modem_on_for_nordpool_2",
           "friendlyName": "Modem on for Nordpool",
           "cSharpName": "ModemOnForNordpool2"
+        },
+        {
+          "id": "automation.monitors_off",
+          "friendlyName": "Monitors off",
+          "cSharpName": "MonitorsOff"
         },
         {
           "id": "automation.new_automation",
@@ -222,6 +232,11 @@
           "id": "automation.sensors_active_notification",
           "friendlyName": "Sensors Active Notification",
           "cSharpName": "SensorsActiveNotification"
+        },
+        {
+          "id": "automation.smart_speaker_toggle",
+          "friendlyName": "Smart Speaker Toggle",
+          "cSharpName": "SmartSpeakerToggle"
         },
         {
           "id": "automation.solar_logging",
@@ -416,6 +431,11 @@
           "cSharpName": "IsAsleepHelper"
         },
         {
+          "id": "binary_sensor.is_day",
+          "friendlyName": "Is Day",
+          "cSharpName": "IsDay"
+        },
+        {
           "id": "binary_sensor.is_standing_or_out",
           "friendlyName": "is Standing Or Out",
           "cSharpName": "IsStandingOrOut"
@@ -429,6 +449,11 @@
           "id": "binary_sensor.kitchen_sensor_occupancy",
           "friendlyName": "Kitchen Sensor Occupancy",
           "cSharpName": "KitchenSensorOccupancy"
+        },
+        {
+          "id": "binary_sensor.lidl",
+          "friendlyName": "Lidl",
+          "cSharpName": "Lidl"
         },
         {
           "id": "binary_sensor.livingroom_window_sensor_contact",
@@ -486,6 +511,11 @@
           "cSharpName": "PortableHeadphoneSensors"
         },
         {
+          "id": "binary_sensor.prisma",
+          "friendlyName": "Prisma",
+          "cSharpName": "Prisma"
+        },
+        {
           "id": "binary_sensor.qemu_haos9_5_100_health",
           "friendlyName": "QEMU haos14.0 (100) Health",
           "cSharpName": "QemuHaos95100Health"
@@ -499,6 +529,11 @@
           "id": "binary_sensor.remote_ui",
           "friendlyName": "Remote UI",
           "cSharpName": "RemoteUi"
+        },
+        {
+          "id": "binary_sensor.s_market",
+          "friendlyName": "S-Market",
+          "cSharpName": "SMarket"
         },
         {
           "id": "binary_sensor.should_speaker_be_on",
@@ -1977,6 +2012,16 @@
           "cSharpName": "TotalDailyEnergy"
         },
         {
+          "id": "input_number.volume_at_day",
+          "friendlyName": "Volume At Day",
+          "cSharpName": "VolumeAtDay"
+        },
+        {
+          "id": "input_number.volume_at_night",
+          "friendlyName": "Volume At Night",
+          "cSharpName": "VolumeAtNight"
+        },
+        {
           "id": "input_number.walkingpad_steps_daily",
           "friendlyName": "Walkingpad_Steps_Daily",
           "cSharpName": "WalkingpadStepsDaily"
@@ -2122,6 +2167,11 @@
           "id": "input_select.settings_ecoflow_mode",
           "friendlyName": "Settings Ecoflow-mode",
           "cSharpName": "SettingsEcoflowMode"
+        },
+        {
+          "id": "input_select.smart_speaker_mode",
+          "friendlyName": "Smart Speaker Mode",
+          "cSharpName": "SmartSpeakerMode"
         },
         {
           "id": "input_select.sofa_knob_lights",
@@ -2286,11 +2336,6 @@
           "id": "light.monitorlight",
           "friendlyName": "monitorlight",
           "cSharpName": "Monitorlight"
-        },
-        {
-          "id": "light.multi_plug_bright_light",
-          "friendlyName": "Multi Plug: Bright Light",
-          "cSharpName": "MultiPlugBrightLight"
         },
         {
           "id": "light.pc_multipowermeter_l1",
@@ -2498,13 +2543,8 @@
         },
         {
           "id": "media_player.living_room_display",
-          "friendlyName": "Living room display",
-          "cSharpName": "LivingRoomDisplay"
-        },
-        {
-          "id": "media_player.living_room_display_2",
           "friendlyName": null,
-          "cSharpName": "LivingRoomDisplay2"
+          "cSharpName": "LivingRoomDisplay"
         },
         {
           "id": "media_player.living_room_tv",
@@ -2512,14 +2552,34 @@
           "cSharpName": "LivingRoomTv"
         },
         {
+          "id": "media_player.local_music_assistant_telnet",
+          "friendlyName": "Local Music Assistant Telnet",
+          "cSharpName": "LocalMusicAssistantTelnet"
+        },
+        {
           "id": "media_player.music_assistant",
-          "friendlyName": "Living room display",
+          "friendlyName": null,
           "cSharpName": "MusicAssistant"
         },
         {
+          "id": "media_player.music_assistant_2",
+          "friendlyName": "music_assistant",
+          "cSharpName": "MusicAssistant2"
+        },
+        {
           "id": "media_player.olohuone_nest",
-          "friendlyName": null,
+          "friendlyName": "Olohuone Nest",
           "cSharpName": "OlohuoneNest"
+        },
+        {
+          "id": "media_player.olohuone_nest_2",
+          "friendlyName": "music_assistant_nest",
+          "cSharpName": "OlohuoneNest2"
+        },
+        {
+          "id": "media_player.olohuone_nest_3",
+          "friendlyName": "Olohuone Nest",
+          "cSharpName": "OlohuoneNest3"
         },
         {
           "id": "media_player.pc",
@@ -2530,11 +2590,6 @@
           "id": "media_player.vlc_telnet",
           "friendlyName": "VLC-TELNET",
           "cSharpName": "VlcTelnet"
-        },
-        {
-          "id": "media_player.vlc_telnet_3",
-          "friendlyName": "VLC-TELNET",
-          "cSharpName": "VlcTelnet3"
         }
       ],
       "attributes": [
@@ -2994,6 +3049,11 @@
           "cSharpName": "Currentelecticitypricereadout"
         },
         {
+          "id": "scene.fridge_sensor_switch_on",
+          "friendlyName": "\u0022Fridge Sensor\u0022:Switch:On",
+          "cSharpName": "FridgeSensorSwitchOn"
+        },
+        {
           "id": "scene.monitor_light_1_monitorlighton",
           "friendlyName": "Monitor Light MonitorLightOn",
           "cSharpName": "MonitorLight1Monitorlighton"
@@ -3032,6 +3092,16 @@
           "id": "scene.read_out_awake_time",
           "friendlyName": "Read Out Awake Time",
           "cSharpName": "ReadOutAwakeTime"
+        },
+        {
+          "id": "scene.switch_usb_laptop",
+          "friendlyName": "Switch USB Laptop",
+          "cSharpName": "SwitchUsbLaptop"
+        },
+        {
+          "id": "scene.switch_usb_pc",
+          "friendlyName": "Switch USB PC",
+          "cSharpName": "SwitchUsbPc"
         },
         {
           "id": "scene.tv_audio_active",
@@ -3084,11 +3154,6 @@
           "id": "script.av_volume_up",
           "friendlyName": "AV - Volume - Up",
           "cSharpName": "AvVolumeUp"
-        },
-        {
-          "id": "script.clearplaylists",
-          "friendlyName": "ClearPlaylists",
-          "cSharpName": "Clearplaylists"
         },
         {
           "id": "script.launch_youtube",
@@ -3443,6 +3508,16 @@
           "cSharpName": "MonitorLightPowerOnBehavior"
         },
         {
+          "id": "select.pc_connector_indicator_light_mode",
+          "friendlyName": "PC Connector Indicator light mode",
+          "cSharpName": "PcConnectorIndicatorLightMode"
+        },
+        {
+          "id": "select.pc_connector_power_on_behavior",
+          "friendlyName": "PC Connector Power on behavior",
+          "cSharpName": "PcConnectorPowerOnBehavior"
+        },
+        {
           "id": "select.pc_multipowermeter_power_outage_memory",
           "friendlyName": "PC-MultiPowerMeter Power outage memory",
           "cSharpName": "PcMultipowermeterPowerOutageMemory"
@@ -3563,6 +3638,21 @@
           "id": "sensor.awake_today",
           "friendlyName": "Awake Today",
           "cSharpName": "AwakeToday"
+        },
+        {
+          "id": "sensor.backup_backup_manager_state",
+          "friendlyName": "Backup Backup Manager state",
+          "cSharpName": "BackupBackupManagerState"
+        },
+        {
+          "id": "sensor.backup_last_successful_automatic_backup",
+          "friendlyName": "Backup Last successful automatic backup",
+          "cSharpName": "BackupLastSuccessfulAutomaticBackup"
+        },
+        {
+          "id": "sensor.backup_next_scheduled_automatic_backup",
+          "friendlyName": "Backup Next scheduled automatic backup",
+          "cSharpName": "BackupNextScheduledAutomaticBackup"
         },
         {
           "id": "sensor.backup_state",
@@ -3838,6 +3928,11 @@
           "id": "sensor.hue_switch_runner_action",
           "friendlyName": "Hue Switch Runner Action",
           "cSharpName": "HueSwitchRunnerAction"
+        },
+        {
+          "id": "sensor.indoor_temperature_and_humidity_sensor_battery_state",
+          "friendlyName": "Indoor temperature and humidity sensor Battery state",
+          "cSharpName": "IndoorTemperatureAndHumiditySensorBatteryState"
         },
         {
           "id": "sensor.inkplate_battery",
@@ -5005,6 +5100,11 @@
           "jsonName": "InputDevices",
           "cSharpName": "InputDevices",
           "clrType": "System.Collections.Generic.IReadOnlyList\u00601[System.String]"
+        },
+        {
+          "jsonName": "open",
+          "cSharpName": "Open",
+          "clrType": "System.Boolean"
         }
       ]
     },
@@ -5538,6 +5638,16 @@
           "cSharpName": "IndoorHumidityDelta"
         },
         {
+          "id": "sensor.indoor_temperature_and_humidity_sensor_humidity",
+          "friendlyName": "Indoor temperature and humidity sensor Humidity",
+          "cSharpName": "IndoorTemperatureAndHumiditySensorHumidity"
+        },
+        {
+          "id": "sensor.indoor_temperature_and_humidity_sensor_temperature",
+          "friendlyName": "Indoor temperature and humidity sensor Temperature",
+          "cSharpName": "IndoorTemperatureAndHumiditySensorTemperature"
+        },
+        {
           "id": "sensor.indoors_info",
           "friendlyName": "Indoors Info",
           "cSharpName": "IndoorsInfo"
@@ -5818,6 +5928,26 @@
           "cSharpName": "OutsideTemp"
         },
         {
+          "id": "sensor.outside_temperature_meter_battery",
+          "friendlyName": "Outside temperature meter Battery",
+          "cSharpName": "OutsideTemperatureMeterBattery"
+        },
+        {
+          "id": "sensor.outside_temperature_meter_humidity",
+          "friendlyName": "Outside temperature meter Humidity",
+          "cSharpName": "OutsideTemperatureMeterHumidity"
+        },
+        {
+          "id": "sensor.outside_temperature_meter_illuminance",
+          "friendlyName": "Outside temperature meter Illuminance",
+          "cSharpName": "OutsideTemperatureMeterIlluminance"
+        },
+        {
+          "id": "sensor.outside_temperature_meter_temperature",
+          "friendlyName": "Outside temperature meter Temperature",
+          "cSharpName": "OutsideTemperatureMeterTemperature"
+        },
+        {
           "id": "sensor.pc_accesories_daily_energy",
           "friendlyName": "Pc_Accesories_Daily_Energy",
           "cSharpName": "PcAccesoriesDailyEnergy"
@@ -5946,6 +6076,11 @@
           "id": "sensor.starkvind_pm25",
           "friendlyName": "Starkvind PM2.5",
           "cSharpName": "StarkvindPm25"
+        },
+        {
+          "id": "sensor.statistical_characteristic",
+          "friendlyName": "Statistical characteristic",
+          "cSharpName": "StatisticalCharacteristic"
         },
         {
           "id": "sensor.steps_todays",
@@ -6106,6 +6241,11 @@
           "id": "sensor.unt_lights_power",
           "friendlyName": "Unt_Lights power",
           "cSharpName": "UntLightsPower"
+        },
+        {
+          "id": "sensor.vlc_volume",
+          "friendlyName": "VLC-Volume",
+          "cSharpName": "VlcVolume"
         },
         {
           "id": "sensor.walkingpad_contact_battery",
@@ -6493,6 +6633,21 @@
           "jsonName": "quality",
           "cSharpName": "Quality",
           "clrType": "System.String"
+        },
+        {
+          "jsonName": "buffer_usage_ratio",
+          "cSharpName": "BufferUsageRatio",
+          "clrType": "System.Double"
+        },
+        {
+          "jsonName": "age_coverage_ratio",
+          "cSharpName": "AgeCoverageRatio",
+          "clrType": "System.Double"
+        },
+        {
+          "jsonName": "source_value_valid",
+          "cSharpName": "SourceValueValid",
+          "clrType": "System.Boolean"
         }
       ]
     },
@@ -6710,6 +6865,11 @@
           "cSharpName": "FritzBox6660CablePortForwardHttpsServer"
         },
         {
+          "id": "switch.fritz_box_6660_cable_port_forward_https_server_443",
+          "friendlyName": "FRITZ!Box 6660 Cable Port forward HTTPS-Server 443",
+          "cSharpName": "FritzBox6660CablePortForwardHttpsServer443"
+        },
+        {
           "id": "switch.fritz_box_6660_cable_port_forward_maxcio_pistoke",
           "friendlyName": "FRITZ!Box 6660 Cable Port forward Maxcio Pistoke",
           "cSharpName": "FritzBox6660CablePortForwardMaxcioPistoke"
@@ -6773,6 +6933,11 @@
           "id": "switch.homeassistantcontainer_internet_access",
           "friendlyName": "homeassistantcontainer Internet Access",
           "cSharpName": "HomeassistantcontainerInternetAccess"
+        },
+        {
+          "id": "switch.indoor_temperature_and_humidity_sensor_switch",
+          "friendlyName": "Indoor temperature and humidity sensor Switch",
+          "cSharpName": "IndoorTemperatureAndHumiditySensorSwitch"
         },
         {
           "id": "switch.inkplate_plug",
@@ -6875,6 +7040,11 @@
           "cSharpName": "NintendoswitchInternetAccess"
         },
         {
+          "id": "switch.outside_temperature_meter_switch",
+          "friendlyName": "Outside temperature meter Switch",
+          "cSharpName": "OutsideTemperatureMeterSwitch"
+        },
+        {
           "id": "switch.pc_192_168_0_21_internet_access",
           "friendlyName": "sleepanalyzer Internet Access",
           "cSharpName": "Pc192168021InternetAccess"
@@ -6898,6 +7068,31 @@
           "id": "switch.pc_b4_ae_2b_e4_a3_f8_internet_access",
           "friendlyName": "DESKTOP-AOTDDD2 Internet Access",
           "cSharpName": "PcB4Ae2bE4A3F8InternetAccess"
+        },
+        {
+          "id": "switch.pc_connector_child_lock",
+          "friendlyName": "PC Connector Child lock",
+          "cSharpName": "PcConnectorChildLock"
+        },
+        {
+          "id": "switch.pc_connector_socket_1",
+          "friendlyName": "Speaker",
+          "cSharpName": "PcConnectorSocket1"
+        },
+        {
+          "id": "switch.pc_connector_socket_2",
+          "friendlyName": "Display",
+          "cSharpName": "PcConnectorSocket2"
+        },
+        {
+          "id": "switch.pc_connector_socket_3",
+          "friendlyName": "Modem",
+          "cSharpName": "PcConnectorSocket3"
+        },
+        {
+          "id": "switch.pc_connector_socket_4",
+          "friendlyName": "USB",
+          "cSharpName": "PcConnectorSocket4"
         },
         {
           "id": "switch.pc_multipowermeter_laptop",

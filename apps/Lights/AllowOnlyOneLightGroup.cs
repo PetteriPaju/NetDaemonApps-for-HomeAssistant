@@ -37,7 +37,7 @@ namespace NetDaemonApps.apps.Lights
 
             foreach (LightEntity light in lights)
             {
-                if (light != poweredLight && light.State != "unavailable") light.TurnOff();
+                if (light != poweredLight && !light.IsUnavailable()) light.TurnOff();
             }
         }
 

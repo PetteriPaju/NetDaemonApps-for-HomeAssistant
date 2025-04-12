@@ -75,7 +75,7 @@ namespace NetDaemonApps.apps.Lights
             myEntities.Light.HallwayLight.TurnOffLight();
             foreach (LightEntity light in targetLights)
             {
-                if (light != null && light.State != "unavailable" && light.IsOn())
+                if (light != null && !light.IsUnavailable() && light.IsOn())
                 {
                     lightsThatWereOn.Add(light);
                     light.TurnOffLight();

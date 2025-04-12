@@ -25,7 +25,7 @@ namespace NetDaemonApps.apps
             lastKnownThreshold = (int)myEntities.InputNumber.LastKnowStepThreshold.State;
 
 
-            myEntities.Sensor.Runnersteps.StateChanges().Where(x=>x.Old.State != "unavailable").Subscribe(x => AddRunnerSteps(x.New.State));
+            myEntities.Sensor.Runnersteps.StateChanges().Where(x=>!x.Old.IsUnavailable()).Subscribe(x => AddRunnerSteps(x.New.State));
 
             A0Gbl.DailyResetFunction += () =>
             {
