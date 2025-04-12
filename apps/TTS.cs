@@ -116,20 +116,17 @@ namespace NetDaemonApps.apps
                */
 
                 lastAnnounsmentTime = DateTime.Now;
-                 
-                if((myEntities.Sensor.PreferredMediaplayer.State ?? "media_player.local_music_assistant_telnet") == "media_player.local_music_assistant_telnet")
-                {
-                    myEntities.MediaPlayer.LocalMusicAssistantTelnet.VolumeSet(myEntities.Sensor.VlcVolume.State??0/100 );
-                    myEntities.MediaPlayer.LocalMusicAssistantTelnet.VolumeSet(myEntities.Sensor.VlcVolume.State ?? 0 / 100);
-                }
+
 
                 MediaPlayerEntity entity = new MediaPlayerEntity(myHaContext, myEntities.Sensor.PreferredMediaplayer.State ?? "media_player.local_music_assistant_telnet");
                 entity.ClearPlaylist();
+                entity.RepeatSet("off");
+   
 
                 if (myEntities.BinarySensor.FritzBox6660CableConnection.State == "on")
-                myServices.Tts.GoogleTranslateSay(myEntities.Sensor.PreferredMediaplayer.State ?? "media_player.local_music_assistant_telnet", text);
+                myServices.Tts.GoogleTranslateSay(entity.EntityId, text);
                 else
-                myServices.Tts.PicottsSay(myEntities.Sensor.PreferredMediaplayer.State ?? "media_player.local_music_assistant_telnet", text);
+                myServices.Tts.PicottsSay(entity.EntityId, text);
 
                 /*
                 _myScheduler.Schedule(TimeSpan.FromSeconds(2),() => {
