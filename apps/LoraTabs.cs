@@ -197,7 +197,7 @@ namespace NetDaemonApps.apps
             if (myEntities.InputBoolean.GuestMode.IsOff() || myEntities.InputBoolean.LightgroupLivingroomEnabled.IsOff())
             {
                 myEntities.Light.MonitorLight.TurnOff();
-                myEntities.Light.MultiPlugBrightLight.TurnOff();
+                myEntities.Light.PcMultipowermeterL1.TurnOff();
                 myEntities.Light.LivingRoomLight.TurnOff();
                 myEntities.Light.DesktopLight.TurnOff();
 
