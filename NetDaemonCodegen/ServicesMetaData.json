@@ -6979,6 +6979,14 @@
       "response": {
         "optional": true
       }
+    },
+    "clear_all_playlists": {
+      "name": "Clear All Playlists",
+      "description": "",
+      "fields": {},
+      "response": {
+        "optional": true
+      }
     }
   },
   "automation": {

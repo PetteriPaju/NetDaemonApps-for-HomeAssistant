@@ -119,8 +119,8 @@ namespace NetDaemonApps.apps
 
 
                 MediaPlayerEntity entity = new MediaPlayerEntity(myHaContext, myEntities.Sensor.PreferredMediaplayer.State ?? "media_player.local_music_assistant_telnet");
-                entity.ClearPlaylist();
-                entity.RepeatSet("off");
+
+                myServices.Script.ClearAllPlaylists();
    
 
                 if (myEntities.BinarySensor.FritzBox6660CableConnection.State == "on")

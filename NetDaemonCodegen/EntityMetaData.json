@@ -2587,6 +2587,11 @@
           "cSharpName": "Pc"
         },
         {
+          "id": "media_player.pc_2",
+          "friendlyName": "PC",
+          "cSharpName": "Pc2"
+        },
+        {
           "id": "media_player.vlc_telnet",
           "friendlyName": "VLC-TELNET",
           "cSharpName": "VlcTelnet"
@@ -3154,6 +3159,11 @@
           "id": "script.av_volume_up",
           "friendlyName": "AV - Volume - Up",
           "cSharpName": "AvVolumeUp"
+        },
+        {
+          "id": "script.clear_all_playlists",
+          "friendlyName": "Clear All Playlists",
+          "cSharpName": "ClearAllPlaylists"
         },
         {
           "id": "script.launch_youtube",
