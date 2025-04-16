@@ -254,6 +254,7 @@ namespace NetDaemonApps.apps
                 long unixTime = dto.ToUnixTimeSeconds();
 
                 rebootTimer?.Dispose();
+                twelweHalarmGiven = false;
                 myEntities.InputDatetime.Awoketime.SetDatetime(timestamp: unixTime);
             });
 
@@ -275,7 +276,6 @@ namespace NetDaemonApps.apps
                 myEntities.InputDatetime.Lastisasleeptime.SetDatetime(timestamp: new DateTimeOffset(DateTime.Now).ToUnixTimeSeconds());
             });
 
-            A0Gbl.DailyResetFunction += () => { twelweHalarmGiven = false; };
 
             myScheduler.ScheduleCron("*/5 * * * *", SleepStatusUpdated);
         }
@@ -283,7 +283,7 @@ namespace NetDaemonApps.apps
         {
 
 
-            if (myEntities.InputBoolean.Isasleep.IsOn() && myEntities.InputBoolean.Isasleep.StateFor(TimeSpan.FromHours(12)) && !twelweHalarmGiven)
+            if (myEntities.InputBoolean.Isasleep.IsOff() && myEntities.InputBoolean.Isasleep.StateFor(TimeSpan.FromHours(12)) && !twelweHalarmGiven)
             {
                 TTS.Speak("You have been awake for 12 hours", TTS.TTSPriority.DoNotPlayInGuestMode);
                 twelweHalarmGiven = true;
