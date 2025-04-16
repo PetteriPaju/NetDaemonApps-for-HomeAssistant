@@ -33,6 +33,7 @@ namespace NetDaemonApps.apps
         private IDisposable? modentimer = null;
 
         private bool ringingAlarm = false;
+        private bool twelweHalarmGiven = false;
         
 
         private class MonitorMember
@@ -274,10 +275,22 @@ namespace NetDaemonApps.apps
                 myEntities.InputDatetime.Lastisasleeptime.SetDatetime(timestamp: new DateTimeOffset(DateTime.Now).ToUnixTimeSeconds());
             });
 
+            A0Gbl.DailyResetFunction += () => { twelweHalarmGiven = false; };
+
             myScheduler.ScheduleCron("*/5 * * * *", SleepStatusUpdated);
         }
         private void SleepStatusUpdated()
         {
+
+
+            if (myEntities.InputBoolean.Isasleep.IsOn() && myEntities.InputBoolean.Isasleep.StateFor(TimeSpan.FromHours(12)) && !twelweHalarmGiven)
+            {
+                TTS.Speak("You have been awake for 12 hours", TTS.TTSPriority.DoNotPlayInGuestMode);
+                twelweHalarmGiven = true;
+            }
+               
+
+
             if (myEntities.InputBoolean.Isasleep.IsOn() == myEntities.BinarySensor.IsAsleepHelper.IsOn()) return;
             if (!myEntities.BinarySensor.IsAsleepHelper.StateFor(TimeSpan.FromMinutes(5))) return;
 
