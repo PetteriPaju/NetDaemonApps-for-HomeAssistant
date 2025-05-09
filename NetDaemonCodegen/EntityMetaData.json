@@ -2159,6 +2159,11 @@
           "cSharpName": "Onsleepbehaviour"
         },
         {
+          "id": "input_select.phone_battery_alert_ranges",
+          "friendlyName": "Phone Battery Alert Ranges",
+          "cSharpName": "PhoneBatteryAlertRanges"
+        },
+        {
           "id": "input_select.power_saving_behaviour",
           "friendlyName": "Power Saving Behaviour",
           "cSharpName": "PowerSavingBehaviour"
@@ -2547,6 +2552,11 @@
           "cSharpName": "LivingRoomDisplay"
         },
         {
+          "id": "media_player.living_room_display_2",
+          "friendlyName": null,
+          "cSharpName": "LivingRoomDisplay2"
+        },
+        {
           "id": "media_player.living_room_tv",
           "friendlyName": null,
           "cSharpName": "LivingRoomTv"
@@ -2563,7 +2573,7 @@
         },
         {
           "id": "media_player.music_assistant_2",
-          "friendlyName": "music_assistant",
+          "friendlyName": null,
           "cSharpName": "MusicAssistant2"
         },
         {
@@ -3640,11 +3650,6 @@
       "domain": "sensor",
       "entities": [
         {
-          "id": "sensor.all_standby_energy",
-          "friendlyName": "All standby energy",
-          "cSharpName": "AllStandbyEnergy"
-        },
-        {
           "id": "sensor.awake_today",
           "friendlyName": "Awake Today",
           "cSharpName": "AwakeToday"
@@ -3761,7 +3766,7 @@
         },
         {
           "id": "sensor.ecoflow_charge_or_remain_time",
-          "friendlyName": "Offline",
+          "friendlyName": "Discharging",
           "cSharpName": "EcoflowChargeOrRemainTime"
         },
         {
@@ -5191,6 +5196,11 @@
           "id": "sensor.all_powers_power",
           "friendlyName": "All Powers power",
           "cSharpName": "AllPowersPower"
+        },
+        {
+          "id": "sensor.all_standby_energy",
+          "friendlyName": "All standby energy",
+          "cSharpName": "AllStandbyEnergy"
         },
         {
           "id": "sensor.all_standby_power",

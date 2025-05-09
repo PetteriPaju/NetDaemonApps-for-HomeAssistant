@@ -99,7 +99,7 @@ namespace NetDaemonApps.apps
         }
         protected override void On3Press()
         {
-            base.On5Press();
+            base.On3Press();
             string message = "";
             pwrpressMode = pwrpressMode == -1 ? 0 : pwrpressMode;
             switch (pwrpressMode)
@@ -115,13 +115,11 @@ namespace NetDaemonApps.apps
                     }
 
                     cancelRoutine?.Dispose();
-                    cancelRoutine = myScheduler.Schedule(TimeSpan.FromSeconds(myEntities.Switch.BrightLightPlug.IsOn() ? 10 : 0), () => {
-
+                    cancelRoutine = myScheduler.Schedule(TimeSpan.FromSeconds(myEntities.Switch.BrightLightPlug.IsOn() ? 30 : 0), () => {
                         myEntities.Switch.BrightLightPlug.Toggle();
 
                         pwrpressMode = -1;
                         cancelRoutine = null;
-
                     });
                     break;
                 case 1:
@@ -140,18 +138,23 @@ namespace NetDaemonApps.apps
                         pwrpressMode = 1;
                     });
                     break;
-                case 3:
-                    message = "Cancel";
-                    if (cancelRoutine != null)
-                    {
-                        cancelRoutine.Dispose();
-                        cancelRoutine = null;
-                    }
-                    break;
             }
-            pwrpressMode = pwrpressMode == 3 ? 0 : pwrpressMode + 1;
+            pwrpressMode = pwrpressMode == 2 ? 0 : pwrpressMode + 1;
 
             TTS.Speak(message, TTS.TTSPriority.IgnoreAll);
+
+        }
+
+        protected override void On3Hold()
+        {
+            base.On5Hold();
+            pwrpressMode = -1;
+            if (cancelRoutine != null)
+            {
+                cancelRoutine.Dispose();
+                cancelRoutine = null;
+            }
+            TTS.Speak("Cancel", TTS.TTSPriority.IgnoreAll);
 
         }
 
@@ -226,7 +229,7 @@ namespace NetDaemonApps.apps
         protected override void On3Press()
         {
             base.On3Press();
-            myEntities.Switch.InkplatePlug.Toggle();
+            myEntities.Switch.BedMultiPlugL3.Toggle();
         }
         protected override void On4Press()
         {
@@ -256,13 +259,11 @@ namespace NetDaemonApps.apps
                     }
 
                     cancelRoutine?.Dispose();
-                    cancelRoutine = myScheduler.Schedule(TimeSpan.FromSeconds(myEntities.Switch.BrightLightPlug.IsOn() ? 10 : 0), () => {
-
+                    cancelRoutine = myScheduler.Schedule(TimeSpan.FromSeconds(myEntities.Switch.BrightLightPlug.IsOn() ? 30 : 0), () => {
                         myEntities.Switch.BrightLightPlug.Toggle();
 
                         pwrpressMode = -1;
                         cancelRoutine = null;
-
                     });
                     break;
                 case 1:
@@ -281,18 +282,23 @@ namespace NetDaemonApps.apps
                         pwrpressMode = 1;
                     });
                     break;
-                case 3:
-                    message = "Cancel";
-                    if (cancelRoutine != null)
-                    {
-                        cancelRoutine.Dispose();
-                        cancelRoutine = null;
-                    }
-                    break;
             }
-            pwrpressMode = pwrpressMode == 3 ? 0 : pwrpressMode + 1;
+            pwrpressMode = pwrpressMode == 2 ? 0 : pwrpressMode + 1;
 
             TTS.Speak(message, TTS.TTSPriority.IgnoreAll);
+
+        }
+
+        protected override void On5Hold()
+        {
+            base.On5Hold();
+            pwrpressMode = -1;
+            if (cancelRoutine != null)
+            {
+                cancelRoutine.Dispose();
+                cancelRoutine = null;
+            }
+            TTS.Speak("Cancel", TTS.TTSPriority.IgnoreAll);
 
         }
 
