@@ -101,46 +101,57 @@ namespace NetDaemonApps.apps
         {
             base.On3Press();
             string message = "";
-            pwrpressMode = pwrpressMode == -1 ? 0 : pwrpressMode;
-            switch (pwrpressMode)
+            if (myEntities.Switch.BrightLightPlug.IsOff())
             {
-                case 0:
-                    if (myEntities.Switch.BrightLightPlug.IsOn())
-                    {
-                        message = "Modem Off";
-                    }
-                    else
-                    {
-                        message = "Modem On";
-                    }
-
-                    cancelRoutine?.Dispose();
-                    cancelRoutine = myScheduler.Schedule(TimeSpan.FromSeconds(myEntities.Switch.BrightLightPlug.IsOn() ? 30 : 0), () => {
-                        myEntities.Switch.BrightLightPlug.Toggle();
-
-                        pwrpressMode = -1;
-                        cancelRoutine = null;
-                    });
-                    break;
-                case 1:
-                    cancelRoutine?.Dispose();
-                    message = "Assistant Off";
-                    cancelRoutine = myScheduler.Schedule(TimeSpan.FromSeconds(30), () => {
-                        myEntities.Button.NodePveShutdown.Press();
-                        pwrpressMode = 0;
-                    });
-                    break;
-                case 2:
-                    cancelRoutine?.Dispose();
-                    message = "Everything Off";
-                    cancelRoutine = myScheduler.Schedule(TimeSpan.FromSeconds(30), () => {
-                        myServices.Script.TurnOffEverything();
-                        pwrpressMode = 1;
-                    });
-                    break;
+                myEntities.Switch.BrightLightPlug.TurnOn();
+                message = "Modem On";
+                pwrpressMode = -1;
             }
-            pwrpressMode = pwrpressMode == 2 ? 0 : pwrpressMode + 1;
+            else
+            {
+                pwrpressMode = pwrpressMode == -1 ? 0 : pwrpressMode;
+                switch (pwrpressMode)
+                {
+                    case 0:
+                        if (myEntities.Switch.BrightLightPlug.IsOn())
+                        {
+                            message = "Modem Off";
+                        }
+                        else
+                        {
+                            message = "Modem On";
+                        }
 
+                        cancelRoutine?.Dispose();
+                        cancelRoutine = myScheduler.Schedule(TimeSpan.FromSeconds(myEntities.Switch.BrightLightPlug.IsOn() ? 30 : 0), () =>
+                        {
+                            myEntities.Switch.BrightLightPlug.Toggle();
+
+                            pwrpressMode = -1;
+                            cancelRoutine = null;
+                        });
+                        break;
+                    case 1:
+                        cancelRoutine?.Dispose();
+                        message = "Assistant Off";
+                        cancelRoutine = myScheduler.Schedule(TimeSpan.FromSeconds(30), () =>
+                        {
+                            myEntities.Button.NodePveShutdown.Press();
+                            pwrpressMode = 0;
+                        });
+                        break;
+                    case 2:
+                        cancelRoutine?.Dispose();
+                        message = "Everything Off";
+                        cancelRoutine = myScheduler.Schedule(TimeSpan.FromSeconds(30), () =>
+                        {
+                            myServices.Script.TurnOffEverything();
+                            pwrpressMode = 1;
+                        });
+                        break;
+                }
+                pwrpressMode = pwrpressMode == 2 ? 0 : pwrpressMode + 1;
+            }
             TTS.Speak(message, TTS.TTSPriority.IgnoreAll);
 
         }
@@ -244,47 +255,59 @@ namespace NetDaemonApps.apps
         protected override void On5Press()
         {
             base.On5Press();
+            
             string message = "";
-            pwrpressMode = pwrpressMode == -1 ? 0 : pwrpressMode;
-            switch (pwrpressMode)
+            if (myEntities.Switch.BrightLightPlug.IsOff())
             {
-                case 0:
-                    if (myEntities.Switch.BrightLightPlug.IsOn())
-                    {
-                        message = "Modem Off";
-                    }
-                    else
-                    {
-                        message = "Modem On";
-                    }
-
-                    cancelRoutine?.Dispose();
-                    cancelRoutine = myScheduler.Schedule(TimeSpan.FromSeconds(myEntities.Switch.BrightLightPlug.IsOn() ? 30 : 0), () => {
-                        myEntities.Switch.BrightLightPlug.Toggle();
-
-                        pwrpressMode = -1;
-                        cancelRoutine = null;
-                    });
-                    break;
-                case 1:
-                    cancelRoutine?.Dispose();
-                    message = "Assistant Off";
-                    cancelRoutine = myScheduler.Schedule(TimeSpan.FromSeconds(30), () => {
-                        myEntities.Button.NodePveShutdown.Press();
-                        pwrpressMode = 0;
-                    });
-                    break;
-                case 2:
-                    cancelRoutine?.Dispose();
-                    message = "Everything Off";
-                    cancelRoutine = myScheduler.Schedule(TimeSpan.FromSeconds(30), () => {
-                        myServices.Script.TurnOffEverything();
-                        pwrpressMode = 1;
-                    });
-                    break;
+                myEntities.Switch.BrightLightPlug.TurnOn();
+                message = "Modem On";
+                pwrpressMode = -1;
             }
-            pwrpressMode = pwrpressMode == 2 ? 0 : pwrpressMode + 1;
+            else
+            {
+                pwrpressMode = pwrpressMode == -1 ? 0 : pwrpressMode;
+                switch (pwrpressMode)
+                {
+                    case 0:
+                        if (myEntities.Switch.BrightLightPlug.IsOn())
+                        {
+                            message = "Modem Off";
+                        }
+                        else
+                        {
+                            message = "Modem On";
+                        }
 
+                        cancelRoutine?.Dispose();
+                        cancelRoutine = myScheduler.Schedule(TimeSpan.FromSeconds(myEntities.Switch.BrightLightPlug.IsOn() ? 30 : 0), () =>
+                        {
+                            myEntities.Switch.BrightLightPlug.Toggle();
+
+                            pwrpressMode = -1;
+                            cancelRoutine = null;
+                        });
+                        break;
+                    case 1:
+                        cancelRoutine?.Dispose();
+                        message = "Assistant Off";
+                        cancelRoutine = myScheduler.Schedule(TimeSpan.FromSeconds(30), () =>
+                        {
+                            myEntities.Button.NodePveShutdown.Press();
+                            pwrpressMode = 0;
+                        });
+                        break;
+                    case 2:
+                        cancelRoutine?.Dispose();
+                        message = "Everything Off";
+                        cancelRoutine = myScheduler.Schedule(TimeSpan.FromSeconds(30), () =>
+                        {
+                            myServices.Script.TurnOffEverything();
+                            pwrpressMode = 1;
+                        });
+                        break;
+                }
+                pwrpressMode = pwrpressMode == 2 ? 0 : pwrpressMode + 1;
+            }
             TTS.Speak(message, TTS.TTSPriority.IgnoreAll);
 
         }

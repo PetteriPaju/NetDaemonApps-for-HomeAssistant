@@ -209,12 +209,14 @@ namespace NetDaemonApps.apps
                 TTS.Speak("Warning Only 5% of Power remaining", TTS.TTSPriority.Default, myEntities.InputBoolean.NotificationEcoflow);
             });
 
+
             /*
+            myEntities.Sensor.EcoflowPlugPower.StateChanges().Subscribe(x => { myEntities.InputNumber.EcoflowChargeHelper.SetValue((double)(myEntities.Sensor.EcoflowPlugPower.State ?? 0));}); 
             myScheduler.ScheduleCron("2 * * * *", () => {
 
                 if (myEntities.Sensor.EcoflowPlugPower.State > 0)
                 {
-                    myEntities.InputNumber.EcoflowChargeHelper.SetValue((double)(myEntities.Sensor.EcoflowAcInPower.State - 1));
+                    myEntities.InputNumber.EcoflowChargeHelper.SetValue((double)(myEntities.Sensor.EcoflowPlugPower.State - 1));
                 }
                 else
                 {
@@ -222,13 +224,12 @@ namespace NetDaemonApps.apps
                 }
             
             });
-          
-
+         
             myScheduler.ScheduleCron("58 * * * *", () => {
 
                 if (myEntities.Sensor.EcoflowAcInPower.State > 0)
                 {
-                    myEntities.InputNumber.EcoflowChargeHelper.SetValue((double)(myEntities.Sensor.EcoflowAcInPower.State + 1));
+                    myEntities.InputNumber.EcoflowChargeHelper.SetValue((double)(myEntities.Sensor.EcoflowPlugPower.State + 1));
                 }
                 else
                 {
@@ -236,7 +237,7 @@ namespace NetDaemonApps.apps
                 }
 
             });
-              */
+       */
 
             ecoflowPanel = new EcoflowPanel();
             ecoflowPanel.RegisterRow(myEntities.InputBoolean.EcopanelS1Enabled, myEntities.InputSelect.EcopanelS1Mode, myEntities.InputDatetime.EcopanelS1Time, myEntities.InputNumber.EcopanelS1Power);
