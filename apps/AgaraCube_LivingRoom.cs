@@ -55,7 +55,7 @@ namespace NetDaemonApps.apps
 
 
             }
-            else if (myEntities.Sensor.EcoflowAcOutputFixed.State == 0)
+            else if (myEntities.Sensor.EcoflowOutputPlugPower.State == 0)
             {
                 myEntities.Switch.EcoflowPlug.TurnOff();
                 Task.Run(async () =>

@@ -84,6 +84,11 @@
           "cSharpName": "EcoflowTimeout"
         },
         {
+          "id": "automation.end_recording_and_shutoff_pc",
+          "friendlyName": "End Recording and shutoff pc",
+          "cSharpName": "EndRecordingAndShutoffPc"
+        },
+        {
           "id": "automation.eye_rester",
           "friendlyName": "Eye Rester",
           "cSharpName": "EyeRester"
@@ -791,6 +796,11 @@
           "id": "button.pc_cwalkingpadspeeddown",
           "friendlyName": "PC cWalkingPadSpeedDown",
           "cSharpName": "PcCwalkingpadspeeddown"
+        },
+        {
+          "id": "button.pc_endrecording",
+          "friendlyName": "PC endRecording",
+          "cSharpName": "PcEndrecording"
         },
         {
           "id": "button.pc_mediavolumedown",
@@ -2548,17 +2558,17 @@
         },
         {
           "id": "media_player.living_room_display",
-          "friendlyName": null,
+          "friendlyName": "Living room display",
           "cSharpName": "LivingRoomDisplay"
         },
         {
           "id": "media_player.living_room_display_2",
-          "friendlyName": null,
+          "friendlyName": "Living room display",
           "cSharpName": "LivingRoomDisplay2"
         },
         {
           "id": "media_player.living_room_tv",
-          "friendlyName": null,
+          "friendlyName": "Living Room TV",
           "cSharpName": "LivingRoomTv"
         },
         {
@@ -2568,12 +2578,12 @@
         },
         {
           "id": "media_player.music_assistant",
-          "friendlyName": null,
+          "friendlyName": "Living room display",
           "cSharpName": "MusicAssistant"
         },
         {
           "id": "media_player.music_assistant_2",
-          "friendlyName": null,
+          "friendlyName": "music_assistant",
           "cSharpName": "MusicAssistant2"
         },
         {
@@ -2800,11 +2810,6 @@
           "cSharpName": "_0x001788010bcfb16fOccupancyTimeout"
         },
         {
-          "id": "number.bigfridge_powermeter_countdown",
-          "friendlyName": "BigFridge-Powermeter Countdown",
-          "cSharpName": "BigfridgePowermeterCountdown"
-        },
-        {
           "id": "number.ecoflow_ac_charging_power",
           "friendlyName": "Ecoflow AC Charging Power",
           "cSharpName": "EcoflowAcChargingPower"
@@ -2835,14 +2840,19 @@
           "cSharpName": "EcoflowMinDischargeLevel"
         },
         {
+          "id": "number.ecoflow_output_plug_countdown",
+          "friendlyName": "Ecoflow Output Plug Countdown",
+          "cSharpName": "EcoflowOutputPlugCountdown"
+        },
+        {
+          "id": "number.ecoflow_plug_countdown",
+          "friendlyName": "Ecoflow Plug Countdown",
+          "cSharpName": "EcoflowPlugCountdown"
+        },
+        {
           "id": "number.hallway_sensor_occupancy_timeout",
           "friendlyName": "Hallway Sensor Occupancy timeout",
           "cSharpName": "HallwaySensorOccupancyTimeout"
-        },
-        {
-          "id": "number.inkplate_plug_countdown",
-          "friendlyName": "Inkplate-plug Countdown",
-          "cSharpName": "InkplatePlugCountdown"
         },
         {
           "id": "number.kitchen_powermeter_plug_countdown",
@@ -3383,16 +3393,6 @@
           "cSharpName": "BedMultiPlugPowerOnBehavior"
         },
         {
-          "id": "select.bigfridge_powermeter_indicator_mode",
-          "friendlyName": "BigFridge-Powermeter Indicator mode",
-          "cSharpName": "BigfridgePowermeterIndicatorMode"
-        },
-        {
-          "id": "select.bigfridge_powermeter_power_outage_memory",
-          "friendlyName": "BigFridge-Powermeter Power outage memory",
-          "cSharpName": "BigfridgePowermeterPowerOutageMemory"
-        },
-        {
           "id": "select.desktop_light_power_on_behavior",
           "friendlyName": "Desktop Light Power-on behavior",
           "cSharpName": "DesktopLightPowerOnBehavior"
@@ -3413,6 +3413,26 @@
           "cSharpName": "EcoflowDc12vTimeout"
         },
         {
+          "id": "select.ecoflow_output_plug_indicator_mode",
+          "friendlyName": "Ecoflow Output Plug Indicator mode",
+          "cSharpName": "EcoflowOutputPlugIndicatorMode"
+        },
+        {
+          "id": "select.ecoflow_output_plug_power_outage_memory",
+          "friendlyName": "Ecoflow Output Plug Power outage memory",
+          "cSharpName": "EcoflowOutputPlugPowerOutageMemory"
+        },
+        {
+          "id": "select.ecoflow_plug_indicator_mode",
+          "friendlyName": "Ecoflow Plug Indicator mode",
+          "cSharpName": "EcoflowPlugIndicatorMode"
+        },
+        {
+          "id": "select.ecoflow_plug_power_outage_memory",
+          "friendlyName": "Ecoflow Plug Power outage memory",
+          "cSharpName": "EcoflowPlugPowerOutageMemory"
+        },
+        {
           "id": "select.ecoflow_screen_timeout",
           "friendlyName": "Ecoflow Screen Timeout",
           "cSharpName": "EcoflowScreenTimeout"
@@ -3431,16 +3451,6 @@
           "id": "select.hallway_sensor_motion_sensitivity",
           "friendlyName": "Hallway Sensor Motion sensitivity",
           "cSharpName": "HallwaySensorMotionSensitivity"
-        },
-        {
-          "id": "select.inkplate_plug_indicator_mode",
-          "friendlyName": "Inkplate-plug Indicator mode",
-          "cSharpName": "InkplatePlugIndicatorMode"
-        },
-        {
-          "id": "select.inkplate_plug_power_outage_memory",
-          "friendlyName": "Inkplate-plug Power outage memory",
-          "cSharpName": "InkplatePlugPowerOutageMemory"
         },
         {
           "id": "select.kitchen_light_power_on_behavior",
@@ -3650,6 +3660,11 @@
       "domain": "sensor",
       "entities": [
         {
+          "id": "sensor.all_standby_energy",
+          "friendlyName": "All standby energy",
+          "cSharpName": "AllStandbyEnergy"
+        },
+        {
           "id": "sensor.awake_today",
           "friendlyName": "Awake Today",
           "cSharpName": "AwakeToday"
@@ -3766,7 +3781,7 @@
         },
         {
           "id": "sensor.ecoflow_charge_or_remain_time",
-          "friendlyName": "Discharging",
+          "friendlyName": "Offline",
           "cSharpName": "EcoflowChargeOrRemainTime"
         },
         {
@@ -5198,11 +5213,6 @@
           "cSharpName": "AllPowersPower"
         },
         {
-          "id": "sensor.all_standby_energy",
-          "friendlyName": "All standby energy",
-          "cSharpName": "AllStandbyEnergy"
-        },
-        {
           "id": "sensor.all_standby_power",
           "friendlyName": "All standby power",
           "cSharpName": "AllStandbyPower"
@@ -5231,16 +5241,6 @@
           "id": "sensor.bed_light_power",
           "friendlyName": "Bed Light power",
           "cSharpName": "BedLightPower"
-        },
-        {
-          "id": "sensor.bigfridge_powermeter_energy",
-          "friendlyName": "BigFridge-Powermeter Energy",
-          "cSharpName": "BigfridgePowermeterEnergy"
-        },
-        {
-          "id": "sensor.bigfridge_powermeter_power",
-          "friendlyName": "BigFridge-Powermeter Power",
-          "cSharpName": "BigfridgePowermeterPower"
         },
         {
           "id": "sensor.cube_action_angle",
@@ -5468,6 +5468,36 @@
           "cSharpName": "EcoflowMainBatteryLevel"
         },
         {
+          "id": "sensor.ecoflow_output_plug_energy",
+          "friendlyName": "Ecoflow Output Plug Energy",
+          "cSharpName": "EcoflowOutputPlugEnergy"
+        },
+        {
+          "id": "sensor.ecoflow_output_plug_power",
+          "friendlyName": "Ecoflow Output Plug Power",
+          "cSharpName": "EcoflowOutputPlugPower"
+        },
+        {
+          "id": "sensor.ecoflow_plug_current",
+          "friendlyName": "Ecoflow Plug Current",
+          "cSharpName": "EcoflowPlugCurrent"
+        },
+        {
+          "id": "sensor.ecoflow_plug_energy",
+          "friendlyName": "Ecoflow Plug Energy",
+          "cSharpName": "EcoflowPlugEnergy"
+        },
+        {
+          "id": "sensor.ecoflow_plug_power",
+          "friendlyName": "Ecoflow Plug Power",
+          "cSharpName": "EcoflowPlugPower"
+        },
+        {
+          "id": "sensor.ecoflow_plug_voltage",
+          "friendlyName": "Ecoflow Plug Voltage",
+          "cSharpName": "EcoflowPlugVoltage"
+        },
+        {
           "id": "sensor.ecoflow_slave_state_of_health",
           "friendlyName": "Ecoflow Slave State of Health",
           "cSharpName": "EcoflowSlaveStateOfHealth"
@@ -5671,16 +5701,6 @@
           "id": "sensor.indoors_info",
           "friendlyName": "Indoors Info",
           "cSharpName": "IndoorsInfo"
-        },
-        {
-          "id": "sensor.inkplate_plug_energy",
-          "friendlyName": "Inkplate-plug Energy",
-          "cSharpName": "InkplatePlugEnergy"
-        },
-        {
-          "id": "sensor.inkplate_plug_power",
-          "friendlyName": "Inkplate-plug Power",
-          "cSharpName": "InkplatePlugPower"
         },
         {
           "id": "sensor.internetgatewaydevicev2_fritz_box_6660_cable_kib_s_received",
@@ -6088,6 +6108,11 @@
           "cSharpName": "StarkvindDeviceAge"
         },
         {
+          "id": "sensor.starkvind_energy",
+          "friendlyName": "Starkvind energy",
+          "cSharpName": "StarkvindEnergy"
+        },
+        {
           "id": "sensor.starkvind_filter_age",
           "friendlyName": "Starkvind Filter age",
           "cSharpName": "StarkvindFilterAge"
@@ -6096,6 +6121,11 @@
           "id": "sensor.starkvind_pm25",
           "friendlyName": "Starkvind PM2.5",
           "cSharpName": "StarkvindPm25"
+        },
+        {
+          "id": "sensor.starkvind_power",
+          "friendlyName": "Starkvind power",
+          "cSharpName": "StarkvindPower"
         },
         {
           "id": "sensor.statistical_characteristic",
@@ -6735,16 +6765,6 @@
           "cSharpName": "BedMultiPlugL3"
         },
         {
-          "id": "switch.bigfridge_powermeter",
-          "friendlyName": "BigFridge-Powermeter",
-          "cSharpName": "BigfridgePowermeter"
-        },
-        {
-          "id": "switch.bigfridge_powermeter_child_lock",
-          "friendlyName": "BigFridge-Powermeter Child lock",
-          "cSharpName": "BigfridgePowermeterChildLock"
-        },
-        {
           "id": "switch.bl_65_34_64_internet_access",
           "friendlyName": "AC Internet Access",
           "cSharpName": "Bl653464InternetAccess"
@@ -6805,9 +6825,24 @@
           "cSharpName": "EcoflowDc12vEnabled"
         },
         {
+          "id": "switch.ecoflow_output_plug",
+          "friendlyName": "Ecoflow Output Plug",
+          "cSharpName": "EcoflowOutputPlug"
+        },
+        {
+          "id": "switch.ecoflow_output_plug_child_lock",
+          "friendlyName": "Ecoflow Output Plug Child lock",
+          "cSharpName": "EcoflowOutputPlugChildLock"
+        },
+        {
           "id": "switch.ecoflow_plug",
           "friendlyName": "Ecoflow Plug",
           "cSharpName": "EcoflowPlug"
+        },
+        {
+          "id": "switch.ecoflow_plug_child_lock",
+          "friendlyName": "Ecoflow Plug Child lock",
+          "cSharpName": "EcoflowPlugChildLock"
         },
         {
           "id": "switch.ecoflow_prio_solar_charging",
@@ -6955,19 +6990,14 @@
           "cSharpName": "HomeassistantcontainerInternetAccess"
         },
         {
+          "id": "switch.hue_plug",
+          "friendlyName": "Hue Plug",
+          "cSharpName": "HuePlug"
+        },
+        {
           "id": "switch.indoor_temperature_and_humidity_sensor_switch",
           "friendlyName": "Indoor temperature and humidity sensor Switch",
           "cSharpName": "IndoorTemperatureAndHumiditySensorSwitch"
-        },
-        {
-          "id": "switch.inkplate_plug",
-          "friendlyName": "Tv Power Plug",
-          "cSharpName": "InkplatePlug"
-        },
-        {
-          "id": "switch.inkplate_plug_child_lock",
-          "friendlyName": "Inkplate-plug Child lock",
-          "cSharpName": "InkplatePlugChildLock"
         },
         {
           "id": "switch.ir_remote_internet_access",
@@ -7437,11 +7467,6 @@
           "cSharpName": "BedLightPlug"
         },
         {
-          "id": "update.bigfridge_powermeter",
-          "friendlyName": "BigFridge-Powermeter",
-          "cSharpName": "BigfridgePowermeter"
-        },
-        {
           "id": "update.card_mod_update",
           "friendlyName": "card-mod update",
           "cSharpName": "CardModUpdate"
@@ -7470,6 +7495,11 @@
           "id": "update.ecoflow_ble_update",
           "friendlyName": "EcoFlow BLE update",
           "cSharpName": "EcoflowBleUpdate"
+        },
+        {
+          "id": "update.ecoflow_output_plug",
+          "friendlyName": "Ecoflow Output Plug",
+          "cSharpName": "EcoflowOutputPlug"
         },
         {
           "id": "update.ecoflow_plug",
@@ -7547,6 +7577,11 @@
           "cSharpName": "HomeAssistantSupervisorUpdate"
         },
         {
+          "id": "update.hue_plug",
+          "friendlyName": "Hue Plug",
+          "cSharpName": "HuePlug"
+        },
+        {
           "id": "update.hue_switch_bed",
           "friendlyName": "Hue Switch Bed",
           "cSharpName": "HueSwitchBed"
@@ -7555,11 +7590,6 @@
           "id": "update.hue_switch_living_room",
           "friendlyName": "Hue Switch Living Room",
           "cSharpName": "HueSwitchLivingRoom"
-        },
-        {
-          "id": "update.inkplate_plug",
-          "friendlyName": "Inkplate-plug",
-          "cSharpName": "InkplatePlug"
         },
         {
           "id": "update.kiosk_mode_update",

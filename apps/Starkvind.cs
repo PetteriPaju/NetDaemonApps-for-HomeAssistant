@@ -106,7 +106,7 @@ namespace NetDaemonApps.apps
 
         private void TurnOn()
         {
-            myEntities.Fan.Starkvind.SetPercentage(myEntities.InputBoolean.Isasleep.IsOff() ?  (long)myEntities.InputNumber.StarkvindDefaultSpeed.State : (long)myEntities.InputNumber.StarkvindSleepSpeed.State);
+            myEntities.Fan.Starkvind.SetPercentage(myEntities.InputBoolean.Ishome.IsOff() ? 100 : (myEntities.InputBoolean.Isasleep.IsOff() ?  (long)myEntities.InputNumber.StarkvindDefaultSpeed.State : (long)myEntities.InputNumber.StarkvindSleepSpeed.State));
         }
         private void TurnOff()
         {

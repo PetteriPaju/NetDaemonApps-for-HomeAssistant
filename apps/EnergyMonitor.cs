@@ -145,7 +145,7 @@ public class EnergyMonitor : AppBase
 
         myScheduler.RunEvery(TimeSpan.FromHours(1)+TimeSpan.FromMinutes(30), DateTimeOffset.Now, () => {
 
-            if (myEntities.BinarySensor.LivingroomWindowSensorContact.IsOn() && myEntities.Sensor.EcoflowSolarInPower.State == 0 && myEntities.BinarySensor.SolarChargingLimit.IsOff() && myEntities.BinarySensor.SolarChargingLimit.StateFor(TimeSpan.FromMinutes(30)) && myEntities.Sensor.EcoflowAcOutputFixed.State == 0)
+            if (myEntities.BinarySensor.LivingroomWindowSensorContact.IsOn() && myEntities.Sensor.EcoflowSolarInPower.State == 0 && myEntities.BinarySensor.SolarChargingLimit.IsOff() && myEntities.BinarySensor.SolarChargingLimit.StateFor(TimeSpan.FromMinutes(30)) && myEntities.Sensor.EcoflowOutputPlugPower.State == 0)
             {
                 TTS.Instance?.SpeakTTS("Solar panels are active",null, TTS.TTSPriority.PlayInGuestMode);
             }

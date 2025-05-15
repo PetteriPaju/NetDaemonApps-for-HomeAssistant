@@ -167,7 +167,6 @@ namespace NetDaemonApps.apps
             protected override void OnHold()
             {
                 base.OnHold();
-                myEntities.Switch.InkplatePlug.Toggle();
             }
         }
         private class SofaKnob : Knob

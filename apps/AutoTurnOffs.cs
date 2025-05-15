@@ -37,10 +37,6 @@ namespace NetDaemonApps.apps
             myEntities.Light.ToiletLight1.StateChanges().WhenStateIsFor(x => x?.State == "on", TimeSpan.FromHours(1), myScheduler)
                .Subscribe(x => { myEntities.Light.ToiletLight1.TurnOff();});
 
-            myEntities.Sensor.InkplatePlugPower.StateChanges().WhenStateIsFor(x => x?.State < 50, TimeSpan.FromMinutes(30), myScheduler)
-               .Subscribe(x => { myEntities.Switch.InkplatePlug.TurnOff(); });
-
-
             void sub(LightEntity light)
             {
                 lightOffDisposables.TryAdd(light, new AutorunDisposables());

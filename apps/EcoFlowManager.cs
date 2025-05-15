@@ -174,7 +174,7 @@ namespace NetDaemonApps.apps
         public EcoFlowManager()
         {
 
-            myEntities.Sensor.EcoflowBatteryLevel.StateChanges().Where(x => x.New?.State <= 2 && (x.New?.State.HasValue ?? true)  && myEntities.Sensor.EcoflowAcOutPower.State > 0 && myEntities.InputBoolean.EcoflowAllow0Battery.IsOff()).Subscribe(x => {
+            myEntities.Sensor.EcoflowBatteryLevel.StateChanges().Where(x => x.New?.State <= 2 && (x.New?.State.HasValue ?? true)  && myEntities.Sensor.EcoflowOutputPlugPower.State > 0 && myEntities.InputBoolean.EcoflowAllow0Battery.IsOff()).Subscribe(x => {
 
                 myEntities.Switch.EcoflowPlug.TurnOn();
 
@@ -186,7 +186,7 @@ namespace NetDaemonApps.apps
                 myEntities.Switch.EcoflowPlug.TurnOff();
             });
 
-            myEntities.Switch.EcoflowPlug.StateChanges().WhenStateIsFor(x => x.IsOff() && myEntities.Sensor.EcoflowAcOutPower.State == 0 && myEntities.Sensor.EcoflowStatus.State == "online", TimeSpan.FromMinutes(5),myScheduler).Subscribe(x =>
+            myEntities.Switch.EcoflowPlug.StateChanges().WhenStateIsFor(x => x.IsOff() && myEntities.Sensor.EcoflowOutputPlugPower.State == 0 && myEntities.Sensor.EcoflowStatus.State == "online", TimeSpan.FromMinutes(5),myScheduler).Subscribe(x =>
             {
                 myEntities.Switch.SwitchbotEcoflow.Toggle();
             });
@@ -201,14 +201,10 @@ namespace NetDaemonApps.apps
                 TTS.Speak("Warning Only 5% of Power remaining", TTS.TTSPriority.Default, myEntities.InputBoolean.NotificationEcoflow);
             });
 
-            myEntities.Sensor.EcoflowAcInPower.StateAllChanges().Subscribe(x => {
-
-                myEntities.InputNumber.EcoflowChargeHelper.SetValue(myEntities.Sensor.EcoflowAcInPower.State ?? 0);
-            });
-
+            /*
             myScheduler.ScheduleCron("2 * * * *", () => {
 
-                if (myEntities.Sensor.EcoflowAcInPower.State > 0)
+                if (myEntities.Sensor.EcoflowPlugPower.State > 0)
                 {
                     myEntities.InputNumber.EcoflowChargeHelper.SetValue((double)(myEntities.Sensor.EcoflowAcInPower.State - 1));
                 }
@@ -218,6 +214,7 @@ namespace NetDaemonApps.apps
                 }
             
             });
+          
 
             myScheduler.ScheduleCron("58 * * * *", () => {
 
@@ -231,6 +228,7 @@ namespace NetDaemonApps.apps
                 }
 
             });
+              */
 
             ecoflowPanel = new EcoflowPanel();
             ecoflowPanel.RegisterRow(myEntities.InputBoolean.EcopanelS1Enabled, myEntities.InputSelect.EcopanelS1Mode, myEntities.InputDatetime.EcopanelS1Time, myEntities.InputNumber.EcopanelS1Power);
