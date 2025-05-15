@@ -10,6 +10,7 @@ using System.Text.Json;
 using System.Diagnostics;
 using NetDaemon.HassModel.Entities;
 using System.Threading;
+using Microsoft.AspNetCore.Http.Timeouts;
 
 namespace NetDaemonApps.apps
 {
@@ -30,13 +31,19 @@ namespace NetDaemonApps.apps
         private List<KeyValuePair<int,double>> todayHoursRaw = new List<KeyValuePair<int,double>>();
         private List<KeyValuePair<int, double>> tomorrowHoursRaw = new List<KeyValuePair<int, double>>();
 
-        private EcoflowPanel ecoflowPanel;
+        private static EcoflowPanel ecoflowPanel;
+        public static bool isSometingPlanned { get { return ecoflowPanel.isAnythingPlanned(); } }
 
         protected class EcoflowPanel
         {
 
 
             private List<EcoflowPanelRow> ecoflowPanelList = new List<EcoflowPanelRow>();
+            public bool isAnythingPlanned()
+            {
+                return ecoflowPanelList.Find(x => x.enabled.IsOn()) != null;
+            }
+
             public EcoflowPanel() { }
 
             public void RegisterRow(InputBooleanEntity enabledEntity, InputSelectEntity modeEntity, InputDatetimeEntity timeEntity, InputNumberEntity powerEntity)
@@ -149,6 +156,7 @@ namespace NetDaemonApps.apps
 
                 private void SetPower()
                 {
+                    if (myEntities.Switch.BrightLightPlug.IsOff()) return;
                     Task.Run(async () =>
                     {
                         await Task.Run(async () =>

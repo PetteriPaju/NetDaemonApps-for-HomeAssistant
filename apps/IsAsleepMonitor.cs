@@ -154,7 +154,7 @@ namespace NetDaemonApps.apps
                 if (myEntities.InputBoolean.GuestMode.IsOn()) return;
                 if (myEntities.InputBoolean.Isasleep.IsOff()) return;
                 if (myEntities.Switch.BrightLightPlug.IsOn()) return;
-
+                
                 myEntities.Switch.BrightLightPlug.TurnOn();
 
 
@@ -274,6 +274,7 @@ namespace NetDaemonApps.apps
             myEntities.InputBoolean.Isasleep.StateChanges().Where(x => x?.New?.State == "on" && x?.Old.State == "off").Subscribe(x => {
                 Resub();
                 myEntities.InputDatetime.Lastisasleeptime.SetDatetime(timestamp: new DateTimeOffset(DateTime.Now).ToUnixTimeSeconds());
+
             });
 
 
@@ -288,8 +289,20 @@ namespace NetDaemonApps.apps
                 TTS.Speak("You have been awake for 12 hours", TTS.TTSPriority.DoNotPlayInGuestMode);
                 twelweHalarmGiven = true;
             }
-               
 
+            if (myEntities.InputBoolean.Isasleep.IsOn() && myEntities.InputBoolean.Isasleep.StateFor(TimeSpan.FromMinutes(20)))
+            {
+                switch (myEntities.InputSelect.PowerSavingBehaviour.State)
+                {
+                    case "Modem Off":
+                        if(!EcoFlowManager.isSometingPlanned) myEntities.Switch.BrightLightPlug.TurnOff();
+                        break;
+
+                    case "Everything Off":
+                        if (!EcoFlowManager.isSometingPlanned) myEntities.Script.TurnOffEverything.TurnOn();
+                        break;
+                }     
+            }
 
             if (myEntities.InputBoolean.Isasleep.IsOn() == myEntities.BinarySensor.IsAsleepHelper.IsOn()) return;
             if (!myEntities.BinarySensor.IsAsleepHelper.StateFor(TimeSpan.FromMinutes(5))) return;
