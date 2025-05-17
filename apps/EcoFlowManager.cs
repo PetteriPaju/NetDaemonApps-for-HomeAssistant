@@ -41,7 +41,7 @@ namespace NetDaemonApps.apps
             private List<EcoflowPanelRow> ecoflowPanelList = new List<EcoflowPanelRow>();
             public bool isAnythingPlanned()
             {
-                return ecoflowPanelList.Find(x => x.enabled.IsOn() && x.mode.State == "On") != null;
+                return ecoflowPanelList.FirstOrDefault(x => x.enabled.IsOn() && x.mode.State == "On", null) != null;
             }
 
             public EcoflowPanel() { }
