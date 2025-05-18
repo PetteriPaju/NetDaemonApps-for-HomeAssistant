@@ -34,7 +34,7 @@ namespace NetDaemonApps.apps
 
         private bool ringingAlarm = false;
         private bool twelweHalarmGiven = false;
-        
+        private bool modemAutoTurnedOff = false;
 
         private class MonitorMember
         {
@@ -157,8 +157,6 @@ namespace NetDaemonApps.apps
                 
                 myEntities.Switch.BrightLightPlug.TurnOn();
 
-
-
             });
 
 
@@ -234,9 +232,9 @@ namespace NetDaemonApps.apps
             myEntities.InputBoolean.Isasleep.StateChanges().Where(x => x?.New?.State == "off" && x?.Old.State == "on").Subscribe(x => {
 
                 ringingAlarm = false;
+                modemAutoTurnedOff = false;
 
-
-                if(myEntities.InputSelect.AlarmSleepMode.State == "Nap" || myEntities.InputSelect.AlarmSleepMode.State == "Free")
+                if (myEntities.InputSelect.AlarmSleepMode.State == "Nap" || myEntities.InputSelect.AlarmSleepMode.State == "Free")
                 myEntities.InputSelect.AlarmSleepMode.SelectOption("Normal");
 
                 // If alarm timer is on it means that this is after a long sleep
@@ -290,12 +288,15 @@ namespace NetDaemonApps.apps
                 twelweHalarmGiven = true;
             }
 
-            if (myEntities.InputBoolean.Isasleep.IsOn() && myEntities.InputBoolean.Isasleep.StateFor(TimeSpan.FromMinutes(20)))
+            if (myEntities.InputBoolean.Isasleep.IsOn() && myEntities.InputBoolean.Isasleep.StateFor(TimeSpan.FromMinutes(20) ) && modemAutoTurnedOff == false)
             {
                 switch (myEntities.InputSelect.PowerSavingBehaviour.State)
                 {
                     case "Modem Off":
-                        if(!EcoFlowManager.isSometingPlanned) myEntities.Switch.BrightLightPlug.TurnOff();
+                        if (!EcoFlowManager.isSometingPlanned) {
+                            myEntities.Switch.BrightLightPlug.TurnOff();
+                            modemAutoTurnedOff = true;
+                        }
                         break;
 
                     case "Everything Off":
