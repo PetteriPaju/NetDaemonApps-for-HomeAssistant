@@ -205,16 +205,18 @@ namespace NetDaemonApps.apps
                 myEntities.Switch.PcMultipowermeterMonitors.TurnOff();
                 myEntities.Switch.DeskFans.TurnOff();
                 myEntities.Light.ToiletLight1.TurnOff();
+                myEntities.Light.KitchenLight2.TurnOff();
             }
             myEntities.InputBoolean.Ishome.TurnOn();
 
             if (myEntities.InputBoolean.GuestMode.IsOff() || myEntities.InputBoolean.LightgroupLivingroomEnabled.IsOff())
             {
-                myEntities.Light.MonitorLight.TurnOff();
-                myEntities.Light.PcMultipowermeterL1.TurnOff();
-                myEntities.Light.LivingRoomLight.TurnOff();
-                myEntities.Light.DesktopLight.TurnOff();
+                if (myEntities.Light.DesktopKnobLights.IsOn()){
 
+                    myEntities.Light.DesktopKnobLights.TurnOff();
+                    myEntities.Light.BedLight.TurnOn();
+                }
+                myEntities.Light.PcMultipowermeterL1.TurnOff();
             }
         }
         protected override void On1Press()
