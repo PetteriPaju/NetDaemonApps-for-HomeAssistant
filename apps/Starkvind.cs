@@ -28,8 +28,19 @@ namespace NetDaemonApps.apps
             myScheduler.ScheduleCron("30 0 * * * *", HourlyTurnOnCheck,true);
             myEntities.Sensor.StarkvindAirQuality.StateAllChanges().Where(x => !x.Old.IsUnavailable() && airqualityValues.Contains(x.New.State.ToLower())).Subscribe(x=>Notify(x.Old.State,x.New.State));
             myEntities.InputSelect.DebugDropdownhelper.StateAllChanges().Where(x => !x.Old.IsUnavailable() && airqualityValues.Contains(x.New.State.ToLower())).Subscribe(x => Notify(x.Old.State, x.New.State));
+            myEntities.InputBoolean.Ishome.StateAllChanges().Where(x => !x.Old.IsUnavailable()).Subscribe(x => HandleIsHome(x.New.State));
+
+
 
         }
+
+        private void HandleIsHome(string state)
+        {
+            if (myEntities.Fan.Starkvind.IsOff()) return;
+
+
+        }
+
 
         private void Notify(string oldState, string newState)
         {

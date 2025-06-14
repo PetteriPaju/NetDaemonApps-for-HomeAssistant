@@ -428,7 +428,8 @@ public class EnergyMonitor : AppBase
         if ((priceChange == PriceChangeType.NoChange && inFoForNextHour.peak == 0 
             || (priceChange == PriceChangeType.NoChange && infoForCurrentHour.peak == -1 && loPeakAlertGiven) 
             || (priceChange == PriceChangeType.NoChange && infoForCurrentHour.peak == 1 && hiPeakAlertGiven)) && !force) return;
-        
+
+        if (nordPoolEntity.Attributes.Average < 4 && inFoForNextHour.range < 2) return;
 
             bool isWarning = priceChange == PriceChangeType.Increase || inFoForNextHour.peak == 1;
 

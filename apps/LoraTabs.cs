@@ -234,10 +234,22 @@ namespace NetDaemonApps.apps
 
         protected override void On2Press()
         {
-            base.On1Press();
+            base.On2Press();
             myEntities.Switch.BedMultiPlugL1.Toggle();
 
         }
+
+        protected override void On2Hold()
+        {
+            base.On2Hold();
+            if (myEntities.Sensor.PcPlugPower.State > 0)
+            {
+             myEntities.Button.PcShutdown.Press();
+            TTS.Speak("PC Off", TTS.TTSPriority.IgnoreAll);
+            }
+           
+        }
+
 
         protected override void On3Press()
         {
