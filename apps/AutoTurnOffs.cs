@@ -93,13 +93,6 @@ namespace NetDaemonApps.apps
            // sub(_myEntities.Light.HallwayLight);
            // sub(_myEntities.Light.StorageLight2);
 
-
-
-            //Fan
-            myEntities.Switch.BedMultiPlugL1.StateChanges().WhenStateIsFor(x => x?.State == "on", TimeSpan.FromHours(1)+TimeSpan.FromMinutes(30), myScheduler)
-               .Subscribe(x => { myEntities.Switch.BedMultiPlugL1.TurnOff(); });
-
-
             myEntities.Sensor.EnvyBatteryChargeRemainingPercentage.StateChanges().Where(x => x?.New?.State < myEntities.InputNumber.SettingsLaptopchargerturnonpercent.State)
                 .Subscribe(_ => {
 

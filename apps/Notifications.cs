@@ -18,8 +18,6 @@ namespace NetDaemonApps.apps
         public Notifications() {
 
             _sensorsOnBooleanEntity = myEntities.InputBoolean.SensorsActive;
-            RegisterStateNotification(myEntities.Switch.BedMultiPlugL1, "Fan");
-            
 
             myScheduler.ScheduleCron("30 * * * *", () => { if (DateTime.Now.Hour != 14 && DateTime.Now.Hour%2 != 0 ) TTS.Speak("Hydration Check", TTS.TTSPriority.DoNotPlayInGuestMode, myEntities.InputBoolean.NotificationHydrationCheck); });
 
@@ -68,8 +66,8 @@ namespace NetDaemonApps.apps
                 }
 
             });
-          //  myEntities.Sensor.MotoG8PowerLiteBatteryLevel.StateChanges().Where(x => x?.New?.State < 15 && myEntities.InputBoolean.Ishome.State == "on" && myEntities.BinarySensor.MotoG8PowerLiteIsCharging.State == "off").Subscribe(_ => { TTS.Speak("Phone Battery Low", TTS.TTSPriority.DoNotPlayInGuestMode, myEntities.InputBoolean.NotificationPhoneBattery); });
-           // myEntities.Sensor.MotoG8PowerLiteBatteryLevel.StateChanges().Where(x => x?.New?.State < 50 && x?.Old?.State >= 50 && myEntities.BinarySensor.MotoG8PowerLiteIsCharging.State == "off").Subscribe(_ => { TTS.Speak("Phone Battery Under 50%", TTS.TTSPriority.DoNotPlayInGuestMode, myEntities.InputBoolean.NotificationPhoneBattery); });
+            myEntities.Sensor.MotoG8PowerLiteBatteryLevel.StateChanges().Where(x => x?.New?.State < 20 && myEntities.InputBoolean.Ishome.State == "on" && myEntities.BinarySensor.MotoG8PowerLiteIsCharging.State == "off").Subscribe(_ => { TTS.Speak("Phone Battery Low", TTS.TTSPriority.DoNotPlayInGuestMode, myEntities.InputBoolean.NotificationPhoneBattery); });
+            myEntities.Sensor.MotoG8PowerLiteBatteryLevel.StateChanges().Where(x => x?.New?.State < 50 && x?.Old?.State >= 50 && myEntities.BinarySensor.MotoG8PowerLiteIsCharging.State == "off").Subscribe(_ => { TTS.Speak("Phone Battery Under 50%", TTS.TTSPriority.DoNotPlayInGuestMode, myEntities.InputBoolean.NotificationPhoneBattery); });
 
 
             myEntities.InputBoolean.Ishome.StateChanges().Where(x => x.New.IsOn()).Subscribe(_ => {

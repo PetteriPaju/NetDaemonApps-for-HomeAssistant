@@ -81,7 +81,7 @@ namespace NetDaemonApps.apps
         {
             return myEntities.Sensor.PcWalkingpadActive2.State == "1";
         }
-        protected SwitchEntity runnerSwitch { get { return myEntities.Switch.ModemAutoOnPlug; } }
+        protected SwitchEntity runnerSwitch { get { return myEntities.Switch.BedMultiPlugL2; } }
         protected void ActivateRunningPad()
         {
             bool wasPlugOn = true;

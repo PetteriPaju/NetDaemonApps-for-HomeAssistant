@@ -49,7 +49,7 @@ namespace NetDaemonApps.apps
             int indexOfold = airqualityValues.IndexOf(oldState.ToLower());
             int indexOfnew = airqualityValues.IndexOf(newState.ToLower());
 
-            string direction = indexOfnew < indexOfold ? "increased" : "decreased";
+            string direction = indexOfnew < indexOfold ? "improved" : "fell";
 
             queuedMessage = "Air Quality " + direction + " to:" + newState;
 

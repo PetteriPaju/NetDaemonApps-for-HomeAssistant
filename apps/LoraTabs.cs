@@ -235,7 +235,11 @@ namespace NetDaemonApps.apps
         protected override void On2Press()
         {
             base.On2Press();
-            myEntities.Switch.BedMultiPlugL1.Toggle();
+
+            if(myEntities.Switch.ModemAutoOnPlug.IsOff() && myEntities.InputBoolean.GuestMode.IsOff()) TTS.Speak("Fan On", TTS.TTSPriority.IgnoreSleep);
+            myEntities.Switch.ModemAutoOnPlug.Toggle();
+            
+            
 
         }
 
