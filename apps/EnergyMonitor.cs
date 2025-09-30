@@ -73,6 +73,7 @@ public class EnergyMonitor : AppBase
     {
         _instance = this;
 
+        return;
         void ResetRanges()
         {
             electiricityRanges = new Dictionary<double, string>();
