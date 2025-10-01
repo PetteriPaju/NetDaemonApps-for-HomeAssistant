@@ -561,6 +561,8 @@ public class EnergyMonitor : AppBase
 
             myEntities.InputNumber.DailyEnergySaveHelper.AddValue((myEntities.Sensor.EcoflowCostThisHour.State ?? 0) / 100);
             myEntities.InputNumber.EnergyCostDaily.AddValue((myEntities.Sensor.EnergyCostThisHour.State ?? 0) / 100);
+            myEntities.Sensor.AllPowersEnergyQuarterHourly.ResetEnergy();
+            myEntities.Sensor.EcoflowAcOutputQuarter.ResetEnergy();
             lastCaclHour = DateTime.Now.Hour;
             ecoflowCgargePriceFixHelper = 0;
             ecoflowUsagePriceFixer = 0;

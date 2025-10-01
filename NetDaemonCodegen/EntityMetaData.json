@@ -1327,6 +1327,111 @@
           "cSharpName": "DesktopStanding"
         },
         {
+          "id": "input_boolean.dev_netdaemon_net_daemon_apps_apps_a0gbl",
+          "friendlyName": "dev_netdaemon_net_daemon_apps_apps_a0gbl",
+          "cSharpName": "DevNetdaemonNetDaemonAppsAppsA0gbl"
+        },
+        {
+          "id": "input_boolean.dev_netdaemon_net_daemon_apps_apps_auto_turn_offs",
+          "friendlyName": "dev_netdaemon_net_daemon_apps_apps_auto_turn_offs",
+          "cSharpName": "DevNetdaemonNetDaemonAppsAppsAutoTurnOffs"
+        },
+        {
+          "id": "input_boolean.dev_netdaemon_net_daemon_apps_apps_easy_alarm",
+          "friendlyName": "dev_netdaemon_net_daemon_apps_apps_easy_alarm",
+          "cSharpName": "DevNetdaemonNetDaemonAppsAppsEasyAlarm"
+        },
+        {
+          "id": "input_boolean.dev_netdaemon_net_daemon_apps_apps_eco_flow_manager",
+          "friendlyName": "dev_netdaemon_net_daemon_apps_apps_eco_flow_manager",
+          "cSharpName": "DevNetdaemonNetDaemonAppsAppsEcoFlowManager"
+        },
+        {
+          "id": "input_boolean.dev_netdaemon_net_daemon_apps_apps_energy_monitor",
+          "friendlyName": "dev_netdaemon_net_daemon_apps_apps_energy_monitor",
+          "cSharpName": "DevNetdaemonNetDaemonAppsAppsEnergyMonitor"
+        },
+        {
+          "id": "input_boolean.dev_netdaemon_net_daemon_apps_apps_hue_switches_livingroom_switch",
+          "friendlyName": "dev_netdaemon_net_daemon_apps_apps_hue_switches_livingroom_switch",
+          "cSharpName": "DevNetdaemonNetDaemonAppsAppsHueSwitchesLivingroomSwitch"
+        },
+        {
+          "id": "input_boolean.dev_netdaemon_net_daemon_apps_apps_is_asleep_monitor",
+          "friendlyName": "dev_netdaemon_net_daemon_apps_apps_is_asleep_monitor",
+          "cSharpName": "DevNetdaemonNetDaemonAppsAppsIsAsleepMonitor"
+        },
+        {
+          "id": "input_boolean.dev_netdaemon_net_daemon_apps_apps_is_home_manager",
+          "friendlyName": "dev_netdaemon_net_daemon_apps_apps_is_home_manager",
+          "cSharpName": "DevNetdaemonNetDaemonAppsAppsIsHomeManager"
+        },
+        {
+          "id": "input_boolean.dev_netdaemon_net_daemon_apps_apps_knobs",
+          "friendlyName": "dev_netdaemon_net_daemon_apps_apps_knobs",
+          "cSharpName": "DevNetdaemonNetDaemonAppsAppsKnobs"
+        },
+        {
+          "id": "input_boolean.dev_netdaemon_net_daemon_apps_apps_lights_kitchen_light",
+          "friendlyName": "dev_netdaemon_net_daemon_apps_apps_lights_kitchen_light",
+          "cSharpName": "DevNetdaemonNetDaemonAppsAppsLightsKitchenLight"
+        },
+        {
+          "id": "input_boolean.dev_netdaemon_net_daemon_apps_apps_lights_lights_and_sensors",
+          "friendlyName": "dev_netdaemon_net_daemon_apps_apps_lights_lights_and_sensors",
+          "cSharpName": "DevNetdaemonNetDaemonAppsAppsLightsLightsAndSensors"
+        },
+        {
+          "id": "input_boolean.dev_netdaemon_net_daemon_apps_apps_lights_livingroom_lights",
+          "friendlyName": "dev_netdaemon_net_daemon_apps_apps_lights_livingroom_lights",
+          "cSharpName": "DevNetdaemonNetDaemonAppsAppsLightsLivingroomLights"
+        },
+        {
+          "id": "input_boolean.dev_netdaemon_net_daemon_apps_apps_lights_toiler_light_automation",
+          "friendlyName": "dev_netdaemon_net_daemon_apps_apps_lights_toiler_light_automation",
+          "cSharpName": "DevNetdaemonNetDaemonAppsAppsLightsToilerLightAutomation"
+        },
+        {
+          "id": "input_boolean.dev_netdaemon_net_daemon_apps_apps_lora_tap_bed",
+          "friendlyName": "dev_netdaemon_net_daemon_apps_apps_lora_tap_bed",
+          "cSharpName": "DevNetdaemonNetDaemonAppsAppsLoraTapBed"
+        },
+        {
+          "id": "input_boolean.dev_netdaemon_net_daemon_apps_apps_lora_tap_dekstop",
+          "friendlyName": "dev_netdaemon_net_daemon_apps_apps_lora_tap_dekstop",
+          "cSharpName": "DevNetdaemonNetDaemonAppsAppsLoraTapDekstop"
+        },
+        {
+          "id": "input_boolean.dev_netdaemon_net_daemon_apps_apps_media_playing_monitor",
+          "friendlyName": "dev_netdaemon_net_daemon_apps_apps_media_playing_monitor",
+          "cSharpName": "DevNetdaemonNetDaemonAppsAppsMediaPlayingMonitor"
+        },
+        {
+          "id": "input_boolean.dev_netdaemon_net_daemon_apps_apps_notifications",
+          "friendlyName": "dev_netdaemon_net_daemon_apps_apps_notifications",
+          "cSharpName": "DevNetdaemonNetDaemonAppsAppsNotifications"
+        },
+        {
+          "id": "input_boolean.dev_netdaemon_net_daemon_apps_apps_starkvind",
+          "friendlyName": "dev_netdaemon_net_daemon_apps_apps_starkvind",
+          "cSharpName": "DevNetdaemonNetDaemonAppsAppsStarkvind"
+        },
+        {
+          "id": "input_boolean.dev_netdaemon_net_daemon_apps_apps_step_counter",
+          "friendlyName": "dev_netdaemon_net_daemon_apps_apps_step_counter",
+          "cSharpName": "DevNetdaemonNetDaemonAppsAppsStepCounter"
+        },
+        {
+          "id": "input_boolean.dev_netdaemon_net_daemon_apps_apps_treadmill_remote",
+          "friendlyName": "dev_netdaemon_net_daemon_apps_apps_treadmill_remote",
+          "cSharpName": "DevNetdaemonNetDaemonAppsAppsTreadmillRemote"
+        },
+        {
+          "id": "input_boolean.dev_netdaemon_net_daemon_apps_apps_tts",
+          "friendlyName": "dev_netdaemon_net_daemon_apps_apps_tts",
+          "cSharpName": "DevNetdaemonNetDaemonAppsAppsTts"
+        },
+        {
           "id": "input_boolean.ecoflow_allow_0_battery",
           "friendlyName": "Ecoflow Allow 0-Battery",
           "cSharpName": "EcoflowAllow0Battery"
@@ -3740,6 +3845,11 @@
           "cSharpName": "DiskPveSt4000dm0001f2168PowerCycles"
         },
         {
+          "id": "sensor.ecoflow_ac_input_quarter",
+          "friendlyName": "Ecoflow Ac Input Quarter",
+          "cSharpName": "EcoflowAcInputQuarter"
+        },
+        {
           "id": "sensor.ecoflow_charge_or_remain_time",
           "friendlyName": "Discharging",
           "cSharpName": "EcoflowChargeOrRemainTime"
@@ -3753,6 +3863,11 @@
           "id": "sensor.ecoflow_cycles",
           "friendlyName": "Ecoflow Cycles",
           "cSharpName": "EcoflowCycles"
+        },
+        {
+          "id": "sensor.ecoflow_solar_input_quarter",
+          "friendlyName": "Ecoflow Solar Input Quarter",
+          "cSharpName": "EcoflowSolarInputQuarter"
         },
         {
           "id": "sensor.ecoflow_status",
@@ -5331,6 +5446,11 @@
           "id": "sensor.ecoflow_ac_output_hourly",
           "friendlyName": "Ecoflow AC Output Hourly",
           "cSharpName": "EcoflowAcOutputHourly"
+        },
+        {
+          "id": "sensor.ecoflow_ac_output_quarter",
+          "friendlyName": "Ecoflow AC Output Quarter",
+          "cSharpName": "EcoflowAcOutputQuarter"
         },
         {
           "id": "sensor.ecoflow_ac_output_sum",
