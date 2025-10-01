@@ -219,16 +219,6 @@ namespace NetDaemonApps.apps
             Resub(true);
 
 
-            myEntities.BinarySensor.WithingsInBed.StateChanges().Where(x => x.New.IsOff()).Subscribe(x => {
-
-                if (ringingAlarm)
-                {
-                    myEntities.InputBoolean.Isasleep.TurnOff();
-                    ringingAlarm = false;
-                }
-            
-            });
-
             myEntities.InputBoolean.Isasleep.StateChanges().Where(x => x?.New?.State == "off" && x?.Old.State == "on").Subscribe(x => {
 
                 ringingAlarm = false;

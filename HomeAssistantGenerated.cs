@@ -86,7 +86,6 @@ public static class GeneratedExtensions
         serviceCollection.AddTransient<DeviceTrackerServices>();
         serviceCollection.AddTransient<FanServices>();
         serviceCollection.AddTransient<FfmpegServices>();
-        serviceCollection.AddTransient<FritzServices>();
         serviceCollection.AddTransient<FrontendServices>();
         serviceCollection.AddTransient<GoogleAssistantServices>();
         serviceCollection.AddTransient<GroupServices>();
@@ -4957,8 +4956,6 @@ public interface IServices
 
     FfmpegServices Ffmpeg { get; }
 
-    FritzServices Fritz { get; }
-
     FrontendServices Frontend { get; }
 
     GoogleAssistantServices GoogleAssistant { get; }
@@ -5076,7 +5073,6 @@ public partial class Services : IServices
     public DeviceTrackerServices DeviceTracker => new(_haContext);
     public FanServices Fan => new(_haContext);
     public FfmpegServices Ffmpeg => new(_haContext);
-    public FritzServices Fritz => new(_haContext);
     public FrontendServices Frontend => new(_haContext);
     public GoogleAssistantServices GoogleAssistant => new(_haContext);
     public GroupServices Group => new(_haContext);
