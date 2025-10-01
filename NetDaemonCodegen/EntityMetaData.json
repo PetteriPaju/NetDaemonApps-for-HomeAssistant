@@ -9,6 +9,11 @@
           "cSharpName": "_3dPrinterNotification"
         },
         {
+          "id": "automation.ac_off_test",
+          "friendlyName": "AC off test",
+          "cSharpName": "AcOffTest"
+        },
+        {
           "id": "automation.adguard_auto_on",
           "friendlyName": "Adguard auto on",
           "cSharpName": "AdguardAutoOn"
@@ -37,6 +42,11 @@
           "id": "automation.away_from_home",
           "friendlyName": "Away From Home",
           "cSharpName": "AwayFromHome"
+        },
+        {
+          "id": "automation.blink_hallway_light",
+          "friendlyName": "Blink Hallway light",
+          "cSharpName": "BlinkHallwayLight"
         },
         {
           "id": "automation.bright_light_automation",
@@ -371,24 +381,19 @@
           "cSharpName": "CheapElectricity"
         },
         {
-          "id": "binary_sensor.disk_pve_dev_sda_health",
-          "friendlyName": "Disk pve: SAMSUNG MZ7LN128HCHP-000H1 (/dev/sda) Health",
-          "cSharpName": "DiskPveDevSdaHealth"
+          "id": "binary_sensor.disk_pve_one_touch_hdd_health",
+          "friendlyName": "Disk pve: One Touch HDD Health",
+          "cSharpName": "DiskPveOneTouchHddHealth"
         },
         {
-          "id": "binary_sensor.disk_pve_one_touch_hdd_dev_sdb_health",
-          "friendlyName": "Disk pve: One Touch HDD (/dev/sdb) Health",
-          "cSharpName": "DiskPveOneTouchHddDevSdbHealth"
+          "id": "binary_sensor.disk_pve_samsung_mz7ln128hchp_000h1_health",
+          "friendlyName": "Disk pve: SAMSUNG MZ7LN128HCHP-000H1 Health",
+          "cSharpName": "DiskPveSamsungMz7ln128hchp000h1Health"
         },
         {
-          "id": "binary_sensor.disk_pve_st6000ne000_2kr101_dev_sdc_health",
-          "friendlyName": "Disk pve: ST4000DM000-1F2168 (/dev/sdc) Health",
-          "cSharpName": "DiskPveSt6000ne0002kr101DevSdcHealth"
-        },
-        {
-          "id": "binary_sensor.disk_pve_wdc_wds200t1r0a_68a4w0_dev_sdd_health",
-          "friendlyName": "Health",
-          "cSharpName": "DiskPveWdcWds200t1r0a68a4w0DevSddHealth"
+          "id": "binary_sensor.disk_pve_st4000dm000_1f2168_health",
+          "friendlyName": "Disk pve: ST4000DM000-1F2168 Health",
+          "cSharpName": "DiskPveSt4000dm0001f2168Health"
         },
         {
           "id": "binary_sensor.fridge_contact_sensor_battery_low",
@@ -451,6 +456,11 @@
           "cSharpName": "KitchenDistanceHelper"
         },
         {
+          "id": "binary_sensor.kitchen_power_active",
+          "friendlyName": "Kitchen  Power Active",
+          "cSharpName": "KitchenPowerActive"
+        },
+        {
           "id": "binary_sensor.kitchen_sensor_occupancy",
           "friendlyName": "Kitchen Sensor Occupancy",
           "cSharpName": "KitchenSensorOccupancy"
@@ -467,18 +477,13 @@
         },
         {
           "id": "binary_sensor.livingroomfp1_presence",
-          "friendlyName": "LivingRoomFP1 Presence",
+          "friendlyName": "LivingRoomFP1 Occupancy",
           "cSharpName": "Livingroomfp1Presence"
         },
         {
           "id": "binary_sensor.lovelace_kindle_screensaver_running",
           "friendlyName": "Lovelace Kindle Screensaver Running",
           "cSharpName": "LovelaceKindleScreensaverRunning"
-        },
-        {
-          "id": "binary_sensor.lxc_jellyfin_101_status",
-          "friendlyName": "Status",
-          "cSharpName": "LxcJellyfin101Status"
         },
         {
           "id": "binary_sensor.moto_g_8_power_lite_headphones",
@@ -521,14 +526,14 @@
           "cSharpName": "Prisma"
         },
         {
-          "id": "binary_sensor.qemu_haos9_5_100_health",
+          "id": "binary_sensor.qemu_haos14_0_100_health",
           "friendlyName": "QEMU haos14.0 (100) Health",
-          "cSharpName": "QemuHaos95100Health"
+          "cSharpName": "QemuHaos140100Health"
         },
         {
-          "id": "binary_sensor.qemu_haos9_5_100_status",
+          "id": "binary_sensor.qemu_haos14_0_100_status",
           "friendlyName": "QEMU haos14.0 (100) Status",
-          "cSharpName": "QemuHaos95100Status"
+          "cSharpName": "QemuHaos140100Status"
         },
         {
           "id": "binary_sensor.remote_ui",
@@ -644,11 +649,6 @@
           "id": "binary_sensor.walkingpad_contact_tamper",
           "friendlyName": "Walkingpad Contact Tamper",
           "cSharpName": "WalkingpadContactTamper"
-        },
-        {
-          "id": "binary_sensor.withings_in_bed",
-          "friendlyName": "Withings In bed",
-          "cSharpName": "WithingsInBed"
         },
         {
           "id": "binary_sensor.zigbee2mqtt_bridge_connection_state",
@@ -793,6 +793,16 @@
           "cSharpName": "NodePveShutdown"
         },
         {
+          "id": "button.olohuone_nest_favorite_current_song",
+          "friendlyName": "Favorite current song",
+          "cSharpName": "OlohuoneNestFavoriteCurrentSong"
+        },
+        {
+          "id": "button.olohuone_nest_favorite_current_song_2",
+          "friendlyName": "Favorite current song",
+          "cSharpName": "OlohuoneNestFavoriteCurrentSong2"
+        },
+        {
           "id": "button.pc_cwalkingpadspeeddown",
           "friendlyName": "PC cWalkingPadSpeedDown",
           "cSharpName": "PcCwalkingpadspeeddown"
@@ -801,6 +811,11 @@
           "id": "button.pc_endrecording",
           "friendlyName": "PC endRecording",
           "cSharpName": "PcEndrecording"
+        },
+        {
+          "id": "button.pc_favorite_current_song",
+          "friendlyName": "PC Favorite current song",
+          "cSharpName": "PcFavoriteCurrentSong"
         },
         {
           "id": "button.pc_mediavolumedown",
@@ -881,6 +896,16 @@
           "id": "button.synchronize_devices",
           "friendlyName": "Google Assistant Synchronize devices",
           "cSharpName": "SynchronizeDevices"
+        },
+        {
+          "id": "button.this_device_favorite_current_song",
+          "friendlyName": "Favorite current song",
+          "cSharpName": "ThisDeviceFavoriteCurrentSong"
+        },
+        {
+          "id": "button.vlc_telnet_favorite_current_song",
+          "friendlyName": "VLC-TELNET Favorite current song",
+          "cSharpName": "VlcTelnetFavoriteCurrentSong"
         },
         {
           "id": "button.walkingpad_down",
@@ -965,11 +990,6 @@
           "cSharpName": "Chromecastwithgoogletv"
         },
         {
-          "id": "device_tracker.desktop_9rqrgio",
-          "friendlyName": "DESKTOP-9RQRGIO",
-          "cSharpName": "Desktop9rqrgio"
-        },
-        {
           "id": "device_tracker.desktop_k24v8np",
           "friendlyName": "DESKTOP-K24V8NP",
           "cSharpName": "DesktopK24v8np"
@@ -1005,11 +1025,6 @@
           "cSharpName": "Espressif"
         },
         {
-          "id": "device_tracker.galaxy_a51",
-          "friendlyName": "Galaxy-A51",
-          "cSharpName": "GalaxyA51"
-        },
-        {
           "id": "device_tracker.google_nest_hub",
           "friendlyName": "fuchsia-1c53-f9e1-9a4e",
           "cSharpName": "GoogleNestHub"
@@ -1018,11 +1033,6 @@
           "id": "device_tracker.google_nest_mini",
           "friendlyName": "Google-Nest-Mini",
           "cSharpName": "GoogleNestMini"
-        },
-        {
-          "id": "device_tracker.homeassistant",
-          "friendlyName": "homeAssistant",
-          "cSharpName": "Homeassistant"
         },
         {
           "id": "device_tracker.homeassistant_2",
@@ -1040,34 +1050,14 @@
           "cSharpName": "IrRemote"
         },
         {
-          "id": "device_tracker.jaeaekaapinlaempoemittari",
-          "friendlyName": "jaeaekaapinlaempoemittari",
-          "cSharpName": "Jaeaekaapinlaempoemittari"
-        },
-        {
-          "id": "device_tracker.laptop_rnusi7lb",
-          "friendlyName": "LAPTOP-RNUSI7LB",
-          "cSharpName": "LaptopRnusi7lb"
-        },
-        {
           "id": "device_tracker.light_sensor",
           "friendlyName": "Light-Sensor",
           "cSharpName": "LightSensor"
         },
         {
-          "id": "device_tracker.mainpc",
-          "friendlyName": "mainpc",
-          "cSharpName": "Mainpc"
-        },
-        {
           "id": "device_tracker.maxciopistoke",
           "friendlyName": "maxciopistoke",
           "cSharpName": "Maxciopistoke"
-        },
-        {
-          "id": "device_tracker.mediaserver",
-          "friendlyName": "mediaserver",
-          "cSharpName": "Mediaserver"
         },
         {
           "id": "device_tracker.mkspi",
@@ -1095,34 +1085,24 @@
           "cSharpName": "Pc192168024"
         },
         {
-          "id": "device_tracker.pc_56_80_c3_46_02_f8",
-          "friendlyName": "Jellyfin",
-          "cSharpName": "Pc5680C34602F8"
+          "id": "device_tracker.pc_192_168_0_28",
+          "friendlyName": "PC-98-E2-55-80-05-8D",
+          "cSharpName": "Pc192168028"
         },
         {
-          "id": "device_tracker.pc_a0_92_08_90_22_91",
-          "friendlyName": "minitemp-humiditysensor",
-          "cSharpName": "PcA09208902291"
+          "id": "device_tracker.pc_192_168_0_29",
+          "friendlyName": "PC-192-168-0-29",
+          "cSharpName": "Pc192168029"
         },
         {
-          "id": "device_tracker.pc_b4_ae_2b_e4_a3_f8",
-          "friendlyName": "DESKTOP-AOTDDD2",
-          "cSharpName": "PcB4Ae2bE4A3F8"
-        },
-        {
-          "id": "device_tracker.puhelin",
-          "friendlyName": "Puhelin",
-          "cSharpName": "Puhelin"
+          "id": "device_tracker.pc_48_f1_eb_e7_c9_2f",
+          "friendlyName": "PC-48-F1-EB-E7-C9-2F",
+          "cSharpName": "Pc48F1EbE7C92f"
         },
         {
           "id": "device_tracker.puhelin_2",
           "friendlyName": "Puhelin",
           "cSharpName": "Puhelin2"
-        },
-        {
-          "id": "device_tracker.raspberrypi",
-          "friendlyName": "raspberrypi",
-          "cSharpName": "Raspberrypi"
         },
         {
           "id": "device_tracker.sm_t530",
@@ -1133,21 +1113,6 @@
           "id": "device_tracker.toilet_disctance",
           "friendlyName": "Light-Sensor",
           "cSharpName": "ToiletDisctance"
-        },
-        {
-          "id": "device_tracker.uno_light_sensor",
-          "friendlyName": "Uno--Light-Sensor",
-          "cSharpName": "UnoLightSensor"
-        },
-        {
-          "id": "device_tracker.zatman_macbookpro",
-          "friendlyName": "zatman-MacBookPro",
-          "cSharpName": "ZatmanMacbookpro"
-        },
-        {
-          "id": "device_tracker.zatnas",
-          "friendlyName": "Zatnas",
-          "cSharpName": "Zatnas"
         }
       ],
       "attributes": [
@@ -1276,6 +1241,11 @@
     {
       "domain": "input_boolean",
       "entities": [
+        {
+          "id": "input_boolean.actions_on_sleep_disposable",
+          "friendlyName": "Actions On Sleep Disposable",
+          "cSharpName": "ActionsOnSleepDisposable"
+        },
         {
           "id": "input_boolean.alarm_s1_enabled",
           "friendlyName": "Alarm Slot 1 Enabled",
@@ -2089,6 +2059,11 @@
       "domain": "input_select",
       "entities": [
         {
+          "id": "input_select.actions_on_asleep",
+          "friendlyName": "Actions On Asleep",
+          "cSharpName": "ActionsOnAsleep"
+        },
+        {
           "id": "input_select.alarm_sleep_mode",
           "friendlyName": "Alarm Sleep Mode",
           "cSharpName": "AlarmSleepMode"
@@ -2167,6 +2142,11 @@
           "id": "input_select.onsleepbehaviour",
           "friendlyName": "OnSleepBehaviour",
           "cSharpName": "Onsleepbehaviour"
+        },
+        {
+          "id": "input_select.pc_speaker_mode",
+          "friendlyName": "PC-Speaker-Mode",
+          "cSharpName": "PcSpeakerMode"
         },
         {
           "id": "input_select.phone_battery_alert_ranges",
@@ -2558,12 +2538,12 @@
         },
         {
           "id": "media_player.living_room_display",
-          "friendlyName": "Living room display",
+          "friendlyName": null,
           "cSharpName": "LivingRoomDisplay"
         },
         {
           "id": "media_player.living_room_display_2",
-          "friendlyName": "Living room display",
+          "friendlyName": null,
           "cSharpName": "LivingRoomDisplay2"
         },
         {
@@ -2573,32 +2553,32 @@
         },
         {
           "id": "media_player.local_music_assistant_telnet",
-          "friendlyName": "Local Music Assistant Telnet",
+          "friendlyName": "VLC-TELNET",
           "cSharpName": "LocalMusicAssistantTelnet"
         },
         {
           "id": "media_player.music_assistant",
-          "friendlyName": "Living room display",
+          "friendlyName": null,
           "cSharpName": "MusicAssistant"
         },
         {
           "id": "media_player.music_assistant_2",
-          "friendlyName": "music_assistant",
+          "friendlyName": null,
           "cSharpName": "MusicAssistant2"
         },
         {
           "id": "media_player.olohuone_nest",
-          "friendlyName": "Olohuone Nest",
+          "friendlyName": null,
           "cSharpName": "OlohuoneNest"
         },
         {
           "id": "media_player.olohuone_nest_2",
-          "friendlyName": "music_assistant_nest",
+          "friendlyName": null,
           "cSharpName": "OlohuoneNest2"
         },
         {
           "id": "media_player.olohuone_nest_3",
-          "friendlyName": "Olohuone Nest",
+          "friendlyName": null,
           "cSharpName": "OlohuoneNest3"
         },
         {
@@ -3675,6 +3655,11 @@
           "cSharpName": "BackupBackupManagerState"
         },
         {
+          "id": "sensor.backup_last_attempted_automatic_backup",
+          "friendlyName": "Backup Last attempted automatic backup",
+          "cSharpName": "BackupLastAttemptedAutomaticBackup"
+        },
+        {
           "id": "sensor.backup_last_successful_automatic_backup",
           "friendlyName": "Backup Last successful automatic backup",
           "cSharpName": "BackupLastSuccessfulAutomaticBackup"
@@ -3725,63 +3710,38 @@
           "cSharpName": "CubeSide"
         },
         {
-          "id": "sensor.disk_pve_dev_sda_node",
-          "friendlyName": "Disk pve: SAMSUNG MZ7LN128HCHP-000H1 (/dev/sda) Node",
-          "cSharpName": "DiskPveDevSdaNode"
+          "id": "sensor.disk_pve_one_touch_hdd_node",
+          "friendlyName": "Disk pve: One Touch HDD Node",
+          "cSharpName": "DiskPveOneTouchHddNode"
         },
         {
-          "id": "sensor.disk_pve_dev_sda_power_cycles",
-          "friendlyName": "Disk pve: SAMSUNG MZ7LN128HCHP-000H1 (/dev/sda) Power cycles",
-          "cSharpName": "DiskPveDevSdaPowerCycles"
+          "id": "sensor.disk_pve_samsung_mz7ln128hchp_000h1_node",
+          "friendlyName": "Disk pve: SAMSUNG MZ7LN128HCHP-000H1 Node",
+          "cSharpName": "DiskPveSamsungMz7ln128hchp000h1Node"
         },
         {
-          "id": "sensor.disk_pve_dev_sda_unexpected_power_loss",
-          "friendlyName": "Disk pve: SAMSUNG MZ7LN128HCHP-000H1 (/dev/sda) Unexpected power loss",
-          "cSharpName": "DiskPveDevSdaUnexpectedPowerLoss"
+          "id": "sensor.disk_pve_samsung_mz7ln128hchp_000h1_power_cycles",
+          "friendlyName": "Disk pve: SAMSUNG MZ7LN128HCHP-000H1 Power cycles",
+          "cSharpName": "DiskPveSamsungMz7ln128hchp000h1PowerCycles"
         },
         {
-          "id": "sensor.disk_pve_one_touch_hdd_dev_sdb_node",
-          "friendlyName": "Disk pve: One Touch HDD (/dev/sdb) Node",
-          "cSharpName": "DiskPveOneTouchHddDevSdbNode"
+          "id": "sensor.disk_pve_samsung_mz7ln128hchp_000h1_unexpected_power_loss",
+          "friendlyName": "Disk pve: SAMSUNG MZ7LN128HCHP-000H1 Unexpected power loss",
+          "cSharpName": "DiskPveSamsungMz7ln128hchp000h1UnexpectedPowerLoss"
         },
         {
-          "id": "sensor.disk_pve_st6000ne000_2kr101_dev_sdb_power_cycles",
-          "friendlyName": "Power cycles",
-          "cSharpName": "DiskPveSt6000ne0002kr101DevSdbPowerCycles"
+          "id": "sensor.disk_pve_st4000dm000_1f2168_node",
+          "friendlyName": "Disk pve: ST4000DM000-1F2168 Node",
+          "cSharpName": "DiskPveSt4000dm0001f2168Node"
         },
         {
-          "id": "sensor.disk_pve_st6000ne000_2kr101_dev_sdc_node",
-          "friendlyName": "Disk pve: ST4000DM000-1F2168 (/dev/sdc) Node",
-          "cSharpName": "DiskPveSt6000ne0002kr101DevSdcNode"
-        },
-        {
-          "id": "sensor.disk_pve_st6000ne000_2kr101_dev_sdc_power_cycles",
-          "friendlyName": "Disk pve: ST4000DM000-1F2168 (/dev/sdc) Power cycles",
-          "cSharpName": "DiskPveSt6000ne0002kr101DevSdcPowerCycles"
-        },
-        {
-          "id": "sensor.disk_pve_wdc_wds200t1r0a_68a4w0_dev_sdc_unexpected_power_loss",
-          "friendlyName": "Unexpected power loss",
-          "cSharpName": "DiskPveWdcWds200t1r0a68a4w0DevSdcUnexpectedPowerLoss"
-        },
-        {
-          "id": "sensor.disk_pve_wdc_wds200t1r0a_68a4w0_dev_sdd_node",
-          "friendlyName": "Node",
-          "cSharpName": "DiskPveWdcWds200t1r0a68a4w0DevSddNode"
-        },
-        {
-          "id": "sensor.disk_pve_wdc_wds200t1r0a_68a4w0_dev_sdd_power_cycles",
-          "friendlyName": "Power cycles",
-          "cSharpName": "DiskPveWdcWds200t1r0a68a4w0DevSddPowerCycles"
-        },
-        {
-          "id": "sensor.disk_pve_wdc_wds200t1r0a_68a4w0_dev_sdd_unexpected_power_loss",
-          "friendlyName": "Unexpected power loss",
-          "cSharpName": "DiskPveWdcWds200t1r0a68a4w0DevSddUnexpectedPowerLoss"
+          "id": "sensor.disk_pve_st4000dm000_1f2168_power_cycles",
+          "friendlyName": "Disk pve: ST4000DM000-1F2168 Power cycles",
+          "cSharpName": "DiskPveSt4000dm0001f2168PowerCycles"
         },
         {
           "id": "sensor.ecoflow_charge_or_remain_time",
-          "friendlyName": "Offline",
+          "friendlyName": "Discharging",
           "cSharpName": "EcoflowChargeOrRemainTime"
         },
         {
@@ -4065,16 +4025,6 @@
           "cSharpName": "Lrtabdesktopaction"
         },
         {
-          "id": "sensor.lxc_jellyfin_101_node",
-          "friendlyName": "Node",
-          "cSharpName": "LxcJellyfin101Node"
-        },
-        {
-          "id": "sensor.lxc_jellyfin_101_uptime",
-          "friendlyName": "Last boot",
-          "cSharpName": "LxcJellyfin101Uptime"
-        },
-        {
           "id": "sensor.moto_g_8_power_lite_battery_state",
           "friendlyName": "moto g(8) power lite Battery state",
           "cSharpName": "MotoG8PowerLiteBatteryState"
@@ -4100,14 +4050,14 @@
           "cSharpName": "NodePveContainersRunning"
         },
         {
+          "id": "sensor.node_pve_last_boot",
+          "friendlyName": "Node pve Last boot",
+          "cSharpName": "NodePveLastBoot"
+        },
+        {
           "id": "sensor.node_pve_total_updates",
           "friendlyName": "Node pve Total updates",
           "cSharpName": "NodePveTotalUpdates"
-        },
-        {
-          "id": "sensor.node_pve_uptime",
-          "friendlyName": "Node pve Last boot",
-          "cSharpName": "NodePveUptime"
         },
         {
           "id": "sensor.node_pve_virtual_machines_running",
@@ -4200,6 +4150,11 @@
           "cSharpName": "PcC2ce45413a854b03Aacc016f116bc0fdDisplay3"
         },
         {
+          "id": "sensor.pc_c2ce4541_3a85_4b03_aacc_016f116bc0fd_display5",
+          "friendlyName": "PC DISPLAY5",
+          "cSharpName": "PcC2ce45413a854b03Aacc016f116bc0fdDisplay5"
+        },
+        {
           "id": "sensor.pc_display_display_count",
           "friendlyName": "PC Display Count",
           "cSharpName": "PcDisplayDisplayCount"
@@ -4235,19 +4190,19 @@
           "cSharpName": "Prisma"
         },
         {
-          "id": "sensor.qemu_haos9_5_100_node",
-          "friendlyName": "QEMU haos14.0 (100) Node",
-          "cSharpName": "QemuHaos95100Node"
-        },
-        {
-          "id": "sensor.qemu_haos9_5_100_status",
-          "friendlyName": "QEMU haos14.0 (100) Status",
-          "cSharpName": "QemuHaos95100Status"
-        },
-        {
-          "id": "sensor.qemu_haos9_5_100_uptime",
+          "id": "sensor.qemu_haos14_0_100_last_boot",
           "friendlyName": "QEMU haos14.0 (100) Last boot",
-          "cSharpName": "QemuHaos95100Uptime"
+          "cSharpName": "QemuHaos140100LastBoot"
+        },
+        {
+          "id": "sensor.qemu_haos14_0_100_node",
+          "friendlyName": "QEMU haos14.0 (100) Node",
+          "cSharpName": "QemuHaos140100Node"
+        },
+        {
+          "id": "sensor.qemu_haos14_0_100_status",
+          "friendlyName": "QEMU haos14.0 (100) Status",
+          "cSharpName": "QemuHaos140100Status"
         },
         {
           "id": "sensor.runnersteps",
@@ -4353,16 +4308,6 @@
           "id": "sensor.uptime",
           "friendlyName": "Uptime",
           "cSharpName": "Uptime"
-        },
-        {
-          "id": "sensor.withings_last_workout_intensity",
-          "friendlyName": "Withings Last workout intensity",
-          "cSharpName": "WithingsLastWorkoutIntensity"
-        },
-        {
-          "id": "sensor.withings_last_workout_type",
-          "friendlyName": "Withings Last workout type",
-          "cSharpName": "WithingsLastWorkoutType"
         },
         {
           "id": "sensor.zigbee2mqtt_bridge_version",
@@ -5208,6 +5153,11 @@
           "cSharpName": "AllPowersEnergyHourly"
         },
         {
+          "id": "sensor.all_powers_energy_quarter_hourly",
+          "friendlyName": "All Powers energy quarter-hourly",
+          "cSharpName": "AllPowersEnergyQuarterHourly"
+        },
+        {
           "id": "sensor.all_powers_power",
           "friendlyName": "All Powers power",
           "cSharpName": "AllPowersPower"
@@ -5258,6 +5208,11 @@
           "cSharpName": "CubeDeviceTemperature"
         },
         {
+          "id": "sensor.current_price",
+          "friendlyName": "Current Price",
+          "cSharpName": "CurrentPrice"
+        },
+        {
           "id": "sensor.daily_energy_cost",
           "friendlyName": "Daily Energy Cost",
           "cSharpName": "DailyEnergyCost"
@@ -5278,89 +5233,49 @@
           "cSharpName": "DesktopHeight"
         },
         {
-          "id": "sensor.disk_pve_dev_sda_airflow_temperature",
-          "friendlyName": "Disk pve: SAMSUNG MZ7LN128HCHP-000H1 (/dev/sda) Airflow temperature",
-          "cSharpName": "DiskPveDevSdaAirflowTemperature"
+          "id": "sensor.disk_pve_one_touch_hdd_size",
+          "friendlyName": "Disk pve: One Touch HDD Size",
+          "cSharpName": "DiskPveOneTouchHddSize"
         },
         {
-          "id": "sensor.disk_pve_dev_sda_power_on_hours",
-          "friendlyName": "Disk pve: SAMSUNG MZ7LN128HCHP-000H1 (/dev/sda) Power-on hours",
-          "cSharpName": "DiskPveDevSdaPowerOnHours"
+          "id": "sensor.disk_pve_samsung_mz7ln128hchp_000h1_airflow_temperature",
+          "friendlyName": "Disk pve: SAMSUNG MZ7LN128HCHP-000H1 Airflow temperature",
+          "cSharpName": "DiskPveSamsungMz7ln128hchp000h1AirflowTemperature"
         },
         {
-          "id": "sensor.disk_pve_dev_sda_size",
-          "friendlyName": "Disk pve: SAMSUNG MZ7LN128HCHP-000H1 (/dev/sda) Size",
-          "cSharpName": "DiskPveDevSdaSize"
+          "id": "sensor.disk_pve_samsung_mz7ln128hchp_000h1_power_on_hours",
+          "friendlyName": "Disk pve: SAMSUNG MZ7LN128HCHP-000H1 Power-on hours",
+          "cSharpName": "DiskPveSamsungMz7ln128hchp000h1PowerOnHours"
         },
         {
-          "id": "sensor.disk_pve_one_touch_hdd_dev_sdb_size",
-          "friendlyName": "Disk pve: One Touch HDD (/dev/sdb) Size",
-          "cSharpName": "DiskPveOneTouchHddDevSdbSize"
+          "id": "sensor.disk_pve_samsung_mz7ln128hchp_000h1_size",
+          "friendlyName": "Disk pve: SAMSUNG MZ7LN128HCHP-000H1 Size",
+          "cSharpName": "DiskPveSamsungMz7ln128hchp000h1Size"
         },
         {
-          "id": "sensor.disk_pve_samsung_mz7ln128hchp_000h1_dev_sda_wearout",
-          "friendlyName": "Disk pve: SAMSUNG MZ7LN128HCHP-000H1 (/dev/sda) Wearout",
-          "cSharpName": "DiskPveSamsungMz7ln128hchp000h1DevSdaWearout"
+          "id": "sensor.disk_pve_samsung_mz7ln128hchp_000h1_wearout",
+          "friendlyName": "Disk pve: SAMSUNG MZ7LN128HCHP-000H1 Wearout",
+          "cSharpName": "DiskPveSamsungMz7ln128hchp000h1Wearout"
         },
         {
-          "id": "sensor.disk_pve_st6000ne000_2kr101_dev_sdb_airflow_temperature",
-          "friendlyName": "Airflow temperature",
-          "cSharpName": "DiskPveSt6000ne0002kr101DevSdbAirflowTemperature"
+          "id": "sensor.disk_pve_st4000dm000_1f2168_airflow_temperature",
+          "friendlyName": "Disk pve: ST4000DM000-1F2168 Airflow temperature",
+          "cSharpName": "DiskPveSt4000dm0001f2168AirflowTemperature"
         },
         {
-          "id": "sensor.disk_pve_st6000ne000_2kr101_dev_sdb_power_on_hours",
-          "friendlyName": "Power-on hours",
-          "cSharpName": "DiskPveSt6000ne0002kr101DevSdbPowerOnHours"
+          "id": "sensor.disk_pve_st4000dm000_1f2168_power_on_hours",
+          "friendlyName": "Disk pve: ST4000DM000-1F2168 Power-on hours",
+          "cSharpName": "DiskPveSt4000dm0001f2168PowerOnHours"
         },
         {
-          "id": "sensor.disk_pve_st6000ne000_2kr101_dev_sdb_temperature",
-          "friendlyName": "Temperature",
-          "cSharpName": "DiskPveSt6000ne0002kr101DevSdbTemperature"
+          "id": "sensor.disk_pve_st4000dm000_1f2168_size",
+          "friendlyName": "Disk pve: ST4000DM000-1F2168 Size",
+          "cSharpName": "DiskPveSt4000dm0001f2168Size"
         },
         {
-          "id": "sensor.disk_pve_st6000ne000_2kr101_dev_sdc_airflow_temperature",
-          "friendlyName": "Disk pve: ST4000DM000-1F2168 (/dev/sdc) Airflow temperature",
-          "cSharpName": "DiskPveSt6000ne0002kr101DevSdcAirflowTemperature"
-        },
-        {
-          "id": "sensor.disk_pve_st6000ne000_2kr101_dev_sdc_power_on_hours",
-          "friendlyName": "Disk pve: ST4000DM000-1F2168 (/dev/sdc) Power-on hours",
-          "cSharpName": "DiskPveSt6000ne0002kr101DevSdcPowerOnHours"
-        },
-        {
-          "id": "sensor.disk_pve_st6000ne000_2kr101_dev_sdc_size",
-          "friendlyName": "Disk pve: ST4000DM000-1F2168 (/dev/sdc) Size",
-          "cSharpName": "DiskPveSt6000ne0002kr101DevSdcSize"
-        },
-        {
-          "id": "sensor.disk_pve_st6000ne000_2kr101_dev_sdc_temperature",
-          "friendlyName": "Disk pve: ST4000DM000-1F2168 (/dev/sdc) Temperature",
-          "cSharpName": "DiskPveSt6000ne0002kr101DevSdcTemperature"
-        },
-        {
-          "id": "sensor.disk_pve_wdc_wds200t1r0a_68a4w0_dev_sdc_wearout",
-          "friendlyName": "Wearout",
-          "cSharpName": "DiskPveWdcWds200t1r0a68a4w0DevSdcWearout"
-        },
-        {
-          "id": "sensor.disk_pve_wdc_wds200t1r0a_68a4w0_dev_sdd_power_on_hours",
-          "friendlyName": "Power-on hours",
-          "cSharpName": "DiskPveWdcWds200t1r0a68a4w0DevSddPowerOnHours"
-        },
-        {
-          "id": "sensor.disk_pve_wdc_wds200t1r0a_68a4w0_dev_sdd_size",
-          "friendlyName": "Size",
-          "cSharpName": "DiskPveWdcWds200t1r0a68a4w0DevSddSize"
-        },
-        {
-          "id": "sensor.disk_pve_wdc_wds200t1r0a_68a4w0_dev_sdd_temperature",
-          "friendlyName": "Temperature",
-          "cSharpName": "DiskPveWdcWds200t1r0a68a4w0DevSddTemperature"
-        },
-        {
-          "id": "sensor.disk_pve_wdc_wds200t1r0a_68a4w0_dev_sdd_wearout",
-          "friendlyName": "Wearout",
-          "cSharpName": "DiskPveWdcWds200t1r0a68a4w0DevSddWearout"
+          "id": "sensor.disk_pve_st4000dm000_1f2168_temperature",
+          "friendlyName": "Disk pve: ST4000DM000-1F2168 Temperature",
+          "cSharpName": "DiskPveSt4000dm0001f2168Temperature"
         },
         {
           "id": "sensor.ecoflow_ac_in_power",
@@ -5533,9 +5448,19 @@
           "cSharpName": "EcoflowStateOfHealth"
         },
         {
+          "id": "sensor.ecoflow_total_in_energy",
+          "friendlyName": "Ecoflow Total In  Energy",
+          "cSharpName": "EcoflowTotalInEnergy"
+        },
+        {
           "id": "sensor.ecoflow_total_in_power",
           "friendlyName": "Ecoflow Total In Power",
           "cSharpName": "EcoflowTotalInPower"
+        },
+        {
+          "id": "sensor.ecoflow_total_out_energy",
+          "friendlyName": "Ecoflow Total Out  Energy",
+          "cSharpName": "EcoflowTotalOutEnergy"
         },
         {
           "id": "sensor.ecoflow_total_out_power",
@@ -5828,31 +5753,6 @@
           "cSharpName": "LrtabPcBattery"
         },
         {
-          "id": "sensor.lxc_jellyfin_101_cpu_used",
-          "friendlyName": "CPU used",
-          "cSharpName": "LxcJellyfin101CpuUsed"
-        },
-        {
-          "id": "sensor.lxc_jellyfin_101_disk_used_percentage",
-          "friendlyName": "Disk used percentage",
-          "cSharpName": "LxcJellyfin101DiskUsedPercentage"
-        },
-        {
-          "id": "sensor.lxc_jellyfin_101_memory_free",
-          "friendlyName": "Memory free",
-          "cSharpName": "LxcJellyfin101MemoryFree"
-        },
-        {
-          "id": "sensor.lxc_jellyfin_101_memory_used",
-          "friendlyName": "Memory used",
-          "cSharpName": "LxcJellyfin101MemoryUsed"
-        },
-        {
-          "id": "sensor.lxc_jellyfin_101_memory_used_percentage",
-          "friendlyName": "Memory used percentage",
-          "cSharpName": "LxcJellyfin101MemoryUsedPercentage"
-        },
-        {
           "id": "sensor.main_fridge_daily_consumption",
           "friendlyName": "Main Fridge Daily Consumption",
           "cSharpName": "MainFridgeDailyConsumption"
@@ -5954,7 +5854,7 @@
         },
         {
           "id": "sensor.nordpool",
-          "friendlyName": "nordpool_kwh_fi_eur_3_10_0255",
+          "friendlyName": "nordpool_kwh_fi_eur_3_10_0",
           "cSharpName": "Nordpool"
         },
         {
@@ -6053,29 +5953,29 @@
           "cSharpName": "PowerMetersEnergyHourly"
         },
         {
-          "id": "sensor.qemu_haos9_5_100_cpu_used",
+          "id": "sensor.qemu_haos14_0_100_cpu_used",
           "friendlyName": "QEMU haos14.0 (100) CPU used",
-          "cSharpName": "QemuHaos95100CpuUsed"
+          "cSharpName": "QemuHaos140100CpuUsed"
         },
         {
-          "id": "sensor.qemu_haos9_5_100_disk_used_percentage",
+          "id": "sensor.qemu_haos14_0_100_disk_used_percentage",
           "friendlyName": "QEMU haos14.0 (100) Disk used percentage",
-          "cSharpName": "QemuHaos95100DiskUsedPercentage"
+          "cSharpName": "QemuHaos140100DiskUsedPercentage"
         },
         {
-          "id": "sensor.qemu_haos9_5_100_memory_free",
+          "id": "sensor.qemu_haos14_0_100_memory_free",
           "friendlyName": "QEMU haos14.0 (100) Memory free",
-          "cSharpName": "QemuHaos95100MemoryFree"
+          "cSharpName": "QemuHaos140100MemoryFree"
         },
         {
-          "id": "sensor.qemu_haos9_5_100_memory_used",
+          "id": "sensor.qemu_haos14_0_100_memory_used",
           "friendlyName": "QEMU haos14.0 (100) Memory used",
-          "cSharpName": "QemuHaos95100MemoryUsed"
+          "cSharpName": "QemuHaos140100MemoryUsed"
         },
         {
-          "id": "sensor.qemu_haos9_5_100_memory_used_percentage",
+          "id": "sensor.qemu_haos14_0_100_memory_used_percentage",
           "friendlyName": "QEMU haos14.0 (100) Memory used percentage",
-          "cSharpName": "QemuHaos95100MemoryUsedPercentage"
+          "cSharpName": "QemuHaos140100MemoryUsedPercentage"
         },
         {
           "id": "sensor.sm_t530_battery_level",
@@ -6311,36 +6211,6 @@
           "id": "sensor.walkingpad_contact_sensor_device_temperature",
           "friendlyName": "Walkingpad Contact sensor Temperature",
           "cSharpName": "WalkingpadContactSensorDeviceTemperature"
-        },
-        {
-          "id": "sensor.withings_calories_burnt_last_workout",
-          "friendlyName": "Withings Calories burnt last workout",
-          "cSharpName": "WithingsCaloriesBurntLastWorkout"
-        },
-        {
-          "id": "sensor.withings_deep_sleep",
-          "friendlyName": "Withings Deep sleep",
-          "cSharpName": "WithingsDeepSleep"
-        },
-        {
-          "id": "sensor.withings_distance_travelled_last_workout",
-          "friendlyName": "Withings Distance travelled last workout",
-          "cSharpName": "WithingsDistanceTravelledLastWorkout"
-        },
-        {
-          "id": "sensor.withings_elevation_change_last_workout",
-          "friendlyName": "Withings Elevation change last workout",
-          "cSharpName": "WithingsElevationChangeLastWorkout"
-        },
-        {
-          "id": "sensor.withings_last_workout_duration",
-          "friendlyName": "Withings Last workout duration",
-          "cSharpName": "WithingsLastWorkoutDuration"
-        },
-        {
-          "id": "sensor.withings_pause_during_last_workout",
-          "friendlyName": "Withings Pause during last workout",
-          "cSharpName": "WithingsPauseDuringLastWorkout"
         }
       ],
       "attributes": [
@@ -6785,11 +6655,6 @@
           "cSharpName": "DeskFans"
         },
         {
-          "id": "switch.desktop_9rqrgio_internet_access",
-          "friendlyName": "DESKTOP-9RQRGIO Internet Access",
-          "cSharpName": "Desktop9rqrgioInternetAccess"
-        },
-        {
           "id": "switch.desktop_k24v8np_internet_access",
           "friendlyName": "DESKTOP-K24V8NP Internet Access",
           "cSharpName": "DesktopK24v8npInternetAccess"
@@ -6955,11 +6820,6 @@
           "cSharpName": "FritzBox6660CableWiFiKotiverkko5ghz"
         },
         {
-          "id": "switch.galaxy_a51_internet_access",
-          "friendlyName": "Galaxy-A51 Internet Access",
-          "cSharpName": "GalaxyA51InternetAccess"
-        },
-        {
           "id": "switch.google_nest_hub_internet_access",
           "friendlyName": "fuchsia-1c53-f9e1-9a4e Internet Access",
           "cSharpName": "GoogleNestHubInternetAccess"
@@ -6973,11 +6833,6 @@
           "id": "switch.hallway_sensor_led_indication",
           "friendlyName": "Hallway Sensor Led indication",
           "cSharpName": "HallwaySensorLedIndication"
-        },
-        {
-          "id": "switch.homeassistant_internet_access",
-          "friendlyName": "homeAssistant Internet Access",
-          "cSharpName": "HomeassistantInternetAccess"
         },
         {
           "id": "switch.homeassistant_internet_access_2",
@@ -7005,11 +6860,6 @@
           "cSharpName": "IrRemoteInternetAccess"
         },
         {
-          "id": "switch.jaeaekaapinlaempoemittari_internet_access",
-          "friendlyName": "jaeaekaapinlaempoemittari Internet Access",
-          "cSharpName": "JaeaekaapinlaempoemittariInternetAccess"
-        },
-        {
           "id": "switch.kitchen_powermeter_plug",
           "friendlyName": "Kitchen PowerMeter-Plug",
           "cSharpName": "KitchenPowermeterPlug"
@@ -7025,29 +6875,14 @@
           "cSharpName": "KitchenSensorLedIndication"
         },
         {
-          "id": "switch.laptop_rnusi7lb_internet_access",
-          "friendlyName": "LAPTOP-RNUSI7LB Internet Access",
-          "cSharpName": "LaptopRnusi7lbInternetAccess"
-        },
-        {
           "id": "switch.light_sensor_internet_access",
           "friendlyName": "Light-Sensor Internet Access",
           "cSharpName": "LightSensorInternetAccess"
         },
         {
-          "id": "switch.mainpc_internet_access",
-          "friendlyName": "mainpc Internet Access",
-          "cSharpName": "MainpcInternetAccess"
-        },
-        {
           "id": "switch.maxciopistoke_internet_access",
           "friendlyName": "maxciopistoke Internet Access",
           "cSharpName": "MaxciopistokeInternetAccess"
-        },
-        {
-          "id": "switch.mediaserver_internet_access",
-          "friendlyName": "mediaserver Internet Access",
-          "cSharpName": "MediaserverInternetAccess"
         },
         {
           "id": "switch.misc_powermeter",
@@ -7105,19 +6940,19 @@
           "cSharpName": "Pc192168024InternetAccess"
         },
         {
-          "id": "switch.pc_56_80_c3_46_02_f8_internet_access",
-          "friendlyName": "Jellyfin Internet Access",
-          "cSharpName": "Pc5680C34602F8InternetAccess"
+          "id": "switch.pc_192_168_0_28_internet_access",
+          "friendlyName": "PC-98-E2-55-80-05-8D Internet Access",
+          "cSharpName": "Pc192168028InternetAccess"
         },
         {
-          "id": "switch.pc_a0_92_08_90_22_91_internet_access",
-          "friendlyName": "minitemp-humiditysensor Internet Access",
-          "cSharpName": "PcA09208902291InternetAccess"
+          "id": "switch.pc_192_168_0_29_internet_access",
+          "friendlyName": "PC-192-168-0-29 Internet Access",
+          "cSharpName": "Pc192168029InternetAccess"
         },
         {
-          "id": "switch.pc_b4_ae_2b_e4_a3_f8_internet_access",
-          "friendlyName": "DESKTOP-AOTDDD2 Internet Access",
-          "cSharpName": "PcB4Ae2bE4A3F8InternetAccess"
+          "id": "switch.pc_48_f1_eb_e7_c9_2f_internet_access",
+          "friendlyName": "PC-48-F1-EB-E7-C9-2F Internet Access",
+          "cSharpName": "Pc48F1EbE7C92fInternetAccess"
         },
         {
           "id": "switch.pc_connector_child_lock",
@@ -7170,11 +7005,6 @@
           "cSharpName": "PcPlugChildLock"
         },
         {
-          "id": "switch.puhelin_internet_access",
-          "friendlyName": "Puhelin Internet Access",
-          "cSharpName": "PuhelinInternetAccess"
-        },
-        {
           "id": "switch.puhelin_internet_access_2",
           "friendlyName": "Puhelin Internet Access",
           "cSharpName": "PuhelinInternetAccess2"
@@ -7185,14 +7015,14 @@
           "cSharpName": "Qnap"
         },
         {
-          "id": "switch.raspberrypi_internet_access",
-          "friendlyName": "raspberrypi Internet Access",
-          "cSharpName": "RaspberrypiInternetAccess"
-        },
-        {
           "id": "switch.schedule_01bf9d",
           "friendlyName": "Schedule #01bf9d",
           "cSharpName": "Schedule01bf9d"
+        },
+        {
+          "id": "switch.schedule_577ee5",
+          "friendlyName": "Schedule #577ee5",
+          "cSharpName": "Schedule577ee5"
         },
         {
           "id": "switch.schedule_606cd1",
@@ -7213,6 +7043,11 @@
           "id": "switch.schedule_e85023",
           "friendlyName": "Schedule #e85023",
           "cSharpName": "ScheduleE85023"
+        },
+        {
+          "id": "switch.schedule_f3cb6e",
+          "friendlyName": "Schedule #f3cb6e",
+          "cSharpName": "ScheduleF3cb6e"
         },
         {
           "id": "switch.starkvind_child_lock",
@@ -7280,11 +7115,6 @@
           "cSharpName": "TvPowerMeterChildLock"
         },
         {
-          "id": "switch.uno_light_sensor_internet_access",
-          "friendlyName": "Uno--Light-Sensor Internet Access",
-          "cSharpName": "UnoLightSensorInternetAccess"
-        },
-        {
           "id": "switch.usb_multi_fans_l1",
           "friendlyName": "Desk Fan Bottom",
           "cSharpName": "UsbMultiFansL1"
@@ -7298,16 +7128,6 @@
           "id": "switch.usb_multi_fans_l3",
           "friendlyName": " USB-Multi-Fans L3",
           "cSharpName": "UsbMultiFansL3"
-        },
-        {
-          "id": "switch.zatman_macbookpro_internet_access",
-          "friendlyName": "zatman-MacBookPro Internet Access",
-          "cSharpName": "ZatmanMacbookproInternetAccess"
-        },
-        {
-          "id": "switch.zatnas_internet_access",
-          "friendlyName": "Zatnas Internet Access",
-          "cSharpName": "ZatnasInternetAccess"
         },
         {
           "id": "switch.zigbee2mqtt_bridge_permit_join",
@@ -7846,7 +7666,7 @@
         {
           "jsonName": "release_summary",
           "cSharpName": "ReleaseSummary",
-          "clrType": "System.String"
+          "clrType": "System.Object"
         },
         {
           "jsonName": "release_url",
@@ -8529,9 +8349,9 @@
       "domain": "event",
       "entities": [
         {
-          "id": "event.folder_watcher_share",
-          "friendlyName": "Folder Watcher /share",
-          "cSharpName": "FolderWatcherShare"
+          "id": "event.backup_automatic_backup",
+          "friendlyName": "Backup Automatic backup",
+          "cSharpName": "BackupAutomaticBackup"
         }
       ],
       "attributes": [
@@ -8564,6 +8384,16 @@
           "jsonName": "friendly_name",
           "cSharpName": "FriendlyName",
           "clrType": "System.String"
+        },
+        {
+          "jsonName": "backup_stage",
+          "cSharpName": "BackupStage",
+          "clrType": "System.Object"
+        },
+        {
+          "jsonName": "failed_reason",
+          "cSharpName": "FailedReason",
+          "clrType": "System.Object"
         }
       ]
     }

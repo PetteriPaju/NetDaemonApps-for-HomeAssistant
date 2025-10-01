@@ -72,6 +72,9 @@ public class EnergyMonitor : AppBase
     public EnergyMonitor()
     {
         _instance = this;
+        myScheduler.ScheduleCron("14,29,44,59 * * * *", () => UpdatePriceQuarter(myEntities.Sensor.CurrentPrice.State ?? 0, myEntities?.Sensor.AllPowersEnergyQuarterHourly.State ?? 0));
+        A0Gbl.DailyResetFunction += OnDayChanged;
+        Notifications.RegisterStateNotification(myEntities.BinarySensor.LivingroomWindowSensorContact, "Solar Panels");
 
         return;
         void ResetRanges()
@@ -105,7 +108,7 @@ public class EnergyMonitor : AppBase
         myEntities.InputButton.DebugEnergyHourlyupdate.StateChanges().Where(e => !e.Old.IsUnavailable()).Subscribe(e => { EnergiPriceChengeAlert(true); } );
         myEntities.InputButton.DebugEnergyReadforecast.StateChanges().Where(e => !e.Old.IsUnavailable()).Subscribe(e => { ReadOutEnergyUpdate(); });
 
-
+        /*
         myEntities.Sensor.EcoflowAcInputHourly.StateChanges().Where(x => x.Old.State == 0 && x.New.State > abNormalEnergyIncreaseThreshold).Subscribe(e => {
 
             ecoflowCgargePriceFixHelper = myEntities.Sensor.EcoflowAcInputHourly.State ?? 0;
@@ -115,7 +118,8 @@ public class EnergyMonitor : AppBase
 
             ecoflowUsagePriceFixer = myEntities.Sensor.EcoflowAcOutputHourly.State ?? 0;
         });
-       A0Gbl.HourlyResetFunction += () => UpdatePriceHourly( myEntities.Sensor.EnergyCostThisHour.State ?? 0, myEntities?.Sensor.TotalHourlyEnergyConsumptions.State ?? 0);
+        */
+      // A0Gbl.HourlyResetFunction += () => UpdatePriceHourly( myEntities.Sensor.EnergyCostThisHour.State ?? 0, myEntities?.Sensor.AllPowersEnergyQuarterHourly.State ?? 0);
 
         myScheduler.ScheduleCron("50 * * * *", () => EnergiPriceChengeAlert());
         myScheduler.ScheduleCron("1 * * * *", () => {myServices.UtilityMeter.Calibrate(ServiceTarget.FromEntity(myEntities.Sensor.EcoflowAcInputHourly.EntityId), "0"); });
@@ -125,7 +129,7 @@ public class EnergyMonitor : AppBase
 
         solarChargingNotificationGiven = myEntities?.Sensor?.EcoflowSolarInPower.State >= 0;
 
-        Notifications.RegisterStateNotification(myEntities.BinarySensor.LivingroomWindowSensorContact, "Solar Panels");
+       
 
         myEntities?.BinarySensor.SolarChargingLimit.StateChanges().Where(e => e.New.IsOn() && e.Old.IsOff()).Subscribe(_e => { 
         
@@ -164,7 +168,7 @@ public class EnergyMonitor : AppBase
             fillDays();
             ReadOutEnergyUpdate();
         });
-        A0Gbl.DailyResetFunction += OnDayChanged;
+       
         UpdateNextChangeHourTime();
 
 
@@ -551,6 +555,17 @@ public class EnergyMonitor : AppBase
         return nextInfo;
     }
 
+    private void UpdatePriceQuarter(double cost, double energy)
+    {
+        var x = myScheduler.Schedule(TimeSpan.FromSeconds(55), () => {
+
+            myEntities.InputNumber.DailyEnergySaveHelper.AddValue((myEntities.Sensor.EcoflowCostThisHour.State ?? 0) / 100);
+            myEntities.InputNumber.EnergyCostDaily.AddValue((myEntities.Sensor.EnergyCostThisHour.State ?? 0) / 100);
+            lastCaclHour = DateTime.Now.Hour;
+            ecoflowCgargePriceFixHelper = 0;
+            ecoflowUsagePriceFixer = 0;
+        });
+    }
     private void UpdatePriceHourly(double cost,  double energy)
     {
         if (lastCaclHour == DateTime.Now.Hour) return;
