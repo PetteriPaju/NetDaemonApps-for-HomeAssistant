@@ -76,7 +76,11 @@ public class EnergyMonitor : AppBase
         A0Gbl.DailyResetFunction += OnDayChanged;
         Notifications.RegisterStateNotification(myEntities.BinarySensor.LivingroomWindowSensorContact, "Solar Panels");
 
-        return;
+        myEntities?.Sensor.NordpoolTomorrowValid.StateChanges().Where(x => x.New.State == "True" && x.Old.State == "False").Subscribe(_ => {
+            ReadOutEnergyUpdate();
+        });
+      
+
         void ResetRanges()
         {
             electiricityRanges = new Dictionary<double, string>();
@@ -89,8 +93,9 @@ public class EnergyMonitor : AppBase
 
             electricityRangeKeys = electiricityRanges.Keys.ToList();
         }
-
+  ;
         ResetRanges();
+        return;
 
         myEntities.InputSelect.Electricityranges.StateAllChanges().Subscribe(x => {
             ResetRanges();
@@ -164,12 +169,9 @@ public class EnergyMonitor : AppBase
         myEntities?.Sensor.EcoflowSolarInPower.StateChanges().Where(x => x?.New.State > 0 && !solarChargingNotificationGiven).Subscribe(_ => {
             TTS.Instance.SpeakTTS("Solar Charging On",null, TTS.TTSPriority.PlayInGuestMode); solarChargingNotificationGiven = true;
         });
-        myEntities?.Sensor.NordpoolTomorrowValid.StateChanges().Where(x => x.New.State == "True" && x.Old.State == "False").Subscribe(_ => {
-            fillDays();
-            ReadOutEnergyUpdate();
-        });
+ 
        
-        UpdateNextChangeHourTime();
+
 
 
     }
@@ -203,20 +205,6 @@ public class EnergyMonitor : AppBase
         hoursToday = tmplist;
 
     }
- 
-
-    private void UpdateNextChangeHourTime()
-    {
-
-        var hoursTillChange = FindWhenElectricityRangeChanges(infoForCurrentHour.nexthour);
-
-        if (hoursTillChange != null)
-        myEntities.InputDatetime.EnergyChangeTime.SetDatetime(datetime: hoursTillChange.dateTime.ToString(@"yyyy-MM-dd HH\:00\:00"));
-        else
-        {
-            myEntities.InputDatetime.EnergyChangeTime.SetDatetime(datetime: DateTime.Now.ToString(@"yyyy-MM-dd HH\:00\:00"));
-        }
-    }
 
     private void DailyReset()
     {
@@ -240,49 +228,7 @@ public class EnergyMonitor : AppBase
     }
 
 
- 
-    protected bool DetectQuarterIrregularity()
-    {
-        return false;
 
-
-
-        double differenceThresholdByCents = 33;
-        double differenceThresholdByRation = 7;
-        bool illegularityFound = false;
-
-        List<double> prices = new List<double>();
-        prices.Add(0);
-        prices.Add(4);
-        prices.Add(5);
-        prices.Add(10);
-
-        prices.Sort();
-        int mid = prices.Count / 2;
-        double median = 0;
-        if (mid % 2 != 0)
-        {
-            median = prices[mid];
-        }
-        else
-        {
-            median = (prices[mid - 1] + prices[mid]) / 2;
-        }
-      
-        foreach (double price in prices)
-        {
-            if (price == median) continue;
-            if( Math.Abs(median - price) > differenceThresholdByCents && ((((price - median) / Math.Abs(Math.Abs(median)))*100)) > differenceThresholdByRation )
-            {
-                illegularityFound = true;
-                break;
-            }
-        }
-
-
-        return illegularityFound;
-
-    }
 
     public void ReadOutEnergyUpdate()
     {
@@ -294,7 +240,7 @@ public class EnergyMonitor : AppBase
         message += "Tomorrows Prices will be" + (energyForecastInfo.isAllSameRange ? " all " : " mostly ") + "in " + Price2RangaNme(energyForecastInfo.avarage);
             message += " and  " + PercentageDifference(nordPoolEntity?.EntityState?.Attributes?.Average ?? 0, energyForecastInfo.avarage) + "% " + (nordPoolEntity?.EntityState?.Attributes?.Average > energyForecastInfo.avarage ? "lower" : "higher") + " than today.";
 
-            if (energyForecastInfo.subZeroCount > 0 && energyForecastInfo.majorityRange != 0) message += " There will also be " + energyForecastInfo.subZeroCount + " sub zero hour" + (energyForecastInfo.subZeroCount > 1 ? "s." : ".");
+            if (energyForecastInfo.subZeroCount > 0 && energyForecastInfo.majorityRange != 0) message += " There will also be " + energyForecastInfo.subZeroCount + " sub zero quarters" + (energyForecastInfo.subZeroCount > 1 ? "s." : ".");
         
 
             TTS.Speak(message, TTS.TTSPriority.PlayInGuestMode);
@@ -405,7 +351,7 @@ public class EnergyMonitor : AppBase
     private void EnergiPriceChengeAlert(bool force = false)
     {
   
-        UpdateNextChangeHourTime();
+       // UpdateNextChangeHourTime();
         if (myEntities.InputBoolean.NotificationEnergyPriceChange.IsOff()) return;
         if (myEntities.InputBoolean.Isasleep.State == "on") return;
 
@@ -598,7 +544,7 @@ public class EnergyMonitor : AppBase
             myEntities.Sensor.EcoflowAcInputDaily.ResetEnergy();
             myEntities.Sensor.EcoflowAcInputHourly.ResetEnergy();
             fillDays();
-            UpdateNextChangeHourTime();
+           // UpdateNextChangeHourTime();
         });
     }
 
