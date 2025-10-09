@@ -76,9 +76,7 @@ public class EnergyMonitor : AppBase
         A0Gbl.DailyResetFunction += OnDayChanged;
         Notifications.RegisterStateNotification(myEntities.BinarySensor.LivingroomWindowSensorContact, "Solar Panels");
 
-        myEntities?.Sensor.NordpoolTomorrowValid.StateChanges().Where(x => x.New.State == "True" && x.Old.State == "False").Subscribe(_ => {
-            ReadOutEnergyUpdate();
-        });
+  
       
 
         void ResetRanges()
@@ -93,8 +91,12 @@ public class EnergyMonitor : AppBase
 
             electricityRangeKeys = electiricityRanges.Keys.ToList();
         }
-  ;
+
         ResetRanges();
+
+        myEntities?.Sensor.NordpoolTomorrowValid.StateChanges().Where(x => x.New.State == "True" && x.Old.State == "False").Subscribe(_ => {
+            ReadOutEnergyUpdate();
+        });
         return;
 
         myEntities.InputSelect.Electricityranges.StateAllChanges().Subscribe(x => {
