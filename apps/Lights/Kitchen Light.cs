@@ -22,7 +22,7 @@ namespace NetDaemonApps.apps.Lights
         {
             if (myEntities.InputBoolean.GuestMode.IsOn()) return;
             if (myEntities.Sensor.Livingroomfp1PresenceEvent.State == "approach") return;
-            if (myEntities.BinarySensor._0x001788010bcfb16fOccupancy.IsOn()) return;
+            if (myEntities.BinarySensor.FridgeContactSensorContact.IsOn() ) return;
             myEntities.Light.KitchenLight2.TurnOffLight();
         }
         public Kitchen_Light() {
@@ -39,10 +39,6 @@ namespace NetDaemonApps.apps.Lights
 
             myEntities.Sensor.Livingroomfp1PresenceEvent.StateChanges().Where(x => x.New?.State == "approach").Subscribe(_ => {
                 TurnOn();
-            });
-
-            myEntities.BinarySensor._0x001788010bcfb16fOccupancy.StateChanges().Where(x => x.New.IsOff()).Subscribe(_ => {
-                TurnOff();
             });
 
             myEntities.BinarySensor.Livingroomfp1Presence.StateChanges().Where(x => x.New.IsOff() && myEntities.BinarySensor.FridgeContactSensorContact.IsOff()).Subscribe(_ => {
