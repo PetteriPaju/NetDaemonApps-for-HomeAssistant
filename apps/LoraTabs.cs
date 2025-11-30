@@ -239,8 +239,6 @@ namespace NetDaemonApps.apps
             if(myEntities.Switch.ModemAutoOnPlug.IsOff() && myEntities.InputBoolean.GuestMode.IsOff()) TTS.Speak("Fan On", TTS.TTSPriority.IgnoreSleep);
             myEntities.Switch.ModemAutoOnPlug.Toggle();
             
-            
-
         }
 
         protected override void On2Hold()
@@ -258,7 +256,7 @@ namespace NetDaemonApps.apps
         protected override void On3Press()
         {
             base.On3Press();
-            myEntities.Switch.BedMultiPlugL3.Toggle();
+            myEntities.Switch.HuePlug.Toggle();
         }
         protected override void On4Press()
         {
