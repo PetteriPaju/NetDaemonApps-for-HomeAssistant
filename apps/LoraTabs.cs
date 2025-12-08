@@ -64,7 +64,11 @@ namespace NetDaemonApps.apps
             myEntities.Switch.PcMultipowermeterMonitors.TurnOn();
             myEntities.Switch.FanPlug.TurnOn();
         }
-
+        protected override void On2Hold()
+        {
+            myEntities.Button.NodePveReboot.Press();
+            TTS.Speak("Rebooting Assistant");
+        }
         protected override void On4Press()
         {
             base.On3Press();

@@ -21,38 +21,6 @@ namespace NetDaemonApps.apps
 
             myScheduler.ScheduleCron("30 * * * *", () => { if (DateTime.Now.Hour != 14 && DateTime.Now.Hour%2 != 0 ) TTS.Speak("Hydration Check", TTS.TTSPriority.DoNotPlayInGuestMode, myEntities.InputBoolean.NotificationHydrationCheck); });
 
-            var phoneRanges = myEntities.InputSelect.PhoneBatteryAlertRanges.stringsFromSelectionDropdown();
-            foreach (var Range in phoneRanges)
-            {
-                int phoneRange = int.Parse(Range);
-                myEntities.Sensor.MotoG8PowerLiteBatteryLevel.StateChanges().Where(x => ((x?.New?.State == phoneRange && x?.Old?.State > phoneRange) || phoneRange == 100) && (myEntities.InputBoolean.Ishome.State == "on" && myEntities.BinarySensor.MotoG8PowerLiteIsCharging.State == "off")).Subscribe(x => {
-                    TTS.Speak("Phone Battery at " + phoneRange + "%", TTS.TTSPriority.DoNotPlayInGuestMode, myEntities.InputBoolean.NotificationPhoneBattery);
-                });
-            }
-
-            void PhoneAlertIfNeeded(int oldprs, int newprs)
-            {
-                //If Charging
-                if(oldprs < newprs)
-                {
-
-                }
-
-                phoneRanges.Reverse();
-                foreach (var Range in phoneRanges)
-                {
-
-                    if(newprs < newprs + 1)
-                    {
-                        TTS.Speak("Phone Battery at " + newprs + "%", TTS.TTSPriority.DoNotPlayInGuestMode, myEntities.InputBoolean.NotificationPhoneBattery);
-                        return;
-                    }
-
-                }
-            }
-
-
-
             string gamingtime = "0" + (DateTime.Now.IsDaylightSavingTime() ? " 3 " : " 2 ") + "* * *";
             myScheduler.ScheduleCron(gamingtime, () => TTS.Speak("Gaming Time",TTS.TTSPriority.DoNotPlayInGuestMode,myEntities.InputBoolean.NotificationGamingTime));
 
@@ -66,9 +34,15 @@ namespace NetDaemonApps.apps
                 }
 
             });
-            myEntities.Sensor.MotoG8PowerLiteBatteryLevel.StateChanges().Where(x => x?.New?.State < 20 && myEntities.InputBoolean.Ishome.State == "on" && myEntities.BinarySensor.MotoG8PowerLiteIsCharging.State == "off").Subscribe(_ => { TTS.Speak("Phone Battery Low", TTS.TTSPriority.DoNotPlayInGuestMode, myEntities.InputBoolean.NotificationPhoneBattery); });
-            myEntities.Sensor.MotoG8PowerLiteBatteryLevel.StateChanges().Where(x => x?.New?.State < 50 && x?.Old?.State >= 50 && myEntities.BinarySensor.MotoG8PowerLiteIsCharging.State == "off").Subscribe(_ => { TTS.Speak("Phone Battery Under 50%", TTS.TTSPriority.DoNotPlayInGuestMode, myEntities.InputBoolean.NotificationPhoneBattery); });
 
+            void RegisterPhone(int chargelvl)
+            {
+                myEntities.Sensor.MotoG8PowerLiteBatteryLevel.StateChanges().Where(x => x?.New?.State < chargelvl && x?.Old?.State >= chargelvl && myEntities.InputBoolean.Ishome.State == "on" && myEntities.BinarySensor.MotoG8PowerLiteIsCharging.State == "off").Subscribe(_ => { TTS.Speak("Phone Battery under" + chargelvl + "%", TTS.TTSPriority.DoNotPlayInGuestMode, myEntities.InputBoolean.NotificationPhoneBattery); });
+            }
+
+            RegisterPhone(50);
+            RegisterPhone(20);
+            RegisterPhone(10);
 
             myEntities.InputBoolean.Ishome.StateChanges().Where(x => x.New.IsOn()).Subscribe(_ => {
                 if (myEntities.BinarySensor.SolarChargingLimit.IsOn() && myEntities.Sensor.EcoflowSolarInPower.State == 0)
