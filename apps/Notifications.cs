@@ -40,9 +40,13 @@ namespace NetDaemonApps.apps
                 myEntities.Sensor.MotoG8PowerLiteBatteryLevel.StateChanges().Where(x => x?.New?.State < chargelvl && x?.Old?.State >= chargelvl && myEntities.InputBoolean.Ishome.State == "on" && myEntities.BinarySensor.MotoG8PowerLiteIsCharging.State == "off").Subscribe(_ => { TTS.Speak("Phone Battery under" + chargelvl + "%", TTS.TTSPriority.DoNotPlayInGuestMode, myEntities.InputBoolean.NotificationPhoneBattery); });
             }
 
+            myEntities.Sensor.MotoG8PowerLiteBatteryLevel.StateChanges().Where(x => x?.New?.State == 100 && myEntities.InputBoolean.Ishome.State == "on" && myEntities.BinarySensor.MotoG8PowerLiteIsCharging.State == "off").Subscribe(_ => { TTS.Speak("Phone Battery charge complete!", TTS.TTSPriority.DoNotPlayInGuestMode, myEntities.InputBoolean.NotificationPhoneBattery); });
+
             RegisterPhone(50);
             RegisterPhone(20);
             RegisterPhone(10);
+
+            IsAsleepMonitor.RegisterMorningTTS("Phone", () => { return myEntities.Sensor.MotoG8PowerLiteBatteryLevel.State > 33 ? "Phone battery is at" + myEntities.Sensor.MotoG8PowerLiteBatteryLevel.State + "%" : "";  });
 
             myEntities.InputBoolean.Ishome.StateChanges().Where(x => x.New.IsOn()).Subscribe(_ => {
                 if (myEntities.BinarySensor.SolarChargingLimit.IsOn() && myEntities.Sensor.EcoflowSolarInPower.State == 0)

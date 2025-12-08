@@ -10,6 +10,7 @@ using System.Diagnostics;
 using NetDaemon.HassModel;
 using System.Reactive.Linq;
 using System.Security.Cryptography;
+using Microsoft.Extensions.Hosting;
 
 namespace NetDaemonApps.apps
 {
@@ -36,6 +37,8 @@ namespace NetDaemonApps.apps
         private bool twelweHalarmGiven = false;
         private bool modemAutoTurnedOff = false;
 
+        private static Dictionary<string, Func<string>> morningTTSfunctions = new Dictionary<string, Func<string>>();
+
         private class MonitorMember
         {
             public bool currentState;
@@ -55,6 +58,33 @@ namespace NetDaemonApps.apps
                 currentState = condition.Invoke();
                 return oldState != currentState;
             }
+        }
+
+        public static void RegisterMorningTTS(string id, Func<string> function)
+        {
+            morningTTSfunctions.Remove(id);
+            morningTTSfunctions.Add(id, function);
+        }
+        
+        private void ReadMorningTTS()
+        {
+            string msg = "Good Morning,";
+            int originalLenght = msg.Length;
+            foreach (var kvp in morningTTSfunctions)
+            {
+                string part = kvp.Value.Invoke();
+                if (part.Length > 0)
+                {
+                    if (msg.Length > originalLenght)
+                    {
+                        part = ". Also," + part;                
+                    }
+                    msg += part;
+                }
+            }
+
+            if(msg.Length>originalLenght)
+            TTS.Speak(msg);
         }
 
         public static void Awake()
@@ -215,7 +245,7 @@ namespace NetDaemonApps.apps
 
             //DateTime d2 = DateTime.Parse(_00_Globals._myEntities.Sensor.EnvyLastactive.State ?? "", null, System.Globalization.DateTimeStyles.RoundtripKind);
             SleepStatusUpdated();
-
+       
             Resub(true);
 
 
@@ -224,6 +254,11 @@ namespace NetDaemonApps.apps
                 ringingAlarm = false;
                 modemAutoTurnedOff = false;
 
+                
+
+                ReadMorningTTS();
+
+
                 if (myEntities.InputSelect.AlarmSleepMode.State == "Nap" || myEntities.InputSelect.AlarmSleepMode.State == "Free")
                 myEntities.InputSelect.AlarmSleepMode.SelectOption("Normal");
 
@@ -231,7 +266,6 @@ namespace NetDaemonApps.apps
                 if (alarmTimer != null)
                 {
                     alarmTimer.Dispose();      
-                    EnergyMonitor.ReadOutGoodMorning();
                 }
                 if (myEntities.InputBoolean.GuestMode.IsOn()) return;
 

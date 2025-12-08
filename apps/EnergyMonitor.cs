@@ -75,7 +75,7 @@ public class EnergyMonitor : AppBase
         myScheduler.ScheduleCron("14,29,44,59 * * * *", () => UpdatePriceQuarter(myEntities.Sensor.CurrentPrice.State ?? 0, myEntities?.Sensor.AllPowersEnergyQuarterHourly.State ?? 0));
         A0Gbl.DailyResetFunction += OnDayChanged;
         Notifications.RegisterStateNotification(myEntities.BinarySensor.LivingroomWindowSensorContact, "Solar Panels");
-
+        IsAsleepMonitor.RegisterMorningTTS("energy", MorningTTS);
   
       
 
@@ -212,10 +212,6 @@ public class EnergyMonitor : AppBase
     {
 
     }
-    public static void ReadOutGoodMorning()
-    {
-        _instance?.MorningTTS();
-    }
 
     private struct EnergyForecastInfo
     {
@@ -295,10 +291,10 @@ public class EnergyMonitor : AppBase
 
     }
 
-    public void MorningTTS()
+    public string MorningTTS()
     {
-        if (myEntities.InputBoolean.NotificationEnergyPriceChange.IsOff() && (myEntities.InputBoolean.NotificationEnergySolar.IsOff() && myEntities.Sensor.EcoflowSolarInPower.State == 0)) return;
-        string TTSMessage = "Good Morning.";
+        if (myEntities.InputBoolean.NotificationEnergyPriceChange.IsOff() && (myEntities.InputBoolean.NotificationEnergySolar.IsOff() && myEntities.Sensor.EcoflowSolarInPower.State == 0)) return "";
+        string TTSMessage = "";
   
           
         PriceChangeType priceChange = comparePrice(infoForCurrentHour.price ?? 0, myEntities.Sensor.NextPrice.State ?? 0 );
@@ -321,7 +317,7 @@ public class EnergyMonitor : AppBase
             TTSMessage += "There is " + (addAlso ? "also" : "") + "potential for solar charging";
         }
 
-        TTS.Speak(TTSMessage,TTS.TTSPriority.DoNotPlayInGuestMode);
+        return TTSMessage;
 
     }
     
