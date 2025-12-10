@@ -72,6 +72,7 @@ namespace NetDaemonApps.apps
             int originalLenght = msg.Length;
             foreach (var kvp in morningTTSfunctions)
             {
+                if (kvp.Value == null) continue;
                 string part = kvp.Value.Invoke();
                 if (part.Length > 0)
                 {

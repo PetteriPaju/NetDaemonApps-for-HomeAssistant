@@ -297,18 +297,12 @@ public class EnergyMonitor : AppBase
         string TTSMessage = "";
   
           
-        PriceChangeType priceChange = comparePrice(infoForCurrentHour.price ?? 0, myEntities.Sensor.NextPrice.State ?? 0 );
+        PriceChangeType priceChange = comparePrice(myEntities.Sensor.CurrentPrice.State ?? 0, myEntities.Sensor.NextPrice.State ?? 0 );
         bool addAlso = false;
       
-        if (infoForCurrentHour.range != 0 || priceChange != PriceChangeType.NoChange)
+        if (Price2RangeIndx(myEntities.Sensor.CurrentPrice.State ?? 0) != 0 || priceChange != PriceChangeType.NoChange)
         {
-            TTSMessage += " Current Electricity Cost is at " + Price2RangaNme(infoForCurrentHour.price ?? 0) + ". ";
-            if (priceChange != PriceChangeType.NoChange)
-            {
-
-                TTSMessage += "But it will " + (priceChange == PriceChangeType.Increase ? "increase to " : "decrease to ") + Price2RangaNme(myEntities.Sensor.NextPrice.State ?? 0);
-                TTSMessage += " in " + (60 - DateTime.Now.Minute) + " minutes.";
-            }
+            TTSMessage += " Current Electricity Cost is at " + Price2RangaNme(myEntities.Sensor.CurrentPrice.State ?? 0) + ". ";
             addAlso = true;
         }
 
