@@ -52,7 +52,6 @@ namespace NetDaemonApps.apps
         protected virtual void On_B() { OnAny(); }
 
     }
-    [NetDaemonApp]
     public class TreadmillRemote : NedisRemote
     {
 
