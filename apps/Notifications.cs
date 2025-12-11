@@ -46,7 +46,7 @@ namespace NetDaemonApps.apps
             RegisterPhone(20);
             RegisterPhone(10);
 
-            IsAsleepMonitor.RegisterMorningTTS("Phone", () => { return myEntities.Sensor.MotoG8PowerLiteBatteryLevel.State > 33 ? "Phone battery is at" + myEntities.Sensor.MotoG8PowerLiteBatteryLevel.State + "%" : "";  });
+            IsAsleepMonitor.RegisterMorningTTS("Phone", () => { return myEntities.Sensor.MotoG8PowerLiteBatteryLevel.State < 33 ? "Phone battery is at" + myEntities.Sensor.MotoG8PowerLiteBatteryLevel.State + "%" : "";  });
 
             myEntities.InputBoolean.Ishome.StateChanges().Where(x => x.New.IsOn()).Subscribe(_ => {
                 if (myEntities.BinarySensor.SolarChargingLimit.IsOn() && myEntities.Sensor.EcoflowSolarInPower.State == 0)
