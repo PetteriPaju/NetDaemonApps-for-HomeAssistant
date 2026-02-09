@@ -194,9 +194,9 @@ namespace NetDaemonApps.apps
                 myEntities.Switch.EcoflowPlug.TurnOff();
             });
 
-            myEntities.Switch.EcoflowPlug.StateChanges().WhenStateIsFor(x => x.IsOff() && myEntities.Sensor.EcoflowOutputPlugPower.State == 0 && myEntities.Sensor.EcoflowStatus.State == "online", TimeSpan.FromMinutes(5),myScheduler).Subscribe(x =>
+            myEntities.Switch.EcoflowPlug.StateChanges().WhenStateIsFor(x => x.IsOff() && myEntities.Sensor.EcoflowOutputPlugPower.State == 0 && myEntities.Sensor.EcoflowStatus.State == "online", TimeSpan.FromMinutes(20),myScheduler).Subscribe(x =>
             {
-                myEntities.Switch.SwitchbotEcoflow.Toggle();
+              //  myEntities.Switch.SwitchbotEcoflow.Toggle();
             });
 
             myEntities.Sensor.EcoflowStatus.StateChanges().Where(x => x.New.State == "Online").Subscribe(x =>

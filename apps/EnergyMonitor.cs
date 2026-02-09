@@ -294,6 +294,7 @@ public class EnergyMonitor : AppBase
     public string MorningTTS()
     {
         if (myEntities.InputBoolean.NotificationEnergyPriceChange.IsOff() && (myEntities.InputBoolean.NotificationEnergySolar.IsOff() && myEntities.Sensor.EcoflowSolarInPower.State == 0)) return "";
+        if (Price2RangeIndx(myEntities.Sensor.CurrentPrice.State ?? 0) == 0) return "";
         string TTSMessage = "";
   
           

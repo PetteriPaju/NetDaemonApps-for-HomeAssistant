@@ -11,6 +11,7 @@ using NetDaemon.HassModel;
 using System.Reactive.Linq;
 using System.Security.Cryptography;
 using Microsoft.Extensions.Hosting;
+using System.Reflection.Metadata.Ecma335;
 
 namespace NetDaemonApps.apps
 {
@@ -299,6 +300,8 @@ namespace NetDaemonApps.apps
                 myEntities.InputDatetime.Lastisasleeptime.SetDatetime(timestamp: new DateTimeOffset(DateTime.Now).ToUnixTimeSeconds());
 
             });
+
+            RegisterMorningTTS("clock", ()=>{ return "It's " + DateTime.Now.TimeOfDay;  } );
 
 
             myScheduler.ScheduleCron("*/5 * * * *", SleepStatusUpdated);

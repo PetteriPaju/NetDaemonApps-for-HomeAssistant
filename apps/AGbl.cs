@@ -38,7 +38,7 @@ namespace NetDaemonApps.apps
             TriggerManager = _triggerManager;
             _myScheduler.ScheduleCron("59 * * * *", hourlyResetFunction);
             _myScheduler.ScheduleCron("0 0 * * *", dailyResetFunction);
-            DailyResetFunction += () => { _myEntities?.InputDatetime.Lastknowndate.SetDatetime(date:DateTime.Now.Date.ToString("yyyy-MM-dd"));};
+            DailyResetFunction += () => { _myEntities?.InputDatetime.Lastknowndate.SetDatetime(date:(DateTime.Now+ TimeSpan.FromMinutes(10)).Date.ToString("yyyy-MM-dd"));};
             AppBase.Init(this);
             Console.WriteLine("Is working");
             Task.Run(OnLateStart);
