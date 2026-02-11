@@ -301,7 +301,7 @@ namespace NetDaemonApps.apps
 
             });
 
-            RegisterMorningTTS("clock", ()=>{ return "It's " + DateTime.Now.TimeOfDay;  } );
+            RegisterMorningTTS("clock", () => { return "It's " + DateTime.Now.ToString("H:mm", CultureInfo.InvariantCulture); }  );
 
 
             myScheduler.ScheduleCron("*/5 * * * *", SleepStatusUpdated);
