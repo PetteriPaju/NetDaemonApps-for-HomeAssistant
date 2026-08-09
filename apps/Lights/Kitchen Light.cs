@@ -22,13 +22,21 @@ namespace NetDaemonApps.apps.Lights
         {
             if (myEntities.InputBoolean.GuestMode.IsOn()) return;
             if (myEntities.Sensor.Livingroomfp1PresenceEvent.State == "approach") return;
-            if (myEntities.BinarySensor.FridgeContactSensorContact.IsOn() ) return;
+            if (myEntities.BinarySensor.FridgeContactSensorContact.IsOn()) return;
+            if (myEntities.BinarySensor._0x001788010bcfb16fOccupancy.IsOn()) return;
+
             myEntities.Light.KitchenLight2.TurnOffLight();
         }
-        public Kitchen_Light() {
+        public Kitchen_Light()
+        {
 
 
             myEntities.BinarySensor.FridgeContactSensorContact.StateChanges().Where(x => ((bool)x?.New.IsOn())).Subscribe(_ => {
+                TurnOn();
+                IsHomeManager.CancelIsHome();
+            });
+
+            myEntities.BinarySensor._0x001788010bcfb16fOccupancy.StateChanges().Where(x => ((bool)x?.New.IsOn())).Subscribe(_ => {
                 TurnOn();
                 IsHomeManager.CancelIsHome();
             });
